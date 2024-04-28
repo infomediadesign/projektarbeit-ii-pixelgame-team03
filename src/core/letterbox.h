@@ -11,7 +11,7 @@ namespace game {
         public:
             Letterbox(const RenderTexture2D&);
             void draw();
-            void calculate();
+            void calculate(int pa_stage_width_, int pa_stage_height_);
 
             protected:
             float renderScale{}; // this and the line below are relevant to drawing later.

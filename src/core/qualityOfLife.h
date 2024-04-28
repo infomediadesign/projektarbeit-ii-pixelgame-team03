@@ -2,7 +2,6 @@
 #define RAYLIBSTARTER_QUALITYOFLIFE_H
 
 #include "raylib.h"
-//#include "../src/config.h"
 
 #include <algorithm>
 #include <cmath>

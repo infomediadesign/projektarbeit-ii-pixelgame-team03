@@ -62,7 +62,7 @@ void game::core::Game::Run(const std::string& scene_name, std::unique_ptr<game::
 
         // Process input and update current active scene
         game::core::Store::stage->Update();
-        letterbox.calculate();
+        letterbox.calculate(stage_width_, stage_height_);
 
         // Draw
         BeginDrawing();

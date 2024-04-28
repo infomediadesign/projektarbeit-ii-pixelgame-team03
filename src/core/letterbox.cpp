@@ -4,7 +4,8 @@
 
 #include "qualityOfLife.h"
 #include "letterbox.h"
-#include "../../cmake-build-debug/src/config.h"
+#include "../src/config.h"
+
 
 namespace game {
     namespace core {
@@ -12,11 +13,11 @@ namespace game {
             canvas = pt_canvas;
         }
 
-        void Letterbox::calculate() {
+        void Letterbox::calculate(int pa_stage_width_, int pa_stage_height_) {
             if (IsKeyDown(KEY_LEFT_ALT) && IsKeyPressed(KEY_ENTER)) { //Fullscreen logic.
                 if (IsWindowFullscreen()) {
                     ToggleFullscreen();
-                    SetWindowSize(game::Config::kStageWidth, game::Config::kStageHeight);
+                    SetWindowSize(pa_stage_width_, pa_stage_height_);
                 } else {
                     SetWindowSize(GetMonitorWidth(GetCurrentMonitor()), GetMonitorHeight(GetCurrentMonitor()));
                     ToggleFullscreen();
