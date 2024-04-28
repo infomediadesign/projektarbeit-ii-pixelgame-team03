@@ -4,6 +4,7 @@
 
 #include "store.h"
 #include "stage.h"
+#include "letterbox.h"
 
 using namespace std::string_literals;
 
@@ -51,6 +52,7 @@ game::core::Game::~Game() {
 void game::core::Game::Run(const std::string& scene_name, std::unique_ptr<game::core::Scene> scene) const {
     // Create game::Stage instance and assign new scene
     game::core::Store::stage = std::make_unique<game::core::Stage>(scene_name, std::move(scene));
+    game::core::Letterbox letterbox(this->render_target_);
 
     // Main game loop
     while (!WindowShouldClose()) // Detect window close button if defined
@@ -60,6 +62,7 @@ void game::core::Game::Run(const std::string& scene_name, std::unique_ptr<game::
 
         // Process input and update current active scene
         game::core::Store::stage->Update();
+        letterbox.calculate();
 
         // Draw
         BeginDrawing();
@@ -72,7 +75,8 @@ void game::core::Game::Run(const std::string& scene_name, std::unique_ptr<game::
         EndTextureMode();
 
         // Draw render texture to window, properly scaled
-        this->DrawRenderTexture();
+        //this->DrawRenderTexture();
+        letterbox.draw();
         EndDrawing();
 
         // Increment game tick counter
