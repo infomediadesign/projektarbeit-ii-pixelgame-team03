@@ -16,7 +16,7 @@ game::scenes::GameScene::GameScene() {
     std::shared_ptr<game::core::Actor> actor1 = std::make_unique<game::core::Actor>(std::make_unique<game::core::Sprite>(std::make_shared<game::core::Texture2D>("assets/graphics/ball.png"), 100, 100));
     this->actors.insert(std::make_pair("actor1", actor1));
 
-    std::shared_ptr<game::core::Actor> actor2 = std::make_unique<game::core::Actor>(std::make_unique<game::core::SpriteAnimated>(std::make_shared<game::core::Texture2D>("assets/graphics/anim_sprite.png"), 80.0f, 80.0f, 1, 3, 50, 100, 300));
+    std::shared_ptr<game::core::Actor> actor2 = std::make_unique<game::core::Actor>(std::make_unique<game::core::SpriteAnimated>(std::make_shared<game::core::Texture2D>("assets/graphics/anim_sprite.png"), 80.0f, 80.0f, 2, 3, 50, 100, 300));
     this->actors.insert(std::make_pair("actor2", actor2));
 }
 
