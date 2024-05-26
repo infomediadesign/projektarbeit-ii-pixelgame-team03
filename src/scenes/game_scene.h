@@ -6,6 +6,7 @@
 #include <scene.h>
 #include <sprite.h>
 #include <sprite_animated.h>
+#include "InputHandler.h"
 
 namespace game::scenes {
     class GameScene final : public game::core::Scene {
@@ -20,5 +21,6 @@ namespace game::scenes {
 
     private:
         // Add private members here...
+        InputHandler inputHandler_;
     };
 }
