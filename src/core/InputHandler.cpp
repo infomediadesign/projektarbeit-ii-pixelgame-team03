@@ -6,7 +6,7 @@ void InputHandler::remap(std::map<std::shared_ptr<Command::Command>, Input>& pa_
 
 
     //find command & check if key is already in use
-    auto commandIterator = pa_map.find(std::shared_ptr<Command::Command>(pa_command));
+    auto commandIterator = pa_map.find(pa_command);
     for(std::pair<const std::shared_ptr<Command::Command>, Input> commandPair : pa_map) {
         if (commandPair.second == pa_newKey) {
             std::cout << "Key already in use. Swapping Keys." << std::endl;
