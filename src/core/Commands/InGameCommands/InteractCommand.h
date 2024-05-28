@@ -8,7 +8,7 @@
 
 namespace Command {
 
-    class InteractCommand : public Command::Command {
+    class InteractCommand : public Command {
     public:
         void execute() override;
     };

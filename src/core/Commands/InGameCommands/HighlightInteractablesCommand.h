@@ -6,7 +6,7 @@
 
 namespace Command {
 
-    class HighlightInteractablesCommand : public Command::Command {
+    class HighlightInteractablesCommand : public Command {
     public:
         void execute() override;
     };

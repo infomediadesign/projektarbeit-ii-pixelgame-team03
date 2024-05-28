@@ -9,7 +9,7 @@
 
 namespace Command {
 
-    class DisconnectCommand : public Command::Command {
+    class DisconnectCommand : public Command {
     public:
         void execute() override;
     };

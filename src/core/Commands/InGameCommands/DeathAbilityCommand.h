@@ -8,7 +8,7 @@
 
 namespace Command {
 
-    class DeathAbilityCommand : public Command::Command {
+    class DeathAbilityCommand : public Command {
     public:
         void execute() override;
     };

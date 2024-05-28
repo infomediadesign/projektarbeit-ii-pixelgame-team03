@@ -11,7 +11,7 @@
 
 namespace Command {
 
-    class MoveDownCommand : public Command::Command {
+    class MoveDownCommand : public Command {
     public:
         void execute() override;
 

@@ -8,7 +8,7 @@
 
 namespace Command {
 
-    class BackCommand : public Command::Command {
+    class BackCommand : public Command {
     public:
         void execute() override;
     };

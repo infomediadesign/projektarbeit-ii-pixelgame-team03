@@ -10,7 +10,7 @@
 
 namespace Command {
 
-    class MoveUpCommand : public Command::Command {
+    class MoveUpCommand : public Command {
     public:
         void execute() override;
     };

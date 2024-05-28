@@ -8,7 +8,7 @@
 
 namespace Command {
 
-    class CursorUpCommand : public Command::Command {
+    class CursorUpCommand : public Command {
     public:
         void execute() override;
     };
