@@ -19,7 +19,7 @@ int main() {
                           game::Config::kTargetFps, game::Config::kWindowFlags, game::Config::kTextureFilter,
                           game::Config::kExitKey,game::Config::kUseMouse, game::Config::kAudio, game::Config::kProjectName);
 
-    game.Run("menu"s, std::make_unique<game::scenes::MenuScene>());
+    game.Run("menu", std::make_unique<game::scenes::MenuScene>());
 
     return EXIT_SUCCESS;
 }
