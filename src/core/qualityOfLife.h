@@ -6,6 +6,10 @@
 #include <algorithm>
 #include <cmath>
 #include <string>
-
+#include <map>
+#include <memory>
+#include <iostream>
+#include <chrono>
+#include <thread>
 
 #endif //RAYLIBSTARTER_QUALITYOFLIFE_H

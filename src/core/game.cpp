@@ -5,12 +5,14 @@
 #include "store.h"
 #include "stage.h"
 #include "letterbox.h"
+#include "InputHandler.h"
 
 using namespace std::string_literals;
 
 game::core::Game::Game(int stage_width, int stage_height, bool full_screen, int target_fps, int window_flags,
                        int texture_filter, int exit_key, bool mouse, bool audio, const char *project_name)
-                       : stage_width_(stage_width), stage_height_(stage_height), audio_(audio), mouse_(mouse) {
+                       : stage_width_(stage_width), stage_height_(stage_height), audio_(audio), mouse_(mouse)
+                       {
     SetConfigFlags(window_flags);
     InitWindow(stage_width, stage_height, project_name);
     SetWindowMinSize(stage_width / 2, stage_height / 2);
@@ -53,6 +55,8 @@ void game::core::Game::Run(const std::string& scene_name, std::unique_ptr<game::
     // Create game::Stage instance and assign new scene
     game::core::Store::stage = std::make_unique<game::core::Stage>(scene_name, std::move(scene));
     game::core::Letterbox letterbox(this->render_target_);
+    InputHandler inputHandler = InputHandler();
+
 
     // Main game loop
     while (!WindowShouldClose()) // Detect window close button if defined
@@ -62,7 +66,13 @@ void game::core::Game::Run(const std::string& scene_name, std::unique_ptr<game::
 
         // Process input and update current active scene
         game::core::Store::stage->Update();
-        letterbox.calculate(stage_width_, stage_height_);
+        letterbox.calculate(stage_width_,  stage_height_);
+        inputHandler.checkKeyboardMovement();
+        inputHandler.checkControllerMovement();
+        if (IsKeyPressed(KEY_K)){
+            std::cout << "test remap" << std::endl;
+            inputHandler.testRemap();
+        }
 
         // Draw
         BeginDrawing();
