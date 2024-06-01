@@ -27,7 +27,8 @@ set(CORE_LOGIC_HEADERS
     user_interface/Renderer.h
 
     Scene.h
-        data_processing/Store.cpp
+    data_processing/Store.cpp
+
 )
 
 add_library(core_logic STATIC ${CORE_LOGIC_SOURCES} ${CORE_LOGIC_HEADERS})
