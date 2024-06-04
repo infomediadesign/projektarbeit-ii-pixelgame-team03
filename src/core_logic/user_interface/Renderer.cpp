@@ -19,6 +19,24 @@ CoreLogic::UserInterface::Renderer *CoreLogic::UserInterface::Renderer::getInsta
 
 void CoreLogic::UserInterface::Renderer::render(std::shared_ptr<std::vector<tson::Layer>> &pa_layers, std::shared_ptr<std::map<int,std::vector<EventManagement::Actor>>> &pa_actors, Camera2D &pa_camera, RenderTexture2D &pa_canvas, Color pa_bgColor)
 {
+
+    Rectangle cameraRec = {0, 0, 0, 0};
+    if (pa_camera.target.x > 0)
+    {
+        cameraRec.x = floorf(pa_camera.target.x / 24);
+    }
+    if (pa_camera.target.y > 0)
+    {
+        cameraRec.y = floorf(pa_camera.target.y / 24);
+    }
+    if (pa_camera.target.x + 960 > 0)
+    {
+        cameraRec.width = floorf((pa_camera.target.x + 960) / 24);
+    }
+    if (pa_camera.target.y + 540 > 0)
+    {
+        cameraRec.height = floorf((pa_camera.target.y + 540) / 24);
+    }
     BeginTextureMode(pa_canvas);
     {
         BeginMode2D(pa_camera);
@@ -28,20 +46,20 @@ void CoreLogic::UserInterface::Renderer::render(std::shared_ptr<std::vector<tson
             {
                 if (layer.getType() == tson::LayerType::TileLayer)
                 {
-                    renderTileLayer(layer);
+                    renderTileLayer(layer, cameraRec);
                 }
             }
         } EndMode2D();
     } EndTextureMode();
 }
 
-void CoreLogic::UserInterface::Renderer::renderTileLayer(tson::Layer &pa_layer)
+void CoreLogic::UserInterface::Renderer::renderTileLayer(tson::Layer &pa_layer, Rectangle pa_cameraRec)
 {
     CoreLogic::DataProcessing::TileMap& tilemap = *CoreLogic::DataProcessing::TileMap::getInstance();
     Texture2D& tileMap = *tilemap.getTileMap();
-    for (int y = 0; y < pa_layer.getSize().y; y++)
+    for (int y = (int)pa_cameraRec.y; y < (int)pa_cameraRec.height; y++)
     {
-        for (int x = 0; x < pa_layer.getSize().x; x++)
+        for (int x = (int) pa_cameraRec.x; x < (int) pa_cameraRec.width; x++)
         {
             tson::Tile* tilePtr = pa_layer.getTileData(x, y);
             if (tilePtr == nullptr)
