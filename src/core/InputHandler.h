@@ -64,6 +64,7 @@ public:
                           const std::shared_ptr<Command::Command> &pa_command);
 
     //Input detection
+    KeyboardKey detectKeyboardInput();
 
 protected:
     std::map<std::shared_ptr<Command::Command>, Input> keyboardInGameMapping;

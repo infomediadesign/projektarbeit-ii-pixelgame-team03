@@ -4,11 +4,20 @@
 
 void InputHandler::remap(std::map<std::shared_ptr<Command::Command>, Input>& pa_map, const std::shared_ptr<Command::Command>& pa_command, Input pa_newKey) {
 
+    KeyboardKey newKey;
+    while (detectKeyboardInput() != KEY_NULL) {
+ std::cout << "clearing previous key" << std::endl;
+
+    }
+    std::cout << "cleared previous key" << std::endl;
+    while (IsKeyDown(KEY_NULL)) {
+std::cout << "new key" << std::endl;
+    }
 
     //find command & check if key is already in use
     auto commandIterator = pa_map.find(pa_command);
     for(std::pair<const std::shared_ptr<Command::Command>, Input> commandPair : pa_map) {
-        if (commandPair.second == pa_newKey) {
+        if (commandPair.second == newKey) {
             std::cout << "Key already in use. Swapping Keys." << std::endl;
 
             //save the old command and the keybind to swap (currend keybind of the command that is supposed to be rebound)
@@ -25,7 +34,7 @@ void InputHandler::remap(std::map<std::shared_ptr<Command::Command>, Input>& pa_
 
     //insert new command
     pa_map.erase(commandIterator);
-    pa_map.insert(std::pair<std::shared_ptr<Command::Command>, Input>(pa_command, pa_newKey));
+    pa_map.insert(std::pair<std::shared_ptr<Command::Command>, Input>(pa_command, newKey));
 }
 
 
@@ -180,12 +189,26 @@ void InputHandler::testRemap() {
     remap(controllerInGameMapping, moveRightCommand_, Input(GAMEPAD_BUTTON_LEFT_FACE_RIGHT));
 }
 
-//KeyboardKey InputHandler::detectKeyboardInput() {
+KeyboardKey InputHandler::detectKeyboardInput() {
 //    for (int key = KEY_NULL; key < KEY_KB_MENU; key++) {
 //        if (IsKeyPressed(key)) {
 //            return (KeyboardKey) key;
 //        }
 //    }
 //    return KEY_NULL;
-//}
+//std::cout << "keyboard input" << std::endl;
+if (IsKeyDown(KEY_L))
+{
+    std::cout << "Hilfe" << std::endl;
+    return KEY_NULL;
+}
+if (IsKeyReleased(KEY_UP)){
+    std::cout << "up" << std::endl;
+    return KEY_UP;
+}
+else {
+    std::cout << "null" << std::endl;
+    return KEY_NULL;
+}
+}
 

@@ -69,10 +69,16 @@ void game::core::Game::Run(const std::string& scene_name, std::unique_ptr<game::
         letterbox.calculate(stage_width_,  stage_height_);
         inputHandler.checkKeyboardMovement();
         inputHandler.checkControllerMovement();
-        if (IsKeyPressed(KEY_K)){
-            std::cout << "test remap" << std::endl;
-            inputHandler.testRemap();
+        bool remap = false;
+        if (IsKeyReleased(KEY_L)){
+            remap = true;
         }
+        if (remap)
+        {
+            inputHandler.testRemap();
+            remap = false;
+        }
+
 
         // Draw
         BeginDrawing();
