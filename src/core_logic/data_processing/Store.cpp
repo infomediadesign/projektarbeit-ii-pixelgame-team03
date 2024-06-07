@@ -11,6 +11,11 @@ CoreLogic::DataProcessing::TileMap::TileMap()
     tileMap_ = std::make_shared<Texture2D>(LoadTexture("assets/graphics/Grassland_Tileset.png"));
 }
 
+CoreLogic::DataProcessing::TileMap::~TileMap()
+{
+    UnloadTexture(*tileMap_);
+}
+
 CoreLogic::DataProcessing::TileMap *CoreLogic::DataProcessing::TileMap::getInstance()
 {
     std::lock_guard<std::mutex> lock(mutex_);

@@ -25,6 +25,7 @@ namespace CoreLogic::DataProcessing
     {
     private:
         TileMap();
+        ~TileMap();
         static TileMap* po_instance_;
         static std::mutex mutex_;
         std::shared_ptr<Texture2D> tileMap_;

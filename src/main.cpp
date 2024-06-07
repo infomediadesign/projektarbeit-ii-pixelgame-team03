@@ -19,15 +19,6 @@ int main() {
                                   GameSpace::Config::Def_Audio, GameSpace::Config::Def_FullScreen,
                                   GameSpace::Config::PROJECT_NAME);
 
-    tson::Tileson tileson__;
-    auto MapPtr = tileson__.parse("assets/data/test.tmj");
-    tson::Map& Map = *MapPtr;
-    if (Map.getStatus() != tson::ParseStatus::OK)
-    {
-        std::cout << "Failed to parse map, error: " << Map.getStatusMessage() << std::endl;
-    }
-    std::vector<tson::Layer> layers = Map.getLayers();
-
     game.run();
 
     /*// Raylib initialization
@@ -193,6 +184,6 @@ int main() {
 
     // Close window and OpenGL context
     CloseWindow();*/
-
+    CloseWindow();
     return EXIT_SUCCESS;
 }
