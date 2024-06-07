@@ -49,6 +49,7 @@ void CoreLogic::UserInterface::Renderer::render(std::shared_ptr<std::vector<tson
                     renderTileLayer(layer, cameraRec);
                 }
             }
+            renderHUD();
         } EndMode2D();
     } EndTextureMode();
 }
@@ -84,4 +85,8 @@ void CoreLogic::UserInterface::Renderer::renderTileLayer(tson::Layer &pa_layer, 
             DrawTexturePro(tileMap, tileSetRec, destRec, {0, 0}, 0, WHITE);
         }
     }
+}
+
+void CoreLogic::UserInterface::Renderer::renderHUD() {
+
 }

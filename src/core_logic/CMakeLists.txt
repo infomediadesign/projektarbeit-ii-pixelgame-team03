@@ -33,6 +33,10 @@ set(CORE_LOGIC_HEADERS
         event_management/ButtonMapping.h
         event_management/Commands.cpp
         event_management/Commands.h
+        user_interface/hud_elements/LifeBar.cpp
+        user_interface/hud_elements/LifeBar.h
+        user_interface/HUDElements.cpp
+        user_interface/HUDElements.h
 
 )
 
