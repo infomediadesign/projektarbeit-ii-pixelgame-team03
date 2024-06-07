@@ -31,8 +31,8 @@ set(CORE_LOGIC_HEADERS
     data_processing/Store.cpp
         event_management/ButtonMapping.cpp
         event_management/ButtonMapping.h
-        event_management/Comands.cpp
-        event_management/Comands.h
+        event_management/Commands.cpp
+        event_management/Commands.h
 
 )
 

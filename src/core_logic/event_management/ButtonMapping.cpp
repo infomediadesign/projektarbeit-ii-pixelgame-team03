@@ -9,7 +9,7 @@ namespace CoreLogic {
     namespace EventManagement {
 
 
-        void ButtonMapping::remap(std::map<std::shared_ptr<Comand>, Input>& pa_map, const std::shared_ptr<Comand>& pa_Comand, Input pa_newKey) {
+        void ButtonMapping::remap(std::map<std::shared_ptr<Command>, Input>& pa_map, const std::shared_ptr<Command>& pa_Command, Input pa_newKey) {
 
             KeyboardKey newKey;
             while (detectKeyboardInput() != KEY_NULL) {
@@ -21,74 +21,74 @@ namespace CoreLogic {
                 std::cout << "new key" << std::endl;
             }
 
-            //find Comand & check if key is already in use
-            auto ComandIterator = pa_map.find(pa_Comand);
-            for(std::pair<const std::shared_ptr<Comand>, Input> ComandPair : pa_map) {
-                if (ComandPair.second == newKey) {
+            //find Command & check if key is already in use
+            auto CommandIterator = pa_map.find(pa_Command);
+            for(std::pair<const std::shared_ptr<Command>, Input> CommandPair : pa_map) {
+                if (CommandPair.second == newKey) {
                     std::cout << "Key already in use. Swapping Keys." << std::endl;
 
-                    //save the old Comand and the keybind to swap (currend keybind of the Comand that is supposed to be rebound)
-                    auto usedComand = ComandPair.first;
-                    auto usedComandIterator = pa_map.find(usedComand);
-                    auto swappedKey = ComandIterator->second;
+                    //save the old Command and the keybind to swap (currend keybind of the Command that is supposed to be rebound)
+                    auto usedCommand = CommandPair.first;
+                    auto usedCommandIterator = pa_map.find(usedCommand);
+                    auto swappedKey = CommandIterator->second;
 
-                    //erase and insert old Comand with swapped key
-                    pa_map.erase(usedComandIterator);
-                    pa_map.insert(std::pair<std::shared_ptr<Comand>, Input>(usedComand, swappedKey));
+                    //erase and insert old Command with swapped key
+                    pa_map.erase(usedCommandIterator);
+                    pa_map.insert(std::pair<std::shared_ptr<Command>, Input>(usedCommand, swappedKey));
                     break;
                 }
             }
 
-            //insert new Comand
-            pa_map.erase(ComandIterator);
-            pa_map.insert(std::pair<std::shared_ptr<Comand>, Input>(pa_Comand, newKey));
+            //insert new Command
+            pa_map.erase(CommandIterator);
+            pa_map.insert(std::pair<std::shared_ptr<Command>, Input>(pa_Command, newKey));
         }
 
 
         void ButtonMapping::checkKeyboardMovement() {
-            executeIfPressed(keyboardInGameMapping, moveUpComand_);
-            executeIfPressed(keyboardInGameMapping, moveDownComand_);
-            executeIfPressed(keyboardInGameMapping, moveLeftComand_);
-            executeIfPressed(keyboardInGameMapping, moveRightComand_);
+            executeIfPressed(keyboardInGameMapping, moveUpCommand_);
+            executeIfPressed(keyboardInGameMapping, moveDownCommand_);
+            executeIfPressed(keyboardInGameMapping, moveLeftCommand_);
+            executeIfPressed(keyboardInGameMapping, moveRightCommand_);
         }
 
         void ButtonMapping::checkControllerMovement() {
-            executeIfPressed(controllerInGameMapping, moveUpComand_);
-            executeIfPressed(controllerInGameMapping, moveDownComand_);
-            executeIfPressed(controllerInGameMapping, moveLeftComand_);
-            executeIfPressed(controllerInGameMapping, moveRightComand_);
+            executeIfPressed(controllerInGameMapping, moveUpCommand_);
+            executeIfPressed(controllerInGameMapping, moveDownCommand_);
+            executeIfPressed(controllerInGameMapping, moveLeftCommand_);
+            executeIfPressed(controllerInGameMapping, moveRightCommand_);
         }
 
-        void ButtonMapping::executeIfPressed(std::map<std::shared_ptr<Comand>, Input>& pa_map,const std::shared_ptr<Comand>& pa_Comand) {
+        void ButtonMapping::executeIfPressed(std::map<std::shared_ptr<Command>, Input>& pa_map,const std::shared_ptr<Command>& pa_Command) {
 
-            auto ComandIterator = pa_map.find(pa_Comand);
+            auto CommandIterator = pa_map.find(pa_Command);
 
-            if (ComandIterator != pa_map.end()) { //check if Comand exists
+            if (CommandIterator != pa_map.end()) { //check if Command exists
 
                 //type KEYBOARD
-                if (ComandIterator->second.type == Input::Type::KEYBOARD)
+                if (CommandIterator->second.type == Input::Type::KEYBOARD)
                 {
-                    if (ComandIterator != pa_map.end() && IsKeyDown(ComandIterator->second.key)) {
-                        ComandIterator->first->execute();
+                    if (CommandIterator != pa_map.end() && IsKeyDown(CommandIterator->second.key)) {
+                        CommandIterator->first->execute();
                     }
                 }
 
                     //type BUTTON
-                else if (ComandIterator->second.type == Input::Type::BUTTON && IsGamepadButtonDown(0, ComandIterator->second.button))
+                else if (CommandIterator->second.type == Input::Type::BUTTON && IsGamepadButtonDown(0, CommandIterator->second.button))
                 {
-                    ComandIterator->first->execute();
+                    CommandIterator->first->execute();
                 }
 
                     //type AXIS
-                else if (ComandIterator->second.type == Input::Type::AXIS)
+                else if (CommandIterator->second.type == Input::Type::AXIS)
                 {
 
                     //check if the needed axis is the same as the actual input
-                    if (ComandIterator->second.direction == Input::AxisDirection::Positive && GetGamepadAxisMovement(0, ComandIterator->second.axis) > ComandIterator->second.axisThreshold) {
-                        ComandIterator->first->execute();
+                    if (CommandIterator->second.direction == Input::AxisDirection::Positive && GetGamepadAxisMovement(0, CommandIterator->second.axis) > CommandIterator->second.axisThreshold) {
+                        CommandIterator->first->execute();
                     }
-                    else if (ComandIterator->second.direction == Input::AxisDirection::Negative && GetGamepadAxisMovement(0, ComandIterator->second.axis) < ComandIterator->second.axisThreshold*-1) {
-                        ComandIterator->first->execute();
+                    else if (CommandIterator->second.direction == Input::AxisDirection::Negative && GetGamepadAxisMovement(0, CommandIterator->second.axis) < CommandIterator->second.axisThreshold*-1) {
+                        CommandIterator->first->execute();
                     }
                 }
             }
@@ -99,70 +99,70 @@ namespace CoreLogic {
 
             keyboardInGameMapping.clear();
 
-            keyboardInGameMapping.insert (std::pair<std::shared_ptr<Comand>, Input> (moveUpComand_, KEY_W ));
-            keyboardInGameMapping.insert (std::pair<std::shared_ptr<Comand>, Input> (moveLeftComand_, KEY_A ));
-            keyboardInGameMapping.insert (std::pair<std::shared_ptr<Comand>, Input> (moveRightComand_, KEY_D ));
-            keyboardInGameMapping.insert (std::pair<std::shared_ptr<Comand>, Input> (moveDownComand_, KEY_S ));
+            keyboardInGameMapping.insert (std::pair<std::shared_ptr<Command>, Input> (moveUpCommand_, KEY_W ));
+            keyboardInGameMapping.insert (std::pair<std::shared_ptr<Command>, Input> (moveLeftCommand_, KEY_A ));
+            keyboardInGameMapping.insert (std::pair<std::shared_ptr<Command>, Input> (moveRightCommand_, KEY_D ));
+            keyboardInGameMapping.insert (std::pair<std::shared_ptr<Command>, Input> (moveDownCommand_, KEY_S ));
 
-            keyboardInGameMapping.insert (std::pair<std::shared_ptr<Comand>, Input> (interactComand_, KEY_K ));
-            keyboardInGameMapping.insert (std::pair<std::shared_ptr<Comand>, Input> (actionComand_, KEY_J ));
-            keyboardInGameMapping.insert (std::pair<std::shared_ptr<Comand>, Input> (disconnectComand_, KEY_I ));
-            keyboardInGameMapping.insert (std::pair<std::shared_ptr<Comand>, Input> (deathAbilityComand_, KEY_L ));
-            keyboardInGameMapping.insert (std::pair<std::shared_ptr<Comand>, Input> (highlightInteractablesComand_, KEY_H ));
-            keyboardInGameMapping.insert (std::pair<std::shared_ptr<Comand>, Input> (pauseComand_, KEY_ESCAPE ));
+            keyboardInGameMapping.insert (std::pair<std::shared_ptr<Command>, Input> (interactCommand_, KEY_K ));
+            keyboardInGameMapping.insert (std::pair<std::shared_ptr<Command>, Input> (actionCommand_, KEY_J ));
+            keyboardInGameMapping.insert (std::pair<std::shared_ptr<Command>, Input> (disconnectCommand_, KEY_I ));
+            keyboardInGameMapping.insert (std::pair<std::shared_ptr<Command>, Input> (deathAbilityCommand_, KEY_L ));
+            keyboardInGameMapping.insert (std::pair<std::shared_ptr<Command>, Input> (highlightInteractablesCommand_, KEY_H ));
+            keyboardInGameMapping.insert (std::pair<std::shared_ptr<Command>, Input> (pauseCommand_, KEY_ESCAPE ));
 
 
             keyboardMenuMapping.clear();
 
-            keyboardMenuMapping.insert (std::pair<std::shared_ptr<Comand>, Input> (cursorUpComand_, KEY_W ));
-            keyboardMenuMapping.insert (std::pair<std::shared_ptr<Comand>, Input> (cursorLeftComand_, KEY_A ));
-            keyboardMenuMapping.insert (std::pair<std::shared_ptr<Comand>, Input> (cursorDownComand_, KEY_S ));
-            keyboardMenuMapping.insert (std::pair<std::shared_ptr<Comand>, Input> (cursorRightComand_, KEY_D ));
+            keyboardMenuMapping.insert (std::pair<std::shared_ptr<Command>, Input> (cursorUpCommand_, KEY_W ));
+            keyboardMenuMapping.insert (std::pair<std::shared_ptr<Command>, Input> (cursorLeftCommand_, KEY_A ));
+            keyboardMenuMapping.insert (std::pair<std::shared_ptr<Command>, Input> (cursorDownCommand_, KEY_S ));
+            keyboardMenuMapping.insert (std::pair<std::shared_ptr<Command>, Input> (cursorRightCommand_, KEY_D ));
 
-            keyboardMenuMapping.insert (std::pair<std::shared_ptr<Comand>, Input> (selectComand_, KEY_ENTER ));
-            keyboardMenuMapping.insert (std::pair<std::shared_ptr<Comand>, Input> (backComand_, KEY_ESCAPE ));
+            keyboardMenuMapping.insert (std::pair<std::shared_ptr<Command>, Input> (selectCommand_, KEY_ENTER ));
+            keyboardMenuMapping.insert (std::pair<std::shared_ptr<Command>, Input> (backCommand_, KEY_ESCAPE ));
         }
 
         void ButtonMapping::controllerDefaultMapping() {
 
             controllerInGameMapping.clear();
 
-            controllerInGameMapping.insert({moveUpComand_, Input(GAMEPAD_AXIS_LEFT_Y, Input::AxisDirection::Negative)});
-            controllerInGameMapping.insert({moveLeftComand_, Input(GAMEPAD_AXIS_LEFT_X, Input::AxisDirection::Negative)});
-            controllerInGameMapping.insert({moveDownComand_, Input(GAMEPAD_AXIS_LEFT_Y, Input::AxisDirection::Positive)});
-            controllerInGameMapping.insert({moveRightComand_, Input(GAMEPAD_AXIS_LEFT_X, Input::AxisDirection::Positive)});
+            controllerInGameMapping.insert({moveUpCommand_, Input(GAMEPAD_AXIS_LEFT_Y, Input::AxisDirection::Negative)});
+            controllerInGameMapping.insert({moveLeftCommand_, Input(GAMEPAD_AXIS_LEFT_X, Input::AxisDirection::Negative)});
+            controllerInGameMapping.insert({moveDownCommand_, Input(GAMEPAD_AXIS_LEFT_Y, Input::AxisDirection::Positive)});
+            controllerInGameMapping.insert({moveRightCommand_, Input(GAMEPAD_AXIS_LEFT_X, Input::AxisDirection::Positive)});
 
-            controllerInGameMapping.insert({interactComand_, Input(GAMEPAD_BUTTON_RIGHT_FACE_DOWN)});
-            controllerInGameMapping.insert({actionComand_, Input(GAMEPAD_BUTTON_RIGHT_TRIGGER_1)});
-            controllerInGameMapping.insert({disconnectComand_, Input(GAMEPAD_BUTTON_RIGHT_FACE_DOWN)});
-            controllerInGameMapping.insert({deathAbilityComand_, Input(GAMEPAD_BUTTON_RIGHT_TRIGGER_2)});
-            controllerInGameMapping.insert({highlightInteractablesComand_, Input(GAMEPAD_BUTTON_LEFT_TRIGGER_1)});
-            controllerInGameMapping.insert({pauseComand_, Input(GAMEPAD_BUTTON_MIDDLE_RIGHT)});
+            controllerInGameMapping.insert({interactCommand_, Input(GAMEPAD_BUTTON_RIGHT_FACE_DOWN)});
+            controllerInGameMapping.insert({actionCommand_, Input(GAMEPAD_BUTTON_RIGHT_TRIGGER_1)});
+            controllerInGameMapping.insert({disconnectCommand_, Input(GAMEPAD_BUTTON_RIGHT_FACE_DOWN)});
+            controllerInGameMapping.insert({deathAbilityCommand_, Input(GAMEPAD_BUTTON_RIGHT_TRIGGER_2)});
+            controllerInGameMapping.insert({highlightInteractablesCommand_, Input(GAMEPAD_BUTTON_LEFT_TRIGGER_1)});
+            controllerInGameMapping.insert({pauseCommand_, Input(GAMEPAD_BUTTON_MIDDLE_RIGHT)});
 
             controllerMenuMapping.clear();
 
-            controllerMenuMapping.insert({cursorUpComand_, Input(GAMEPAD_AXIS_LEFT_Y, Input::AxisDirection::Negative)});
-            controllerMenuMapping.insert({cursorLeftComand_, Input(GAMEPAD_AXIS_LEFT_X, Input::AxisDirection::Negative)});
-            controllerMenuMapping.insert({cursorDownComand_, Input(GAMEPAD_AXIS_LEFT_Y, Input::AxisDirection::Positive)});
-            controllerMenuMapping.insert({cursorRightComand_, Input(GAMEPAD_AXIS_LEFT_X, Input::AxisDirection::Positive)});
+            controllerMenuMapping.insert({cursorUpCommand_, Input(GAMEPAD_AXIS_LEFT_Y, Input::AxisDirection::Negative)});
+            controllerMenuMapping.insert({cursorLeftCommand_, Input(GAMEPAD_AXIS_LEFT_X, Input::AxisDirection::Negative)});
+            controllerMenuMapping.insert({cursorDownCommand_, Input(GAMEPAD_AXIS_LEFT_Y, Input::AxisDirection::Positive)});
+            controllerMenuMapping.insert({cursorRightCommand_, Input(GAMEPAD_AXIS_LEFT_X, Input::AxisDirection::Positive)});
 
-            controllerMenuMapping.insert({selectComand_, Input(GAMEPAD_BUTTON_RIGHT_FACE_DOWN)});
-            controllerMenuMapping.insert({backComand_, Input(GAMEPAD_BUTTON_RIGHT_FACE_DOWN)});
+            controllerMenuMapping.insert({selectCommand_, Input(GAMEPAD_BUTTON_RIGHT_FACE_DOWN)});
+            controllerMenuMapping.insert({backCommand_, Input(GAMEPAD_BUTTON_RIGHT_FACE_DOWN)});
         }
 
         ButtonMapping::ButtonMapping() {
 
-            moveUpComand_ = std::make_shared<InGameComand::MoveUpComand>();
-            moveLeftComand_ = std::make_shared<InGameComand::MoveLeftComand>();
-            moveDownComand_ = std::make_shared<InGameComand::MoveDownComand>();
-            moveRightComand_ = std::make_shared<InGameComand::MoveRightComand>();
+            moveUpCommand_ = std::make_shared<InGameCommand::MoveUpCommand>();
+            moveLeftCommand_ = std::make_shared<InGameCommand::MoveLeftCommand>();
+            moveDownCommand_ = std::make_shared<InGameCommand::MoveDownCommand>();
+            moveRightCommand_ = std::make_shared<InGameCommand::MoveRightCommand>();
 
-            interactComand_ = std::make_shared<InGameComand::InteractComand>();
-            actionComand_ = std::make_shared<InGameComand::ActionComand>();
-            disconnectComand_ = std::make_shared<InGameComand::DisconnectComand>();
-            deathAbilityComand_ = std::make_shared<InGameComand::DeathAbilityComand>();
-            highlightInteractablesComand_ = std::make_shared<InGameComand::HighlightInteractablesComand>();
-            pauseComand_ = std::make_shared<InGameComand::PauseComand>();
+            interactCommand_ = std::make_shared<InGameCommand::InteractCommand>();
+            actionCommand_ = std::make_shared<InGameCommand::ActionCommand>();
+            disconnectCommand_ = std::make_shared<InGameCommand::DisconnectCommand>();
+            deathAbilityCommand_ = std::make_shared<InGameCommand::DeathAbilityCommand>();
+            highlightInteractablesCommand_ = std::make_shared<InGameCommand::HighlightInteractablesCommand>();
+            pauseCommand_ = std::make_shared<InGameCommand::PauseCommand>();
 
             keyboardDefaultMapping();
             controllerDefaultMapping();
@@ -171,29 +171,29 @@ namespace CoreLogic {
 
         void ButtonMapping::testRemap() {
             std::cout << "remapping moveUp to up" << std::endl;
-            remap(keyboardInGameMapping, moveUpComand_, KEY_UP);
+            remap(keyboardInGameMapping, moveUpCommand_, KEY_UP);
 
             std::cout << "remapping moveleft to up (to test the double assignment (move up should be A))" << std::endl;
-            remap(keyboardInGameMapping, moveLeftComand_, KEY_UP);
+            remap(keyboardInGameMapping, moveLeftCommand_, KEY_UP);
 
             std::cout << "remapping moveDown to down" << std::endl;
-            remap(keyboardInGameMapping, moveDownComand_, KEY_DOWN);
+            remap(keyboardInGameMapping, moveDownCommand_, KEY_DOWN);
 
             std::cout << "remapping moveRight to right" << std::endl;
-            remap(keyboardInGameMapping, moveRightComand_, KEY_RIGHT);
+            remap(keyboardInGameMapping, moveRightCommand_, KEY_RIGHT);
 
 
             std::cout << "remapping controller moveUp to dpad up" << std::endl;
-            remap(controllerInGameMapping, moveUpComand_, Input(GAMEPAD_BUTTON_LEFT_FACE_UP));
+            remap(controllerInGameMapping, moveUpCommand_, Input(GAMEPAD_BUTTON_LEFT_FACE_UP));
 
             std::cout << "remapping controller moveleft to dpad up (to test the double assignment (move up should be left stick to left))" << std::endl;
-            remap(controllerInGameMapping, moveLeftComand_, Input(GAMEPAD_BUTTON_LEFT_FACE_UP));
+            remap(controllerInGameMapping, moveLeftCommand_, Input(GAMEPAD_BUTTON_LEFT_FACE_UP));
 
             std::cout << "remapping controller moveDown to dpad down" << std::endl;
-            remap(controllerInGameMapping, moveDownComand_, Input(GAMEPAD_BUTTON_LEFT_FACE_DOWN));
+            remap(controllerInGameMapping, moveDownCommand_, Input(GAMEPAD_BUTTON_LEFT_FACE_DOWN));
 
             std::cout << "remapping controller moveRight to dpad right" << std::endl;
-            remap(controllerInGameMapping, moveRightComand_, Input(GAMEPAD_BUTTON_LEFT_FACE_RIGHT));
+            remap(controllerInGameMapping, moveRightCommand_, Input(GAMEPAD_BUTTON_LEFT_FACE_RIGHT));
         }
 
         KeyboardKey ButtonMapping::detectKeyboardInput() {

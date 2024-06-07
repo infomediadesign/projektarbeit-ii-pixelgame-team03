@@ -8,7 +8,7 @@
 #include <raylib.h>
 #include <memory>
 #include <map>
-#include "Comands.h"
+#include "Commands.h"
 
 namespace CoreLogic::EventManagement {
 
@@ -60,43 +60,43 @@ namespace CoreLogic::EventManagement {
 
             void checkControllerMovement();
 
-            void remap(std::map<std::shared_ptr<Comand>, Input> &pa_map,
-                       const std::shared_ptr<Comand> &pa_Comand, Input pa_newInput);
+            void remap(std::map<std::shared_ptr<Command>, Input> &pa_map,
+                       const std::shared_ptr<Command> &pa_Command, Input pa_newInput);
 
-            void executeIfPressed(std::map<std::shared_ptr<Comand>, Input> &pa_map,
-                                  const std::shared_ptr<Comand> &pa_Comand);
+            void executeIfPressed(std::map<std::shared_ptr<Command>, Input> &pa_map,
+                                  const std::shared_ptr<Command> &pa_Command);
 
             //Input detection
             KeyboardKey detectKeyboardInput();
 
         protected:
-            std::map<std::shared_ptr<Comand>, Input> keyboardInGameMapping;
-            std::map<std::shared_ptr<Comand>, Input> keyboardMenuMapping;
+            std::map<std::shared_ptr<Command>, Input> keyboardInGameMapping;
+            std::map<std::shared_ptr<Command>, Input> keyboardMenuMapping;
 
-            std::map<std::shared_ptr<Comand>, Input> controllerInGameMapping;
-            std::map<std::shared_ptr<Comand>, Input> controllerMenuMapping;
-
-
-            std::shared_ptr<InGameComand::MoveUpComand> moveUpComand_;
-            std::shared_ptr<InGameComand::MoveLeftComand> moveLeftComand_;
-            std::shared_ptr<InGameComand::MoveDownComand> moveDownComand_;
-            std::shared_ptr<InGameComand::MoveRightComand> moveRightComand_;
-
-            std::shared_ptr<InGameComand::InteractComand> interactComand_;
-            std::shared_ptr<InGameComand::ActionComand> actionComand_;
-            std::shared_ptr<InGameComand::DisconnectComand> disconnectComand_;
-            std::shared_ptr<InGameComand::DeathAbilityComand> deathAbilityComand_;
-            std::shared_ptr<InGameComand::HighlightInteractablesComand> highlightInteractablesComand_;
-            std::shared_ptr<InGameComand::PauseComand> pauseComand_;
+            std::map<std::shared_ptr<Command>, Input> controllerInGameMapping;
+            std::map<std::shared_ptr<Command>, Input> controllerMenuMapping;
 
 
-            std::shared_ptr<MenuComand::CursorUpComand> cursorUpComand_;
-            std::shared_ptr<MenuComand::CursorLeftComand> cursorLeftComand_;
-            std::shared_ptr<MenuComand::CursorDownComand> cursorDownComand_;
-            std::shared_ptr<MenuComand::CursorRightComand> cursorRightComand_;
+            std::shared_ptr<InGameCommand::MoveUpCommand> moveUpCommand_;
+            std::shared_ptr<InGameCommand::MoveLeftCommand> moveLeftCommand_;
+            std::shared_ptr<InGameCommand::MoveDownCommand> moveDownCommand_;
+            std::shared_ptr<InGameCommand::MoveRightCommand> moveRightCommand_;
 
-            std::shared_ptr<MenuComand::SelectComand> selectComand_;
-            std::shared_ptr<MenuComand::BackComand> backComand_;
+            std::shared_ptr<InGameCommand::InteractCommand> interactCommand_;
+            std::shared_ptr<InGameCommand::ActionCommand> actionCommand_;
+            std::shared_ptr<InGameCommand::DisconnectCommand> disconnectCommand_;
+            std::shared_ptr<InGameCommand::DeathAbilityCommand> deathAbilityCommand_;
+            std::shared_ptr<InGameCommand::HighlightInteractablesCommand> highlightInteractablesCommand_;
+            std::shared_ptr<InGameCommand::PauseCommand> pauseCommand_;
+
+
+            std::shared_ptr<MenuCommand::CursorUpCommand> cursorUpCommand_;
+            std::shared_ptr<MenuCommand::CursorLeftCommand> cursorLeftCommand_;
+            std::shared_ptr<MenuCommand::CursorDownCommand> cursorDownCommand_;
+            std::shared_ptr<MenuCommand::CursorRightCommand> cursorRightCommand_;
+
+            std::shared_ptr<MenuCommand::SelectCommand> selectCommand_;
+            std::shared_ptr<MenuCommand::BackCommand> backCommand_;
         };
 
 }

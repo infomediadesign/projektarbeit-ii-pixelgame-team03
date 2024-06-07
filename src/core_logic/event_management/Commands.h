@@ -2,39 +2,39 @@
 // Created by Josi on 07.06.2024.
 //
 
-#ifndef HIVE_COMANDS_H
-#define HIVE_COMANDS_H
+#ifndef HIVE_COMMANDS_H
+#define HIVE_COMMANDS_H
 
 namespace CoreLogic::EventManagement
 {
 
-    class Comand
+    class Command
     {
         public:
             virtual void execute() = 0;
     };
 
-    namespace InGameComand
+    namespace InGameCommand
     {
-        class MoveDownComand : public Comand
+        class MoveDownCommand : public Command
         {
             public:
                 void execute() override;
         };
 
-        class MoveUpComand : public Comand
+        class MoveUpCommand : public Command
         {
             public:
                 void execute() override;
         };
 
-        class MoveLeftComand : public Comand
+        class MoveLeftCommand : public Command
         {
             public:
                 void execute() override;
         };
 
-        class MoveRightComand : public Comand
+        class MoveRightCommand : public Command
         {
             public:
                 void execute() override;
@@ -42,37 +42,37 @@ namespace CoreLogic::EventManagement
 
 
 
-        class ActionComand : public Comand
+        class ActionCommand : public Command
         {
             public:
                 void execute() override;
         };
 
-        class DeathAbilityComand : public Comand
+        class DeathAbilityCommand : public Command
         {
             public:
                 void execute() override;
         };
 
-        class DisconnectComand : public Comand
+        class DisconnectCommand : public Command
         {
             public:
                 void execute() override;
         };
 
-        class InteractComand : public Comand
+        class InteractCommand : public Command
         {
             public:
                 void execute() override;
         };
 
-        class HighlightInteractablesComand : public Comand
+        class HighlightInteractablesCommand : public Command
         {
             public:
                 void execute() override;
         };
 
-        class PauseComand : public Comand
+        class PauseCommand : public Command
         {
             public:
                 void execute() override;
@@ -80,39 +80,39 @@ namespace CoreLogic::EventManagement
 
     }
 
-    namespace MenuComand
+    namespace MenuCommand
     {
-        class CursorDownComand : public Comand
+        class CursorDownCommand : public Command
         {
             public:
                 void execute() override;
         };
 
-        class CursorUpComand : public Comand
+        class CursorUpCommand : public Command
         {
             public:
                 void execute() override;
         };
 
-        class CursorLeftComand : public Comand
+        class CursorLeftCommand : public Command
         {
             public:
                 void execute() override;
         };
 
-        class CursorRightComand : public Comand
+        class CursorRightCommand : public Command
         {
             public:
                 void execute() override;
         };
 
-        class BackComand : public Comand
+        class BackCommand : public Command
         {
             public:
                 void execute() override;
         };
 
-        class SelectComand : public Comand
+        class SelectCommand : public Command
         {
             public:
                 void execute() override;
@@ -121,4 +121,4 @@ namespace CoreLogic::EventManagement
 }
 
 
-#endif //HIVE_COMANDS_H
+#endif //HIVE_COMMANDS_H

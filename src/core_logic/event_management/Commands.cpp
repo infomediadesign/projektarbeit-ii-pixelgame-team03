@@ -3,91 +3,91 @@
 //
 
 #include <iostream>
-#include "Comands.h"
+#include "Commands.h"
 
 namespace CoreLogic::EventManagement {
 
-   namespace InGameComand {
-       void MoveDownComand::execute()
+   namespace InGameCommand {
+       void MoveDownCommand::execute()
        {
            std::cout << "moving Down" << std::endl;
        }
 
-       void MoveUpComand::execute()
+       void MoveUpCommand::execute()
        {
            std::cout << "moving Up" << std::endl;
        }
 
-       void MoveLeftComand::execute()
+       void MoveLeftCommand::execute()
        {
            std::cout << "moving Left" << std::endl;
        }
 
-       void MoveRightComand::execute()
+       void MoveRightCommand::execute()
        {
            std::cout << "moving Right" << std::endl;
        }
 
-       void ActionComand::execute()
+       void ActionCommand::execute()
        {
            std::cout << "action" << std::endl;
        }
 
-       void DeathAbilityComand::execute()
+       void DeathAbilityCommand::execute()
        {
            std::cout << "death ability" << std::endl;
        }
 
-       void DisconnectComand::execute()
+       void DisconnectCommand::execute()
        {
            std::cout << "disconnect" << std::endl;
        }
 
-       void InteractComand::execute()
+       void InteractCommand::execute()
        {
             std::cout << "interact" << std::endl;
        }
 
-       void HighlightInteractablesComand::execute()
+       void HighlightInteractablesCommand::execute()
        {
             std::cout << "highlight interactables" << std::endl;
        }
 
-       void PauseComand::execute()
+       void PauseCommand::execute()
        {
             std::cout << "pause" << std::endl;
        }
    }
 
-   namespace MenuComand
+   namespace MenuCommand
    {
 
-       void CursorDownComand::execute()
+       void CursorDownCommand::execute()
        {
 
        }
 
-       void CursorUpComand::execute()
+       void CursorUpCommand::execute()
        {
 
        }
 
-       void CursorLeftComand::execute()
+       void CursorLeftCommand::execute()
        {
 
        }
 
-       void CursorRightComand::execute()
+       void CursorRightCommand::execute()
        {
 
        }
 
-       void BackComand::execute()
+       void BackCommand::execute()
        {
 
        }
 
-       void SelectComand::execute()
+       void SelectCommand::execute()
        {
 
        }
