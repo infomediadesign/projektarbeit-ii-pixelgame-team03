@@ -35,7 +35,7 @@ void CoreLogic::UserInterface::Renderer::render(std::shared_ptr<std::vector<tson
     }
     if (pa_camera.target.y + 540 > 0)
     {
-        cameraRec.height = floorf((pa_camera.target.y + 540) / 24);
+        cameraRec.height = floorf((pa_camera.target.y + 564) / 24);
     }
     BeginTextureMode(pa_canvas);
     {
