@@ -184,5 +184,6 @@ int main() {
 
     // Close window and OpenGL context
     CloseWindow();*/
+    CloseWindow();
     return EXIT_SUCCESS;
 }

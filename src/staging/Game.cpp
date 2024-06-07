@@ -41,7 +41,7 @@ Staging::Game::~Game()
     {
         CloseAudioDevice();
     }
-    CloseWindow();
+//    CloseWindow();
 }
 
 void Staging::Game::run()
