@@ -31,7 +31,7 @@ void CoreLogic::UserInterface::Renderer::render(std::shared_ptr<std::vector<tson
     }
     if (pa_camera.target.x + 960 > 0)
     {
-        cameraRec.width = floorf((pa_camera.target.x + 960) / 24);
+        cameraRec.width = floorf((pa_camera.target.x + 984) / 24);
     }
     if (pa_camera.target.y + 540 > 0)
     {

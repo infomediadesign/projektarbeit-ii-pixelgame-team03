@@ -33,26 +33,39 @@ void Scenes::GameScene::draw(RenderTexture2D &pa_canvas)
 
 void Scenes::GameScene::update()
 {
+    CoreLogic::DataProcessing::ticks++;
+
     Camera2D &camera = *camera_;
     /**
      * @brief: VORLÄUFIGES Cam-Movement, Wird nachher entfernt
      */
-     if (IsKeyPressed(KEY_LEFT))
+    /*if (IsKeyDown(KEY_LEFT))
      {
-         camera.target.x -= 24;
+        if (IsKeyDown(KEY_UP))
+        {
+            camera.target.x -= 2;
+            camera.target.y -= 2;
+            return;
+        }
+        camera.target.x -= 3;
      }
-     if (IsKeyPressed(KEY_RIGHT))
+     if (IsKeyDown(KEY_RIGHT))
      {
-         camera.target.x += 24;
+         camera.target.x += 3;
      }
-     if (IsKeyPressed(KEY_UP))
+     if (IsKeyDown(KEY_UP))
      {
-         camera.target.y -= 24;
+         camera.target.y -= 3;
      }
-     if (IsKeyPressed(KEY_DOWN))
+     if (IsKeyDown(KEY_DOWN))
      {
-         camera.target.y += 24;
-     }
+         camera.target.y += 3;
+     }*/
+
+    /**
+     * @Pseudo_Code: So soll nachher der Eventhandler evtl. aussehen
+     */
+
 
 }
 

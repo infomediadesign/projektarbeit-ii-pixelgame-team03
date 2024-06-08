@@ -204,6 +204,7 @@ namespace CoreLogic {
 //    }
 //    return KEY_NULL;
 //std::cout << "keyboard input" << std::endl;
+
             if (IsKeyDown(KEY_L))
             {
                 std::cout << "Hilfe" << std::endl;
