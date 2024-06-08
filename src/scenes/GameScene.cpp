@@ -39,7 +39,7 @@ void Scenes::GameScene::update()
     /**
      * @brief: VORLÄUFIGES Cam-Movement, Wird nachher entfernt
      */
-    /*if (IsKeyDown(KEY_LEFT))
+    if (IsKeyDown(KEY_LEFT))
      {
         if (IsKeyDown(KEY_UP))
         {
@@ -60,14 +60,25 @@ void Scenes::GameScene::update()
      if (IsKeyDown(KEY_DOWN))
      {
          camera.target.y += 3;
-     }*/
+     }
 
     /**
      * @Pseudo_Code: So soll nachher der Eventhandler evtl. aussehen
      */
 
+   /* KeyboardKey *keys = GetKeyPressed();
+    if (keys == nullptr)
+    {
+        GamepadButton *buttons = InputHandler::getGamepadInputs();
+        GamepadAxis *axes = InputHandler::getGamepadAxes();
+    }
+
+    Commands* commands = InputHandler::getCommands(keys);
+
+    EventHandler::handleCommands(commands);*/
 
 }
+
 
 void Scenes::GameScene::render()
 {
