@@ -64,7 +64,7 @@ void Scenes::GameScene::update()
 
     /**
      * @Pseudo_Code: So soll nachher der Eventhandler evtl. aussehen
-     * @TODO: EventHandler Coden
+     * @TODO: EventHandler Coden hinzufügen
      */
 
    /* KeyboardKey *keys = GetKeyPressed();
