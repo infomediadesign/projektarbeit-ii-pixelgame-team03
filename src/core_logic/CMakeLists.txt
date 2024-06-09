@@ -6,9 +6,13 @@ set(CORE_LOGIC_SOURCES
     data_processing/Store.cpp
 
 
+
     event_management/Actor.cpp
     event_management/Player.cpp
     event_management/Trigger.cpp
+    event_management/ButtonMapping.cpp
+    event_management/Commands.cpp
+    event_management/EventHandler.cpp
 
     user_interface/Renderer.cpp
 
@@ -24,15 +28,13 @@ set(CORE_LOGIC_HEADERS
     event_management/Actor.h
     event_management/Player.h
     event_management/Trigger.h
+    event_management/ButtonMapping.h
+    event_management/Commands.h
+    event_management/EventHandler.h
 
     user_interface/Renderer.h
 
     Scene.h
-    data_processing/Store.cpp
-        event_management/ButtonMapping.cpp
-        event_management/ButtonMapping.h
-        event_management/Commands.cpp
-        event_management/Commands.h
 
 )
 
