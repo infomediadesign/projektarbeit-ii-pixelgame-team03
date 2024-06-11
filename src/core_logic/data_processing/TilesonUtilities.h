@@ -10,4 +10,8 @@
 
 namespace CoreLogic::DataProcessing { inline tson::Tileson tileson; }
 
+/**
+ *@Josi TODO: add conversion Func coordinates -> Tile
+ **/
+
 #endif //RAYLIBSTARTER_TILESONUTILITIES_H

@@ -35,6 +35,10 @@ set(CORE_LOGIC_HEADERS
     user_interface/Renderer.h
 
     Scene.h
+        event_management/events/Event.cpp
+        event_management/events/Event.h
+        event_management/events/MovementEvent.cpp
+        event_management/events/MovementEvent.h
 
 )
 
