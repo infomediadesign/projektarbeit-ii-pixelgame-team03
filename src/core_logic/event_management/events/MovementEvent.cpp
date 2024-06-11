@@ -24,7 +24,7 @@ void MovementEvent::update()
 
     if (moveRight_)
     {
-        po_mainActor_->moveRight();
+        po_mainActor_->moveRight(); /**@attention: should Actor check for collision themselves?*/
     }
     if (moveLeft_)
     {
