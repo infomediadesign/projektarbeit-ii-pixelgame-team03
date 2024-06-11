@@ -10,11 +10,15 @@ void MovementEvent::update()
     /**
      * @pseudo_code, TODO: Code
      **/
-    ticks++;
-
+    if (ticksRunning_)
+    {
+        ticks++;
+    }
     if (!axisMovement)
     {
         checkStillPressed();
+    } else {
+        updateAxis();
     }
 
     if (primaryDir_ == 0)
@@ -22,22 +26,11 @@ void MovementEvent::update()
         return;
     }
 
-    if (moveRight_)
+    if (moveUp || moveDown || moveLeft || moveRight)
     {
-        po_mainActor_->moveRight(); /**@attention: should Actor check for collision themselves?*/
+        po_mainActor_->move(moveUp, moveDown, moveLeft, moveRight);
     }
-    if (moveLeft_)
-    {
-        po_mainActor_->moveLeft();
-    }
-    if (moveUp_)
-    {
-        po_mainActor_->moveUp();
-    }
-    if (moveDown_)
-    {
-        po_mainActor_->moveDown();
-    }
+
     if (ticks % 4 == 0)
     {
         po_mainActor_->shiftFrame(WALKING, primaryDir);
@@ -45,7 +38,7 @@ void MovementEvent::update()
 
 }
 
-void MovementEvent::startMove(EventEnum pa_Event, bool pa_axisMovement)
+void MovementEvent::startMove(EventEnum pa_Event)
 {
     /**
      * @pseudo_code, TODO: Code
@@ -59,13 +52,13 @@ void MovementEvent::startMove(EventEnum pa_Event, bool pa_axisMovement)
     *@TODO: Rewrite to map<MoveEvent, bool>
     **/
 
-    bool axisMovement_ = pa_axisMovement;
-
     if (primaryDir_ == 0)
     {
         primaryDir_ = pa_Event;
-        ticksStart();
+        ticksRunning_ = true;
     }
+
+
     switch (pa_Event)
     {
         case MOVEUP_EVENT:
@@ -85,3 +78,73 @@ void MovementEvent::startMove(EventEnum pa_Event, bool pa_axisMovement)
             break;
     }
 }
+
+void MovementEvent::checkStillPressed()
+{
+    /**
+     *@pseudo_code, TODO: Code
+     **/
+
+    bool newPrimary = false;
+
+    /**
+     *@attention: It assumes here that the InputHandler gives the Option to handle an Axis like a Button
+     **/
+    if (moveUp_ && (IsKeyReleased(InputHandler.getKey(UP)) || IsGamepadButtonReleased(gamepad, InputHandler.getButton(UP))
+                    || InputHandler.isAxisReleased(UP)))
+    {
+        moveUp_ = false;
+        if (primaryDir_ == MOVEUP_EVENT)
+        {
+            newPrimary = true;
+        }
+    }
+    if (moveDown_ && (IsKeyReleased(InputHandler.getKey(DOWN)) || IsGamepadButtonReleased(gamepad, InputHandler.getButton(DOWN))
+                      || InputHandler.isAxisReleased(DOWN)))
+    {
+        moveDown_ = false;
+        if (primaryDir_ == MOVEDOWN_EVENT)
+        {
+            newPrimary = true;
+        }
+    }
+    if (moveLeft_ && (IsKeyReleased(InputHandler.getKey(LEFT)) || IsGamepadButtonReleased(gamepad, InputHandler.getButton(LEFT))
+                      || InputHandler.isAxisReleased(LEFT)))
+    {
+        moveLeft_ = false;
+        if (primaryDir_ == MOVELEFT_EVENT)
+        {
+            newPrimary = true;
+        }
+    }
+    if (moveRight_ && (IsKeyReleased(InputHandler.getKey(RIGHT)) || IsGamepadButtonReleased(gamepad, InputHandler.getButton(RIGHT))
+                       || InputHandler.isAxisReleased(RIGHT)))
+    {
+        moveRight_ = false;
+        if (primaryDir_ == MOVERIGHT_EVENT)
+        {
+            newPrimary = true;
+        }
+    }
+    if (newPrimary)
+    {
+        if (moveUp_)
+        {
+            primaryDir_ = MOVEUP_EVENT;
+        } else if (moveDown_) {
+            primaryDir_ = MOVEDOWN_EVENT;
+        } else if (moveLeft_) {
+            primaryDir_ = MOVELEFT_EVENT;
+        } else if (moveRight_) {
+            primaryDir_ = MOVERIGHT_EVENT;
+        } else {
+            primaryDir_ = 0;
+            ticksRunning_ = false;
+        }
+    }
+}
+
+
+
+
+

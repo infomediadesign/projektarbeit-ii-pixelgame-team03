@@ -59,6 +59,15 @@ namespace CoreLogic {
             executeIfPressed(controllerInGameMapping, moveRightCommand_);
         }
 
+
+        /**
+         *@Josi TODO: Make a func that basically converts the Axis-logic into Button logic
+         *@example: If the X-Axis value is above 0.5, the button is considered pressed and saved somewhere in
+         *          a bool (axisSpiked = true). The func therefore checks if the value 'axisSpiked' is true.
+         *          If false, it returns the Axis-Pressed-Call like a normal Buttonpress and sets axisSpiked = true.
+         *          If true, it waits until the Axis-Value is back below 0.5 and then returns a Axis-Released-Call
+         *          like a normal Button and sets axisSpiked = false.
+         **/
         void ButtonMapping::executeIfPressed(std::map<std::shared_ptr<Command>, Input>& pa_map,const std::shared_ptr<Command>& pa_Command) {
 
             auto CommandIterator = pa_map.find(pa_Command);

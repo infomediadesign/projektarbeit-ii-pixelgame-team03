@@ -12,7 +12,10 @@ class MovementEvent: public Event
 {
 public:
     void update() override;
-    void startMove(EventEnum pa_Event);
+    void startMove(EventEnum pa_Event, bool pa_axisMovement);
+private:
+    void checkStillPressed();
+    void updateAxis();
 };
 
 
