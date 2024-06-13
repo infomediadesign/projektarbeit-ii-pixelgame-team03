@@ -26,6 +26,9 @@ void MovementEvent::update()
         return;
     }
 
+    /**
+     *@note: We still have to figure out how to handle directions cleanly for all classes
+     **/
     if (moveUp || moveDown || moveLeft || moveRight)
     {
         po_mainActor_->move(moveUp, moveDown, moveLeft, moveRight);

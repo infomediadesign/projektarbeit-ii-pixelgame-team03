@@ -45,6 +45,8 @@ void CoreLogic::EventManagement::Player::checkCollision(Direction pa_direction, 
      *         elevation in the movement direction. If the Collision is a death Collision it throws a KillEvent to the
      *         Eventhandler if not it just pushes the player outside of the Hitbox of the collision.
      *         This Method is @recursive, it calls itself for each new tested Tile.
+     */
+     * @should_return: should return true if collides?
      **/
 
     /**
@@ -53,6 +55,9 @@ void CoreLogic::EventManagement::Player::checkCollision(Direction pa_direction, 
     Vector2 tileID = getTileFromCoordinates(pa_position);
 
 
+    /**
+     *@note: yet unclear how to get the layers
+     **/
     for(auto layer: layers(elevation_))
     {
         tson::Tile &tile = *layer.getTileData(static_cast<int>(tileID.x), static_cast<int>(tileID.y));
@@ -79,13 +84,27 @@ void CoreLogic::EventManagement::Player::checkCollision(Direction pa_direction, 
             return;
         }
     }
+
+    /**
+     *@note: probably not clean, since player or actors might be part of Level so probably need different way of calling
+     *       Actors than directly from Level
+     **/
     Actor* objectPtr = Level.getActors(elevation_).get(tileID);
     if (objectPtr != nullptr)
     {
         Actor &object = *objectPtr;
+
+        /**
+         *@note: object needs Hitbox, death Hitboxes should be probably smaller than the actual Sprite,
+         *       @proposal: death Hitboxes 75% of Sprite so you dont immediately kill yourself when touching but still
+         *                  can't pass through multiple of them when they are side by side
+         **/
         Rectangle objectHitbox = object.getHitbox();
         if (CheckCollisionRecs(hitbox, objectHitbox))
         {
+            /**
+             *@note: object needs Collision Type probably within Tiled
+             **/
             if (object.getCollisionType() == "Kill")
             {
                 /**
