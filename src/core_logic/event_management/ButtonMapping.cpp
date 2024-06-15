@@ -8,7 +8,9 @@
 namespace CoreLogic {
     namespace EventManagement {
 
-
+/**
+ * @TODO: relocate key detection
+ */
         void ButtonMapping::remap(std::map<std::shared_ptr<Command>, Input>& pa_map, const std::shared_ptr<Command>& pa_Command, Input pa_newKey) {
 
             KeyboardKey newKey;
@@ -45,19 +47,19 @@ namespace CoreLogic {
         }
 
 
-        void ButtonMapping::checkKeyboardMovement() {
-            executeIfPressed(keyboardInGameMapping, moveUpCommand_);
-            executeIfPressed(keyboardInGameMapping, moveDownCommand_);
-            executeIfPressed(keyboardInGameMapping, moveLeftCommand_);
-            executeIfPressed(keyboardInGameMapping, moveRightCommand_);
-        }
+//        void ButtonMapping::checkKeyboardMovement() {
+//            isInputChanged(keyboardInGameMapping, moveUpCommand_);
+//            isInputChanged(keyboardInGameMapping, moveDownCommand_);
+//            isInputChanged(keyboardInGameMapping, moveLeftCommand_);
+//            isInputChanged(keyboardInGameMapping, moveRightCommand_);
+//        }
 
-        void ButtonMapping::checkControllerMovement() {
-            executeIfPressed(controllerInGameMapping, moveUpCommand_);
-            executeIfPressed(controllerInGameMapping, moveDownCommand_);
-            executeIfPressed(controllerInGameMapping, moveLeftCommand_);
-            executeIfPressed(controllerInGameMapping, moveRightCommand_);
-        }
+//        void ButtonMapping::checkControllerMovement() {
+//            isInputChanged(controllerInGameMapping, moveUpCommand_);
+//            isInputChanged(controllerInGameMapping, moveDownCommand_);
+//            isInputChanged(controllerInGameMapping, moveLeftCommand_);
+//            isInputChanged(controllerInGameMapping, moveRightCommand_);
+//        }
 
 
         /**
@@ -67,25 +69,27 @@ namespace CoreLogic {
          *          If false, it returns the Axis-Pressed-Call like a normal Buttonpress and sets axisSpiked = true.
          *          If true, it waits until the Axis-Value is back below 0.5 and then returns a Axis-Released-Call
          *          like a normal Button and sets axisSpiked = false.
-         **/
-        void ButtonMapping::executeIfPressed(std::map<std::shared_ptr<Command>, Input>& pa_map,const std::shared_ptr<Command>& pa_Command) {
-
-            auto CommandIterator = pa_map.find(pa_Command);
+         *
+         *@note: Old executeIfPressed
+         *          auto CommandIterator = pa_map.find(pa_Command);
 
             if (CommandIterator != pa_map.end()) { //check if Command exists
 
                 //type KEYBOARD
                 if (CommandIterator->second.type == Input::Type::KEYBOARD)
                 {
-                    if (CommandIterator != pa_map.end() && IsKeyDown(CommandIterator->second.key)) {
-                        CommandIterator->first->execute();
+                    if (CommandIterator != pa_map.end() && (IsKeyPressed(CommandIterator->second.key) || IsKeyReleased(CommandIterator->second.key))) {
+                        //CommandIterator->first->execute();
+                        return true;
                     }
                 }
 
                     //type BUTTON
-                else if (CommandIterator->second.type == Input::Type::BUTTON && IsGamepadButtonDown(0, CommandIterator->second.button))
+                else if (CommandIterator->second.type == Input::Type::BUTTON && (IsGamepadButtonPressed(0, CommandIterator->second.button) ||
+                        IsGamepadButtonReleased(0, CommandIterator->second.button)))
                 {
-                    CommandIterator->first->execute();
+                    //CommandIterator->first->execute();
+                    return true;
                 }
 
                     //type AXIS
@@ -93,14 +97,61 @@ namespace CoreLogic {
                 {
 
                     //check if the needed axis is the same as the actual input
-                    if (CommandIterator->second.direction == Input::AxisDirection::Positive && GetGamepadAxisMovement(0, CommandIterator->second.axis) > CommandIterator->second.axisThreshold) {
-                        CommandIterator->first->execute();
+                    if (CommandIterator->second.direction == Input::AxisDirection::Positive
+                        && (!CommandIterator->second.activated && GetGamepadAxisMovement(0, CommandIterator->second.axis) > CommandIterator->second.axisThreshold)
+                        || (CommandIterator->second.activated && GetGamepadAxisMovement(0, CommandIterator->second.axis) < CommandIterator->second.axisThreshold)) {
+                        //CommandIterator->first->execute();
+                        !CommandIterator->second.activated;
+                        return true;
                     }
-                    else if (CommandIterator->second.direction == Input::AxisDirection::Negative && GetGamepadAxisMovement(0, CommandIterator->second.axis) < CommandIterator->second.axisThreshold*-1) {
-                        CommandIterator->first->execute();
+                    else if (CommandIterator->second.direction == Input::AxisDirection::Negative
+                    && (!CommandIterator->second.activated && GetGamepadAxisMovement(0, CommandIterator->second.axis) < CommandIterator->second.axisThreshold*-1)
+                    || (CommandIterator->second.activated && GetGamepadAxisMovement(0, CommandIterator->second.axis) > CommandIterator->second.axisThreshold*-1)) {
+                        //CommandIterator->first->execute();
+                        !CommandIterator->second.activated;
+                        return true;
                     }
+
                 }
             }
+         **/
+
+        bool ButtonMapping::isAxisPressed(Input& pa_axis) {
+            if (pa_axis.type = Input::AXIS)
+            {
+                if (pa_axis.direction == Input::AxisDirection::Positive
+                    && (pa_axis.activated && GetGamepadAxisMovement(0, pa_axis.axis) < pa_axis.axisThreshold))
+                {
+                    !pa_axis.activated;
+                    return true;
+                } else if (pa_axis.direction == Input::AxisDirection::Negative
+                    && (pa_axis.activated && GetGamepadAxisMovement(0, pa_axis.axis) > pa_axis.axisThreshold*-1))
+                {
+                    !pa_axis.activated;
+                    return true;
+                }
+
+            }
+            return false;
+        }
+
+        bool ButtonMapping::isAxisReleased(Input &pa_axis) {
+            if (pa_axis.type = Input::AXIS)
+            {
+                if (pa_axis.direction == Input::AxisDirection::Positive
+                    && (!pa_axis.activated && GetGamepadAxisMovement(0, pa_axis.axis) > pa_axis.axisThreshold))
+                {
+                    !pa_axis.activated;
+                    return true;
+                } else if (pa_axis.direction == Input::AxisDirection::Negative
+                           && (!pa_axis.activated && GetGamepadAxisMovement(0, pa_axis.axis) < pa_axis.axisThreshold*-1))
+                {
+                    !pa_axis.activated;
+                    return true;
+                }
+
+            }
+            return false;
         }
 
 

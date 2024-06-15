@@ -32,6 +32,7 @@ namespace CoreLogic::EventManagement {
                 } direction;
 
                 float axisThreshold = 0.5f;
+                bool activated = false;
 
                 Input(GamepadButton btn) : type(BUTTON), button(btn) {}
 
@@ -63,8 +64,8 @@ namespace CoreLogic::EventManagement {
             void remap(std::map<std::shared_ptr<Command>, Input> &pa_map,
                        const std::shared_ptr<Command> &pa_Command, Input pa_newInput);
 
-            void executeIfPressed(std::map<std::shared_ptr<Command>, Input> &pa_map,
-                                  const std::shared_ptr<Command> &pa_Command);
+            bool isAxisPressed(Input& pa_axis);
+            bool isAxisReleased(Input& pa_axis);
 
             //Input detection
             KeyboardKey detectKeyboardInput();
