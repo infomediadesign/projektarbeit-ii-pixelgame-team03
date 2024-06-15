@@ -6,27 +6,20 @@
 #define RAYLIBSTARTER_ACTOR_H
 
 
-#include <vector>
-#include <memory>
-#include "Trigger.h"
-
+#include <raylib.h>
 
 namespace CoreLogic::EventManagement
 {
     class Actor
     {
     public:
-        Actor(int spriteCoordinates);
+        Actor(Vector2 pa_position, Rectangle pa_hitbox, int pa_id);
+        ~Actor();
 
     protected:
-        int spriteCoordinates_;
-        int mapLayerID_;
-        std::unique_ptr<std::vector<CoreLogic::EventManagement::Trigger>> po_eventTriggers_;
-        std::unique_ptr<std::vector<CoreLogic::EventManagement::Trigger>> po_actionTriggers_;
-        bool visible_;
-        bool moves_;
-        bool collidable_;
-        bool interactable_;
+        Vector2 position_;
+        Rectangle hitbox_;
+        int id_;
     };
 }
 
