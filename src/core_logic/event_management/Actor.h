@@ -14,7 +14,7 @@ namespace CoreLogic::EventManagement
     {
     public:
         Actor(Vector2 pa_position, Rectangle pa_hitbox, int pa_id);
-        ~Actor();
+        //~Actor();
 
     protected:
         Vector2 position_;
