@@ -37,6 +37,7 @@ namespace CoreLogic::DataProcessing
         std::shared_ptr<std::vector<tson::Layer>> po_layers_;
         std::shared_ptr<std::map<int, std::vector<tson::Object>>> po_objects_;
         Color bgColor_;
+        void loadObjectsExample();
 
     };
 }

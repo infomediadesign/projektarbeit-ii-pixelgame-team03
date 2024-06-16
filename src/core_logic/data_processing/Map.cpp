@@ -54,4 +54,26 @@ Color CoreLogic::DataProcessing::Map::getBgColor()
     return bgColor_;
 }
 
+void CoreLogic::DataProcessing::Map::loadObjectsExample()
+{
+    /**
+     *@note: Example for object attribute reading for Josi
+     **/
+    int elev = 1;
+    for (auto &object: po_objects_ ->at(elev))
+    {
+        tson::PropertyCollection props = object.getProperties();
+        Vector2 position = {(float)object.getPosition().x, (float)object.getPosition().y};
+        std::string klasse = object.getClassType();
+        bool visible = object.isVisible();
+        int id = object.getId();
+        std::string name = object.getName();
+        std::string toolTip = props.getProperty("tooltip")->getValue<std::string>();
+        bool pushable = props.getProperty("pushable")->getValue<bool>();
+        int hitboxWidth = props.getProperty("hitbox_width")->getValue<int>();
+        int hitboxHeight = props.getProperty("hitbox_height")->getValue<int>();
+        
+    }
+}
+
 
