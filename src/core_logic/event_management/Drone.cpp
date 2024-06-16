@@ -2,11 +2,11 @@
 // Created by keanu on 5/23/2024.
 //
 
-#include "Player.h"
+#include "Drone.h"
 #include "raylib.h"
 #include "../../tileson.h"
 
-void CoreLogic::EventManagement::Player::move(bool pa_up, bool pa_down, bool pa_left, bool pa_right)
+void CoreLogic::EventManagement::Drone::move(bool pa_up, bool pa_down, bool pa_left, bool pa_right)
 {
     /**
      *@pseudo_code TODO: Code
@@ -40,11 +40,11 @@ void CoreLogic::EventManagement::Player::move(bool pa_up, bool pa_down, bool pa_
     }
 }
 
-bool CoreLogic::EventManagement::Player::checkCollision(Direction pa_direction, Vector2 pa_position)
+bool CoreLogic::EventManagement::Drone::checkCollision(Direction pa_direction, Vector2 pa_position)
 {
     /**
      * @pseudo_code TODO: Code
-     * @brief: This method checks if the Player is colliding with any Tile or Object on the Tiles that he touches on his
+     * @brief: This method checks if the Drone is colliding with any Tile or Object on the Tiles that he touches on his
      *         elevation in the movement direction. If the Collision is a death Collision it throws a KillEvent to the
      *         Eventhandler if not it just pushes the player outside of the Hitbox of the collision.
      *         This Method is @recursive, it calls itself for each new tested Tile.
