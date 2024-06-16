@@ -120,12 +120,12 @@ namespace CoreLogic {
             if (pa_axis.type = Input::AXIS)
             {
                 if (pa_axis.direction == Input::AxisDirection::Positive
-                    && (pa_axis.activated && GetGamepadAxisMovement(0, pa_axis.axis) < pa_axis.axisThreshold))
+                    && (!pa_axis.activated && GetGamepadAxisMovement(0, pa_axis.axis) < pa_axis.axisThreshold))
                 {
                     !pa_axis.activated;
                     return true;
                 } else if (pa_axis.direction == Input::AxisDirection::Negative
-                    && (pa_axis.activated && GetGamepadAxisMovement(0, pa_axis.axis) > pa_axis.axisThreshold*-1))
+                    && (!pa_axis.activated && GetGamepadAxisMovement(0, pa_axis.axis) > pa_axis.axisThreshold*-1))
                 {
                     !pa_axis.activated;
                     return true;
@@ -139,12 +139,12 @@ namespace CoreLogic {
             if (pa_axis.type = Input::AXIS)
             {
                 if (pa_axis.direction == Input::AxisDirection::Positive
-                    && (!pa_axis.activated && GetGamepadAxisMovement(0, pa_axis.axis) > pa_axis.axisThreshold))
+                    && (pa_axis.activated && GetGamepadAxisMovement(0, pa_axis.axis) > pa_axis.axisThreshold))
                 {
                     !pa_axis.activated;
                     return true;
                 } else if (pa_axis.direction == Input::AxisDirection::Negative
-                           && (!pa_axis.activated && GetGamepadAxisMovement(0, pa_axis.axis) < pa_axis.axisThreshold*-1))
+                           && (pa_axis.activated && GetGamepadAxisMovement(0, pa_axis.axis) < pa_axis.axisThreshold*-1))
                 {
                     !pa_axis.activated;
                     return true;

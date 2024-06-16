@@ -8,7 +8,7 @@
 
 EventHandler::EventHandler()
 {
-
+    po_movementEvent_ = std::make_unique<MovementEvent>();
 }
 
 EventHandler::~EventHandler()
@@ -100,9 +100,9 @@ void EventHandler::activateEvent(EventEnum pa_Event)
     switch (pa_Event)
     {
         case MOVEDOWN_EVENT || MOVEUP_EVENT || MOVELEFT_EVENT || MOVERIGHT_EVENT:
-            if (!movementBlocked)
+            if (!movementBlocked_)
             {
-                moveEvent.startMove(pa_Event);
+                po_movementEvent_ -> startMove(pa_Event);
                 return;
             } else {
                 throw std::EventException("Movement Blocked");

@@ -15,29 +15,32 @@ void CoreLogic::EventManagement::Player::move(bool pa_up, bool pa_down, bool pa_
     if (pa_up && !pa_down)
     {
         (pa_right || pa_left) ? position_.x -= 2 : position_.x -= 3;
-        checkCollision(UP, position_);
+        /**
+         *@note: EventHandler to be made static?
+         **/
+        (checkCollision(UP, position_)) && (EventHandler::handleEvents((int) kill));
     }
 
     if (pa_down && !pa_up)
     {
         (pa_right || pa_left) ? position_.x += 2 : position_.x += 3;
-        checkCollision(DOWN, positionInvers_);
+        (checkCollision(DOWN, position_)) && (EventHandler::handleEvents((int) kill));
     }
 
     if (pa_left && !pa_right)
     {
         (pa_up || pa_down) ? position_.y -= 2 : position_.y -= 3;
-        checkCollision(LEFT, position_);
+        (checkCollision(LEFT, position_)) && (EventHandler::handleEvents((int) kill));
     }
 
     if (pa_right && !pa_left)
     {
         (pa_up || pa_down) ? position_.y += 2 : position_.y += 3;
-        checkCollision(RIGHT, positionInvers_);
+        (checkCollision(RIGHT, position_)) && (EventHandler::handleEvents((int) kill));
     }
 }
 
-void CoreLogic::EventManagement::Player::checkCollision(Direction pa_direction, Vector2 pa_position)
+bool CoreLogic::EventManagement::Player::checkCollision(Direction pa_direction, Vector2 pa_position)
 {
     /**
      * @pseudo_code TODO: Code
@@ -45,7 +48,7 @@ void CoreLogic::EventManagement::Player::checkCollision(Direction pa_direction, 
      *         elevation in the movement direction. If the Collision is a death Collision it throws a KillEvent to the
      *         Eventhandler if not it just pushes the player outside of the Hitbox of the collision.
      *         This Method is @recursive, it calls itself for each new tested Tile.
-     */
+     *
      * @should_return: should return true if collides?
      **/
 
@@ -89,7 +92,8 @@ void CoreLogic::EventManagement::Player::checkCollision(Direction pa_direction, 
      *@note: probably not clean, since player or actors might be part of Level so probably need different way of calling
      *       Actors than directly from Level
      **/
-    Actor* objectPtr = Level.getActors(elevation_).get(tileID);
+     bool dies = false;
+    Actor* objectPtr = Store.getActors(elevation_).get(tileID);
     if (objectPtr != nullptr)
     {
         Actor &object = *objectPtr;
@@ -107,11 +111,8 @@ void CoreLogic::EventManagement::Player::checkCollision(Direction pa_direction, 
              **/
             if (object.getCollisionType() == "Kill")
             {
-                /**
-                 *@note: EventHandler to be made static?
-                 **/
-                EventManager.handleEvent((int)killEvent);
-                return;
+
+                dies = true;
             }
             Rectangle collisionRec = GetCollisionRec(hitbox, objectHitbox);
             if (pa_direction == UP)
@@ -142,6 +143,8 @@ void CoreLogic::EventManagement::Player::checkCollision(Direction pa_direction, 
     } else if (pa_direction == RIGHT && !(size_.y <= (positionInvers_.y - pa_position.y))) {
         newPosition.y -= tileSize;
     }
-    checkCollision(pa_direction, newPosition);
-    return;
+
+    (checkCollision(pa_direction, newPosition)) && (dies = true);
+
+    return dies;
 }
