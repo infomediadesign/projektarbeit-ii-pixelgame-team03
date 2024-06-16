@@ -19,7 +19,7 @@ public:
     EventHandler();
     ~EventHandler();
 
-    void handleEvents(EventEnum events[]);
+    void handleEvents(std::vector<EventEnum> pa_Events);
     void update();
 
 private:

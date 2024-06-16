@@ -33,15 +33,6 @@ namespace CoreLogic::DataProcessing
 
     };
 
-    struct ActorStorage
-    {
-    private:
-        ActorStorage();
-        ~ActorStorage();
-        static std::shared_ptr<std::map<int, std::vector<EventManagement::Actor>>> actors_;
-    public:
-        static std::shared_ptr<std::map<int, std::vector<EventManagement::Actor>>> getActors();
-    };
 }
 
 

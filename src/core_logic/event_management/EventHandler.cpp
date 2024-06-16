@@ -16,7 +16,7 @@ EventHandler::~EventHandler()
 
 }
 
-void EventHandler::handleEvents(int pa_thrownEvents)
+void EventHandler::handleEvents(std::vector<EventEnum> pa_Eevents)
 {
     /**
      * @brief: Bitwise Enum saving saves a whole outter for-Loop which significantly lowers Iterations
@@ -124,7 +124,7 @@ void EventHandler::activateEvent(EventEnum pa_Event)
 
 void EventHandler::deactivateEvent()
 {
-
+    
 }
 
 
