@@ -11,7 +11,7 @@
 
 namespace CoreLogic::EventManagement
 {
-    class Player : public Actor
+    class Drone : public Actor
     {
     public:
         void move(bool pa_up, bool pa_down, bool pa_left, bool pa_right);

@@ -8,16 +8,6 @@
 #include <memory>
 #include "event_management/Actor.h"
 
-enum EventEnum
-{
-    MOVEUP_EVENT = 0x00001,
-    MOVEDOWN_EVENT = 0x00002,
-    MOVELEFT_EVENT = 0x00004,
-    MOVERIGHT_EVENT = 0x00008,
-    PAUSE_EVENT = 0x00010,
-    EXIT_EVENT = 0x00020,
-    UNDEFINED_EVENT = 0x00040
-};
 
 class Event
 {
