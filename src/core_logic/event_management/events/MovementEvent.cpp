@@ -12,7 +12,7 @@ void MovementEvent::update()
      **/
     if (ticksRunning_)
     {
-        ticks++;
+        ticks_++;
     }
     if (!axisMovement)
     {
@@ -34,7 +34,7 @@ void MovementEvent::update()
         po_mainActor_->move(moveUp, moveDown, moveLeft, moveRight);
     }
 
-    if (ticks % 4 == 0)
+    if (ticks_ % 4 == 0)
     {
         po_mainActor_->shiftFrame(WALKING, primaryDir);
     }

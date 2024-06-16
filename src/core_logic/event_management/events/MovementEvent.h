@@ -16,6 +16,8 @@ public:
 private:
     void checkStillPressed();
     void updateAxis();
+    int ticks_ = 0;
+    bool ticksRunning_ = false;
 };
 
 

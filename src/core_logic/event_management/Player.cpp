@@ -67,7 +67,7 @@ bool CoreLogic::EventManagement::Player::checkCollision(Direction pa_direction, 
         if (tile.getClassType() == "Wall")
         {
             tson::Rect drawingRect = tile.getDrawingRect();
-            Rectangle collisionRec = GetCollisionRec(hitbox, {static_cast<float>(drawingRect.x),
+            Rectangle collisionRec = GetCollisionRec(hitbox_, {static_cast<float>(drawingRect.x),
                                                               static_cast<float>(drawingRect.y),
                                                               static_cast<float>(drawingRect.width),
                                                               static_cast<float>(drawingRect.height)});
@@ -79,7 +79,7 @@ bool CoreLogic::EventManagement::Player::checkCollision(Direction pa_direction, 
                 position_.y -= collisionRec.height;
             } else if (pa_direction == LEFT)
             {
-                posotion_.x += collisionRec.width;
+                position_.x += collisionRec.width;
             } else if (pa_direction == RIGHT)
             {
                 position_.x -= collisionRec.width;
@@ -104,7 +104,7 @@ bool CoreLogic::EventManagement::Player::checkCollision(Direction pa_direction, 
          *                  can't pass through multiple of them when they are side by side
          **/
         Rectangle objectHitbox = object.getHitbox();
-        if (CheckCollisionRecs(hitbox, objectHitbox))
+        if (CheckCollisionRecs(hitbox_, objectHitbox))
         {
             /**
              *@note: object needs Collision Type probably within Tiled
@@ -114,7 +114,7 @@ bool CoreLogic::EventManagement::Player::checkCollision(Direction pa_direction, 
 
                 dies = true;
             }
-            Rectangle collisionRec = GetCollisionRec(hitbox, objectHitbox);
+            Rectangle collisionRec = GetCollisionRec(hitbox_, objectHitbox);
             if (pa_direction == UP)
             {
                 position_.y += collisionRec.height;

@@ -43,6 +43,7 @@ void EventHandler::handleEvents(std::vector<EventEnum> pa_Eevents)
         {
             deactivateEvent(static_cast<EventEnum>(bit));
         }
+        
     }
 
 
