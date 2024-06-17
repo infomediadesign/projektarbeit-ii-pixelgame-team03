@@ -1,0 +1,64 @@
+{ "columns":10,
+ "image":"..\/..\/..\/..\/..\/OneDrive - SRH\/PA2 WenigerSalz\/Greyboxing\/Greyboxing Tileset V4.png",
+ "imageheight":240,
+ "imagewidth":240,
+ "margin":0,
+ "name":"Greyboxing Tileset V4",
+ "spacing":0,
+ "tilecount":100,
+ "tiledversion":"1.10.2",
+ "tileheight":24,
+ "tilewidth":24,
+ "type":"tileset",
+ "version":"1.10",
+ "wangsets":[
+        {
+         "colors":[
+                {
+                 "color":"#ff0000",
+                 "name":"",
+                 "probability":1,
+                 "tile":-1
+                }],
+         "name":"Unbenannter Satz",
+         "tile":-1,
+         "type":"mixed",
+         "wangtiles":[
+                {
+                 "tileid":0,
+                 "wangid":[0, 0, 1, 1, 1, 0, 0, 0]
+                }, 
+                {
+                 "tileid":1,
+                 "wangid":[0, 0, 1, 1, 1, 1, 1, 0]
+                }, 
+                {
+                 "tileid":2,
+                 "wangid":[0, 0, 0, 0, 1, 1, 1, 0]
+                }, 
+                {
+                 "tileid":10,
+                 "wangid":[1, 1, 1, 1, 1, 0, 0, 0]
+                }, 
+                {
+                 "tileid":11,
+                 "wangid":[1, 1, 1, 1, 1, 1, 1, 1]
+                }, 
+                {
+                 "tileid":12,
+                 "wangid":[1, 0, 0, 0, 1, 1, 1, 1]
+                }, 
+                {
+                 "tileid":20,
+                 "wangid":[1, 1, 1, 0, 0, 0, 0, 0]
+                }, 
+                {
+                 "tileid":21,
+                 "wangid":[1, 1, 1, 0, 0, 0, 1, 1]
+                }, 
+                {
+                 "tileid":22,
+                 "wangid":[1, 0, 0, 0, 0, 0, 1, 1]
+                }]
+        }]
+}

@@ -1,0 +1,14 @@
+{ "columns":256,
+ "image":"..\/PNG\/hive_ARTI_TileAtlas\/hive_ARTI_TileAtlas_2024-06-17.png",
+ "imageheight":6144,
+ "imagewidth":6144,
+ "margin":0,
+ "name":"hive_ARTI_TileAtlas_2024-06-17",
+ "spacing":0,
+ "tilecount":65536,
+ "tiledversion":"1.10.2",
+ "tileheight":24,
+ "tilewidth":24,
+ "type":"tileset",
+ "version":"1.10"
+}
