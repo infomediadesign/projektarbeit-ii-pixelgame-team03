@@ -4,13 +4,15 @@
 
 #include "Drone.h"
 #include "raylib.h"
-#include "../../tileson.h"
+#include "../../../tileson.h"
+#include "event_management/EventHandler.h"
 
-void CoreLogic::EventManagement::Drone::move(bool pa_up, bool pa_down, bool pa_left, bool pa_right)
+void CoreLogic::EventManagement::Actors::Drone::move(bool pa_up, bool pa_down, bool pa_left, bool pa_right)
 {
     /**
      *@pseudo_code TODO: Code
      **/
+     EventHandler& eventHandler = EventHandler::getInstance();
 
     if (pa_up && !pa_down)
     {
@@ -18,32 +20,44 @@ void CoreLogic::EventManagement::Drone::move(bool pa_up, bool pa_down, bool pa_l
         /**
          *@note: EventHandler to be made static?
          **/
-        (checkCollision(UP, position_)) && (EventHandler::handleEvents((int) kill));
+        if (checkCollision(Direction::UP, position_))
+        {
+            eventHandler.handleEvents({DISCONNECT}, id_);
+        }
     }
 
     if (pa_down && !pa_up)
     {
         (pa_right || pa_left) ? position_.x += 2 : position_.x += 3;
-        (checkCollision(DOWN, position_)) && (EventHandler::handleEvents((int) kill));
+        if (checkCollision(Direction::DOWN, position_))
+        {
+            eventHandler.handleEvents({DISCONNECT}, id_);
+        }
     }
 
     if (pa_left && !pa_right)
     {
         (pa_up || pa_down) ? position_.y -= 2 : position_.y -= 3;
-        (checkCollision(LEFT, position_)) && (EventHandler::handleEvents((int) kill));
+        if (checkCollision(Direction::LEFT, position_))
+        {
+            eventHandler.handleEvents({DISCONNECT}, id_);
+        }
     }
 
     if (pa_right && !pa_left)
     {
         (pa_up || pa_down) ? position_.y += 2 : position_.y += 3;
-        (checkCollision(RIGHT, position_)) && (EventHandler::handleEvents((int) kill));
+        if (checkCollision(Direction::RIGHT, position_))
+        {
+            eventHandler.handleEvents({DISCONNECT}, id_);
+        }
     }
 }
 
-CoreLogic::EventManagement::Drone::Drone(Vector2 pa_position, Rectangle pa_hitbox, int pa_id) : Actor(pa_position,
-                                                                                                      pa_hitbox, pa_id){}
+CoreLogic::EventManagement::Actors::Drone::Drone(Vector2 pa_position, Rectangle pa_hitbox, int pa_id) : Actor(pa_position,
+                                                                                                              pa_hitbox, pa_id){}
 
-bool CoreLogic::EventManagement::Drone::checkCollision(Direction pa_direction, Vector2 pa_position)
+bool CoreLogic::EventManagement::Actors::Drone::checkCollision(Direction pa_direction, Vector2 pa_position)
 {
     /**
      * @pseudo_code TODO: Code

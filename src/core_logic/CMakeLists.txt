@@ -18,7 +18,7 @@ set(CORE_LOGIC_SOURCES
     event_management/actor/AnimatedActor.cpp
     event_management/actor/MovableActor.cpp
 
-    event_management/Drone.cpp
+        event_management/actor/Drone.cpp
         event_management/actor/drones/Worker.cpp
         event_management/actor/drones/Scout.cpp
         event_management/actor/drones/Grappler.cpp
@@ -58,7 +58,7 @@ set(CORE_LOGIC_HEADERS
     event_management/actor/StaticActor.h
     event_management/actor/MovableActor.h
 
-    event_management/Drone.h
+        event_management/actor/Drone.h
         event_management/actor/drones/Worker.h
         event_management/actor/drones/Scout.h
         event_management/actor/drones/Grappler.h

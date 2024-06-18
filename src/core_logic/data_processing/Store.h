@@ -11,7 +11,8 @@
 #include <map>
 #include "raylib.h"
 #include "event_management/Actor.h"
-#include "event_management/Drone.h"
+#include "event_management/actor/Drone.h"
+#include "Drone.h"
 
 
 namespace CoreLogic::DataProcessing
@@ -36,9 +37,9 @@ namespace CoreLogic::DataProcessing
     struct Player
     {
         private:
-            static std::shared_ptr<CoreLogic::EventManagement::Drone> player_;
+            static std::shared_ptr<EventManagement::Actors::Drone> player_;
         public:
-            static std::shared_ptr<CoreLogic::EventManagement::Drone> getPlayer();
+            static std::shared_ptr<EventManagement::Actors::Drone> getPlayer();
         //static void newDrone(//DroneType);
     };
 

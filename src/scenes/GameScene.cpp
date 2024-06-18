@@ -39,6 +39,8 @@ void Scenes::GameScene::update()
     /**
      * @brief: VORLÄUFIGES Cam-Movement, Wird nachher entfernt
      */
+
+
     if (IsKeyDown(KEY_LEFT))
      {
         if (IsKeyDown(KEY_UP))

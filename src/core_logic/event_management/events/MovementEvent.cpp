@@ -6,10 +6,12 @@
 #include "MovementEvent.h"
 #include "raylib.h"
 #include "event_management/EventUtilities.h"
-#include "event_management/Drone.h"
+#include "event_management/actor/Drone.h"
 #include "data_processing/Store.h"
+#include "EventUtilities.h"
+#include "Drone.h"
 
-void MovementEvent::update()
+void CoreLogic::EventManagement::MovementEvent::update()
 {
     /**
      * @pseudo_code, TODO: Code
@@ -28,7 +30,7 @@ void MovementEvent::update()
      *@note: We still have to figure out how to handle directions cleanly for all classes
      **/
 
-    dynamic_pointer_cast<CoreLogic::EventManagement::Drone>(po_mainActor_)->move(directionMap_[MOVE_UP], directionMap_[MOVE_DOWN], directionMap_[MOVE_LEFT], directionMap_[MOVE_RIGHT]);
+    dynamic_pointer_cast<Actors::Drone>(po_mainActor_)->move(directionMap_[MOVE_UP], directionMap_[MOVE_DOWN], directionMap_[MOVE_LEFT], directionMap_[MOVE_RIGHT]);
 
     if (ticks_ % 4 == 0)
     {
@@ -37,7 +39,7 @@ void MovementEvent::update()
 
 }
 
-void MovementEvent::startMove(EventEnum pa_Event)
+void CoreLogic::EventManagement::MovementEvent::startMove(CoreLogic::EventManagement::EventEnum pa_Event)
 {
     /**
      * @pseudo_code, TODO: Code
@@ -84,7 +86,7 @@ void MovementEvent::startMove(EventEnum pa_Event)
     }*/
 }
 
-void MovementEvent::checkStillPressed()
+void CoreLogic::EventManagement::MovementEvent::checkStillPressed()
 {
     /**
      *@pseudo_code, TODO: Code
@@ -146,7 +148,7 @@ void MovementEvent::checkStillPressed()
     }
 }
 
-MovementEvent::MovementEvent()
+CoreLogic::EventManagement::MovementEvent::MovementEvent()
 {
     po_mainActor_ = CoreLogic::DataProcessing::Player::getPlayer();
     primaryDir_ = EVENT_NULL;

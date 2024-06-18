@@ -3,6 +3,7 @@
 //
 
 #include "InputHandler.h"
+#include "EventUtilities.h"
 
 namespace CoreLogic::EventManagement {
 

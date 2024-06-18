@@ -5,24 +5,27 @@
 #include <iostream>
 #include "EventHandler.h"
 #include "raylib.h"
+#include "EventUtilities.h"
 
-EventHandler::EventHandler()
+std::mutex CoreLogic::EventManagement::EventHandler::eventHandler_mutex_;
+CoreLogic::EventManagement::EventHandler::EventHandler()
 {
     po_movementEvent_ = std::make_unique<MovementEvent>();
 }
 
-EventHandler::~EventHandler()
+CoreLogic::EventManagement::EventHandler::~EventHandler()
 {
 
 }
 
-void EventHandler::handleEvents(std::vector<EventEnum> pa_thrownEvents, CoreLogic::EventManagement::Actor &pa_actor)
+void CoreLogic::EventManagement::EventHandler::handleEvents(std::vector<EventEnum> pa_thrownEvents, int pa_actorID)
 {
     /**
      * @note: Could go back to bitwise Eventhandling via actor-id-map (one int of active Events per Actor)
      * @TODO: check with Josi
      **/
 
+    std::lock_guard<std::mutex> lock(eventHandler_mutex_);
     bool isActive = false;
     int actorId = pa_actor.getId();
     for (auto &thrownEvent: pa_thrownEvents)
@@ -105,7 +108,7 @@ void EventHandler::handleEvents(std::vector<EventEnum> pa_thrownEvents, CoreLogi
     }*/
 }
 
-void EventHandler::update()
+void CoreLogic::EventManagement::EventHandler::update()
 {
     for (auto &activeEvent: *activeEvents_)
     {
@@ -120,21 +123,21 @@ void EventHandler::update()
     }
 }
 
-void EventHandler::activateEvent(EventEnum pa_Event)
+void CoreLogic::EventManagement::EventHandler::activateEvent(EventEnum pa_activateEvent)
 {
     /**
      *@pseudo_code, TODO: Code
      **/
 
-    switch (pa_Event)
+    switch (pa_activateEvent)
     {
-        case MOVE_DOWN || MOVE_UP || MOVE_LEFT || MOVE_RIGHT:
+        case (MOVE_DOWN || MOVE_UP || MOVE_LEFT || MOVE_RIGHT):
             if (!movementBlocked_)
             {
-                po_movementEvent_ -> startMove(pa_Event);
+                po_movementEvent_ -> startMove(pa_activateEvent);
                 return;
             } else {
-                throw std::EventException("Movement Blocked");
+                throw std::runtime_error("Movement Blocked");
             }
             TraceLog(LOG_ERROR, "reached unreachable Code");
             break;
@@ -144,14 +147,20 @@ void EventHandler::activateEvent(EventEnum pa_Event)
         case EVENT_NULL:
             break;
         default:
-            throw std::EventException("Undefined Event");
+            throw std::runtime_error("Undefined Event");
     }
 
 }
 
-void EventHandler::deactivateEvent()
+void CoreLogic::EventManagement::EventHandler::deactivateEvent(EventEnum pa_deactivateEvent)
 {
     
+}
+
+CoreLogic::EventManagement::EventHandler &CoreLogic::EventManagement::EventHandler::getInstance()
+{
+    static CoreLogic::EventManagement::EventHandler instance;
+    return instance;
 }
 
 
