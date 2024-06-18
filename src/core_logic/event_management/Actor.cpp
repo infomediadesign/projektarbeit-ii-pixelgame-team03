@@ -10,3 +10,8 @@ CoreLogic::EventManagement::Actor::Actor(Vector2 pa_position, Rectangle pa_hitbo
     hitbox_ = pa_hitbox;
     id_ = pa_id;
 }
+
+int CoreLogic::EventManagement::Actor::getId()
+{
+    return id_;
+}

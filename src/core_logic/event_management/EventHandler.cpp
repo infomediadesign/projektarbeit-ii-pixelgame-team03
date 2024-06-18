@@ -16,15 +16,44 @@ EventHandler::~EventHandler()
 
 }
 
-void EventHandler::handleEvents(std::vector<EventEnum> pa_Eevents)
+void EventHandler::handleEvents(std::vector<EventEnum> pa_thrownEvents, CoreLogic::EventManagement::Actor &pa_actor)
 {
+    /**
+     * @note: Could go back to bitwise Eventhandling via actor-id-map (one int of active Events per Actor)
+     * @TODO: check with Josi
+     **/
+
+    bool isActive = false;
+    int actorId = pa_actor.getId();
+    for (auto &thrownEvent: pa_thrownEvents)
+    {
+        for (auto &activeEventID: *activeEventIDs_)
+        {
+            if (actorId == activeEventID.first && thrownEvent == activeEventID.second)
+            {
+                isActive = true;
+                break;
+            }
+        }
+        if (!isActive)
+        {
+            try
+            {
+                activateEvent(thrownEvent);
+            } catch (std::exception &e) //@TODO: write Exception Handling for Events
+            {
+                TraceLog(LOG_INFO, e.what());
+            }
+        }
+    }
+
+
     /**
      * @brief: Bitwise Enum saving saves a whole outter for-Loop which significantly lowers Iterations
      * @date: 10.06.2024
-     *
+     * @attention: Outdated
      **/
-
-    int bit_count = 8;
+   /* int bit_count = 8;
     activeEventIDs_ |= pa_thrownEvents;
     for (int bit = 1, count = 0; count < bit_count; bit <<= 1, count++)
     {
@@ -44,7 +73,7 @@ void EventHandler::handleEvents(std::vector<EventEnum> pa_Eevents)
             deactivateEvent(static_cast<EventEnum>(bit));
         }
         
-    }
+    }*/
 
 
     /**
@@ -52,7 +81,6 @@ void EventHandler::handleEvents(std::vector<EventEnum> pa_Eevents)
      *              with the double for-loops for enum Arrays
      *
      **/
-
     /*for (auto &thrownEvent: events)
     {
         bool isActive = false;
@@ -100,7 +128,7 @@ void EventHandler::activateEvent(EventEnum pa_Event)
 
     switch (pa_Event)
     {
-        case MOVEDOWN_EVENT || MOVEUP_EVENT || MOVELEFT_EVENT || MOVERIGHT_EVENT:
+        case MOVE_DOWN || MOVE_UP || MOVE_LEFT || MOVE_RIGHT:
             if (!movementBlocked_)
             {
                 po_movementEvent_ -> startMove(pa_Event);
@@ -111,11 +139,9 @@ void EventHandler::activateEvent(EventEnum pa_Event)
             TraceLog(LOG_ERROR, "reached unreachable Code");
             break;
 
-        case PAUSE_EVENT:
+        case PAUSE:
             break;
-        case EXIT_EVENT:
-            break;
-        case UNDEFINED_EVENT:
+        case EVENT_NULL:
             break;
         default:
             throw std::EventException("Undefined Event");

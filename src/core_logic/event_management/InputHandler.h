@@ -9,22 +9,8 @@
 #include <memory>
 #include <map>
 #include <vector>
+#include "EventUtilities.h"
 
-enum EventEnum {
-    EVENT_NULL,
-    MOVE_UP,
-    MOVE_DOWN,
-    MOVE_LEFT,
-    MOVE_RIGHT,
-
-    INTERACT,
-    ABILITY,
-    DEATH_ABILITY,
-    DISCONNECT,
-
-    HIGHLIGHT,
-    PAUSE,
-};
 
 namespace CoreLogic::EventManagement {
 
@@ -108,3 +94,4 @@ namespace CoreLogic::EventManagement {
 }
 
 #endif //HIVE_INPUTHANDLER_H
+-*+

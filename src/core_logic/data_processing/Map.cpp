@@ -72,7 +72,6 @@ void CoreLogic::DataProcessing::Map::loadObjectsExample()
         bool pushable = props.getProperty("pushable")->getValue<bool>();
         int hitboxWidth = props.getProperty("hitbox_width")->getValue<int>();
         int hitboxHeight = props.getProperty("hitbox_height")->getValue<int>();
-        
     }
 }
 

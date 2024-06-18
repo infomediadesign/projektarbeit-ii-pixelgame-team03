@@ -77,6 +77,7 @@ set(CORE_LOGIC_HEADERS
 
 
     Scene.h
+        event_management/EventUtilities.h
 
 )
 

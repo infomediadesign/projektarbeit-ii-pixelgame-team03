@@ -2,8 +2,10 @@
 // Created by keanu on 6/10/2024.
 //
 
+#include <map>
 #include "MovementEvent.h"
 #include "raylib.h"
+#include "event_management/EventUtilities.h"
 
 void MovementEvent::update()
 {
@@ -51,6 +53,8 @@ void MovementEvent::startMove(EventEnum pa_Event)
     bool moveLeft_;
     bool moveRight_;
 
+    std::map<EventEnum, bool> directionMap;
+
     /**
     *@TODO: Rewrite to map<MoveEvent, bool>
     **/
@@ -61,6 +65,7 @@ void MovementEvent::startMove(EventEnum pa_Event)
         ticksRunning_ = true;
     }
 
+    directionMap[pa_Event] = true;
 
     switch (pa_Event)
     {
