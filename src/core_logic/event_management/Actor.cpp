@@ -4,7 +4,8 @@
 
 #include "Actor.h"
 
-CoreLogic::EventManagement::Actor::Actor(Vector2 pa_position, Rectangle pa_hitbox, int pa_id): id_(pa_id)
+CoreLogic::EventManagement::Actor::Actor(Vector2 pa_position, Rectangle pa_hitbox, int pa_id, Vector2 pa_size): id_(pa_id),
+                                                                                                                size_(pa_size)
 {
     position_ = pa_position;
     hitbox_ = pa_hitbox;
@@ -13,4 +14,9 @@ CoreLogic::EventManagement::Actor::Actor(Vector2 pa_position, Rectangle pa_hitbo
 int CoreLogic::EventManagement::Actor::getId()
 {
     return id_;
+}
+
+Rectangle CoreLogic::EventManagement::Actor::getHitbox()
+{
+    return hitbox_;
 }

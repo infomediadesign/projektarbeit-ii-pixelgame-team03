@@ -8,7 +8,6 @@
 
 #include "Event.h"
 #include "event_management/EventUtilities.h"
-#include "EventUtilities.h"
 
 namespace CoreLogic::EventManagement
 {
@@ -20,7 +19,6 @@ namespace CoreLogic::EventManagement
         void startMove(EventEnum pa_Event);
     private:
         void checkStillPressed();
-        void updateAxis();
         int ticks_ = 0;
         bool ticksRunning_ = false;
         EventEnum primaryDir_;

@@ -16,8 +16,11 @@
         {
         public:
             Drone() = delete;
-            Drone(Vector2 pa_position, Rectangle pa_hitbox, int pa_id);
+            Drone(Vector2 pa_position, Rectangle pa_hitbox, int pa_id, Vector2 pa_size);
             void move(bool pa_up, bool pa_down, bool pa_left, bool pa_right);
+
+            Vector2 getPosition();
+
         private:
             enum class Direction {
                 UP,

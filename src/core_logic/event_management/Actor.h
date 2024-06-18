@@ -13,14 +13,21 @@ namespace CoreLogic::EventManagement
     class Actor
     {
     public:
-        Actor(Vector2 pa_position, Rectangle pa_hitbox, int pa_id);
+        Actor(Vector2 pa_position, Rectangle pa_hitbox, int pa_id, Vector2 pa_size);
         virtual ~Actor() = default;
         int getId();
+        Rectangle getHitbox();
+        virtual void shiftFrame() = 0;
 
     protected:
         Vector2 position_;
         Rectangle hitbox_;
         const int id_;
+        const Vector2 size_;
+
+        /**
+         *@todo: implement sprites
+         **/
     };
 }
 

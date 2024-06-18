@@ -8,32 +8,38 @@
 #include "event_management/EventUtilities.h"
 #include "event_management/actor/Drone.h"
 #include "data_processing/Store.h"
-#include "EventUtilities.h"
-#include "Drone.h"
+
+/**
+ *@todo: test
+ **/
 
 void CoreLogic::EventManagement::MovementEvent::update()
 {
     /**
-     * @pseudo_code, TODO: Code
+     * @note: should work
      **/
-    if (ticksRunning_)
-    {
-        ticks_++;
-    }
 
+    checkStillPressed();
     if (primaryDir_ == 0)
     {
         return;
     }
 
-    /**
-     *@note: We still have to figure out how to handle directions cleanly for all classes
-     **/
+    if (ticksRunning_)
+    {
+        ticks_++;
+    }
+
+
+
 
     dynamic_pointer_cast<Actors::Drone>(po_mainActor_)->move(directionMap_[MOVE_UP], directionMap_[MOVE_DOWN], directionMap_[MOVE_LEFT], directionMap_[MOVE_RIGHT]);
 
     if (ticks_ % 4 == 0)
     {
+        /**
+         *@todo: shift Frame to be implemented into actors with states
+         **/
         po_mainActor_->shiftFrame(WALKING, primaryDir);
     }
 
@@ -42,7 +48,6 @@ void CoreLogic::EventManagement::MovementEvent::update()
 void CoreLogic::EventManagement::MovementEvent::startMove(CoreLogic::EventManagement::EventEnum pa_Event)
 {
     /**
-     * @pseudo_code, TODO: Code
      * @note should be Coded
      **/
 

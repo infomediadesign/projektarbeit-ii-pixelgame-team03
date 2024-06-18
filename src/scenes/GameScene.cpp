@@ -3,6 +3,7 @@
 //
 
 #include "GameScene.h"
+#include "event_management/EventHandler.h"
 
 
 Scenes::GameScene::GameScene(): Scene(std::make_shared<Camera2D>()),
@@ -37,11 +38,32 @@ void Scenes::GameScene::update()
 
     Camera2D &camera = *camera_;
     /**
-     * @brief: VORLÄUFIGES Cam-Movement, Wird nachher entfernt
-     */
+     *@note: eventhandler with movement Event version
+     **/
+
+    CoreLogic::EventManagement::EventHandler &eventHandler = CoreLogic::EventManagement::EventHandler::getInstance();
+    CoreLogic::EventManagement::Actors::Drone &player = *CoreLogic::DataProcessing::Player::getPlayer();
+
+    /**
+     *@todo: InputHandler to be called static
+     **/
+    eventHandler.handleEvents(InputHandler::handleInput(), player.getId());
+    eventHandler.update();
+    Vector2 playerPos = player.getPosition();
+
+    /**
+     * @attention: keep hard coded?
+     * */
+    (playerPos.x < 464) ? camera.target.x = 0 : camera.target.x = playerPos.x - 464;
+    (playerPos.y < 254) ? camera.target.y = 0 : camera.target.y = playerPos.y - 254;
+    (playerPos.x > 1104) ? camera.target.x = 576 : camera.target.x = playerPos.x - 464;
+    (playerPos.y > 578) ? camera.target.y = 324 : camera.target.y = playerPos.y - 254;
 
 
-    if (IsKeyDown(KEY_LEFT))
+    /**
+     *@note: old prototype movement
+     **/
+    /*if (IsKeyDown(KEY_LEFT))
      {
         if (IsKeyDown(KEY_UP))
         {
@@ -62,11 +84,11 @@ void Scenes::GameScene::update()
      if (IsKeyDown(KEY_DOWN))
      {
          camera.target.y += 3;
-     }
+     }*/
 
     /**
      * @Pseudo_Code: So soll nachher der Eventhandler evtl. aussehen
-     * @TODO: EventHandler Coden
+     * @note: veraltet
      */
 
    /* KeyboardKey *keys = GetKeyPressed();

@@ -7,17 +7,23 @@
 
 #include <memory>
 #include "event_management/Actor.h"
+#include "event_management/InputHandler.h"
 
 
 class Event
 {
 
 public:
-    Event() = default;
+    Event()=default;
     virtual ~Event() = default;
     virtual void update() = 0;
 protected:
     std::shared_ptr<CoreLogic::EventManagement::Actor> po_mainActor_;
+
+    /**
+     *@todo: static input Handler?
+     **/
+
 };
 
 

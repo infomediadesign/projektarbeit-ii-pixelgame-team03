@@ -12,7 +12,6 @@
 #include "raylib.h"
 #include "event_management/Actor.h"
 #include "event_management/actor/Drone.h"
-#include "Drone.h"
 
 
 namespace CoreLogic::DataProcessing
@@ -25,6 +24,7 @@ namespace CoreLogic::DataProcessing
         Settings = 3
     };
     inline long long int ticks = 1;
+    const int tileSize = 24;
 
     struct TileMap
     {
