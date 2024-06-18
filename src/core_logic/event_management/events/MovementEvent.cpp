@@ -6,6 +6,8 @@
 #include "MovementEvent.h"
 #include "raylib.h"
 #include "event_management/EventUtilities.h"
+#include "event_management/Drone.h"
+#include "data_processing/Store.h"
 
 void MovementEvent::update()
 {
@@ -16,12 +18,6 @@ void MovementEvent::update()
     {
         ticks_++;
     }
-    if (!axisMovement)
-    {
-        checkStillPressed();
-    } else {
-        updateAxis();
-    }
 
     if (primaryDir_ == 0)
     {
@@ -31,10 +27,8 @@ void MovementEvent::update()
     /**
      *@note: We still have to figure out how to handle directions cleanly for all classes
      **/
-    if (moveUp || moveDown || moveLeft || moveRight)
-    {
-        po_mainActor_->move(moveUp, moveDown, moveLeft, moveRight);
-    }
+
+    dynamic_pointer_cast<CoreLogic::EventManagement::Drone>(po_mainActor_)->move(directionMap_[MOVE_UP], directionMap_[MOVE_DOWN], directionMap_[MOVE_LEFT], directionMap_[MOVE_RIGHT]);
 
     if (ticks_ % 4 == 0)
     {
@@ -47,17 +41,19 @@ void MovementEvent::startMove(EventEnum pa_Event)
 {
     /**
      * @pseudo_code, TODO: Code
+     * @note should be Coded
      **/
-    bool moveUp_;
-    bool moveDown_;
-    bool moveLeft_;
-    bool moveRight_;
-
-    std::map<EventEnum, bool> directionMap;
 
     /**
-    *@TODO: Rewrite to map<MoveEvent, bool>
+    *@DONE: Rewrite to map<MoveEvent, bool>
     **/
+
+    /*
+     moveUp_ = false;
+     moveDown_ = false;
+     moveLeft_ = false;
+     moveRight_ = false;
+     */
 
     if (primaryDir_ == 0)
     {
@@ -65,26 +61,27 @@ void MovementEvent::startMove(EventEnum pa_Event)
         ticksRunning_ = true;
     }
 
-    directionMap[pa_Event] = true;
+    directionMap_[pa_Event] = true;
 
-    switch (pa_Event)
+    
+    /*switch (pa_Event)
     {
-        case MOVEUP_EVENT:
+        case MOVE_UP:
             moveUp_ = true;
             break;
-        case MOVEDOWN_EVENT:
+        case MOVE_DOWN:
             moveDown_ = true;
             break;
-        case MOVELEFT_EVENT:
+        case MOVE_LEFT:
             moveLeft_ = true;
             break;
-        case MOVERIGHT_EVENT:
+        case MOVE_RIGHT:
             moveRight_ = true;
             break;
         default:
             throw std::EventException("Unknown Direction");
             break;
-    }
+    }*/
 }
 
 void MovementEvent::checkStillPressed()
@@ -98,58 +95,63 @@ void MovementEvent::checkStillPressed()
     /**
      *@attention: It assumes here that the InputHandler gives the Option to handle an Axis like a Button
      **/
-    if (moveUp_ && (IsKeyReleased(InputHandler.getKey(UP)) || IsGamepadButtonReleased(gamepad, InputHandler.getButton(UP))
-                    || InputHandler.isAxisReleased(UP)))
+    if (directionMap_.at(MOVE_UP) && (InputHandler.isEventReleased(MOVE_UP)))
     {
-        moveUp_ = false;
-        if (primaryDir_ == MOVEUP_EVENT)
+        directionMap_.at(MOVE_UP) = false;
+        if (primaryDir_ == MOVE_UP)
         {
             newPrimary = true;
         }
     }
-    if (moveDown_ && (IsKeyReleased(InputHandler.getKey(DOWN)) || IsGamepadButtonReleased(gamepad, InputHandler.getButton(DOWN))
-                      || InputHandler.isAxisReleased(DOWN)))
+    if (directionMap_.at(MOVE_DOWN) && (InputHandler.isEventReleased(MOVE_DOWN)))
     {
-        moveDown_ = false;
-        if (primaryDir_ == MOVEDOWN_EVENT)
+        directionMap_.at(MOVE_DOWN) = false;
+        if (primaryDir_ == MOVE_DOWN)
         {
             newPrimary = true;
         }
     }
-    if (moveLeft_ && (IsKeyReleased(InputHandler.getKey(LEFT)) || IsGamepadButtonReleased(gamepad, InputHandler.getButton(LEFT))
-                      || InputHandler.isAxisReleased(LEFT)))
+    if (directionMap_.at(MOVE_LEFT) && (InputHandler.isEventReleased(MOVE_LEFT)))
     {
-        moveLeft_ = false;
-        if (primaryDir_ == MOVELEFT_EVENT)
+        directionMap_.at(MOVE_LEFT) = false;
+        if (primaryDir_ == MOVE_LEFT)
         {
             newPrimary = true;
         }
     }
-    if (moveRight_ && (IsKeyReleased(InputHandler.getKey(RIGHT)) || IsGamepadButtonReleased(gamepad, InputHandler.getButton(RIGHT))
-                       || InputHandler.isAxisReleased(RIGHT)))
+    if (directionMap_.at(MOVE_RIGHT) && (InputHandler.isEventReleased(MOVE_RIGHT)))
     {
-        moveRight_ = false;
-        if (primaryDir_ == MOVERIGHT_EVENT)
+        directionMap_.at(MOVE_RIGHT) = false;
+        if (primaryDir_ == MOVE_RIGHT)
         {
             newPrimary = true;
         }
     }
     if (newPrimary)
     {
-        if (moveUp_)
+        if (directionMap_.at(MOVE_UP))
         {
-            primaryDir_ = MOVEUP_EVENT;
-        } else if (moveDown_) {
-            primaryDir_ = MOVEDOWN_EVENT;
-        } else if (moveLeft_) {
-            primaryDir_ = MOVELEFT_EVENT;
-        } else if (moveRight_) {
-            primaryDir_ = MOVERIGHT_EVENT;
+            primaryDir_ = MOVE_UP;
+        } else if (directionMap_.at(MOVE_DOWN)) {
+            primaryDir_ = MOVE_DOWN;
+        } else if (directionMap_.at(MOVE_LEFT)) {
+            primaryDir_ = MOVE_LEFT;
+        } else if (directionMap_.at(MOVE_RIGHT)) {
+            primaryDir_ = MOVE_RIGHT;
         } else {
-            primaryDir_ = 0;
+            primaryDir_ = EVENT_NULL;
             ticksRunning_ = false;
+            ticks_ = 0;
         }
     }
+}
+
+MovementEvent::MovementEvent()
+{
+    po_mainActor_ = CoreLogic::DataProcessing::Player::getPlayer();
+    primaryDir_ = EVENT_NULL;
+    ticksRunning_ = false;
+    directionMap_ = {{MOVE_UP, false}, {MOVE_DOWN, false}, {MOVE_LEFT, false}, {MOVE_RIGHT, false}};
 }
 
 

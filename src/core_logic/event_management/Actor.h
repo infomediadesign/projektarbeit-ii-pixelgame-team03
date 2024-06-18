@@ -14,13 +14,13 @@ namespace CoreLogic::EventManagement
     {
     public:
         Actor(Vector2 pa_position, Rectangle pa_hitbox, int pa_id);
-        //~Actor();
+        virtual ~Actor() = default;
         int getId();
 
     protected:
         Vector2 position_;
         Rectangle hitbox_;
-        int id_;
+        const int id_;
     };
 }
 

@@ -11,6 +11,7 @@
 #include <map>
 #include "raylib.h"
 #include "event_management/Actor.h"
+#include "event_management/Drone.h"
 
 
 namespace CoreLogic::DataProcessing
@@ -30,6 +31,14 @@ namespace CoreLogic::DataProcessing
         static std::shared_ptr<Texture2D> tileMap_;
     public:
         static std::shared_ptr<Texture2D> getTileMap();
+    };
+
+    struct Player
+    {
+        private:
+            static std::shared_ptr<CoreLogic::EventManagement::Drone> player_;
+        public:
+            static std::shared_ptr<CoreLogic::EventManagement::Drone> getPlayer();
     };
 
 }

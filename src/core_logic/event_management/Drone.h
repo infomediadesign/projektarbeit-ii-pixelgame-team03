@@ -14,6 +14,8 @@ namespace CoreLogic::EventManagement
     class Drone : public Actor
     {
     public:
+        Drone() = delete;
+        Drone(Vector2 pa_position, Rectangle pa_hitbox, int pa_id);
         void move(bool pa_up, bool pa_down, bool pa_left, bool pa_right);
     private:
         bool checkCollision();

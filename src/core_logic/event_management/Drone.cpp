@@ -40,6 +40,9 @@ void CoreLogic::EventManagement::Drone::move(bool pa_up, bool pa_down, bool pa_l
     }
 }
 
+CoreLogic::EventManagement::Drone::Drone(Vector2 pa_position, Rectangle pa_hitbox, int pa_id) : Actor(pa_position,
+                                                                                                      pa_hitbox, pa_id){}
+
 bool CoreLogic::EventManagement::Drone::checkCollision(Direction pa_direction, Vector2 pa_position)
 {
     /**
