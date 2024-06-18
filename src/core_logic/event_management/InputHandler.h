@@ -64,14 +64,16 @@ namespace CoreLogic::EventManagement {
             public:
                 InputHandler();
 
-                bool isAxisPressed(Input& pa_axis);
-                bool isAxisReleased(Input& pa_axis);
+                bool IsAxisPressed(Input& pa_axis);
+                bool IsAxisReleased(Input& pa_axis);
+                bool getAxisReleased(Input& pa_axis);
                 std::vector<Input> GetGamepadAxisPressed();
 
                 void keyboardDefaultMapping();
                 void controllerDefaultMapping();
 
                 std::vector<EventEnum> handleInput();
+                bool isCommandReleased(EventEnum pa_enum);
 
                 //void testRemap();
 
@@ -94,4 +96,3 @@ namespace CoreLogic::EventManagement {
 }
 
 #endif //HIVE_INPUTHANDLER_H
--*+

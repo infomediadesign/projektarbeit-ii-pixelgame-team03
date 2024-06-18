@@ -43,9 +43,11 @@ namespace CoreLogic::EventManagement {
 //        }
 
 
+    bool InputHandler::getAxisReleased(Input &pa_axis) {
+        return pa_axis.activated;
+    }
 
-
-    bool InputHandler::isAxisPressed(Input& pa_axis) {
+    bool InputHandler::IsAxisPressed(Input& pa_axis) {
         if (pa_axis.type == Input::AXIS)
         {
             if (pa_axis.direction == Input::AxisDirection::Positive
@@ -64,7 +66,7 @@ namespace CoreLogic::EventManagement {
         return false;
     }
 
-    bool InputHandler::isAxisReleased(Input &pa_axis) {
+    bool InputHandler::IsAxisReleased(Input &pa_axis) {
         if (pa_axis.type == Input::AXIS)
         {
             if (pa_axis.direction == Input::AxisDirection::Positive
@@ -139,6 +141,8 @@ namespace CoreLogic::EventManagement {
 //            controllerMenuMapping.insert({backCommand_, Input(GAMEPAD_BUTTON_RIGHT_FACE_DOWN)});
     }
 
+
+
     std::vector<EventEnum> InputHandler::handleInput() {
         std::vector<EventEnum> activatedEvents;
 
@@ -210,6 +214,24 @@ namespace CoreLogic::EventManagement {
         }
 
         return axisInput;
+    }
+
+    bool InputHandler::isCommandReleased(EventEnum pa_enum) {
+
+        for (auto it : keyboardInGameMapping)
+        {
+            if (it.second == pa_enum && IsKeyReleased(it.first.key))
+            {
+                return true;
+            }
+        }
+        for (auto it : controllerInGameMapping) {
+            const Input& input = it.first; // "When dealing with a union in a struct, accessing a member of the union can sometimes create a temporary object if the original context does not match the expected type." ~ChatGPT (ich hab kein Plan was genau das heißt aber es funktioniert :])
+            if (it.second == pa_enum && (IsGamepadButtonReleased(0, it.first.button) || getAxisReleased((const_cast<Input&>(input))))) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }
