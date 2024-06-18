@@ -39,6 +39,7 @@ namespace CoreLogic::DataProcessing
             static std::shared_ptr<CoreLogic::EventManagement::Drone> player_;
         public:
             static std::shared_ptr<CoreLogic::EventManagement::Drone> getPlayer();
+        //static void newDrone(//DroneType);
     };
 
 }
