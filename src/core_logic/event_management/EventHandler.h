@@ -22,7 +22,7 @@ namespace CoreLogic::EventManagement
     public:
         static EventHandler &getInstance();
         ~EventHandler();
-        void handleEvents(std::vector<EventEnum> pa_Events, int pa_actorID);
+        void handleEvents(const std::vector<EventEnum> &pa_Events, int pa_actorID);
 
         void update();
     private:

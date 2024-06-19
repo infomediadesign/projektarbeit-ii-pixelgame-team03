@@ -18,7 +18,7 @@ CoreLogic::EventManagement::EventHandler::~EventHandler()
 
 }
 
-void CoreLogic::EventManagement::EventHandler::handleEvents(std::vector<EventEnum> pa_thrownEvents, int pa_actorID)
+void CoreLogic::EventManagement::EventHandler::handleEvents(const std::vector<EventEnum> &pa_thrownEvents, int pa_actorID)
 {
     /**
      * @note: Could go back to bitwise Eventhandling via actor-id-map (one int of active Events per Actor)
@@ -27,12 +27,11 @@ void CoreLogic::EventManagement::EventHandler::handleEvents(std::vector<EventEnu
 
     std::lock_guard<std::mutex> lock(eventHandler_mutex_);
     bool isActive = false;
-    int actorId = pa_actor.getId();
     for (auto &thrownEvent: pa_thrownEvents)
     {
         for (auto &activeEventID: *activeEventIDs_)
         {
-            if (actorId == activeEventID.first && thrownEvent == activeEventID.second)
+            if (pa_actorID == activeEventID.first && thrownEvent == activeEventID.second)
             {
                 isActive = true;
                 break;
@@ -147,7 +146,7 @@ void CoreLogic::EventManagement::EventHandler::activateEvent(EventEnum pa_activa
         case EVENT_NULL:
             break;
         default:
-            throw std::runtime_error("Undefined Event");
+            throw std::runtime_error("Not Handled Event");
     }
 
 }

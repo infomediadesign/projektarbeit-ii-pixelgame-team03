@@ -57,6 +57,8 @@ void CoreLogic::EventManagement::Actors::Drone::move(bool pa_up, bool pa_down, b
 CoreLogic::EventManagement::Actors::Drone::Drone(Vector2 pa_position, Rectangle pa_hitbox, int pa_id, Vector2 pa_size) : Actor(pa_position,
                                                                                                               pa_hitbox, pa_id, pa_size){}
 
+
+
 bool CoreLogic::EventManagement::Actors::Drone::checkCollision(Direction pa_direction, Vector2 pa_position)
 {
     /**
@@ -127,6 +129,7 @@ bool CoreLogic::EventManagement::Actors::Drone::checkCollision(Direction pa_dire
         {
             /**
              *@note: object needs Collision Type probably within Tiled
+             * @note: Death collision probably to be handled outside of event in update func frame after movement
              * @TODO: Collision Type
              **/
             if (object.getCollisionType() == "Kill")

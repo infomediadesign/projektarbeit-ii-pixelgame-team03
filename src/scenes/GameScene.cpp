@@ -10,13 +10,14 @@ Scenes::GameScene::GameScene(): Scene(std::make_shared<Camera2D>()),
                                 po_levels_(std::make_unique<std::vector<CoreLogic::DataProcessing::Level>>(std::initializer_list<CoreLogic::DataProcessing::Level>{
                                         CoreLogic::DataProcessing::Level(std::make_unique<std::vector<std::string>>(std::initializer_list<std::string>{"assets/data/test.tmj", "lol"}), 0, CoreLogic::DataProcessing::LevelState::Default),
                                         CoreLogic::DataProcessing::Level(std::make_unique<std::vector<std::string>>(std::initializer_list<std::string>{"lel", "lol"}), 1, CoreLogic::DataProcessing::LevelState::War)
-                        }))
+                        })), inputHandler_(std::make_unique<CoreLogic::EventManagement::InputHandler>())
 {
     camera_ -> zoom = 1.0f;
     po_currentMap_ = std::make_unique<CoreLogic::DataProcessing::Map>(po_levels_ -> at(0).getMapPath());
     po_previousMap_ = std::make_unique<CoreLogic::DataProcessing::Map>(*po_currentMap_);
     currentLevelID_ = po_levels_ -> at(0).getLevelID();
     previousLevelID_ = currentLevelID_;
+
 }
 
 int Scenes::GameScene::getCurrentLevelID()
@@ -47,7 +48,7 @@ void Scenes::GameScene::update()
     /**
      *@todo: InputHandler to be called static
      **/
-    eventHandler.handleEvents(InputHandler::handleInput(), player.getId());
+    eventHandler.handleEvents(inputHandler_->handleInput(), player.getId());
     eventHandler.update();
     Vector2 playerPos = player.getPosition();
 
