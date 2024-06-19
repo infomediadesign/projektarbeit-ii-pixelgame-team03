@@ -1,32 +1,38 @@
-﻿cmake_minimum_required(VERSION 3.11)
+﻿cmake_minimum_required(VERSION 3.24)
 
 include(../cmake/raylib.cmake)
-include(../cmake/raylib_cpp.cmake)
 
-project(game VERSION 0.1.0 LANGUAGES CXX)
+project(hive VERSION 0.1 LANGUAGES CXX)
 
-include(../cmake/doxygen.cmake)
-
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-#set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra")
-
-add_subdirectory(core)
+add_subdirectory(core_logic)
 add_subdirectory(scenes)
+add_subdirectory(staging)
 
-add_executable(${PROJECT_NAME} main.cpp)
+add_executable(${PROJECT_NAME} main.cpp
+        tileson.h)
 
 # Add config.h.in file
 configure_file(config.h.in config.h)
-
 target_include_directories(${PROJECT_NAME} PUBLIC
         "${PROJECT_BINARY_DIR}"
         )
 
-# Link to libraries
-target_link_libraries(${PROJECT_NAME} core scenes)
+# Link to Raylib
+# Static linking may be interesting, especially under Windows with MinGW,
+# so that the MinGW DLLs do not have to be supplied.
+# (Unfortunately, there is no easy way to link the C++ standard libraries
+# statically and other libraries dynamically.)
+if(UNIX)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -static-libgcc -static-libstdc++")
+    target_link_libraries(${PROJECT_NAME} raylib)
+else()
+    target_link_libraries(${PROJECT_NAME} raylib -static)
+endif()
+target_link_libraries(${PROJECT_NAME} core_logic scenes staging)
 
 # Copy assets to assets path
 add_custom_target(copy_assets
