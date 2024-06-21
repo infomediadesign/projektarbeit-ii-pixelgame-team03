@@ -74,9 +74,9 @@ void CoreLogic::UserInterface::Renderer::renderTileLayer(tson::Layer &pa_layer, 
             {
                 continue;
             }
-            Rectangle tileSetRec = {(float) (data % (tileMap.width / tileSize) * tileSize),
-                                    (float) (data / (tileMap.width / tileSize) * tileSize),
-                                    (float) tileSize, (float) tileSize};
+            tson::Rect tileRect = tile.getDrawingRect();
+            Rectangle tileSetRec = {static_cast<float>(tileRect.x), static_cast<float>(tileRect.y), static_cast<float>(tileRect.width), static_cast<float>(tileRect.height)};
+
             Rectangle destRec = {(float) (x * tileSize), (float) (y * tileSize),
                                  (float) tileSize,
                                  (float) tileSize};

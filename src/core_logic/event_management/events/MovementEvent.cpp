@@ -20,20 +20,21 @@ void CoreLogic::EventManagement::MovementEvent::update()
      **/
 
     checkStillPressed();
-    if (primaryDir_ == 0)
+    if (!ticksRunning_)
     {
         return;
     }
 
-    if (ticksRunning_)
-    {
         ticks_++;
-    }
 
 
 
 
     dynamic_pointer_cast<Actors::Drone>(po_mainActor_)->move(directionMap_[MOVE_UP], directionMap_[MOVE_DOWN], directionMap_[MOVE_LEFT], directionMap_[MOVE_RIGHT]);
+
+    /**
+     * @note: add facing direction variable and func call for actor
+     **/
 
     if (ticks_ % 4 == 0)
     {

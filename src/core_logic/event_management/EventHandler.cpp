@@ -18,6 +18,12 @@ CoreLogic::EventManagement::EventHandler::~EventHandler()
 
 }
 
+CoreLogic::EventManagement::EventHandler &CoreLogic::EventManagement::EventHandler::getInstance()
+{
+    static CoreLogic::EventManagement::EventHandler instance;
+    return instance;
+}
+
 void CoreLogic::EventManagement::EventHandler::handleEvents(const std::vector<EventEnum> &pa_thrownEvents, int pa_actorID)
 {
     /**
@@ -74,7 +80,7 @@ void CoreLogic::EventManagement::EventHandler::handleEvents(const std::vector<Ev
         {
             deactivateEvent(static_cast<EventEnum>(bit));
         }
-        
+
     }*/
 
 
@@ -153,13 +159,7 @@ void CoreLogic::EventManagement::EventHandler::activateEvent(EventEnum pa_activa
 
 void CoreLogic::EventManagement::EventHandler::deactivateEvent(EventEnum pa_deactivateEvent)
 {
-    
-}
 
-CoreLogic::EventManagement::EventHandler &CoreLogic::EventManagement::EventHandler::getInstance()
-{
-    static CoreLogic::EventManagement::EventHandler instance;
-    return instance;
 }
 
 
