@@ -37,7 +37,7 @@ namespace CoreLogic::DataProcessing
     struct ActorStorage
     {
     /**
-     * @todo: actual implementaion for po_actors_(from Map) and getActors()
+     * @todo: actual implementaion for po_actors_(convert Objects from map Class)
      * @note: possibly also get std::map<int, vector<Layer>> po_layers_ as to not have to make the Map klass static
      **/
     private:

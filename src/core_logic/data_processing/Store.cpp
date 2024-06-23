@@ -11,3 +11,5 @@ std::shared_ptr<CoreLogic::EventManagement::Actors::Drone> CoreLogic::DataProces
         );
 
 std::shared_ptr<CoreLogic::EventManagement::Actors::Drone> CoreLogic::DataProcessing::ActorStorage::getPlayer() {return po_player_;}
+
+std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Actor>>> CoreLogic::DataProcessing::ActorStorage::getActors() {return po_actors_;}
