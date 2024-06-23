@@ -34,10 +34,11 @@ namespace CoreLogic::DataProcessing
         static std::shared_ptr<Texture2D> getTileMap();
     };
 
-    struct Player
+    struct ActorStorage
     {
         private:
-            static std::shared_ptr<EventManagement::Actors::Drone> player_;
+            static std::shared_ptr<EventManagement::Actors::Drone> po_player_;
+            static std::shared_ptr<std::vector<std::shared_ptr<EventManagement::Actor>>> po_actors_;
         public:
             static std::shared_ptr<EventManagement::Actors::Drone> getPlayer();
         //static void newDrone(//DroneType);

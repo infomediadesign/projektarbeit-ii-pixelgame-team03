@@ -43,7 +43,7 @@ void Scenes::GameScene::update()
      **/
 
     CoreLogic::EventManagement::EventHandler &eventHandler = CoreLogic::EventManagement::EventHandler::getInstance();
-    CoreLogic::EventManagement::Actors::Drone &player = *CoreLogic::DataProcessing::Player::getPlayer();
+    CoreLogic::EventManagement::Actors::Drone &player = *CoreLogic::DataProcessing::ActorStorage::getPlayer();
 
     /**
      *@todo: InputHandler to be called static

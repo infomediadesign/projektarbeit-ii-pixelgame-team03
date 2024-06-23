@@ -156,7 +156,7 @@ void CoreLogic::EventManagement::MovementEvent::checkStillPressed()
 
 CoreLogic::EventManagement::MovementEvent::MovementEvent()
 {
-    po_mainActor_ = CoreLogic::DataProcessing::Player::getPlayer();
+    po_mainActor_ = CoreLogic::DataProcessing::ActorStorage::getPlayer();
     primaryDir_ = EVENT_NULL;
     ticksRunning_ = false;
     directionMap_ = {{MOVE_UP, false}, {MOVE_DOWN, false}, {MOVE_LEFT, false}, {MOVE_RIGHT, false}};

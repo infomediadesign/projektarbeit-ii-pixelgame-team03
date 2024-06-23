@@ -17,7 +17,11 @@ namespace CoreLogic::EventManagement
         virtual ~Actor() = default;
         int getId();
         Rectangle getHitbox();
-        virtual void shiftFrame() = 0;
+
+        /**
+         *@note: erstmal auskommentiert, da noch in keiner kindklasse implementiert
+         **/
+//        virtual void shiftFrame() = 0;
 
     protected:
         Vector2 position_;
