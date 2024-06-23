@@ -36,11 +36,16 @@ namespace CoreLogic::DataProcessing
 
     struct ActorStorage
     {
-        private:
-            static std::shared_ptr<EventManagement::Actors::Drone> po_player_;
-            static std::shared_ptr<std::vector<std::shared_ptr<EventManagement::Actor>>> po_actors_;
-        public:
-            static std::shared_ptr<EventManagement::Actors::Drone> getPlayer();
+    /**
+     * @todo: actual implementaion for po_actors_(from Map) and getActors()
+     * @note: possibly also get std::map<int, vector<Layer>> po_layers_ as to not have to make the Map klass static
+     **/
+    private:
+        static std::shared_ptr<EventManagement::Actors::Drone> po_player_;
+        static std::map<int, std::vector<std::shared_ptr<EventManagement::Actor>>> po_actors_;
+    public:
+        static std::shared_ptr<EventManagement::Actors::Drone> getPlayer();
+        static std::map<int, std::vector<std::shared_ptr<EventManagement::Actor>>> getActors();
         //static void newDrone(//DroneType);
     };
 
