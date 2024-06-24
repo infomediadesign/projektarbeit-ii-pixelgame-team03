@@ -12,4 +12,27 @@ std::shared_ptr<CoreLogic::EventManagement::Actors::Drone> CoreLogic::DataProces
 
 std::shared_ptr<CoreLogic::EventManagement::Actors::Drone> CoreLogic::DataProcessing::ActorStorage::getPlayer() {return po_player_;}
 
-std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Actor>>> CoreLogic::DataProcessing::ActorStorage::getActors() {return po_actors_;}
+std::shared_ptr<std::map<int, std::vector<CoreLogic::EventManagement::Actor>>> CoreLogic::DataProcessing::ActorStorage::getActors() {return po_actors_;}
+
+std::shared_ptr<std::map<int, std::vector<tson::Layer>>> CoreLogic::DataProcessing::ActorStorage::getLayers() {return po_layers_;}
+
+/**
+ * @brief: Zum hinzufügen von Actors, die als tson::Object's aus der Map geladen werden
+ **/
+void CoreLogic::DataProcessing::ActorStorage::setActors(std::map<int, std::vector<tson::Object>> &pa_objects)
+{
+
+}
+
+/**
+ * @brief: Zum hinzufügen von Actors, die während des laufenden Spiels erzeugt werden
+ **/
+void CoreLogic::DataProcessing::ActorStorage::addActor(EventManagement::Actor &pa_actor)
+{
+
+}
+
+void CoreLogic::DataProcessing::ActorStorage::setLayers(std::shared_ptr<std::map<int, std::vector<tson::Layer>>> pa_layers)
+{
+    po_layers_ = pa_layers;
+}

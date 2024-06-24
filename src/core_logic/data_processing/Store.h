@@ -12,6 +12,7 @@
 #include "raylib.h"
 #include "event_management/Actor.h"
 #include "event_management/actor/Drone.h"
+#include "../../tileson.h"
 
 
 namespace CoreLogic::DataProcessing
@@ -42,10 +43,17 @@ namespace CoreLogic::DataProcessing
      **/
     private:
         static std::shared_ptr<EventManagement::Actors::Drone> po_player_;
-        static std::map<int, std::vector<std::shared_ptr<EventManagement::Actor>>> po_actors_;
+        static std::shared_ptr<std::map<int, std::vector<EventManagement::Actor>>> po_actors_;
+        static std::shared_ptr<std::map<int, std::vector<tson::Layer>>> po_layers_;
     public:
         static std::shared_ptr<EventManagement::Actors::Drone> getPlayer();
-        static std::map<int, std::vector<std::shared_ptr<EventManagement::Actor>>> getActors();
+
+        static std::shared_ptr<std::map<int, std::vector<EventManagement::Actor>>> getActors();
+        static void setActors(std::map<int, std::vector<tson::Object>> &pa_objects);
+        static void addActor(EventManagement::Actor &pa_actor);
+
+        static std::shared_ptr<std::map<int, std::vector<tson::Layer>>> getLayers();
+        static void setLayers(std::shared_ptr<std::map<int, std::vector<tson::Layer>>> pa_layers);
         //static void newDrone(//DroneType);
     };
 

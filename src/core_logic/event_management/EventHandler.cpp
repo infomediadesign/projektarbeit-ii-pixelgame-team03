@@ -28,6 +28,9 @@ void CoreLogic::EventManagement::EventHandler::handleEvents(const std::vector<Ev
 {
     /**
      * @note: Could go back to bitwise Eventhandling via actor-id-map (one int of active Events per Actor)
+     * @attention: Either must go back to bitwise or must introduce a map<int, vector<EventEnum>> for the eventIDs and
+     *             would need 3 for-loops
+     * @attention: Should collect activeEvents probably also as map<int, vector<Event>> so it is easier to track?
      * @TODO: check with Josi
      **/
 
