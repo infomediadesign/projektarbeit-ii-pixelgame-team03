@@ -36,7 +36,50 @@ void CoreLogic::EventManagement::EventHandler::handleEvents(const std::vector<Ev
 
     std::lock_guard<std::mutex> lock(eventHandler_mutex_);
     bool isActive = false;
+    if (po_activeEvents_.find(pa_actorID) != po_activeEvents_.end())
+    {
+        po_activeEvents_.insert({pa_actorID, std::vector<std::unique_ptr<Event>>(15)});
+    }
+
+
     for (auto &thrownEvent: pa_thrownEvents)
+    {
+        if ((thrownEvent == MOVE_UP || thrownEvent == MOVE_DOWN || thrownEvent == MOVE_LEFT || thrownEvent == MOVE_RIGHT) && pa_actorID==0)
+        {
+            try
+            {
+                activateEvent(thrownEvent);
+            } catch (std::exception &e) {
+                TraceLog(LOG_INFO, e.what());
+            }
+            continue;
+        }
+
+        for (auto &activeEvent: po_activeEvents_[pa_actorID])
+        {
+            if (thrownEvent == activeEvent->getID())
+            {
+                isActive = true;
+                break;
+            }
+        }
+        if (!isActive)
+        {
+            try
+            {
+                activateEvent(thrownEvent);
+            } catch (std::exception &e) //@TODO: write Exception Handling for Events
+            {
+                TraceLog(LOG_INFO, e.what());
+            }
+        }
+    }
+
+
+    /**
+     * @attention: Outdated looping
+     **/
+    /*for (auto &thrownEvent: pa_thrownEvents)
     {
         for (auto &activeEventID: *activeEventIDs_)
         {
@@ -56,7 +99,7 @@ void CoreLogic::EventManagement::EventHandler::handleEvents(const std::vector<Ev
                 TraceLog(LOG_INFO, e.what());
             }
         }
-    }
+    }*/
 
 
     /**

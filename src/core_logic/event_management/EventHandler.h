@@ -31,8 +31,10 @@ namespace CoreLogic::EventManagement
          * @todo: rework: std::map<int, std::vector<Event>> activeEvents_;
          * @todo: reworc activeEventIDs_ as soon as feedback is here
          **/
-        std::unique_ptr<std::vector<Event>> activeEvents_;
-        std::unique_ptr<std::map<int, EventEnum>> activeEventIDs_;
+        std::map<int, std::vector<std::unique_ptr<Event>>> po_activeEvents_;
+
+//      std::unique_ptr<std::map<int, EventEnum>> activeEventIDs_;
+
         int deactivateEventIDs_;
         bool movementBlocked_ = false;
         std::unique_ptr<MovementEvent> po_movementEvent_;

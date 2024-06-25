@@ -43,12 +43,12 @@ namespace CoreLogic::DataProcessing
      **/
     private:
         static std::shared_ptr<EventManagement::Actors::Drone> po_player_;
-        static std::shared_ptr<std::map<int, std::vector<EventManagement::Actor>>> po_actors_;
+        static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Actor>>>> po_actors_;
         static std::shared_ptr<std::map<int, std::vector<tson::Layer>>> po_layers_;
     public:
         static std::shared_ptr<EventManagement::Actors::Drone> getPlayer();
 
-        static std::shared_ptr<std::map<int, std::vector<EventManagement::Actor>>> getActors();
+        static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Actor>>>> getActors();
         static void setActors(std::map<int, std::vector<tson::Object>> &pa_objects);
         static void addActor(EventManagement::Actor &pa_actor);
 

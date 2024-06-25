@@ -14,11 +14,17 @@ class Event
 {
 
 public:
-    Event()=default;
+    explicit Event(CoreLogic::EventManagement::EventEnum pa_ID);
     virtual ~Event() = default;
     virtual void update() = 0;
+    CoreLogic::EventManagement::EventEnum getID();
 protected:
+    /**
+     *@question: needed?
+     **/
     std::shared_ptr<CoreLogic::EventManagement::Actor> po_mainActor_;
+
+    const CoreLogic::EventManagement::EventEnum id_;
 
     /**
      *@todo: static input Handler?

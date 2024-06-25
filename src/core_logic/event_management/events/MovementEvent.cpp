@@ -154,7 +154,7 @@ void CoreLogic::EventManagement::MovementEvent::checkStillPressed()
     }
 }
 
-CoreLogic::EventManagement::MovementEvent::MovementEvent()
+CoreLogic::EventManagement::MovementEvent::MovementEvent(): Event(MOVE_UP)
 {
     po_mainActor_ = CoreLogic::DataProcessing::ActorStorage::getPlayer();
     primaryDir_ = EVENT_NULL;
