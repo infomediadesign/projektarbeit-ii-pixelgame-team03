@@ -24,6 +24,8 @@ protected:
      **/
     std::shared_ptr<CoreLogic::EventManagement::Actor> po_mainActor_;
 
+    Event() = delete;
+
     const CoreLogic::EventManagement::EventEnum id_;
 
     /**

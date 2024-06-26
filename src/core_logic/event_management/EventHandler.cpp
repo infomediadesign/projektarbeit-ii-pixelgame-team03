@@ -161,17 +161,33 @@ void CoreLogic::EventManagement::EventHandler::handleEvents(const std::vector<Ev
 
 void CoreLogic::EventManagement::EventHandler::update()
 {
-    for (auto &activeEvent: *activeEvents_)
+    try
     {
-        try
+        po_movementEvent_ -> update();
+    } catch (std::exception &e) {
+        /**
+         * @attention: could use Exception Handling to deactivate Events
+         **/
+        TraceLog(LOG_INFO, e.what());
+    }
+
+    for (auto &activeEvent: po_activeEvents_)
+    {
+        for (auto &event: activeEvent.second)
         {
-            activeEvent.update();
-        } catch (std::exception &e) //@TODO: write Exception Handling for Events
-        {
-            TraceLog(LOG_INFO, e.what());
+            try
+            {
+                event -> update();
+            } catch (std::exception &e) {
+                /**
+                * @attention: could use Exception Handling to deactivate Events
+                **/
+                TraceLog(LOG_INFO, e.what());
+            }
 
         }
     }
+
 }
 
 void CoreLogic::EventManagement::EventHandler::activateEvent(EventEnum pa_activateEvent)

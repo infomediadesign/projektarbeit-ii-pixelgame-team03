@@ -75,7 +75,7 @@ bool CoreLogic::EventManagement::Actors::Drone::checkCollision(Direction pa_dire
      *@note: to be written Func for convenience
      **/
     Vector2 tileID = CoreLogic::DataProcessing::coordinatesToTile(pa_position);
-
+    std::map<int, std::vector<tson::Layer>>& layers = *CoreLogic::DataProcessing::ActorStorage::getLayers();
 
     /**
      *@note: yet unclear how to get the layers

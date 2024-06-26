@@ -63,7 +63,7 @@ void CoreLogic::EventManagement::MovementEvent::startMove(CoreLogic::EventManage
      moveRight_ = false;
      */
 
-    if (primaryDir_ == 0)
+    if (primaryDir_ == EVENT_NULL)
     {
         primaryDir_ = pa_Event;
         ticksRunning_ = true;
@@ -103,7 +103,7 @@ void CoreLogic::EventManagement::MovementEvent::checkStillPressed()
     /**
      *@attention: It assumes here that the InputHandler gives the Option to handle an Axis like a Button
      **/
-    if (directionMap_.at(MOVE_UP) && (InputHandler.isEventReleased(MOVE_UP)))
+    if (directionMap_.at(MOVE_UP) && (inputHandler_.isCommandReleased(MOVE_UP)))
     {
         directionMap_.at(MOVE_UP) = false;
         if (primaryDir_ == MOVE_UP)
@@ -111,7 +111,7 @@ void CoreLogic::EventManagement::MovementEvent::checkStillPressed()
             newPrimary = true;
         }
     }
-    if (directionMap_.at(MOVE_DOWN) && (InputHandler.isEventReleased(MOVE_DOWN)))
+    if (directionMap_.at(MOVE_DOWN) && (inputHandler_.isCommandReleased(MOVE_DOWN)))
     {
         directionMap_.at(MOVE_DOWN) = false;
         if (primaryDir_ == MOVE_DOWN)
@@ -119,7 +119,7 @@ void CoreLogic::EventManagement::MovementEvent::checkStillPressed()
             newPrimary = true;
         }
     }
-    if (directionMap_.at(MOVE_LEFT) && (InputHandler.isEventReleased(MOVE_LEFT)))
+    if (directionMap_.at(MOVE_LEFT) && (inputHandler_.isCommandReleased(MOVE_LEFT)))
     {
         directionMap_.at(MOVE_LEFT) = false;
         if (primaryDir_ == MOVE_LEFT)
@@ -127,7 +127,7 @@ void CoreLogic::EventManagement::MovementEvent::checkStillPressed()
             newPrimary = true;
         }
     }
-    if (directionMap_.at(MOVE_RIGHT) && (InputHandler.isEventReleased(MOVE_RIGHT)))
+    if (directionMap_.at(MOVE_RIGHT) && (inputHandler_.isCommandReleased(MOVE_RIGHT)))
     {
         directionMap_.at(MOVE_RIGHT) = false;
         if (primaryDir_ == MOVE_RIGHT)
@@ -152,6 +152,7 @@ void CoreLogic::EventManagement::MovementEvent::checkStillPressed()
             ticks_ = 0;
         }
     }
+
 }
 
 CoreLogic::EventManagement::MovementEvent::MovementEvent(): Event(MOVE_UP)
