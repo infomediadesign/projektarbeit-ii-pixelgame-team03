@@ -14,7 +14,7 @@ namespace CoreLogic::EventManagement
     class Actor
     {
     public:
-        Actor(Vector2 pa_position, Rectangle pa_hitbox, int pa_id, bool pa_collidable, std::string pa_name, Vector2 pa_size, bool pa_visible);
+        Actor(Vector2 pa_position, Rectangle pa_hitbox, int pa_id, bool pa_collidable, std::string pa_name, Vector2 pa_size, bool pa_visible, int pa_elevation);
         virtual ~Actor() = default;
 
         //getters
@@ -26,11 +26,15 @@ namespace CoreLogic::EventManagement
         std::string getName(){return name_;};
         Vector2 getSize(){return size_;};
 
+
+
         /**
          *@note: erstmal auskommentiert, da noch in keiner kindklasse implementiert
          **/
 //        virtual void shiftFrame() = 0;
 
+        [[nodiscard]] int getElevation() const;
+        void setElevation(int pa_elevation);
     protected:
         Vector2 position_;
         Rectangle hitbox_;
@@ -39,6 +43,8 @@ namespace CoreLogic::EventManagement
         bool visible_;
         std::string name_;
         const Vector2 size_;
+        int elevation_;
+
 
         /**
          *@todo: implement sprites
