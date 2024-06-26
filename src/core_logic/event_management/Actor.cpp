@@ -5,7 +5,7 @@
 #include "Actor.h"
 
 
-CoreLogic::EventManagement::Actor::Actor(Vector2 pa_position, Rectangle pa_hitbox, int pa_id, bool pa_collidable, std::string pa_name, Vector2 pa_size, bool pa_visible, int pa_elevation) :
+CoreLogic::EventManagement::Actor::Actor(Vector2 pa_position, Rectangle pa_hitbox, int pa_id, CollisionType pa_collidable, std::string pa_name, Vector2 pa_size, bool pa_visible, int pa_elevation) :
     position_(pa_position),
     hitbox_(pa_hitbox),
     id_(pa_id),

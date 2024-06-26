@@ -80,7 +80,7 @@ bool CoreLogic::EventManagement::Actors::Drone::checkCollision(Direction pa_dire
     /**
      *@note: yet unclear how to get the layers
      **/
-    for(auto layer: layers(elevation_))
+    for(auto &layer: layers[elevation_])
     {
         tson::Tile &tile = *layer.getTileData(static_cast<int>(tileID.x), static_cast<int>(tileID.y));
         /**
@@ -113,12 +113,13 @@ bool CoreLogic::EventManagement::Actors::Drone::checkCollision(Direction pa_dire
     /**
      *@TODO: Map.getActors() and elevation Handling
      **/
-     bool dies = false;
-    Actor* objectPtr = Map.getActors(elevation_).get(tileID);
-    if (objectPtr != nullptr)
-    {
-        Actor &object = *objectPtr;
+    bool dies = false;
+    std::map<int, std::vector<std::shared_ptr<Actor>>> &actors = *CoreLogic::DataProcessing::ActorStorage::getActors();
 
+    for (auto &objectPtr : actors[elevation_])
+    {
+
+        Actor &object = *objectPtr;
         /**
          *@note: object needs Hitbox, death Hitboxes should be probably smaller than the actual Sprite,
          *       @proposal: death Hitboxes 75% of Sprite so you dont immediately kill yourself when touching but still
@@ -132,9 +133,8 @@ bool CoreLogic::EventManagement::Actors::Drone::checkCollision(Direction pa_dire
              * @note: Death collision probably to be handled outside of event in update func frame after movement
              * @TODO: Collision Type
              **/
-            if (object.getCollisionType() == "Kill")
+            if (object.getCollisionType() == CollisionType::DEATH)
             {
-
                 dies = true;
             }
             Rectangle collisionRec = GetCollisionRec(hitbox_, objectHitbox);

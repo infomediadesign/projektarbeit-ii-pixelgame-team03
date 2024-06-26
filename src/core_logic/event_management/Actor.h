@@ -14,17 +14,25 @@ namespace CoreLogic::EventManagement
     class Actor
     {
     public:
-        Actor(Vector2 pa_position, Rectangle pa_hitbox, int pa_id, bool pa_collidable, std::string pa_name, Vector2 pa_size, bool pa_visible, int pa_elevation);
+        enum class CollisionType
+        {
+            NONE,
+            COLLISION,
+            ENEMYDEATH,
+            DEATH
+        };
+        Actor(Vector2 pa_position, Rectangle pa_hitbox, int pa_id, CollisionType pa_collidable, std::string pa_name, Vector2 pa_size, bool pa_visible, int pa_elevation);
         virtual ~Actor() = default;
 
         //getters
         Vector2 getPosition(){return position_;};
         Rectangle getHitbox(){return hitbox_;};
         int getId(){return id_;};
-        bool getCollidable(){return collidable_;};
+        CollisionType getCollisionType(){return collisionType_;};
         bool getVisible(){return visible_;};
         std::string getName(){return name_;};
         Vector2 getSize(){return size_;};
+
 
 
 
@@ -39,7 +47,7 @@ namespace CoreLogic::EventManagement
         Vector2 position_;
         Rectangle hitbox_;
         const int id_;
-        bool collidable_;
+        CollisionType collisionType_;
         bool visible_;
         std::string name_;
         const Vector2 size_;
