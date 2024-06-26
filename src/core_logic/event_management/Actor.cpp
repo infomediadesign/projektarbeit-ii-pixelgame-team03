@@ -4,19 +4,15 @@
 
 #include "Actor.h"
 
-CoreLogic::EventManagement::Actor::Actor(Vector2 pa_position, Rectangle pa_hitbox, int pa_id, Vector2 pa_size): id_(pa_id),
-                                                                                                                size_(pa_size)
+
+CoreLogic::EventManagement::Actor::Actor(Vector2 pa_position, Rectangle pa_hitbox, int pa_id, bool pa_collidable, std::string pa_name, Vector2 pa_size, bool pa_visible) :
+    position_(pa_position),
+    hitbox_(pa_hitbox),
+    id_(pa_id),
+    collidable_(pa_collidable),
+    visible_(pa_visible),
+    name_(pa_name),
+    size_(pa_size)
 {
-    position_ = pa_position;
-    hitbox_ = pa_hitbox;
 }
 
-int CoreLogic::EventManagement::Actor::getId()
-{
-    return id_;
-}
-
-Rectangle CoreLogic::EventManagement::Actor::getHitbox()
-{
-    return hitbox_;
-}

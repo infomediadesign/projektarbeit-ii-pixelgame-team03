@@ -5,11 +5,11 @@
 #ifndef HIVE_MOVABLEACTOR_H
 #define HIVE_MOVABLEACTOR_H
 
-#include "AnimatedActor.h"
+#include "../Actor.h"
 
 namespace CoreLogic::EventManagement::Actors {
 
-        class MovableActor : public AnimatedActor{
+        class MovableActor : public Actor{
         public:
             void update();
             void draw();

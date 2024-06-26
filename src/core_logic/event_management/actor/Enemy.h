@@ -5,9 +5,11 @@
 #ifndef HIVE_ENEMY_H
 #define HIVE_ENEMY_H
 
-namespace CoreLogic::EventManager::Actors {
+#include "MovableActor.h"
 
-            class Enemy {
+namespace CoreLogic::EventManagement::Actors {
+
+            class Enemy : public MovableActor{
 
             };
 }

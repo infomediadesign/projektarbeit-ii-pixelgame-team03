@@ -6,13 +6,12 @@
 #define RAYLIBSTARTER_PLAYER_H
 
 
-#include "event_management/Actor.h"
-
+#include "MovableActor.h"
 
 
     namespace CoreLogic::EventManagement::Actors
     {
-        class Drone : public Actor
+        class Drone : public MovableActor
         {
         public:
             Drone() = delete;
