@@ -25,7 +25,7 @@ namespace CoreLogic::UserInterface
         void renderTileLayer(tson::Layer &pa_layer, Rectangle pa_cameraRec);
     public:
         static Renderer* getInstance();
-        void render(std::shared_ptr<std::vector<tson::Layer>> &pa_layers, std::shared_ptr<std::map<int, std::vector<EventManagement::Actor>>> &pa_actors, Camera2D &pa_camera, RenderTexture2D &pa_canvas, Color pa_bgColor);
+        void render(std::shared_ptr<std::map<int, std::vector<tson::Layer>>> pa_layers, std::shared_ptr<std::map<int, std::vector<EventManagement::Actor>>> &pa_actors, Camera2D &pa_camera, RenderTexture2D &pa_canvas, Color pa_bgColor);
 
     };
 }

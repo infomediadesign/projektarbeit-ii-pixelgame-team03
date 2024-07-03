@@ -28,9 +28,8 @@ int Scenes::GameScene::getCurrentLevelID()
 void Scenes::GameScene::draw(RenderTexture2D &pa_canvas)
 {
     CoreLogic::UserInterface::Renderer& renderer = *CoreLogic::UserInterface::Renderer::getInstance();
-    std::shared_ptr<std::vector<tson::Layer>> layers = po_currentMap_ -> getLayers();
     Color bgColor = po_currentMap_ -> getBgColor();
-    renderer.render(layers, po_actors_, *camera_, pa_canvas, bgColor);
+    renderer.render(CoreLogic::DataProcessing::ActorStorage::getLayers(), po_actors_, *camera_, pa_canvas, bgColor);
 }
 
 void Scenes::GameScene::update()

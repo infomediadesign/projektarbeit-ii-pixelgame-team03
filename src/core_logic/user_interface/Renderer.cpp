@@ -17,7 +17,7 @@ CoreLogic::UserInterface::Renderer *CoreLogic::UserInterface::Renderer::getInsta
     return po_instance_;
 }
 
-void CoreLogic::UserInterface::Renderer::render(std::shared_ptr<std::vector<tson::Layer>> &pa_layers, std::shared_ptr<std::map<int,std::vector<EventManagement::Actor>>> &pa_actors, Camera2D &pa_camera, RenderTexture2D &pa_canvas, Color pa_bgColor)
+void CoreLogic::UserInterface::Renderer::render(std::shared_ptr<std::map<int, std::vector<tson::Layer>>> pa_layers, std::shared_ptr<std::map<int,std::vector<EventManagement::Actor>>> &pa_actors, Camera2D &pa_camera, RenderTexture2D &pa_canvas, Color pa_bgColor)
 {
 
     Rectangle cameraRec = {0, 0, 0, 0};
@@ -42,11 +42,12 @@ void CoreLogic::UserInterface::Renderer::render(std::shared_ptr<std::vector<tson
         BeginMode2D(pa_camera);
         {
             ClearBackground(pa_bgColor);
-            for (tson::Layer layer: *pa_layers)
-            {
-                if (layer.getType() == tson::LayerType::TileLayer)
-                {
-                    renderTileLayer(layer, cameraRec);
+            for (const auto& pair : *pa_layers) {
+                const std::vector<tson::Layer> &layers = pair.second;
+                for (tson::Layer layer: layers) {
+                    if (layer.getType() == tson::LayerType::TileLayer) {
+                        renderTileLayer(layer, cameraRec);
+                    }
                 }
             }
         } EndMode2D();
@@ -55,8 +56,8 @@ void CoreLogic::UserInterface::Renderer::render(std::shared_ptr<std::vector<tson
 
 void CoreLogic::UserInterface::Renderer::renderTileLayer(tson::Layer &pa_layer, Rectangle pa_cameraRec)
 {
-    CoreLogic::DataProcessing::TileMap& tilemap = *CoreLogic::DataProcessing::TileMap::getInstance();
-    Texture2D& tileMap = *tilemap.getTileMap();
+    //CoreLogic::DataProcessing::TileMap& tilemap = *CoreLogic::DataProcessing::TileMap::getInstance();
+    Texture2D& tileMap = *CoreLogic::DataProcessing::TileMap::getTileMap();
     for (int y = (int)pa_cameraRec.y; y < (int)pa_cameraRec.height; y++)
     {
         for (int x = (int) pa_cameraRec.x; x < (int) pa_cameraRec.width; x++)

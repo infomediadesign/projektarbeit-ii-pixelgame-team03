@@ -28,9 +28,11 @@ void CoreLogic::EventManagement::MovementEvent::update()
         ticks_++;
 
 
+/**
+ * @attention @Keanu this is only commented because it is not working since Actor does not have a move func but Event deals with Actors not MovableActors, which do have a move func
+ * dynamic_pointer_cast<Actors::Drone>(po_mainActor_)->move(directionMap_[MOVE_UP], directionMap_[MOVE_DOWN], directionMap_[MOVE_LEFT], directionMap_[MOVE_RIGHT]);
+ */
 
-
-    dynamic_pointer_cast<Actors::Drone>(po_mainActor_)->move(directionMap_[MOVE_UP], directionMap_[MOVE_DOWN], directionMap_[MOVE_LEFT], directionMap_[MOVE_RIGHT]);
 
     /**
      * @note: add facing direction variable and func call for actor
@@ -41,7 +43,7 @@ void CoreLogic::EventManagement::MovementEvent::update()
         /**
          *@todo: shift Frame to be implemented into actors with states
          **/
-        po_mainActor_->shiftFrame(WALKING, primaryDir);
+        //po_mainActor_->shiftFrame(WALKING, primaryDir);
     }
 
 }

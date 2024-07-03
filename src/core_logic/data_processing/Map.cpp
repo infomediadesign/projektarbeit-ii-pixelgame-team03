@@ -128,40 +128,63 @@ void CoreLogic::DataProcessing::Map::loadObjectsExample()
 
 void CoreLogic::DataProcessing::Map::loadObjects() {
     int objectId = 1;
-    int elev = 1;
 
     std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Actor>>>> actorMap = ActorStorage::getActors();
 
-    for (auto &object: po_objects_ ->at(elev))
+    for (int elev = 1; elev < po_objects_ ->size(); elev++)
     {
-        std::string klasse = object.getClassType();
-        Vector2 objectPosition = {(float)object.getPosition().x, (float)object.getPosition().y};
-        tson::PropertyCollection props = object.getProperties();
-        Rectangle objectHitbox = props.getProperty("hitbox")->getValue<Rectangle>();
-        EventManagement::Actor::CollisionType objectCollisionType = props.getProperty("collisionType")->getValue<EventManagement::Actor::CollisionType>();
-        bool objectVisible = props.getProperty("visible")->getValue<bool>();
-        Vector2 objectSize = props.getProperty("size")->getValue<Vector2>();
+        for (auto &object: po_objects_->at(elev))
+        {
+            std::string klasse = object.getClassType();
+            Vector2 objectPosition = {(float) object.getPosition().x, (float) object.getPosition().y};
+            tson::PropertyCollection props = object.getProperties();
+            Rectangle objectHitbox = props.getProperty("hitbox")->getValue<Rectangle>();
+            EventManagement::Actor::CollisionType objectCollisionType = props.getProperty(
+                    "collisionType")->getValue<EventManagement::Actor::CollisionType>();
+            bool objectVisible = props.getProperty("visible")->getValue<bool>();
+            Vector2 objectSize = props.getProperty("size")->getValue<Vector2>();
 
-        if (klasse == "Player")
-        {
-            actorMap ->insert({elev, {std::make_shared<EventManagement::Actors::Drone>(EventManagement::Actors::Drone(objectPosition, objectHitbox, 0, objectCollisionType, objectSize, objectVisible, elev))}});
-        }
-        else if (klasse == "Colonist")
-        {
-            actorMap ->insert({elev, {std::make_shared<EventManagement::Actors::Colonist>(EventManagement::Actors::Colonist(objectPosition, objectHitbox, objectId, objectCollisionType, objectSize, objectVisible, elev))}});
-        }
-        else if (klasse == "Hazmat")
-        {
-            actorMap ->insert({elev, {std::make_shared<EventManagement::Actors::Hazmat>(EventManagement::Actors::Hazmat(objectPosition, objectHitbox, objectId, objectCollisionType, objectSize, objectVisible, elev))}});
-        }
-        else if (klasse == "Mech")
-        {
-            actorMap ->insert({elev, {std::make_shared<EventManagement::Actors::Mech>(EventManagement::Actors::Mech(objectPosition, objectHitbox, objectId, objectCollisionType, objectSize, objectVisible, elev))}});
-        }
+            std::shared_ptr<EventManagement::Actor> actor;
 
-        objectId++;
+            if (klasse == "Player")
+            {
+                ActorStorage::setPlayer(std::make_shared<EventManagement::Actors::Drone>(
+                        EventManagement::Actors::Drone(objectPosition, objectHitbox, 0, objectCollisionType, objectSize,
+                                                       objectVisible, elev)));
+                actor = ActorStorage::getPlayer();
+            } else if (klasse == "Colonist")
+            {
+                actor =std::make_shared<EventManagement::Actors::Colonist>(
+                        EventManagement::Actors::Colonist(objectPosition, objectHitbox, objectId, objectCollisionType,
+                                                          objectSize, objectVisible, elev));
+            } else if (klasse == "Hazmat")
+            {
+                actor = std::make_shared<EventManagement::Actors::Hazmat>(
+                        EventManagement::Actors::Hazmat(objectPosition, objectHitbox, objectId, objectCollisionType,
+                                                        objectSize, objectVisible, elev));
+            } else if (klasse == "Mech")
+            {
+                actor = std::make_shared<EventManagement::Actors::Mech>(
+                        EventManagement::Actors::Mech(objectPosition, objectHitbox, objectId, objectCollisionType,
+                                                      objectSize, objectVisible, elev));
+            }
+
+            // create new elevation or add to existing
+            if (actor) {
+                auto it = actorMap->find(elev);
+                if (it != actorMap->end()) {
+                    it->second.push_back(actor);
+                } else {
+                    actorMap->insert({elev, {actor}});
+                }
+            }
+
+
+            objectId++;
+        }
     }
-    elev++;
+
+    //ActorStorage::setActors(*actorMap);
 }
 
 

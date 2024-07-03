@@ -14,9 +14,7 @@ set(CORE_LOGIC_SOURCES
     event_management/events/MovementEvent.cpp
 
     event_management/Actor.cpp
-    event_management/actor/StaticActor.cpp
-    event_management/actor/AnimatedActor.cpp
-    event_management/actor/MovableActor.cpp
+        event_management/actor/MovableActor.cpp
 
         event_management/actor/Drone.cpp
         event_management/actor/drones/Worker.cpp
@@ -24,7 +22,7 @@ set(CORE_LOGIC_SOURCES
         event_management/actor/drones/Grappler.cpp
 
     event_management/actor/Enemy.cpp
-        event_management/actor/enemies/Kolonist.cpp
+        event_management/actor/enemies/Colonist.cpp
         event_management/actor/enemies/Hazmat.cpp
         event_management/actor/enemies/Mech.cpp
 
@@ -54,9 +52,7 @@ set(CORE_LOGIC_HEADERS
     event_management/events/MovementEvent.h
 
     event_management/Actor.h
-    event_management/actor/AnimatedActor.h
-    event_management/actor/StaticActor.h
-    event_management/actor/MovableActor.h
+        event_management/actor/MovableActor.h
 
         event_management/actor/Drone.h
         event_management/actor/drones/Worker.h
@@ -64,7 +60,7 @@ set(CORE_LOGIC_HEADERS
         event_management/actor/drones/Grappler.h
 
     event_management/actor/Enemy.h
-        event_management/actor/enemies/Kolonist.h
+        event_management/actor/enemies/Colonist.h
         event_management/actor/enemies/Hazmat.h
         event_management/actor/enemies/Mech.h
 

@@ -47,9 +47,10 @@ namespace CoreLogic::DataProcessing
         static std::shared_ptr<std::map<int, std::vector<tson::Layer>>> po_layers_;
     public:
         static std::shared_ptr<EventManagement::Actors::Drone> getPlayer();
+        static void setPlayer(std::shared_ptr<EventManagement::Actors::Drone> pa_player);
 
         static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Actor>>>> getActors();
-        static void setActors(std::map<int, std::vector<tson::Object>> &pa_objects);
+        static void setActors(std::map<int, std::vector<EventManagement::Actor>> &pa_actors);
         static void addActor(EventManagement::Actor &pa_actor);
 
         static std::shared_ptr<std::map<int, std::vector<tson::Layer>>> getLayers();
