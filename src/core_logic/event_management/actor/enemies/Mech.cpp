@@ -5,8 +5,8 @@
 #include "Mech.h"
 
 namespace CoreLogic {
-    namespace EventManager {
+    namespace EventManagement {
         namespace Actors {
         } // Actors
-    } // EventManager
+    } // EventManagement
 } // CoreLogic

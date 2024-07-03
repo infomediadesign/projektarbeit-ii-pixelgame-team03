@@ -4,5 +4,5 @@
 
 #include "Worker.h"
 
-namespace CoreLogic::EventManager::Actors {
+namespace CoreLogic::EventManagement::Actors {
         }

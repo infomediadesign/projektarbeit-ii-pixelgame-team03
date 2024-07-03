@@ -4,9 +4,7 @@
 
 #include "Hazmat.h"
 
-namespace CoreLogic {
-    namespace EventManager {
-        namespace Actors {
-        } // Actors
-    } // EventManager
-} // CoreLogic
+namespace CoreLogic::EventManagement::Actors
+{
+
+}

@@ -4,6 +4,6 @@
 
 #include "Grappler.h"
 
-namespace CoreLogic::EventManager::Actors {
+namespace CoreLogic::EventManagement::Actors {
 
         }

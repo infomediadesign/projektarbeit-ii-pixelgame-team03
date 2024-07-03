@@ -5,7 +5,7 @@
 #ifndef HIVE_GRAPPLER_H
 #define HIVE_GRAPPLER_H
 
-namespace CoreLogic::EventManager::Actors {
+namespace CoreLogic::EventManagement::Actors {
 
             class Grappler {
 
