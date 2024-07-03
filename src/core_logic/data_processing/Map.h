@@ -9,6 +9,7 @@
 #include <vector>
 #include "TilesonUtilities.h"
 #include "raylib.h"
+#include "..\event_management\Actor.h"
 
 
 namespace CoreLogic::DataProcessing
@@ -20,7 +21,7 @@ namespace CoreLogic::DataProcessing
 
         std::shared_ptr<tson::Map> getMap();
 
-        std::shared_ptr<std::vector<tson::Layer>> getLayers();
+        std::shared_ptr<std::map<int, std::vector<tson::Layer>>> getLayers();
 
         /**
          * @attention: TODO: rework objects into Actors
@@ -37,6 +38,7 @@ namespace CoreLogic::DataProcessing
         std::shared_ptr<std::map<int, std::vector<tson::Layer>>> po_layers_;
         std::shared_ptr<std::map<int, std::vector<tson::Object>>> po_objects_;
         Color bgColor_;
+        void loadObjects();
         void loadObjectsExample();
 
     };

@@ -3,6 +3,11 @@
 //
 
 #include "Map.h"
+#include "Store.h"
+
+#include "../event_management/actor/enemies/Hazmat.h"
+#include "../event_management/actor/enemies/Colonist.h"
+#include "../event_management/actor/enemies/Mech.h"
 
 CoreLogic::DataProcessing::Map::Map(std::string pa_filename)
 {
@@ -65,6 +70,7 @@ CoreLogic::DataProcessing::Map::Map(std::string pa_filename)
 
     po_layers_ = std::make_shared<std::map<int, std::vector<tson::Layer>>>(tempLayerMap);
     po_objects_ = std::make_shared<std::map<int, std::vector<tson::Object>>>(tempObjMap);
+    loadObjects();
 
     /** @note: old obj parser */
     /*for (int i = 0; i < layers.size(); i++)
@@ -84,7 +90,7 @@ std::shared_ptr<tson::Map> CoreLogic::DataProcessing::Map::getMap()
     return po_map_;
 }
 
-std::shared_ptr<std::vector<tson::Layer>> CoreLogic::DataProcessing::Map::getLayers()
+std::shared_ptr<std::map<int, std::vector<tson::Layer>>> CoreLogic::DataProcessing::Map::getLayers()
 {
     return po_layers_;
 }
@@ -118,6 +124,44 @@ void CoreLogic::DataProcessing::Map::loadObjectsExample()
         int hitboxWidth = props.getProperty("hitbox_width")->getValue<int>();
         int hitboxHeight = props.getProperty("hitbox_height")->getValue<int>();
     }
+}
+
+void CoreLogic::DataProcessing::Map::loadObjects() {
+    int objectId = 1;
+    int elev = 1;
+
+    std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Actor>>>> actorMap = ActorStorage::getActors();
+
+    for (auto &object: po_objects_ ->at(elev))
+    {
+        std::string klasse = object.getClassType();
+        Vector2 objectPosition = {(float)object.getPosition().x, (float)object.getPosition().y};
+        tson::PropertyCollection props = object.getProperties();
+        Rectangle objectHitbox = props.getProperty("hitbox")->getValue<Rectangle>();
+        EventManagement::Actor::CollisionType objectCollisionType = props.getProperty("collisionType")->getValue<EventManagement::Actor::CollisionType>();
+        bool objectVisible = props.getProperty("visible")->getValue<bool>();
+        Vector2 objectSize = props.getProperty("size")->getValue<Vector2>();
+
+        if (klasse == "Player")
+        {
+            actorMap ->insert({elev, {std::make_shared<EventManagement::Actors::Drone>(EventManagement::Actors::Drone(objectPosition, objectHitbox, 0, objectCollisionType, objectSize, objectVisible, elev))}});
+        }
+        else if (klasse == "Colonist")
+        {
+            actorMap ->insert({elev, {std::make_shared<EventManagement::Actors::Colonist>(EventManagement::Actors::Colonist(objectPosition, objectHitbox, objectId, objectCollisionType, objectSize, objectVisible, elev))}});
+        }
+        else if (klasse == "Hazmat")
+        {
+            actorMap ->insert({elev, {std::make_shared<EventManagement::Actors::Hazmat>(EventManagement::Actors::Hazmat(objectPosition, objectHitbox, objectId, objectCollisionType, objectSize, objectVisible, elev))}});
+        }
+        else if (klasse == "Mech")
+        {
+            actorMap ->insert({elev, {std::make_shared<EventManagement::Actors::Mech>(EventManagement::Actors::Mech(objectPosition, objectHitbox, objectId, objectCollisionType, objectSize, objectVisible, elev))}});
+        }
+
+        objectId++;
+    }
+    elev++;
 }
 
 
