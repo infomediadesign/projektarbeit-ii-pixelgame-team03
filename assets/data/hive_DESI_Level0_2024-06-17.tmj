@@ -622,7 +622,7 @@
  "tilesets":[
         {
          "firstgid":1,
-         "source":"hive_ARTI_TileAtlas_2024-07-02.tsj"
+         "source":"hive_ARTI_TileAtlas_2024-07-02.tsx"
         }],
  "tilewidth":24,
  "type":"map",
