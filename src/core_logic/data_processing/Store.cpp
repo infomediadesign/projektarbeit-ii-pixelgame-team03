@@ -2,9 +2,18 @@
 // Created by keanu on 6/1/2024.
 //
 #include "Store.h"
+#include "raylib.h"
 
-std::shared_ptr<Texture2D> CoreLogic::DataProcessing::TileMap::tileMap_ = std::make_shared<Texture2D>(LoadTexture("assets/graphics/Grassland_Tileset.png"));
+std::shared_ptr<Texture2D> CoreLogic::DataProcessing::TileMap::tileMap_ = nullptr;
 std::shared_ptr<Texture2D> CoreLogic::DataProcessing::TileMap::getTileMap() {return tileMap_;}
+
+void CoreLogic::DataProcessing::TileMap::Initialize()
+{
+    if (tileMap_ == nullptr)
+    {
+        tileMap_ = std::make_shared<Texture2D>(LoadTexture("assets/graphics/hive_ARTI_TileAtlas_2024-07-02.png"));
+    }
+}
 
 std::shared_ptr<CoreLogic::EventManagement::Actors::Drone> CoreLogic::DataProcessing::ActorStorage::po_player_;
 std::shared_ptr<std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Actor>>>> CoreLogic::DataProcessing::ActorStorage::po_actors_;

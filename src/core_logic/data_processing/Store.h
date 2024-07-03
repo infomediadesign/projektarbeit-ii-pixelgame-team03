@@ -33,6 +33,7 @@ namespace CoreLogic::DataProcessing
         static std::shared_ptr<Texture2D> tileMap_;
     public:
         static std::shared_ptr<Texture2D> getTileMap();
+        static void Initialize();
     };
 
     struct ActorStorage

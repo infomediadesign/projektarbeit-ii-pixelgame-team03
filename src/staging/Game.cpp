@@ -18,6 +18,7 @@ Staging::Game::Game(int pa_stage_width, int pa_stage_height, int pa_target_fps, 
     InitWindow(stageWidth_, stageHeight_, gameTitle_.c_str());
     SetWindowMinSize(stageWidth_, stageHeight_);
     SetTargetFPS(targetFPS_);
+    CoreLogic::DataProcessing::TileMap::Initialize();
 
     fullscreen_ = pa_fullscreen;
     audio_ = pa_audio;
