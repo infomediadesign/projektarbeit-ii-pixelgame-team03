@@ -8,7 +8,7 @@ std::mutex CoreLogic::DataProcessing::TileMap::mutex_;
 
 CoreLogic::DataProcessing::TileMap::TileMap()
 {
-    tileMap_ = std::make_shared<Texture2D>(LoadTexture("assets/graphics/Grassland_Tileset.png"));
+    tileMap_ = std::make_shared<Texture2D>(LoadTexture("assets/graphics/hive_DESI_GreyboxingTileset_23-06-2024.png"));
 }
 
 CoreLogic::DataProcessing::TileMap::~TileMap()
