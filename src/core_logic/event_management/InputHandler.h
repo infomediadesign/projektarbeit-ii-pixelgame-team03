@@ -84,12 +84,10 @@ namespace CoreLogic::EventManagement {
                 //Input detection
                 //KeyboardKey detectKeyboardInput();
 
+
             protected:
                 std::map<Input, EventEnum> keyboardInGameMapping;
-                //std::map<std::shared_ptr<Command>, Input> keyboardMenuMapping;
-
                 std::map<Input, EventEnum> controllerInGameMapping;
-                //std::map<std::shared_ptr<Command>, Input> controllerMenuMapping;
 
         };
 

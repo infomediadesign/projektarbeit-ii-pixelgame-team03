@@ -13,34 +13,7 @@ namespace CoreLogic::EventManagement {
         controllerDefaultMapping();
 
     }
-/**
- * @TODO: rework remapping
- */
-//        void InputHandler::remap(std::map<std::shared_ptr<Command>, Input>& pa_map, const std::shared_ptr<Command>& pa_Command, Input pa_newKey) {
-//
-//
-//            //find Command & check if key is already in use
-//            auto CommandIterator = pa_map.find(pa_Command);
-//            for(std::pair<const std::shared_ptr<Command>, Input> CommandPair : pa_map) {
-//                if (CommandPair.second == newKey) {
-//                    std::cout << "Key already in use. Swapping Keys." << std::endl;
-//
-//                    //save the old Command and the keybind to swap (currend keybind of the Command that is supposed to be rebound)
-//                    auto usedCommand = CommandPair.first;
-//                    auto usedCommandIterator = pa_map.find(usedCommand);
-//                    auto swappedKey = CommandIterator->second;
-//
-//                    //erase and insert old Command with swapped key
-//                    pa_map.erase(usedCommandIterator);
-//                    pa_map.insert(std::pair<std::shared_ptr<Command>, Input>(usedCommand, swappedKey));
-//                    break;
-//                }
-//            }
-//
-//            //insert new Command
-//            pa_map.erase(CommandIterator);
-//            pa_map.insert(std::pair<std::shared_ptr<Command>, Input>(pa_Command, newKey));
-//        }
+
 
 
     bool InputHandler::getAxisReleased(Input &pa_axis) {
