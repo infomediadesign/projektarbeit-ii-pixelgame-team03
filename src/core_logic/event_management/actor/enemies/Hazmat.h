@@ -5,9 +5,15 @@
 #ifndef HIVE_HAZMAT_H
 #define HIVE_HAZMAT_H
 
-namespace CoreLogic::EventManager::Actors {
+#include "../../Actor.h"
 
-            class Hazmat {
+namespace CoreLogic::EventManagement::Actors {
+
+            class Hazmat : public EventManagement::Actor{
+
+            public:
+                Hazmat(Vector2 pa_position, Rectangle pa_hitbox, int pa_id, CollisionType pa_collidable, Vector2 pa_size, bool pa_visible, int pa_elevation)
+                : Actor(pa_position, pa_hitbox, pa_id, pa_collidable, pa_size, pa_visible, pa_elevation) {};
 
             };
 

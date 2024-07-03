@@ -21,7 +21,8 @@ namespace CoreLogic::EventManagement
             ENEMYDEATH,
             DEATH
         };
-        Actor(Vector2 pa_position, Rectangle pa_hitbox, int pa_id, CollisionType pa_collidable, std::string pa_name, Vector2 pa_size, bool pa_visible, int pa_elevation);
+        Actor(Vector2 pa_position, Rectangle pa_hitbox, int pa_id, CollisionType pa_collidable, Vector2 pa_size, bool pa_visible, int pa_elevation)
+        : position_(pa_position), hitbox_(pa_hitbox), id_(pa_id), collisionType_(pa_collidable), visible_(pa_visible), size_(pa_size), elevation_(pa_elevation) {};
         virtual ~Actor() = default;
 
         //getters
@@ -35,7 +36,6 @@ namespace CoreLogic::EventManagement
 
 
 
-
         /**
          *@note: erstmal auskommentiert, da noch in keiner kindklasse implementiert
          **/
@@ -43,6 +43,7 @@ namespace CoreLogic::EventManagement
 
         [[nodiscard]] int getElevation() const;
         void setElevation(int pa_elevation);
+
     protected:
         Vector2 position_;
         Rectangle hitbox_;
