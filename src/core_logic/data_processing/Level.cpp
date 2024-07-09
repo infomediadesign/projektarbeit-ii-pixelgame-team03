@@ -14,7 +14,8 @@ CoreLogic::DataProcessing::Level::Level(const Level &other): po_mapPath_(std::ma
 
 std::string CoreLogic::DataProcessing::Level::getMapPath() const
 {
-    return po_mapPath_->at(static_cast<int>(levelState_));
+    std::string copy = po_mapPath_->at(static_cast<int>(levelState_));
+    return copy;
 }
 
 int CoreLogic::DataProcessing::Level::getLevelID() const
