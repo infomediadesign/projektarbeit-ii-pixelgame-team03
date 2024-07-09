@@ -33,15 +33,13 @@ CoreLogic::DataProcessing::Map::Map(std::string pa_filename)
     std::map<int, std::vector<tson::Layer>> tempLayerMap;
     std::map<int, std::vector<tson::Object>> tempObjMap;
 
-    /**
-     * @todo: in Tiled: save elevation_levels as int property in the map properties
-     **/
-    int elevationLevels = map.getProp("elevation_levels")->getValue<int>();
+
+    elevationLevels_ = map.getProp("elevation_levels")->getValue<int>();
 
     /**
      *@note: new Parser automatically adds Layer and Object-Vectors to their respective elevation value within their std::map
      **/
-    for (int i = 0; i <= elevationLevels; i++)
+    for (int i = 0; i <= elevationLevels_; i++)
     {
         std::vector<tson::Layer> elevationVector = {};
         for (auto &layer: loadedLayers)
@@ -126,36 +124,37 @@ void CoreLogic::DataProcessing::Map::loadObjectsExample()
     }
 }
 
-void CoreLogic::DataProcessing::Map::loadObjects() {
+void CoreLogic::DataProcessing::Map::loadObjects()
+{
     int objectId = 1;
 
-    std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Actor>>>> actorMap = ActorStorage::getActors();
-
-    for (int elev = 1; elev < po_objects_ ->size(); elev++)
+    for (int elev = 1; elev <= elevationLevels_; elev++)
     {
         for (auto &object: po_objects_->at(elev))
         {
             std::string klasse = object.getClassType();
             Vector2 objectPosition = {(float) object.getPosition().x, (float) object.getPosition().y};
             tson::PropertyCollection props = object.getProperties();
-            Rectangle objectHitbox = props.getProperty("hitbox")->getValue<Rectangle>();
+            Rectangle objectHitbox = {objectPosition.x, objectPosition.y, (float) (object.getSize().x),
+                                      (float) (object.getSize().y)};
             EventManagement::Actor::CollisionType objectCollisionType = props.getProperty(
                     "collisionType")->getValue<EventManagement::Actor::CollisionType>();
-            bool objectVisible = props.getProperty("visible")->getValue<bool>();
-            Vector2 objectSize = props.getProperty("size")->getValue<Vector2>();
+            bool objectVisible = object.isVisible();
+            Vector2 objectSize = {props.getProperty("actualSizeX")->getValue<float>(), props.getProperty
+                    ("actualSizeY")->getValue<float>()};
 
-            std::shared_ptr<EventManagement::Actor> actor;
+            std::shared_ptr<EventManagement::Actor> actor = nullptr;
 
             if (klasse == "Player")
             {
                 ActorStorage::setPlayer(std::make_shared<EventManagement::Actors::Drone>(
                         EventManagement::Actors::Drone(objectPosition, objectHitbox, 0, objectCollisionType, objectSize,
                                                        objectVisible, elev)));
-                actor = ActorStorage::getPlayer();
             } else if (klasse == "Colonist")
             {
-                actor =std::make_shared<EventManagement::Actors::Colonist>(
-                        EventManagement::Actors::Colonist(objectPosition, objectHitbox, objectId, objectCollisionType,
+                actor = std::make_shared<EventManagement::Actors::Colonist>(
+                        EventManagement::Actors::Colonist(objectPosition, objectHitbox, objectId,
+                                                          objectCollisionType,
                                                           objectSize, objectVisible, elev));
             } else if (klasse == "Hazmat")
             {
@@ -169,22 +168,16 @@ void CoreLogic::DataProcessing::Map::loadObjects() {
                                                       objectSize, objectVisible, elev));
             }
 
-            // create new elevation or add to existing
-            if (actor) {
-                auto it = actorMap->find(elev);
-                if (it != actorMap->end()) {
-                    it->second.push_back(actor);
-                } else {
-                    actorMap->insert({elev, {actor}});
-                }
+
+            if (actor != nullptr)
+            {
+                ActorStorage::addActor(elev, actor);
             }
 
 
             objectId++;
         }
     }
-
-    //ActorStorage::setActors(*actorMap);
 }
 
 

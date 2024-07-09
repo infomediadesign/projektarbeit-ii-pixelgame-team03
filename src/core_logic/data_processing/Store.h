@@ -15,6 +15,7 @@
 #include "../../tileson.h"
 
 
+
 namespace CoreLogic::DataProcessing
 {
     enum GameState
@@ -43,16 +44,20 @@ namespace CoreLogic::DataProcessing
      * @note: possibly also get std::map<int, vector<Layer>> po_layers_ as to not have to make the Map klass static
      **/
     private:
+        /**
+         * @warning: these currently do not work since they aren't initialised correctly
+         */
         static std::shared_ptr<EventManagement::Actors::Drone> po_player_;
         static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Actor>>>> po_actors_;
         static std::shared_ptr<std::map<int, std::vector<tson::Layer>>> po_layers_;
     public:
+
         static std::shared_ptr<EventManagement::Actors::Drone> getPlayer();
         static void setPlayer(std::shared_ptr<EventManagement::Actors::Drone> pa_player);
 
         static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Actor>>>> getActors();
-        static void setActors(std::map<int, std::vector<EventManagement::Actor>> &pa_actors);
-        static void addActor(EventManagement::Actor &pa_actor);
+        static void setActors(std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Actor>>>> pa_actors);
+        static void addActor(int pa_elevation, std::shared_ptr<EventManagement::Actor> pa_actor);
 
         static std::shared_ptr<std::map<int, std::vector<tson::Layer>>> getLayers();
         static void setLayers(std::shared_ptr<std::map<int, std::vector<tson::Layer>>> pa_layers);

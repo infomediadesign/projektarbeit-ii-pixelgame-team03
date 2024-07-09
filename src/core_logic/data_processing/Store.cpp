@@ -28,17 +28,28 @@ std::shared_ptr<std::map<int, std::vector<tson::Layer>>> CoreLogic::DataProcessi
 /**
  * @brief: Zum hinzufügen von Actors, die als tson::Object's aus der Map geladen werden
  **/
-void CoreLogic::DataProcessing::ActorStorage::setActors(std::map<int, std::vector<EventManagement::Actor>> &pa_actors)
+void CoreLogic::DataProcessing::ActorStorage::setActors(
+        std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Actor>>>> pa_actors)
 {
-
+    po_actors_ = pa_actors;
 }
 
 /**
  * @brief: Zum hinzufügen von Actors, die während des laufenden Spiels erzeugt werden
  **/
-void CoreLogic::DataProcessing::ActorStorage::addActor(EventManagement::Actor &pa_actor)
+void CoreLogic::DataProcessing::ActorStorage::addActor(int pa_elevation, std::shared_ptr<EventManagement::Actor> pa_actor)
 {
-
+    if (!po_actors_.get()->empty())
+    {
+        auto it = po_actors_->find(pa_elevation);
+        if (it != po_actors_->end())
+        {
+            it->second.push_back(pa_actor);
+        }
+    } else
+    {
+        po_actors_->insert({pa_elevation, {pa_actor}});
+    }
 }
 
 void CoreLogic::DataProcessing::ActorStorage::setLayers(std::shared_ptr<std::map<int, std::vector<tson::Layer>>> pa_layers)
