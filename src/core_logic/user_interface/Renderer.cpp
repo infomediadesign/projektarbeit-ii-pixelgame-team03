@@ -17,8 +17,11 @@ CoreLogic::UserInterface::Renderer *CoreLogic::UserInterface::Renderer::getInsta
     return po_instance_;
 }
 
-void CoreLogic::UserInterface::Renderer::render(std::shared_ptr<std::vector<tson::Layer>> &pa_layers, std::shared_ptr<std::map<int,std::vector<EventManagement::Actor>>> &pa_actors, Camera2D &pa_camera, RenderTexture2D &pa_canvas, Color pa_bgColor)
+void CoreLogic::UserInterface::Renderer::render(std::shared_ptr<std::map<int, std::vector<tson::Layer>>> pa_layers, std::shared_ptr<std::map<int,std::vector<EventManagement::Actor>>> &pa_actors, Camera2D &pa_camera, RenderTexture2D &pa_canvas, Color pa_bgColor)
 {
+
+    int screenWidth = CoreLogic::DataProcessing::screenWidth_;
+    int screenHeight = CoreLogic::DataProcessing::screenHeight_;
 
     Rectangle cameraRec = {0, 0, 0, 0};
     if (pa_camera.target.x > 0)
@@ -29,13 +32,13 @@ void CoreLogic::UserInterface::Renderer::render(std::shared_ptr<std::vector<tson
     {
         cameraRec.y = floorf(pa_camera.target.y / 24);
     }
-    if (pa_camera.target.x + 960 > 0)
+    if (pa_camera.target.x + screenWidth > 0)
     {
-        cameraRec.width = floorf((pa_camera.target.x + 984) / 24);
+        cameraRec.width = floorf((pa_camera.target.x + screenWidth+24) / 24);
     }
-    if (pa_camera.target.y + 540 > 0)
+    if (pa_camera.target.y + screenHeight > 0)
     {
-        cameraRec.height = floorf((pa_camera.target.y + 564) / 24);
+        cameraRec.height = floorf((pa_camera.target.y + screenHeight+24) / 24);
     }
     ClearBackground(pa_bgColor);
     BeginTextureMode(pa_canvas);
@@ -44,21 +47,28 @@ void CoreLogic::UserInterface::Renderer::render(std::shared_ptr<std::vector<tson
         BeginMode2D(pa_camera);
         {
             ClearBackground(pa_bgColor);
-            for (tson::Layer layer: *pa_layers)
-            {
-                if (layer.getType() == tson::LayerType::TileLayer)
-                {
-                    renderTileLayer(layer, cameraRec);
+            for (const auto& pair : *pa_layers) {
+                const std::vector<tson::Layer> &layers = pair.second;
+                for (tson::Layer layer: layers) {
+                    if (layer.getType() == tson::LayerType::TileLayer) {
+                        renderTileLayer(layer, cameraRec);
+                    }
                 }
             }
+
+            /**
+             * @Attention: Vorläufige Symbolisierung des Players
+             */
+            CoreLogic::EventManagement::Actors::Drone &player = *CoreLogic::DataProcessing::ActorStorage::getPlayer();
+            DrawRectangle(player.getPosition().x, player.getPosition().y, 32, 32, WHITE);
         } EndMode2D();
     } EndTextureMode();
 }
 
 void CoreLogic::UserInterface::Renderer::renderTileLayer(tson::Layer &pa_layer, Rectangle pa_cameraRec)
 {
-    CoreLogic::DataProcessing::TileMap& tilemap = *CoreLogic::DataProcessing::TileMap::getInstance();
-    Texture2D& tileMap = *tilemap.getTileMap();
+    //CoreLogic::DataProcessing::TileMap& tilemap = *CoreLogic::DataProcessing::TileMap::getInstance();
+    Texture2D& tileMap = *CoreLogic::DataProcessing::TileMap::getTileMap();
     for (int y = (int)pa_cameraRec.y; y < (int)pa_cameraRec.height; y++)
     {
         for (int x = (int) pa_cameraRec.x; x < (int) pa_cameraRec.width; x++)
@@ -76,9 +86,9 @@ void CoreLogic::UserInterface::Renderer::renderTileLayer(tson::Layer &pa_layer, 
             {
                 continue;
             }
-            Rectangle tileSetRec = {(float) (data % (tileMap.width / tileSize) * tileSize),
-                                    (float) (data / (tileMap.width / tileSize) * tileSize),
-                                    (float) tileSize, (float) tileSize};
+            tson::Rect tileRect = tile.getDrawingRect();
+            Rectangle tileSetRec = {static_cast<float>(tileRect.x), static_cast<float>(tileRect.y), static_cast<float>(tileRect.width), static_cast<float>(tileRect.height)};
+
             Rectangle destRec = {(float) (x * tileSize), (float) (y * tileSize),
                                  (float) tileSize,
                                  (float) tileSize};

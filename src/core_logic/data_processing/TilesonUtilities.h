@@ -7,7 +7,13 @@
 
 
 #include "../../tileson.h"
+#include "raylib.h"
 
-namespace CoreLogic::DataProcessing { inline tson::Tileson tileson; }
+namespace CoreLogic::DataProcessing {
+    inline tson::Tileson tileson;
 
+    inline Vector2 coordinatesToTile(Vector2 pa_coordinates) {
+        return {floorf(pa_coordinates.x / 24), floorf(pa_coordinates.y / 24)};
+    }
+}
 #endif //RAYLIBSTARTER_TILESONUTILITIES_H

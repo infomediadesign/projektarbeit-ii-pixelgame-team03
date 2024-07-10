@@ -3,3 +3,16 @@
 //
 
 #include "Actor.h"
+
+
+
+int CoreLogic::EventManagement::Actor::getElevation() const
+{
+    return elevation_;
+}
+
+void CoreLogic::EventManagement::Actor::setElevation(int pa_elevation)
+{
+    elevation_ = pa_elevation;
+}
+

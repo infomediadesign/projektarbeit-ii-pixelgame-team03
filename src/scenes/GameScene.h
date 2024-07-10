@@ -9,6 +9,7 @@
 #include "Scene.h"
 #include "data_processing/Level.h"
 #include "data_processing/Map.h"
+#include "event_management/InputHandler.h"
 
 namespace Scenes
 {
@@ -20,7 +21,7 @@ namespace Scenes
         void render();
         int getCurrentLevelID();
 
-        void switchLevel(int pa_levelID);
+        void switchLevel();
 
         void draw(RenderTexture2D &pa_canvas) override;
         void update() override;
@@ -31,7 +32,7 @@ namespace Scenes
         std::unique_ptr<std::vector<CoreLogic::DataProcessing::Level>> po_levels_;
         std::unique_ptr<CoreLogic::DataProcessing::Map> po_currentMap_;
         std::unique_ptr<CoreLogic::DataProcessing::Map> po_previousMap_;
-
+        const std::unique_ptr<CoreLogic::EventManagement::InputHandler> inputHandler_;
     };
 }
 
