@@ -14,6 +14,7 @@ Scenes::GameScene::GameScene(): Scene(std::make_shared<Camera2D>()),
 {
     camera_ -> zoom = 1.0f;
     po_currentMap_ = std::make_unique<CoreLogic::DataProcessing::Map>(po_levels_ -> at(0).getMapPath());
+    CoreLogic::DataProcessing::ActorStorage::po_layers_ = po_currentMap_ -> getLayers();
     po_previousMap_ = std::make_unique<CoreLogic::DataProcessing::Map>(*po_currentMap_);
     currentLevelID_ = po_levels_ -> at(0).getLevelID();
     previousLevelID_ = currentLevelID_;

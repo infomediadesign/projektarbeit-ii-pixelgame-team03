@@ -150,6 +150,7 @@ void CoreLogic::DataProcessing::Map::loadObjects()
                 ActorStorage::setPlayer(std::make_shared<EventManagement::Actors::Drone>(
                         EventManagement::Actors::Drone(objectPosition, objectHitbox, 0, objectCollisionType, objectSize,
                                                        objectVisible, elev)));
+                actor = ActorStorage::getPlayer();
             } else if (klasse == "Colonist")
             {
                 actor = std::make_shared<EventManagement::Actors::Colonist>(

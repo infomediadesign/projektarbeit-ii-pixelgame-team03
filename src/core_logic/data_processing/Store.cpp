@@ -7,17 +7,39 @@
 std::shared_ptr<Texture2D> CoreLogic::DataProcessing::TileMap::tileMap_ = nullptr;
 std::shared_ptr<Texture2D> CoreLogic::DataProcessing::TileMap::getTileMap() {return tileMap_;}
 
+std::shared_ptr<CoreLogic::EventManagement::Actors::Drone> CoreLogic::DataProcessing::ActorStorage::po_player_;
+std::shared_ptr<std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Actor>>>>
+        CoreLogic::DataProcessing::ActorStorage::po_actors_;
+std::shared_ptr<std::map<int, std::vector<tson::Layer>>> CoreLogic::DataProcessing::ActorStorage::po_layers_;
+
 void CoreLogic::DataProcessing::TileMap::Initialize()
 {
     if (tileMap_ == nullptr)
     {
-        tileMap_ = std::make_shared<Texture2D>(LoadTexture("assets/graphics/hive_ARTI_TileAtlas_2024-07-02.png"));
+        tileMap_ = std::make_shared<Texture2D>(LoadTexture("assets/graphics/Grassland_Tileset.png"));
+    }
+
+}
+
+
+void CoreLogic::DataProcessing::ActorStorage::Initialize()
+{
+    if (ActorStorage::po_player_ == nullptr)
+    {
+        ActorStorage::po_player_ = {};
+    }
+    if (ActorStorage::po_actors_ == nullptr)
+    {
+        std::map<int, std::vector<std::shared_ptr<EventManagement::Actor>>> actors = {};
+        ActorStorage::po_actors_ = std::make_shared<std::map<int, std::vector<std::shared_ptr<EventManagement::Actor>>>>(actors);
+    }
+    if (ActorStorage::po_layers_ == nullptr)
+    {
+        std::map<int, std::vector<tson::Layer>> layers = {};
+        ActorStorage::po_layers_ = std::make_shared<std::map<int, std::vector<tson::Layer>>>(layers);
     }
 }
 
-std::shared_ptr<CoreLogic::EventManagement::Actors::Drone> CoreLogic::DataProcessing::ActorStorage::po_player_;
-std::shared_ptr<std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Actor>>>> CoreLogic::DataProcessing::ActorStorage::po_actors_;
-std::shared_ptr<std::map<int, std::vector<tson::Layer>>> CoreLogic::DataProcessing::ActorStorage::po_layers_;
 
 std::shared_ptr<CoreLogic::EventManagement::Actors::Drone> CoreLogic::DataProcessing::ActorStorage::getPlayer() {return po_player_;}
 
