@@ -87,13 +87,8 @@ void CoreLogic::UserInterface::Renderer::renderTileLayer(tson::Layer &pa_layer, 
             Rectangle destRec = {(float) (x * tileSize), (float) (y * tileSize),
                                  (float) tileSize,
                                  (float) tileSize};
-            Color tileColor = WHITE;
-            if (tile.getClassType() == "Wall")
-            {
-                tileColor = {50, 0, 100, 200};
-            }
 
-            DrawTexturePro(tileMap, tileSetRec, destRec, {0, 0}, 0, tileColor);
+            DrawTexturePro(tileMap, tileSetRec, destRec, {0, 0}, 0, WHITE);
         }
     }
 }
