@@ -574,8 +574,17 @@
  "tileheight":24,
  "tilesets":[
         {
+         "columns":10,
          "firstgid":1,
-         "source":"hive_DESI_GreyboxingTileset_23-06-2024.tsj"
+         "image":"..\/graphics\/hive_DESI_GreyboxingTileset_23-06-2024.png",
+         "imageheight":240,
+         "imagewidth":240,
+         "margin":0,
+         "name":"hive_DESI_GreyboxingTileset_23-06-2024",
+         "spacing":0,
+         "tilecount":100,
+         "tileheight":24,
+         "tilewidth":24
         }],
  "tilewidth":24,
  "type":"map",
