@@ -79,7 +79,7 @@ void Scenes::GameScene::update()
      {
          camera.target.y += 3;
      }
-     camera.target = (Vector2){ static_cast<float>(round(camera.target.x)), static_cast<float>(round(camera.target.y)) };
+     camera.target = (Vector2){ static_cast<float>(static_cast<int>(camera.target.x)), static_cast<float>(static_cast<int>(camera.target.y)) };
 
     /**
      * @Pseudo_Code: So soll nachher der Eventhandler evtl. aussehen
