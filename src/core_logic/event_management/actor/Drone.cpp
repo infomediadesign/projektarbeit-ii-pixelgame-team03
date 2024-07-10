@@ -161,6 +161,10 @@ bool CoreLogic::EventManagement::Actors::Drone::checkCollision(Direction pa_dire
             continue;
         }
         Actor &object = *objectPtr;
+        if (object.getId() == id_)
+        {
+            continue;
+        }
         /*
          *@note: object needs Hitbox, death Hitboxes should be probably smaller than the actual Sprite,
          *       @proposal: death Hitboxes 75% of Sprite so you dont immediately kill yourself when touching but still
@@ -182,15 +186,19 @@ bool CoreLogic::EventManagement::Actors::Drone::checkCollision(Direction pa_dire
             if (pa_direction == Direction::UP)
             {
                 position_.y += collisionRec.height;
+                updateHitbox();
             } else if (pa_direction == Direction::DOWN)
             {
                 position_.y -= collisionRec.height;
+                updateHitbox();
             } else if (pa_direction == Direction::LEFT)
             {
                 position_.x += collisionRec.width;
+                updateHitbox();
             } else if (pa_direction == Direction::RIGHT)
             {
                 position_.x -= collisionRec.width;
+                updateHitbox();
             }
             return dies;
         }

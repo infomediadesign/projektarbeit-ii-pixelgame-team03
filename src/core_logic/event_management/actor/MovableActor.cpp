@@ -24,12 +24,12 @@ namespace CoreLogic::EventManagement::Actors {
         }
         if (position_.x + 32 > 1534)
         {
-            position_.x = 1536 - 33;
+            position_.x = 1536 - (size_.x + 1);
 
         }
         if (position_.y +32 > 862)
         {
-            position_.y = 864-33;
+            position_.y = 864 - (size_.y + 1);
         }
     }
 }
