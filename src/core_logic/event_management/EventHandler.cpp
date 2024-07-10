@@ -34,9 +34,15 @@ void CoreLogic::EventManagement::EventHandler::handleEvents(const std::vector<Ev
      * @TODO: check with Josi
      **/
 
+    if (IsKeyDown(KEY_A))
+    {
+        std::cout << "N pressed" << std::endl;
+    }
+
     std::lock_guard<std::mutex> lock(eventHandler_mutex_);
     bool isActive = false;
-    if (po_activeEvents_.find(pa_actorID) != po_activeEvents_.end())
+    auto it = po_activeEvents_.find(pa_actorID);
+    if (!(it != po_activeEvents_.end()))
     {
         po_activeEvents_.insert({pa_actorID, std::vector<std::unique_ptr<Event>>(15)});
     }
@@ -175,6 +181,10 @@ void CoreLogic::EventManagement::EventHandler::update()
     {
         for (auto &event: activeEvent.second)
         {
+            if (event == nullptr)
+            {
+                continue;
+            }
             try
             {
                 event -> update();
@@ -196,26 +206,24 @@ void CoreLogic::EventManagement::EventHandler::activateEvent(EventEnum pa_activa
      *@pseudo_code, TODO: Code
      **/
 
-    switch (pa_activateEvent)
+    if (pa_activateEvent == MOVE_UP || pa_activateEvent == MOVE_DOWN || pa_activateEvent == MOVE_LEFT || pa_activateEvent == MOVE_RIGHT)
     {
-        case (MOVE_DOWN || MOVE_UP || MOVE_LEFT || MOVE_RIGHT):
-            if (!movementBlocked_)
-            {
-                po_movementEvent_ -> startMove(pa_activateEvent);
-                return;
-            } else {
-                throw std::runtime_error("Movement Blocked");
-            }
-            TraceLog(LOG_ERROR, "reached unreachable Code");
-            break;
-
-        case PAUSE:
-            break;
-        case EVENT_NULL:
-            break;
-        default:
-            throw std::runtime_error("Not Handled Event");
+        if (!movementBlocked_)
+        {
+            po_movementEvent_ -> startMove(pa_activateEvent);
+            return;
+        } else {
+            throw std::runtime_error("Movement Blocked");
+        }
+        TraceLog(LOG_ERROR, "reached unreachable Code");
+    } else if (pa_activateEvent == PAUSE) {
+        return;
+    } else if (pa_activateEvent == EVENT_NULL) {
+        return;
+    } else {
+        throw std::runtime_error("Not Handled Event");
     }
+
 
 }
 

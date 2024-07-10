@@ -28,10 +28,9 @@ void CoreLogic::EventManagement::MovementEvent::update()
         ticks_++;
 
 
-/**
- * @attention @Keanu this is only commented because it is not working since Actor does not have a move func but Event deals with Actors not MovableActors, which do have a move func
- * dynamic_pointer_cast<Actors::Drone>(po_mainActor_)->move(directionMap_[MOVE_UP], directionMap_[MOVE_DOWN], directionMap_[MOVE_LEFT], directionMap_[MOVE_RIGHT]);
- */
+
+    std::dynamic_pointer_cast<Actors::Drone>(po_mainActor_)->move(directionMap_[MOVE_UP], directionMap_[MOVE_DOWN], directionMap_[MOVE_LEFT], directionMap_[MOVE_RIGHT]);
+
 
 
     /**

@@ -56,10 +56,33 @@ void Scenes::GameScene::update()
     /**
      * @attention: keep hard coded?
      * */
-    (playerPos.x < 464) ? camera.target.x = 0 : camera.target.x = playerPos.x - 464;
+    /*(playerPos.x < 464) ? camera.target.x = 0 : camera.target.x = playerPos.x - 464;
     (playerPos.y < 254) ? camera.target.y = 0 : camera.target.y = playerPos.y - 254;
     (playerPos.x > 1104) ? camera.target.x = 576 : camera.target.x = playerPos.x - 464;
-    (playerPos.y > 578) ? camera.target.y = 324 : camera.target.y = playerPos.y - 254;
+    (playerPos.y > 578) ? camera.target.y = 324 : camera.target.y = playerPos.y - 254;*/
+
+    if (playerPos.x < 464)
+    {
+        camera.target.x = 0;
+    } else if (playerPos.x > 1040) {
+        camera.target.x = 576;
+    } else {
+        camera.target.x = playerPos.x - 464;
+    }
+
+    if (playerPos.y < 254)
+    {
+        camera.target.y = 0;
+    } else if (playerPos.y > 578) {
+        camera.target.y = 324;
+    } else {
+        camera.target.y = playerPos.y - 254;
+    }
+
+    if (IsKeyDown(KEY_N))
+    {
+        std::cout << "things tested" <<std::endl;
+    }
 
 
     /**

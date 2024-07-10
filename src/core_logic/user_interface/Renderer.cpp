@@ -50,6 +50,12 @@ void CoreLogic::UserInterface::Renderer::render(std::shared_ptr<std::map<int, st
                     }
                 }
             }
+
+            /**
+             * @Attention: Vorläufige Symbolisierung des Players
+             */
+            CoreLogic::EventManagement::Actors::Drone &player = *CoreLogic::DataProcessing::ActorStorage::getPlayer();
+            DrawRectangle(player.getPosition().x, player.getPosition().y, 24, 24, WHITE);
         } EndMode2D();
     } EndTextureMode();
 }

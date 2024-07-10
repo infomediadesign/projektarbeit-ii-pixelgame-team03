@@ -13,44 +13,45 @@ void CoreLogic::EventManagement::Actors::Drone::move(bool pa_up, bool pa_down, b
 {
     /**
      *@pseudo_code
-     * @should be functioning
+     * @Commented the collision since actors and layers not yet fully embedded
+     * @todo uncomment when actors and layers function
      **/
      EventHandler& eventHandler = EventHandler::getInstance();
 
     if (pa_up && !pa_down)
     {
-        (pa_right || pa_left) ? position_.x -= 2 : position_.x -= 3;
-        if (checkCollision(Direction::UP, position_))
+        (pa_right || pa_left) ? position_.y -= 2 : position_.y -= 3;
+        /*if (checkCollision(Direction::UP, position_))
         {
             eventHandler.handleEvents({DISCONNECT}, id_);
-        }
+        }*/
     }
 
     if (pa_down && !pa_up)
     {
-        (pa_right || pa_left) ? position_.x += 2 : position_.x += 3;
-        if (checkCollision(Direction::DOWN, position_))
+        (pa_right || pa_left) ? position_.y += 2 : position_.y += 3;
+        /*if (checkCollision(Direction::DOWN, position_))
         {
             eventHandler.handleEvents({DISCONNECT}, id_);
-        }
+        }*/
     }
 
     if (pa_left && !pa_right)
     {
-        (pa_up || pa_down) ? position_.y -= 2 : position_.y -= 3;
-        if (checkCollision(Direction::LEFT, position_))
+        (pa_up || pa_down) ? position_.x -= 2 : position_.x -= 3;
+        /*if (checkCollision(Direction::LEFT, position_))
         {
             eventHandler.handleEvents({DISCONNECT}, id_);
-        }
+        }*/
     }
 
     if (pa_right && !pa_left)
     {
-        (pa_up || pa_down) ? position_.y += 2 : position_.y += 3;
-        if (checkCollision(Direction::RIGHT, position_))
+        (pa_up || pa_down) ? position_.x += 2 : position_.x += 3;
+        /*if (checkCollision(Direction::RIGHT, position_))
         {
             eventHandler.handleEvents({DISCONNECT}, id_);
-        }
+        }*/
     }
 }
 
