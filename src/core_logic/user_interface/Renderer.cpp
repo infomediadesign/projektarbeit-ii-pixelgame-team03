@@ -20,6 +20,9 @@ CoreLogic::UserInterface::Renderer *CoreLogic::UserInterface::Renderer::getInsta
 void CoreLogic::UserInterface::Renderer::render(std::shared_ptr<std::map<int, std::vector<tson::Layer>>> pa_layers, std::shared_ptr<std::map<int,std::vector<EventManagement::Actor>>> &pa_actors, Camera2D &pa_camera, RenderTexture2D &pa_canvas, Color pa_bgColor)
 {
 
+    int screenWidth = CoreLogic::DataProcessing::screenWidth_;
+    int screenHeight = CoreLogic::DataProcessing::screenHeight_;
+
     Rectangle cameraRec = {0, 0, 0, 0};
     if (pa_camera.target.x > 0)
     {
@@ -29,13 +32,13 @@ void CoreLogic::UserInterface::Renderer::render(std::shared_ptr<std::map<int, st
     {
         cameraRec.y = floorf(pa_camera.target.y / 24);
     }
-    if (pa_camera.target.x + 960 > 0)
+    if (pa_camera.target.x + screenWidth > 0)
     {
-        cameraRec.width = floorf((pa_camera.target.x + 984) / 24);
+        cameraRec.width = floorf((pa_camera.target.x + screenWidth+24) / 24);
     }
-    if (pa_camera.target.y + 540 > 0)
+    if (pa_camera.target.y + screenHeight > 0)
     {
-        cameraRec.height = floorf((pa_camera.target.y + 564) / 24);
+        cameraRec.height = floorf((pa_camera.target.y + screenHeight+24) / 24);
     }
     BeginTextureMode(pa_canvas);
     {

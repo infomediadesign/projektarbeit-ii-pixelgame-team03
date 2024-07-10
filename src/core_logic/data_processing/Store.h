@@ -28,6 +28,11 @@ namespace CoreLogic::DataProcessing
     inline long long int ticks = 1;
     const int tileSize = 24;
 
+    const int screenWidth_ = 640;
+    const int screenHeight_ = 360;
+
+
+
     struct TileMap
     {
     private:

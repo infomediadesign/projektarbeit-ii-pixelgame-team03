@@ -61,28 +61,31 @@ void Scenes::GameScene::update()
     (playerPos.x > 1104) ? camera.target.x = 576 : camera.target.x = playerPos.x - 464;
     (playerPos.y > 578) ? camera.target.y = 324 : camera.target.y = playerPos.y - 254;*/
 
-    if (playerPos.x < 464)
+    int screenWidth = CoreLogic::DataProcessing::screenWidth_;
+    int screenHeight = CoreLogic::DataProcessing::screenHeight_;
+    int screenX = screenWidth / 2;
+    int screenY = screenHeight / 2;
+
+    Vector2 playerSize = player.getSize();
+
+    if (playerPos.x < screenX - (playerSize.x/2))
     {
         camera.target.x = 0;
-    } else if (playerPos.x > 1040) {
-        camera.target.x = 576;
+    } else if (playerPos.x > 1536 - screenX - (playerSize.x/2)) {
+        camera.target.x = 1536 - screenWidth;
     } else {
-        camera.target.x = playerPos.x - 464;
+        camera.target.x = playerPos.x - screenX + (playerSize.x/2);
     }
 
-    if (playerPos.y < 254)
+    if (playerPos.y < screenY - (playerSize.y/2))
     {
         camera.target.y = 0;
-    } else if (playerPos.y > 578) {
-        camera.target.y = 324;
+    } else if (playerPos.y > 864 - screenY - (playerSize.y/2)) {
+        camera.target.y = 864 - screenHeight;
     } else {
-        camera.target.y = playerPos.y - 254;
+        camera.target.y = playerPos.y - screenY + (playerSize.y/2);
     }
 
-    if (IsKeyDown(KEY_N))
-    {
-        std::cout << "things tested" <<std::endl;
-    }
 
 
     /**
