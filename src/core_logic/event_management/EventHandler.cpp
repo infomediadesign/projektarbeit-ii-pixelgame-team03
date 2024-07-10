@@ -59,6 +59,10 @@ void CoreLogic::EventManagement::EventHandler::handleEvents(const std::vector<Ev
 
         for (auto &activeEvent: po_activeEvents_[pa_actorID])
         {
+            if (activeEvent == nullptr)
+            {
+                continue;
+            }
             if (thrownEvent == activeEvent->getID())
             {
                 isActive = true;
