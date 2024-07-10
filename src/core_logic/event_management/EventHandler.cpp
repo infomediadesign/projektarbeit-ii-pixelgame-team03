@@ -34,10 +34,6 @@ void CoreLogic::EventManagement::EventHandler::handleEvents(const std::vector<Ev
      * @TODO: check with Josi
      **/
 
-    if (IsKeyDown(KEY_A))
-    {
-        std::cout << "N pressed" << std::endl;
-    }
 
     std::lock_guard<std::mutex> lock(eventHandler_mutex_);
     bool isActive = false;
