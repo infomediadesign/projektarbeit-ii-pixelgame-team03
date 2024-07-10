@@ -17,8 +17,8 @@
             "scale": 1,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 767,
-                "y": 596.5
+                "x": 754,
+                "y": 494.5
             }
         },
         "hive_DESI_Level0-Greyboxing_2024-07-09.tmj": {
@@ -44,6 +44,22 @@
                 "x": 768.9583792116275,
                 "y": 431.83439770975565
             }
+        },
+        "level0_greyboxing.tmj": {
+            "scale": 0.99638671875,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 768.7778104479075,
+                "y": 429.050279329609
+            }
+        },
+        "level1.tmj": {
+            "scale": 0.99638671875,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 768.7778104479075,
+                "y": 432.0611584827992
+            }
         }
     },
     "last.externalTilesetPath": "C:/PA2-Repo/projektarbeit-ii-pixelgame-team03/assets/data",
@@ -54,6 +70,7 @@
     "project": "hive.tiled-project",
     "recentFiles": [
         "hive_DESI_Level0_2024-06-17.tmj",
+        "hive_DESI_Level0-Greyboxing_2024-06-17.tmj",
         "hive_DESI_Level3-Greyboxing_2024-06-17.tmj",
         "hive_DESI_Level0-Greyboxing_2024-07-09.tmj"
     ]
