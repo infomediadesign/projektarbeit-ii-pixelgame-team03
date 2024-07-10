@@ -21,6 +21,7 @@ void CoreLogic::EventManagement::Actors::Drone::move(bool pa_up, bool pa_down, b
     if (pa_up && !pa_down)
     {
         (pa_right || pa_left) ? position_.y -= 2 : position_.y -= 3;
+        adjustOutOfBounds();
         updateHitbox();
         if (checkCollision(Direction::UP, position_))
         {
@@ -31,6 +32,7 @@ void CoreLogic::EventManagement::Actors::Drone::move(bool pa_up, bool pa_down, b
     if (pa_down && !pa_up)
     {
         (pa_right || pa_left) ? position_.y += 2 : position_.y += 3;
+        adjustOutOfBounds();
         updateHitbox();
         if (checkCollision(Direction::DOWN, {position_.x, position_.y + size_.y}))
         {
@@ -41,6 +43,7 @@ void CoreLogic::EventManagement::Actors::Drone::move(bool pa_up, bool pa_down, b
     if (pa_left && !pa_right)
     {
         (pa_up || pa_down) ? position_.x -= 2 : position_.x -= 3;
+        adjustOutOfBounds();
         updateHitbox();
         if (checkCollision(Direction::LEFT, position_))
         {
@@ -51,6 +54,7 @@ void CoreLogic::EventManagement::Actors::Drone::move(bool pa_up, bool pa_down, b
     if (pa_right && !pa_left)
     {
         (pa_up || pa_down) ? position_.x += 2 : position_.x += 3;
+        adjustOutOfBounds();
         updateHitbox();
         if (checkCollision(Direction::RIGHT, {position_.x +size_.x, position_.y}))
         {
@@ -148,25 +152,28 @@ bool CoreLogic::EventManagement::Actors::Drone::checkCollision(Direction pa_dire
      *@TODO: Map.getActors() and elevation Handling
      **/
     bool dies = false;
-    /*std::map<int, std::vector<std::shared_ptr<Actor>>> &actors = *CoreLogic::DataProcessing::ActorStorage::getActors();
+    std::map<int, std::vector<std::shared_ptr<Actor>>> &actors = *CoreLogic::DataProcessing::ActorStorage::getActors();
 
     for (auto &objectPtr : actors[elevation_])
     {
-
+        if (objectPtr == nullptr)
+        {
+            continue;
+        }
         Actor &object = *objectPtr;
-        *//**
+        /*
          *@note: object needs Hitbox, death Hitboxes should be probably smaller than the actual Sprite,
          *       @proposal: death Hitboxes 75% of Sprite so you dont immediately kill yourself when touching but still
          *                  can't pass through multiple of them when they are side by side
-         **//*
+         */
         Rectangle objectHitbox = object.getHitbox();
         if (CheckCollisionRecs(hitbox_, objectHitbox))
         {
-            *//**
+            /*
              *@note: object needs Collision Type probably within Tiled
              * @note: Death collision probably to be handled outside of event in update func frame after movement
              * @TODO: Collision Type
-             **//*
+             */
             if (object.getCollisionType() == CollisionType::DEATH)
             {
                 dies = true;
@@ -189,6 +196,9 @@ bool CoreLogic::EventManagement::Actors::Drone::checkCollision(Direction pa_dire
         }
 
     }
+    /**
+     * @note: I think this was trying to account for all tiles, but is very unnecessary
+     *
     Vector2 newPosition = pa_position;
     Vector2 positionInvers = {position_.x + size_.x, position_.y + size_.y};
     auto tileSize = static_cast<float>(CoreLogic::DataProcessing::tileSize);

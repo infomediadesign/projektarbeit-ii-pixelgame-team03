@@ -18,6 +18,7 @@ namespace CoreLogic::EventManagement::Actors {
             void draw();
         protected:
             void updateHitbox();
+            void adjustOutOfBounds();
         };
 
 }
