@@ -79,7 +79,7 @@ void Scenes::GameScene::update()
      {
          camera.target.y += 3;
      }
-    camera.target = (Vector2){ (float)round(camera.target.x), (float)round(camera.target.y) };
+     camera.target = {floorf(camera.target.x), floorf(camera.target.y)};
 
     /**
      * @Pseudo_Code: So soll nachher der Eventhandler evtl. aussehen
