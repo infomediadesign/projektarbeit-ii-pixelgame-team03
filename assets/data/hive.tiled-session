@@ -1,0 +1,53 @@
+{
+    "activeFile": "hive_DESI_Level0_2024-06-17.tmj",
+    "expandedProjectPaths": [
+        "."
+    ],
+    "fileStates": {
+        "hive_ARTI_TileAtlas_2024-06-17.tsj": {
+            "scaleInDock": 1
+        },
+        "hive_ARTI_TileAtlas_2024-07-02.tsx": {
+            "scaleInDock": 1
+        },
+        "hive_DESI_GreyboxingTileset_23-06-2024.tsj": {
+            "scaleInDock": 1
+        },
+        "hive_DESI_Level0-Greyboxing_2024-07-09.tmj": {
+            "scale": 0.44345703124999997,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 768.9583792116274,
+                "y": 434.0894076194671
+            }
+        },
+        "hive_DESI_Level0_2024-06-17.tmj": {
+            "scale": 0.44345703124999997,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 768.9583792116274,
+                "y": 776.8509138956177
+            }
+        },
+        "hive_DESI_Level3-Greyboxing_2024-06-17.tmj": {
+            "scale": 0.44345703124999997,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 768.9583792116274,
+                "y": 434.0894076194671
+            }
+        }
+    },
+    "last.externalTilesetPath": "C:/PA2-Repo/projektarbeit-ii-pixelgame-team03/assets/data",
+    "openFiles": [
+        "hive_DESI_Level0-Greyboxing_2024-07-09.tmj",
+        "hive_DESI_Level3-Greyboxing_2024-06-17.tmj",
+        "hive_DESI_Level0_2024-06-17.tmj"
+    ],
+    "project": "hive.tiled-project",
+    "recentFiles": [
+        "hive_DESI_Level0-Greyboxing_2024-07-09.tmj",
+        "hive_DESI_Level3-Greyboxing_2024-06-17.tmj",
+        "hive_DESI_Level0_2024-06-17.tmj"
+    ]
+}
