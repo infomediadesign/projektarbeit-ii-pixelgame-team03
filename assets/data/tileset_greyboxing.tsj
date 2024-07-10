@@ -1,0 +1,14 @@
+{ "columns":10,
+ "image":"..\/graphics\/hive_DESI_GreyboxingTileset_23-06-2024.png",
+ "imageheight":240,
+ "imagewidth":240,
+ "margin":0,
+ "name":"hive_DESI_GreyboxingTileset_23-06-2024",
+ "spacing":0,
+ "tilecount":100,
+ "tiledversion":"1.10.2",
+ "tileheight":24,
+ "tilewidth":24,
+ "type":"tileset",
+ "version":"1.10"
+}
