@@ -6,4 +6,9 @@
 
 namespace CoreLogic::EventManagement::Actors {
 
+    void MovableActor::updateHitbox()
+    {
+        hitbox_.x = position_.x;
+        hitbox_.y = position_.y;
     }
+}

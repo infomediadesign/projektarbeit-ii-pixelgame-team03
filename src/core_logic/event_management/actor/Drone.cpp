@@ -21,37 +21,41 @@ void CoreLogic::EventManagement::Actors::Drone::move(bool pa_up, bool pa_down, b
     if (pa_up && !pa_down)
     {
         (pa_right || pa_left) ? position_.y -= 2 : position_.y -= 3;
-        /*if (checkCollision(Direction::UP, position_))
+        updateHitbox();
+        if (checkCollision(Direction::UP, position_))
         {
             eventHandler.handleEvents({DISCONNECT}, id_);
-        }*/
+        }
     }
 
     if (pa_down && !pa_up)
     {
         (pa_right || pa_left) ? position_.y += 2 : position_.y += 3;
-        /*if (checkCollision(Direction::DOWN, position_))
+        updateHitbox();
+        if (checkCollision(Direction::DOWN, {position_.x, position_.y + size_.y}))
         {
             eventHandler.handleEvents({DISCONNECT}, id_);
-        }*/
+        }
     }
 
     if (pa_left && !pa_right)
     {
         (pa_up || pa_down) ? position_.x -= 2 : position_.x -= 3;
-        /*if (checkCollision(Direction::LEFT, position_))
+        updateHitbox();
+        if (checkCollision(Direction::LEFT, position_))
         {
             eventHandler.handleEvents({DISCONNECT}, id_);
-        }*/
+        }
     }
 
     if (pa_right && !pa_left)
     {
         (pa_up || pa_down) ? position_.x += 2 : position_.x += 3;
-        /*if (checkCollision(Direction::RIGHT, position_))
+        updateHitbox();
+        if (checkCollision(Direction::RIGHT, {position_.x +size_.x, position_.y}))
         {
             eventHandler.handleEvents({DISCONNECT}, id_);
-        }*/
+        }
     }
 }
 
@@ -73,6 +77,15 @@ bool CoreLogic::EventManagement::Actors::Drone::checkCollision(Direction pa_dire
      *@note: to be written Func for convenience
      **/
     Vector2 tileID = CoreLogic::DataProcessing::coordinatesToTile(pa_position);
+    Vector2 endID;
+    if (pa_direction == Direction::UP || pa_direction == Direction::DOWN)
+    {
+        endID = CoreLogic::DataProcessing::coordinatesToTile({pa_position.x + size_.x, pa_position.y});
+    } else if (pa_direction == Direction::LEFT || pa_direction == Direction::RIGHT) {
+        endID = CoreLogic::DataProcessing::coordinatesToTile({pa_position.x, pa_position.y + size_.y});
+    } else {
+        throw std::runtime_error("Direction not defined");
+    }
     std::map<int, std::vector<tson::Layer>>& layers = *CoreLogic::DataProcessing::ActorStorage::getLayers();
 
     /**
@@ -80,57 +93,80 @@ bool CoreLogic::EventManagement::Actors::Drone::checkCollision(Direction pa_dire
      **/
     for(auto &layer: layers[elevation_])
     {
-        tson::Tile &tile = *layer.getTileData(static_cast<int>(tileID.x), static_cast<int>(tileID.y));
-        /**
-         *@todo: to be redefined as not Wall
-         **/
-        if (tile.getClassType() == "Wall")
+        do
         {
-            tson::Rect drawingRect = tile.getDrawingRect();
-            Rectangle collisionRec = GetCollisionRec(hitbox_, {static_cast<float>(drawingRect.x),
-                                                              static_cast<float>(drawingRect.y),
-                                                              static_cast<float>(drawingRect.width),
-                                                              static_cast<float>(drawingRect.height)});
-            if (pa_direction == Direction::UP)
+            tson::Tile* tilePtr = layer.getTileData(static_cast<int>(tileID.x), static_cast<int>(tileID.y));
+            if (tilePtr == nullptr)
             {
-                position_.y += collisionRec.height;
-            } else if (pa_direction == Direction::DOWN)
-            {
-                position_.y -= collisionRec.height;
-            } else if (pa_direction == Direction::LEFT)
-            {
-                position_.x += collisionRec.width;
-            } else if (pa_direction == Direction::RIGHT)
-            {
-                position_.x -= collisionRec.width;
+                continue;
             }
-            return false;
-        }
+            tson::Tile& tile = *tilePtr;
+            /**
+             *@todo: to be redefined as not Wall
+             **/
+            if (tile.getClassType() == "Wall")
+            {
+
+                tson::Vector2f tilePosition = tile.getPosition({tileID.x, tileID.y});
+                Rectangle tileRec = {tilePosition.x, tilePosition.y, static_cast<float>(tile.getTileSize().x),
+                                     static_cast<float>(tile.getTileSize().y)};
+
+                Rectangle collisionRec = GetCollisionRec(hitbox_, {static_cast<float>(tileRec.x),
+                                                                   static_cast<float>(tileRec.y),
+                                                                   static_cast<float>(tileRec.width),
+                                                                   static_cast<float>(tileRec.height)});
+                if (pa_direction == Direction::UP)
+                {
+                    position_.y += collisionRec.height;
+                    updateHitbox();
+                } else if (pa_direction == Direction::DOWN) {
+                    position_.y -= collisionRec.height;
+                    updateHitbox();
+                } else if (pa_direction == Direction::LEFT) {
+                    position_.x += collisionRec.width;
+                    updateHitbox();
+                } else if (pa_direction == Direction::RIGHT) {
+                    position_.x -= collisionRec.width;
+                    updateHitbox();
+                }
+            }
+            if (pa_direction == Direction::UP || pa_direction == Direction::DOWN)
+            {
+                tileID.x++;
+            } else if (pa_direction == Direction::LEFT || pa_direction == Direction::RIGHT) {
+                tileID.y++;
+            } else {
+                throw std::runtime_error("Invalid Direction");
+            }
+        } while (tileID.x <= endID.x && tileID.y <= endID.y);
+
+
     }
+
 
     /**
      *@TODO: Map.getActors() and elevation Handling
      **/
     bool dies = false;
-    std::map<int, std::vector<std::shared_ptr<Actor>>> &actors = *CoreLogic::DataProcessing::ActorStorage::getActors();
+    /*std::map<int, std::vector<std::shared_ptr<Actor>>> &actors = *CoreLogic::DataProcessing::ActorStorage::getActors();
 
     for (auto &objectPtr : actors[elevation_])
     {
 
         Actor &object = *objectPtr;
-        /**
+        *//**
          *@note: object needs Hitbox, death Hitboxes should be probably smaller than the actual Sprite,
          *       @proposal: death Hitboxes 75% of Sprite so you dont immediately kill yourself when touching but still
          *                  can't pass through multiple of them when they are side by side
-         **/
+         **//*
         Rectangle objectHitbox = object.getHitbox();
         if (CheckCollisionRecs(hitbox_, objectHitbox))
         {
-            /**
+            *//**
              *@note: object needs Collision Type probably within Tiled
              * @note: Death collision probably to be handled outside of event in update func frame after movement
              * @TODO: Collision Type
-             **/
+             **//*
             if (object.getCollisionType() == CollisionType::DEATH)
             {
                 dies = true;
@@ -168,7 +204,7 @@ bool CoreLogic::EventManagement::Actors::Drone::checkCollision(Direction pa_dire
     }
 
     dies = checkCollision(pa_direction, newPosition);
-
+*/
     return dies;
 }
 

@@ -55,7 +55,7 @@ void CoreLogic::UserInterface::Renderer::render(std::shared_ptr<std::map<int, st
              * @Attention: Vorläufige Symbolisierung des Players
              */
             CoreLogic::EventManagement::Actors::Drone &player = *CoreLogic::DataProcessing::ActorStorage::getPlayer();
-            DrawRectangle(player.getPosition().x, player.getPosition().y, 24, 24, WHITE);
+            DrawRectangle(player.getPosition().x, player.getPosition().y, 32, 32, WHITE);
         } EndMode2D();
     } EndTextureMode();
 }
@@ -87,8 +87,13 @@ void CoreLogic::UserInterface::Renderer::renderTileLayer(tson::Layer &pa_layer, 
             Rectangle destRec = {(float) (x * tileSize), (float) (y * tileSize),
                                  (float) tileSize,
                                  (float) tileSize};
+            Color tileColor = WHITE;
+            if (tile.getClassType() == "Wall")
+            {
+                tileColor = {50, 0, 100, 200};
+            }
 
-            DrawTexturePro(tileMap, tileSetRec, destRec, {0, 0}, 0, WHITE);
+            DrawTexturePro(tileMap, tileSetRec, destRec, {0, 0}, 0, tileColor);
         }
     }
 }
