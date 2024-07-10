@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" width="32" height="18" tilewidth="16" tileheight="16" infinite="0" backgroundcolor="#ac7c00" nextlayerid="3" nextobjectid="1">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="32" height="18" tilewidth="16" tileheight="16" infinite="0" backgroundcolor="#ac7c00" nextlayerid="3" nextobjectid="1">
  <editorsettings>
   <export target="../../../../CLionProjects/tilesetdrawer/assets/data/tilemap.tmj" format="json"/>
  </editorsettings>
  <tileset firstgid="1" source="tileset.tsj"/>
- <tileset firstgid="257" source="../../../../CLionProjects/tilesetdrawer/assets/data/tileset.tsj"/>
+ <tileset firstgid="257" source="Tileset.tsj"/>
+ <tileset firstgid="513" name="Workshopset" tilewidth="24" tileheight="24" tilecount="418" columns="19">
+  <image source="../graphics/Grassland_Tileset.png" width="456" height="528"/>
+ </tileset>
+ <tileset firstgid="931" name="Workshopset" tilewidth="24" tileheight="24" tilecount="418" columns="19">
+  <image source="../graphics/Grassland_Tileset.png" width="456" height="528"/>
+ </tileset>
  <layer id="1" name="Kachelebene 1" width="32" height="18">
   <data encoding="csv">
 2,2,2,2,1,1,69,1,2,2,2,2,2,7,8,2,18,40,40,40,40,0,0,0,0,0,0,0,0,21,5,4,
