@@ -1,5 +1,9 @@
 cmake_minimum_required(VERSION 3.24)
 
+include_directories(user_interface)
+include_directories(event_management)
+include_directories(data_processing)
+
 set(CORE_LOGIC_SOURCES
     data_processing/Level.cpp
     data_processing/Map.cpp

@@ -5,9 +5,7 @@
 #include "Map.h"
 #include "Store.h"
 
-#include "../event_management/actor/enemies/Hazmat.h"
-#include "../event_management/actor/enemies/Colonist.h"
-#include "../event_management/actor/enemies/Mech.h"
+
 
 CoreLogic::DataProcessing::Map::Map(std::string pa_filename)
 {

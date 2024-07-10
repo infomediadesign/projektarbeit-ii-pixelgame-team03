@@ -9,7 +9,10 @@
 #include <vector>
 #include "TilesonUtilities.h"
 #include "raylib.h"
-#include "..\event_management\Actor.h"
+#include "event_management/Actor.h"
+#include "event_management/actor/enemies/Hazmat.h"
+#include "event_management/actor/enemies/Colonist.h"
+#include "event_management/actor/enemies/Mech.h"
 
 
 namespace CoreLogic::DataProcessing
