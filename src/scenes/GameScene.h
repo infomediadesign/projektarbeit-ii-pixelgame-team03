@@ -20,7 +20,7 @@ namespace Scenes
         void render();
         int getCurrentLevelID();
 
-        void switchLevel();
+        void switchLevel(int pa_levelID);
 
         void draw(RenderTexture2D &pa_canvas) override;
         void update() override;
@@ -31,6 +31,7 @@ namespace Scenes
         std::unique_ptr<std::vector<CoreLogic::DataProcessing::Level>> po_levels_;
         std::unique_ptr<CoreLogic::DataProcessing::Map> po_currentMap_;
         std::unique_ptr<CoreLogic::DataProcessing::Map> po_previousMap_;
+
     };
 }
 

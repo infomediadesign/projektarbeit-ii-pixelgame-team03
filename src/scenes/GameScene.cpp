@@ -7,8 +7,8 @@
 
 Scenes::GameScene::GameScene(): Scene(std::make_shared<Camera2D>()),
                                 po_levels_(std::make_unique<std::vector<CoreLogic::DataProcessing::Level>>(std::initializer_list<CoreLogic::DataProcessing::Level>{
-                                        CoreLogic::DataProcessing::Level(std::make_unique<std::vector<std::string>>(std::initializer_list<std::string>{"assets/data/test.tmj", "lol"}), 0, CoreLogic::DataProcessing::LevelState::Default),
-                                        CoreLogic::DataProcessing::Level(std::make_unique<std::vector<std::string>>(std::initializer_list<std::string>{"lel", "lol"}), 1, CoreLogic::DataProcessing::LevelState::War)
+                                        CoreLogic::DataProcessing::Level(std::make_unique<std::vector<std::string>>(std::initializer_list<std::string>{"assets/data/hive_DESI_Level0_2024-06-17.tmj", "assets/data/hive_DESI_Level3-Greyboxing_2024-06-17.tmj"}), 0, CoreLogic::DataProcessing::LevelState::Default),
+                                        CoreLogic::DataProcessing::Level(std::make_unique<std::vector<std::string>>(std::initializer_list<std::string>{"lol", "assets/data/level1.tmj"}), 1, CoreLogic::DataProcessing::LevelState::War)
                         }))
 {
     camera_ -> zoom = 1.0f;
@@ -39,6 +39,24 @@ void Scenes::GameScene::update()
     /**
      * @brief: VORLÄUFIGES Cam-Movement, Wird nachher entfernt
      */
+
+    if (IsKeyDown(KEY_Z))
+    {
+        camera.zoom = 2.0f;
+    }
+    if (IsKeyDown(KEY_X))
+    {
+        camera.zoom = 1.0f;
+    }
+
+    if(IsKeyDown(KEY_L))
+    {
+        switchLevel(1);
+    }
+    if (IsKeyDown(KEY_K)) {
+        switchLevel(0);
+    }
+
     if (IsKeyDown(KEY_LEFT))
      {
         if (IsKeyDown(KEY_UP))
@@ -61,6 +79,7 @@ void Scenes::GameScene::update()
      {
          camera.target.y += 3;
      }
+     camera.target = {floorf(camera.target.x), floorf(camera.target.y)};
 
     /**
      * @Pseudo_Code: So soll nachher der Eventhandler evtl. aussehen
@@ -86,7 +105,7 @@ void Scenes::GameScene::render()
 
 }
 
-void Scenes::GameScene::switchLevel()
+void Scenes::GameScene::switchLevel(int pa_levelID)
 {
-
+    po_currentMap_ = std::make_unique<CoreLogic::DataProcessing::Map>(po_levels_ -> at(pa_levelID).getMapPath());
 }

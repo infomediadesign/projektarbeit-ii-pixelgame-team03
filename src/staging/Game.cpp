@@ -48,6 +48,7 @@ void Staging::Game::run()
 {
     while (!WindowShouldClose())
     {
+
         if (IsKeyPressed(KEY_F11))
         {
             if (IsWindowFullscreen())

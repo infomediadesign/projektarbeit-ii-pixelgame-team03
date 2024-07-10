@@ -37,8 +37,10 @@ void CoreLogic::UserInterface::Renderer::render(std::shared_ptr<std::vector<tson
     {
         cameraRec.height = floorf((pa_camera.target.y + 564) / 24);
     }
+    ClearBackground(pa_bgColor);
     BeginTextureMode(pa_canvas);
     {
+        ClearBackground(pa_bgColor);
         BeginMode2D(pa_camera);
         {
             ClearBackground(pa_bgColor);
