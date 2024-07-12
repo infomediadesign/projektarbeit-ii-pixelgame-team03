@@ -46,6 +46,7 @@ namespace CoreLogic::EventManagement
 
 
         void shiftFrame(int pa_stateID);
+        void resetFrame(int pa_stateID);
 
         [[nodiscard]] int getElevation() const;
         void setElevation(int pa_elevation);

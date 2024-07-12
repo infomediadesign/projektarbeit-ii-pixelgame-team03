@@ -24,7 +24,8 @@ namespace CoreLogic::EventManagement
     void Sprite::shiftFrame(int pa_stateID, Direction pa_primaryDirection)
     {
 
-        if (pa_stateID < animationStates_.size() && static_cast<int>(pa_primaryDirection) < animationStates_[pa_stateID].size())
+        if (pa_stateID < animationStates_.size() &&
+            static_cast<int>(pa_primaryDirection) < animationStates_[pa_stateID].size())
         {
             std::cout << currentState_ << std::endl;
             if (pa_stateID == currentState_ && pa_primaryDirection == primaryDirection_)
@@ -46,6 +47,17 @@ namespace CoreLogic::EventManagement
             currentState_ = pa_stateID;
             primaryDirection_ = pa_primaryDirection;
         }
+    }
+
+    void Sprite::resetFrame(int pa_stateID)
+    {
+        if (pa_stateID < animationStates_.size())
+        {
+            frame_.x = 0;
+            frame_.y = animationStates_[pa_stateID][static_cast<int>(primaryDirection_)].row_ * frameHeight_;
+            currentStep_ = 0;
+        }
+
     }
 
     Sprite::Sprite()
