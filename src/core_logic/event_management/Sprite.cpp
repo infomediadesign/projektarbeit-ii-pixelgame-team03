@@ -2,6 +2,7 @@
 // Created by Josi on 10.07.2024.
 //
 
+#include <iostream>
 #include "Sprite.h"
 
 namespace CoreLogic::EventManagement
@@ -20,24 +21,31 @@ namespace CoreLogic::EventManagement
 
     }
 
-//    void Sprite::shiftFrame(int pa_stateID, Actor::Direction pa_primaryDirection)
-//    {
-//        if (pa_stateID == 1 && pa_primaryDirection == primaryDirection_)
-//        {
-//            currentFrame_++;
-//            if (currentFrame_ >= animationStates_[pa_stateID][static_cast<int>(pa_primaryDirection)].steps_)
+    void Sprite::shiftFrame(int pa_stateID, Direction pa_primaryDirection)
+    {
+        std::cout << pa_stateID << std::endl;
+        std::cout << static_cast<int>(pa_primaryDirection) << std::endl;
+        if (pa_stateID < animationStates_.size() && static_cast<int>(pa_primaryDirection) < animationStates_[pa_stateID].size())
+        {
+
+//            if (pa_stateID == currentState_ && pa_primaryDirection == primaryDirection_)
 //            {
-//                currentFrame_ = 0;
+                currentStep_++;
+
+                if (currentStep_ >= animationStates_[pa_stateID][static_cast<int>(pa_primaryDirection)].steps_)
+                {
+                    currentStep_ = 0;
+                }
+
+                frame_.x = (float) (currentStep_ * frameWidth_);
+//            } else
+//            {
+//                frame_.x = 0;
+//                frame_.y = animationStates_[pa_stateID][static_cast<int>(pa_primaryDirection)].row_ * frameHeight_;
+//                currentStep_ = 0;
 //            }
-//            frame_.x = (float) (currentFrame_ * frameWidth_);
-//        }
-//        else
-//        {
-//            frame_.x = 0;
-//            frame_.y = animationStates_[pa_stateID][static_cast<int>(pa_primaryDirection)].row_ * frameHeight_;
-//            currentFrame_ = 0;
-//        }
-//    }
+        }
+    }
 
     Sprite::Sprite()
     {

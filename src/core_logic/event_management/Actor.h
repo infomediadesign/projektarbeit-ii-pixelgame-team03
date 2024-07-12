@@ -8,6 +8,7 @@
 
 #include <raylib.h>
 #include <string>
+#include "Sprite.h"
 
 namespace CoreLogic::EventManagement
 {
@@ -21,13 +22,7 @@ namespace CoreLogic::EventManagement
             ENEMYDEATH,
             DEATH
         };
-        enum class Direction
-        {
-            UP,
-            DOWN,
-            LEFT,
-            RIGHT
-        };
+
 
         Actor(Vector2 pa_position, Rectangle pa_hitbox, int pa_id, CollisionType pa_collidable, Vector2 pa_size, bool pa_visible, int pa_elevation)
         : position_(pa_position), hitbox_(pa_hitbox), id_(pa_id), collisionType_(pa_collidable), visible_(pa_visible), size_(pa_size), elevation_(pa_elevation) {};
@@ -42,12 +37,13 @@ namespace CoreLogic::EventManagement
         std::string getName(){return name_;};
         Vector2 getSize(){return size_;};
 
+        Texture2D getTexture(){return sprite_.getTexture();};
+        Rectangle getFrame(){return sprite_.getFrame();};
+        int getStateID(){return stateID_;};
+        Direction getPrimaryDirection(){return primaryDirection_;};
 
 
-        /**
-         *@note: erstmal auskommentiert, da noch in keiner kindklasse implementiert
-         **/
-//        virtual void shiftFrame() = 0;
+        void shiftFrame(int pa_stateID, Direction pa_primaryDirection);
 
         [[nodiscard]] int getElevation() const;
         void setElevation(int pa_elevation);
@@ -62,10 +58,10 @@ namespace CoreLogic::EventManagement
         const Vector2 size_;
         int elevation_;
 
+        int stateID_ = 0;
+        Direction primaryDirection_ = Direction::RIGHT;
 
-        /**
-         *@todo: implement sprites
-         **/
+        Sprite sprite_;
     };
 }
 

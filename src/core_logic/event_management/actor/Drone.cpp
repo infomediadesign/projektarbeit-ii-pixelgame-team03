@@ -228,16 +228,16 @@ bool CoreLogic::EventManagement::Actors::Drone::checkCollision(Direction pa_dire
 
 
 
-//CoreLogic::EventManagement::Actors::Drone::Drone(Vector2 pa_position, Rectangle pa_hitbox, int pa_id,
-//                                                 CollisionType pa_collisionType, Vector2 pa_size, bool pa_visible,
-//                                                 int pa_elevation)
-//        : MovableActor(pa_position, pa_hitbox, pa_id, pa_collisionType, pa_size, pa_visible, pa_elevation)
-//{
-//    sprite_ = Sprite("assets/graphics/anim_sprite.png", 80, 80,
-//                     {{AnimationState{0, 3},
-//                       AnimationState{1, 3},
-//                       AnimationState{2, 3},
-//                       AnimationState{3, 3}}});
-//}
+CoreLogic::EventManagement::Actors::Drone::Drone(Vector2 pa_position, Rectangle pa_hitbox, int pa_id,
+                                                 CollisionType pa_collisionType, Vector2 pa_size, bool pa_visible,
+                                                 int pa_elevation)
+        : MovableActor(pa_position, pa_hitbox, pa_id, pa_collisionType, pa_size, pa_visible, pa_elevation)
+{
+    sprite_ = Sprite("assets/graphics/anim_sprite.png", 32, 32,
+                     {{AnimationState{0, 3},
+                       AnimationState{1, 3}},
+                      {AnimationState{2, 3},
+                       AnimationState{3, 3}}});
+}
 
 

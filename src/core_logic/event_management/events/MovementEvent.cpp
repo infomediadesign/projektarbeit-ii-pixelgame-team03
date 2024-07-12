@@ -35,15 +35,12 @@ void CoreLogic::EventManagement::MovementEvent::update()
 
     /**
      * @note: add facing direction variable and func call for actor
-     * @note: the modulo clause should equal to the modulo of the event start
+     * @note: the modulo clause should be equal to the modulo of the event start
      **/
 
     if (ticks_ % 4 == 0)
     {
-        /**
-         *@todo: shift Frame to be implemented into actor with states
-         **/
-        //po_mainActor_->shiftFrame(1, primaryDir);
+        po_mainActor_->shiftFrame(1, po_mainActor_->getPrimaryDirection());
     }
 
 }

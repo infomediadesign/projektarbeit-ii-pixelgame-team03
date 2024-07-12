@@ -16,11 +16,9 @@
 
         public:
 
-            Drone(Vector2 pa_position = {0, 0}, Rectangle pa_hitbox = {0, 0, 0, 0}, int pa_id = 0, CollisionType
-            pa_collisionType = CollisionType::NONE, Vector2
-                  pa_size = {32, 32}, bool pa_visible = true, int pa_elevation = 1)
-                  : MovableActor(pa_position, pa_hitbox, pa_id, pa_collisionType, pa_size, pa_visible, pa_elevation)
-            {};
+            Drone(Vector2 pa_position, Rectangle pa_hitbox, int pa_id,
+                  CollisionType pa_collisionType, Vector2 pa_size, bool pa_visible,
+                  int pa_elevation);
 
 
             void move(bool pa_up, bool pa_down, bool pa_left, bool pa_right);
