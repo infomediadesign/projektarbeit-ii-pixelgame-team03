@@ -48,12 +48,12 @@ namespace CoreLogic::EventManagement
         int currentStep_ = 0;
 
 
-        Direction primaryDirection_;
+        Direction primaryDirection_ = Direction::RIGHT;
 
-        int frameWidth_;
-        int frameHeight_;
+        int frameWidth_ = 24;
+        int frameHeight_ = 24;
 
-        std::string path_;
+        std::string path_ = "";
         Texture2D texture_;
         Rectangle frame_;
 

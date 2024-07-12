@@ -51,12 +51,23 @@ namespace CoreLogic::EventManagement
 
     void Sprite::resetFrame(int pa_stateID)
     {
-        if (pa_stateID < animationStates_.size())
+        if (pa_stateID < animationStates_.size() &&
+            static_cast<int>(primaryDirection_) < animationStates_[pa_stateID].size())
         {
             frame_.x = 0;
             frame_.y = animationStates_[pa_stateID][static_cast<int>(primaryDirection_)].row_ * frameHeight_;
             currentStep_ = 0;
         }
+        else
+        {
+            frame_.x = 0;
+            frame_.y = animationStates_[1][1].row_ * frameHeight_;;
+            currentStep_ = 0;
+
+            primaryDirection_ = Direction::RIGHT;
+        }
+        currentState_ = pa_stateID;
+
 
     }
 
