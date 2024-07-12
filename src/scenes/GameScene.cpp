@@ -51,10 +51,6 @@ void Scenes::GameScene::update()
     eventHandler.handleEvents(inputHandler_->handleInput(), player.getId());
     eventHandler.update();
 
-    if (CoreLogic::DataProcessing::ticks % 15 == 0)
-    {
-        player.shiftFrame(player.getStateID(), CoreLogic::EventManagement::Direction::UP);
-    }
 
     Vector2 playerPos = player.getPosition();
 

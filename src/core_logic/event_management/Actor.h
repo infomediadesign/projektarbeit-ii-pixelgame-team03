@@ -40,10 +40,12 @@ namespace CoreLogic::EventManagement
         Texture2D getTexture(){return sprite_.getTexture();};
         Rectangle getFrame(){return sprite_.getFrame();};
         int getStateID(){return stateID_;};
+
         Direction getPrimaryDirection(){return primaryDirection_;};
+        void setPrimaryDirection(Direction pa_primaryDirection){primaryDirection_ = pa_primaryDirection;};
 
 
-        void shiftFrame(int pa_stateID, Direction pa_primaryDirection);
+        void shiftFrame(int pa_stateID);
 
         [[nodiscard]] int getElevation() const;
         void setElevation(int pa_elevation);

@@ -16,8 +16,8 @@ void CoreLogic::EventManagement::Actor::setElevation(int pa_elevation)
     elevation_ = pa_elevation;
 }
 
-void CoreLogic::EventManagement::Actor::shiftFrame(int pa_stateID, Direction pa_primaryDirection)
+void CoreLogic::EventManagement::Actor::shiftFrame(int pa_stateID)
 {
-    sprite_.shiftFrame(pa_stateID, pa_primaryDirection);
+    sprite_.shiftFrame(pa_stateID, primaryDirection_);
 }
 

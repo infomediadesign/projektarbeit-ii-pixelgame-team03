@@ -234,9 +234,9 @@ CoreLogic::EventManagement::Actors::Drone::Drone(Vector2 pa_position, Rectangle 
         : MovableActor(pa_position, pa_hitbox, pa_id, pa_collisionType, pa_size, pa_visible, pa_elevation)
 {
     sprite_ = Sprite("assets/graphics/anim_sprite.png", 32, 32,
-                     {{AnimationState{0, 3},
-                       AnimationState{1, 3}},
-                      {AnimationState{2, 3},
+                     {{},{AnimationState{0, 3},
+                       AnimationState{1, 3},
+                      AnimationState{2, 3},
                        AnimationState{3, 3}}});
 }
 
