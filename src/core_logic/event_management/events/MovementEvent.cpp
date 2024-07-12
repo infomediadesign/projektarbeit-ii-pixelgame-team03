@@ -20,11 +20,12 @@ void CoreLogic::EventManagement::MovementEvent::update()
      **/
 
     checkStillPressed();
-    updateActorDir();
     if (!ticksRunning_)
     {
+        po_mainActor_->resetFrame(1);
         return;
     }
+    updateActorDir();
 
         ticks_++;
 
