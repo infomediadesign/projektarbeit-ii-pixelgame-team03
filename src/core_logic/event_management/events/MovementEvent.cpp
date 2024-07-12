@@ -41,7 +41,7 @@ void CoreLogic::EventManagement::MovementEvent::update()
 
     if (ticks_ % 4 == 0)
     {
-        po_mainActor_->shiftFrame(1, po_mainActor_->getPrimaryDirection());
+        po_mainActor_->shiftFrame(1);
     }
 
 }
