@@ -19,6 +19,7 @@ namespace CoreLogic::EventManagement
         void startMove(EventEnum pa_Event);
     private:
         void checkStillPressed();
+        void updateActorDir();
         int ticks_ = 0;
         bool ticksRunning_ = false;
         EventEnum primaryDir_;

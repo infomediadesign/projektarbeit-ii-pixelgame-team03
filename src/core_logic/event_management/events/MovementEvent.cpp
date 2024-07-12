@@ -20,6 +20,7 @@ void CoreLogic::EventManagement::MovementEvent::update()
      **/
 
     checkStillPressed();
+    updateActorDir();
     if (!ticksRunning_)
     {
         return;
@@ -43,6 +44,27 @@ void CoreLogic::EventManagement::MovementEvent::update()
         po_mainActor_->shiftFrame(1, po_mainActor_->getPrimaryDirection());
     }
 
+}
+
+void CoreLogic::EventManagement::MovementEvent::updateActorDir()
+{
+    switch (primaryDir_)
+    {
+        case MOVE_UP:
+            po_mainActor_->setPrimaryDirection(Direction::UP);
+            break;
+        case MOVE_DOWN:
+            po_mainActor_->setPrimaryDirection(Direction::DOWN);
+            break;
+        case MOVE_LEFT:
+            po_mainActor_->setPrimaryDirection(Direction::LEFT);
+            break;
+        case MOVE_RIGHT:
+            po_mainActor_->setPrimaryDirection(Direction::RIGHT);
+            break;
+        default:
+            break;
+    }
 }
 
 void CoreLogic::EventManagement::MovementEvent::startMove(CoreLogic::EventManagement::EventEnum pa_Event)
