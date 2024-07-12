@@ -22,8 +22,10 @@ void CoreLogic::EventManagement::MovementEvent::update()
     checkStillPressed();
     if (!ticksRunning_)
     {
+        po_mainActor_->resetFrame(1);
         return;
     }
+    updateActorDir();
 
         ticks_++;
 
@@ -35,16 +37,35 @@ void CoreLogic::EventManagement::MovementEvent::update()
 
     /**
      * @note: add facing direction variable and func call for actor
+     * @note: the modulo clause should be equal to the modulo of the event start
      **/
 
-    if (ticks_ % 4 == 0)
+    if (ticks_ % 8 == 0)
     {
-        /**
-         *@todo: shift Frame to be implemented into actors with states
-         **/
-        //po_mainActor_->shiftFrame(WALKING, primaryDir);
+        po_mainActor_->shiftFrame(1);
     }
 
+}
+
+void CoreLogic::EventManagement::MovementEvent::updateActorDir()
+{
+    switch (primaryDir_)
+    {
+        case MOVE_UP:
+            po_mainActor_->setPrimaryDirection(Direction::UP);
+            break;
+        case MOVE_DOWN:
+            po_mainActor_->setPrimaryDirection(Direction::DOWN);
+            break;
+        case MOVE_LEFT:
+            po_mainActor_->setPrimaryDirection(Direction::LEFT);
+            break;
+        case MOVE_RIGHT:
+            po_mainActor_->setPrimaryDirection(Direction::RIGHT);
+            break;
+        default:
+            break;
+    }
 }
 
 void CoreLogic::EventManagement::MovementEvent::startMove(CoreLogic::EventManagement::EventEnum pa_Event)

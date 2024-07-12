@@ -13,8 +13,8 @@ void CoreLogic::EventManagement::Actors::Drone::move(bool pa_up, bool pa_down, b
 {
     /**
      *@pseudo_code
-     * @Commented the collision since actors and layers not yet fully embedded
-     * @todo uncomment when actors and layers function
+     * @Commented the collision since actor and layers not yet fully embedded
+     * @todo uncomment when actor and layers function
      **/
      EventHandler& eventHandler = EventHandler::getInstance();
 
@@ -226,7 +226,18 @@ bool CoreLogic::EventManagement::Actors::Drone::checkCollision(Direction pa_dire
     return dies;
 }
 
-Vector2 CoreLogic::EventManagement::Actors::Drone::getPosition()
+
+
+CoreLogic::EventManagement::Actors::Drone::Drone(Vector2 pa_position, Rectangle pa_hitbox, int pa_id,
+                                                 CollisionType pa_collisionType, Vector2 pa_size, bool pa_visible,
+                                                 int pa_elevation)
+        : MovableActor(pa_position, pa_hitbox, pa_id, pa_collisionType, pa_size, pa_visible, pa_elevation)
 {
-    return position_;
+    sprite_ = Sprite("assets/graphics/anim_sprite.png", 32, 32,
+                     {{},{AnimationState{0, 3},
+                       AnimationState{1, 3},
+                      AnimationState{2, 3},
+                       AnimationState{3, 3}}});
 }
+
+

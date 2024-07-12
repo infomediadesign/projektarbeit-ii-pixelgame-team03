@@ -51,6 +51,7 @@ void Scenes::GameScene::update()
     eventHandler.handleEvents(inputHandler_->handleInput(), player.getId());
     eventHandler.update();
 
+
     Vector2 playerPos = player.getPosition();
 
     /**

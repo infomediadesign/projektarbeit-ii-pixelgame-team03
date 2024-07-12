@@ -4,6 +4,7 @@
 
 #include "Map.h"
 #include "Store.h"
+#include "../event_management/actor/Drone.h"
 
 
 
@@ -124,6 +125,12 @@ void CoreLogic::DataProcessing::Map::loadObjectsExample()
 
 void CoreLogic::DataProcessing::Map::loadObjects()
 {
+    auto drone = std::make_shared<EventManagement::Actors::Drone>(Vector2{100, 100}, Rectangle{100,
+                                                                                               100, 32, 32}, 0,
+                                                                        EventManagement::Actor::CollisionType::NONE,
+                                                                        Vector2{32, 32}, true, 1);
+    ActorStorage::setPlayer(drone);
+
     int objectId = 1;
 
     for (int elev = 1; elev <= elevationLevels_; elev++)
@@ -131,25 +138,29 @@ void CoreLogic::DataProcessing::Map::loadObjects()
         for (auto &object: po_objects_->at(elev))
         {
             std::string klasse = object.getClassType();
+
             Vector2 objectPosition = {(float) object.getPosition().x, (float) object.getPosition().y};
+
             tson::PropertyCollection props = object.getProperties();
-            Rectangle objectHitbox = {objectPosition.x, objectPosition.y, (float) (object.getSize().x),
-                                      (float) (object.getSize().y)};
+
             EventManagement::Actor::CollisionType objectCollisionType = props.getProperty(
                     "collisionType")->getValue<EventManagement::Actor::CollisionType>();
+
             bool objectVisible = object.isVisible();
+
             Vector2 objectSize = {props.getProperty("actualSizeX")->getValue<float>(), props.getProperty
                     ("actualSizeY")->getValue<float>()};
 
+            Rectangle objectHitbox;
+            if (object.getObjectType() == tson::ObjectType::Rectangle)
+            {
+                objectHitbox = {objectPosition.x, objectPosition.y, (float) (object.getSize().x),
+                                          (float) (object.getSize().y)};
+            }
+
             std::shared_ptr<EventManagement::Actor> actor = nullptr;
 
-            if (klasse == "Player")
-            {
-                ActorStorage::setPlayer(std::make_shared<EventManagement::Actors::Drone>(
-                        EventManagement::Actors::Drone(objectPosition, objectHitbox, 0, objectCollisionType, objectSize,
-                                                       objectVisible, elev)));
-                actor = ActorStorage::getPlayer();
-            } else if (klasse == "Colonist")
+            if (klasse == "Colonist")
             {
                 actor = std::make_shared<EventManagement::Actors::Colonist>(
                         EventManagement::Actors::Colonist(objectPosition, objectHitbox, objectId,
