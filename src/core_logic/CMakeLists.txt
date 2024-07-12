@@ -25,7 +25,7 @@ set(CORE_LOGIC_SOURCES
         event_management/actor/drones/Scout.cpp
         event_management/actor/drones/Grappler.cpp
 
-    event_management/actor/Enemy.cpp
+        event_management/actor/Enemy.cpp
         event_management/actor/enemies/Colonist.cpp
         event_management/actor/enemies/Hazmat.cpp
         event_management/actor/enemies/Mech.cpp
@@ -63,7 +63,7 @@ set(CORE_LOGIC_HEADERS
         event_management/actor/drones/Scout.h
         event_management/actor/drones/Grappler.h
 
-    event_management/actor/Enemy.h
+        event_management/actor/Enemy.h
         event_management/actor/enemies/Colonist.h
         event_management/actor/enemies/Hazmat.h
         event_management/actor/enemies/Mech.h
@@ -78,6 +78,8 @@ set(CORE_LOGIC_HEADERS
 
     Scene.h
         event_management/EventUtilities.h
+        event_management/Sprite.cpp
+        event_management/Sprite.h
 
 )
 

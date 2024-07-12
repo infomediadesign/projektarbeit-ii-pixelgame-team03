@@ -21,6 +21,14 @@ namespace CoreLogic::EventManagement
             ENEMYDEATH,
             DEATH
         };
+        enum class Direction
+        {
+            UP,
+            DOWN,
+            LEFT,
+            RIGHT
+        };
+
         Actor(Vector2 pa_position, Rectangle pa_hitbox, int pa_id, CollisionType pa_collidable, Vector2 pa_size, bool pa_visible, int pa_elevation)
         : position_(pa_position), hitbox_(pa_hitbox), id_(pa_id), collisionType_(pa_collidable), visible_(pa_visible), size_(pa_size), elevation_(pa_elevation) {};
         virtual ~Actor() = default;

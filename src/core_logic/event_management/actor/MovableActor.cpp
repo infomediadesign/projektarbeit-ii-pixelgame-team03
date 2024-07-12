@@ -32,4 +32,9 @@ namespace CoreLogic::EventManagement::Actors {
             position_.y = 864 - (size_.y + 1);
         }
     }
+
+    void MovableActor::update()
+    {
+
+    }
 }
