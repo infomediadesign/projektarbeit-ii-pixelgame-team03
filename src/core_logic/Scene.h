@@ -9,6 +9,7 @@
 #include "raylib.h"
 #include "event_management/Actor.h"
 #include "user_interface/Renderer.h"
+#include "event_management/InputHandler.h"
 
 namespace CoreLogic
 {
@@ -22,6 +23,7 @@ namespace CoreLogic
     protected:
         std::shared_ptr<Camera2D> camera_;
         std::shared_ptr<std::map<int, std::vector<CoreLogic::EventManagement::Actor>>> po_actors_;
+        const std::unique_ptr<CoreLogic::EventManagement::InputHandler> inputHandler_;
     };
 }
 
