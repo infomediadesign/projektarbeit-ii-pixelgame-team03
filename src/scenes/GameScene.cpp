@@ -48,7 +48,7 @@ void Scenes::GameScene::update()
     /**
      *@todo: InputHandler to be called static
      **/
-    eventHandler.handleEvents(inputHandler_->handleInput(), player.getId());
+    eventHandler.handleEvents(po_inputHandler_->handleInput(), player.getId());
     eventHandler.update();
 
 

@@ -38,7 +38,7 @@ namespace Staging
         const int windowFlags_;
         const int exitKey_;
 
-        std::unique_ptr<::Staging::Stage> stage_;
+        std::unique_ptr<::Staging::Stage> po_stage_;
 
         const std::string gameTitle_;
 
