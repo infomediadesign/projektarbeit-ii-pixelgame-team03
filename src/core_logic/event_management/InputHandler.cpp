@@ -17,7 +17,8 @@ namespace CoreLogic::EventManagement {
 
 
     bool InputHandler::getAxisReleased(Input &pa_axis) {
-        return pa_axis.activated;
+
+        return IsAxisReleased(pa_axis);
     }
 
     bool InputHandler::IsAxisPressed(Input& pa_axis) {
@@ -146,8 +147,8 @@ namespace CoreLogic::EventManagement {
         }
         std::vector<InputHandler::Input> axisInput = GetGamepadAxisPressed();
         for (InputHandler::Input currentAxis : axisInput) {
-            if (controllerInGameMapping.find(currentAxis) != keyboardInGameMapping.end()) {
-                EventEnum event = keyboardInGameMapping.at(currentAxis);
+            if (controllerInGameMapping.find(currentAxis) != controllerInGameMapping.end()) {
+                EventEnum event = controllerInGameMapping.at(currentAxis);
                 activatedEvents.push_back(event);
             }
         }
