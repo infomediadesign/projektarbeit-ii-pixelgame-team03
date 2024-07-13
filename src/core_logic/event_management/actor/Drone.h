@@ -9,7 +9,7 @@
 #include "MovableActor.h"
 
 
-    namespace CoreLogic::EventManagement::Actors
+namespace CoreLogic::EventManagement::Actors
     {
         class Drone : public MovableActor
         {
@@ -26,7 +26,7 @@
 
         private:
 
-            bool checkCollision(Direction pa_direction, Vector2 pa_position);
+            bool checkCollision(CoreLogic::UserInterface::Direction pa_direction, Vector2 pa_position);
 
         };
     }

@@ -34,7 +34,6 @@ void CoreLogic::EventManagement::EventHandler::handleEvents(const std::vector<Ev
      * @TODO: check with Josi
      **/
 
-
     std::lock_guard<std::mutex> lock(eventHandler_mutex_);
     bool isActive = false;
     auto it = po_activeEvents_.find(pa_actorID);
@@ -82,31 +81,6 @@ void CoreLogic::EventManagement::EventHandler::handleEvents(const std::vector<Ev
     }
 
 
-    /**
-     * @attention: Outdated looping
-     **/
-    /*for (auto &thrownEvent: pa_thrownEvents)
-    {
-        for (auto &activeEventID: *activeEventIDs_)
-        {
-            if (pa_actorID == activeEventID.first && thrownEvent == activeEventID.second)
-            {
-                isActive = true;
-                break;
-            }
-        }
-        if (!isActive)
-        {
-            try
-            {
-                activateEvent(thrownEvent);
-            } catch (std::exception &e) //@TODO: write Exception Handling for Events
-            {
-                TraceLog(LOG_INFO, e.what());
-            }
-        }
-    }*/
-
 
     /**
      * @brief: Bitwise Enum saving saves a whole outter for-Loop which significantly lowers Iterations
@@ -135,34 +109,6 @@ void CoreLogic::EventManagement::EventHandler::handleEvents(const std::vector<Ev
 
     }*/
 
-
-    /**
-     * @attention: This commented section below is the old version of handleEvents(),
-     *              with the double for-loops for enum Arrays
-     *
-     **/
-    /*for (auto &thrownEvent: events)
-    {
-        bool isActive = false;
-        for (auto &activeEvent: *activeEventIDs_)
-        {
-            if (thrownEvent == activeEvent)
-            {
-                isActive = true;
-                break;
-            }
-        }
-        if (!isActive)
-        {
-            try
-            {
-                activateEvent(thrownEvent);
-            } catch (std::exception &e) //@TODO: write Exception Handling for Events
-            {
-                TraceLog(LOG_INFO, e.what());
-            }
-        }
-    }*/
 }
 
 void CoreLogic::EventManagement::EventHandler::update()

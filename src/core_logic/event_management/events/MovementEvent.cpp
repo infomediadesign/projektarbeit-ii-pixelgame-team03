@@ -8,6 +8,7 @@
 #include "event_management/EventUtilities.h"
 #include "event_management/actor/Drone.h"
 #include "data_processing/Store.h"
+#include "Sprite.h"
 
 /**
  *@todo: test
@@ -25,7 +26,6 @@ void CoreLogic::EventManagement::MovementEvent::update()
         po_mainActor_->resetFrame(1);
         return;
     }
-    updateActorDir();
 
         ticks_++;
 
@@ -52,16 +52,16 @@ void CoreLogic::EventManagement::MovementEvent::updateActorDir()
     switch (primaryDir_)
     {
         case MOVE_UP:
-            po_mainActor_->setPrimaryDirection(Direction::UP);
+            po_mainActor_->setPrimaryDirection(CoreLogic::UserInterface::Direction::UP);
             break;
         case MOVE_DOWN:
-            po_mainActor_->setPrimaryDirection(Direction::DOWN);
+            po_mainActor_->setPrimaryDirection(CoreLogic::UserInterface::Direction::DOWN);
             break;
         case MOVE_LEFT:
-            po_mainActor_->setPrimaryDirection(Direction::LEFT);
+            po_mainActor_->setPrimaryDirection(CoreLogic::UserInterface::Direction::LEFT);
             break;
         case MOVE_RIGHT:
-            po_mainActor_->setPrimaryDirection(Direction::RIGHT);
+            po_mainActor_->setPrimaryDirection(CoreLogic::UserInterface::Direction::RIGHT);
             break;
         default:
             break;
@@ -92,6 +92,8 @@ void CoreLogic::EventManagement::MovementEvent::startMove(CoreLogic::EventManage
     }
 
     directionMap_[pa_Event] = true;
+    updateActorDir();
+    po_mainActor_->shiftFrame(1);
 
     
     /*switch (pa_Event)
@@ -162,18 +164,27 @@ void CoreLogic::EventManagement::MovementEvent::checkStillPressed()
         if (directionMap_.at(MOVE_UP))
         {
             primaryDir_ = MOVE_UP;
+            updateActorDir();
+            po_mainActor_->shiftFrame(1);
         } else if (directionMap_.at(MOVE_DOWN)) {
             primaryDir_ = MOVE_DOWN;
+            updateActorDir();
+            po_mainActor_->shiftFrame(1);
         } else if (directionMap_.at(MOVE_LEFT)) {
             primaryDir_ = MOVE_LEFT;
+            updateActorDir();
+            po_mainActor_->shiftFrame(1);
         } else if (directionMap_.at(MOVE_RIGHT)) {
             primaryDir_ = MOVE_RIGHT;
+            updateActorDir();
+            po_mainActor_->shiftFrame(1);
         } else {
             primaryDir_ = EVENT_NULL;
             ticksRunning_ = false;
             ticks_ = 0;
         }
     }
+
 
 }
 

@@ -8,6 +8,7 @@
 #include "event_management/EventHandler.h"
 #include "data_processing/TilesonUtilities.h"
 #include "data_processing/Store.h"
+#include "Sprite.h"
 
 void CoreLogic::EventManagement::Actors::Drone::move(bool pa_up, bool pa_down, bool pa_left, bool pa_right)
 {
@@ -23,7 +24,7 @@ void CoreLogic::EventManagement::Actors::Drone::move(bool pa_up, bool pa_down, b
         (pa_right || pa_left) ? position_.y -= 2 : position_.y -= 3;
         adjustOutOfBounds();
         updateHitbox();
-        if (checkCollision(Direction::UP, position_))
+        if (checkCollision(CoreLogic::UserInterface::Direction::UP, position_))
         {
             eventHandler.handleEvents({DISCONNECT}, id_);
         }
@@ -34,7 +35,7 @@ void CoreLogic::EventManagement::Actors::Drone::move(bool pa_up, bool pa_down, b
         (pa_right || pa_left) ? position_.y += 2 : position_.y += 3;
         adjustOutOfBounds();
         updateHitbox();
-        if (checkCollision(Direction::DOWN, {position_.x, position_.y + size_.y}))
+        if (checkCollision(CoreLogic::UserInterface::Direction::DOWN, {position_.x, position_.y + size_.y}))
         {
             eventHandler.handleEvents({DISCONNECT}, id_);
         }
@@ -45,7 +46,7 @@ void CoreLogic::EventManagement::Actors::Drone::move(bool pa_up, bool pa_down, b
         (pa_up || pa_down) ? position_.x -= 2 : position_.x -= 3;
         adjustOutOfBounds();
         updateHitbox();
-        if (checkCollision(Direction::LEFT, position_))
+        if (checkCollision(CoreLogic::UserInterface::Direction::LEFT, position_))
         {
             eventHandler.handleEvents({DISCONNECT}, id_);
         }
@@ -56,7 +57,7 @@ void CoreLogic::EventManagement::Actors::Drone::move(bool pa_up, bool pa_down, b
         (pa_up || pa_down) ? position_.x += 2 : position_.x += 3;
         adjustOutOfBounds();
         updateHitbox();
-        if (checkCollision(Direction::RIGHT, {position_.x +size_.x, position_.y}))
+        if (checkCollision(CoreLogic::UserInterface::Direction::RIGHT, {position_.x + size_.x, position_.y}))
         {
             eventHandler.handleEvents({DISCONNECT}, id_);
         }
@@ -65,7 +66,7 @@ void CoreLogic::EventManagement::Actors::Drone::move(bool pa_up, bool pa_down, b
 
 
 
-bool CoreLogic::EventManagement::Actors::Drone::checkCollision(Direction pa_direction, Vector2 pa_position)
+bool CoreLogic::EventManagement::Actors::Drone::checkCollision(CoreLogic::UserInterface::Direction pa_direction, Vector2 pa_position)
 {
     /**
      * @pseudo_code TODO: Elevation and Input Handler
@@ -82,10 +83,10 @@ bool CoreLogic::EventManagement::Actors::Drone::checkCollision(Direction pa_dire
      **/
     Vector2 tileID = CoreLogic::DataProcessing::coordinatesToTile(pa_position);
     Vector2 endID;
-    if (pa_direction == Direction::UP || pa_direction == Direction::DOWN)
+    if (pa_direction == CoreLogic::UserInterface::Direction::UP || pa_direction == CoreLogic::UserInterface::Direction::DOWN)
     {
         endID = CoreLogic::DataProcessing::coordinatesToTile({pa_position.x + size_.x, pa_position.y});
-    } else if (pa_direction == Direction::LEFT || pa_direction == Direction::RIGHT) {
+    } else if (pa_direction == CoreLogic::UserInterface::Direction::LEFT || pa_direction == CoreLogic::UserInterface::Direction::RIGHT) {
         endID = CoreLogic::DataProcessing::coordinatesToTile({pa_position.x, pa_position.y + size_.y});
     } else {
         throw std::runtime_error("Direction not defined");
@@ -119,25 +120,25 @@ bool CoreLogic::EventManagement::Actors::Drone::checkCollision(Direction pa_dire
                                                                    static_cast<float>(tileRec.y),
                                                                    static_cast<float>(tileRec.width),
                                                                    static_cast<float>(tileRec.height)});
-                if (pa_direction == Direction::UP)
+                if (pa_direction == CoreLogic::UserInterface::Direction::UP)
                 {
                     position_.y += collisionRec.height;
                     updateHitbox();
-                } else if (pa_direction == Direction::DOWN) {
+                } else if (pa_direction == CoreLogic::UserInterface::Direction::DOWN) {
                     position_.y -= collisionRec.height;
                     updateHitbox();
-                } else if (pa_direction == Direction::LEFT) {
+                } else if (pa_direction == CoreLogic::UserInterface::Direction::LEFT) {
                     position_.x += collisionRec.width;
                     updateHitbox();
-                } else if (pa_direction == Direction::RIGHT) {
+                } else if (pa_direction == CoreLogic::UserInterface::Direction::RIGHT) {
                     position_.x -= collisionRec.width;
                     updateHitbox();
                 }
             }
-            if (pa_direction == Direction::UP || pa_direction == Direction::DOWN)
+            if (pa_direction == CoreLogic::UserInterface::Direction::UP || pa_direction == CoreLogic::UserInterface::Direction::DOWN)
             {
                 tileID.x++;
-            } else if (pa_direction == Direction::LEFT || pa_direction == Direction::RIGHT) {
+            } else if (pa_direction == CoreLogic::UserInterface::Direction::LEFT || pa_direction == CoreLogic::UserInterface::Direction::RIGHT) {
                 tileID.y++;
             } else {
                 throw std::runtime_error("Invalid Direction");
@@ -183,19 +184,19 @@ bool CoreLogic::EventManagement::Actors::Drone::checkCollision(Direction pa_dire
                 dies = true;
             }
             Rectangle collisionRec = GetCollisionRec(hitbox_, objectHitbox);
-            if (pa_direction == Direction::UP)
+            if (pa_direction == CoreLogic::UserInterface::Direction::UP)
             {
                 position_.y += collisionRec.height;
                 updateHitbox();
-            } else if (pa_direction == Direction::DOWN)
+            } else if (pa_direction == CoreLogic::UserInterface::Direction::DOWN)
             {
                 position_.y -= collisionRec.height;
                 updateHitbox();
-            } else if (pa_direction == Direction::LEFT)
+            } else if (pa_direction == CoreLogic::UserInterface::Direction::LEFT)
             {
                 position_.x += collisionRec.width;
                 updateHitbox();
-            } else if (pa_direction == Direction::RIGHT)
+            } else if (pa_direction == CoreLogic::UserInterface::Direction::RIGHT)
             {
                 position_.x -= collisionRec.width;
                 updateHitbox();
@@ -233,11 +234,12 @@ CoreLogic::EventManagement::Actors::Drone::Drone(Vector2 pa_position, Rectangle 
                                                  int pa_elevation)
         : MovableActor(pa_position, pa_hitbox, pa_id, pa_collisionType, pa_size, pa_visible, pa_elevation)
 {
-    sprite_ = Sprite("assets/graphics/anim_sprite.png", 32, 32,
-                     {{},{AnimationState{0, 3},
-                       AnimationState{1, 3},
-                      AnimationState{2, 3},
-                       AnimationState{3, 3}}});
+    sprite_ = CoreLogic::UserInterface::Sprite("assets/graphics/anim_sprite.png", 32, 32,
+                                               {{},{
+                                                       CoreLogic::UserInterface::AnimationState{0, 3},
+                       CoreLogic::UserInterface::AnimationState{1, 3},
+                      CoreLogic::UserInterface::AnimationState{2, 3},
+                       CoreLogic::UserInterface::AnimationState{3, 3}}});
 }
 
 

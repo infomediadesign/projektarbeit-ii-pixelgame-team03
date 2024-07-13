@@ -33,29 +33,29 @@ set(CORE_LOGIC_SOURCES
 
 
     user_interface/Renderer.cpp
-    user_interface/Sprite.cpp
-    user_interface/AnimatedSprite.cpp
+        user_interface/AnimatedSprite.cpp
 
 
 
-    Scene.cpp
+        Scene.cpp
+        user_interface/Sprite.cpp
 )
 
 set(CORE_LOGIC_HEADERS
-    data_processing/Level.h
-    data_processing/Map.h
-    data_processing/Store.h
-    data_processing/TilesonUtilities.h
+        data_processing/Level.h
+        data_processing/Map.h
+        data_processing/Store.h
+        data_processing/TilesonUtilities.h
 
 
 
-    event_management/Trigger.h
-    event_management/InputHandler.h
-    event_management/EventHandler.h
-    event_management/events/Event.h
-    event_management/events/MovementEvent.h
+        event_management/Trigger.h
+        event_management/InputHandler.h
+        event_management/EventHandler.h
+        event_management/events/Event.h
+        event_management/events/MovementEvent.h
 
-    event_management/Actor.h
+        event_management/Actor.h
         event_management/actor/MovableActor.h
 
         event_management/actor/Drone.h
@@ -70,16 +70,14 @@ set(CORE_LOGIC_HEADERS
 
 
 
-    user_interface/Renderer.h
-    user_interface/Sprite.h
-    user_interface/AnimatedSprite.h
+        user_interface/Renderer.h
+        user_interface/AnimatedSprite.h
 
 
 
-    Scene.h
+        Scene.h
         event_management/EventUtilities.h
-        event_management/Sprite.cpp
-        event_management/Sprite.h
+    user_interface/Sprite.h
 
 )
 
