@@ -126,9 +126,9 @@ void CoreLogic::DataProcessing::Map::loadObjectsExample()
 void CoreLogic::DataProcessing::Map::loadObjects()
 {
     auto drone = std::make_shared<EventManagement::Actors::Drone>(Vector2{100, 100}, Rectangle{100,
-                                                                                               100, 32, 32}, 0,
+                                                                                               100, 38, 38}, 0,
                                                                         EventManagement::Actor::CollisionType::NONE,
-                                                                        Vector2{32, 32}, true, 1);
+                                                                        Vector2{38, 38}, true, 1);
     ActorStorage::setPlayer(drone);
 
     int objectId = 1;

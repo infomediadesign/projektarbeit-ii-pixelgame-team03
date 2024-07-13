@@ -60,7 +60,7 @@ void CoreLogic::UserInterface::Renderer::render(std::shared_ptr<std::map<int, st
              * @Attention: Vorläufige Symbolisierung des Players
              */
             CoreLogic::EventManagement::Actors::Drone &player = *CoreLogic::DataProcessing::ActorStorage::getPlayer();
-            DrawRectangle(player.getPosition().x, player.getPosition().y, 36, 36, WHITE);
+//            DrawRectangle(player.getPosition().x, player.getPosition().y, 36, 36, WHITE);
             DrawTexturePro(player.getTexture(), player.getFrame(), player.getHitbox(), {0,0}, 0,
              WHITE);
 

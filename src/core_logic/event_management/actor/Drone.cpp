@@ -234,12 +234,12 @@ CoreLogic::EventManagement::Actors::Drone::Drone(Vector2 pa_position, Rectangle 
                                                  int pa_elevation)
         : MovableActor(pa_position, pa_hitbox, pa_id, pa_collisionType, pa_size, pa_visible, pa_elevation)
 {
-    sprite_ = CoreLogic::UserInterface::Sprite("assets/graphics/anim_sprite.png", 32, 32,
+    sprite_ = CoreLogic::UserInterface::Sprite("assets/graphics/hive_ARTI_spritesheet-worker-drone_2024-07-13.png", 38, 38,
                                                {{},{
-                                                       CoreLogic::UserInterface::AnimationState{0, 3},
-                       CoreLogic::UserInterface::AnimationState{1, 3},
-                      CoreLogic::UserInterface::AnimationState{2, 3},
-                       CoreLogic::UserInterface::AnimationState{3, 3}}});
+                                                       CoreLogic::UserInterface::AnimationState{0, 7},
+                       CoreLogic::UserInterface::AnimationState{1, 7},
+                      CoreLogic::UserInterface::AnimationState{2, 8},
+                       CoreLogic::UserInterface::AnimationState{3, 8}}});
 }
 
 

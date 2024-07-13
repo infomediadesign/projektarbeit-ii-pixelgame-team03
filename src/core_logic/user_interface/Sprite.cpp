@@ -27,7 +27,6 @@ namespace CoreLogic::UserInterface
         if (pa_stateID < animationStates_.size() &&
             static_cast<int>(pa_primaryDirection) < animationStates_[pa_stateID].size())
         {
-            std::cout << currentState_ << std::endl;
             if (pa_stateID == currentState_ && pa_primaryDirection == primaryDirection_)
             {
                 currentStep_++;

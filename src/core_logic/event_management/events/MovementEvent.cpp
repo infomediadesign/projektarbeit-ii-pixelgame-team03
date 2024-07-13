@@ -40,7 +40,7 @@ void CoreLogic::EventManagement::MovementEvent::update()
      * @note: the modulo clause should be equal to the modulo of the event start
      **/
 
-    if (ticks_ % 8 == 0)
+    if (ticks_ % 4 == 0)
     {
         po_mainActor_->shiftFrame(1);
     }
