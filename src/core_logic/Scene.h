@@ -19,6 +19,7 @@ namespace CoreLogic
         Scene() = delete;
         Scene(std::shared_ptr<Camera2D> pa_camera);
         virtual void draw(RenderTexture2D &pa_canvas) = 0;
+
         virtual void update() = 0;
     protected:
         std::shared_ptr<Camera2D> camera_;

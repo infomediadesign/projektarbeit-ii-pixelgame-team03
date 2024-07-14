@@ -64,9 +64,10 @@ void Staging::Game::run()
         }
         po_stage_->update();
 
+        po_stage_->draw();
+
 //        BeginDrawing();
 //        ClearBackground(BLACK);
-        po_stage_->draw();
 //        EndDrawing();
     }
 }
