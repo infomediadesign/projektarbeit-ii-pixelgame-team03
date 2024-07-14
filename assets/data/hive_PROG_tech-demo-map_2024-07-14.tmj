@@ -381,22 +381,8 @@
  "tileheight":24,
  "tilesets":[
         {
-         "columns":256,
          "firstgid":1,
-         "image":"..\/graphics\/Tile_Atlas.png",
-         "imageheight":6144,
-         "imagewidth":6144,
-         "margin":0,
-         "name":"Tileatlas",
-         "spacing":0,
-         "tilecount":65536,
-         "tileheight":24,
-         "tiles":[
-                {
-                 "id":271,
-                 "type":"Wall"
-                }],
-         "tilewidth":24
+         "source":"hive_ARTI_TileAtlas.tsj"
         }],
  "tilewidth":24,
  "type":"map",
