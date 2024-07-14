@@ -16,7 +16,7 @@ void CoreLogic::DataProcessing::TileMap::Initialize()
 {
     if (po_tileMap_ == nullptr)
     {
-        po_tileMap_ = std::make_shared<Texture2D>(LoadTexture("assets/graphics/Tile_Atlas.png"));
+        po_tileMap_ = std::make_shared<Texture2D>(LoadTexture("assets/graphics/hive_ARTI_TileAtlas.png"));
     }
 
 }

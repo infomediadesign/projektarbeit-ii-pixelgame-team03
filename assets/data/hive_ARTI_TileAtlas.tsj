@@ -1,0 +1,19 @@
+{ "columns":256,
+ "image":"..\/graphics\/Tile_Atlas.png",
+ "imageheight":6144,
+ "imagewidth":6144,
+ "margin":0,
+ "name":"Tileatlas",
+ "spacing":0,
+ "tilecount":65536,
+ "tiledversion":"1.10.2",
+ "tileheight":24,
+ "tiles":[
+        {
+         "id":271,
+         "type":"Wall"
+        }],
+ "tilewidth":24,
+ "type":"tileset",
+ "version":"1.10"
+}
