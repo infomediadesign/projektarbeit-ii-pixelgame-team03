@@ -17,10 +17,10 @@ namespace CoreLogic::EventManagement
     public:
         enum class CollisionType
         {
-            NONE,
-            COLLISION,
-            ENEMYDEATH,
-            DEATH
+            NONE = 0,
+            COLLISION = 1,
+            ENEMYDEATH = 2,
+            DEATH = 3
         };
 
 

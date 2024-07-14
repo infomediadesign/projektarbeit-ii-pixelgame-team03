@@ -19,9 +19,10 @@ void CoreLogic::EventManagement::Actors::Drone::move(bool pa_up, bool pa_down, b
      **/
      EventHandler& eventHandler = EventHandler::getInstance();
 
+    int tickMult = CoreLogic::DataProcessing::ticks % 3;
     if (pa_up && !pa_down)
     {
-        (pa_right || pa_left) ? position_.y -= 2 : position_.y -= 3;
+        (pa_right || pa_left) ? position_.y -= (1+((int)(tickMult/2))) : position_.y -= 2;
         adjustOutOfBounds();
         updateHitbox();
         if (checkCollision(CoreLogic::UserInterface::Direction::UP, position_))
@@ -32,7 +33,7 @@ void CoreLogic::EventManagement::Actors::Drone::move(bool pa_up, bool pa_down, b
 
     if (pa_down && !pa_up)
     {
-        (pa_right || pa_left) ? position_.y += 2 : position_.y += 3;
+        (pa_right || pa_left) ? position_.y += (1+((int)(tickMult/2))) : position_.y += 2;
         adjustOutOfBounds();
         updateHitbox();
         if (checkCollision(CoreLogic::UserInterface::Direction::DOWN, {position_.x, position_.y + size_.y}))
@@ -43,7 +44,7 @@ void CoreLogic::EventManagement::Actors::Drone::move(bool pa_up, bool pa_down, b
 
     if (pa_left && !pa_right)
     {
-        (pa_up || pa_down) ? position_.x -= 2 : position_.x -= 3;
+        (pa_up || pa_down) ? position_.x -= (1+((int)(tickMult/2))) : position_.x -= 2;
         adjustOutOfBounds();
         updateHitbox();
         if (checkCollision(CoreLogic::UserInterface::Direction::LEFT, position_))
@@ -54,7 +55,7 @@ void CoreLogic::EventManagement::Actors::Drone::move(bool pa_up, bool pa_down, b
 
     if (pa_right && !pa_left)
     {
-        (pa_up || pa_down) ? position_.x += 2 : position_.x += 3;
+        (pa_up || pa_down) ? position_.x += (1+((int)(tickMult/2))) : position_.x += 2;
         adjustOutOfBounds();
         updateHitbox();
         if (checkCollision(CoreLogic::UserInterface::Direction::RIGHT, {position_.x + size_.x, position_.y}))
@@ -82,6 +83,7 @@ bool CoreLogic::EventManagement::Actors::Drone::checkCollision(CoreLogic::UserIn
      *@note: to be written Func for convenience
      **/
     Vector2 tileID = CoreLogic::DataProcessing::coordinatesToTile(pa_position);
+    Vector2  startID = tileID;
     Vector2 endID;
     if (pa_direction == CoreLogic::UserInterface::Direction::UP || pa_direction == CoreLogic::UserInterface::Direction::DOWN)
     {
@@ -98,14 +100,30 @@ bool CoreLogic::EventManagement::Actors::Drone::checkCollision(CoreLogic::UserIn
      **/
     for(auto &layer: layers[elevation_])
     {
+        if (!(layer.getType() == tson::LayerType::TileLayer))
+        {
+            continue;
+        }
         do
         {
-            tson::Tile* tilePtr = layer.getTileData(static_cast<int>(tileID.x), static_cast<int>(tileID.y));
+            tson::Tile *tilePtr = layer.getTileData(static_cast<int>(tileID.x), static_cast<int>(tileID.y));
             if (tilePtr == nullptr)
             {
+                if (pa_direction == CoreLogic::UserInterface::Direction::UP ||
+                    pa_direction == CoreLogic::UserInterface::Direction::DOWN)
+                {
+                    tileID.x++;
+                } else if (pa_direction == CoreLogic::UserInterface::Direction::LEFT ||
+                           pa_direction == CoreLogic::UserInterface::Direction::RIGHT)
+                {
+                    tileID.y++;
+                } else
+                {
+                    throw std::runtime_error("Invalid Direction");
+                }
                 continue;
             }
-            tson::Tile& tile = *tilePtr;
+            tson::Tile &tile = *tilePtr;
             /**
              *@todo: to be redefined as not Wall
              **/
@@ -113,37 +131,44 @@ bool CoreLogic::EventManagement::Actors::Drone::checkCollision(CoreLogic::UserIn
             {
 
                 tson::Vector2f tilePosition = tile.getPosition({tileID.x, tileID.y});
-                Rectangle tileRec = {tilePosition.x, tilePosition.y, static_cast<float>(tile.getTileSize().x),
-                                     static_cast<float>(tile.getTileSize().y)};
+                Rectangle tileRec = {
+                        tilePosition.x, tilePosition.y, static_cast<float>(tile.getTileSize().x),
+                        static_cast<float>(tile.getTileSize().y)
+                };
 
-                Rectangle collisionRec = GetCollisionRec(hitbox_, {static_cast<float>(tileRec.x),
-                                                                   static_cast<float>(tileRec.y),
-                                                                   static_cast<float>(tileRec.width),
-                                                                   static_cast<float>(tileRec.height)});
+                Rectangle collisionRec = GetCollisionRec(hitbox_, tileRec);
                 if (pa_direction == CoreLogic::UserInterface::Direction::UP)
                 {
                     position_.y += collisionRec.height;
                     updateHitbox();
-                } else if (pa_direction == CoreLogic::UserInterface::Direction::DOWN) {
+                } else if (pa_direction == CoreLogic::UserInterface::Direction::DOWN)
+                {
                     position_.y -= collisionRec.height;
                     updateHitbox();
-                } else if (pa_direction == CoreLogic::UserInterface::Direction::LEFT) {
+                } else if (pa_direction == CoreLogic::UserInterface::Direction::LEFT)
+                {
                     position_.x += collisionRec.width;
                     updateHitbox();
-                } else if (pa_direction == CoreLogic::UserInterface::Direction::RIGHT) {
+                } else if (pa_direction == CoreLogic::UserInterface::Direction::RIGHT)
+                {
                     position_.x -= collisionRec.width;
                     updateHitbox();
                 }
             }
-            if (pa_direction == CoreLogic::UserInterface::Direction::UP || pa_direction == CoreLogic::UserInterface::Direction::DOWN)
+            if (pa_direction == CoreLogic::UserInterface::Direction::UP ||
+                pa_direction == CoreLogic::UserInterface::Direction::DOWN)
             {
                 tileID.x++;
-            } else if (pa_direction == CoreLogic::UserInterface::Direction::LEFT || pa_direction == CoreLogic::UserInterface::Direction::RIGHT) {
+            } else if (pa_direction == CoreLogic::UserInterface::Direction::LEFT ||
+                       pa_direction == CoreLogic::UserInterface::Direction::RIGHT)
+            {
                 tileID.y++;
-            } else {
+            } else
+            {
                 throw std::runtime_error("Invalid Direction");
             }
         } while (tileID.x <= endID.x && tileID.y <= endID.y);
+        tileID = startID;
 
 
     }
@@ -154,7 +179,10 @@ bool CoreLogic::EventManagement::Actors::Drone::checkCollision(CoreLogic::UserIn
      **/
     bool dies = false;
     std::map<int, std::vector<std::shared_ptr<Actor>>> &actors = *CoreLogic::DataProcessing::ActorStorage::getActors();
-
+    if (!(actors.find(elevation_) != actors.end()))
+    {
+        return false;
+    }
     for (auto &objectPtr : actors[elevation_])
     {
         if (objectPtr == nullptr)
@@ -183,6 +211,10 @@ bool CoreLogic::EventManagement::Actors::Drone::checkCollision(CoreLogic::UserIn
             {
                 dies = true;
             }
+            if (object.getCollisionType() == CollisionType::NONE)
+            {
+                continue;
+            }
             Rectangle collisionRec = GetCollisionRec(hitbox_, objectHitbox);
             if (pa_direction == CoreLogic::UserInterface::Direction::UP)
             {
@@ -201,10 +233,10 @@ bool CoreLogic::EventManagement::Actors::Drone::checkCollision(CoreLogic::UserIn
                 position_.x -= collisionRec.width;
                 updateHitbox();
             }
-            return dies;
         }
 
     }
+    return dies;
     /**
      * @note: I think this was trying to account for all tiles, but is very unnecessary
      *

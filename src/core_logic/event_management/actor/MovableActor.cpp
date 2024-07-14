@@ -37,4 +37,11 @@ namespace CoreLogic::EventManagement::Actors {
     {
 
     }
+
+    void MovableActor::setPosition(Vector2 pa_position)
+    {
+        position_ = pa_position;
+        updateHitbox();
+        adjustOutOfBounds();
+    }
 }

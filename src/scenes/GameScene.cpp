@@ -8,13 +8,13 @@
 
 Scenes::GameScene::GameScene(): Scene(std::make_shared<Camera2D>()),
                                 po_levels_(std::make_unique<std::vector<CoreLogic::DataProcessing::Level>>(std::initializer_list<CoreLogic::DataProcessing::Level>{
-                                        CoreLogic::DataProcessing::Level(std::make_unique<std::vector<std::string>>(std::initializer_list<std::string>{"assets/data/test.tmj", "lol"}), 0, CoreLogic::DataProcessing::LevelState::Default),
+                                        CoreLogic::DataProcessing::Level(std::make_unique<std::vector<std::string>>(std::initializer_list<std::string>{"assets/data/hive_PROG_tech-demo-map_2024-07-14.tmj", "lol"}), 0, CoreLogic::DataProcessing::LevelState::Default),
                                         CoreLogic::DataProcessing::Level(std::make_unique<std::vector<std::string>>(std::initializer_list<std::string>{"lel", "lol"}), 1, CoreLogic::DataProcessing::LevelState::War)
                         }))
 {
     camera_ -> zoom = 1.0f;
     po_currentMap_ = std::make_unique<CoreLogic::DataProcessing::Map>(po_levels_ -> at(0).getMapPath());
-    CoreLogic::DataProcessing::ActorStorage::po_layers_ = po_currentMap_ -> getLayers();
+    CoreLogic::DataProcessing::ActorStorage::setLayers(po_currentMap_ -> getLayers());
     po_previousMap_ = std::make_unique<CoreLogic::DataProcessing::Map>(*po_currentMap_);
     currentLevelID_ = po_levels_ -> at(0).getLevelID();
     previousLevelID_ = currentLevelID_;
@@ -52,7 +52,19 @@ void Scenes::GameScene::update()
     eventHandler.update();
 
 
+    if (IsKeyPressed(KEY_M))
+    {
+        if (player.getElevation() == 0)
+        {
+            player.setElevation(1);
+            player.setPosition({491, 385});
+        } else if (player.getElevation() == 1) {
+            player.setElevation(0);
+            player.setPosition({432,458});
+        }
+    }
     Vector2 playerPos = player.getPosition();
+
 
     /**
      * @attention: keep hard coded?

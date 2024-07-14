@@ -38,7 +38,7 @@ CoreLogic::DataProcessing::Map::Map(std::string pa_filename)
     /**
      *@note: new Parser automatically adds Layer and Object-Vectors to their respective elevation value within their std::map
      **/
-    for (int i = 0; i <= elevationLevels_; i++)
+    for (int i = 0; i < elevationLevels_; i++)
     {
         std::vector<tson::Layer> elevationVector = {};
         for (auto &layer: loadedLayers)
@@ -128,14 +128,14 @@ void CoreLogic::DataProcessing::Map::loadObjects()
     auto drone = std::make_shared<EventManagement::Actors::Drone>(Vector2{100, 100}, Rectangle{100,
                                                                                                100, 38, 38}, 0,
                                                                         EventManagement::Actor::CollisionType::NONE,
-                                                                        Vector2{38, 38}, true, 1);
+                                                                        Vector2{38, 38}, true, 0);
     ActorStorage::setPlayer(drone);
 
     int objectId = 1;
 
-    for (int elev = 1; elev <= elevationLevels_; elev++)
+    for (auto &pair: *po_objects_)
     {
-        for (auto &object: po_objects_->at(elev))
+        for (auto &object: pair.second)
         {
             std::string klasse = object.getClassType();
 
@@ -143,13 +143,31 @@ void CoreLogic::DataProcessing::Map::loadObjects()
 
             tson::PropertyCollection props = object.getProperties();
 
-            EventManagement::Actor::CollisionType objectCollisionType = props.getProperty(
-                    "collisionType")->getValue<EventManagement::Actor::CollisionType>();
+            EventManagement::Actor::CollisionType objectCollisionType = static_cast<EventManagement::Actor::CollisionType>(props.getProperty(
+                    "collisionType")->getValue<int>());
 
             bool objectVisible = object.isVisible();
+            Vector2 objectSize = {0, 0};
 
-            Vector2 objectSize = {props.getProperty("actualSizeX")->getValue<float>(), props.getProperty
-                    ("actualSizeY")->getValue<float>()};
+            try
+            {
+                if (props.hasProperty("actualSizeX") && props.hasProperty("actualSizeY"))
+                {
+
+                    objectSize = {
+                            props.getProperty("actualSizeX")->getValue<float>(), props.getProperty
+                                    ("actualSizeY")->getValue<float>()
+                    };
+                } else if (object.getSize().x != 0 && object.getSize().y != 0) {
+                    objectSize = {
+                            static_cast<float>(object.getSize().x), static_cast<float>(object.getSize().y)
+                    };
+                }
+            } catch (const std::exception &e)
+            {
+                TraceLog(LOG_INFO, "No actualSize Variable");
+            }
+
 
             Rectangle objectHitbox;
             if (object.getObjectType() == tson::ObjectType::Rectangle)
@@ -160,28 +178,34 @@ void CoreLogic::DataProcessing::Map::loadObjects()
 
             std::shared_ptr<EventManagement::Actor> actor = nullptr;
 
+            if (klasse == "Wall")
+            {
+                actor = std::make_shared<EventManagement::Actor>(
+                        EventManagement::Actor(objectPosition, objectHitbox, objectId, objectCollisionType, objectSize, objectVisible, pair.first));
+            }
+
             if (klasse == "Colonist")
             {
                 actor = std::make_shared<EventManagement::Actors::Colonist>(
                         EventManagement::Actors::Colonist(objectPosition, objectHitbox, objectId,
                                                           objectCollisionType,
-                                                          objectSize, objectVisible, elev));
+                                                          objectSize, objectVisible, pair.first));
             } else if (klasse == "Hazmat")
             {
                 actor = std::make_shared<EventManagement::Actors::Hazmat>(
                         EventManagement::Actors::Hazmat(objectPosition, objectHitbox, objectId, objectCollisionType,
-                                                        objectSize, objectVisible, elev));
+                                                        objectSize, objectVisible, pair.first));
             } else if (klasse == "Mech")
             {
                 actor = std::make_shared<EventManagement::Actors::Mech>(
                         EventManagement::Actors::Mech(objectPosition, objectHitbox, objectId, objectCollisionType,
-                                                      objectSize, objectVisible, elev));
+                                                      objectSize, objectVisible, pair.first));
             }
 
 
             if (actor != nullptr)
             {
-                ActorStorage::addActor(elev, actor);
+                ActorStorage::addActor(pair.first, actor);
             }
 
 

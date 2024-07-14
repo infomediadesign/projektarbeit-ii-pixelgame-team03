@@ -51,7 +51,10 @@ void CoreLogic::UserInterface::Renderer::render(std::shared_ptr<std::map<int, st
                 const std::vector<tson::Layer> &layers = pair.second;
                 for (tson::Layer layer: layers) {
                     if (layer.getType() == tson::LayerType::TileLayer) {
-                        renderTileLayer(layer, cameraRec);
+                        if (layer.isVisible())
+                        {
+                            renderTileLayer(layer, cameraRec);
+                        }
                     }
                 }
             }
