@@ -762,8 +762,17 @@
  "tileheight":24,
  "tilesets":[
         {
+         "columns":128,
          "firstgid":1,
-         "source":"tileatlas.tsj"
+         "image":"..\/..\/..\/..\/..\/OneDrive - SRH\/PA2 WenigerSalz\/Artstuff\/PNG\/hive_ARTI_TileAtlas\/hive_ARTI_TileAtlas_2024-07-15 v.2.png",
+         "imageheight":4224,
+         "imagewidth":3072,
+         "margin":0,
+         "name":"tileatlas",
+         "spacing":0,
+         "tilecount":22528,
+         "tileheight":24,
+         "tilewidth":24
         }],
  "tilewidth":24,
  "type":"map",
