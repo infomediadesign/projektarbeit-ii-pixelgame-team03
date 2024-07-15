@@ -1,14 +1,18 @@
-{ "columns":256,
+{ "columns":128,
  "image":"..\/graphics\/hive_ARTI_TileAtlas.png",
- "imageheight":6144,
- "imagewidth":6144,
+ "imageheight":4224,
+ "imagewidth":3072,
  "margin":0,
  "name":"Tileatlas",
  "spacing":0,
- "tilecount":65536,
+ "tilecount":22528,
  "tiledversion":"1.10.2",
  "tileheight":24,
  "tiles":[
+        {
+         "id":143,
+         "type":"Wall"
+        }, 
         {
          "id":271,
          "type":"Wall"

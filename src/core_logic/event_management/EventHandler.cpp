@@ -178,5 +178,10 @@ void CoreLogic::EventManagement::EventHandler::deactivateEvent(EventEnum pa_deac
 
 }
 
+void CoreLogic::EventManagement::EventHandler::switchLevels()
+{
+    po_movementEvent_->updateMainActor();
+}
+
 
 

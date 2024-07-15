@@ -9,7 +9,7 @@
 Scenes::GameScene::GameScene(): Scene(std::make_shared<Camera2D>()),
                                 po_levels_(std::make_unique<std::vector<CoreLogic::DataProcessing::Level>>(std::initializer_list<CoreLogic::DataProcessing::Level>{
                                         CoreLogic::DataProcessing::Level(std::make_unique<std::vector<std::string>>(std::initializer_list<std::string>{"assets/data/hive_PROG_tech-demo-map_2024-07-14.tmj", "lol"}), 0, CoreLogic::DataProcessing::LevelState::Default),
-                                        CoreLogic::DataProcessing::Level(std::make_unique<std::vector<std::string>>(std::initializer_list<std::string>{"lel", "lol"}), 1, CoreLogic::DataProcessing::LevelState::War)
+                                        CoreLogic::DataProcessing::Level(std::make_unique<std::vector<std::string>>(std::initializer_list<std::string>{"lel", "assets/data/level0.tmj"}), 1, CoreLogic::DataProcessing::LevelState::War)
                         }))
 {
     camera_ -> zoom = 1.0f;
@@ -43,27 +43,52 @@ void Scenes::GameScene::update()
      **/
 
     CoreLogic::EventManagement::EventHandler &eventHandler = CoreLogic::EventManagement::EventHandler::getInstance();
-    CoreLogic::EventManagement::Actors::Drone &player = *CoreLogic::DataProcessing::ActorStorage::getPlayer();
+    std::shared_ptr<CoreLogic::EventManagement::Actors::Drone>player = CoreLogic::DataProcessing::ActorStorage::getPlayer();
 
     /**
      *@todo: InputHandler to be called static
      **/
-    eventHandler.handleEvents(po_inputHandler_->handleInput(), player.getId());
+    eventHandler.handleEvents(po_inputHandler_->handleInput(), player->getId());
     eventHandler.update();
 
 
     if (IsKeyPressed(KEY_M))
     {
-        if (player.getElevation() == 0)
+        if (player->getElevation() == 0)
         {
-            player.setElevation(1);
-            player.setPosition({491, 385});
-        } else if (player.getElevation() == 1) {
-            player.setElevation(0);
-            player.setPosition({432,458});
+            player->setElevation(1);
+            player->setPosition({491, 385});
+        } else if (player->getElevation() == 1) {
+            player->setElevation(0);
+            player->setPosition({432,458});
         }
     }
-    Vector2 playerPos = player.getPosition();
+
+    if (IsKeyPressed(KEY_T))
+    {
+        if(currentLevelID_ == 0)
+        {
+            currentLevelID_ = 1;
+
+        } else if (currentLevelID_ == 1)
+        {
+            currentLevelID_ = 0;
+
+        }
+        po_currentMap_ = std::make_unique<CoreLogic::DataProcessing::Map>(po_levels_ -> at(currentLevelID_).getMapPath());
+        CoreLogic::DataProcessing::ActorStorage::setLayers(po_currentMap_ -> getLayers());
+        player = CoreLogic::DataProcessing::ActorStorage::getPlayer();
+        if (currentLevelID_ == 1)
+        {
+            player->setPosition({80,700});
+        } else if (currentLevelID_ == 0) {
+            player->setPosition({100,100});
+        }
+        eventHandler.switchLevels();
+
+    }
+
+    Vector2 playerPos = player->getPosition();
 
 
     /**
@@ -79,7 +104,7 @@ void Scenes::GameScene::update()
     int screenX = screenWidth / 2;
     int screenY = screenHeight / 2;
 
-    Vector2 playerSize = player.getSize();
+    Vector2 playerSize = player->getSize();
 
     if (playerPos.x < screenX - (playerSize.x/2))
     {
