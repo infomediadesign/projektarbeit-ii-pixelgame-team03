@@ -5,11 +5,13 @@
 #ifndef HIVE_SCOUT_H
 #define HIVE_SCOUT_H
 
-namespace CoreLogic::EventManagement::Actors {
+namespace CoreLogic::EventManagement::Actors
+{
 
-            class Scout {
+    class Scout
+    {
 
-            };
+    };
 
 }
 

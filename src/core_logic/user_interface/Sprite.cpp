@@ -18,12 +18,10 @@ namespace CoreLogic::UserInterface
 
         texture_ = LoadTexture(pa_path.c_str());
         frame_ = {0, 0, (float) frameWidth_, (float) frameHeight_};
-
     }
 
     void CoreLogic::UserInterface::Sprite::shiftFrame(int pa_stateID, CoreLogic::UserInterface::Direction pa_primaryDirection)
     {
-
         if (pa_stateID < animationStates_.size() &&
             static_cast<int>(pa_primaryDirection) < animationStates_[pa_stateID].size())
         {
@@ -66,8 +64,6 @@ namespace CoreLogic::UserInterface
             primaryDirection_ = CoreLogic::UserInterface::Direction::RIGHT;
         }
         currentState_ = pa_stateID;
-
-
     }
 
     CoreLogic::UserInterface::Sprite::Sprite()

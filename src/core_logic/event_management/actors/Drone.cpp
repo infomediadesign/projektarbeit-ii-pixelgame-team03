@@ -237,26 +237,6 @@ bool CoreLogic::EventManagement::Actors::Drone::checkCollision(CoreLogic::UserIn
 
     }
     return dies;
-    /**
-     * @note: I think this was trying to account for all tiles, but is very unnecessary
-     *
-    Vector2 newPosition = pa_position;
-    Vector2 positionInvers = {position_.x + size_.x, position_.y + size_.y};
-    auto tileSize = static_cast<float>(CoreLogic::DataProcessing::tileSize);
-    if (pa_direction == Direction::UP && size_.x > (pa_position.x - position_.x))
-    {
-        newPosition.x += tileSize;
-    } else if (pa_direction == Direction::LEFT && size_.y > (pa_position.y - position_.y)) {
-        newPosition.y += tileSize;
-    } else if (pa_direction == Direction::DOWN && size_.x > (positionInvers.x - pa_position.x)) {
-        newPosition.x -= tileSize;
-    } else if (pa_direction == Direction::RIGHT && size_.y > (positionInvers.y - pa_position.y)) {
-        newPosition.y -= tileSize;
-    }
-
-    dies = checkCollision(pa_direction, newPosition);
-*/
-    return dies;
 }
 
 
@@ -266,6 +246,9 @@ CoreLogic::EventManagement::Actors::Drone::Drone(Vector2 pa_position, Rectangle 
                                                  int pa_elevation)
         : MovableActor(pa_position, pa_hitbox, pa_id, pa_collisionType, pa_size, pa_visible, pa_elevation)
 {
+    /**
+     * @todo: remove/change path when drones are implemented and can be switched etc.
+     */
     sprite_ = CoreLogic::UserInterface::Sprite("assets/graphics/hive_ARTI_spritesheet-worker-drone_2024-07-13.png", 38, 38,
                                                {{},{
                                                        CoreLogic::UserInterface::AnimationState{0, 7},

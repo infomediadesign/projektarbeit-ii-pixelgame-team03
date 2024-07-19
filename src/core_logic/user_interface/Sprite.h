@@ -13,9 +13,7 @@ namespace CoreLogic::UserInterface
 {
     struct AnimationState
     {
-        /// y-offset measured in rows (depending on the frame height, i.e. row 1 has a y-offset of 0px, row 2 has a y-offset of the height of an animation frame, etc.).
         int row_;
-        /// Number of steps of the animation.
         int steps_;
     };
     enum class Direction
@@ -45,7 +43,6 @@ namespace CoreLogic::UserInterface
         int currentState_ = 0;
         int currentStep_ = 0;
 
-
         Direction primaryDirection_ = Direction::RIGHT;
 
         int frameWidth_ = 24;
@@ -54,7 +51,6 @@ namespace CoreLogic::UserInterface
         std::string path_ = "";
         Texture2D texture_;
         Rectangle frame_;
-
     };
 }
 

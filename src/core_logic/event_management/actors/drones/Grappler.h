@@ -5,11 +5,13 @@
 #ifndef HIVE_GRAPPLER_H
 #define HIVE_GRAPPLER_H
 
-namespace CoreLogic::EventManagement::Actors {
+namespace CoreLogic::EventManagement::Actors
+{
 
-            class Grappler {
+    class Grappler
+    {
 
-            };
+    };
 
 }
 

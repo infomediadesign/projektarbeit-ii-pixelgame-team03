@@ -24,20 +24,14 @@ void CoreLogic::DataProcessing::TileMap::Initialize()
 
 void CoreLogic::DataProcessing::ActorStorage::Initialize()
 {
-//    if (ActorStorage::po_player_ == nullptr)
-//    {
         ActorStorage::po_player_ = {};
-//    }
-//    if (ActorStorage::po_actors_ == nullptr)
-//    {
+
         std::map<int, std::vector<std::shared_ptr<EventManagement::Actor>>> actors = {};
         ActorStorage::po_actors_ = std::make_shared<std::map<int, std::vector<std::shared_ptr<EventManagement::Actor>>>>(actors);
-//    }
-//    if (ActorStorage::po_layers_ == nullptr)
-//    {
+
         std::map<int, std::vector<tson::Layer>> layers = {};
         ActorStorage::po_layers_ = std::make_shared<std::map<int, std::vector<tson::Layer>>>(layers);
-//    }
+
 }
 
 

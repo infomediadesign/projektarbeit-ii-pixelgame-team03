@@ -4,5 +4,7 @@
 
 #include "Scout.h"
 
-namespace CoreLogic::EventManagement::Actors {
-        }
+namespace CoreLogic::EventManagement::Actors
+{
+
+}

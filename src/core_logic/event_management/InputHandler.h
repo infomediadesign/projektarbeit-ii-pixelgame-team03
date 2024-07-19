@@ -60,7 +60,6 @@ namespace CoreLogic::EventManagement {
             };
 
 
-
             public:
                 InputHandler();
 
@@ -75,19 +74,12 @@ namespace CoreLogic::EventManagement {
                 std::vector<EventEnum> handleInput();
                 bool isCommandReleased(EventEnum pa_enum);
 
-                //void testRemap();
-
-    //            void remap(std::map<std::shared_ptr<Command>, Input> &pa_map,
-    //                       const std::shared_ptr<Command> &pa_Command, Input pa_newInput);
-
-
-                //Input detection
-                //KeyboardKey detectKeyboardInput();
-
 
             protected:
                 std::map<Input, EventEnum> keyboardInGameMapping;
                 std::map<Input, EventEnum> controllerInGameMapping;
+
+                void updateInputActivated(Input &pa_input, bool pa_activated);
 
         };
 

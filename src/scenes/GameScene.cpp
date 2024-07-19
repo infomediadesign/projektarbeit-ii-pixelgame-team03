@@ -93,11 +93,7 @@ void Scenes::GameScene::update()
 
     /**
      * @attention: keep hard coded?
-     * */
-    /*(playerPos.x < 464) ? camera.target.x = 0 : camera.target.x = playerPos.x - 464;
-    (playerPos.y < 254) ? camera.target.y = 0 : camera.target.y = playerPos.y - 254;
-    (playerPos.x > 1104) ? camera.target.x = 576 : camera.target.x = playerPos.x - 464;
-    (playerPos.y > 578) ? camera.target.y = 324 : camera.target.y = playerPos.y - 254;*/
+     */
 
     int screenWidth = CoreLogic::DataProcessing::screenWidth_;
     int screenHeight = CoreLogic::DataProcessing::screenHeight_;
@@ -123,51 +119,6 @@ void Scenes::GameScene::update()
     } else {
         camera.target.y = playerPos.y - screenY + (playerSize.y/2);
     }
-
-
-
-    /**
-     *@note: old prototype movement
-     **/
-    /*if (IsKeyDown(KEY_LEFT))
-     {
-        if (IsKeyDown(KEY_UP))
-        {
-            camera.target.x -= 2;
-            camera.target.y -= 2;
-            return;
-        }
-        camera.target.x -= 3;
-     }
-     if (IsKeyDown(KEY_RIGHT))
-     {
-         camera.target.x += 3;
-     }
-     if (IsKeyDown(KEY_UP))
-     {
-         camera.target.y -= 3;
-     }
-     if (IsKeyDown(KEY_DOWN))
-     {
-         camera.target.y += 3;
-     }*/
-
-    /**
-     * @Pseudo_Code: So soll nachher der Eventhandler evtl. aussehen
-     * @note: veraltet
-     */
-
-   /* KeyboardKey *keys = GetKeyPressed();
-    if (keys == nullptr)
-    {
-        GamepadButton *buttons = InputHandler::getGamepadInputs();
-        GamepadAxis *axes = InputHandler::getGamepadAxes();
-    }
-
-    Commands* commands = InputHandler::getCommands(keys);
-
-    EventHandler::handleCommands(commands);*/
-
 }
 
 

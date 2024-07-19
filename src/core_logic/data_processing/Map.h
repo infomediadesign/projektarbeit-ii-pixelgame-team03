@@ -10,9 +10,9 @@
 #include "TilesonUtilities.h"
 #include "raylib.h"
 #include "event_management/Actor.h"
-#include "event_management/actor/enemies/Hazmat.h"
-#include "event_management/actor/enemies/Colonist.h"
-#include "event_management/actor/enemies/Mech.h"
+#include "event_management/actors/enemies/Hazmat.h"
+#include "event_management/actors/enemies/Colonist.h"
+#include "event_management/actors/enemies/Mech.h"
 
 
 namespace CoreLogic::DataProcessing
@@ -43,7 +43,6 @@ namespace CoreLogic::DataProcessing
         int elevationLevels_;
         Color bgColor_;
         void loadObjects();
-        void loadObjectsExample();
 
     };
 }
