@@ -58,10 +58,8 @@ namespace CoreLogic::UserInterface
         else
         {
             frame_.x = 0;
-            frame_.y = animationStates_[1][1].row_ * frameHeight_;;
+            frame_.y = animationStates_[1][static_cast<int>(primaryDirection_)].row_ * frameHeight_;;
             currentStep_ = 0;
-
-            primaryDirection_ = CoreLogic::UserInterface::Direction::RIGHT;
         }
         currentState_ = pa_stateID;
     }
