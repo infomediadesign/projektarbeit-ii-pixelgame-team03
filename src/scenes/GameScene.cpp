@@ -57,10 +57,10 @@ void Scenes::GameScene::update()
         if (player->getElevation() == 0)
         {
             player->setElevation(1);
-            player->setPosition({491, 385});
+            player->setPosition({744, 600});
         } else if (player->getElevation() == 1) {
             player->setElevation(0);
-            player->setPosition({432,458});
+            player->setPosition({816,648});
         }
     }
 
