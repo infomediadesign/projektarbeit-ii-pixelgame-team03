@@ -9,6 +9,10 @@
 #include <vector>
 #include "TilesonUtilities.h"
 #include "raylib.h"
+#include "event_management/Actor.h"
+#include "event_management/actor/enemies/Hazmat.h"
+#include "event_management/actor/enemies/Colonist.h"
+#include "event_management/actor/enemies/Mech.h"
 
 
 namespace CoreLogic::DataProcessing
@@ -20,8 +24,11 @@ namespace CoreLogic::DataProcessing
 
         std::shared_ptr<tson::Map> getMap();
 
-        std::shared_ptr<std::vector<tson::Layer>> getLayers();
+        std::shared_ptr<std::map<int, std::vector<tson::Layer>>> getLayers();
 
+        /**
+         * @attention: TODO: rework objects into Actors
+         **/
         std::shared_ptr<std::map<int, std::vector<tson::Object>>> getObjects();
 
         Color getBgColor();
@@ -31,9 +38,12 @@ namespace CoreLogic::DataProcessing
 
     protected:
         std::shared_ptr<tson::Map> po_map_;
-        std::shared_ptr<std::vector<tson::Layer>> po_layers_;
+        std::shared_ptr<std::map<int, std::vector<tson::Layer>>> po_layers_;
         std::shared_ptr<std::map<int, std::vector<tson::Object>>> po_objects_;
+        int elevationLevels_;
         Color bgColor_;
+        void loadObjects();
+        void loadObjectsExample();
 
     };
 }

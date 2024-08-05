@@ -3,19 +3,22 @@
 //
 
 #include "GameScene.h"
+#include "event_management/EventHandler.h"
 
 
 Scenes::GameScene::GameScene(): Scene(std::make_shared<Camera2D>()),
                                 po_levels_(std::make_unique<std::vector<CoreLogic::DataProcessing::Level>>(std::initializer_list<CoreLogic::DataProcessing::Level>{
-                                        CoreLogic::DataProcessing::Level(std::make_unique<std::vector<std::string>>(std::initializer_list<std::string>{"assets/data/hive_DESI_Level0_2024-06-17.tmj", "assets/data/hive_DESI_Level3-Greyboxing_2024-06-17.tmj"}), 0, CoreLogic::DataProcessing::LevelState::Default),
-                                        CoreLogic::DataProcessing::Level(std::make_unique<std::vector<std::string>>(std::initializer_list<std::string>{"lol", "assets/data/level1.tmj"}), 1, CoreLogic::DataProcessing::LevelState::War)
-                        }))
+                                        CoreLogic::DataProcessing::Level(std::make_unique<std::vector<std::string>>(std::initializer_list<std::string>{"assets/data/test.tmj", "lol"}), 0, CoreLogic::DataProcessing::LevelState::Default),
+                                        CoreLogic::DataProcessing::Level(std::make_unique<std::vector<std::string>>(std::initializer_list<std::string>{"lel", "lol"}), 1, CoreLogic::DataProcessing::LevelState::War)
+                        })), inputHandler_(std::make_unique<CoreLogic::EventManagement::InputHandler>())
 {
     camera_ -> zoom = 1.0f;
     po_currentMap_ = std::make_unique<CoreLogic::DataProcessing::Map>(po_levels_ -> at(0).getMapPath());
+    CoreLogic::DataProcessing::ActorStorage::po_layers_ = po_currentMap_ -> getLayers();
     po_previousMap_ = std::make_unique<CoreLogic::DataProcessing::Map>(*po_currentMap_);
     currentLevelID_ = po_levels_ -> at(0).getLevelID();
     previousLevelID_ = currentLevelID_;
+
 }
 
 int Scenes::GameScene::getCurrentLevelID()
@@ -26,9 +29,8 @@ int Scenes::GameScene::getCurrentLevelID()
 void Scenes::GameScene::draw(RenderTexture2D &pa_canvas)
 {
     CoreLogic::UserInterface::Renderer& renderer = *CoreLogic::UserInterface::Renderer::getInstance();
-    std::shared_ptr<std::vector<tson::Layer>> layers = po_currentMap_ -> getLayers();
     Color bgColor = po_currentMap_ -> getBgColor();
-    renderer.render(layers, po_actors_, *camera_, pa_canvas, bgColor);
+    renderer.render(CoreLogic::DataProcessing::ActorStorage::getLayers(), po_actors_, *camera_, pa_canvas, bgColor);
 }
 
 void Scenes::GameScene::update()
@@ -37,27 +39,60 @@ void Scenes::GameScene::update()
 
     Camera2D &camera = *camera_;
     /**
-     * @brief: VORLÄUFIGES Cam-Movement, Wird nachher entfernt
-     */
+     *@note: eventhandler with movement Event version
+     **/
 
-    if (IsKeyDown(KEY_Z))
+    CoreLogic::EventManagement::EventHandler &eventHandler = CoreLogic::EventManagement::EventHandler::getInstance();
+    CoreLogic::EventManagement::Actors::Drone &player = *CoreLogic::DataProcessing::ActorStorage::getPlayer();
+
+    /**
+     *@todo: InputHandler to be called static
+     **/
+    eventHandler.handleEvents(inputHandler_->handleInput(), player.getId());
+    eventHandler.update();
+
+
+    Vector2 playerPos = player.getPosition();
+
+    /**
+     * @attention: keep hard coded?
+     * */
+    /*(playerPos.x < 464) ? camera.target.x = 0 : camera.target.x = playerPos.x - 464;
+    (playerPos.y < 254) ? camera.target.y = 0 : camera.target.y = playerPos.y - 254;
+    (playerPos.x > 1104) ? camera.target.x = 576 : camera.target.x = playerPos.x - 464;
+    (playerPos.y > 578) ? camera.target.y = 324 : camera.target.y = playerPos.y - 254;*/
+
+    int screenWidth = CoreLogic::DataProcessing::screenWidth_;
+    int screenHeight = CoreLogic::DataProcessing::screenHeight_;
+    int screenX = screenWidth / 2;
+    int screenY = screenHeight / 2;
+
+    Vector2 playerSize = player.getSize();
+
+    if (playerPos.x < screenX - (playerSize.x/2))
     {
-        camera.zoom = 2.0f;
-    }
-    if (IsKeyDown(KEY_X))
-    {
-        camera.zoom = 1.0f;
+        camera.target.x = 0;
+    } else if (playerPos.x > 1536 - screenX - (playerSize.x/2)) {
+        camera.target.x = 1536 - screenWidth;
+    } else {
+        camera.target.x = playerPos.x - screenX + (playerSize.x/2);
     }
 
-    if(IsKeyDown(KEY_L))
+    if (playerPos.y < screenY - (playerSize.y/2))
     {
-        switchLevel(1);
-    }
-    if (IsKeyDown(KEY_K)) {
-        switchLevel(0);
+        camera.target.y = 0;
+    } else if (playerPos.y > 864 - screenY - (playerSize.y/2)) {
+        camera.target.y = 864 - screenHeight;
+    } else {
+        camera.target.y = playerPos.y - screenY + (playerSize.y/2);
     }
 
-    if (IsKeyDown(KEY_LEFT))
+
+
+    /**
+     *@note: old prototype movement
+     **/
+    /*if (IsKeyDown(KEY_LEFT))
      {
         if (IsKeyDown(KEY_UP))
         {
@@ -78,12 +113,11 @@ void Scenes::GameScene::update()
      if (IsKeyDown(KEY_DOWN))
      {
          camera.target.y += 3;
-     }
-     camera.target = {floorf(camera.target.x), floorf(camera.target.y)};
+     }*/
 
     /**
      * @Pseudo_Code: So soll nachher der Eventhandler evtl. aussehen
-     * @TODO: EventHandler Coden
+     * @note: veraltet
      */
 
    /* KeyboardKey *keys = GetKeyPressed();
@@ -105,7 +139,7 @@ void Scenes::GameScene::render()
 
 }
 
-void Scenes::GameScene::switchLevel(int pa_levelID)
+void Scenes::GameScene::switchLevel()
 {
-    po_currentMap_ = std::make_unique<CoreLogic::DataProcessing::Map>(po_levels_ -> at(pa_levelID).getMapPath());
+
 }

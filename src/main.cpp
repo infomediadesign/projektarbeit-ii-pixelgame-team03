@@ -23,7 +23,7 @@ int main() {
 
     /*// Raylib initialization
     // Project name, screen size, fullscreen mode etc. can be specified in the config.h.in file
-    SetConfigFlags(FLAG_WINDOW_RESIZABLE | FLAG_VSYNC_HINT);
+    SetConfigFlags(FLAG_WINDOW_RESIZABLE | FLAG_VSYNC_HINT); 
     InitWindow(GameSpace::ScreenWidth, GameSpace::ScreenHeight, GameSpace::PROJECT_NAME);
     SetTargetFPS(60);
 

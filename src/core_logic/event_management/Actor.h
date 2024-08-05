@@ -6,27 +6,65 @@
 #define RAYLIBSTARTER_ACTOR_H
 
 
-#include <vector>
-#include <memory>
-#include "Trigger.h"
-
+#include <raylib.h>
+#include <string>
+#include "Sprite.h"
 
 namespace CoreLogic::EventManagement
 {
     class Actor
     {
     public:
-        Actor(int spriteCoordinates);
+        enum class CollisionType
+        {
+            NONE,
+            COLLISION,
+            ENEMYDEATH,
+            DEATH
+        };
+
+
+        Actor(Vector2 pa_position, Rectangle pa_hitbox, int pa_id, CollisionType pa_collidable, Vector2 pa_size, bool pa_visible, int pa_elevation)
+        : position_(pa_position), hitbox_(pa_hitbox), id_(pa_id), collisionType_(pa_collidable), visible_(pa_visible), size_(pa_size), elevation_(pa_elevation) {};
+        virtual ~Actor() = default;
+
+        //getters
+        Vector2 getPosition(){return position_;};
+        Rectangle getHitbox(){return hitbox_;};
+        int getId(){return id_;};
+        CollisionType getCollisionType(){return collisionType_;};
+        bool getVisible(){return visible_;};
+        std::string getName(){return name_;};
+        Vector2 getSize(){return size_;};
+
+        Texture2D getTexture(){return sprite_.getTexture();};
+        Rectangle getFrame(){return sprite_.getFrame();};
+        int getStateID(){return stateID_;};
+
+        Direction getPrimaryDirection(){return primaryDirection_;};
+        void setPrimaryDirection(Direction pa_primaryDirection){primaryDirection_ = pa_primaryDirection;};
+
+
+        void shiftFrame(int pa_stateID);
+        void resetFrame(int pa_stateID);
+
+        [[nodiscard]] int getElevation() const;
+        void setElevation(int pa_elevation);
 
     protected:
-        int spriteCoordinates_;
-        int mapLayerID_;
-        std::unique_ptr<std::vector<CoreLogic::EventManagement::Trigger>> po_eventTriggers_;
-        std::unique_ptr<std::vector<CoreLogic::EventManagement::Trigger>> po_actionTriggers_;
+        Vector2 position_;
+        Rectangle hitbox_;
+        const int id_;
+        CollisionType collisionType_;
         bool visible_;
-        bool moves_;
-        bool collidable_;
-        bool interactable_;
+        std::string name_;
+        const Vector2 size_;
+        int elevation_;
+
+        int stateID_ = 0;
+        Direction primaryDirection_ = Direction::RIGHT;
+
+        Sprite sprite_;
     };
 }
 
