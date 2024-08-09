@@ -3,6 +3,211 @@
  "infinite":false,
  "layers":[
         {
+         "draworder":"topdown",
+         "id":32,
+         "name":"barriers",
+         "objects":[
+                {
+                 "height":240,
+                 "id":1,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"collisionType",
+                         "type":"int",
+                         "value":1
+                        }],
+                 "rotation":0,
+                 "type":"Wall",
+                 "visible":false,
+                 "width":24,
+                 "x":216,
+                 "y":576
+                }, 
+                {
+                 "height":48,
+                 "id":2,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"collisionType",
+                         "type":"int",
+                         "value":1
+                        }],
+                 "rotation":0,
+                 "type":"Wall",
+                 "visible":false,
+                 "width":24,
+                 "x":192,
+                 "y":792
+                }, 
+                {
+                 "height":48,
+                 "id":3,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"collisionType",
+                         "type":"int",
+                         "value":1
+                        }],
+                 "rotation":0,
+                 "type":"Wall",
+                 "visible":false,
+                 "width":24,
+                 "x":168,
+                 "y":816
+                }, 
+                {
+                 "height":24,
+                 "id":4,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"collisionType",
+                         "type":"int",
+                         "value":1
+                        }],
+                 "rotation":0,
+                 "type":"Wall",
+                 "visible":false,
+                 "width":144,
+                 "x":24,
+                 "y":840
+                }, 
+                {
+                 "height":24,
+                 "id":5,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"collisionType",
+                         "type":"int",
+                         "value":1
+                        }],
+                 "rotation":0,
+                 "type":"Wall",
+                 "visible":false,
+                 "width":96,
+                 "x":0,
+                 "y":816
+                }, 
+                {
+                 "height":24,
+                 "id":6,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"collisionType",
+                         "type":"int",
+                         "value":1
+                        }],
+                 "rotation":0,
+                 "type":"Wall",
+                 "visible":false,
+                 "width":48,
+                 "x":48,
+                 "y":792
+                }, 
+                {
+                 "height":24,
+                 "id":7,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"collisionType",
+                         "type":"int",
+                         "value":1
+                        }],
+                 "rotation":0,
+                 "type":"Wall",
+                 "visible":false,
+                 "width":24,
+                 "x":72,
+                 "y":768
+                }, 
+                {
+                 "height":168,
+                 "id":8,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"collisionType",
+                         "type":"int",
+                         "value":1
+                        }],
+                 "rotation":0,
+                 "type":"Wall",
+                 "visible":false,
+                 "width":24,
+                 "x":0,
+                 "y":648
+                }, 
+                {
+                 "height":24,
+                 "id":9,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"collisionType",
+                         "type":"int",
+                         "value":1
+                        }],
+                 "rotation":0,
+                 "type":"Wall",
+                 "visible":false,
+                 "width":72,
+                 "x":0,
+                 "y":624
+                }, 
+                {
+                 "height":24,
+                 "id":10,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"collisionType",
+                         "type":"int",
+                         "value":1
+                        }],
+                 "rotation":0,
+                 "type":"Wall",
+                 "visible":false,
+                 "width":96,
+                 "x":0,
+                 "y":600
+                }, 
+                {
+                 "height":24,
+                 "id":11,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"collisionType",
+                         "type":"int",
+                         "value":1
+                        }],
+                 "rotation":0,
+                 "type":"Wall",
+                 "visible":false,
+                 "width":240,
+                 "x":0,
+                 "y":576
+                }],
+         "opacity":1,
+         "properties":[
+                {
+                 "name":"elevation",
+                 "type":"int",
+                 "value":0
+                }],
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+
          "data":[0, 0, 0, 1542, 1542, 1668, 1669, 1542, 1669, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 1413, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7077, 7080, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 1541, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7461, 7078, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -43,6 +248,12 @@
          "id":27,
          "name":"Backrund 0.1",
          "opacity":1,
+         "properties":[
+                {
+                 "name":"elevation",
+                 "type":"int",
+                 "value":0
+                }],
          "type":"tilelayer",
          "visible":true,
          "width":64,
@@ -90,6 +301,13 @@
          "id":20,
          "name":"Backround 1",
          "opacity":1,
+
+         "properties":[
+                {
+                 "name":"elevation",
+                 "type":"int",
+                 "value":0
+                }],
          "type":"tilelayer",
          "visible":true,
          "width":64,
@@ -127,9 +345,11 @@
             9002, 0, 0, 0, 0, 0, 0, 0, 0, 296, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 296, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7719, 0, 0, 0, 0, 0, 0, 9512, 9385, 9385, 9385, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 296, 296, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7847, 0, 0, 0, 0, 0, 0, 0, 9000, 9513, 9513, 8743, 8743, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8860, 8862, 0, 0, 0, 0, 0, 296, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9000, 8744, 8744, 8743, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+
             0, 0, 0, 166, 167, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8489, 8745, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 296, 296, 0, 0, 0, 0, 0, 0, 0, 8744, 8745, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 294, 295, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9374, 9002, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 296, 0, 0, 0, 0, 0, 0, 9000, 8744, 8743, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 296, 0, 0, 0, 0, 0, 0, 0, 9000, 8746, 8743, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8745, 8746, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9000, 8744, 8490, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9000, 8747, 8490, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -137,6 +357,13 @@
          "id":2,
          "name":"Interactables 1",
          "opacity":1,
+
+         "properties":[
+                {
+                 "name":"elevation",
+                 "type":"int",
+                 "value":0
+                }],
          "type":"tilelayer",
          "visible":true,
          "width":64,
@@ -184,6 +411,12 @@
          "id":23,
          "name":"Verbindung Non und Interactable 1",
          "opacity":1,
+         "properties":[
+                {
+                 "name":"elevation",
+                 "type":"int",
+                 "value":0
+                }],
          "type":"tilelayer",
          "visible":true,
          "width":64,
@@ -231,6 +464,12 @@
          "id":1,
          "name":"Non-Interactables 1",
          "opacity":1,
+         "properties":[
+                {
+                 "name":"elevation",
+                 "type":"int",
+                 "value":0
+                }],
          "type":"tilelayer",
          "visible":true,
          "width":64,
@@ -278,6 +517,12 @@
          "id":3,
          "name":"Invisibles 1",
          "opacity":1,
+         "properties":[
+                {
+                 "name":"elevation",
+                 "type":"int",
+                 "value":1
+                }],
          "type":"tilelayer",
          "visible":true,
          "width":64,
@@ -325,6 +570,12 @@
          "id":30,
          "name":"Backround 0.2",
          "opacity":1,
+         "properties":[
+                {
+                 "name":"elevation",
+                 "type":"int",
+                 "value":1
+                }],
          "type":"tilelayer",
          "visible":true,
          "width":64,
@@ -372,6 +623,12 @@
          "id":19,
          "name":"Backround 2",
          "opacity":1,
+         "properties":[
+                {
+                 "name":"elevation",
+                 "type":"int",
+                 "value":1
+                }],
          "type":"tilelayer",
          "visible":true,
          "width":64,
@@ -419,6 +676,12 @@
          "id":7,
          "name":"Non-Interactables 2",
          "opacity":1,
+         "properties":[
+                {
+                 "name":"elevation",
+                 "type":"int",
+                 "value":1
+                }],
          "type":"tilelayer",
          "visible":true,
          "width":64,
@@ -466,6 +729,12 @@
          "id":28,
          "name":"Verbindung Non und Interactable 2",
          "opacity":1,
+         "properties":[
+                {
+                 "name":"elevation",
+                 "type":"int",
+                 "value":1
+                }],
          "type":"tilelayer",
          "visible":true,
          "width":64,
@@ -513,6 +782,12 @@
          "id":8,
          "name":"Interactables 2",
          "opacity":1,
+         "properties":[
+                {
+                 "name":"elevation",
+                 "type":"int",
+                 "value":1
+                }],
          "type":"tilelayer",
          "visible":true,
          "width":64,
@@ -560,8 +835,14 @@
          "id":9,
          "name":"Invisibles 2",
          "opacity":1,
+         "properties":[
+                {
+                 "name":"elevation",
+                 "type":"int",
+                 "value":1
+                }],
          "type":"tilelayer",
-         "visible":true,
+         "visible":false,
          "width":64,
          "x":0,
          "y":0
@@ -607,6 +888,12 @@
          "id":26,
          "name":"Backround 3",
          "opacity":1,
+         "properties":[
+                {
+                 "name":"elevation",
+                 "type":"int",
+                 "value":2
+                }],
          "type":"tilelayer",
          "visible":true,
          "width":64,
@@ -654,6 +941,12 @@
          "id":4,
          "name":"Non-Interacables 3",
          "opacity":1,
+         "properties":[
+                {
+                 "name":"elevation",
+                 "type":"int",
+                 "value":2
+                }],
          "type":"tilelayer",
          "visible":true,
          "width":64,
@@ -701,6 +994,12 @@
          "id":5,
          "name":"Interactables 3",
          "opacity":1,
+         "properties":[
+                {
+                 "name":"elevation",
+                 "type":"int",
+                 "value":2
+                }],
          "type":"tilelayer",
          "visible":true,
          "width":64,
@@ -748,23 +1047,35 @@
          "id":6,
          "name":"Invisibles 3",
          "opacity":1,
+         "properties":[
+                {
+                 "name":"elevation",
+                 "type":"int",
+                 "value":2
+                }],
          "type":"tilelayer",
-         "visible":true,
+         "visible":false,
          "width":64,
          "x":0,
          "y":0
         }],
- "nextlayerid":31,
- "nextobjectid":1,
+ "nextlayerid":33,
+ "nextobjectid":15,
  "orientation":"orthogonal",
+ "properties":[
+        {
+         "name":"elevation_levels",
+         "type":"int",
+         "value":3
+        }],
  "renderorder":"right-down",
- "tiledversion":"1.11.0",
+ "tiledversion":"1.10.2",
  "tileheight":24,
  "tilesets":[
         {
          "columns":128,
          "firstgid":1,
-         "image":"..\/..\/..\/..\/..\/OneDrive - SRH\/PA2 WenigerSalz\/Artstuff\/PNG\/hive_ARTI_TileAtlas\/hive_ARTI_TileAtlas_2024-07-15 v.2.png",
+         "image":"..\/graphics\/hive_ARTI_TileAtlas.png",
          "imageheight":4224,
          "imagewidth":3072,
          "margin":0,

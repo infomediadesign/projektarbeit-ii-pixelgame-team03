@@ -23,6 +23,7 @@ namespace CoreLogic::EventManagement
         static EventHandler &getInstance();
         ~EventHandler();
         void handleEvents(const std::vector<EventEnum> &pa_Events, int pa_actorID);
+        void switchLevels();
 
         void update();
     private:

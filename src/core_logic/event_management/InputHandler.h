@@ -50,7 +50,8 @@ namespace CoreLogic::EventManagement {
                 bool operator<(const Input &other) const {
                     if (type != other.type) return type < other.type;
                     if (type == BUTTON) return button < other.button;
-                    if (type == AXIS) {
+                    if (type == AXIS)
+                    {
                         if (axis != other.axis) return axis < other.axis;
                         return direction < other.direction;
                     }
@@ -59,8 +60,6 @@ namespace CoreLogic::EventManagement {
                 }
             };
 
-
-
             public:
                 InputHandler();
 
@@ -68,6 +67,7 @@ namespace CoreLogic::EventManagement {
                 bool IsAxisReleased(Input& pa_axis);
                 bool getAxisReleased(Input& pa_axis);
                 std::vector<Input> GetGamepadAxisPressed();
+                GamepadButton GetGamepadButtonPressednotDown();
 
                 void keyboardDefaultMapping();
                 void controllerDefaultMapping();
@@ -75,19 +75,13 @@ namespace CoreLogic::EventManagement {
                 std::vector<EventEnum> handleInput();
                 bool isCommandReleased(EventEnum pa_enum);
 
-                //void testRemap();
-
-    //            void remap(std::map<std::shared_ptr<Command>, Input> &pa_map,
-    //                       const std::shared_ptr<Command> &pa_Command, Input pa_newInput);
-
-
-                //Input detection
-                //KeyboardKey detectKeyboardInput();
-
 
             protected:
                 std::map<Input, EventEnum> keyboardInGameMapping;
                 std::map<Input, EventEnum> controllerInGameMapping;
+
+                void updateInputActivated(Input &pa_input, bool pa_activated);
+                GamepadButton lastPressedButton = GAMEPAD_BUTTON_UNKNOWN;
 
         };
 

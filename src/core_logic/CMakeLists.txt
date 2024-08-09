@@ -10,76 +10,67 @@ set(CORE_LOGIC_SOURCES
     data_processing/Store.cpp
 
 
-
-    event_management/Trigger.cpp
-    event_management/InputHandler.cpp
+        event_management/InputHandler.cpp
     event_management/EventHandler.cpp
     event_management/events/Event.cpp
     event_management/events/MovementEvent.cpp
 
     event_management/Actor.cpp
-        event_management/actor/MovableActor.cpp
+        event_management/actors/MovableActor.cpp
 
-        event_management/actor/Drone.cpp
-        event_management/actor/drones/Worker.cpp
-        event_management/actor/drones/Scout.cpp
-        event_management/actor/drones/Grappler.cpp
+        event_management/actors/Drone.cpp
+        event_management/actors/drones/Worker.cpp
+        event_management/actors/drones/Scout.cpp
+        event_management/actors/drones/Grappler.cpp
 
-        event_management/actor/Enemy.cpp
-        event_management/actor/enemies/Colonist.cpp
-        event_management/actor/enemies/Hazmat.cpp
-        event_management/actor/enemies/Mech.cpp
+        event_management/actors/Enemy.cpp
+        event_management/actors/enemies/Colonist.cpp
+        event_management/actors/enemies/Hazmat.cpp
+        event_management/actors/enemies/Mech.cpp
 
 
 
     user_interface/Renderer.cpp
-    user_interface/Sprite.cpp
-    user_interface/AnimatedSprite.cpp
 
 
-
-    Scene.cpp
+        Scene.cpp
+        user_interface/Sprite.cpp
 )
 
 set(CORE_LOGIC_HEADERS
-    data_processing/Level.h
-    data_processing/Map.h
-    data_processing/Store.h
-    data_processing/TilesonUtilities.h
+        data_processing/Level.h
+        data_processing/Map.h
+        data_processing/Store.h
+        data_processing/TilesonUtilities.h
 
 
 
-    event_management/Trigger.h
-    event_management/InputHandler.h
-    event_management/EventHandler.h
-    event_management/events/Event.h
-    event_management/events/MovementEvent.h
+        event_management/InputHandler.h
+        event_management/EventHandler.h
+        event_management/events/Event.h
+        event_management/events/MovementEvent.h
 
-    event_management/Actor.h
-        event_management/actor/MovableActor.h
+        event_management/Actor.h
+        event_management/actors/MovableActor.h
 
-        event_management/actor/Drone.h
-        event_management/actor/drones/Worker.h
-        event_management/actor/drones/Scout.h
-        event_management/actor/drones/Grappler.h
+        event_management/actors/Drone.h
+        event_management/actors/drones/Worker.h
+        event_management/actors/drones/Scout.h
+        event_management/actors/drones/Grappler.h
 
-        event_management/actor/Enemy.h
-        event_management/actor/enemies/Colonist.h
-        event_management/actor/enemies/Hazmat.h
-        event_management/actor/enemies/Mech.h
-
-
-
-    user_interface/Renderer.h
-    user_interface/Sprite.h
-    user_interface/AnimatedSprite.h
+        event_management/actors/Enemy.h
+        event_management/actors/enemies/Colonist.h
+        event_management/actors/enemies/Hazmat.h
+        event_management/actors/enemies/Mech.h
 
 
 
-    Scene.h
+        user_interface/Renderer.h
+
+
+        Scene.h
         event_management/EventUtilities.h
-        event_management/Sprite.cpp
-        event_management/Sprite.h
+    user_interface/Sprite.h
 
 )
 

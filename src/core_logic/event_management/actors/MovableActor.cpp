@@ -22,12 +22,12 @@ namespace CoreLogic::EventManagement::Actors {
         {
             position_.y = 0;
         }
-        if (position_.x + 32 > 1534)
+        if (position_.x + size_.x > 1534)
         {
             position_.x = 1536 - (size_.x + 1);
 
         }
-        if (position_.y +32 > 862)
+        if (position_.y +size_.y > 862)
         {
             position_.y = 864 - (size_.y + 1);
         }
@@ -36,5 +36,12 @@ namespace CoreLogic::EventManagement::Actors {
     void MovableActor::update()
     {
 
+    }
+
+    void MovableActor::setPosition(Vector2 pa_position)
+    {
+        position_ = pa_position;
+        updateHitbox();
+        adjustOutOfBounds();
     }
 }

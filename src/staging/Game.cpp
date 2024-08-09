@@ -32,7 +32,7 @@ Staging::Game::Game(int pa_stage_width, int pa_stage_height, int pa_target_fps, 
         InitAudioDevice();
     }
 
-    stage_ = std::make_unique<Staging::Stage>(stageHeight_, stageWidth_);
+    po_stage_ = std::make_unique<Staging::Stage>(stageHeight_, stageWidth_);
     TraceLog(LOG_INFO, "GameSpace Initialized");
 }
 
@@ -62,11 +62,12 @@ void Staging::Game::run()
                 ToggleFullscreen();
             }
         }
-        stage_->update();
+        po_stage_->update();
+
+        po_stage_->draw();
 
 //        BeginDrawing();
 //        ClearBackground(BLACK);
-        stage_->draw();
 //        EndDrawing();
     }
 }

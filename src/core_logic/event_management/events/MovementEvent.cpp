@@ -6,45 +6,32 @@
 #include "MovementEvent.h"
 #include "raylib.h"
 #include "event_management/EventUtilities.h"
-#include "event_management/actor/Drone.h"
+#include "event_management/actors/Drone.h"
 #include "data_processing/Store.h"
+#include "Sprite.h"
 
-/**
- *@todo: test
- **/
 
 void CoreLogic::EventManagement::MovementEvent::update()
 {
-    /**
-     * @note: should work
-     **/
-
     checkStillPressed();
     if (!ticksRunning_)
     {
         po_mainActor_->resetFrame(1);
         return;
     }
-    updateActorDir();
 
         ticks_++;
 
-
-
     std::dynamic_pointer_cast<Actors::Drone>(po_mainActor_)->move(directionMap_[MOVE_UP], directionMap_[MOVE_DOWN], directionMap_[MOVE_LEFT], directionMap_[MOVE_RIGHT]);
-
-
 
     /**
      * @note: add facing direction variable and func call for actor
-     * @note: the modulo clause should be equal to the modulo of the event start
      **/
 
-    if (ticks_ % 8 == 0)
+    if (ticks_ % 3 == 0)
     {
         po_mainActor_->shiftFrame(1);
     }
-
 }
 
 void CoreLogic::EventManagement::MovementEvent::updateActorDir()
@@ -52,16 +39,16 @@ void CoreLogic::EventManagement::MovementEvent::updateActorDir()
     switch (primaryDir_)
     {
         case MOVE_UP:
-            po_mainActor_->setPrimaryDirection(Direction::UP);
+            po_mainActor_->setPrimaryDirection(CoreLogic::UserInterface::Direction::UP);
             break;
         case MOVE_DOWN:
-            po_mainActor_->setPrimaryDirection(Direction::DOWN);
+            po_mainActor_->setPrimaryDirection(CoreLogic::UserInterface::Direction::DOWN);
             break;
         case MOVE_LEFT:
-            po_mainActor_->setPrimaryDirection(Direction::LEFT);
+            po_mainActor_->setPrimaryDirection(CoreLogic::UserInterface::Direction::LEFT);
             break;
         case MOVE_RIGHT:
-            po_mainActor_->setPrimaryDirection(Direction::RIGHT);
+            po_mainActor_->setPrimaryDirection(CoreLogic::UserInterface::Direction::RIGHT);
             break;
         default:
             break;
@@ -70,21 +57,6 @@ void CoreLogic::EventManagement::MovementEvent::updateActorDir()
 
 void CoreLogic::EventManagement::MovementEvent::startMove(CoreLogic::EventManagement::EventEnum pa_Event)
 {
-    /**
-     * @note should be Coded
-     **/
-
-    /**
-    *@DONE: Rewrite to map<MoveEvent, bool>
-    **/
-
-    /*
-     moveUp_ = false;
-     moveDown_ = false;
-     moveLeft_ = false;
-     moveRight_ = false;
-     */
-
     if (primaryDir_ == EVENT_NULL)
     {
         primaryDir_ = pa_Event;
@@ -92,39 +64,18 @@ void CoreLogic::EventManagement::MovementEvent::startMove(CoreLogic::EventManage
     }
 
     directionMap_[pa_Event] = true;
-
-    
-    /*switch (pa_Event)
-    {
-        case MOVE_UP:
-            moveUp_ = true;
-            break;
-        case MOVE_DOWN:
-            moveDown_ = true;
-            break;
-        case MOVE_LEFT:
-            moveLeft_ = true;
-            break;
-        case MOVE_RIGHT:
-            moveRight_ = true;
-            break;
-        default:
-            throw std::EventException("Unknown Direction");
-            break;
-    }*/
+    updateActorDir();
+    po_mainActor_->shiftFrame(1);
 }
 
 void CoreLogic::EventManagement::MovementEvent::checkStillPressed()
 {
-    /**
-     *@pseudo_code, TODO: Code
-     **/
-
     bool newPrimary = false;
 
     /**
      *@attention: It assumes here that the InputHandler gives the Option to handle an Axis like a Button
      **/
+
     if (directionMap_.at(MOVE_UP) && (inputHandler_.isCommandReleased(MOVE_UP)))
     {
         directionMap_.at(MOVE_UP) = false;
@@ -162,22 +113,37 @@ void CoreLogic::EventManagement::MovementEvent::checkStillPressed()
         if (directionMap_.at(MOVE_UP))
         {
             primaryDir_ = MOVE_UP;
+            updateActorDir();
+            po_mainActor_->shiftFrame(1);
         } else if (directionMap_.at(MOVE_DOWN)) {
             primaryDir_ = MOVE_DOWN;
+            updateActorDir();
+            po_mainActor_->shiftFrame(1);
         } else if (directionMap_.at(MOVE_LEFT)) {
             primaryDir_ = MOVE_LEFT;
+            updateActorDir();
+            po_mainActor_->shiftFrame(1);
         } else if (directionMap_.at(MOVE_RIGHT)) {
             primaryDir_ = MOVE_RIGHT;
+            updateActorDir();
+            po_mainActor_->shiftFrame(1);
         } else {
             primaryDir_ = EVENT_NULL;
             ticksRunning_ = false;
             ticks_ = 0;
         }
     }
-
 }
 
 CoreLogic::EventManagement::MovementEvent::MovementEvent(): Event(MOVE_UP)
+{
+    po_mainActor_ = CoreLogic::DataProcessing::ActorStorage::getPlayer();
+    primaryDir_ = EVENT_NULL;
+    ticksRunning_ = false;
+    directionMap_ = {{MOVE_UP, false}, {MOVE_DOWN, false}, {MOVE_LEFT, false}, {MOVE_RIGHT, false}};
+}
+
+void CoreLogic::EventManagement::MovementEvent::updateMainActor()
 {
     po_mainActor_ = CoreLogic::DataProcessing::ActorStorage::getPlayer();
     primaryDir_ = EVENT_NULL;

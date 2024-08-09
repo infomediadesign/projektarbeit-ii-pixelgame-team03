@@ -8,7 +8,7 @@
 
 #include <raylib.h>
 #include <string>
-#include "Sprite.h"
+#include "user_interface/Sprite.h"
 
 namespace CoreLogic::EventManagement
 {
@@ -17,10 +17,10 @@ namespace CoreLogic::EventManagement
     public:
         enum class CollisionType
         {
-            NONE,
-            COLLISION,
-            ENEMYDEATH,
-            DEATH
+            NONE = 0,
+            COLLISION = 1,
+            ENEMYDEATH = 2,
+            DEATH = 3
         };
 
 
@@ -41,8 +41,8 @@ namespace CoreLogic::EventManagement
         Rectangle getFrame(){return sprite_.getFrame();};
         int getStateID(){return stateID_;};
 
-        Direction getPrimaryDirection(){return primaryDirection_;};
-        void setPrimaryDirection(Direction pa_primaryDirection){primaryDirection_ = pa_primaryDirection;};
+        CoreLogic::UserInterface::Direction getPrimaryDirection(){return primaryDirection_;};
+        void setPrimaryDirection(CoreLogic::UserInterface::Direction pa_primaryDirection){ primaryDirection_ = pa_primaryDirection;};
 
 
         void shiftFrame(int pa_stateID);
@@ -62,9 +62,9 @@ namespace CoreLogic::EventManagement
         int elevation_;
 
         int stateID_ = 0;
-        Direction primaryDirection_ = Direction::RIGHT;
+        CoreLogic::UserInterface::Direction primaryDirection_ = CoreLogic::UserInterface::Direction::RIGHT;
 
-        Sprite sprite_;
+        CoreLogic::UserInterface::Sprite sprite_;
     };
 }
 

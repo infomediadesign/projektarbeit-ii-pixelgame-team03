@@ -5,11 +5,14 @@
 #ifndef HIVE_WORKER_H
 #define HIVE_WORKER_H
 
-namespace CoreLogic::EventManagement::Actors {
+namespace CoreLogic::EventManagement::Actors
+{
 
-            class Worker {
+    class Worker
+    {
 
-            };
+    };
+
 }
 
 #endif //HIVE_WORKER_H

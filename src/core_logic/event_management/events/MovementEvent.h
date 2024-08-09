@@ -17,6 +17,7 @@ namespace CoreLogic::EventManagement
         MovementEvent();
         void update() override;
         void startMove(EventEnum pa_Event);
+        void updateMainActor();
     private:
         void checkStillPressed();
         void updateActorDir();

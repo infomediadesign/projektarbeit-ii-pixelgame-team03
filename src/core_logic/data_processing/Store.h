@@ -11,7 +11,7 @@
 #include <map>
 #include "raylib.h"
 #include "event_management/Actor.h"
-#include "event_management/actor/Drone.h"
+#include "event_management/actors/Drone.h"
 #include "../../tileson.h"
 
 
@@ -36,7 +36,7 @@ namespace CoreLogic::DataProcessing
     struct TileMap
     {
     private:
-        static std::shared_ptr<Texture2D> tileMap_;
+        static std::shared_ptr<Texture2D> po_tileMap_;
     public:
         static std::shared_ptr<Texture2D> getTileMap();
         static void Initialize();
@@ -49,14 +49,14 @@ namespace CoreLogic::DataProcessing
      * @note: possibly also get std::map<int, vector<Layer>> po_layers_ as to not have to make the Map klass static
      **/
     private:
-    public:
-        static void Initialize();
         /**
          * @warning: these currently do not work since they aren't initialised correctly
          */
         static std::shared_ptr<EventManagement::Actors::Drone> po_player_;
         static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Actor>>>> po_actors_;
         static std::shared_ptr<std::map<int, std::vector<tson::Layer>>> po_layers_;
+    public:
+        static void Initialize();
 
         static std::shared_ptr<EventManagement::Actors::Drone> getPlayer();
         static void setPlayer(std::shared_ptr<EventManagement::Actors::Drone> pa_player);

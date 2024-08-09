@@ -51,16 +51,15 @@ void CoreLogic::UserInterface::Renderer::render(std::shared_ptr<std::map<int, st
                 const std::vector<tson::Layer> &layers = pair.second;
                 for (tson::Layer layer: layers) {
                     if (layer.getType() == tson::LayerType::TileLayer) {
-                        renderTileLayer(layer, cameraRec);
+                        if (layer.isVisible())
+                        {
+                            renderTileLayer(layer, cameraRec);
+                        }
                     }
                 }
             }
 
-            /**
-             * @Attention: Vorläufige Symbolisierung des Players
-             */
             CoreLogic::EventManagement::Actors::Drone &player = *CoreLogic::DataProcessing::ActorStorage::getPlayer();
-            DrawRectangle(player.getPosition().x, player.getPosition().y, 32, 32, WHITE);
             DrawTexturePro(player.getTexture(), player.getFrame(), player.getHitbox(), {0,0}, 0,
              WHITE);
 
