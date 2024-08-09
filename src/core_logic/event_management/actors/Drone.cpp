@@ -257,4 +257,62 @@ CoreLogic::EventManagement::Actors::Drone::Drone(Vector2 pa_position, Rectangle 
                        CoreLogic::UserInterface::AnimationState{3, 8}}});
 }
 
+bool CoreLogic::EventManagement::Actors::Drone::canInteract()
+{
+    return false;
+}
+
+bool CoreLogic::EventManagement::Actors::Drone::canAct()
+{
+    return false;
+}
+
+void CoreLogic::EventManagement::Actors::Drone::update()
+{
+    MovableActor::update();
+}
+
+void CoreLogic::EventManagement::Actors::Drone::checkInteraction()
+{
+    Rectangle extensionRec = hitbox_;
+    switch (primaryDirection_)
+    {
+        case UserInterface::Direction::RIGHT:
+            extensionRec.x += DataProcessing::tileSize / 2;
+            break;
+        case UserInterface::Direction::LEFT:
+            extensionRec.x -= DataProcessing::tileSize / 2;
+            break;
+        case UserInterface::Direction::UP:
+            extensionRec.y -= DataProcessing::tileSize / 2;
+            break;
+        case UserInterface::Direction::DOWN:
+            extensionRec.y += DataProcessing::tileSize / 2;
+            break;
+    }
+    std::vector<std::shared_ptr<Actor>> &actors = (*CoreLogic::DataProcessing::ActorStorage::getActors())[elevation_];
+    for (auto &actor: actors)
+    {
+        if (actor == nullptr)
+        {
+            continue;
+        }
+        if (CheckCollisionRecs(extensionRec, actor->getHitbox()))
+        {
+            if (actor->getInteractionType() == InteractionType::Interact)
+            {
+                setInteraction(actor->getId());
+            } else if (actor->getInteractionType() == InteractionType::Ability){
+                try
+                {
+                    setAbility(actor->getId());
+                } catch (std::exception &e) {
+                    TraceLog(LOG_ERROR, e.what());
+                }
+            }
+        }
+
+    }
+}
+
 

@@ -9,6 +9,7 @@
 #include "event_management/actors/Drone.h"
 #include "data_processing/Store.h"
 #include "Sprite.h"
+#include "Event.h"
 
 
 void CoreLogic::EventManagement::MovementEvent::update()

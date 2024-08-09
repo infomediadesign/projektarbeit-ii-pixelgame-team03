@@ -23,10 +23,21 @@ namespace CoreLogic::EventManagement::Actors
 
             void move(bool pa_up, bool pa_down, bool pa_left, bool pa_right);
 
+            bool canInteract();
+            bool canAct();
 
-        private:
+
+            void update();
+
+        protected:
+            void checkInteraction();
+
+            virtual void setInteraction(int pa_actorID) = 0;
+            virtual void setAbility(int pa_actorID) = 0;
 
             bool checkCollision(CoreLogic::UserInterface::Direction pa_direction, Vector2 pa_position);
+            std::pair<int, int> interaction_;
+            std::pair<int, int> action_;
 
         };
     }

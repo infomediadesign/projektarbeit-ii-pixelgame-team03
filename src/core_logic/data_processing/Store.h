@@ -62,6 +62,7 @@ namespace CoreLogic::DataProcessing
         static void setPlayer(std::shared_ptr<EventManagement::Actors::Drone> pa_player);
 
         static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Actor>>>> getActors();
+        static std::shared_ptr<EventManagement::Actor> getActorByID(int pa_actorID);
         static void setActors(std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Actor>>>> pa_actors);
         static void addActor(int pa_elevation, std::shared_ptr<EventManagement::Actor> pa_actor);
 

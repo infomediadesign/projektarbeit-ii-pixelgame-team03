@@ -6,6 +6,7 @@
 #include "EventHandler.h"
 #include "raylib.h"
 #include "EventUtilities.h"
+#include "Event.h"
 
 std::mutex CoreLogic::EventManagement::EventHandler::eventHandler_mutex_;
 CoreLogic::EventManagement::EventHandler::EventHandler()
@@ -64,7 +65,7 @@ void CoreLogic::EventManagement::EventHandler::handleEvents(const std::vector<Ev
         {
             try
             {
-                activateEvent(thrownEvent);
+                activateEvent(thrownEvent, pa_actorID);
             } catch (std::exception &e) //@TODO: write Exception Handling for Events
             {
                 TraceLog(LOG_INFO, e.what());
@@ -109,7 +110,7 @@ void CoreLogic::EventManagement::EventHandler::update()
 
 }
 
-void CoreLogic::EventManagement::EventHandler::activateEvent(EventEnum pa_activateEvent)
+void CoreLogic::EventManagement::EventHandler::activateEvent(EventEnum pa_activateEvent, int pa_actorID)
 {
     if (pa_activateEvent == MOVE_UP || pa_activateEvent == MOVE_DOWN || pa_activateEvent == MOVE_LEFT || pa_activateEvent == MOVE_RIGHT)
     {
@@ -121,7 +122,10 @@ void CoreLogic::EventManagement::EventHandler::activateEvent(EventEnum pa_activa
             throw std::runtime_error("Movement Blocked");
         }
         TraceLog(LOG_ERROR, "reached unreachable Code");
-    } else if (pa_activateEvent == PAUSE) {
+    } else if (pa_activateEvent == ABILITY) {
+        AbilityEvent ability = AbilityEvent();
+        ability = ability.transformEvent();
+        po_activeEvents_[pa_actorID].push_back(std::make_unique<Event>(ability));
         return;
     } else if (pa_activateEvent == EVENT_NULL) {
         return;

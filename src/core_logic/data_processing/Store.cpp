@@ -76,3 +76,18 @@ void CoreLogic::DataProcessing::ActorStorage::setLayers(std::shared_ptr<std::map
 void CoreLogic::DataProcessing::ActorStorage::setPlayer(std::shared_ptr<EventManagement::Actors::Drone> pa_player) {
     po_player_ = pa_player;
 }
+
+std::shared_ptr<CoreLogic::EventManagement::Actor> CoreLogic::DataProcessing::ActorStorage::getActorByID(int pa_actorID)
+{
+    for (auto &pair: *po_actors_)
+    {
+        for (auto &actor: pair.second)
+        {
+            if (actor->getId() == pa_actorID)
+            {
+                return actor;
+            }
+        }
+    }
+    return nullptr;
+}

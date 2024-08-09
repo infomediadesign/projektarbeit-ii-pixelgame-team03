@@ -10,31 +10,33 @@ set(CORE_LOGIC_SOURCES
     data_processing/Store.cpp
 
 
-        event_management/InputHandler.cpp
+    event_management/InputHandler.cpp
     event_management/EventHandler.cpp
     event_management/events/Event.cpp
     event_management/events/MovementEvent.cpp
+    event_management/events/CleaningEvent.cpp
+    event_management/events/AbilityEvent.cpp
 
     event_management/Actor.cpp
-        event_management/actors/MovableActor.cpp
+    event_management/actors/MovableActor.cpp
 
-        event_management/actors/Drone.cpp
-        event_management/actors/drones/Worker.cpp
-        event_management/actors/drones/Scout.cpp
-        event_management/actors/drones/Grappler.cpp
+    event_management/actors/Drone.cpp
+    event_management/actors/drones/Worker.cpp
+    event_management/actors/drones/Scout.cpp
+    event_management/actors/drones/Grappler.cpp
 
-        event_management/actors/Enemy.cpp
-        event_management/actors/enemies/Colonist.cpp
-        event_management/actors/enemies/Hazmat.cpp
-        event_management/actors/enemies/Mech.cpp
+    event_management/actors/Enemy.cpp
+    event_management/actors/enemies/Colonist.cpp
+    event_management/actors/enemies/Hazmat.cpp
+    event_management/actors/enemies/Mech.cpp
 
 
 
     user_interface/Renderer.cpp
 
 
-        Scene.cpp
-        user_interface/Sprite.cpp
+    Scene.cpp
+    user_interface/Sprite.cpp
 )
 
 set(CORE_LOGIC_HEADERS
@@ -49,6 +51,8 @@ set(CORE_LOGIC_HEADERS
         event_management/EventHandler.h
         event_management/events/Event.h
         event_management/events/MovementEvent.h
+        event_management/events/CleaningEvent.h
+        event_management/events/AbilityEvent.h
 
         event_management/Actor.h
         event_management/actors/MovableActor.h
@@ -70,7 +74,8 @@ set(CORE_LOGIC_HEADERS
 
         Scene.h
         event_management/EventUtilities.h
-    user_interface/Sprite.h
+        user_interface/Sprite.h
+
 
 )
 

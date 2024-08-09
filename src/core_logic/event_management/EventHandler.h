@@ -13,6 +13,7 @@
 #include "event_management/events/Event.h"
 #include "event_management/events/MovementEvent.h"
 #include "EventUtilities.h"
+#include "Event.h"
 
 
 namespace CoreLogic::EventManagement
@@ -40,7 +41,7 @@ namespace CoreLogic::EventManagement
         bool movementBlocked_ = false;
         std::unique_ptr<MovementEvent> po_movementEvent_;
 
-        void activateEvent(EventEnum pa_activateEvent);
+        void activateEvent(EventEnum pa_activateEvent, int pa_actorID);
         void deactivateEvent(EventEnum pa_deactivateEvent);
 
         static std::mutex eventHandler_mutex_;

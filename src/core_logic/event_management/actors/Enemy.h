@@ -9,9 +9,10 @@
 
 namespace CoreLogic::EventManagement::Actors {
 
-            class Enemy : public MovableActor{
-
-            };
+    class Enemy : public MovableActor{
+    public:
+        bool checkVision();
+    };
 }
 
 #endif //HIVE_ENEMY_H
