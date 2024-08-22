@@ -1,0 +1,14 @@
+{ "columns":128,
+ "image":"..\/..\/..\/..\/..\/OneDrive - SRH\/PA2 WenigerSalz\/Artstuff\/PNG\/hive_ARTI_TileAtlas\/hive_ARTI_TileAtlas_2024-07-15 v.2.png",
+ "imageheight":4224,
+ "imagewidth":3072,
+ "margin":0,
+ "name":"tileatlas",
+ "spacing":0,
+ "tilecount":65536,
+ "tiledversion":"1.11.0",
+ "tileheight":24,
+ "tilewidth":24,
+ "type":"tileset",
+ "version":"1.10"
+}
