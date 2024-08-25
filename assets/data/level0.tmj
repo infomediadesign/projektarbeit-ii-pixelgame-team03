@@ -430,6 +430,11 @@
                          "name":"text_zone",
                          "type":"int",
                          "value":1
+                        }, 
+                        {
+                         "name":"textbox_text",
+                         "type":"string",
+                         "value":"Each of our drones has different abilities\n\npress <J> as the worker drone to clear the rubble"
                         }],
                  "rotation":0,
                  "type":"",
@@ -447,6 +452,11 @@
                          "name":"text_zone",
                          "type":"int",
                          "value":3
+                        }, 
+                        {
+                         "name":"textbox_text",
+                         "type":"string",
+                         "value":"The walls are too steep, but we can climb up these vines\n\npress <K> to climb up walls covered in vines"
                         }],
                  "rotation":0,
                  "type":"",
@@ -464,6 +474,11 @@
                          "name":"text_zone",
                          "type":"int",
                          "value":2
+                        }, 
+                        {
+                         "name":"textbox_text",
+                         "type":"string",
+                         "value":"There are some areas we cannot reach yet - we should come back once we have more drones"
                         }],
                  "rotation":0,
                  "type":"",
@@ -481,6 +496,11 @@
                          "name":"text_zone",
                          "type":"int",
                          "value":5
+                        }, 
+                        {
+                         "name":"textbox_text",
+                         "type":"string",
+                         "value":"A weakspot in the ground - we can use this to connect to the HIVE\n\npress <K> to uncover and set a new spawnpoint and gain more drone lives\nyou can also reactivate an older spawnpoint, though you will not regain lives this way"
                         }],
                  "rotation":0,
                  "type":"",
@@ -488,6 +508,28 @@
                  "width":168,
                  "x":72,
                  "y":48
+                }, 
+                {
+                 "height":144,
+                 "id":194,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"text_zone",
+                         "type":"int",
+                         "value":3
+                        }, 
+                        {
+                         "name":"textbox_text",
+                         "type":"string",
+                         "value":"The walls are too steep, but we can climb up these vines\n\npress <K> to climb up walls covered in vines"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":96,
+                 "x":792,
+                 "y":576
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -2102,6 +2144,11 @@
                          "name":"text_zone",
                          "type":"int",
                          "value":4
+                        }, 
+                        {
+                         "name":"textbox_text",
+                         "type":"string",
+                         "value":"These rocks block our way, but the worker is strong\n\npress <K> as the worker drone to push round rocks\n"
                         }],
                  "rotation":0,
                  "type":"",
@@ -2119,6 +2166,11 @@
                          "name":"text_zone",
                          "type":"int",
                          "value":6
+                        }, 
+                        {
+                         "name":"textbox_text",
+                         "type":"string",
+                         "value":"What are those things? We need to get across the river"
                         }],
                  "rotation":0,
                  "type":"",
@@ -2136,6 +2188,11 @@
                          "name":"text_zone",
                          "type":"int",
                          "value":7
+                        }, 
+                        {
+                         "name":"textbox_text",
+                         "type":"string",
+                         "value":"These things are dangerous! We need to find out where they came from\n\nmake your way towards the hole to the south-east"
                         }],
                  "rotation":0,
                  "type":"",
@@ -3712,6 +3769,11 @@
                          "name":"text_zone",
                          "type":"int",
                          "value":8
+                        }, 
+                        {
+                         "name":"textbox_text",
+                         "type":"string",
+                         "value":"What are these black rocks?\n\npress <K> to interact with barrels\n"
                         }],
                  "rotation":0,
                  "type":"",
@@ -3729,6 +3791,11 @@
                          "name":"text_zone",
                          "type":"int",
                          "value":9
+                        }, 
+                        {
+                         "name":"textbox_text",
+                         "type":"string",
+                         "value":"There, a way to the up-world - we will follow them"
                         }],
                  "rotation":0,
                  "type":"",
@@ -3795,7 +3862,7 @@
          "y":0
         }],
  "nextlayerid":34,
- "nextobjectid":193,
+ "nextobjectid":195,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.10.2",
