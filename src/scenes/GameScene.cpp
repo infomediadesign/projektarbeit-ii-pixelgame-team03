@@ -4,6 +4,7 @@
 
 #include "GameScene.h"
 #include "event_management/EventHandler.h"
+#include "event_management/SoundHandler.h"
 
 
 Scenes::GameScene::GameScene(): Scene(std::make_shared<Camera2D>()),
@@ -88,6 +89,14 @@ void Scenes::GameScene::update()
 
     }
 
+    /**
+     * @attention: testing
+     */
+    if (IsKeyPressed(KEY_P))
+    {
+        SoundHandler soundHandler;
+        soundHandler.playSound(0);
+    }
     Vector2 playerPos = player->getPosition();
 
 
