@@ -71,4 +71,8 @@ namespace CoreLogic::UserInterface
         frameHeight_ = 0;
         animationStates_ = std::vector<std::vector<CoreLogic::UserInterface::AnimationState>>();
     }
+
+    void Sprite::shiftFrame(int pa_stateID) {
+        shiftFrame(pa_stateID, Direction::UP);
+    }
 }

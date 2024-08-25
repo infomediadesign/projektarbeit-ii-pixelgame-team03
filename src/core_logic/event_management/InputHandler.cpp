@@ -37,23 +37,30 @@ namespace CoreLogic::EventManagement
 
     bool InputHandler::IsAxisReleased(Input &pa_axis)
     {
+        std::cout << "check released" << std::endl;
         if (pa_axis.type == Input::AXIS)
         {
+            std::cout << "axis" << std::endl;
             if (pa_axis.direction == Input::AxisDirection::Positive)
             {
+                std::cout << "positive" << std::endl;
                 if (pa_axis.activated)
                 {
+                    std::cout << "activated" << std::endl;
                     if (GetGamepadAxisMovement(0, pa_axis.axis) > pa_axis.axisThreshold)
                     {
                         updateInputActivated(pa_axis, false);
+                        std::cout << "return true" << std::endl;
                         return true;
                     }
                 }
             }else if (pa_axis.direction == Input::AxisDirection::Negative)
             {
+                std::cout << "negative" << std::endl;
                 if (pa_axis.activated && GetGamepadAxisMovement(0, pa_axis.axis) < pa_axis.axisThreshold * -1)
                 {
                     updateInputActivated(pa_axis, false);
+                    std::cout << "return true" << std::endl;
                     return true;
                 }
             }
@@ -119,6 +126,7 @@ namespace CoreLogic::EventManagement
         if ((GetGamepadAxisMovement(0, GAMEPAD_AXIS_LEFT_X) > 0.5f))
         {
             updateInputActivated(input, true);
+            std::cout << "button activated" << std::endl;
             axisInput.push_back(controllerInGameMapping.find(input)->first);
         }
 
@@ -126,6 +134,7 @@ namespace CoreLogic::EventManagement
         if (GetGamepadAxisMovement(0, GAMEPAD_AXIS_LEFT_X) < -0.5f)
         {
             updateInputActivated(input, true);
+            std::cout << "button activated" << std::endl;
             axisInput.push_back(controllerInGameMapping.find(input)->first);
         }
 
@@ -133,6 +142,7 @@ namespace CoreLogic::EventManagement
         if (GetGamepadAxisMovement(0, GAMEPAD_AXIS_LEFT_Y) > 0.5f)
         {
             updateInputActivated(input, true);
+            std::cout << "button activated" << std::endl;
             axisInput.push_back(controllerInGameMapping.find(input)->first);
         }
 
@@ -140,6 +150,7 @@ namespace CoreLogic::EventManagement
         if (GetGamepadAxisMovement(0, GAMEPAD_AXIS_LEFT_Y) < -0.5f)
         {
             updateInputActivated(input, true);
+            std::cout << "button activated" << std::endl;
             axisInput.push_back(controllerInGameMapping.find(input)->first);
         }
 

@@ -22,11 +22,19 @@ namespace CoreLogic::EventManagement::Actors
 
 
             void move(bool pa_up, bool pa_down, bool pa_left, bool pa_right);
+            int getMaxHealth();
+            int getCurrentHealth();
+
+            void inceaseMaxHealth();
+            void increaseCurrentHealth();
+            void decreaseCurrentHealth();
 
 
         private:
 
             bool checkCollision(CoreLogic::UserInterface::Direction pa_direction, Vector2 pa_position);
+            int maxHealth = 3;
+            int currentHealth = 3;
 
         };
     }

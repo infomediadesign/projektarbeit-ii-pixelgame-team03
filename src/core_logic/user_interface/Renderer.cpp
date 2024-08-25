@@ -3,6 +3,7 @@
 //
 
 #include "Renderer.h"
+#include "HUD.h"
 
 CoreLogic::UserInterface::Renderer* CoreLogic::UserInterface::Renderer::po_instance_ = nullptr;
 std::mutex CoreLogic::UserInterface::Renderer::mutex_;
@@ -22,6 +23,7 @@ void CoreLogic::UserInterface::Renderer::render(std::shared_ptr<std::map<int, st
 
     int screenWidth = CoreLogic::DataProcessing::screenWidth_;
     int screenHeight = CoreLogic::DataProcessing::screenHeight_;
+    CoreLogic::UserInterface::HUD& hud = *CoreLogic::UserInterface::HUD::getInstance();
 
     Rectangle cameraRec = {0, 0, 0, 0};
     if (pa_camera.target.x > 0)
@@ -62,6 +64,7 @@ void CoreLogic::UserInterface::Renderer::render(std::shared_ptr<std::map<int, st
             CoreLogic::EventManagement::Actors::Drone &player = *CoreLogic::DataProcessing::ActorStorage::getPlayer();
             DrawTexturePro(player.getTexture(), player.getFrame(), player.getHitbox(), {0,0}, 0,
              WHITE);
+            hud.draw({pa_camera.target.x, pa_camera.target.y, 640, 360});
 
         } EndMode2D();
     } EndTextureMode();

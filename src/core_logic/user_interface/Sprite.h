@@ -32,6 +32,7 @@ namespace CoreLogic::UserInterface
         Sprite(std::string pa_path, int pa_frameWidth, int pa_frameHeight, std::vector<std::vector<AnimationState>>
         pa_animationStates);
         void shiftFrame(int pa_stateID, Direction pa_primaryDirection);
+        void shiftFrame(int pa_stateID);
         void resetFrame(int pa_stateID);
 
         Texture2D getTexture(){return texture_;};

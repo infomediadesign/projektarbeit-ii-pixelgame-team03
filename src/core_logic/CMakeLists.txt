@@ -73,6 +73,8 @@ set(CORE_LOGIC_HEADERS
     user_interface/Sprite.h
         event_management/SoundHandler.cpp
         event_management/SoundHandler.h
+        user_interface/HUD.cpp
+        user_interface/HUD.h
 
 )
 

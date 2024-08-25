@@ -257,4 +257,41 @@ CoreLogic::EventManagement::Actors::Drone::Drone(Vector2 pa_position, Rectangle 
                        CoreLogic::UserInterface::AnimationState{3, 8}}});
 }
 
+int CoreLogic::EventManagement::Actors::Drone::getMaxHealth() {
+    return maxHealth;
+}
+
+int CoreLogic::EventManagement::Actors::Drone::getCurrentHealth()
+{
+    return currentHealth;
+}
+
+void CoreLogic::EventManagement::Actors::Drone::inceaseMaxHealth()
+{
+    if (!(maxHealth + 2 > 7))
+    {
+        maxHealth += 2;
+        increaseCurrentHealth();
+        increaseCurrentHealth();
+    }
+}
+
+void CoreLogic::EventManagement::Actors::Drone::increaseCurrentHealth()
+{
+    currentHealth++;
+    if (currentHealth > maxHealth)
+    {
+        currentHealth = maxHealth;
+    }
+}
+
+void CoreLogic::EventManagement::Actors::Drone::decreaseCurrentHealth()
+{
+    currentHealth--;
+    if (currentHealth < 1)
+    {
+        currentHealth = 1;
+    }
+}
+
 
