@@ -5,12 +5,16 @@
 #ifndef HIVE_WORKER_H
 #define HIVE_WORKER_H
 
+#include "actors/Drone.h"
+
 namespace CoreLogic::EventManagement::Actors
 {
 
-    class Worker
+    class Worker : public Drone
     {
-
+    public:
+    protected:
+        void checkAbility() override;
     };
 
 }

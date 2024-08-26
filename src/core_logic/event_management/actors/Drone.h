@@ -27,17 +27,21 @@ namespace CoreLogic::EventManagement::Actors
             bool canAct();
 
 
-            void update();
+            virtual void update();
 
         protected:
             void checkInteraction();
+            virtual void checkAbility() = 0;
 
-            virtual void setInteraction(int pa_actorID) = 0;
-            virtual void setAbility(int pa_actorID) = 0;
+            void setInteraction(Interaction pa_interaction);
+            void setAbility(Ability pa_ability);
 
             bool checkCollision(CoreLogic::UserInterface::Direction pa_direction, Vector2 pa_position);
-            std::pair<int, int> interaction_;
-            std::pair<int, int> action_;
+            /**
+             * @Pseudo_Code: Interactions and Abilities not yet existing
+             */
+            std::shared_ptr<Interaction> interaction_;
+            std::shared_ptr<Ability> ability_;
 
         };
     }

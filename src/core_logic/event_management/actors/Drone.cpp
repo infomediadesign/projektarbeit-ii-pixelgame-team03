@@ -259,12 +259,20 @@ CoreLogic::EventManagement::Actors::Drone::Drone(Vector2 pa_position, Rectangle 
 
 bool CoreLogic::EventManagement::Actors::Drone::canInteract()
 {
-    return false;
+    if (interaction_ == nullptr)
+    {
+        return false;
+    }
+    return true;
 }
 
 bool CoreLogic::EventManagement::Actors::Drone::canAct()
 {
-    return false;
+    if (ability_ == nullptr)
+    {
+        return false;
+    }
+    return true;
 }
 
 void CoreLogic::EventManagement::Actors::Drone::update()
@@ -290,29 +298,41 @@ void CoreLogic::EventManagement::Actors::Drone::checkInteraction()
             extensionRec.y += DataProcessing::tileSize / 2;
             break;
     }
-    std::vector<std::shared_ptr<Actor>> &actors = (*CoreLogic::DataProcessing::ActorStorage::getActors())[elevation_];
-    for (auto &actor: actors)
+    /**
+     * @Pseudo_Code: getInteractions() not yet existing
+     */
+    std::vector<std::shared_ptr<Actor>> &interactions = DataProcessing::ActorStorage::getInteractions();
+    for (auto &interaction : interactions)
     {
-        if (actor == nullptr)
+        if (interaction == nullptr)
         {
             continue;
         }
-        if (CheckCollisionRecs(extensionRec, actor->getHitbox()))
+        if (interaction->getElevation() == elevation_)
         {
-            if (actor->getInteractionType() == InteractionType::Interact)
+            if (CheckCollisionRecs(extensionRec, interaction->getHitbox()))
             {
-                setInteraction(actor->getId());
-            } else if (actor->getInteractionType() == InteractionType::Ability){
-                try
-                {
-                    setAbility(actor->getId());
-                } catch (std::exception &e) {
-                    TraceLog(LOG_ERROR, e.what());
-                }
+                setInteraction(interaction);
+                return;
+            } else if (CheckCollisionRecs(hitbox_, interaction->getHitbox())) {
+                setInteraction(interaction);
+                return;
             }
         }
-
     }
+    setInteraction(nullptr);
 }
+
+void CoreLogic::EventManagement::Actors::Drone::setInteraction(Interaction pa_interaction)
+{
+    interaction_ = pa_interaction;
+}
+
+void CoreLogic::EventManagement::Actors::Drone::setAbility(Ability pa_ability)
+{
+    ability_ = pa_ability;
+}
+
+
 
 

@@ -5,11 +5,22 @@
 #ifndef HIVE_CLEANINGEVENT_H
 #define HIVE_CLEANINGEVENT_H
 
+#include <memory>
 
-class CleaningEvent
+namespace CoreLogic::EventManagement
 {
-
-};
-
+    class CleaningEvent
+    {
+    public:
+        CleaningEvent();
+        ~CleaningEvent() = default;
+        void update();
+    protected:
+        /**
+         *  @Pseudo_Code: Rubble not yet existing
+         */
+        std::shared_ptr<Rubble> po_rubble_;
+    };
+}
 
 #endif //HIVE_CLEANINGEVENT_H

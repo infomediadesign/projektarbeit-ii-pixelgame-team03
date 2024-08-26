@@ -103,6 +103,11 @@ void CoreLogic::EventManagement::EventHandler::update()
                 * @attention: could use Exception Handling to deactivate Events
                 **/
                 TraceLog(LOG_INFO, e.what());
+            } catch (bool flag) {
+                if (flag)
+                {
+                    deactivateEvent(event->getID(),activeEvent.first);
+                }
             }
 
         }
@@ -123,6 +128,11 @@ void CoreLogic::EventManagement::EventHandler::activateEvent(EventEnum pa_activa
         }
         TraceLog(LOG_ERROR, "reached unreachable Code");
     } else if (pa_activateEvent == ABILITY) {
+        /**
+         * @warning: Pseudo Code
+         * @TODO: Implement correctly
+         */
+
         AbilityEvent ability = AbilityEvent();
         ability = ability.transformEvent();
         po_activeEvents_[pa_actorID].push_back(std::make_unique<Event>(ability));
@@ -134,9 +144,27 @@ void CoreLogic::EventManagement::EventHandler::activateEvent(EventEnum pa_activa
     }
 }
 
-void CoreLogic::EventManagement::EventHandler::deactivateEvent(EventEnum pa_deactivateEvent)
+void CoreLogic::EventManagement::EventHandler::deactivateEvent(EventEnum pa_deactivateEvent, int pa_actorID)
 {
+    for (auto it = po_activeEvents_[pa_actorID].begin(); it != po_activeEvents_[pa_actorID].end(); ++it) {
+        if (*it == nullptr)
+        {
+            continue;
+        }
+        if (it->get() -> getID() == pa_deactivateEvent)
+        {
+            /**
+             * @Pseudo_Code: finish() or destructor
+             */
+            it->get() -> finish();
+            po_activeEvents_[pa_actorID].erase(it);
+            break;
+        }
+    }
+    for (auto )
+    {
 
+    }
 }
 
 void CoreLogic::EventManagement::EventHandler::switchLevels()

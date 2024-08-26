@@ -42,7 +42,7 @@ namespace CoreLogic::EventManagement
         std::unique_ptr<MovementEvent> po_movementEvent_;
 
         void activateEvent(EventEnum pa_activateEvent, int pa_actorID);
-        void deactivateEvent(EventEnum pa_deactivateEvent);
+        void deactivateEvent(EventEnum pa_deactivateEvent, int pa_actorID);
 
         static std::mutex eventHandler_mutex_;
 
