@@ -37,8 +37,7 @@ namespace CoreLogic::EventManagement
         std::string getName(){return name_;};
         Vector2 getSize(){return size_;};
 
-        Texture2D getTexture(){return sprite_.getTexture();};
-        Rectangle getFrame(){return sprite_.getFrame();};
+        UserInterface::Sprite getSprite(){return sprite_;};
         int getStateID(){return stateID_;};
 
         CoreLogic::UserInterface::Direction getPrimaryDirection(){return primaryDirection_;};

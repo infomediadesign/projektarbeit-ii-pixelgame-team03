@@ -35,8 +35,6 @@ namespace CoreLogic::EventManagement::Actors
 
         void update();
 
-        void draw();
-
 
     protected:
         void updateHitbox();

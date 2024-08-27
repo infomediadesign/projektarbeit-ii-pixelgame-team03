@@ -15,6 +15,7 @@ namespace CoreLogic::UserInterface
     {
         int row_;
         int steps_;
+        Vector2 relativePosition_;
     };
     enum class Direction
     {
@@ -37,6 +38,7 @@ namespace CoreLogic::UserInterface
 
         Texture2D getTexture(){return texture_;};
         Rectangle getFrame(){return frame_;};
+        Vector2 getRelativePosition();
 
     protected:
 

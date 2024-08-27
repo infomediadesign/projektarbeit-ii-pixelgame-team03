@@ -251,10 +251,10 @@ CoreLogic::EventManagement::Actors::Drone::Drone(Vector2 pa_position, Rectangle 
      */
     sprite_ = CoreLogic::UserInterface::Sprite("assets/graphics/hive_ARTI_spritesheet-worker-drone_2024-07-13.png", 38, 38,
                                                {{},{
-                                                       CoreLogic::UserInterface::AnimationState{0, 7},
-                       CoreLogic::UserInterface::AnimationState{1, 7},
-                      CoreLogic::UserInterface::AnimationState{2, 8},
-                       CoreLogic::UserInterface::AnimationState{3, 8}}});
+                                                       CoreLogic::UserInterface::AnimationState{0, 7, {0, 0}},
+                       CoreLogic::UserInterface::AnimationState{1, 7, {0, 0}},
+                      CoreLogic::UserInterface::AnimationState{2, 8, {0, 0}},
+                       CoreLogic::UserInterface::AnimationState{3, 8, {0, 0}}}});
 }
 
 int CoreLogic::EventManagement::Actors::Drone::getMaxHealth() {
