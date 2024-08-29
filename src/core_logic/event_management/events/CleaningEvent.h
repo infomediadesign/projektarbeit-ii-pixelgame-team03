@@ -6,13 +6,16 @@
 #define HIVE_CLEANINGEVENT_H
 
 #include <memory>
+#include "Event.h"
+#include "actors/Drone.h"
+#include "AbilityEvent.h"
 
 namespace CoreLogic::EventManagement
 {
-    class CleaningEvent
+    class CleaningEvent : public AbilityEvent
     {
     public:
-        CleaningEvent();
+        CleaningEvent(std::shared_ptr<Rubble> pa_rubble);
         ~CleaningEvent() = default;
         void update();
     protected:
@@ -20,6 +23,7 @@ namespace CoreLogic::EventManagement
          *  @Pseudo_Code: Rubble not yet existing
          */
         std::shared_ptr<Rubble> po_rubble_;
+        bool cleaningDone_ = false;
     };
 }
 

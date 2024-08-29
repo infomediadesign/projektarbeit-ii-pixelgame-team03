@@ -75,6 +75,8 @@ set(CORE_LOGIC_HEADERS
         Scene.h
         event_management/EventUtilities.h
         user_interface/Sprite.h
+        event_management/events/PushEvent.cpp
+        event_management/events/PushEvent.h
 
 
 )

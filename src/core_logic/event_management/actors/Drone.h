@@ -6,6 +6,7 @@
 #define RAYLIBSTARTER_PLAYER_H
 
 
+#include <memory>
 #include "MovableActor.h"
 
 
@@ -25,6 +26,9 @@ namespace CoreLogic::EventManagement::Actors
 
             bool canInteract();
             bool canAct();
+
+            shared_ptr<Interaction> getInteraction();
+            shared_ptr<Ability> getAbility();
 
 
             virtual void update();

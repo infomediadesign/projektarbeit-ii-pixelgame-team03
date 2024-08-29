@@ -42,7 +42,7 @@ void CoreLogic::EventManagement::EventHandler::handleEvents(const std::vector<Ev
         {
             try
             {
-                activateEvent(thrownEvent);
+                activateEvent(thrownEvent, pa_actorID);
             } catch (std::exception &e) {
                 TraceLog(LOG_INFO, e.what());
             }
@@ -134,7 +134,15 @@ void CoreLogic::EventManagement::EventHandler::activateEvent(EventEnum pa_activa
          */
 
         AbilityEvent ability = AbilityEvent();
-        ability = ability.transformEvent();
+        /**
+         * @Warning: exception handling?
+         */
+        try {
+            ability = ability.transformEvent();
+        } catch (std::exception &e) {
+            TraceLog(LOG_ERROR, e.what());
+            return;
+        }
         po_activeEvents_[pa_actorID].push_back(std::make_unique<Event>(ability));
         return;
     } else if (pa_activateEvent == EVENT_NULL) {

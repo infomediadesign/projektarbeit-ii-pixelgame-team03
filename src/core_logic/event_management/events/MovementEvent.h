@@ -21,7 +21,6 @@ namespace CoreLogic::EventManagement
     private:
         void checkStillPressed();
         void updateActorDir();
-        int ticks_ = 0;
         bool ticksRunning_ = false;
         EventEnum primaryDir_;
         std::map<EventEnum, bool> directionMap_;

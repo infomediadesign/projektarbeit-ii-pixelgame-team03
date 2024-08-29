@@ -138,7 +138,7 @@ void CoreLogic::EventManagement::MovementEvent::checkStillPressed()
 
 CoreLogic::EventManagement::MovementEvent::MovementEvent(): Event(MOVE_UP)
 {
-    po_mainActor_ = dynamic_pointer_cast<Actor>(CoreLogic::DataProcessing::ActorStorage::getPlayer());
+    po_mainActor_ = std::dynamic_pointer_cast<Actor>(CoreLogic::DataProcessing::ActorStorage::getPlayer());
     primaryDir_ = EVENT_NULL;
     ticksRunning_ = false;
     directionMap_ = {{MOVE_UP, false}, {MOVE_DOWN, false}, {MOVE_LEFT, false}, {MOVE_RIGHT, false}};
@@ -146,7 +146,7 @@ CoreLogic::EventManagement::MovementEvent::MovementEvent(): Event(MOVE_UP)
 
 void CoreLogic::EventManagement::MovementEvent::updateMainActor()
 {
-    po_mainActor_ = dynamic_pointer_cast<Actor>(CoreLogic::DataProcessing::ActorStorage::getPlayer());
+    po_mainActor_ = std::dynamic_pointer_cast<Actor>(CoreLogic::DataProcessing::ActorStorage::getPlayer());
     primaryDir_ = EVENT_NULL;
     ticksRunning_ = false;
     directionMap_ = {{MOVE_UP, false}, {MOVE_DOWN, false}, {MOVE_LEFT, false}, {MOVE_RIGHT, false}};

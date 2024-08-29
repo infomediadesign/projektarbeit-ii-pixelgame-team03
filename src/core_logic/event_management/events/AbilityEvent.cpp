@@ -17,5 +17,7 @@ namespace CoreLogic::EventManagement
 
         return std::unique_ptr<AbilityEvent>();
     }
+
+    AbilityEvent::AbilityEvent(EventEnum pa_ID) : Event(pa_ID){}
 } // CoreLogic
 // EventManagement
