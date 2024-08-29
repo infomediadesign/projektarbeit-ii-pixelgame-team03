@@ -251,10 +251,47 @@ CoreLogic::EventManagement::Actors::Drone::Drone(Vector2 pa_position, Rectangle 
      */
     sprite_ = CoreLogic::UserInterface::Sprite("assets/graphics/hive_ARTI_spritesheet-worker-drone_2024-07-13.png", 38, 38,
                                                {{},{
-                                                       CoreLogic::UserInterface::AnimationState{0, 7},
-                       CoreLogic::UserInterface::AnimationState{1, 7},
-                      CoreLogic::UserInterface::AnimationState{2, 8},
-                       CoreLogic::UserInterface::AnimationState{3, 8}}});
+                                                       CoreLogic::UserInterface::AnimationState{0, 7, {0, 0}},
+                       CoreLogic::UserInterface::AnimationState{1, 7, {0, 0}},
+                      CoreLogic::UserInterface::AnimationState{2, 8, {0, 0}},
+                       CoreLogic::UserInterface::AnimationState{3, 8, {0, 0}}}});
+}
+
+int CoreLogic::EventManagement::Actors::Drone::getMaxHealth() {
+    return maxHealth;
+}
+
+int CoreLogic::EventManagement::Actors::Drone::getCurrentHealth()
+{
+    return currentHealth;
+}
+
+void CoreLogic::EventManagement::Actors::Drone::inceaseMaxHealth()
+{
+    if (!(maxHealth + 2 > 7))
+    {
+        maxHealth += 2;
+        increaseCurrentHealth();
+        increaseCurrentHealth();
+    }
+}
+
+void CoreLogic::EventManagement::Actors::Drone::increaseCurrentHealth()
+{
+    currentHealth++;
+    if (currentHealth > maxHealth)
+    {
+        currentHealth = maxHealth;
+    }
+}
+
+void CoreLogic::EventManagement::Actors::Drone::decreaseCurrentHealth()
+{
+    currentHealth--;
+    if (currentHealth < 1)
+    {
+        currentHealth = 1;
+    }
 }
 
 bool CoreLogic::EventManagement::Actors::Drone::canInteract()

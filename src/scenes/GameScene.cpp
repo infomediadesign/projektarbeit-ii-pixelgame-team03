@@ -4,6 +4,8 @@
 
 #include "GameScene.h"
 #include "event_management/EventHandler.h"
+#include "event_management/SoundHandler.h"
+#include "user_interface/HUD.h"
 
 
 Scenes::GameScene::GameScene(): Scene(std::make_shared<Camera2D>()),
@@ -51,6 +53,9 @@ void Scenes::GameScene::update()
     eventHandler.handleEvents(po_inputHandler_->handleInput(), player->getId());
     eventHandler.update();
 
+    CoreLogic::UserInterface::HUD& hud = *CoreLogic::UserInterface::HUD::getInstance();
+    hud.update();
+
 
     if (IsKeyPressed(KEY_M))
     {
@@ -86,6 +91,33 @@ void Scenes::GameScene::update()
         }
         eventHandler.switchLevels();
 
+    }
+
+    /**
+     * @attention: testing
+     */
+    if (IsKeyPressed(KEY_P))
+    {
+        SoundHandler soundHandler;
+        soundHandler.playSound(0);
+    }
+
+    if (IsKeyPressed(KEY_UP))
+    {
+        CoreLogic::EventManagement::Actors::Drone &player = *CoreLogic::DataProcessing::ActorStorage::getPlayer();
+        player.inceaseMaxHealth();
+    }
+
+    if (IsKeyPressed(KEY_DELETE))
+    {
+        CoreLogic::EventManagement::Actors::Drone &player = *CoreLogic::DataProcessing::ActorStorage::getPlayer();
+        player.decreaseCurrentHealth();
+    }
+
+    if (IsKeyPressed(KEY_ENTER))
+    {
+        CoreLogic::EventManagement::Actors::Drone &player = *CoreLogic::DataProcessing::ActorStorage::getPlayer();
+        player.increaseCurrentHealth();
     }
 
     Vector2 playerPos = player->getPosition();

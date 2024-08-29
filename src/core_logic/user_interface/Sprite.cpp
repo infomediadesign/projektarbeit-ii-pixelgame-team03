@@ -2,7 +2,6 @@
 // Created by Josi on 10.07.2024.
 //
 
-#include <iostream>
 #include "Sprite.h"
 
 namespace CoreLogic::UserInterface
@@ -58,7 +57,7 @@ namespace CoreLogic::UserInterface
         else
         {
             frame_.x = 0;
-            frame_.y = animationStates_[1][static_cast<int>(primaryDirection_)].row_ * frameHeight_;;
+            frame_.y = animationStates_[1][static_cast<int>(primaryDirection_)].row_ * frameHeight_;
             currentStep_ = 0;
         }
         currentState_ = pa_stateID;
@@ -70,5 +69,14 @@ namespace CoreLogic::UserInterface
         frameWidth_ = 0;
         frameHeight_ = 0;
         animationStates_ = std::vector<std::vector<CoreLogic::UserInterface::AnimationState>>();
+    }
+
+    void Sprite::shiftFrame(int pa_stateID) {
+        shiftFrame(pa_stateID, Direction::UP);
+    }
+
+    Vector2 Sprite::getRelativePosition()
+    {
+        return animationStates_[currentState_][static_cast<int>(primaryDirection_)].relativePosition_;
     }
 }

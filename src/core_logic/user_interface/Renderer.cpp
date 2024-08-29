@@ -3,6 +3,7 @@
 //
 
 #include "Renderer.h"
+#include "HUD.h"
 
 CoreLogic::UserInterface::Renderer* CoreLogic::UserInterface::Renderer::po_instance_ = nullptr;
 std::mutex CoreLogic::UserInterface::Renderer::mutex_;
@@ -22,6 +23,7 @@ void CoreLogic::UserInterface::Renderer::render(std::shared_ptr<std::map<int, st
 
     int screenWidth = CoreLogic::DataProcessing::screenWidth_;
     int screenHeight = CoreLogic::DataProcessing::screenHeight_;
+    CoreLogic::UserInterface::HUD &hud = *CoreLogic::UserInterface::HUD::getInstance();
 
     Rectangle cameraRec = {0, 0, 0, 0};
     if (pa_camera.target.x > 0)
@@ -34,11 +36,11 @@ void CoreLogic::UserInterface::Renderer::render(std::shared_ptr<std::map<int, st
     }
     if (pa_camera.target.x + screenWidth > 0)
     {
-        cameraRec.width = floorf((pa_camera.target.x + screenWidth+24) / 24);
+        cameraRec.width = floorf((pa_camera.target.x + screenWidth + 24) / 24);
     }
     if (pa_camera.target.y + screenHeight > 0)
     {
-        cameraRec.height = floorf((pa_camera.target.y + screenHeight+24) / 24);
+        cameraRec.height = floorf((pa_camera.target.y + screenHeight + 24) / 24);
     }
     ClearBackground(pa_bgColor);
     BeginTextureMode(pa_canvas);
@@ -47,10 +49,13 @@ void CoreLogic::UserInterface::Renderer::render(std::shared_ptr<std::map<int, st
         BeginMode2D(pa_camera);
         {
             ClearBackground(pa_bgColor);
-            for (const auto& pair : *pa_layers) {
+            for (const auto &pair: *pa_layers)
+            {
                 const std::vector<tson::Layer> &layers = pair.second;
-                for (tson::Layer layer: layers) {
-                    if (layer.getType() == tson::LayerType::TileLayer) {
+                for (tson::Layer layer: layers)
+                {
+                    if (layer.getType() == tson::LayerType::TileLayer)
+                    {
                         if (layer.isVisible())
                         {
                             renderTileLayer(layer, cameraRec);
@@ -60,11 +65,17 @@ void CoreLogic::UserInterface::Renderer::render(std::shared_ptr<std::map<int, st
             }
 
             CoreLogic::EventManagement::Actors::Drone &player = *CoreLogic::DataProcessing::ActorStorage::getPlayer();
-            DrawTexturePro(player.getTexture(), player.getFrame(), player.getHitbox(), {0,0}, 0,
-             WHITE);
+            Sprite sprite = player.getSprite();
+            Rectangle destination = {player.getHitbox().x + sprite.getRelativePosition().x,
+                    player.getHitbox().y + sprite.getRelativePosition().y, sprite.getFrame().width,
+                    sprite.getFrame().height};
+            DrawTexturePro(sprite.getTexture(), sprite.getFrame(), destination, {0, 0}, 0, WHITE);
+            hud.draw({pa_camera.target.x, pa_camera.target.y, 640, 360});
 
-        } EndMode2D();
-    } EndTextureMode();
+        }
+        EndMode2D();
+    }
+    EndTextureMode();
 }
 
 void CoreLogic::UserInterface::Renderer::renderTileLayer(tson::Layer &pa_layer, Rectangle pa_cameraRec)
