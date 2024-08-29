@@ -6,6 +6,7 @@
 #define RAYLIBSTARTER_PLAYER_H
 
 
+#include <memory>
 #include "MovableActor.h"
 
 
@@ -28,11 +29,29 @@ namespace CoreLogic::EventManagement::Actors
             void inceaseMaxHealth();
             void increaseCurrentHealth();
             void decreaseCurrentHealth();
+            bool canInteract();
+            bool canAct();
+
+            shared_ptr<Interaction> getInteraction();
+            shared_ptr<Ability> getAbility();
 
 
-        private:
+            virtual void update();
+
+        protected:
+            void checkInteraction();
+            virtual void checkAbility() = 0;
+
+            void setInteraction(Interaction pa_interaction);
+            void setAbility(Ability pa_ability);
 
             bool checkCollision(CoreLogic::UserInterface::Direction pa_direction, Vector2 pa_position);
+            /**
+             * @Pseudo_Code: Interactions and Abilities not yet existing
+             */
+            std::shared_ptr<Interaction> interaction_;
+            std::shared_ptr<Ability> ability_;
+
             int maxHealth = 3;
             int currentHealth = 3;
 

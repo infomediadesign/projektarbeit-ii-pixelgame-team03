@@ -78,6 +78,11 @@ set(CORE_LOGIC_HEADERS
         event_management/events/PushEvent.cpp
         event_management/events/PushEvent.h
 
+        event_management/SoundHandler.cpp
+        event_management/SoundHandler.h
+        user_interface/HUD.cpp
+        user_interface/HUD.h
+
 
 )
 
