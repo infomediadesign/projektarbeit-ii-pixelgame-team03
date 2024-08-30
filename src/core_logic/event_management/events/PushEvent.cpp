@@ -4,6 +4,7 @@
 
 #include "PushEvent.h"
 #include "Store.h"
+#include "EventHandler.h"
 
 namespace CoreLogic
 {
@@ -11,7 +12,6 @@ namespace CoreLogic
     {
         PushEvent::PushEvent(std::shared_ptr<Pushable> pa_pushable) : AbilityEvent(PUSH)
         {
-            po_mainActor_ = std::dynamic_pointer_cast<Actor>(CoreLogic::DataProcessing::ActorStorage::getPlayer());
             po_pushable_ = pa_pushable;
             std::vector<std::shared_ptr<Barrier>> barriers = CoreLogic::DataProcessing::ActorStorage::getBarriers();
             for (std::shared_ptr<Barrier> barrier : barriers)
@@ -24,6 +24,11 @@ namespace CoreLogic
                 {
                     continue;
                 }
+                if (std::dynamic_pointer_cast<Actor>(barrier) -> getCollisionType() == Actor::CollisionType::NONE)
+                {
+                    continue;
+                }
+
                 Rectangle destination = po_pushable_ -> getHitbox();
                 switch (po_mainActor_->getPrimaryDirection())
                 {
@@ -52,7 +57,43 @@ namespace CoreLogic
 
         PushEvent::~PushEvent()
         {
+            /**
+             * @Pseudo_code: no Type for pushables yet, no Cliffs
+             * @todo: Code Cliffs and Derived Actor Classees
+             */
+            auto& eventHandler = EventHandler::getInstance();
+            std::vector<std::shared_ptr<Cliff>> cliffs;
+            if (po_pushable_ -> getType() == PushableTypes::BARREL)
+            {
+                cliffs = CoreLogic::DataProcessing::ActorStorage::getCliffs();
 
+            } else if (po_pushable_ -> getType() == PushableTypes::ROCK) {
+                /**
+                 * @Pseudo_code: no Falling triggers
+                 * @todo: Code Falling Triggers
+                 */
+                cliffs = CoreLogic::DataProcessing::ActorStorage::getFallingTriggers();
+
+            }
+            if (cliffs.size() == 0)
+            {
+                throw std::runtime_error("No cliffs found");
+            }
+            for (auto& cliff : cliffs)
+            {
+                if (cliff == nullptr)
+                {
+                    continue;
+                }
+                Rectangle cliffHitbox = cliff -> getHitbox();
+
+                if (CheckCollisionRecs(cliffHitbox, po_pushable_ -> getHitbox()))
+                {
+                    po_pushable_ -> setCliff(cliff)
+                    eventHandler.handleEvents({FALLING}, po_pushable_->getId());
+                    return;
+                }
+            }
         }
 
         void PushEvent::update()

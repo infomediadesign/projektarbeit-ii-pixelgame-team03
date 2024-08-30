@@ -82,6 +82,10 @@ set(CORE_LOGIC_HEADERS
         event_management/SoundHandler.h
         user_interface/HUD.cpp
         user_interface/HUD.h
+        event_management/events/FallingEvent.cpp
+        event_management/events/FallingEvent.h
+        event_management/events/JumpEvent.cpp
+        event_management/events/JumpEvent.h
 
 
 )

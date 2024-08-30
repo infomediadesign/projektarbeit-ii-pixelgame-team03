@@ -14,6 +14,8 @@ namespace CoreLogic::EventManagement
     class AbilityEvent: public Event
     {
     public:
+        AbilityEvent();
+
         AbilityEvent(EventEnum pa_ID);
         std::unique_ptr<AbilityEvent> transform();
     };

@@ -6,10 +6,9 @@
 #include "actors/Drone.h"
 #include "data_processing/Store.h"
 
-CoreLogic::EventManagement::CleaningEvent::CleaningEvent(): AbilityEvent(CLEAN)
+CoreLogic::EventManagement::CleaningEvent::CleaningEvent(std::shared_ptr<Rubble> pa_rubble): AbilityEvent(CLEAN)
 {
-    po_mainActor_ = std::dynamic_pointer_cast<Actor>(CoreLogic::DataProcessing::ActorStorage::getPlayer());
-    po_rubble_ = std::dynamic_pointer_cast<Actors::Drone>(po_mainActor_)->getAbility();
+    po_rubble_ = pa_rubble;
     ticks_ = 100;
 }
 
