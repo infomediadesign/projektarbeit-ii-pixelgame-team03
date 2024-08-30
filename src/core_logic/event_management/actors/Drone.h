@@ -23,8 +23,8 @@ namespace CoreLogic::EventManagement::Actors
 
 
             void move(bool pa_up, bool pa_down, bool pa_left, bool pa_right);
-            int getMaxHealth() const;
-            int getCurrentHealth() const;
+            int getMaxHealth();
+            int getCurrentHealth();
 
             void inceaseMaxHealth();
             void increaseCurrentHealth();

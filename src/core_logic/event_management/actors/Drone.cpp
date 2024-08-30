@@ -257,11 +257,11 @@ CoreLogic::EventManagement::Actors::Drone::Drone(Vector2 pa_position, Rectangle 
                        CoreLogic::UserInterface::AnimationState{3, 8, {0, 0}}}});
 }
 
-int CoreLogic::EventManagement::Actors::Drone::getMaxHealth() const {
+int CoreLogic::EventManagement::Actors::Drone::getMaxHealth() {
     return maxHealth;
 }
 
-int CoreLogic::EventManagement::Actors::Drone::getCurrentHealth() const
+int CoreLogic::EventManagement::Actors::Drone::getCurrentHealth()
 {
     return currentHealth;
 }

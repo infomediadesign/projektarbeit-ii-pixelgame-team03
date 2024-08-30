@@ -20,8 +20,6 @@ namespace CoreLogic::EventManagement
         ABILITY,
         CLEAN,
         PUSH,
-        JUMP,
-        FALLING,
 
 
         DEATH_ABILITY,
