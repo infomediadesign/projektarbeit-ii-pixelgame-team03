@@ -7,6 +7,18 @@
 
 namespace CoreLogic::EventManagement
 {
+    class EventException : public std::exception {
+    public:
+        explicit EventException(const char* message) : msg_(message) {}
+
+        [[nodiscard]] const char* what() const noexcept override {
+            return msg_;
+        }
+
+    private:
+        const char* msg_;
+    };
+
     enum EventEnum {
         EVENT_NULL,
         MOVE_UP,

@@ -370,6 +370,16 @@ void CoreLogic::EventManagement::Actors::Drone::setAbility(Ability pa_ability)
     ability_ = pa_ability;
 }
 
+shared_ptr <Interaction> CoreLogic::EventManagement::Actors::Drone::getInteraction()
+{
+    return interaction_;
+}
+
+shared_ptr <Ability> CoreLogic::EventManagement::Actors::Drone::getAbility()
+{
+    return ability_;
+}
+
 
 
 

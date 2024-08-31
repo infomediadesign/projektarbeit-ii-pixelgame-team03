@@ -7,6 +7,7 @@
 #include "raylib.h"
 #include "EventUtilities.h"
 #include "Event.h"
+#include "events/AbilityEvent.h"
 
 std::mutex CoreLogic::EventManagement::EventHandler::eventHandler_mutex_;
 CoreLogic::EventManagement::EventHandler::EventHandler()
@@ -133,17 +134,17 @@ void CoreLogic::EventManagement::EventHandler::activateEvent(EventEnum pa_activa
          * @TODO: Implement correctly
          */
 
-        AbilityEvent ability = AbilityEvent();
+        std::unique_ptr<AbilityEvent> ability = std::make_unique<AbilityEvent>();
         /**
          * @Warning: exception handling?
          */
         try {
-            ability = ability.transformEvent();
+            ability = ability->transform();
         } catch (std::exception &e) {
             TraceLog(LOG_ERROR, e.what());
             return;
         }
-        po_activeEvents_[pa_actorID].push_back(std::make_unique<Event>(ability));
+        po_activeEvents_[pa_actorID].push_back(std::move(ability));
         return;
     } else if (pa_activateEvent == EVENT_NULL) {
         return;
