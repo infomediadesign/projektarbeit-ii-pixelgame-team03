@@ -30,9 +30,6 @@ namespace CoreLogic::EventManagement
 
         const EventEnum id_;
         int ticks_ = 0;
-        /**
-         *@todo: static input Handler?
-         **/
 
     };
 }

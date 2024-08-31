@@ -164,14 +164,9 @@ void CoreLogic::EventManagement::EventHandler::deactivateEvent(EventEnum pa_deac
             /**
              * @Pseudo_Code: finish() or destructor
              */
-            it->get() -> finish();
             po_activeEvents_[pa_actorID].erase(it);
             break;
         }
-    }
-    for (auto )
-    {
-
     }
 }
 

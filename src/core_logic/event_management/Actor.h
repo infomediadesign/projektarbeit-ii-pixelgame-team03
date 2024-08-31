@@ -33,7 +33,9 @@ namespace CoreLogic::EventManagement
         Rectangle getHitbox(){return hitbox_;};
         int getId(){return id_;};
         CollisionType getCollisionType(){return collisionType_;};
+        void setCollisionType(CollisionType pa_collisionType){ collisionType_ = pa_collisionType;};
         bool getVisible(){return visible_;};
+        void setVisible(bool pa_visible){ visible_ = pa_visible;};
         std::string getName(){return name_;};
         Vector2 getSize(){return size_;};
 
