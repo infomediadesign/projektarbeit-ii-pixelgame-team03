@@ -33,12 +33,13 @@ namespace CoreLogic::EventManagement::Actors
 
         void setPosition(Vector2 pa_position);
 
-        void update();
-
 
     protected:
         void updateHitbox();
 
+        /**
+         * @Outdated
+         */
         void adjustOutOfBounds();
     };
 

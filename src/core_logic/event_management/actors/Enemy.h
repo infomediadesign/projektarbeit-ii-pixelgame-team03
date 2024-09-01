@@ -5,13 +5,20 @@
 #ifndef HIVE_ENEMY_H
 #define HIVE_ENEMY_H
 
-#include "MovableActor.h"
+#include <map>
+#include "Actor.h"
 
 namespace CoreLogic::EventManagement::Actors {
 
-    class Enemy : public MovableActor{
+    class Enemy : public Actor{
     public:
         bool checkVision();
+        void update();
+    protected:
+        bool visionConnected_ = false;
+        std::map<CoreLogic::UserInterface::Direction, std::pair<int, int>> visionMap_;
+        
+
     };
 }
 

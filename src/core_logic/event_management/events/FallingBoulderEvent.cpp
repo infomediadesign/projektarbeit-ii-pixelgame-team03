@@ -27,6 +27,10 @@ namespace CoreLogic::EventManagement
                 {
                     continue;
                 }
+                if (std::dynamic_pointer_cast<Actor>(enemy)->getElevation() != std::static_pointer_cast<Pushable>(po_mainActor_) -> getNewElevation())
+                {
+                    continue;
+                }
                 if (CheckCollisionRecs(hitbox, enemy -> getHitbox()))
                 {
                     eventHandler.handleEvents({DISCONNECT}, enemy -> getId());

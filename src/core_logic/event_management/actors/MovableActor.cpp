@@ -33,10 +33,7 @@ namespace CoreLogic::EventManagement::Actors {
         }
     }
 
-    void MovableActor::update()
-    {
 
-    }
 
     void MovableActor::setPosition(Vector2 pa_position)
     {
