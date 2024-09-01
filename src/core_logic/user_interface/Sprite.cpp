@@ -2,6 +2,7 @@
 // Created by Josi on 10.07.2024.
 //
 
+#include <stdexcept>
 #include "Sprite.h"
 
 namespace CoreLogic::UserInterface
@@ -77,6 +78,7 @@ namespace CoreLogic::UserInterface
 
     Vector2 Sprite::getRelativePosition()
     {
-        return animationStates_[currentState_][static_cast<int>(primaryDirection_)].relativePosition_;
+            return animationStates_[currentState_][static_cast<int>(primaryDirection_)].relativePosition_;
+
     }
 }

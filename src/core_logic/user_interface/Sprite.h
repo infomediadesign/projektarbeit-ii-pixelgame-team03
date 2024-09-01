@@ -43,7 +43,7 @@ namespace CoreLogic::UserInterface
     protected:
 
         std::vector<std::vector<AnimationState>> animationStates_; // state<direction<animationState>>
-        int currentState_ = 0;
+        int currentState_ = 1;
         int currentStep_ = 0;
 
         Direction primaryDirection_ = Direction::RIGHT;

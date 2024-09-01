@@ -45,7 +45,7 @@ void CoreLogic::EventManagement::Actors::Drone::move(bool pa_up, bool pa_down, b
     if (pa_left && !pa_right)
     {
         (pa_up || pa_down) ? position_.x -= (1+((int)(tickMult/2))) : position_.x -= 2;
-        adjustOutOfBounds();
+        //adjustOutOfBounds();
         updateHitbox();
         if (checkCollision(CoreLogic::UserInterface::Direction::LEFT, position_))
         {
@@ -212,6 +212,10 @@ bool CoreLogic::EventManagement::Actors::Drone::checkCollision(CoreLogic::UserIn
                 dies = true;
             }
             if (object.getCollisionType() == CollisionType::NONE)
+            {
+                continue;
+            }
+            if (object.getCollisionType() == CollisionType::LEVELCHANGE)
             {
                 continue;
             }

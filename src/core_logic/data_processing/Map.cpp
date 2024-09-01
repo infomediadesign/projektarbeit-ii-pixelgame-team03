@@ -154,6 +154,12 @@ void CoreLogic::DataProcessing::Map::loadObjects()
                         EventManagement::Actor(objectPosition, objectHitbox, objectId, objectCollisionType, objectSize, objectVisible, pair.first));
             }
 
+            if (klasse == "LevelChange")
+            {
+                actor = std::make_shared<EventManagement::Actor>(
+                        EventManagement::Actor(objectPosition, objectHitbox, objectId, static_cast<EventManagement::Actor::CollisionType>(4), objectSize, objectVisible, pair.first));
+            }
+
             if (klasse == "Colonist")
             {
                 actor = std::make_shared<EventManagement::Actors::Colonist>(

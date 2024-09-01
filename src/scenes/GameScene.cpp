@@ -69,30 +69,40 @@ void Scenes::GameScene::update()
         }
     }
 
-    if (IsKeyPressed(KEY_T))
+    std::vector<std::shared_ptr<CoreLogic::EventManagement::Actor>> actors = CoreLogic::DataProcessing::ActorStorage::getActors()->at(player->getElevation());
+    for (auto &actor: actors)
     {
-        if(currentLevelID_ == 0)
+        if (actor->getCollisionType() == static_cast<CoreLogic::EventManagement::Actor::CollisionType>(4))
         {
-            currentLevelID_ = 1;
 
-        } else if (currentLevelID_ == 1)
-        {
-            currentLevelID_ = 0;
 
+            if (CheckCollisionRecs(player->getHitbox(), actor->getHitbox()))
+            {
+                if (currentLevelID_ == 0)
+                {
+                    currentLevelID_ = 1;
+
+                } else if (currentLevelID_ == 1)
+                {
+                    currentLevelID_ = 0;
+
+                }
+                po_currentMap_ = std::make_unique<CoreLogic::DataProcessing::Map>(
+                        po_levels_->at(currentLevelID_).getMapPath());
+                CoreLogic::DataProcessing::ActorStorage::setLayers(po_currentMap_->getLayers());
+                player = CoreLogic::DataProcessing::ActorStorage::getPlayer();
+                if (currentLevelID_ == 1)
+                {
+                    player->setPosition({80, 700});
+                } else if (currentLevelID_ == 0)
+                {
+                    player->setPosition({100, 100});
+                }
+                eventHandler.switchLevels();
+
+            }
         }
-        po_currentMap_ = std::make_unique<CoreLogic::DataProcessing::Map>(po_levels_ -> at(currentLevelID_).getMapPath());
-        CoreLogic::DataProcessing::ActorStorage::setLayers(po_currentMap_ -> getLayers());
-        player = CoreLogic::DataProcessing::ActorStorage::getPlayer();
-        if (currentLevelID_ == 1)
-        {
-            player->setPosition({80,700});
-        } else if (currentLevelID_ == 0) {
-            player->setPosition({100,100});
-        }
-        eventHandler.switchLevels();
-
     }
-
     /**
      * @attention: testing
      */
