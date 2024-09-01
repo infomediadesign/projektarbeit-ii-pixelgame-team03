@@ -7,14 +7,13 @@
 #include "actors/MovableActor.h"
 #include "Store.h"
 #include "EventHandler.h"
+#include "FallingBarrelEvent.h"
+#include "FallingBoulderEvent.h"
 
 
 CoreLogic::EventManagement::FallingEvent::~FallingEvent()
 {
-    if (barrel_)
-    {
-        po_mainActor_ ->setVisible(false);
-    }
+    po_mainActor_ -> setVisible(false);
     po_mainActor_ -> setCollisionType(Actor::CollisionType::NONE);
 }
 
@@ -24,31 +23,8 @@ void CoreLogic::EventManagement::FallingEvent::update()
     {
         fall();
     } else {
-        if (barrel_)
-        {
-            explode();
-        } else {
-            crumble();
-        }
+        destroy();
     }
-
-    if (ticks_ != 0 && ticks_ % 5 == 0)
-    {
-        Vector2 newPosition = po_mainActor_ -> getPosition();
-        int tileSize = CoreLogic::DataProcessing::tileSize;
-        newPosition.y += (0.5 * tileSize);
-        std::dynamic_pointer_cast<CoreLogic::EventManagement::Actors::MovableActor>(po_mainActor_)
-                -> setPosition(newPosition);
-        fallenHeight_ += 0.5;
-    }
-
-    if (fallenHeight_ >= fallHeight_)
-    {
-        broken_ = true;
-        ticks_ = 0;
-    }
-
-    ticks_++;
 }
 
 CoreLogic::EventManagement::FallingEvent::FallingEvent(int pa_actorID): Event(FALLING)
@@ -66,20 +42,7 @@ CoreLogic::EventManagement::FallingEvent::FallingEvent(int pa_actorID): Event(FA
     {
         throw std::runtime_error("Actor not found");
     }
-    /**
-     * @Pseudo_code: getFallHeight and fallHeight not yet existent, Pushable and PushableType neither
-     * @todo: getFallHeight and fallHeight to be Coded into Pushable, as well as Pushable Type
-     */
-    fallHeight_ = std::dynamic_pointer_cast<Pushable>(po_mainActor_) -> getFallHeight();
-    if (std::dynamic_pointer_cast<Pushable>(po_mainActor_) -> getType() == PushableTypes::BARREL)
-    {
-        barrel_ = true;
 
-    } else if (std::dynamic_pointer_cast<Pushable>(po_mainActor_) -> getType() == PushableTypes::ROCK) {
-        barrel_ = false;
-    } else {
-        throw std::runtime_error("Invalid pushable type");
-    }
 }
 
 void CoreLogic::EventManagement::FallingEvent::fall()
@@ -102,13 +65,13 @@ void CoreLogic::EventManagement::FallingEvent::fall()
     }
 }
 
-void CoreLogic::EventManagement::FallingEvent::explode()
+/*void CoreLogic::EventManagement::FallingEvent::explode()
 {
     if (ticks_ == 0)
     {
-        /**
+        *//**
          * @todo: Code Drawing for different frame sizes
-         */
+         *//*
 
         auto& eventHandler = EventHandler::getInstance();
         Rectangle explosionRadius;
@@ -132,15 +95,16 @@ void CoreLogic::EventManagement::FallingEvent::explode()
     }
     if (ticks_ % 5 == 0)
     {
-        po_mainActor_ -> shiftFrame(/**@Attention: set to Breaking frames*/);
+        po_mainActor_ -> shiftFrame(*//**@Attention: set to Breaking frames*//*);
     }
     if (ticks_ >= 60)
     {
         throw true;
     }
     ticks_++;
-}
+}*/
 
+/*
 void CoreLogic::EventManagement::FallingEvent::crumble()
 {
     if (ticks_ == 0)
@@ -162,11 +126,24 @@ void CoreLogic::EventManagement::FallingEvent::crumble()
     }
     if (ticks_ % 5 == 0)
     {
-        po_mainActor_ -> shiftFrame(/**@Attention: set to Breaking frames*/);
+        po_mainActor_ -> shiftFrame(*/
+/**@Attention: set to Breaking frames*//*
+);
     }
     if (ticks_ >= 20)
     {
         throw true;
     }
     ticks_++;
+}
+*/
+
+std::unique_ptr<CoreLogic::EventManagement::FallingEvent> CoreLogic::EventManagement::FallingEvent::transform()
+{
+    if (std::dynamic_pointer_cast<Ability>(po_mainActor_) -> getAbilityType() == AbilityType::PUSHABLE)
+    {
+        return std::make_unique<FallingBoulderEvent>(std::dynamic_pointer_cast<Pushable>(po_mainActor_));
+    } else if (std::dynamic_pointer_cast<Ability>(po_mainActor_) -> getAbilityType() == AbilityType::BARREL) {
+        return std::make_unique<FallingBarrelEvent>(std::dynamic_pointer_cast<Barrel>(po_mainActor_));
+    }
 }

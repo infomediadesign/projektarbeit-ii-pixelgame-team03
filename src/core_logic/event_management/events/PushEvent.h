@@ -17,7 +17,7 @@ namespace CoreLogic::EventManagement
     public:
         PushEvent(std::shared_ptr<Pushable> pa_pushable);
         ~PushEvent();
-        void update();
+        void update() override;
     protected:
         std::shared_ptr<Pushable> po_pushable_;
         bool reachedDestination_ = false;

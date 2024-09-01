@@ -86,6 +86,12 @@ set(CORE_LOGIC_HEADERS
         event_management/events/FallingEvent.h
         event_management/events/JumpEvent.cpp
         event_management/events/JumpEvent.h
+        event_management/events/FallingBarrelEvent.cpp
+        event_management/events/FallingBarrelEvent.h
+        event_management/events/FallingBoulderEvent.cpp
+        event_management/events/FallingBoulderEvent.h
+        event_management/events/PushBarrelEvent.cpp
+        event_management/events/PushBarrelEvent.h
 
 
 )

@@ -17,7 +17,7 @@ namespace CoreLogic::EventManagement
     public:
         CleaningEvent(std::shared_ptr<Rubble> pa_rubble);
         ~CleaningEvent() = default;
-        void update();
+        void update() override;
     protected:
         /**
          *  @Pseudo_Code: Rubble not yet existing

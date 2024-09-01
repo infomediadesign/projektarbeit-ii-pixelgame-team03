@@ -7,6 +7,7 @@
 #include "CleaningEvent.h"
 #include "PushEvent.h"
 #include "JumpEvent.h"
+#include "PushBarrelEvent.h"
 
 
 namespace CoreLogic::EventManagement
@@ -34,7 +35,7 @@ namespace CoreLogic::EventManagement
             case AbilityType::PUSH:
                 return std::make_unique<PushEvent>(ability);
             case AbilityType::Barrel:
-                return std::make_unique<BarrelEvent>(ability);
+                return std::make_unique<PushBarrelEvent>(ability);
             case AbilityType::JUMP:
                 std::unique_ptr<JumpEvent> jump = std::make_unique<JumpEvent>(ability);
                 throw EventException("Jump Event Executed");

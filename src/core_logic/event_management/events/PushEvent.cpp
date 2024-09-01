@@ -13,8 +13,8 @@ namespace CoreLogic
         PushEvent::PushEvent(std::shared_ptr<Pushable> pa_pushable) : AbilityEvent(PUSH)
         {
             po_pushable_ = pa_pushable;
-            std::vector<std::shared_ptr<Barrier>> barriers = CoreLogic::DataProcessing::ActorStorage::getBarriers();
-            for (std::shared_ptr<Barrier> barrier : barriers)
+            std::vector<std::shared_ptr<Actor>> barriers = CoreLogic::DataProcessing::ActorStorage::getBarriers();
+            for (std::shared_ptr<Actor> barrier : barriers)
             {
                 if (barrier == nullptr)
                 {
@@ -50,7 +50,7 @@ namespace CoreLogic
                 {
                     throw std::runtime_error("Collision with barrier");
                 }
-                ticks_ = 100;
+                ticks_ = 30;
             }
 
         }
@@ -62,19 +62,13 @@ namespace CoreLogic
              * @todo: Code Cliffs and Derived Actor Classees
              */
             auto& eventHandler = EventHandler::getInstance();
-            std::vector<std::shared_ptr<Cliff>> cliffs;
-            if (po_pushable_ -> getType() == PushableTypes::BARREL)
-            {
-                cliffs = CoreLogic::DataProcessing::ActorStorage::getCliffs();
+            /**
+             * @Pseudo_code: no Falling triggers
+             * @todo: Code Falling Triggers
+             */
+            std::vector<std::shared_ptr<Cliff>> cliffs = CoreLogic::DataProcessing::ActorStorage::getFallingTriggers();
 
-            } else if (po_pushable_ -> getType() == PushableTypes::ROCK) {
-                /**
-                 * @Pseudo_code: no Falling triggers
-                 * @todo: Code Falling Triggers
-                 */
-                cliffs = CoreLogic::DataProcessing::ActorStorage::getFallingTriggers();
 
-            }
             if (cliffs.size() == 0)
             {
                 throw std::runtime_error("No cliffs found");
@@ -123,19 +117,19 @@ namespace CoreLogic
 
             switch (ticks_)
             {
-                case 75:
+                case 21:
                     destination.x += push.x;
                     destination.y += push.y;
                     push.x /= 2;
                     push.y /= 2;
                     break;
-                case 50:
+                case 12:
                     destination.x += push.x;
                     destination.y += push.y;
                     push.x /= 2;
                     push.y /= 2;
                     break;
-                case 25:
+                case 6:
                     destination.x += push.x;
                     destination.y += push.y;
                     break;

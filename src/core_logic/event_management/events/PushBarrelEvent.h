@@ -1,0 +1,28 @@
+//
+// Created by keanu on 9/1/2024.
+//
+
+#ifndef HIVE_PUSHBARRELEVENT_H
+#define HIVE_PUSHBARRELEVENT_H
+
+
+#include "AbilityEvent.h"
+
+namespace CoreLogic::EventManagement
+{
+
+    class PushBarrelEvent: public AbilityEvent
+    {
+    public:
+        PushBarrelEvent(std::shared_ptr<Barrel> pa_barrel);
+        ~PushBarrelEvent();
+        void update() override;
+    protected:
+        std::shared_ptr<Barrel> po_barrel_;
+        bool reachedDestination_ = false;
+    };
+
+} // CoreLogic
+// EventManagement
+
+#endif //HIVE_PUSHBARRELEVENT_H
