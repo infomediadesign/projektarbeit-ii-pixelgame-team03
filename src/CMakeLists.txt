@@ -13,10 +13,11 @@ add_subdirectory(scenes)
 add_subdirectory(staging)
 
 add_executable(${PROJECT_NAME} main.cpp
-        tileson.h)
+        tileson.h
+        designConfig)
 
 # Add config.h.in file
-configure_file(config.h.in config.h)
+configure_file(gameData.h.in config.h)
 target_include_directories(${PROJECT_NAME} PUBLIC
         "${PROJECT_BINARY_DIR}"
         )

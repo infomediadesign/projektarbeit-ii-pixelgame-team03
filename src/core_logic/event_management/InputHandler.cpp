@@ -5,6 +5,7 @@
 #include <iostream>
 #include "InputHandler.h"
 #include "EventUtilities.h"
+#include "../../designConfig"
 
 namespace CoreLogic::EventManagement
 {
@@ -224,35 +225,30 @@ namespace CoreLogic::EventManagement
     {
         keyboardInGameMapping.clear();
 
-        keyboardInGameMapping.insert({KEY_W, MOVE_UP});
-        keyboardInGameMapping.insert({KEY_S, MOVE_DOWN});
-        keyboardInGameMapping.insert({KEY_A, MOVE_LEFT});
-        keyboardInGameMapping.insert({KEY_D, MOVE_RIGHT});
+        keyboardInGameMapping.insert({GameSpace::DesignConfig::MOVE_UP_KEYBOARD, MOVE_UP});
+        keyboardInGameMapping.insert({GameSpace::DesignConfig::MOVE_DOWN_KEYBOARD, MOVE_DOWN});
+        keyboardInGameMapping.insert({GameSpace::DesignConfig::MOVE_LEFT_KEYBOARD, MOVE_LEFT});
+        keyboardInGameMapping.insert({GameSpace::DesignConfig::MOVE_RIGHT_KEYBOARD, MOVE_RIGHT});
 
-        keyboardInGameMapping.insert({KEY_K, INTERACT});
-        keyboardInGameMapping.insert({KEY_J, ABILITY});
-        keyboardInGameMapping.insert({KEY_I, DISCONNECT});
-        keyboardInGameMapping.insert({KEY_L, DEATH_ABILITY});
-        keyboardInGameMapping.insert({KEY_H, HIGHLIGHT});
-        keyboardInGameMapping.insert({KEY_ESCAPE, PAUSE});
+        keyboardInGameMapping.insert({GameSpace::DesignConfig::INTERACT_KEYBOARD, INTERACT});
+        keyboardInGameMapping.insert({GameSpace::DesignConfig::ABILITY_KEYBOARD, ABILITY});
+        keyboardInGameMapping.insert({GameSpace::DesignConfig::DISCONNECT_KEYBOARD, DISCONNECT});
+        keyboardInGameMapping.insert({GameSpace::DesignConfig::DEATH_ABILITY_KEYBOARD, DEATH_ABILITY});
     }
 
     void InputHandler::controllerDefaultMapping()
     {
-
         controllerInGameMapping.clear();
 
-        controllerInGameMapping.insert({Input(GAMEPAD_BUTTON_LEFT_FACE_UP), MOVE_UP});
-        controllerInGameMapping.insert({Input(GAMEPAD_BUTTON_LEFT_FACE_DOWN), MOVE_DOWN});
-        controllerInGameMapping.insert({Input(GAMEPAD_BUTTON_LEFT_FACE_LEFT), MOVE_LEFT});
-        controllerInGameMapping.insert({Input(GAMEPAD_BUTTON_LEFT_FACE_RIGHT), MOVE_RIGHT});
+        controllerInGameMapping.insert({Input(GameSpace::DesignConfig::MOVE_UP_CONTROLLER), MOVE_UP});
+        controllerInGameMapping.insert({Input(GameSpace::DesignConfig::MOVE_DOWN_CONTROLLER), MOVE_DOWN});
+        controllerInGameMapping.insert({Input(GameSpace::DesignConfig::MOVE_LEFT_CONTROLLER), MOVE_LEFT});
+        controllerInGameMapping.insert({Input(GameSpace::DesignConfig::MOVE_RIGHT_CONTROLLER), MOVE_RIGHT});
 
-        controllerInGameMapping.insert({Input(GAMEPAD_BUTTON_RIGHT_FACE_DOWN), INTERACT});
-        controllerInGameMapping.insert({Input(GAMEPAD_BUTTON_RIGHT_TRIGGER_1), ABILITY});
-        controllerInGameMapping.insert({Input(GAMEPAD_BUTTON_RIGHT_FACE_DOWN), DISCONNECT});
-        controllerInGameMapping.insert({Input(GAMEPAD_BUTTON_RIGHT_TRIGGER_2), DEATH_ABILITY});
-        controllerInGameMapping.insert({Input(GAMEPAD_BUTTON_LEFT_TRIGGER_1), HIGHLIGHT});
-        controllerInGameMapping.insert({Input(GAMEPAD_BUTTON_MIDDLE_RIGHT), PAUSE});
+        controllerInGameMapping.insert({Input(GameSpace::DesignConfig::INTERACT_CONTROLLER), INTERACT});
+        controllerInGameMapping.insert({Input(GameSpace::DesignConfig::ABILITY_CONTROLLER), ABILITY});
+        controllerInGameMapping.insert({Input(GameSpace::DesignConfig::DISCONNECT_CONTROLLER), DISCONNECT});
+        controllerInGameMapping.insert({Input(GameSpace::DesignConfig::DEATH_ABILITY_CONTROLLER), DEATH_ABILITY});
     }
 
 
