@@ -18,7 +18,7 @@ namespace CoreLogic::EventManagement
 
         explicit AbilityEvent(EventEnum pa_ID);
         void update() override;
-        virtual std::unique_ptr<AbilityEvent> transform();
+        virtual std::unique_ptr<AbilityEvent> transform() const;
     };
 
 } // CoreLogic

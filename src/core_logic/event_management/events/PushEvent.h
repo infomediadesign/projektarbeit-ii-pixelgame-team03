@@ -9,6 +9,7 @@
 #include <memory>
 #include "AbilityEvent.h"
 #include "Pushable.h"
+#include "objects/Boulder.h"
 
 namespace CoreLogic::EventManagement
 {
@@ -16,11 +17,11 @@ namespace CoreLogic::EventManagement
     class PushEvent : public AbilityEvent
     {
     public:
-        PushEvent(std::shared_ptr<Pushable> pa_pushable);
+        PushEvent(std::shared_ptr<Object::Boulder> pa_pushable);
         ~PushEvent();
         void update() override;
     protected:
-        std::shared_ptr<Pushable> po_pushable_;
+        std::shared_ptr<Object::Boulder> po_pushable_;
         bool reachedDestination_ = false;
     };
 

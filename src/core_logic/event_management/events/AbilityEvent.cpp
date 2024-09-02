@@ -8,6 +8,7 @@
 #include "PushEvent.h"
 #include "JumpEvent.h"
 #include "PushBarrelEvent.h"
+#include "objects/Boulder.h"
 
 
 namespace CoreLogic::EventManagement
@@ -24,7 +25,7 @@ namespace CoreLogic::EventManagement
         po_mainActor_ = std::dynamic_pointer_cast<Actor>(CoreLogic::DataProcessing::ActorStorage::getPlayer());
     }
 
-    std::unique_ptr<AbilityEvent> AbilityEvent::transform()
+    std::unique_ptr<AbilityEvent> AbilityEvent::transform() const
     {
         /**
          * @Pseudo_Code: enum AbilityType not yet existing
@@ -38,11 +39,11 @@ namespace CoreLogic::EventManagement
         switch (abilityType)
         {
             case Object::Ability::AbilityType::CLEANING:
-                return std::make_unique<CleaningEvent>(ability);
+                return std::make_unique<CleaningEvent>(std::dynamic_pointer_cast<Object::Rubble>(ability));
             case Object::Ability::AbilityType::PUSH:
-                return std::make_unique<PushEvent>(ability);
+                return std::make_unique<PushEvent>(std::dynamic_pointer_cast<Object::Boulder>(ability));
             case Object::Ability::AbilityType::BARREL:
-                return std::make_unique<PushBarrelEvent>(ability);
+                return std::make_unique<PushBarrelEvent>(std::dynamic_pointer_cast<Object::Barrel>(ability));
             case Object::Ability::AbilityType::JUMP:
                 std::unique_ptr<JumpEvent> jump = std::make_unique<JumpEvent>(ability);
                 throw EventException("Jump Event Executed");

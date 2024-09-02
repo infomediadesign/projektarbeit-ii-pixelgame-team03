@@ -7,6 +7,7 @@
 
 
 #include "AbilityEvent.h"
+#include "objects/Barrel.h"
 
 namespace CoreLogic::EventManagement
 {
@@ -14,11 +15,11 @@ namespace CoreLogic::EventManagement
     class PushBarrelEvent: public AbilityEvent
     {
     public:
-        PushBarrelEvent(std::shared_ptr<Barrel> pa_barrel);
+        PushBarrelEvent(std::shared_ptr<Object::Barrel> pa_barrel);
         ~PushBarrelEvent();
         void update() override;
     protected:
-        std::shared_ptr<Barrel> po_barrel_;
+        std::shared_ptr<Object::Barrel> po_barrel_;
         bool reachedDestination_ = false;
     };
 
