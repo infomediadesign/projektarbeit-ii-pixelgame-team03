@@ -61,6 +61,8 @@ void CoreLogic::DataProcessing::ActorStorage::addActor(int pa_elevation, std::sh
         if (it != po_actors_->end())
         {
             it->second.push_back(pa_actor);
+        } else {
+            po_actors_->insert({pa_elevation, {pa_actor}});
         }
     } else
     {
