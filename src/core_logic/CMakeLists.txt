@@ -92,6 +92,18 @@ set(CORE_LOGIC_HEADERS
         event_management/events/FallingBoulderEvent.h
         event_management/events/PushBarrelEvent.cpp
         event_management/events/PushBarrelEvent.h
+        event_management/objects/Interaction.cpp
+        event_management/objects/Interaction.h
+        event_management/objects/Ability.cpp
+        event_management/objects/Ability.h
+        event_management/objects/Rubble.cpp
+        event_management/objects/Rubble.h
+        event_management/objects/Barrel.cpp
+        event_management/objects/Barrel.h
+        event_management/objects/Cliff.cpp
+        event_management/objects/Cliff.h
+        event_management/objects/Boulder.cpp
+        event_management/objects/Boulder.h
 
 
 )

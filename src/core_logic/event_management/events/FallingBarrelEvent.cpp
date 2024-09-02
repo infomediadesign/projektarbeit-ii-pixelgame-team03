@@ -5,14 +5,17 @@
 #include "FallingBarrelEvent.h"
 #include "EventHandler.h"
 #include "Store.h"
+#include "../actors/Enemy.h"
 
 
 namespace CoreLogic::EventManagement
 {
-    FallingBarrelEvent::FallingBarrelEvent(std::shared_ptr<Barrel> pa_barrel) : FallingEvent()
+    FallingBarrelEvent::FallingBarrelEvent(std::shared_ptr<CoreLogic::EventManagement::Object::Barrel> pa_barrel) :
+    FallingEvent()
     {
         po_mainActor_ = pa_barrel;
-        fallHeight_ = std::dynamic_pointer_cast<Barrel>(po_mainActor_)->getFallHeight();
+        fallHeight_ = std::dynamic_pointer_cast<CoreLogic::EventManagement::Object::Barrel>(po_mainActor_)
+                ->getFallHeight();
     }
 
 
@@ -38,7 +41,9 @@ namespace CoreLogic::EventManagement
                 {
                     continue;
                 }
-                if (std::dynamic_pointer_cast<Actor>(enemy)->getElevation() != std::static_pointer_cast<Barrel>(po_mainActor_) -> getNewElevation())
+                if (std::dynamic_pointer_cast<Actor>(enemy)->getElevation() !=
+                std::static_pointer_cast<CoreLogic::EventManagement::Object::Barrel>(po_mainActor_) ->
+                        getNewElevation())
                 {
                     continue;
                 }

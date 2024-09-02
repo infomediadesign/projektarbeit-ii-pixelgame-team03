@@ -6,7 +6,7 @@
 #include "EventHandler.h"
 #include "raylib.h"
 #include "EventUtilities.h"
-#include "Event.h"
+#include "events/Event.h"
 #include "events/AbilityEvent.h"
 
 std::mutex CoreLogic::EventManagement::EventHandler::eventHandler_mutex_;

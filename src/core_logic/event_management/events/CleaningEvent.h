@@ -9,20 +9,21 @@
 #include "Event.h"
 #include "actors/Drone.h"
 #include "AbilityEvent.h"
+#include "objects/Rubble.h"
 
 namespace CoreLogic::EventManagement
 {
     class CleaningEvent : public AbilityEvent
     {
     public:
-        CleaningEvent(std::shared_ptr<Rubble> pa_rubble);
+        CleaningEvent(std::shared_ptr<CoreLogic::EventManagement::Object::Rubble> pa_rubble);
         ~CleaningEvent() = default;
         void update() override;
     protected:
         /**
          *  @Pseudo_Code: Rubble not yet existing
          */
-        std::shared_ptr<Rubble> po_rubble_;
+        std::shared_ptr<CoreLogic::EventManagement::Object::Rubble> po_rubble_;
         bool cleaningDone_ = false;
     };
 }

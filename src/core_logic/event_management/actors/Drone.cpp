@@ -223,7 +223,7 @@ bool CoreLogic::EventManagement::Actors::Drone::checkCollision(CoreLogic::UserIn
             {
                 continue;
             }
-            if (object.getCollisionType() == CollisionType::LEVELCHANGE)
+            if (object.getCollisionType() == CollisionType::LEVEL_CHANGE)
             {
                 continue;
             }
@@ -326,7 +326,7 @@ bool CoreLogic::EventManagement::Actors::Drone::canAct()
 
 void CoreLogic::EventManagement::Actors::Drone::update()
 {
-    MovableActor::update();
+
 }
 
 void CoreLogic::EventManagement::Actors::Drone::checkInteraction()
@@ -370,26 +370,31 @@ void CoreLogic::EventManagement::Actors::Drone::checkInteraction()
         }
     }
     setInteraction(nullptr);
-}
 
-void CoreLogic::EventManagement::Actors::Drone::setInteraction(Interaction pa_interaction)
+}
+void CoreLogic::EventManagement::Actors::Drone::setInteraction(std::shared_ptr<CoreLogic::EventManagement::Object::Interaction> pa_interaction)
 {
     interaction_ = pa_interaction;
 }
 
-void CoreLogic::EventManagement::Actors::Drone::setAbility(Ability pa_ability)
+void CoreLogic::EventManagement::Actors::Drone::setAbility(std::shared_ptr<CoreLogic::EventManagement::Object::Ability> pa_ability)
 {
     ability_ = pa_ability;
 }
 
-shared_ptr <Interaction> CoreLogic::EventManagement::Actors::Drone::getInteraction()
+std::shared_ptr <CoreLogic::EventManagement::Object::Interaction> CoreLogic::EventManagement::Actors::Drone::getInteraction()
 {
     return interaction_;
 }
 
-shared_ptr <Ability> CoreLogic::EventManagement::Actors::Drone::getAbility()
+std::shared_ptr <CoreLogic::EventManagement::Object::Ability> CoreLogic::EventManagement::Actors::Drone::getAbility()
 {
     return ability_;
+}
+
+CoreLogic::EventManagement::Actors::Drone::DroneType CoreLogic::EventManagement::Actors::Drone::getDroneType() const
+{
+    return currentDroneType;
 }
 
 

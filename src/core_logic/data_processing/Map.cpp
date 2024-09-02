@@ -93,6 +93,12 @@ Color CoreLogic::DataProcessing::Map::getBgColor()
     return bgColor_;
 }
 
+//void CoreLogic::DataProcessing::Map::loadObjects()
+//{
+//    switch (ActorStorage::getPlayer()->getDroneType())
+//}
+
+/*
 void CoreLogic::DataProcessing::Map::loadObjects()
 {
     auto drone = std::make_shared<EventManagement::Actors::Drone>(Vector2{100, 100}, Rectangle{100,
@@ -182,6 +188,8 @@ void CoreLogic::DataProcessing::Map::loadObjects()
             objectId++;
         }
     }
+
 }
+ */
 
 

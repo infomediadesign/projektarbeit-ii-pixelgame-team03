@@ -8,14 +8,20 @@
 
 #include <memory>
 #include "MovableActor.h"
+#include "objects/Ability.h"
+#include "objects/Interaction.h"
 
 
 namespace CoreLogic::EventManagement::Actors
     {
         class Drone : public MovableActor
         {
-
         public:
+            enum DroneType
+            {
+                WORKER,
+                SCOUT
+            };
 
             Drone(Vector2 pa_position, Rectangle pa_hitbox, int pa_id,
                   CollisionType pa_collisionType, Vector2 pa_size, bool pa_visible,
@@ -25,6 +31,7 @@ namespace CoreLogic::EventManagement::Actors
             void move(bool pa_up, bool pa_down, bool pa_left, bool pa_right);
             int getMaxHealth() const;
             int getCurrentHealth() const;
+            DroneType getDroneType() const;
 
             void inceaseMaxHealth();
             void increaseCurrentHealth();
@@ -32,8 +39,8 @@ namespace CoreLogic::EventManagement::Actors
             bool canInteract();
             bool canAct();
 
-            shared_ptr<Interaction> getInteraction();
-            shared_ptr<Ability> getAbility();
+            std::shared_ptr<CoreLogic::EventManagement::Object::Interaction> getInteraction();
+            std::shared_ptr<CoreLogic::EventManagement::Object::Ability> getAbility();
 
 
             virtual void update();
@@ -42,18 +49,19 @@ namespace CoreLogic::EventManagement::Actors
             void checkInteraction();
             virtual void checkAbility() = 0;
 
-            void setInteraction(Interaction pa_interaction);
-            void setAbility(Ability pa_ability);
+            void setInteraction(std::shared_ptr<CoreLogic::EventManagement::Object::Interaction> pa_interaction);
+            void setAbility(std::shared_ptr<CoreLogic::EventManagement::Object::Ability> pa_ability);
 
             bool checkCollision(CoreLogic::UserInterface::Direction pa_direction, Vector2 pa_position);
             /**
              * @Pseudo_Code: Interactions and Abilities not yet existing
              */
-            std::shared_ptr<Interaction> interaction_;
-            std::shared_ptr<Ability> ability_;
+            std::shared_ptr<CoreLogic::EventManagement::Object::Interaction> interaction_;
+            std::shared_ptr<CoreLogic::EventManagement::Object::Ability> ability_;
 
             int maxHealth = 3;
             int currentHealth = 3;
+            DroneType currentDroneType = DroneType::WORKER;
 
         };
     }

@@ -30,20 +30,20 @@ namespace CoreLogic::EventManagement
          * @Pseudo_Code: enum AbilityType not yet existing
          * @todo: Code enum AbilityType and Ability Type into Ability Object Class
          */
-        Ability ability = std::dynamic_pointer_cast<Drone>(po_mainActor_) -> getAbility();
-        AbilityType abilityType = ability -> getAbilityType();
+        std::shared_ptr <CoreLogic::EventManagement::Object::Ability> ability = std::dynamic_pointer_cast<Actors::Drone>(po_mainActor_) -> getAbility();
+        Object::Ability::AbilityType abilityType = ability -> getAbilityType();
 
         AbilityEvent transformEvent;
 
         switch (abilityType)
         {
-            case AbilityType::CLEANING:
+            case Object::Ability::AbilityType::CLEANING:
                 return std::make_unique<CleaningEvent>(ability);
-            case AbilityType::PUSH:
+            case Object::Ability::AbilityType::PUSH:
                 return std::make_unique<PushEvent>(ability);
-            case AbilityType::BARREL:
+            case Object::Ability::AbilityType::BARREL:
                 return std::make_unique<PushBarrelEvent>(ability);
-            case AbilityType::JUMP:
+            case Object::Ability::AbilityType::JUMP:
                 std::unique_ptr<JumpEvent> jump = std::make_unique<JumpEvent>(ability);
                 throw EventException("Jump Event Executed");
         }

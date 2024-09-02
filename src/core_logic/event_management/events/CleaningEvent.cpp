@@ -6,7 +6,8 @@
 #include "actors/Drone.h"
 #include "data_processing/Store.h"
 
-CoreLogic::EventManagement::CleaningEvent::CleaningEvent(std::shared_ptr<Rubble> pa_rubble): AbilityEvent(CLEAN)
+CoreLogic::EventManagement::CleaningEvent::CleaningEvent(std::shared_ptr<CoreLogic::EventManagement::Object::Rubble>
+        pa_rubble): AbilityEvent(CLEAN)
 {
     po_rubble_ = pa_rubble;
     ticks_ = 100;

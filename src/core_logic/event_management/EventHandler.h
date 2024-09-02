@@ -13,7 +13,6 @@
 #include "event_management/events/Event.h"
 #include "event_management/events/MovementEvent.h"
 #include "EventUtilities.h"
-#include "Event.h"
 
 
 namespace CoreLogic::EventManagement
