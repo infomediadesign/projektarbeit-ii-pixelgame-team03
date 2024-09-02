@@ -5,10 +5,10 @@
 #include "PushEvent.h"
 #include "Store.h"
 #include "EventHandler.h"
+#include "Cliff.h"
 
-namespace CoreLogic
-{
-    namespace EventManagement
+
+namespace CoreLogic::EventManagement
     {
         PushEvent::PushEvent(std::shared_ptr<Pushable> pa_pushable) : AbilityEvent(PUSH)
         {
@@ -94,7 +94,7 @@ namespace CoreLogic
         {
             if (ticks_ % 20 == 0)
             {
-                po_mainActor_->shiftFrame(/**@Attention: set to working frames*/);
+                po_mainActor_->shiftFrame(1);
             }
 
             Vector2 push;
@@ -143,8 +143,8 @@ namespace CoreLogic
                 destination.x += push.x;
                 destination.y += push.y;
                 po_pushable_->setPosition(destination.x, destination.y);
-                throw true;
+                throw EventException("Push Event Executed");
             }
         }
     } // CoreLogic
-} // EventManagement
+// EventManagement

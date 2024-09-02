@@ -4,6 +4,7 @@
 
 #include "FallingBoulderEvent.h"
 #include "EventHandler.h"
+#include "actors/Enemy.h"
 
 
 namespace CoreLogic::EventManagement
@@ -11,7 +12,7 @@ namespace CoreLogic::EventManagement
     FallingBoulderEvent::FallingBoulderEvent(std::shared_ptr<Boulder> pa_boulder) : FallingEvent()
     {
         po_mainActor_ = pa_boulder;
-        fallHeight_ = std::dynamic_pointer_cast<Pushable>(po_mainActor_) -> getFallHeight();
+        fallHeight_ = std::dynamic_pointer_cast<Boulder>(po_mainActor_) -> getFallHeight();
     }
 
     void FallingBoulderEvent::destroy()
@@ -20,8 +21,8 @@ namespace CoreLogic::EventManagement
         {
             auto& eventHandler = EventHandler::getInstance();
             Rectangle hitbox = po_mainActor_ -> getHitbox();
-            std::vector<std::shared_ptr<Enemy>> enemies = CoreLogic::DataProcessing::ActorStorage::getEnemies();
-            for (std::shared_ptr<Enemy> enemy: enemies)
+            std::vector<std::shared_ptr<Actors::Enemy>> enemies = CoreLogic::DataProcessing::ActorStorage::getEnemies();
+            for (auto enemy: enemies)
             {
                 if (enemy == nullptr)
                 {

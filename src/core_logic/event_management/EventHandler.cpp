@@ -99,16 +99,8 @@ void CoreLogic::EventManagement::EventHandler::update()
             try
             {
                 event -> update();
-            } catch (std::exception &e) {
-                /**
-                * @attention: could use Exception Handling to deactivate Events
-                **/
-                TraceLog(LOG_INFO, e.what());
-            } catch (bool flag) {
-                if (flag)
-                {
-                    deactivateEvent(event->getID(),activeEvent.first);
-                }
+            }  catch (EventException e) {
+                deactivateEvent(event->getID(),activeEvent.first);
             }
 
         }
@@ -162,9 +154,6 @@ void CoreLogic::EventManagement::EventHandler::deactivateEvent(EventEnum pa_deac
         }
         if (it->get() -> getID() == pa_deactivateEvent)
         {
-            /**
-             * @Pseudo_Code: finish() or destructor
-             */
             po_activeEvents_[pa_actorID].erase(it);
             break;
         }

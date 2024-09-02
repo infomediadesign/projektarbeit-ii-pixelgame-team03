@@ -12,6 +12,13 @@
 
 namespace CoreLogic::EventManagement
 {
+    enum class AbilityType
+    {
+        CLEANING,
+        PUSH,
+        JUMP,
+        BARREL
+    };
     AbilityEvent::AbilityEvent(): Event(ABILITY)
     {
         po_mainActor_ = std::dynamic_pointer_cast<Actor>(CoreLogic::DataProcessing::ActorStorage::getPlayer());
@@ -34,7 +41,7 @@ namespace CoreLogic::EventManagement
                 return std::make_unique<CleaningEvent>(ability);
             case AbilityType::PUSH:
                 return std::make_unique<PushEvent>(ability);
-            case AbilityType::Barrel:
+            case AbilityType::BARREL:
                 return std::make_unique<PushBarrelEvent>(ability);
             case AbilityType::JUMP:
                 std::unique_ptr<JumpEvent> jump = std::make_unique<JumpEvent>(ability);
