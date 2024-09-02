@@ -4013,7 +4013,7 @@
                  "rotation":0,
                  "type":"collidables",
                  "visible":true,
-                 "width":48,
+                 "width":72,
                  "x":1464,
                  "y":312
                 }, 
@@ -4104,6 +4104,28 @@
                  "width":96,
                  "x":288,
                  "y":192
+                }, 
+                {
+                 "height":24,
+                 "id":551,
+                 "name":"",
+                 "rotation":0,
+                 "type":"collidables",
+                 "visible":true,
+                 "width":24,
+                 "x":840,
+                 "y":-24
+                }, 
+                {
+                 "height":24,
+                 "id":552,
+                 "name":"",
+                 "rotation":0,
+                 "type":"collidables",
+                 "visible":true,
+                 "width":24,
+                 "x":768,
+                 "y":-24
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -5485,10 +5507,32 @@
                  "width":264,
                  "x":840,
                  "y":0
+                }, 
+                {
+                 "height":24,
+                 "id":553,
+                 "name":"",
+                 "rotation":0,
+                 "type":"collidables",
+                 "visible":true,
+                 "width":24,
+                 "x":1536,
+                 "y":624
+                }, 
+                {
+                 "height":24,
+                 "id":554,
+                 "name":"",
+                 "rotation":0,
+                 "type":"collidables",
+                 "visible":true,
+                 "width":24,
+                 "x":1536,
+                 "y":720
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -7006,7 +7050,7 @@
                  "type":"level_switch",
                  "visible":true,
                  "width":24,
-                 "x":1512,
+                 "x":1560,
                  "y":648
                 }, 
                 {
@@ -7024,7 +7068,7 @@
                  "visible":true,
                  "width":48,
                  "x":792,
-                 "y":0
+                 "y":-48
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -7033,7 +7077,7 @@
          "y":0
         }],
  "nextlayerid":54,
- "nextobjectid":551,
+ "nextobjectid":555,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.10.2",
