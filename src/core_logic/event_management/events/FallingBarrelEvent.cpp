@@ -10,11 +10,11 @@
 
 namespace CoreLogic::EventManagement
 {
-    FallingBarrelEvent::FallingBarrelEvent(std::shared_ptr<CoreLogic::EventManagement::Object::Barrel> pa_barrel) :
+    FallingBarrelEvent::FallingBarrelEvent(std::shared_ptr<Object::Barrel> pa_barrel) :
     FallingEvent()
     {
         po_mainActor_ = pa_barrel;
-        fallHeight_ = std::dynamic_pointer_cast<CoreLogic::EventManagement::Object::Barrel>(po_mainActor_)
+        fallHeight_ = std::dynamic_pointer_cast<Object::Barrel>(po_mainActor_)
                 ->getFallHeight();
     }
 
@@ -42,7 +42,7 @@ namespace CoreLogic::EventManagement
                     continue;
                 }
                 if (std::dynamic_pointer_cast<Actor>(enemy)->getElevation() !=
-                std::static_pointer_cast<CoreLogic::EventManagement::Object::Barrel>(po_mainActor_) ->
+                std::static_pointer_cast<Object::Barrel>(po_mainActor_) ->
                         getNewElevation())
                 {
                     continue;

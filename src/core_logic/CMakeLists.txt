@@ -104,6 +104,20 @@ set(CORE_LOGIC_HEADERS
         event_management/objects/Cliff.h
         event_management/objects/Boulder.cpp
         event_management/objects/Boulder.h
+        event_management/objects/JumpPoint.cpp
+        event_management/objects/JumpPoint.h
+        event_management/objects/ElevationChange.cpp
+        event_management/objects/ElevationChange.h
+        event_management/objects/Note.cpp
+        event_management/objects/Note.h
+        event_management/objects/DroneRespawnPoint.cpp
+        event_management/objects/DroneRespawnPoint.h
+        event_management/objects/Vine.cpp
+        event_management/objects/Vine.h
+        event_management/objects/TutorialBox.cpp
+        event_management/objects/TutorialBox.h
+        event_management/objects/LevelSwitch.cpp
+        event_management/objects/LevelSwitch.h
 
 
 )

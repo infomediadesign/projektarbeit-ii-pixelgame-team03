@@ -3,3 +3,9 @@
 //
 
 #include "Interaction.h"
+
+CoreLogic::EventManagement::Object::Interaction::InteractionType
+CoreLogic::EventManagement::Object::Interaction::getType() const
+{
+    return type_;
+}

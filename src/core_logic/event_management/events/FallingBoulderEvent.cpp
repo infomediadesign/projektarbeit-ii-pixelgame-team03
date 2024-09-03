@@ -9,10 +9,10 @@
 
 namespace CoreLogic::EventManagement
 {
-    FallingBoulderEvent::FallingBoulderEvent(std::shared_ptr<Boulder> pa_boulder) : FallingEvent()
+    FallingBoulderEvent::FallingBoulderEvent(std::shared_ptr<Object::Boulder> pa_boulder) : FallingEvent()
     {
         po_mainActor_ = pa_boulder;
-        fallHeight_ = std::dynamic_pointer_cast<Boulder>(po_mainActor_) -> getFallHeight();
+        fallHeight_ = std::dynamic_pointer_cast<Object::Boulder>(po_mainActor_) -> getFallHeight();
     }
 
     void FallingBoulderEvent::destroy()
@@ -28,7 +28,8 @@ namespace CoreLogic::EventManagement
                 {
                     continue;
                 }
-                if (std::dynamic_pointer_cast<Actor>(enemy)->getElevation() != std::static_pointer_cast<Pushable>(po_mainActor_) -> getNewElevation())
+                if (std::dynamic_pointer_cast<Actor>(enemy)->getElevation() != std::static_pointer_cast<Object::Boulder>
+                        (po_mainActor_) -> getNewElevation())
                 {
                     continue;
                 }

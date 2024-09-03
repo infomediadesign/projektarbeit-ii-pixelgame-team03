@@ -7,6 +7,7 @@
 
 
 #include "FallingEvent.h"
+#include "../objects/Boulder.h"
 
 namespace CoreLogic::EventManagement
 {
@@ -15,7 +16,7 @@ namespace CoreLogic::EventManagement
     {
 
     public:
-        FallingBoulderEvent(std::shared_ptr<Boulder> pa_boulder);
+        FallingBoulderEvent(std::shared_ptr<Object::Boulder> pa_boulder);
     protected:
         void destroy() override;
     };

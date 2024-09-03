@@ -5,7 +5,7 @@
 #include "PushEvent.h"
 #include "Store.h"
 #include "EventHandler.h"
-#include "Cliff.h"
+#include "../objects/Cliff.h"
 
 
 namespace CoreLogic::EventManagement

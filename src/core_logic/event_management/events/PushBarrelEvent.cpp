@@ -10,7 +10,7 @@ namespace CoreLogic
 {
     namespace EventManagement
     {
-        PushBarrelEvent::PushBarrelEvent(std::shared_ptr<Barrel> pa_barrel) : AbilityEvent(BARREL)
+        PushBarrelEvent::PushBarrelEvent(std::shared_ptr<Object::Barrel> pa_barrel) : AbilityEvent(BARREL)
         {
             po_barrel_ = pa_barrel;
             ticks_ = 30;

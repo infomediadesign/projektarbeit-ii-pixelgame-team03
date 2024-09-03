@@ -9,7 +9,7 @@
 
 namespace CoreLogic::EventManagement::Object
 {
-    class Cliff : public Actor
+    class Cliff : virtual public Actor
     {
     public:
         int getElevation() const;

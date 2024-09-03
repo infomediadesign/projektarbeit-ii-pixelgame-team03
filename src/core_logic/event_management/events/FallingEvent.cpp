@@ -140,10 +140,10 @@ void CoreLogic::EventManagement::FallingEvent::crumble()
 
 std::unique_ptr<CoreLogic::EventManagement::FallingEvent> CoreLogic::EventManagement::FallingEvent::transform()
 {
-    if (std::dynamic_pointer_cast<Ability>(po_mainActor_) -> getAbilityType() == AbilityType::PUSHABLE)
+    if (std::dynamic_pointer_cast<Object::Ability>(po_mainActor_) -> getAbilityType() == Object::Ability::AbilityType::PUSH)
     {
         return std::make_unique<FallingBoulderEvent>(std::dynamic_pointer_cast<Pushable>(po_mainActor_));
-    } else if (std::dynamic_pointer_cast<Ability>(po_mainActor_) -> getAbilityType() == AbilityType::BARREL) {
-        return std::make_unique<FallingBarrelEvent>(std::dynamic_pointer_cast<Barrel>(po_mainActor_));
+    } else if (std::dynamic_pointer_cast<Object::Ability>(po_mainActor_) -> getAbilityType() == Object::Ability::AbilityType::BARREL) {
+        return std::make_unique<FallingBarrelEvent>(std::dynamic_pointer_cast<Object::Barrel>(po_mainActor_));
     }
 }

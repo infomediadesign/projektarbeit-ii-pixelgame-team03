@@ -13,3 +13,15 @@ int CoreLogic::EventManagement::Object::Boulder::getFallHeight()
         return 0;
     }
 }
+
+int CoreLogic::EventManagement::Object::Boulder::getNewElevation()
+{
+    if (cliff_ != nullptr)
+    {
+        int currentElevation = cliff_ -> getElevation();
+        int fallHeight = cliff_ -> getFallHeight();
+        return currentElevation - (fallHeight/2);
+    }else{
+        return -1;
+    }
+}

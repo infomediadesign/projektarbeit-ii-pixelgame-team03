@@ -5,7 +5,7 @@
 #include "JumpEvent.h"
 #include "actors/MovableActor.h"
 
-CoreLogic::EventManagement::JumpEvent::JumpEvent(std::shared_ptr<JumpPoint> pa_jumpPoint) : AbilityEvent(JUMP)
+CoreLogic::EventManagement::JumpEvent::JumpEvent(std::shared_ptr<Object::JumpPoint> pa_jumpPoint) : AbilityEvent(JUMP)
 {
     /**
      * @Pseudo_Code: JumpPoint not yet existing, neither is getJumpPosition()

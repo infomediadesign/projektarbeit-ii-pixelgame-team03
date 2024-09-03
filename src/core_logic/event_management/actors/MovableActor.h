@@ -10,7 +10,7 @@
 namespace CoreLogic::EventManagement::Actors
 {
 
-    class MovableActor : public Actor
+    class MovableActor : virtual public Actor
     {
     public:
         enum State

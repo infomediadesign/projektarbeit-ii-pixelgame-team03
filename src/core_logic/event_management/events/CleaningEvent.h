@@ -16,14 +16,14 @@ namespace CoreLogic::EventManagement
     class CleaningEvent : public AbilityEvent
     {
     public:
-        CleaningEvent(std::shared_ptr<CoreLogic::EventManagement::Object::Rubble> pa_rubble);
+        CleaningEvent(std::shared_ptr<Object::Rubble> pa_rubble);
         ~CleaningEvent() = default;
         void update() override;
     protected:
         /**
          *  @Pseudo_Code: Rubble not yet existing
          */
-        std::shared_ptr<CoreLogic::EventManagement::Object::Rubble> po_rubble_;
+        std::shared_ptr<Object::Rubble> po_rubble_;
         bool cleaningDone_ = false;
     };
 }
