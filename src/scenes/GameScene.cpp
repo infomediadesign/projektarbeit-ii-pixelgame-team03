@@ -130,6 +130,18 @@ void Scenes::GameScene::update()
         player.increaseCurrentHealth();
     }
 
+    if (IsKeyPressed(KEY_KP_ADD))
+    {
+        CoreLogic::EventManagement::Actors::Drone &player = *CoreLogic::DataProcessing::ActorStorage::getPlayer();
+        player.toggleInteract();
+    }
+
+    if (IsKeyPressed(KEY_KP_ENTER))
+    {
+        CoreLogic::EventManagement::Actors::Drone &player = *CoreLogic::DataProcessing::ActorStorage::getPlayer();
+        player.toggleDroneType();
+    }
+
     Vector2 playerPos = player->getPosition();
 
 

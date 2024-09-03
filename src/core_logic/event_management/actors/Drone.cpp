@@ -298,4 +298,33 @@ void CoreLogic::EventManagement::Actors::Drone::decreaseCurrentHealth()
     }
 }
 
+void CoreLogic::EventManagement::Actors::Drone::toggleInteract()
+{
+    canInteract = !canInteract;
+}
+
+int CoreLogic::EventManagement::Actors::Drone::getInteract()
+{
+    if (canInteract)
+    {
+        return 1;
+    }
+    return 0;
+}
+
+int CoreLogic::EventManagement::Actors::Drone::getDroneType()
+{
+    return droneType;
+}
+
+void CoreLogic::EventManagement::Actors::Drone::toggleDroneType()
+{
+    if (droneType == 0)
+    {
+        droneType = 1;
+    } else
+    {
+        droneType = 0;
+    }
+}
 
