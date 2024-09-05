@@ -8,7 +8,7 @@
 
 #include <memory>
 #include "AbilityEvent.h"
-#include "objects/Boulder.h"
+#include "actors/objects/Boulder.h"
 
 namespace CoreLogic::EventManagement
 {
@@ -22,6 +22,7 @@ namespace CoreLogic::EventManagement
     protected:
         std::shared_ptr<Object::Boulder> po_pushable_;
         bool reachedDestination_ = false;
+        bool extended_ = false;
     };
 
 } // CoreLogic

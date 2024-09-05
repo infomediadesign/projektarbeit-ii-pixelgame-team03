@@ -5,7 +5,7 @@
 #include "PushEvent.h"
 #include "Store.h"
 #include "EventHandler.h"
-#include "../objects/Cliff.h"
+#include "actors//objects/Cliff.h"
 
 
 namespace CoreLogic::EventManagement
@@ -13,7 +13,7 @@ namespace CoreLogic::EventManagement
         PushEvent::PushEvent(std::shared_ptr<Object::Boulder> pa_pushable) : AbilityEvent(PUSH)
         {
             po_pushable_ = pa_pushable;
-            std::vector<std::shared_ptr<Actor>> barriers = CoreLogic::DataProcessing::ActorStorage::getBarriers();
+            std::vector<std::shared_ptr<Object::Barrier>> barriers = CoreLogic::DataProcessing::ActorStorage::getBarriers();
             for (std::shared_ptr<Actor> barrier : barriers)
             {
                 if (barrier == nullptr)
@@ -66,7 +66,7 @@ namespace CoreLogic::EventManagement
              * @Pseudo_code: no Falling triggers
              * @todo: Code Falling Triggers
              */
-            std::vector<std::shared_ptr<Cliff>> cliffs = CoreLogic::DataProcessing::ActorStorage::getFallingTriggers();
+            std::vector<std::shared_ptr<Object::Cliff>> cliffs = CoreLogic::DataProcessing::ActorStorage::getCliffs();
 
 
             if (cliffs.size() == 0)
@@ -135,14 +135,14 @@ namespace CoreLogic::EventManagement
                     break;
             }
 
-            po_pushable_->setPosition(destination.x, destination.y);
+            po_pushable_->setPosition({destination.x, destination.y});
 
             ticks_--;
             if (ticks_ == 0)
             {
                 destination.x += push.x;
                 destination.y += push.y;
-                po_pushable_->setPosition(destination.x, destination.y);
+                po_pushable_->setPosition({destination.x, destination.y});
                 throw EventException("Push Event Executed");
             }
         }

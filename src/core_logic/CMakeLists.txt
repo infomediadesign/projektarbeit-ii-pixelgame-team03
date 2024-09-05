@@ -135,6 +135,8 @@ set(CORE_LOGIC_HEADERS
         event_management/events/UplinkEvent.h
         event_management/actors/objects/Uplink.cpp
         event_management/actors/objects/Uplink.h
+        event_management/events/EnemyVisionEvent.cpp
+        event_management/events/EnemyVisionEvent.h
 
 )
 
