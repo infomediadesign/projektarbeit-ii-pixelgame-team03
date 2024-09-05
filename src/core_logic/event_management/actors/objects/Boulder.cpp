@@ -33,4 +33,9 @@ CoreLogic::EventManagement::Object::Boulder::Boulder(Vector2 pa_position, Rectan
 
 }
 
+std::shared_ptr<CoreLogic::EventManagement::Object::Cliff> CoreLogic::EventManagement::Object::Boulder::getCliff()
+{
+    return cliff_;
+}
+
 

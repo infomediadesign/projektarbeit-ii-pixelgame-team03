@@ -9,7 +9,7 @@ std::shared_ptr<Texture2D> CoreLogic::DataProcessing::TileMap::getTileMap() {ret
 
 std::shared_ptr<CoreLogic::EventManagement::Actors::Drone> CoreLogic::DataProcessing::ActorStorage::po_player_;
 std::shared_ptr<std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Actor>>>>
-        CoreLogic::DataProcessing::ActorStorage::po_actors_;
+        CoreLogic::DataProcessing::ActorStorage::po_allActors_;
 std::shared_ptr<std::map<int, std::vector<tson::Layer>>> CoreLogic::DataProcessing::ActorStorage::po_layers_;
 
 void CoreLogic::DataProcessing::TileMap::Initialize()
@@ -27,7 +27,7 @@ void CoreLogic::DataProcessing::ActorStorage::Initialize()
         ActorStorage::po_player_ = {};
 
         std::map<int, std::vector<std::shared_ptr<EventManagement::Actor>>> actors = {};
-        ActorStorage::po_actors_ = std::make_shared<std::map<int, std::vector<std::shared_ptr<EventManagement::Actor>>>>(actors);
+        ActorStorage::po_allActors_ = std::make_shared<std::map<int, std::vector<std::shared_ptr<EventManagement::Actor>>>>(actors);
 
         std::map<int, std::vector<tson::Layer>> layers = {};
         ActorStorage::po_layers_ = std::make_shared<std::map<int, std::vector<tson::Layer>>>(layers);
@@ -37,7 +37,7 @@ void CoreLogic::DataProcessing::ActorStorage::Initialize()
 
 std::shared_ptr<CoreLogic::EventManagement::Actors::Drone> CoreLogic::DataProcessing::ActorStorage::getPlayer() {return po_player_;}
 
-std::shared_ptr<std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Actor>>>> CoreLogic::DataProcessing::ActorStorage::getActors() {return po_actors_;}
+std::shared_ptr<std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Actor>>>> CoreLogic::DataProcessing::ActorStorage::getActors() {return po_allActors_;}
 
 std::shared_ptr<std::map<int, std::vector<tson::Layer>>> CoreLogic::DataProcessing::ActorStorage::getLayers() {return po_layers_;}
 
@@ -47,7 +47,7 @@ std::shared_ptr<std::map<int, std::vector<tson::Layer>>> CoreLogic::DataProcessi
 void CoreLogic::DataProcessing::ActorStorage::setActors(
         std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Actor>>>> pa_actors)
 {
-    po_actors_ = pa_actors;
+    po_allActors_ = pa_actors;
 }
 
 template <typename T>
@@ -74,20 +74,6 @@ void CoreLogic::DataProcessing::ActorStorage::setPlayer(std::shared_ptr<EventMan
     po_player_ = pa_player;
 }
 
-std::shared_ptr<CoreLogic::EventManagement::Actor> CoreLogic::DataProcessing::ActorStorage::getActorByID(int pa_actorID)
-{
-    for (auto &pair: *po_actors_)
-    {
-        for (auto &actor: pair.second)
-        {
-            if (actor->getId() == pa_actorID)
-            {
-                return actor;
-            }
-        }
-    }
-    return nullptr;
-}
 
 void CoreLogic::DataProcessing::ActorStorage::addActorByType(int pa_elevation,
         std::shared_ptr<EventManagement::Actor> pa_actor)

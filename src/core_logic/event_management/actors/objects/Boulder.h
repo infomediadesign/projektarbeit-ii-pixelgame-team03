@@ -18,6 +18,7 @@ namespace CoreLogic::EventManagement::Object
         pa_size, int pa_elevation);
         int getFallHeight();
         int getNewElevation();
+        std::shared_ptr<Cliff> getCliff();
     protected:
         std::shared_ptr<Cliff> cliff_ = nullptr;
 
