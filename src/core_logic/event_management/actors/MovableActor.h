@@ -29,7 +29,6 @@ namespace CoreLogic::EventManagement::Actors
                 : Actor(pa_position, pa_hitbox, pa_id, pa_collisionType, pa_size, pa_visible, pa_elevation)
         {}
 
-        virtual void move(bool pa_up, bool pa_down, bool pa_left, bool pa_right) = 0;
 
         void setPosition(Vector2 pa_position);
 
