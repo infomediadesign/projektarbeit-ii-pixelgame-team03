@@ -27,7 +27,7 @@ namespace CoreLogic::EventManagement
         MOVE_RIGHT,
 
         INTERACT,
-
+        CLIMB,
 
         ABILITY,
         CLEAN,

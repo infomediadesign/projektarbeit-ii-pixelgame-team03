@@ -125,6 +125,14 @@ set(CORE_LOGIC_HEADERS
         data_processing/DesignConfig.h
         event_management/events/InteractionEvent.cpp
         event_management/events/InteractionEvent.h
+        event_management/events/ClimbingEvent.cpp
+        event_management/events/ClimbingEvent.h
+        event_management/events/NoteEvent.cpp
+        event_management/events/NoteEvent.h
+        event_management/events/CheckpointEvent.cpp
+        event_management/events/CheckpointEvent.h
+        event_management/events/UplinkEvent.cpp
+        event_management/events/UplinkEvent.h
 
 )
 

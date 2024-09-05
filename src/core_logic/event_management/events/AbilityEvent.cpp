@@ -8,7 +8,6 @@
 #include "PushEvent.h"
 #include "JumpEvent.h"
 #include "PushBarrelEvent.h"
-#include "objects/Boulder.h"
 
 
 namespace CoreLogic::EventManagement

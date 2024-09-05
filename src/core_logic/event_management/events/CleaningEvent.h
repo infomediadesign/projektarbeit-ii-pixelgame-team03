@@ -9,7 +9,7 @@
 #include "Event.h"
 #include "actors/Drone.h"
 #include "AbilityEvent.h"
-#include "objects/Rubble.h"
+#include "actors/objects/Rubble.h"
 
 namespace CoreLogic::EventManagement
 {

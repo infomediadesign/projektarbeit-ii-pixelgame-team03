@@ -10,7 +10,7 @@ CoreLogic::EventManagement::CleaningEvent::CleaningEvent(std::shared_ptr<CoreLog
         pa_rubble): AbilityEvent(CLEAN)
 {
     po_rubble_ = pa_rubble;
-    ticks_ = 100;
+    ticks_ = 0;
 }
 
 void CoreLogic::EventManagement::CleaningEvent::update()
@@ -25,7 +25,7 @@ void CoreLogic::EventManagement::CleaningEvent::update()
         po_mainActor_->shiftFrame(/**@Attention: set to working frames*/);
     }
     ticks_--;
-    if (ticks_==0)
+    if (ticks_==100)
     {
         po_rubble_->setCleaned();
         throw true;

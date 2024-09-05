@@ -9,3 +9,9 @@ CoreLogic::EventManagement::Object::Rubble::Rubble(Vector2 pa_position, Rectangl
 {
 
 }
+
+void CoreLogic::EventManagement::Object::Rubble::setCleaned()
+{
+    this -> collisionType_ = Actor::CollisionType::NONE;
+    this -> visible_ = false;
+}

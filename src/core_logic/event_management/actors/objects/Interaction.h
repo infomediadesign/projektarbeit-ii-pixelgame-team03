@@ -14,7 +14,7 @@ namespace CoreLogic::EventManagement::Object
     public:
         enum InteractionType
         {
-            CLIMBING, NOTE, CHECKPOINT
+            CLIMBING, NOTE, CHECKPOINT, UPLINK
         };
 
         Interaction(Vector2 pa_position, Rectangle pa_hitbox, int pa_id, CollisionType pa_collidable, Vector2 pa_size, bool pa_visible, int pa_elevation, InteractionType pa_type);
