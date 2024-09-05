@@ -5,13 +5,14 @@
 #ifndef HIVE_VINE_H
 #define HIVE_VINE_H
 
-#include "Actor.h"
+#include "Interaction.h"
 
 namespace CoreLogic::EventManagement::Object
 {
-    class Vine : public Actor
+    class Vine : public Interaction
     {
-public:
+    public:
+        Vine(Vector2 pa_position, Rectangle pa_hitbox, int pa_id, Vector2 pa_size, int pa_elevation, Vector2 pa_coordinates);
         Vector2 getCoordinates() const;
         int getElevationChange() const;
 

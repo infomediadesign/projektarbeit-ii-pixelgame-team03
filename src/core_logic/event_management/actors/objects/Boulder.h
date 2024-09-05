@@ -14,6 +14,8 @@ namespace CoreLogic::EventManagement::Object
     class Boulder : public Ability
     {
     public:
+        Boulder(Vector2 pa_position, Rectangle pa_hitbox, int pa_id, Vector2
+        pa_size, int pa_elevation);
         int getFallHeight();
         int getNewElevation();
     protected:

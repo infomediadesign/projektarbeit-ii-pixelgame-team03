@@ -223,7 +223,7 @@ bool CoreLogic::EventManagement::Actors::Drone::checkCollision(CoreLogic::UserIn
             {
                 continue;
             }
-            if (object.getCollisionType() == CollisionType::LEVEL_CHANGE)
+            if (object.getCollisionType() == CollisionType::WALKABLE)
             {
                 continue;
             }

@@ -10,12 +10,16 @@
 
 namespace CoreLogic::EventManagement::Object
 {
-class Barrel :public Ability, public Cliff
+class Barrel : public Ability, public Cliff
     {
     public:
+        Barrel(Vector2 pa_position, Rectangle pa_hitbox, int pa_id, Vector2 pa_size, int pa_elevation, int pa_fallHeight, UserInterface::Direction pa_primaryDirection);
+
         int getNewElevation() const;
+
     protected:
         int newElevation_ = 0;
+        UserInterface::Direction primaryDirection_ = UserInterface::Direction::UP;
     };
 }
 

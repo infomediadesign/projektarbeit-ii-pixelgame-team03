@@ -12,6 +12,8 @@ namespace CoreLogic::EventManagement::Object
     class Rubble : public Ability
     {
         public:
+        Rubble(Vector2 pa_position, Rectangle pa_hitbox, int pa_id, Vector2
+        pa_size, int pa_elevation);
         void setCleaned();
     };
 }

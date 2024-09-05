@@ -5,7 +5,8 @@
 #include "Map.h"
 #include "Store.h"
 #include "../event_management/actors/Drone.h"
-
+#include "actors/drones/Worker.h"
+#include "actors/objects/Water.h"
 
 
 CoreLogic::DataProcessing::Map::Map(std::string pa_filename)
@@ -93,10 +94,149 @@ Color CoreLogic::DataProcessing::Map::getBgColor()
     return bgColor_;
 }
 
-//void CoreLogic::DataProcessing::Map::loadObjects()
-//{
-//    switch (ActorStorage::getPlayer()->getDroneType())
-//}
+void CoreLogic::DataProcessing::Map::loadObjects()
+{
+    std::shared_ptr<EventManagement::Actor> actor = nullptr;
+
+    for (auto &pair: *po_objects_)
+    {
+        int objectElevation = pair.first;
+
+        for (auto &object: pair.second)
+        {
+            int objectId = object.getId();
+            std::string objectClass = object.getClassType();
+
+            Vector2 objectPosition = {(float) object.getPosition().x, (float) object.getPosition().y};
+
+            Rectangle objectHitbox;
+            if (object.getObjectType() == tson::ObjectType::Rectangle)
+            {
+                objectHitbox = {objectPosition.x, objectPosition.y, (float) (object.getSize().x),
+                        (float) (object.getSize().y)};
+            }
+
+            Vector2 objectSize = {objectHitbox.width, objectHitbox.height};
+
+            tson::PropertyCollection objectProperties = object.getProperties();
+
+            //-------------------------------------------------------------------------------------------------------//
+
+            std::shared_ptr<EventManagement::Actor> actor = nullptr;
+
+            if (objectClass == "collidable")
+            {
+                bool objectVisible = object.isVisible();
+
+                actor = std::make_shared<EventManagement::Actor>(EventManagement::Object::Barrier
+                        (objectPosition, objectHitbox,objectId, objectSize, objectVisible, objectElevation));
+
+            } else if (objectClass == "rubble")
+            {
+                    actor = std::make_shared<EventManagement::Actor>(EventManagement::Object::Rubble(objectPosition,
+                            objectHitbox, objectId, objectSize, objectElevation));
+
+            } else if (objectClass == "pushable")
+            {
+                actor = std::make_shared<EventManagement::Actor>(EventManagement::Object::Boulder(objectPosition,
+                        objectHitbox, objectId, objectSize, objectElevation));
+
+            } else if (objectClass == "vines")
+            {
+                Vector2 objectCoordinates = {objectProperties.getProperty("x_dest")->getValue<float>(),
+                        objectProperties.getProperty("y_dest")->getValue<float>()};
+
+                actor = std::make_shared<EventManagement::Actor>(
+                        EventManagement::Object::Vine(objectPosition, objectHitbox, objectId, objectSize,objectElevation, objectCoordinates));
+
+            } else if (objectClass == "water")
+            {
+                actor = std::make_shared<EventManagement::Actor>(EventManagement::Object::Water(objectPosition,
+                        objectHitbox, objectId, objectSize, objectElevation));
+
+            } else if (objectClass == "jump_point")
+            {
+                Vector2 objectDestination = {objectProperties.getProperty("x_dest")->getValue<float>(), objectProperties
+                        .getProperty("x_dest")->getValue<float>()};
+
+                actor = std::make_shared<EventManagement::Actor>(EventManagement::Object::JumpPoint
+                        (objectPosition, objectHitbox, objectId, objectSize, objectElevation, objectDestination));
+
+            } else if (objectClass == "colonist")
+            {
+                bool objectClockwise = objectProperties.getProperty("clockwise")->getValue<bool>();
+                int objectStartingDirection = objectProperties.getProperty("direction")->getValue<int>();
+
+                int intervalEast = objectProperties.getProperty("interval_e")->getValue<int>();
+                int intervalNorth = objectProperties.getProperty("interval_n")->getValue<int>();
+                int intervalSouth = objectProperties.getProperty("interval_s")->getValue<int>();
+                int intervalWest = objectProperties.getProperty("interval_w")->getValue<int>();
+
+                std::map<CoreLogic::UserInterface::Direction, std::pair<int, int>> objectTurnCycle = {
+                        {CoreLogic::UserInterface::Direction::UP, {intervalNorth, 0}},
+                        {CoreLogic::UserInterface::Direction::DOWN, {intervalSouth, 0}},
+                        {CoreLogic::UserInterface::Direction::LEFT, {intervalWest, 0}},
+                        {CoreLogic::UserInterface::Direction::RIGHT, {intervalEast, 0}}};
+
+//                actor = std::make_shared<EventManagement::Actor>(EventManagement::Object::Colonist
+//                        (objectPosition, objectHitbox, objectId, objectSize, objectElevation, objectClockwise, objectStartingDirection, objectTurnCycle));
+
+            } else if (objectClass == "cliffs")
+            {
+                int objectFallHeight = objectProperties.getProperty("fall_height")->getValue<int>();
+
+                actor = std::make_shared<EventManagement::Actor>(EventManagement::Object::Cliff(objectPosition, objectHitbox, objectId, objectSize, objectElevation, objectFallHeight));
+
+            } else if (objectClass == "explosive_barrel")
+            {
+                int objectFallHeight = objectProperties.getProperty("fall_height")->getValue<int>();
+                int direction = objectProperties.getProperty("direction")->getValue<int>();
+
+                UserInterface::Direction objectDirection;
+
+                switch (direction)
+                {
+                case 0:
+                    objectDirection = UserInterface::Direction::UP;
+                    break;
+                case 1:
+                    objectDirection = UserInterface::Direction::RIGHT;
+                    break;
+                case 2:
+                    objectDirection = UserInterface::Direction::DOWN;
+                    break;
+                case 3:
+                    objectDirection = UserInterface::Direction::LEFT;
+                    break;
+                }
+
+                actor = std::make_shared<EventManagement::Actor>(EventManagement::Object::Barrel
+                        (objectPosition, objectHitbox, objectId, objectSize, objectElevation, objectFallHeight, objectDirection));
+
+            }else if (objectClass == "textbox")
+            {
+                std::string objectText = objectProperties.getProperty("text")->getValue<std::string>();
+
+                actor = std::make_shared<EventManagement::Actor>(EventManagement::Object::TutorialBox(objectPosition, objectHitbox, objectId, objectSize, objectElevation, objectText));
+
+            } else if (objectClass == "lore_item")
+            {
+                std::string objectText = objectProperties.getProperty("text")->getValue<std::string>();
+
+                actor = std::make_shared<EventManagement::Actor>(EventManagement::Object::Note(objectPosition,
+                        objectHitbox, objectId, objectSize, objectElevation, objectText));
+
+            }else if (objectClass == "level_switch")
+            {
+                int objectLevelID = objectProperties.getProperty("level_switch")->getValue<int>();
+
+                actor = std::make_shared<EventManagement::Actor>(EventManagement::Object::LevelSwitch
+                        (objectPosition, objectHitbox, objectId, objectSize, objectElevation, objectLevelID));
+            }
+
+        }
+    }
+}
 
 /*
 void CoreLogic::DataProcessing::Map::loadObjects()

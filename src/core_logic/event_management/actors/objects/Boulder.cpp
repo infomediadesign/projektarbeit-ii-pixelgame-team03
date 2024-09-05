@@ -25,3 +25,12 @@ int CoreLogic::EventManagement::Object::Boulder::getNewElevation()
         return -1;
     }
 }
+
+CoreLogic::EventManagement::Object::Boulder::Boulder(Vector2 pa_position, Rectangle pa_hitbox, int pa_id,
+        Vector2 pa_size, int pa_elevation) :
+        Ability(pa_position, pa_hitbox, pa_id, CollisionType::COLLISION, pa_size, true, pa_elevation, PUSH)
+{
+
+}
+
+

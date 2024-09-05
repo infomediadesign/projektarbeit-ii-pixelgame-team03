@@ -50,21 +50,19 @@ void CoreLogic::DataProcessing::ActorStorage::setActors(
     po_actors_ = pa_actors;
 }
 
-/**
- * @brief: Zum hinzufügen von Actors, die während des laufenden Spiels erzeugt werden
- **/
-void CoreLogic::DataProcessing::ActorStorage::addActor(int pa_elevation, std::shared_ptr<EventManagement::Actor> pa_actor)
-{
-    if (!po_actors_.get()->empty())
-    {
-        auto it = po_actors_->find(pa_elevation);
-        if (it != po_actors_->end())
-        {
+
+template <typename T>
+void CoreLogic::DataProcessing::ActorStorage::addActor(std::shared_ptr<std::map<int, std::vector<std::shared_ptr<T>>>> pa_map, int pa_elevation,
+        std::shared_ptr<T> pa_actor) {
+    if (!pa_map->empty()) {
+        auto it = pa_map->find(pa_elevation);
+        if (it != pa_map->end()) {
             it->second.push_back(pa_actor);
+        } else {
+            pa_map->insert({pa_elevation, {pa_actor}});
         }
-    } else
-    {
-        po_actors_->insert({pa_elevation, {pa_actor}});
+    } else {
+        pa_map->insert({pa_elevation, {pa_actor}});
     }
 }
 
@@ -90,4 +88,43 @@ std::shared_ptr<CoreLogic::EventManagement::Actor> CoreLogic::DataProcessing::Ac
         }
     }
     return nullptr;
+}
+
+void CoreLogic::DataProcessing::ActorStorage::addActorByType(int pa_elevation,
+        std::shared_ptr<EventManagement::Actor> pa_actor)
+{
+    if (auto barrier = std::dynamic_pointer_cast<EventManagement::Object::Barrier>(pa_actor))
+    {
+        addActor(po_barriers_, pa_elevation, barrier);
+    } else if (auto rubble = std::dynamic_pointer_cast<EventManagement::Object::Rubble>(pa_actor))
+    {
+        addActor(po_rubbles_, pa_elevation, rubble);
+    } else if (auto boulder = std::dynamic_pointer_cast<EventManagement::Object::Boulder>(pa_actor))
+    {
+        addActor(po_boulders_, pa_elevation, boulder);
+    } else if (auto vine = std::dynamic_pointer_cast<EventManagement::Object::Vine>(pa_actor))
+    {
+        addActor(po_vines_, pa_elevation, vine);
+    } else if (auto water = std::dynamic_pointer_cast<EventManagement::Object::Water>(pa_actor))
+    {
+        addActor(po_waters_, pa_elevation, water);
+    } else if (auto jumpPoint = std::dynamic_pointer_cast<EventManagement::Object::JumpPoint>(pa_actor))
+    {
+        addActor(po_jumpPoints_, pa_elevation, jumpPoint);
+    } else if (auto colonist = std::dynamic_pointer_cast<EventManagement::Actors::Colonist>(pa_actor))
+    {
+        addActor(po_colonists_, pa_elevation, colonist);
+    } else if (auto cliff = std::dynamic_pointer_cast<EventManagement::Object::Cliff>(pa_actor))
+    {
+        addActor(po_cliffs_, pa_elevation, cliff);
+    } else if (auto barrel = std::dynamic_pointer_cast<EventManagement::Object::Barrel>(pa_actor))
+    {
+        addActor(po_cliffs_, pa_elevation, cliff);
+    } else if (auto cliff = std::dynamic_pointer_cast<EventManagement::Object::Cliff>(pa_actor))
+    {
+        addActor(po_cliffs_, pa_elevation, cliff);
+    } else if (auto cliff = std::dynamic_pointer_cast<EventManagement::Object::Cliff>(pa_actor))
+    {
+        addActor(po_cliffs_, pa_elevation, cliff);
+    }
 }

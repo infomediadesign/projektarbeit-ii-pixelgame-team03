@@ -5,11 +5,14 @@
 #ifndef HIVE_LEVELSWITCH_H
 #define HIVE_LEVELSWITCH_H
 
+#include "Actor.h"
+
 namespace CoreLogic::EventManagement::Object
 {
-    class LevelSwitch
+    class LevelSwitch : public Actor
     {
     public:
+        LevelSwitch(Vector2 pa_position, Rectangle pa_hitbox, int pa_id, Vector2 pa_size, int pa_elevation, int pa_newLevelID);
         int getNewLevelID() const;
     protected:
         int newLevelID_;

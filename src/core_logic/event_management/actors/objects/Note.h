@@ -11,6 +11,11 @@ namespace CoreLogic::EventManagement::Object
 {
     class Note : public Interaction
     {
+    public:
+        Note(Vector2 pa_position, Rectangle pa_hitbox, int pa_id, Vector2 pa_size, int pa_elevation, std::string pa_text);
+        std::string getText();
+    protected:
+        std::string text_;
 
     };
 }

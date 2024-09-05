@@ -92,34 +92,37 @@ set(CORE_LOGIC_HEADERS
         event_management/events/FallingBoulderEvent.h
         event_management/events/PushBarrelEvent.cpp
         event_management/events/PushBarrelEvent.h
-        event_management/objects/Interaction.cpp
-        event_management/objects/Interaction.h
-        event_management/objects/Ability.cpp
-        event_management/objects/Ability.h
-        event_management/objects/Rubble.cpp
-        event_management/objects/Rubble.h
-        event_management/objects/Barrel.cpp
-        event_management/objects/Barrel.h
-        event_management/objects/Cliff.cpp
-        event_management/objects/Cliff.h
-        event_management/objects/Boulder.cpp
-        event_management/objects/Boulder.h
-        event_management/objects/JumpPoint.cpp
-        event_management/objects/JumpPoint.h
-        event_management/objects/ElevationChange.cpp
-        event_management/objects/ElevationChange.h
-        event_management/objects/Note.cpp
-        event_management/objects/Note.h
-        event_management/objects/DroneRespawnPoint.cpp
-        event_management/objects/DroneRespawnPoint.h
-        event_management/objects/Vine.cpp
-        event_management/objects/Vine.h
-        event_management/objects/TutorialBox.cpp
-        event_management/objects/TutorialBox.h
-        event_management/objects/LevelSwitch.cpp
-        event_management/objects/LevelSwitch.h
+        event_management/actors/objects/Interaction.cpp
+        event_management/actors/objects/Interaction.h
+        event_management/actors/objects/Ability.cpp
+        event_management/actors/objects/Ability.h
+        event_management/actors/objects/Rubble.cpp
+        event_management/actors/objects/Rubble.h
+        event_management/actors/objects/Barrel.cpp
+        event_management/actors/objects/Barrel.h
+        event_management/actors/objects/Cliff.cpp
+        event_management/actors/objects/Cliff.h
+        event_management/actors/objects/Boulder.cpp
+        event_management/actors/objects/Boulder.h
+        event_management/actors/objects/JumpPoint.cpp
+        event_management/actors/objects/JumpPoint.h
+        event_management/actors/objects/ElevationChange.cpp
+        event_management/actors/objects/ElevationChange.h
+        event_management/actors/objects/Note.cpp
+        event_management/actors/objects/Note.h
+        event_management/actors/objects/DroneRespawnPoint.cpp
+        event_management/actors/objects/DroneRespawnPoint.h
+        event_management/actors/objects/Vine.cpp
+        event_management/actors/objects/Vine.h
+        event_management/actors/objects/TutorialBox.cpp
+        event_management/actors/objects/TutorialBox.h
+        event_management/actors/objects/LevelSwitch.cpp
+        event_management/actors/objects/LevelSwitch.h
+        event_management/actors/objects/Barrier.cpp
+        event_management/actors/objects/Barrier.h
+        event_management/actors/objects/Water.cpp
+        event_management/actors/objects/Water.h
         data_processing/DesignConfig.h
-
 
 )
 

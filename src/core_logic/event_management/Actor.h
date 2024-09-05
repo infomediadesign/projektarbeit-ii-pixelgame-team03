@@ -21,7 +21,7 @@ namespace CoreLogic::EventManagement
             COLLISION = 1,
             ENEMYDEATH = 2,
             DEATH = 3,
-            LEVEL_CHANGE = 4
+            WALKABLE = 4
         };
 
 

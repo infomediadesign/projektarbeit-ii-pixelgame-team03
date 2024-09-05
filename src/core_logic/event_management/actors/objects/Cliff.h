@@ -12,10 +12,9 @@ namespace CoreLogic::EventManagement::Object
     class Cliff : virtual public Actor
     {
     public:
-        int getElevation() const;
+        Cliff(Vector2 pa_position, Rectangle pa_hitbox, int pa_id, Vector2 pa_size, int pa_elevation, int pa_fallHeight);
         int getFallHeight() const;
     protected:
-        int elevation_ = 0;
         int fallHeight_ = 0;
     };
 }
