@@ -83,7 +83,7 @@ namespace CoreLogic::EventManagement
 
                 if (CheckCollisionRecs(cliffHitbox, po_pushable_ -> getHitbox()))
                 {
-                    po_pushable_ -> setCliff(cliff)
+                    po_pushable_ -> setCliff(cliff);
                     eventHandler.handleEvents({FALLING}, po_pushable_->getId());
                     return;
                 }

@@ -1,8 +1,13 @@
-#pragma once
+//
+// Created by keanu on 9/5/2024.
+//
+
+#ifndef HIVE_DESIGNCONFIG_H
+#define HIVE_DESIGNCONFIG_H
 
 #include <raylib.h>
 
-namespace GameSpace {
+namespace CoreLogic::DataProcessing {
     class DesignConfig final
     {
 
@@ -18,6 +23,7 @@ namespace GameSpace {
         inline static constexpr int DRONE_SPEED = 2;
         inline static constexpr int WORKER_SPEED = 2;
         inline static constexpr int SCOUT_SPEED = 3;
+        inline static constexpr int BELL_TURN_TIME = 1200;
 
         //enemy range; in tiles
         inline static constexpr int COLONIST_RANGE = 8;
@@ -53,3 +59,4 @@ namespace GameSpace {
 
     //#define GAME_START_FULLSCREEN
 }
+#endif //HIVE_DESIGNCONFIG_H

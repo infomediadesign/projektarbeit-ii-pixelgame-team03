@@ -14,7 +14,7 @@ add_subdirectory(staging)
 
 add_executable(${PROJECT_NAME} main.cpp
         tileson.h
-        designConfig)
+)
 
 # Add config.h.in file
 configure_file(gameData.h.in config.h)

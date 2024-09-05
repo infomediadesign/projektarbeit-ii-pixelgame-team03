@@ -118,6 +118,7 @@ set(CORE_LOGIC_HEADERS
         event_management/objects/TutorialBox.h
         event_management/objects/LevelSwitch.cpp
         event_management/objects/LevelSwitch.h
+        data_processing/DesignConfig.h
 
 
 )

@@ -10,13 +10,18 @@
 
 namespace CoreLogic::EventManagement::Actors {
 
-    class Enemy : public Actor{
+    class Enemy : public Actor
+    {
     public:
-        bool checkVision();
         void update();
+        void forceTurn(CoreLogic::UserInterface::Direction pa_newDirection, int pa_turnFrames);
     protected:
+        void checkVision();
         bool visionConnected_ = false;
+        const Vector2 visionOrigin_;
         std::map<CoreLogic::UserInterface::Direction, std::pair<int, int>> visionMap_;
+        bool checkVisionCollisionObjects(Ray *pa_visionRays, bool *pa_visionCollisions);
+        void turn();
         
 
     };

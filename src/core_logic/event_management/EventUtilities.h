@@ -36,9 +36,10 @@ namespace CoreLogic::EventManagement
         JUMP,
         FALLING,
 
-
         DEATH_ABILITY,
         DISCONNECT,
+
+        VISION,
 
         HIGHLIGHT,
         PAUSE
