@@ -67,6 +67,7 @@ namespace CoreLogic::DataProcessing
         static std::shared_ptr<std::map<int, std::vector<tson::Layer>>> po_layers_;
 
         static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Actor>>>> po_allActors_;
+        static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Actor>>>> po_collidables_;
         static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Actor>>>> po_visibles_;
         //wil not include barrels
         static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::Ability>>>>
@@ -90,8 +91,6 @@ namespace CoreLogic::DataProcessing
                 po_boulders_;
         static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::Vine>>>>
                 po_vines_;
-        static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::Water>>>>
-                po_waters_;
         static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::JumpPoint>>>>
                 po_jumpPoints_;
         static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Actors::Colonist>>>>

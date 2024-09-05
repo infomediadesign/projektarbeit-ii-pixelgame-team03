@@ -151,8 +151,8 @@ void CoreLogic::DataProcessing::Map::loadObjects()
 
             } else if (objectClass == "water")
             {
-                actor = std::make_shared<EventManagement::Actor>(EventManagement::Object::Water(objectPosition,
-                        objectHitbox, objectId, objectSize, objectElevation));
+                actor = std::make_shared<EventManagement::Actor>(EventManagement::Object::Cliff(objectPosition,
+                        objectHitbox, objectId, objectSize, objectElevation, 0));
 
             } else if (objectClass == "jump_point")
             {
@@ -185,7 +185,9 @@ void CoreLogic::DataProcessing::Map::loadObjects()
             {
                 int objectFallHeight = objectProperties.getProperty("fall_height")->getValue<int>();
 
-                actor = std::make_shared<EventManagement::Actor>(EventManagement::Object::Cliff(objectPosition, objectHitbox, objectId, objectSize, objectElevation, objectFallHeight));
+                actor = std::make_shared<EventManagement::Actor>(
+                        EventManagement::Object::Cliff(objectPosition, objectHitbox, objectId, objectSize,
+                                objectElevation, objectFallHeight));
 
             } else if (objectClass == "explosive_barrel")
             {
