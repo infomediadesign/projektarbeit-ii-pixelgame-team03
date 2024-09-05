@@ -27,6 +27,7 @@
 #include "actors/objects/LevelSwitch.h"
 #include "actors/Enemy.h"
 #include "actors/objects/Water.h"
+#include "actors/objects/DroneRespawnPoint.h"
 
 
 namespace CoreLogic::DataProcessing
@@ -62,6 +63,11 @@ namespace CoreLogic::DataProcessing
      * @note: possibly also get std::map<int, vector<Layer>> po_layers_ as to not have to make the Map class static
      **/
     private:
+        static std::shared_ptr<CoreLogic::EventManagement::Object::DroneRespawnPoint> po_activeRespawnPoint_;
+        static std::shared_ptr<CoreLogic::EventManagement::Object::TutorialBox> po_activeTutorialBox_;
+        static std::shared_ptr<CoreLogic::EventManagement::Object::Note> po_activeNote_;
+
+
         static std::shared_ptr<EventManagement::Actors::Drone> po_player_;
         static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Actor>>>> po_actors_;
         static std::shared_ptr<std::map<int, std::vector<tson::Layer>>> po_layers_;
@@ -112,6 +118,16 @@ namespace CoreLogic::DataProcessing
 
         static std::shared_ptr<EventManagement::Actors::Drone> getPlayer();
         static void setPlayer(std::shared_ptr<EventManagement::Actors::Drone> pa_player);
+
+        static std::shared_ptr<CoreLogic::EventManagement::Object::DroneRespawnPoint> getActiveSpawnPoint();
+        static void setActiveSpawnPoint(std::shared_ptr<CoreLogic::EventManagement::Object::DroneRespawnPoint> pa_spawnPoint);
+
+        static std::shared_ptr<CoreLogic::EventManagement::Object::TutorialBox> getActiveTutorialBox();
+        static void setActiveTutorialBox(
+                std::shared_ptr<CoreLogic::EventManagement::Object::TutorialBox> pa_tutorialBox);
+
+        static std::shared_ptr<CoreLogic::EventManagement::Object::Note> getActiveNote();
+        static void setActiveNote(std::shared_ptr<CoreLogic::EventManagement::Object::Note> pa_activeNote);
 
         static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Actor>>>> getActors();
         static std::shared_ptr<EventManagement::Actor> getActorByID(int pa_actorID);

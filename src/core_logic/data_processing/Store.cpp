@@ -201,3 +201,38 @@ void CoreLogic::DataProcessing::ActorStorage::addActorByType(int pa_elevation,
 
     }
 }
+
+std::shared_ptr<CoreLogic::EventManagement::Object::DroneRespawnPoint>
+CoreLogic::DataProcessing::ActorStorage::getActiveSpawnPoint()
+{
+    return po_activeRespawnPoint_;
+}
+
+std::shared_ptr<CoreLogic::EventManagement::Object::TutorialBox>
+CoreLogic::DataProcessing::ActorStorage::getActiveTutorialBox()
+{
+    return po_activeTutorialBox_;
+}
+
+std::shared_ptr<CoreLogic::EventManagement::Object::Note> CoreLogic::DataProcessing::ActorStorage::getActiveNote()
+{
+    return po_activeNote_;
+}
+
+void CoreLogic::DataProcessing::ActorStorage::setActiveSpawnPoint(
+        std::shared_ptr<CoreLogic::EventManagement::Object::DroneRespawnPoint> pa_spawnPoint)
+{
+    po_activeRespawnPoint_ = pa_spawnPoint;
+}
+
+void CoreLogic::DataProcessing::ActorStorage::setActiveTutorialBox(
+        std::shared_ptr<CoreLogic::EventManagement::Object::TutorialBox> pa_tutorialBox)
+{
+    po_activeTutorialBox_ = pa_tutorialBox;
+}
+
+void CoreLogic::DataProcessing::ActorStorage::setActiveNote(
+        std::shared_ptr<CoreLogic::EventManagement::Object::Note> pa_activeNote)
+{
+    po_activeNote_ = pa_activeNote;
+}
