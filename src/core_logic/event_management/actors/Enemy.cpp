@@ -77,7 +77,15 @@ namespace CoreLogic::EventManagement::Actors
 
     void Enemy::update()
     {
-
+        if (dead_)
+        {
+            return;
+        }
+        if (!visionConnected_)
+        {
+            updateTurnCycle();
+        }
+        checkVision();
     }
 
     void Enemy::checkVision()

@@ -6,7 +6,7 @@
 #define HIVE_JUMPEVENT_H
 
 #include "AbilityEvent.h"
-#include "../objects/JumpPoint.h"
+#include "actors/objects/JumpPoint.h"
 
 namespace CoreLogic::EventManagement
 {
@@ -14,7 +14,7 @@ namespace CoreLogic::EventManagement
     class JumpEvent : public AbilityEvent
     {
     public:
-        JumpEvent(std::shared_ptr<Object::JumpPoint> pa_jumpPoint);
+        explicit JumpEvent(std::shared_ptr<Object::JumpPoint> pa_jumpPoint);
     };
 }
 
