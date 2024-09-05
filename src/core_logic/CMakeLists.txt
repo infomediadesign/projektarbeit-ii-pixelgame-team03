@@ -133,6 +133,8 @@ set(CORE_LOGIC_HEADERS
         event_management/events/CheckpointEvent.h
         event_management/events/UplinkEvent.cpp
         event_management/events/UplinkEvent.h
+        event_management/actors/objects/Uplink.cpp
+        event_management/actors/objects/Uplink.h
 
 )
 

@@ -156,6 +156,7 @@ void CoreLogic::DataProcessing::ActorStorage::addActorByType(int pa_elevation,
         addActor(po_allEnemies_, pa_elevation, enemy);
 
         auto actor = std::dynamic_pointer_cast<EventManagement::Actor>(pa_actor);
+        addActor(po_visibles_, pa_elevation, actor);
         addActor(po_allActors_, pa_elevation, actor);
 
     } else if (auto cliff = std::dynamic_pointer_cast<EventManagement::Object::Cliff>(pa_actor))
@@ -169,14 +170,34 @@ void CoreLogic::DataProcessing::ActorStorage::addActorByType(int pa_elevation,
     {
         addActor(po_barrels_, pa_elevation, barrel);
 
+        auto interaction = std::dynamic_pointer_cast<EventManagement::Object::Interaction>(pa_actor);
+        addActor(po_interactions_, pa_elevation, interaction);
+
+        auto actor = std::dynamic_pointer_cast<EventManagement::Actor>(pa_actor);
+        addActor(po_collidables_, pa_elevation, actor);
+        addActor(po_visibles_, pa_elevation, actor);
+        addActor(po_allActors_, pa_elevation, actor);
+
     } else if (auto tutorialBox = std::dynamic_pointer_cast<EventManagement::Object::TutorialBox>(pa_actor))
     {
         addActor(po_tutorialBoxes_, pa_elevation, tutorialBox);
+
+        auto actor = std::dynamic_pointer_cast<EventManagement::Actor>(pa_actor);
+        addActor(po_allActors_, pa_elevation, actor);
+
     } else if (auto note = std::dynamic_pointer_cast<EventManagement::Object::Note>(pa_actor))
     {
         addActor(po_notes_, pa_elevation, note);
+
+        auto actor = std::dynamic_pointer_cast<EventManagement::Actor>(pa_actor);
+        addActor(po_allActors_, pa_elevation, actor);
+
     } else if (auto levelSwitch = std::dynamic_pointer_cast<EventManagement::Object::LevelSwitch>(pa_actor))
     {
         addActor(po_levelSwitches_, pa_elevation, levelSwitch);
+
+        auto actor = std::dynamic_pointer_cast<EventManagement::Actor>(pa_actor);
+        addActor(po_allActors_, pa_elevation, actor);
+
     }
 }

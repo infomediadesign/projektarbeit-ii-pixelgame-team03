@@ -7,6 +7,7 @@
 #include "../event_management/actors/Drone.h"
 #include "actors/drones/Worker.h"
 #include "actors/objects/Water.h"
+#include "actors/objects/Uplink.h"
 
 
 CoreLogic::DataProcessing::Map::Map(std::string pa_filename)
@@ -130,17 +131,17 @@ void CoreLogic::DataProcessing::Map::loadObjects()
 
                 actor = std::make_shared<EventManagement::Actor>(EventManagement::Object::Barrier
                         (objectPosition, objectHitbox,objectId, objectSize, objectVisible, objectElevation));
-
+                ActorStorage::addActorByType(objectElevation, actor);
             } else if (objectClass == "rubble")
             {
                     actor = std::make_shared<EventManagement::Actor>(EventManagement::Object::Rubble(objectPosition,
                             objectHitbox, objectId, objectSize, objectElevation));
-
+                ActorStorage::addActorByType(objectElevation, actor);
             } else if (objectClass == "pushable")
             {
                 actor = std::make_shared<EventManagement::Actor>(EventManagement::Object::Boulder(objectPosition,
                         objectHitbox, objectId, objectSize, objectElevation));
-
+                ActorStorage::addActorByType(objectElevation, actor);
             } else if (objectClass == "vines")
             {
                 Vector2 objectCoordinates = {objectProperties.getProperty("x_dest")->getValue<float>(),
@@ -148,12 +149,12 @@ void CoreLogic::DataProcessing::Map::loadObjects()
 
                 actor = std::make_shared<EventManagement::Actor>(
                         EventManagement::Object::Vine(objectPosition, objectHitbox, objectId, objectSize,objectElevation, objectCoordinates));
-
+                ActorStorage::addActorByType(objectElevation, actor);
             } else if (objectClass == "water")
             {
                 actor = std::make_shared<EventManagement::Actor>(EventManagement::Object::Cliff(objectPosition,
                         objectHitbox, objectId, objectSize, objectElevation, 0));
-
+                ActorStorage::addActorByType(objectElevation, actor);
             } else if (objectClass == "jump_point")
             {
                 Vector2 objectDestination = {objectProperties.getProperty("x_dest")->getValue<float>(), objectProperties
@@ -161,7 +162,7 @@ void CoreLogic::DataProcessing::Map::loadObjects()
 
                 actor = std::make_shared<EventManagement::Actor>(EventManagement::Object::JumpPoint
                         (objectPosition, objectHitbox, objectId, objectSize, objectElevation, objectDestination));
-
+                ActorStorage::addActorByType(objectElevation, actor);
             } else if (objectClass == "colonist")
             {
                 bool objectClockwise = objectProperties.getProperty("clockwise")->getValue<bool>();
@@ -178,9 +179,9 @@ void CoreLogic::DataProcessing::Map::loadObjects()
                         {CoreLogic::UserInterface::Direction::LEFT, {intervalWest, 0}},
                         {CoreLogic::UserInterface::Direction::RIGHT, {intervalEast, 0}}};
 
-//                actor = std::make_shared<EventManagement::Actor>(EventManagement::Object::Colonist
-//                        (objectPosition, objectHitbox, objectId, objectSize, objectElevation, objectClockwise, objectStartingDirection, objectTurnCycle));
-
+                actor = std::make_shared<EventManagement::Actor>(CoreLogic::EventManagement::Actors::Colonist
+                        (objectPosition, objectHitbox, objectId, objectSize, objectElevation, objectClockwise, objectStartingDirection, objectTurnCycle));
+                ActorStorage::addActorByType(objectElevation, actor);
             } else if (objectClass == "cliffs")
             {
                 int objectFallHeight = objectProperties.getProperty("fall_height")->getValue<int>();
@@ -188,7 +189,7 @@ void CoreLogic::DataProcessing::Map::loadObjects()
                 actor = std::make_shared<EventManagement::Actor>(
                         EventManagement::Object::Cliff(objectPosition, objectHitbox, objectId, objectSize,
                                 objectElevation, objectFallHeight));
-
+                ActorStorage::addActorByType(objectElevation, actor);
             } else if (objectClass == "explosive_barrel")
             {
                 int objectFallHeight = objectProperties.getProperty("fall_height")->getValue<int>();
@@ -215,27 +216,36 @@ void CoreLogic::DataProcessing::Map::loadObjects()
                 actor = std::make_shared<EventManagement::Actor>(EventManagement::Object::Barrel
                         (objectPosition, objectHitbox, objectId, objectSize, objectElevation, objectFallHeight, objectDirection));
 
+                ActorStorage::addActorByType(objectElevation, actor);
             }else if (objectClass == "textbox")
             {
                 std::string objectText = objectProperties.getProperty("text")->getValue<std::string>();
 
                 actor = std::make_shared<EventManagement::Actor>(EventManagement::Object::TutorialBox(objectPosition, objectHitbox, objectId, objectSize, objectElevation, objectText));
-
+                ActorStorage::addActorByType(objectElevation, actor);
             } else if (objectClass == "lore_item")
             {
                 std::string objectText = objectProperties.getProperty("text")->getValue<std::string>();
 
                 actor = std::make_shared<EventManagement::Actor>(EventManagement::Object::Note(objectPosition,
                         objectHitbox, objectId, objectSize, objectElevation, objectText));
-
+                ActorStorage::addActorByType(objectElevation, actor);
             }else if (objectClass == "level_switch")
             {
                 int objectLevelID = objectProperties.getProperty("level_switch")->getValue<int>();
 
                 actor = std::make_shared<EventManagement::Actor>(EventManagement::Object::LevelSwitch
                         (objectPosition, objectHitbox, objectId, objectSize, objectElevation, objectLevelID));
-            }
+                ActorStorage::addActorByType(objectElevation, actor);
+            } else if (objectClass == "mech")
+            {
 
+            } else if (objectClass == "uplink")
+            {
+                actor = std::make_shared<EventManagement::Actor>(EventManagement::Object::Uplink
+                        (objectPosition, objectHitbox, objectId, objectSize, objectElevation));
+                ActorStorage::addActorByType(objectElevation, actor);
+            }
         }
     }
 }

@@ -14,11 +14,12 @@ namespace CoreLogic::EventManagement::Object
     public:
         Vine(Vector2 pa_position, Rectangle pa_hitbox, int pa_id, Vector2 pa_size, int pa_elevation, Vector2 pa_coordinates);
         Vector2 getCoordinates() const;
-        int getElevationChange() const;
+        int getNewElevation() const;
 
     protected:
         Vector2 coordinates_;
         int elevationChange_;
+        int newElevation;
 
 
     };
