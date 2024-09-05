@@ -8,7 +8,7 @@
 
 namespace CoreLogic::EventManagement::Object
 {
-    class Ability : virtual public Actors::MovableActor
+    class Ability : public Actors::MovableActor
     {
         public:
         enum AbilityType{

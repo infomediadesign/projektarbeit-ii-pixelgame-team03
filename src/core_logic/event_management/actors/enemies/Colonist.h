@@ -13,7 +13,7 @@ namespace CoreLogic::EventManagement::Actors {
 
             public:
                 Colonist(Vector2 pa_position, Rectangle pa_hitbox, int pa_id, Vector2 pa_size, int pa_elevation)
-                : Actor(pa_position, pa_hitbox, pa_id, pa_collidable, pa_size, true, pa_elevation) {};
+                : Actor(pa_position, pa_hitbox, pa_id, Actor::CollisionType::COLLISION, pa_size, true, pa_elevation) {};
 
             };
 
