@@ -28,6 +28,7 @@ namespace CoreLogic::EventManagement
 
         INTERACT,
         CLIMB,
+        CHECKPOINT,
 
         ABILITY,
         CLEAN,

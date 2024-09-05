@@ -18,6 +18,7 @@ namespace CoreLogic::EventManagement::Object
             ACTIVATED
         };
 
+        [[nodiscard]] DroneRespawnPointState getRespawnState() const { return state_; };
         void changeState(DroneRespawnPointState pa_state);
     protected:
         DroneRespawnPointState state_ = UNDISCOVERED;
