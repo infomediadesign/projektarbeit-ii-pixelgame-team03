@@ -63,7 +63,7 @@ void Staging::Game::run()
                 ToggleFullscreen();
             }
         }
-        po_stage_->update();
+    po_stage_->update();
 
         po_stage_->draw();
 

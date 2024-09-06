@@ -107,14 +107,24 @@ void CoreLogic::DataProcessing::Map::loadObjects()
     {
         for (auto &object: pair.second)
         {
+            if (objectId == 424) {
+                std::cout << "fick dich doch" << std::endl;
+            }
             std::string klasse = object.getClassType();
 
             Vector2 objectPosition = {(float) object.getPosition().x, (float) object.getPosition().y};
 
             tson::PropertyCollection props = object.getProperties();
 
-            EventManagement::Actor::CollisionType objectCollisionType = static_cast<EventManagement::Actor::CollisionType>(props.getProperty(
-                    "collisionType")->getValue<int>());
+            EventManagement::Actor::CollisionType objectCollisionType;
+
+            if (props.hasProperty("collisionType"))
+            {
+                objectCollisionType = static_cast<EventManagement::Actor::CollisionType>(props.getProperty(
+                        "collisionType")->getValue<int>());
+            } else {
+                objectCollisionType = EventManagement::Actor::CollisionType::NONE;
+            }
 
             bool objectVisible = object.isVisible();
             Vector2 objectSize = {0, 0};
@@ -148,7 +158,7 @@ void CoreLogic::DataProcessing::Map::loadObjects()
 
             std::shared_ptr<EventManagement::Actor> actor = nullptr;
 
-            if (klasse == "Wall")
+            if (klasse == "collidable")
             {
                 actor = std::make_shared<EventManagement::Actor>(
                         EventManagement::Actor(objectPosition, objectHitbox, objectId, objectCollisionType, objectSize, objectVisible, pair.first));
@@ -184,7 +194,7 @@ void CoreLogic::DataProcessing::Map::loadObjects()
                 ActorStorage::addActor(pair.first, actor);
             }
 
-
+            std::cout << objectId << std::endl;
             objectId++;
         }
     }
