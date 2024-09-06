@@ -54,7 +54,7 @@ namespace CoreLogic::EventManagement
         }
         if (ticks_ % 5 == 0)
         {
-            po_mainActor_ -> shiftFrame(/**@Attention: set to Breaking frames*/);
+            po_mainActor_ -> shiftFrame(1);
         }
         if (ticks_ == 40)
         {

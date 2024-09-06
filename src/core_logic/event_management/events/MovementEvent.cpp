@@ -22,7 +22,7 @@ void CoreLogic::EventManagement::MovementEvent::update()
     checkStillPressed();
     if (!ticksRunning_)
     {
-        po_mainActor_->resetFrame(1);
+        po_mainActor_->resetFrame(0);
         return;
     }
 
@@ -36,7 +36,7 @@ void CoreLogic::EventManagement::MovementEvent::update()
 
     if (ticks_ % 3 == 0)
     {
-        po_mainActor_->shiftFrame(1);
+        po_mainActor_->shiftFrame(0);
     }
 }
 
@@ -76,7 +76,7 @@ void CoreLogic::EventManagement::MovementEvent::startMove(CoreLogic::EventManage
 
     directionMap_[pa_Event] = true;
     updateActorDir();
-    po_mainActor_->shiftFrame(1);
+    po_mainActor_->shiftFrame(0);
 }
 
 void CoreLogic::EventManagement::MovementEvent::checkStillPressed()
@@ -125,19 +125,19 @@ void CoreLogic::EventManagement::MovementEvent::checkStillPressed()
         {
             primaryDir_ = MOVE_UP;
             updateActorDir();
-            po_mainActor_->shiftFrame(1);
+            po_mainActor_->shiftFrame(0);
         } else if (directionMap_.at(MOVE_DOWN)) {
             primaryDir_ = MOVE_DOWN;
             updateActorDir();
-            po_mainActor_->shiftFrame(1);
+            po_mainActor_->shiftFrame(0);
         } else if (directionMap_.at(MOVE_LEFT)) {
             primaryDir_ = MOVE_LEFT;
             updateActorDir();
-            po_mainActor_->shiftFrame(1);
+            po_mainActor_->shiftFrame(0);
         } else if (directionMap_.at(MOVE_RIGHT)) {
             primaryDir_ = MOVE_RIGHT;
             updateActorDir();
-            po_mainActor_->shiftFrame(1);
+            po_mainActor_->shiftFrame(0);
         } else {
             stop();
         }

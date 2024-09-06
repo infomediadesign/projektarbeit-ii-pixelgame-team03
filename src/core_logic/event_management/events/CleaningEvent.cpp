@@ -22,7 +22,7 @@ void CoreLogic::EventManagement::CleaningEvent::update()
      */
     if (ticks_ % 20 == 0)
     {
-        po_mainActor_->shiftFrame(/**@Attention: set to working frames*/);
+        po_mainActor_->shiftFrame(1);
     }
     ticks_--;
     if (ticks_==100)

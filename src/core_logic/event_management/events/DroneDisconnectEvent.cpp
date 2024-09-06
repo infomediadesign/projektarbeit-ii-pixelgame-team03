@@ -27,7 +27,7 @@ namespace CoreLogic::EventManagement
     {
         if (ticks_ % 3 == 0)
         {
-            std::dynamic_pointer_cast<Actors::Drone>(po_mainActor_) ->shiftFrame(/**@warning: to determine frame shifts*/);
+            std::dynamic_pointer_cast<Actors::Drone>(po_mainActor_) ->shiftFrame(2);
         }
         if (ticks_ >=36)
         {

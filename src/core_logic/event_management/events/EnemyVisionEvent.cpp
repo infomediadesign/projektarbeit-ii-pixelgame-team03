@@ -68,7 +68,7 @@ namespace CoreLogic::EventManagement
 
         if (ticks_ % (CoreLogic::DataProcessing::DesignConfig::COLONIST_DETECTION_RATE / 6) == 0)
         {
-            po_mainActor_->shiftFrame(/**@warning insert enemy lookout frame*/);
+            po_mainActor_->shiftFrame(1);
         }
         if (ticks_ == 0)
         {
@@ -82,7 +82,7 @@ namespace CoreLogic::EventManagement
     {
         if (ticks_ % 6 == 0)
         {
-            po_mainActor_->shiftFrame(/**@warning insert enemy shoot frame*/);
+            po_mainActor_->shiftFrame(2);
         }
 
         if (ticks_ == 0)

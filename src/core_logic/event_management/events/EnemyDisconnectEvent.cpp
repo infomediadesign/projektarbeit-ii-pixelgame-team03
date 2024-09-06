@@ -44,7 +44,7 @@ namespace CoreLogic::EventManagement
     {
         if (ticks_ % 3 == 0)
         {
-            po_mainActor_ ->shiftFrame(/**@warning: to determine frame shifts*/);
+            po_mainActor_ ->shiftFrame(3);
         }
         if (ticks_ >=36)
         {
