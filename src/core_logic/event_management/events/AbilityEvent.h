@@ -15,10 +15,12 @@ namespace CoreLogic::EventManagement
     {
     public:
         AbilityEvent();
-
         explicit AbilityEvent(EventEnum pa_ID);
         void update() override;
         virtual std::unique_ptr<AbilityEvent> transform() const;
+        ~AbilityEvent();
+    protected:
+        EventEnum variantId_ = ABILITY;
     };
 
 } // CoreLogic

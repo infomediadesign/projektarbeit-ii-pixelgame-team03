@@ -15,6 +15,7 @@ namespace CoreLogic::EventManagement
     {
     public:
         EnemyDisconnectEvent(int pa_enemyID);
+        EnemyDisconnectEvent() = delete;
         void update() override;
         ~EnemyDisconnectEvent();
     };

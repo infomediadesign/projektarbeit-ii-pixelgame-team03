@@ -12,10 +12,12 @@
 namespace CoreLogic::EventManagement
 {
 
-    class CheckpointEvent : InteractionEvent
+    class CheckpointEvent : public InteractionEvent
     {
     public:
         CheckpointEvent(std::shared_ptr<Object::DroneRespawnPoint> pa_checkpoint);
+        void update() override{};
+        ~CheckpointEvent() = default;
     };
 
 } // CoreLogic

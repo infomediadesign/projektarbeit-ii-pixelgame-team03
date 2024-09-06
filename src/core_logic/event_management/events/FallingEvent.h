@@ -14,8 +14,8 @@ namespace CoreLogic::EventManagement
 
     public:
         FallingEvent(int pa_actorID);
-        FallingEvent(): Event(FALLING){};
         ~FallingEvent();
+        FallingEvent() = delete;
         void update() override;
         virtual std::unique_ptr<FallingEvent> transform();
     protected:
@@ -23,7 +23,7 @@ namespace CoreLogic::EventManagement
         float fallenHeight_ = 0.0f;
         bool broken_ = false;
         void fall();
-        virtual void destroy() = 0;
+        virtual void destroy(){};
         bool barrel_;/*
         void explode();*/
         void crumble();

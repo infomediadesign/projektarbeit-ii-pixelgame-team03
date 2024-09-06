@@ -7,13 +7,17 @@
 
 
 #include "InteractionEvent.h"
+#include "actors/objects/Uplink.h"
 
 namespace CoreLogic::EventManagement
 {
 
     class UplinkEvent : InteractionEvent
     {
-
+    public:
+        UplinkEvent(std::shared_ptr<Object::Uplink> pa_uplink): InteractionEvent(INTERACT) {};
+        ~UplinkEvent() = default;
+        void update() override;
     };
 
 } // CoreLogic

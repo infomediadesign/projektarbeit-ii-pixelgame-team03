@@ -33,7 +33,7 @@ namespace CoreLogic
             switch (po_mainActor_->getPrimaryDirection())
             {
                 case CoreLogic::UserInterface::Direction::UP:
-                    throw std::runtime_error("PushBarrelEvent: barrel cannot be pushed up");
+                    throw EventException("PushBarrelEvent: barrel cannot be pushed up", true);
                 case CoreLogic::UserInterface::Direction::DOWN:
                     push = {0, 12};
                     break;
@@ -74,7 +74,7 @@ namespace CoreLogic
                 destination.x += push.x;
                 destination.y += push.y;
                 po_barrel_->setPosition({destination.x, destination.y});
-                throw EventException("Barrel Pushed");
+                throw EventException("Barrel Pushed", true);
             }
         }
     } // CoreLogic

@@ -30,7 +30,7 @@ namespace CoreLogic::EventManagement::Actors
         {}
 
 
-        void setPosition(Vector2 pa_position);
+        void setPosition(Vector2 pa_position) override;
 
 
     protected:

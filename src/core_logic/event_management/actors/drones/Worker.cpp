@@ -36,6 +36,10 @@ namespace CoreLogic::EventManagement::Actors
             {
                 continue;
             }
+            if (ability->getCollisionType() == CollisionType::NONE && !ability->getVisible())
+            {
+                continue;
+            }
             if (ability->getElevation() != elevation_)
             {
                 throw std::runtime_error("Elevation does not match");
@@ -49,4 +53,14 @@ namespace CoreLogic::EventManagement::Actors
         }
         setAbility(nullptr);
     }
+
+    void Worker::shiftFrame(int pa_frameShift)
+    {
+        if (currentDroneState_ != ABILITY && pa_frameShift == /**@warning @todo: determine working frames*/)
+        {
+            return;
+        }
+        sprite_.shiftFrame(pa_frameShift,primaryDirection_);
+    }
+
 }

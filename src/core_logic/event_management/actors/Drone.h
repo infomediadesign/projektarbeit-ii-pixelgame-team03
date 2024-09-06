@@ -23,6 +23,16 @@ namespace CoreLogic::EventManagement::Actors
                 SCOUT
             };
 
+            enum DroneState
+            {
+                MOVING,
+                INTERACTING,
+                ABILITY,
+                DEATH,
+                JUMP,
+                DEATH_ABILITY
+            };
+
             Drone(Vector2 pa_position, Rectangle pa_hitbox, int pa_id,
                   CollisionType pa_collisionType, Vector2 pa_size, bool pa_visible,
                   int pa_elevation);
@@ -36,7 +46,7 @@ namespace CoreLogic::EventManagement::Actors
             int getCurrentHealth() const;
             void setCurrentHealth(int pa_currentHealth);
 
-            DroneType getDroneType() const;
+            [[nodiscard]] DroneType getDroneType() const;
             void setDroneType(DroneType pa_droneType);
 
             std::shared_ptr<CoreLogic::EventManagement::Object::Interaction> getInteraction();
@@ -45,13 +55,20 @@ namespace CoreLogic::EventManagement::Actors
             std::shared_ptr<CoreLogic::EventManagement::Object::Ability> getAbility();
             void setAbility(std::shared_ptr<CoreLogic::EventManagement::Object::Ability> pa_ability);
 
-            void inceaseMaxHealth();
+            void increaseMaxHealth();
             void increaseCurrentHealth();
             void decreaseCurrentHealth();
+
             bool canInteract();
             bool canAct();
+            bool isDying();
+            bool canMove();
 
             virtual void update();
+
+            void setDroneState(DroneState pa_droneState);
+            [[nodiscard]] DroneState getDroneState() const;
+            void removeDroneState(DroneState pa_droneState);
 
         protected:
             void checkInteraction();
@@ -65,6 +82,7 @@ namespace CoreLogic::EventManagement::Actors
             int maxHealth_ = 3;
             int currentHealth_ = 3;
             DroneType currentDroneType_ = DroneType::WORKER;
+            DroneState currentDroneState_ = DroneState::MOVING;
 
         };
     }

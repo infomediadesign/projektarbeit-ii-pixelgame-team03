@@ -35,7 +35,7 @@ namespace CoreLogic::EventManagement
 
         if (!found)
         {
-            throw std::runtime_error("Enemy not found");
+            throw EventException("Enemy not found", false);
         }
         ticks_ = CoreLogic::DataProcessing::DesignConfig::COLONIST_DETECTION_RATE;
         /**
@@ -63,7 +63,7 @@ namespace CoreLogic::EventManagement
     {
         if (!std::dynamic_pointer_cast<Actors::Enemy>(po_mainActor_)->getVisionConnected())
         {
-            throw EventException("Fled Vision");
+            throw EventException("Fled Vision", true);
         }
 
         if (ticks_ % (CoreLogic::DataProcessing::DesignConfig::COLONIST_DETECTION_RATE / 6) == 0)
@@ -73,11 +73,7 @@ namespace CoreLogic::EventManagement
         if (ticks_ == 0)
         {
             found_ = true;
-            /**
-             * @PseudoCode: no drone state yet
-             * @todo: add drone state
-             */
-            po_player_->setState(Actors::Drone::DroneState::DEATH);
+            po_player_->setDroneState(Actors::Drone::DroneState::DEATH);
             ticks_ == 24;
         }
     }
@@ -91,7 +87,7 @@ namespace CoreLogic::EventManagement
 
         if (ticks_ == 0)
         {
-            throw EventException("Shot Player");
+            throw EventException("Shot Player", true);
         }
     }
 

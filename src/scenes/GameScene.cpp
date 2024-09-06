@@ -6,6 +6,7 @@
 #include "event_management/EventHandler.h"
 #include "event_management/SoundHandler.h"
 #include "user_interface/HUD.h"
+#include "event_management/actors/Enemy.h"
 
 
 Scenes::GameScene::GameScene(): Scene(std::make_shared<Camera2D>()),
@@ -45,7 +46,22 @@ void Scenes::GameScene::update()
      **/
 
     CoreLogic::EventManagement::EventHandler &eventHandler = CoreLogic::EventManagement::EventHandler::getInstance();
-    std::shared_ptr<CoreLogic::EventManagement::Actors::Drone>player = CoreLogic::DataProcessing::ActorStorage::getPlayer();
+    std::shared_ptr<CoreLogic::EventManagement::Actors::Drone> player = CoreLogic::DataProcessing::ActorStorage::getPlayer();
+    std::map<int, std::vector<CoreLogic::EventManagement::Actors::Enemy>> &enemies = *CoreLogic::DataProcessing::ActorStorage::getEnemies();
+
+    player->update();
+    for (auto &pair: enemies)
+    {
+        for (auto &enemy: pair.second)
+        {
+            if (enemy == nullptr)
+            {
+                continue;
+            }
+            enemy->update();
+        }
+    }
+
 
     /**
      *@todo: InputHandler to be called static
@@ -105,7 +121,7 @@ void Scenes::GameScene::update()
     if (IsKeyPressed(KEY_UP))
     {
         CoreLogic::EventManagement::Actors::Drone &player = *CoreLogic::DataProcessing::ActorStorage::getPlayer();
-        player.inceaseMaxHealth();
+        player.increaseMaxHealth();
     }
 
     if (IsKeyPressed(KEY_DELETE))

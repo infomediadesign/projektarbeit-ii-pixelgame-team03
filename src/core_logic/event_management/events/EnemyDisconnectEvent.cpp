@@ -35,7 +35,7 @@ namespace CoreLogic::EventManagement
         }
         if (!found)
         {
-            throw std::runtime_error("Enemy not found");
+            throw EventException("Enemy not found", false);
         }
         std::dynamic_pointer_cast<Actors::Enemy>(po_mainActor_)->die();
     }

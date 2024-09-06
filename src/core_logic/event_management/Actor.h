@@ -36,7 +36,7 @@ namespace CoreLogic::EventManagement
 
 
         Vector2 getPosition() const;
-        void setPosition(Vector2 pa_position);
+        virtual void setPosition(Vector2 pa_position);
 
         Rectangle getHitbox() const;
         void setHitbox(Rectangle pa_hitbox);

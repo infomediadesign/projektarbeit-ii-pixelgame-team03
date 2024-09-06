@@ -6,6 +6,7 @@
 #include "EventHandler.h"
 #include "Store.h"
 #include "../actors/Enemy.h"
+#include "actors/objects/Uplink.h"
 
 
 namespace CoreLogic::EventManagement
@@ -36,13 +37,12 @@ namespace CoreLogic::EventManagement
             std::vector<std::shared_ptr<Actors::Enemy>> &enemies = (CoreLogic::DataProcessing::ActorStorage::getEnemies())->at(std::dynamic_pointer_cast<Object::Barrel>(po_mainActor_)->getNewElevation());
             for (auto &enemy: enemies)
             {
-                if (enemy == nullptr)
+                if (enemy == nullptr|| enemy -> getDead())
                 {
                     continue;
                 }
                 if (std::dynamic_pointer_cast<Actor>(enemy)->getElevation() !=
-                std::static_pointer_cast<Object::Barrel>(po_mainActor_) ->
-                        getNewElevation())
+                std::static_pointer_cast<Object::Barrel>(po_mainActor_) -> getNewElevation())
                 {
                     continue;
                 }
@@ -55,6 +55,26 @@ namespace CoreLogic::EventManagement
         if (ticks_ % 5 == 0)
         {
             po_mainActor_ -> shiftFrame(/**@Attention: set to Breaking frames*/);
+        }
+        if (ticks_ == 40)
+        {
+            std::vector<std::shared_ptr<Object::Uplink>> &uplinks = CoreLogic::DataProcessing::ActorStorage::getUplinks()->at(std::dynamic_pointer_cast<Object::Boulder>(po_mainActor_)->getNewElevation());
+            for (auto &uplink: uplinks)
+            {
+                if (uplink == nullptr)
+                {
+                    continue;
+                }
+                if (std::dynamic_pointer_cast<Actor>(uplink)->getElevation() != std::static_pointer_cast<Object::Boulder>
+                        (po_mainActor_) -> getNewElevation())
+                {
+                    continue;
+                }
+                if (CheckCollisionRecs(uplink -> getHitbox(), po_mainActor_ -> getHitbox()))
+                {
+                    DataProcessing::StateMachine::changeState(DataProcessing::END_SCENE);
+                }
+            }
         }
         if (ticks_ >= 60)
         {

@@ -8,6 +8,11 @@
 #include "EventUtilities.h"
 #include "events/Event.h"
 #include "events/AbilityEvent.h"
+#include "events/DroneDisconnectEvent.h"
+#include "events/DeathAbilityEvent.h"
+#include "events/FallingEvent.h"
+#include "events/EnemyDisconnectEvent.h"
+#include "events/EnemyVisionEvent.h"
 
 std::mutex CoreLogic::EventManagement::EventHandler::eventHandler_mutex_;
 CoreLogic::EventManagement::EventHandler::EventHandler()
@@ -80,8 +85,8 @@ void CoreLogic::EventManagement::EventHandler::update()
 {
     try
     {
-        po_movementEvent_ -> update();
-    } catch (std::exception &e) {
+        po_movementEvent_->update();
+    } catch (EventException &e) {
         /**
          * @attention: could use Exception Handling to deactivate Events
          **/
@@ -98,26 +103,35 @@ void CoreLogic::EventManagement::EventHandler::update()
             }
             try
             {
-                event -> update();
-            }  catch (EventException e) {
-                deactivateEvent(event->getID(),activeEvent.first);
+                event->update();
+            } catch (EventException &e)
+            {
+                TraceLog(LOG_INFO, e.what());
+                if (e.wasSuccessful())
+                {
+                    deactivateEvent(event->getID(), activeEvent.first);
+                }
+
             }
-
         }
-    }
 
+    }
 }
 
 void CoreLogic::EventManagement::EventHandler::activateEvent(EventEnum pa_activateEvent, int pa_actorID)
 {
     if (pa_activateEvent == MOVE_UP || pa_activateEvent == MOVE_DOWN || pa_activateEvent == MOVE_LEFT || pa_activateEvent == MOVE_RIGHT)
     {
-        if (!movementBlocked_)
+        try
         {
             po_movementEvent_ -> startMove(pa_activateEvent);
             return;
-        } else {
-            throw std::runtime_error("Movement Blocked");
+        } catch (EventException &e) {
+            if (!e.wasSuccessful())
+            {
+                TraceLog(LOG_INFO, e.what());
+                return;
+            }
         }
         TraceLog(LOG_ERROR, "reached unreachable Code");
     } else if (pa_activateEvent == ABILITY) {
@@ -126,17 +140,97 @@ void CoreLogic::EventManagement::EventHandler::activateEvent(EventEnum pa_activa
          * @TODO: Implement correctly
          */
 
-        std::unique_ptr<AbilityEvent> ability = std::make_unique<AbilityEvent>();
+        std::unique_ptr<AbilityEvent> ability;
         /**
          * @Warning: exception handling?
          */
         try {
+            ability = std::make_unique<AbilityEvent>();
             ability = ability->transform();
-        } catch (std::exception &e) {
-            TraceLog(LOG_ERROR, e.what());
+        } catch (EventException &e) {
+            TraceLog(LOG_INFO, e.what());
             return;
         }
         po_activeEvents_[pa_actorID].push_back(std::move(ability));
+        return;
+    } else if (pa_activateEvent == INTERACT) {
+        std::unique_ptr<AbilityEvent> interact;
+        /**
+         * @Warning: exception handling?
+         */
+        try
+        {
+            interact = std::make_unique<AbilityEvent>();
+            interact = interact->transform();
+        } catch (EventException &e) {
+            TraceLog(LOG_INFO, e.what());
+            return;
+        }
+        po_activeEvents_[pa_actorID].push_back(std::move(interact));
+        return;
+
+    } else if (pa_activateEvent == DISCONNECT) {
+        std::unique_ptr<DroneDisconnectEvent> disconnect;
+        try
+        {
+            disconnect = std::make_unique<DroneDisconnectEvent>();
+        } catch (EventException &e) {
+            TraceLog(LOG_INFO, e.what());
+            return;
+        }
+        po_activeEvents_[pa_actorID].push_back(std::move(disconnect));
+        return;
+    } else if (pa_activateEvent == DEATH_ABILITY)
+    {
+        std::unique_ptr<DeathAbilityEvent> deathAbility;
+        try
+        {
+            deathAbility = std::make_unique<DeathAbilityEvent>();
+            deathAbility = deathAbility->transform();
+        } catch (EventException &e)
+        {
+            TraceLog(LOG_INFO, e.what());
+            return;
+        }
+        po_activeEvents_[pa_actorID].push_back(std::move(deathAbility));
+        return;
+    } else if (pa_activateEvent == FALLING)
+    {
+        std::unique_ptr<FallingEvent> falling;
+        try
+        {
+            falling = std::make_unique<FallingEvent>(pa_actorID);
+            falling = falling->transform();
+        } catch (EventException &e)
+        {
+            TraceLog(LOG_INFO, e.what());
+            return;
+        }
+        po_activeEvents_[pa_actorID].push_back(std::move(falling));
+        return;
+    } else if (pa_activateEvent == ENEMY_DEATH)
+    {
+        std::unique_ptr<EnemyDisconnectEvent> enemyDeath;
+        try
+        {
+            enemyDeath = std::make_unique<EnemyDisconnectEvent>(pa_actorID);
+        } catch (EventException &e)
+        {
+            TraceLog(LOG_INFO, e.what());
+            return;
+        }
+        po_activeEvents_[pa_actorID].push_back(std::move(enemyDeath));
+        return;
+    } else if (pa_activateEvent == VISION) {
+        std::unique_ptr<EnemyVisionEvent> vision;
+        try
+        {
+            vision = std::make_unique<EnemyVisionEvent>(pa_actorID);
+        } catch (EventException &e) {
+            TraceLog(LOG_INFO, e.what());
+            return;
+        }
+        po_activeEvents_[pa_actorID].push_back(std::move(vision));
         return;
     } else if (pa_activateEvent == EVENT_NULL) {
         return;

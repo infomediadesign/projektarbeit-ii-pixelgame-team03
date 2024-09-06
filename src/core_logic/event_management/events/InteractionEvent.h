@@ -15,10 +15,12 @@ namespace CoreLogic::EventManagement
     {
     public:
         InteractionEvent();
-
         explicit InteractionEvent(EventEnum pa_ID);
         void update() override;
-        virtual std::unique_ptr<InteractionEvent> transform() const;
+        [[nodiscard]] virtual std::unique_ptr<InteractionEvent> transform() const;
+        ~InteractionEvent();
+    protected:
+        EventEnum variantId_ = INTERACT;
     };
 }
 

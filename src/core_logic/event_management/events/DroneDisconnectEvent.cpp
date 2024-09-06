@@ -11,7 +11,16 @@ namespace CoreLogic::EventManagement
     DroneDisconnectEvent::DroneDisconnectEvent(): Event(DISCONNECT)
     {
         po_mainActor_ = CoreLogic::DataProcessing::ActorStorage::getPlayer();
-        std::dynamic_pointer_cast<Actors::Drone>(po_mainActor_) -> setState(Actors::Drone::DroneState::DISCONNECTED);
+        try
+        {
+            std::dynamic_pointer_cast<Actors::Drone>(po_mainActor_)->setDroneState(Actors::Drone::DEATH);
+        } catch (EventException &e)
+        {
+            if (!e.wasSuccessful())
+            {
+                throw e;
+            }
+        }
     }
 
     void DroneDisconnectEvent::update()

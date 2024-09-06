@@ -15,11 +15,9 @@ namespace CoreLogic::EventManagement
     class DeathAbilityEvent: public Event
     {
     public:
-        DeathAbilityEvent(): Event(DEATH_ABILITY)
-        {
-            po_mainActor_ = CoreLogic::DataProcessing::ActorStorage::getPlayer();
-        };
-        std::unique_ptr<DeathAbilityEvent> transform();
+        DeathAbilityEvent();
+        virtual std::unique_ptr<DeathAbilityEvent> transform() const;
+        void update() override{};
 
     };
 

@@ -15,7 +15,7 @@ namespace CoreLogic::EventManagement
         po_mainActor_ = CoreLogic::DataProcessing::ActorStorage::getPlayer();
         std::dynamic_pointer_cast<CoreLogic::EventManagement::Actors::MovableActor>(po_mainActor_) -> setPosition(destination);
         std::dynamic_pointer_cast<CoreLogic::EventManagement::Actors::MovableActor>(po_mainActor_) -> setElevation(elevationChange);
-        throw EventException("Climbing Event Executed");
+        throw EventException("Climbing Event Executed", true);
     }
 } // CoreLogic
 // EventManagement

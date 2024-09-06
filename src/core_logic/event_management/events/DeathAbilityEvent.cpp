@@ -8,7 +8,7 @@
 
 namespace CoreLogic::EventManagement
 {
-    std::unique_ptr<DeathAbilityEvent> DeathAbilityEvent::transform()
+    std::unique_ptr<DeathAbilityEvent> DeathAbilityEvent::transform() const
     {
         switch (std::dynamic_pointer_cast<Actors::Drone>(po_mainActor_)->getDroneType())
         {
@@ -18,5 +18,21 @@ namespace CoreLogic::EventManagement
                 return std::make_unique<BellDeathAbilityEvent>();
         }
     }
+
+    DeathAbilityEvent::DeathAbilityEvent(): Event(DEATH_ABILITY)
+    {
+        po_mainActor_ = CoreLogic::DataProcessing::ActorStorage::getPlayer();
+        try
+        {
+            std::dynamic_pointer_cast<Actors::Drone>(po_mainActor_) -> setDroneState(Actors::Drone::DEATH_ABILITY);
+        } catch (EventException &e)
+        {
+            if (!e.wasSuccessful())
+            {
+                throw e;
+            }
+        }
+    }
+
 } // CoreLogic
 // EventManagement

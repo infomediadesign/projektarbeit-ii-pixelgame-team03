@@ -12,7 +12,7 @@
 namespace CoreLogic::EventManagement
 {
 
-    class ClimbingEvent : InteractionEvent
+    class ClimbingEvent : public InteractionEvent
     {
     public:
         ClimbingEvent(std::shared_ptr<Object::Vine> pa_vine);

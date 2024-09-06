@@ -15,6 +15,7 @@ namespace CoreLogic::EventManagement
     {
     public:
         explicit JumpEvent(std::shared_ptr<Object::JumpPoint> pa_jumpPoint);
+        ~JumpEvent();
     };
 }
 

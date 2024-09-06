@@ -13,6 +13,7 @@ namespace CoreLogic::EventManagement::Actors
     class Worker : public Drone
     {
     public:
+        void shiftFrame(int pa_frameShift) override;
     protected:
         void checkAbility() override;
     };

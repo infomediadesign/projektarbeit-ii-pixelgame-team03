@@ -89,6 +89,7 @@ namespace CoreLogic::EventManagement::Actors
         if (!visionConnected_)
         {
             updateTurnCycle();
+            shiftFrame(0);
         }
         checkVision();
     }
@@ -249,5 +250,24 @@ namespace CoreLogic::EventManagement::Actors
     void Enemy::setTurnCycles(std::map<CoreLogic::UserInterface::Direction, std::pair<int, int>> pa_turnCycles)
     {
         turnCycles = pa_turnCycles;
+    }
+
+    void Enemy::die()
+    {
+
+    }
+
+    void Enemy::shiftFrame(int pa_frameShift)
+    {
+        if (pa_frameShift == 0)
+        {
+            if (state_ == IDLE && DataProcessing::ticks % 6 == 0)
+            {
+                sprite_.shiftFrame(pa_frameShift, primaryDirection_);
+                return;
+            }
+        } else {
+            sprite_.shiftFrame(pa_frameShift, primaryDirection_);
+        }
     }
 }

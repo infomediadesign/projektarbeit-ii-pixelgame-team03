@@ -14,6 +14,11 @@
 
 void CoreLogic::EventManagement::MovementEvent::update()
 {
+    if (!std::dynamic_pointer_cast<Actors::Drone>(po_mainActor_)->canMove())
+    {
+        stop();
+        throw EventException("Drone cannot move", true);
+    }
     checkStillPressed();
     if (!ticksRunning_)
     {
@@ -58,6 +63,11 @@ void CoreLogic::EventManagement::MovementEvent::updateActorDir()
 
 void CoreLogic::EventManagement::MovementEvent::startMove(CoreLogic::EventManagement::EventEnum pa_Event)
 {
+    if (!std::dynamic_pointer_cast<Actors::Drone>(po_mainActor_)->canMove())
+    {
+        throw EventException("Drone can't move", false);
+    }
+
     if (primaryDir_ == EVENT_NULL)
     {
         primaryDir_ = pa_Event;
@@ -129,9 +139,7 @@ void CoreLogic::EventManagement::MovementEvent::checkStillPressed()
             updateActorDir();
             po_mainActor_->shiftFrame(1);
         } else {
-            primaryDir_ = EVENT_NULL;
-            ticksRunning_ = false;
-            ticks_ = 0;
+            stop();
         }
     }
 }
@@ -150,6 +158,13 @@ void CoreLogic::EventManagement::MovementEvent::updateMainActor()
     primaryDir_ = EVENT_NULL;
     ticksRunning_ = false;
     directionMap_ = {{MOVE_UP, false}, {MOVE_DOWN, false}, {MOVE_LEFT, false}, {MOVE_RIGHT, false}};
+}
+
+void CoreLogic::EventManagement::MovementEvent::stop()
+{
+    primaryDir_ = EVENT_NULL;
+    ticksRunning_ = false;
+    ticks_ = 0;
 }
 
 

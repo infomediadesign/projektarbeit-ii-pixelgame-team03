@@ -13,7 +13,7 @@ namespace CoreLogic::EventManagement
         auto activeSpawnPoint = CoreLogic::DataProcessing::ActorStorage::getActiveSpawnPoint();
         if (activeSpawnPoint == nullptr)
         {
-            throw std::runtime_error("No active spawn point");
+            throw EventException("No active spawn point", false);
         }
         if (pa_checkpoint->getRespawnState() == Object::DroneRespawnPoint::UNDISCOVERED || pa_checkpoint->getRespawnState() == Object::DroneRespawnPoint::DISCOVERED)
         {
@@ -21,16 +21,16 @@ namespace CoreLogic::EventManagement
             activeSpawnPoint->changeState(Object::DroneRespawnPoint::DISCOVERED);
             activeSpawnPoint = pa_checkpoint;
             CoreLogic::DataProcessing::StateMachine::changeState(DataProcessing::DRONE_SELECTION);
-            throw EventException("Checkpoint Event Executed");
+            throw EventException("Checkpoint Event Executed", true);
         } else if (pa_checkpoint->getRespawnState() == Object::DroneRespawnPoint::ACTIVATED) {
             if (pa_checkpoint != activeSpawnPoint)
             {
-                throw std::runtime_error("Active spawn point does not match checkpoint");
+                throw EventException("Active spawn point does not match checkpoint", false);
             }
             CoreLogic::DataProcessing::StateMachine::changeState(DataProcessing::DRONE_SELECTION);
-            throw EventException("Checkpoint Event Executed");
+            throw EventException("Checkpoint Event Executed", true);
         } else {
-            throw std::runtime_error("Invalid checkpoint state");
+            throw EventException("Invalid checkpoint state", false);
         }
     }
 } // CoreLogic

@@ -48,7 +48,7 @@ namespace CoreLogic::EventManagement
                 }
                 if (CheckCollisionRecs(destination, barrier->getHitbox()))
                 {
-                    throw std::runtime_error("Collision with barrier");
+                    throw EventException("Collision with barrier", false);
                 }
                 ticks_ = 30;
             }
@@ -143,7 +143,7 @@ namespace CoreLogic::EventManagement
                 destination.x += push.x;
                 destination.y += push.y;
                 po_pushable_->setPosition({destination.x, destination.y});
-                throw EventException("Push Event Executed");
+                throw EventException("Push Event Executed", true);
             }
         }
     } // CoreLogic

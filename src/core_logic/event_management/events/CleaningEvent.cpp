@@ -28,6 +28,6 @@ void CoreLogic::EventManagement::CleaningEvent::update()
     if (ticks_==100)
     {
         po_rubble_->setCleaned();
-        throw true;
+        throw EventException("Rubble Cleaned", true);
     }
 }

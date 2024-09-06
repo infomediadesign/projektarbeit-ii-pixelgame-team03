@@ -29,18 +29,21 @@ void CoreLogic::EventManagement::FallingEvent::update()
 
 CoreLogic::EventManagement::FallingEvent::FallingEvent(int pa_actorID): Event(FALLING)
 {
-    std::vector<Pushable> pushables = CoreLogic::DataProcessing::ActorStorage::getPushables();
-    for (auto &pushable: pushables)
+    std::map<int, std::vector<std::shared_ptr<Object::Ability>>> &abilities = *DataProcessing::ActorStorage::getWorkerAbilities();
+    for (auto &pair: abilities)
     {
-        if (pushable -> getId() == pa_actorID)
+        for (auto &ability: pair.second)
         {
-            po_mainActor_ = pushable;
-            break;
+            if (ability->getId() == pa_actorID)
+            {
+                po_mainActor_ = ability;
+                break;
+            }
         }
     }
     if (po_mainActor_ == nullptr)
     {
-        throw std::runtime_error("Actor not found");
+        throw EventException("Actor not found", false);
     }
 
 }
@@ -65,85 +68,14 @@ void CoreLogic::EventManagement::FallingEvent::fall()
     }
 }
 
-/*void CoreLogic::EventManagement::FallingEvent::explode()
-{
-    if (ticks_ == 0)
-    {
-        *//**
-         * @todo: Code Drawing for different frame sizes
-         *//*
-
-        auto& eventHandler = EventHandler::getInstance();
-        Rectangle explosionRadius;
-        int tileSize = CoreLogic::DataProcessing::tileSize;
-        explosionRadius.x = po_mainActor_ -> getPosition().x - (tileSize * 2);
-        explosionRadius.y = po_mainActor_ -> getPosition().y - (tileSize * 2);
-        explosionRadius.width = po_mainActor_ -> getSize().x + (tileSize * 5);
-        explosionRadius.height = po_mainActor_ -> getSize().y + (tileSize * 5);
-        std::vector<std::shared_ptr<Enemy>> enemies = CoreLogic::DataProcessing::ActorStorage::getEnemies();
-        for (std::shared_ptr<Enemy> enemy: enemies)
-        {
-            if (enemy == nullptr)
-            {
-                continue;
-            }
-            if (CheckCollisionRecs(explosionRadius, enemy -> getHitbox()))
-            {
-                eventHandler.handleEvents({DISCONNECT}, enemy -> getId());
-            }
-        }
-    }
-    if (ticks_ % 5 == 0)
-    {
-        po_mainActor_ -> shiftFrame(*//**@Attention: set to Breaking frames*//*);
-    }
-    if (ticks_ >= 60)
-    {
-        throw true;
-    }
-    ticks_++;
-}*/
-
-/*
-void CoreLogic::EventManagement::FallingEvent::crumble()
-{
-    if (ticks_ == 0)
-    {
-        auto& eventHandler = EventHandler::getInstance();
-        Rectangle hitbox = po_mainActor_ -> getHitbox();
-        std::vector<std::shared_ptr<Enemy>> enemies = CoreLogic::DataProcessing::ActorStorage::getEnemies();
-        for (std::shared_ptr<Enemy> enemy: enemies)
-        {
-            if (enemy == nullptr)
-            {
-                continue;
-            }
-            if (CheckCollisionRecs(hitbox, enemy -> getHitbox()))
-            {
-                eventHandler.handleEvents({DISCONNECT}, enemy -> getId());
-            }
-        }
-    }
-    if (ticks_ % 5 == 0)
-    {
-        po_mainActor_ -> shiftFrame(*/
-/**@Attention: set to Breaking frames*//*
-);
-    }
-    if (ticks_ >= 20)
-    {
-        throw true;
-    }
-    ticks_++;
-}
-*/
 
 std::unique_ptr<CoreLogic::EventManagement::FallingEvent> CoreLogic::EventManagement::FallingEvent::transform()
 {
     if (std::dynamic_pointer_cast<Object::Ability>(po_mainActor_) -> getAbilityType() == Object::Ability::AbilityType::PUSH)
     {
-        return std::make_unique<FallingBoulderEvent>(std::dynamic_pointer_cast<Pushable>(po_mainActor_));
+        return std::make_unique<FallingBoulderEvent>(std::dynamic_pointer_cast<Object::Boulder>(po_mainActor_));
     } else if (std::dynamic_pointer_cast<Object::Ability>(po_mainActor_) -> getAbilityType() == Object::Ability::AbilityType::BARREL) {
         return std::make_unique<FallingBarrelEvent>(std::dynamic_pointer_cast<Object::Barrel>(po_mainActor_));
     }
+    throw EventException("Ability not found", false);
 }

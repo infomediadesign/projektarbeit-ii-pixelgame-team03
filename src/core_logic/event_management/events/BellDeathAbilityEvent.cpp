@@ -4,14 +4,10 @@
 
 #include "BellDeathAbilityEvent.h"
 
-namespace CoreLogic
-{
-    namespace EventManagement
-    {
-        BellDeathAbilityEvent::BellDeathAbilityEvent()
-        {
 
-        }
+    namespace CoreLogic::EventManagement
+    {
+        BellDeathAbilityEvent::BellDeathAbilityEvent(): DeathAbilityEvent(){}
 
         void BellDeathAbilityEvent::update()
         {
@@ -19,6 +15,7 @@ namespace CoreLogic
             {
                 po_mainActor_ ->shiftFrame(/**@warning: to determine frame shifts*/);
             }
+
             if (ticks_ >=36)
             {
                 throw EventException("Drone disconnected", true);
@@ -46,4 +43,4 @@ namespace CoreLogic
             }
         }
     } // CoreLogic
-} // EventManagement
+// EventManagement
