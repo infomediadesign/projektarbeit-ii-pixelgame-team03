@@ -10,3 +10,9 @@ void CoreLogic::EventManagement::Object::DroneRespawnPoint::changeState(
     state_ = pa_state;
     shiftFrame(pa_state);
 }
+
+CoreLogic::EventManagement::Object::DroneRespawnPoint::DroneRespawnPointState
+CoreLogic::EventManagement::Object::DroneRespawnPoint::getRespawnState() const
+{
+    return state_;
+}

@@ -20,18 +20,28 @@ namespace CoreLogic::EventManagement::Actors {
         void forceTurn(Vector2 pa_triggerPoint);
         void die(){dead_=true;}
         [[nodiscard]] bool getVisionConnected()const{return visionConnected_;}
-        [[nodiscard]] bool getDead()const{return dead_;}
+
+        bool getClockwise() const;
+        void setClockwise(bool pa_clockwise);
+
+        [[nodiscard]] bool getDead() const;
+        void setDead(bool pa_dead);
+
+        std::map<CoreLogic::UserInterface::Direction, std::pair<int, int>> getTurnCycles() const;
+        void setTurnCycles(std::map<CoreLogic::UserInterface::Direction, std::pair<int, int>> pa_turnCycles);
+
     protected:
-        void checkVision();
         bool visionConnected_ = false;
         const Vector2 visionOrigin_;
-        bool clockwise_;
-        std::map<CoreLogic::UserInterface::Direction, std::pair<int, int>> turnCyles_;
+        void checkVision();
         bool checkVisionCollisionObjects(Ray *pa_visionRays, bool *pa_visionCollisions);
+
+        bool clockwise_;
+        std::map<CoreLogic::UserInterface::Direction, std::pair<int, int>> turnCycles;
         void updateTurnCycle();
         void turn();
+
         bool dead_ = false;
-        
 
     };
 }

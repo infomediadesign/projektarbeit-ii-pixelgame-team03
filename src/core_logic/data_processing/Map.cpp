@@ -6,7 +6,6 @@
 #include "Store.h"
 #include "../event_management/actors/Drone.h"
 #include "actors/drones/Worker.h"
-#include "actors/objects/Water.h"
 #include "actors/objects/Uplink.h"
 
 

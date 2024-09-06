@@ -13,7 +13,9 @@ namespace CoreLogic::EventManagement::Object
     {
     public:
         LevelSwitch(Vector2 pa_position, Rectangle pa_hitbox, int pa_id, Vector2 pa_size, int pa_elevation, int pa_newLevelID);
+
         int getNewLevelID() const;
+        void setNewLevelID(int pa_newLevelID);
     protected:
         int newLevelID_;
     };

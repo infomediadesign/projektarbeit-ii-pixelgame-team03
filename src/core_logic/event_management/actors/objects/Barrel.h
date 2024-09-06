@@ -16,7 +16,10 @@ class Barrel : public Ability
         Barrel(Vector2 pa_position, Rectangle pa_hitbox, int pa_id, Vector2 pa_size, int pa_elevation, int pa_fallHeight, UserInterface::Direction pa_primaryDirection);
 
         int getNewElevation() const;
+        void setNewElevation(int pa_newElevation);
+
         int getFallHeight() const;
+        void setFallHeight(int pa_fallHeight);
 
     protected:
         int newElevation_ = 0;

@@ -38,4 +38,9 @@ std::shared_ptr<CoreLogic::EventManagement::Object::Cliff> CoreLogic::EventManag
     return cliff_;
 }
 
+void CoreLogic::EventManagement::Object::Boulder::setCliff(std::shared_ptr<Cliff> pa_cliff)
+{
+cliff_ = pa_cliff;
+}
+
 

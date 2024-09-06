@@ -17,3 +17,9 @@ CoreLogic::EventManagement::Object::Ability::Ability(Vector2 pa_position, Rectan
 {
 
 }
+
+void CoreLogic::EventManagement::Object::Ability::setAbilityType(
+        CoreLogic::EventManagement::Object::Ability::AbilityType pa_abilityType)
+{
+abilityType_ = pa_abilityType;
+}

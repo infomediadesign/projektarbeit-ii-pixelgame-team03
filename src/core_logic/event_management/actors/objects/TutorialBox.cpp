@@ -16,3 +16,8 @@ CoreLogic::EventManagement::Object::TutorialBox::TutorialBox(Vector2 pa_position
 {
 
 }
+
+void CoreLogic::EventManagement::Object::TutorialBox::setText(std::string pa_text)
+{
+text_ = pa_text;
+}

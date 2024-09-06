@@ -29,9 +29,21 @@ namespace CoreLogic::EventManagement::Actors
 
 
             void move(bool pa_up, bool pa_down, bool pa_left, bool pa_right);
+
             int getMaxHealth() const;
+            void setMaxHealth(int pa_maxHealth);
+
             int getCurrentHealth() const;
+            void setCurrentHealth(int pa_currentHealth);
+
             DroneType getDroneType() const;
+            void setDroneType(DroneType pa_droneType);
+
+            std::shared_ptr<CoreLogic::EventManagement::Object::Interaction> getInteraction();
+            void setInteraction(std::shared_ptr<CoreLogic::EventManagement::Object::Interaction> pa_interaction);
+
+            std::shared_ptr<CoreLogic::EventManagement::Object::Ability> getAbility();
+            void setAbility(std::shared_ptr<CoreLogic::EventManagement::Object::Ability> pa_ability);
 
             void inceaseMaxHealth();
             void increaseCurrentHealth();
@@ -39,29 +51,20 @@ namespace CoreLogic::EventManagement::Actors
             bool canInteract();
             bool canAct();
 
-            std::shared_ptr<CoreLogic::EventManagement::Object::Interaction> getInteraction();
-            std::shared_ptr<CoreLogic::EventManagement::Object::Ability> getAbility();
-
-
             virtual void update();
 
         protected:
             void checkInteraction();
             virtual void checkAbility() = 0;
 
-            void setInteraction(std::shared_ptr<CoreLogic::EventManagement::Object::Interaction> pa_interaction);
-            void setAbility(std::shared_ptr<CoreLogic::EventManagement::Object::Ability> pa_ability);
-
             bool checkCollision(CoreLogic::UserInterface::Direction pa_direction, Vector2 pa_position);
-            /**
-             * @Pseudo_Code: Interactions and Abilities not yet existing
-             */
+
             std::shared_ptr<CoreLogic::EventManagement::Object::Interaction> interaction_;
             std::shared_ptr<CoreLogic::EventManagement::Object::Ability> ability_;
 
-            int maxHealth = 3;
-            int currentHealth = 3;
-            DroneType currentDroneType = DroneType::WORKER;
+            int maxHealth_ = 3;
+            int currentHealth_ = 3;
+            DroneType currentDroneType_ = DroneType::WORKER;
 
         };
     }

@@ -13,7 +13,9 @@ namespace CoreLogic::EventManagement::Object
     {
     public:
         Note(Vector2 pa_position, Rectangle pa_hitbox, int pa_id, Vector2 pa_size, int pa_elevation, std::string pa_text);
+
         std::string getText();
+        void setText(std::string pa_text);
     protected:
         std::string text_;
 

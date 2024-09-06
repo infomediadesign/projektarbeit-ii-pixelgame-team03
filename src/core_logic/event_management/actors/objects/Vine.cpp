@@ -24,6 +24,16 @@ CoreLogic::EventManagement::Object::Vine::Vine(Vector2 pa_position, Rectangle pa
     else newElevation = pa_elevation + elevationChange_;
 }
 
+void CoreLogic::EventManagement::Object::Vine::setCoordinates(Vector2 pa_coordinates)
+{
+coordinates_ = pa_coordinates;
+}
+
+void CoreLogic::EventManagement::Object::Vine::setNewElevation(int pa_newElevation)
+{
+newElevation = pa_newElevation;
+}
+
 
 
 

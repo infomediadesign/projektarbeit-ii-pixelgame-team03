@@ -13,7 +13,9 @@ namespace CoreLogic::EventManagement::Object
     {
     public:
         JumpPoint(Vector2 pa_position, Rectangle pa_hitbox, int pa_id, Vector2 pa_size, int pa_elevation, Vector2 pa_destination);
+
         Vector2 getJumpPosition() const;
+        void setJumpPosition(Vector2 pa_position);
     protected:
         Vector2 coordinates_;
     };

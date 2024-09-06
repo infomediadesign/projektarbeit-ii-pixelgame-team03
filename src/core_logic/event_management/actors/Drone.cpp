@@ -270,19 +270,19 @@ CoreLogic::EventManagement::Actors::Drone::Drone(Vector2 pa_position, Rectangle 
 }
 
 int CoreLogic::EventManagement::Actors::Drone::getMaxHealth() const {
-    return maxHealth;
+    return maxHealth_;
 }
 
 int CoreLogic::EventManagement::Actors::Drone::getCurrentHealth() const
 {
-    return currentHealth;
+    return currentHealth_;
 }
 
 void CoreLogic::EventManagement::Actors::Drone::inceaseMaxHealth()
 {
-    if (!(maxHealth + 2 > 7))
+    if (!(maxHealth_ + 2 > 7))
     {
-        maxHealth += 2;
+        maxHealth_ += 2;
         increaseCurrentHealth();
         increaseCurrentHealth();
     }
@@ -290,19 +290,19 @@ void CoreLogic::EventManagement::Actors::Drone::inceaseMaxHealth()
 
 void CoreLogic::EventManagement::Actors::Drone::increaseCurrentHealth()
 {
-    currentHealth++;
-    if (currentHealth > maxHealth)
+    currentHealth_++;
+    if (currentHealth_ > maxHealth_)
     {
-        currentHealth = maxHealth;
+        currentHealth_ = maxHealth_;
     }
 }
 
 void CoreLogic::EventManagement::Actors::Drone::decreaseCurrentHealth()
 {
-    currentHealth--;
-    if (currentHealth < 1)
+    currentHealth_--;
+    if (currentHealth_ < 1)
     {
-        currentHealth = 1;
+        currentHealth_ = 1;
     }
 }
 
@@ -394,7 +394,23 @@ std::shared_ptr <CoreLogic::EventManagement::Object::Ability> CoreLogic::EventMa
 
 CoreLogic::EventManagement::Actors::Drone::DroneType CoreLogic::EventManagement::Actors::Drone::getDroneType() const
 {
-    return currentDroneType;
+    return currentDroneType_;
+}
+
+void CoreLogic::EventManagement::Actors::Drone::setMaxHealth(int pa_maxHealth)
+{
+maxHealth_ = pa_maxHealth;
+}
+
+void CoreLogic::EventManagement::Actors::Drone::setCurrentHealth(int pa_currentHealth)
+{
+currentHealth_ = pa_currentHealth;
+}
+
+void CoreLogic::EventManagement::Actors::Drone::setDroneType(
+        CoreLogic::EventManagement::Actors::Drone::DroneType pa_droneType)
+{
+currentDroneType_ = pa_droneType;
 }
 
 

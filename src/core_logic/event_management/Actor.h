@@ -29,22 +29,28 @@ namespace CoreLogic::EventManagement
         : position_(pa_position), hitbox_(pa_hitbox), id_(pa_id), collisionType_(pa_collidable), visible_(pa_visible), size_(pa_size), elevation_(pa_elevation) {};
         virtual ~Actor() = default;
 
-        //getters
-        Vector2 getPosition(){return position_;};
-        Rectangle getHitbox(){return hitbox_;};
-        int getId(){return id_;};
-        CollisionType getCollisionType(){return collisionType_;};
-        void setCollisionType(CollisionType pa_collisionType){ collisionType_ = pa_collisionType;};
-        bool getVisible(){return visible_;};
-        void setVisible(bool pa_visible){ visible_ = pa_visible;};
-        std::string getName(){return name_;};
-        Vector2 getSize(){return size_;};
 
-        UserInterface::Sprite getSprite(){return sprite_;};
-        int getStateID(){return stateID_;};
+        Vector2 getPosition() const;
+        void setPosition(Vector2 pa_position);
 
-        CoreLogic::UserInterface::Direction getPrimaryDirection(){return primaryDirection_;};
-        void setPrimaryDirection(CoreLogic::UserInterface::Direction pa_primaryDirection){ primaryDirection_ = pa_primaryDirection;};
+        Rectangle getHitbox() const;
+        void setHitbox(Rectangle pa_hitbox);
+
+        int getId() const;
+
+        CollisionType getCollisionType() const;
+        void setCollisionType(CollisionType pa_collisionType);
+
+        bool getVisible() const;
+        void setVisible(bool pa_visible);
+
+        Vector2 getSize() const;
+
+        UserInterface::Sprite getSprite();
+        void setSprite(UserInterface::Sprite pa_sprite);
+
+        CoreLogic::UserInterface::Direction getPrimaryDirection();
+        void setPrimaryDirection(CoreLogic::UserInterface::Direction pa_primaryDirection);
 
 
         void shiftFrame(int pa_stateID);
@@ -59,7 +65,6 @@ namespace CoreLogic::EventManagement
         const int id_;
         CollisionType collisionType_;
         bool visible_;
-        std::string name_;
         const Vector2 size_;
         int elevation_;
 

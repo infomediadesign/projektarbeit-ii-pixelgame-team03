@@ -20,7 +20,9 @@ namespace CoreLogic::EventManagement::Object
 
         Ability(Vector2 pa_position, Rectangle pa_hitbox, int pa_id, CollisionType pa_collisionType, Vector2
         pa_size, bool pa_visible, int pa_elevation, AbilityType pa_abilityType);
+
         AbilityType getAbilityType() const;
+        void setAbilityType(AbilityType pa_abilityType);
 
     protected:
         AbilityType abilityType_;

@@ -15,3 +15,8 @@ CoreLogic::EventManagement::Object::Note::Note(Vector2 pa_position, Rectangle pa
 {
 
 }
+
+void CoreLogic::EventManagement::Object::Note::setText(std::string pa_text)
+{
+text_ = pa_text;
+}

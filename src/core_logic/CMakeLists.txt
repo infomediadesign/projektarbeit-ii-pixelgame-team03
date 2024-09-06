@@ -120,8 +120,6 @@ set(CORE_LOGIC_HEADERS
         event_management/actors/objects/LevelSwitch.h
         event_management/actors/objects/Barrier.cpp
         event_management/actors/objects/Barrier.h
-        event_management/actors/objects/Water.cpp
-        event_management/actors/objects/Water.h
         data_processing/DesignConfig.h
         event_management/events/InteractionEvent.cpp
         event_management/events/InteractionEvent.h

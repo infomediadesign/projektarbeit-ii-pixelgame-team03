@@ -19,3 +19,9 @@ CoreLogic::EventManagement::Object::Interaction::Interaction(Vector2 pa_position
 {
 
 }
+
+void CoreLogic::EventManagement::Object::Interaction::setType(
+        CoreLogic::EventManagement::Object::Interaction::InteractionType pa_type)
+{
+type_ = pa_type;
+}

@@ -16,3 +16,8 @@ CoreLogic::EventManagement::Object::LevelSwitch::LevelSwitch(Vector2 pa_position
 {
 
 }
+
+void CoreLogic::EventManagement::Object::LevelSwitch::setNewLevelID(int pa_newLevelID)
+{
+newLevelID_ = pa_newLevelID;
+}

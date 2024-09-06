@@ -12,11 +12,12 @@ namespace CoreLogic::EventManagement::Actors
 {
     void Enemy::updateTurnCycle()
     {
-        if (turnCyles_.at(primaryDirection_).second <= 0)
+        if (turnCycles.at(primaryDirection_).second <= 0)
         {
             turn();
-        } else {
-            turnCyles_.at(primaryDirection_).second--;
+        } else
+        {
+            turnCycles.at(primaryDirection_).second--;
         }
     }
 
@@ -24,13 +25,7 @@ namespace CoreLogic::EventManagement::Actors
     void Enemy::turn()
     {
         UserInterface::Direction currentDir = primaryDirection_;
-        UserInterface::Direction turnOrder[5] = {
-                turnOrder[0] = UserInterface::Direction::UP,
-                turnOrder[1] = UserInterface::Direction::RIGHT,
-                turnOrder[2] = UserInterface::Direction::DOWN,
-                turnOrder[3] = UserInterface::Direction::LEFT,
-                turnOrder[4] = UserInterface::Direction::UP
-        };
+        UserInterface::Direction turnOrder[5] = {turnOrder[0] = UserInterface::Direction::UP, turnOrder[1] = UserInterface::Direction::RIGHT, turnOrder[2] = UserInterface::Direction::DOWN, turnOrder[3] = UserInterface::Direction::LEFT, turnOrder[4] = UserInterface::Direction::UP};
 
         if (!clockwise_)
         {
@@ -48,13 +43,15 @@ namespace CoreLogic::EventManagement::Actors
                 {
                     start = true;
                 }
-            } else {
+            } else
+            {
                 if (turnOrder[currentIndex] == currentDir)
                 {
                     continue;
-                } else if (turnCyles_.at(turnOrder[currentIndex]).first != 0) {
+                } else if (turnCycles.at(turnOrder[currentIndex]).first != 0)
+                {
                     primaryDirection_ = turnOrder[currentIndex];
-                    turnCyles_.at(primaryDirection_).second = turnCyles_.at(primaryDirection_).first;
+                    turnCycles.at(primaryDirection_).second = turnCycles.at(primaryDirection_).first;
                     break;
                 }
             }
@@ -68,11 +65,14 @@ namespace CoreLogic::EventManagement::Actors
         int turnFrames = CoreLogic::DataProcessing::DesignConfig::BELL_TURN_TIME;
         if (abs(pa_triggerPoint.x) >= abs(pa_triggerPoint.y))
         {
-            (pa_triggerPoint.x > 0) ? primaryDirection_ = UserInterface::Direction::RIGHT : primaryDirection_ = UserInterface::Direction::LEFT;
-        } else {
-            (pa_triggerPoint.y > 0) ? primaryDirection_ = UserInterface::Direction::DOWN : primaryDirection_ = UserInterface::Direction::UP;
+            (pa_triggerPoint.x >
+                    0) ? primaryDirection_ = UserInterface::Direction::RIGHT : primaryDirection_ = UserInterface::Direction::LEFT;
+        } else
+        {
+            (pa_triggerPoint.y >
+                    0) ? primaryDirection_ = UserInterface::Direction::DOWN : primaryDirection_ = UserInterface::Direction::UP;
         }
-        turnCyles_.at(primaryDirection_).second = turnFrames;
+        turnCycles.at(primaryDirection_).second = turnFrames;
     }
 
     void Enemy::update()
@@ -108,11 +108,13 @@ namespace CoreLogic::EventManagement::Actors
         Vector2 p2;
         Vector2 p3;
 
-        (primaryDirection_ == UserInterface::Direction::UP || primaryDirection_ == UserInterface::Direction::RIGHT) ?
-        p2 = {visionOrigin_.x + range, visionOrigin_.y - range} : p2 = {visionOrigin_.x - range, visionOrigin_.y + range};
+        (primaryDirection_ == UserInterface::Direction::UP ||
+                primaryDirection_ == UserInterface::Direction::RIGHT) ? p2 = {visionOrigin_.x + range,
+                visionOrigin_.y - range} : p2 = {visionOrigin_.x - range, visionOrigin_.y + range};
 
-        (primaryDirection_ == UserInterface::Direction::DOWN || primaryDirection_ == UserInterface::Direction::RIGHT) ?
-        p3 = {visionOrigin_.x + range, visionOrigin_.y + range} : p3 = {visionOrigin_.x - range, visionOrigin_.y - range};
+        (primaryDirection_ == UserInterface::Direction::DOWN ||
+                primaryDirection_ == UserInterface::Direction::RIGHT) ? p3 = {visionOrigin_.x + range,
+                visionOrigin_.y + range} : p3 = {visionOrigin_.x - range, visionOrigin_.y - range};
 
         Ray visionLines[4];
 
@@ -130,7 +132,7 @@ namespace CoreLogic::EventManagement::Actors
             Vector2 collisionPoint = {visionLines[i].direction.x, visionLines[i].direction.y};
             if (!CheckCollisionPointTriangle(collisionPoint, p1, p2, p3))
             {
-                visionLines[i] = {{-1,-1,-1}, {-2,-1,-1}};
+                visionLines[i] = {{-1, -1, -1}, {-2, -1, -1}};
                 collisions[i] = false;
                 continue;
             }
@@ -148,11 +150,12 @@ namespace CoreLogic::EventManagement::Actors
         if (!intersected)
         {
             visionConnected_ = false;
-        } else {
+        } else
+        {
             if (!visionConnected_)
             {
                 visionConnected_ = true;
-                auto& eh = EventHandler::getInstance();
+                auto &eh = EventHandler::getInstance();
                 eh.handleEvents({VISION}, getId());
             }
         }
@@ -161,10 +164,11 @@ namespace CoreLogic::EventManagement::Actors
 
     bool Enemy::checkVisionCollisionObjects(Ray *pa_visionRays, bool *pa_visionCollisions)
     {
-        std::vector<std::shared_ptr<Actor>> barriers = CoreLogic::DataProcessing::ActorStorage::getBarriers().at(elevation_);
+        std::vector<std::shared_ptr<Actor>> barriers = CoreLogic::DataProcessing::ActorStorage::getBarriers().at(
+                elevation_);
         bool *visionCollisions = pa_visionCollisions;
 
-        for (auto barrier : barriers)
+        for (auto barrier: barriers)
         {
             if (barrier == nullptr)
             {
@@ -176,7 +180,8 @@ namespace CoreLogic::EventManagement::Actors
             }
 
             Rectangle barrierRec = barrier->getHitbox();
-            BoundingBox barrierHitbox = {{barrierRec.x, barrierRec.y,0}, {barrierRec.x + barrierRec.width, barrierRec.y + barrierRec.height,0}};
+            BoundingBox barrierHitbox = {{barrierRec.x, barrierRec.y, 0},
+                    {barrierRec.x + barrierRec.width, barrierRec.y + barrierRec.height, 0}};
 
             for (int i = 0; i < 4; ++i)
             {
@@ -201,12 +206,44 @@ namespace CoreLogic::EventManagement::Actors
     }
 
     Enemy::Enemy(Vector2 pa_position, Rectangle pa_hitbox, int pa_objectId, Vector2 pa_objectSize,
-                 int pa_objectElevation, bool pa_objectClockwise,
-                 CoreLogic::UserInterface::Direction pa_objectStartingDirection,
-                 std::map<CoreLogic::UserInterface::Direction, std::pair<int, int>> pa_objectTurnCycle, Vector2 pa_visionPoint): Actor(pa_position, pa_hitbox, pa_objectId, CollisionType::COLLISION, pa_objectSize, true, pa_objectElevation),
-                                                                                                                                 visionOrigin_(pa_visionPoint), turnCyles_(pa_objectTurnCycle)
+            int pa_objectElevation, bool pa_objectClockwise,
+            CoreLogic::UserInterface::Direction pa_objectStartingDirection,
+            std::map<CoreLogic::UserInterface::Direction, std::pair<int, int>> pa_objectTurnCycle,
+            Vector2 pa_visionPoint) :
+            Actor(pa_position, pa_hitbox, pa_objectId, CollisionType::COLLISION, pa_objectSize, true,
+                    pa_objectElevation), visionOrigin_(pa_visionPoint), turnCycles(pa_objectTurnCycle)
     {
         primaryDirection_ = pa_objectStartingDirection;
         clockwise_ = pa_objectClockwise;
+    }
+
+    bool Enemy::getClockwise() const
+    {
+        return clockwise_;
+    }
+
+    void Enemy::setClockwise(bool pa_clockwise)
+    {
+        clockwise_ = pa_clockwise;
+    }
+
+    bool Enemy::getDead() const
+    {
+        return dead_;
+    }
+
+    void Enemy::setDead(bool pa_dead)
+    {
+        dead_ = pa_dead;
+    }
+
+    std::map<CoreLogic::UserInterface::Direction, std::pair<int, int>> Enemy::getTurnCycles() const
+    {
+        return turnCycles;
+    }
+
+    void Enemy::setTurnCycles(std::map<CoreLogic::UserInterface::Direction, std::pair<int, int>> pa_turnCycles)
+    {
+        turnCycles = pa_turnCycles;
     }
 }

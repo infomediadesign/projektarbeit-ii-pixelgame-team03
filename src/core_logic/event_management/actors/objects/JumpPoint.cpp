@@ -17,3 +17,8 @@ CoreLogic::EventManagement::Object::JumpPoint::JumpPoint(Vector2 pa_position, Re
 
 }
 
+void CoreLogic::EventManagement::Object::JumpPoint::setJumpPosition(Vector2 pa_position)
+{
+coordinates_ = pa_position;
+}
+

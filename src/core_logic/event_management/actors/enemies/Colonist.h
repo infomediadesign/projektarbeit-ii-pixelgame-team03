@@ -15,13 +15,6 @@ namespace CoreLogic::EventManagement::Actors {
             public:
                 Colonist(Vector2 pa_position, Rectangle pa_hitbox, int pa_id, Vector2 pa_size, int pa_elevation, bool pa_clockwise, CoreLogic::UserInterface::Direction pa_startingDirection, std::map<CoreLogic::UserInterface::Direction, std::pair<int, int>> pa_turnCycle);
 
-                bool getClockwise() const;
-                CoreLogic::UserInterface::Direction getStartingDirection() const;
-                std::map<CoreLogic::UserInterface::Direction, std::pair<int, int>> getTurnCycle() const;
-            protected:
-                bool clockwise_;
-                CoreLogic::UserInterface::Direction startingDirection_;
-                std::map<CoreLogic::UserInterface::Direction, std::pair<int, int>> turnCycle_;
             };
 
 }

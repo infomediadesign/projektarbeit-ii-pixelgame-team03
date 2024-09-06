@@ -18,8 +18,9 @@ namespace CoreLogic::EventManagement::Object
         };
 
         Interaction(Vector2 pa_position, Rectangle pa_hitbox, int pa_id, CollisionType pa_collidable, Vector2 pa_size, bool pa_visible, int pa_elevation, InteractionType pa_type);
-        InteractionType getType() const;
 
+        InteractionType getType() const;
+void setType(InteractionType pa_type);
     protected:
         InteractionType type_;
     };
