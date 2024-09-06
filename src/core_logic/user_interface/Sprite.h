@@ -36,6 +36,10 @@ namespace CoreLogic::UserInterface
         void shiftFrame(int pa_stateID);
         void resetFrame(int pa_stateID);
 
+        int getFrameAmount(int pa_stateID, Direction pa_primaryDirection);
+        int getFrameAmount(int pa_stateID);
+        int getFrameAmount();
+
         Texture2D getTexture(){return texture_;};
         Rectangle getFrame(){return frame_;};
         Vector2 getRelativePosition();
