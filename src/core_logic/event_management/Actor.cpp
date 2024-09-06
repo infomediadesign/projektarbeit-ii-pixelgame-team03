@@ -102,6 +102,7 @@ void CoreLogic::EventManagement::Actor::draw()
     Rectangle dest = {hitbox_.x + sprite_.getRelativePosition().x, hitbox_.y + sprite_.getRelativePosition().y,
             sprite_.getFrame().width, sprite_.getFrame().height};
 
+    DrawTexturePro(sprite_.getTexture(), sprite_.getFrame(), dest, {0, 0}, 0, WHITE);
 }
 
 

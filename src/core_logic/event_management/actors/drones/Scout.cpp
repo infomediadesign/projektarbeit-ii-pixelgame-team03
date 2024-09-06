@@ -35,4 +35,11 @@ namespace CoreLogic::EventManagement::Actors
         }
         setAbility(nullptr);
     }
+
+    Scout::Scout(Vector2 pa_position, Rectangle pa_hitbox, int pa_id, Actor::CollisionType pa_collisionType,
+            Vector2 pa_size, bool pa_visible, int pa_elevation) :
+            Drone(pa_position, pa_hitbox, pa_id, pa_collisionType, pa_size, pa_visible, pa_elevation)
+    {
+        sprite_ = DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::SCOUT_DRONE);
+    }
 }

@@ -1,0 +1,3 @@
+Normal: 48x48px (2x2 Tiles)
+Breaking: 96x48px (4x2 Tiles)
+

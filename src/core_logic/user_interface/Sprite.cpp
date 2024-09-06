@@ -7,16 +7,14 @@
 namespace CoreLogic::UserInterface
 {
 
-    CoreLogic::UserInterface::Sprite::Sprite(std::string pa_path, int pa_frameWidth, int pa_frameHeight,
+    CoreLogic::UserInterface::Sprite::Sprite(std::string pa_path,
             std::vector<std::vector<CoreLogic::UserInterface::AnimationState>> pa_animationStates)
     {
         path_ = pa_path;
-        frameWidth_ = pa_frameWidth;
-        frameHeight_ = pa_frameHeight;
         animationStates_ = pa_animationStates;
 
-        texture_ = LoadTexture(pa_path.c_str());
-        frame_ = {0, 0, (float) frameWidth_, (float) frameHeight_};
+        texture_ = LoadTexture(pa_path.c_str()); //@todo: rework into store
+        frame_ = {0, 0, 0, 0};
     }
 
     void CoreLogic::UserInterface::Sprite::shiftFrame(int pa_stateID,
@@ -25,23 +23,25 @@ namespace CoreLogic::UserInterface
         if (pa_stateID < animationStates_.size() &&
                 static_cast<int>(pa_primaryDirection) < animationStates_[pa_stateID].size())
         {
-            if (pa_stateID == currentState_ && pa_primaryDirection == primaryDirection_)
+            currentState_ = animationStates_[pa_stateID][static_cast<int>(pa_primaryDirection)];
+
+            if (pa_stateID == currentStateId_ && pa_primaryDirection == primaryDirection_)
             {
                 currentStep_++;
 
-                if (currentStep_ >= animationStates_[pa_stateID][static_cast<int>(pa_primaryDirection)].steps_)
+                if (currentStep_ >= currentState_.steps_)
                 {
                     currentStep_ = 0;
                 }
-
-                frame_.x = (float) (currentStep_ * frameWidth_);
+                frame_.x = (float) (currentStep_ * currentState_.pxStep_);
             } else
             {
+
                 frame_.x = 0;
-                frame_.y = animationStates_[pa_stateID][static_cast<int>(pa_primaryDirection)].row_ * frameHeight_;
+                frame_.y = currentState_.pxRow_;
                 currentStep_ = 0;
             }
-            currentState_ = pa_stateID;
+            currentStateId_ = pa_stateID;
             primaryDirection_ = pa_primaryDirection;
         }
     }
@@ -51,23 +51,22 @@ namespace CoreLogic::UserInterface
         if (pa_stateID < animationStates_.size() &&
                 static_cast<int>(primaryDirection_) < animationStates_[pa_stateID].size())
         {
-            frame_.x = 0;
-            frame_.y = animationStates_[pa_stateID][static_cast<int>(primaryDirection_)].row_ * frameHeight_;
-            currentStep_ = 0;
+            currentState_ = animationStates_[pa_stateID][static_cast<int>(primaryDirection_)];
         } else
         {
-            frame_.x = 0;
-            frame_.y = animationStates_[1][static_cast<int>(primaryDirection_)].row_ * frameHeight_;
-            currentStep_ = 0;
+            currentState_ = animationStates_[1][static_cast<int>(primaryDirection_)];
         }
-        currentState_ = pa_stateID;
+
+        frame_.x = 0;
+        frame_.y = currentState_.pxRow_;
+        currentStep_ = 0;
+
+        currentStateId_ = pa_stateID;
     }
 
     CoreLogic::UserInterface::Sprite::Sprite()
     {
         path_ = "";
-        frameWidth_ = 0;
-        frameHeight_ = 0;
         animationStates_ = std::vector<std::vector<CoreLogic::UserInterface::AnimationState>>();
     }
 
@@ -78,12 +77,12 @@ namespace CoreLogic::UserInterface
 
     Vector2 Sprite::getRelativePosition()
     {
-        return animationStates_[currentState_][static_cast<int>(primaryDirection_)].relativePosition_;
+        return animationStates_[currentStateId_][static_cast<int>(primaryDirection_)].relativePosition_;
     }
 
     int Sprite::getFrameAmount()
     {
-        return animationStates_[currentState_][static_cast<int>(primaryDirection_)].steps_;
+        return animationStates_[currentStateId_][static_cast<int>(primaryDirection_)].steps_;
     }
 
     int Sprite::getFrameAmount(int pa_stateID)

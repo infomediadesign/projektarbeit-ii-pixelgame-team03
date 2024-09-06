@@ -1,6 +1,4 @@
-//
-// Created by Josi on 08.08.2024.
-//
+
 
 #include "HUD.h"
 #include "actors/Drone.h"
@@ -12,44 +10,9 @@ CoreLogic::UserInterface::HUD::HUD()
 
 }
 
-void CoreLogic::UserInterface::HUD::hudInit() {
-    Sprite temp = Sprite(
-            "assets/graphics/hive_ARTI_hud-max-life-spritesheet.png", 640, 360,
-            {{},
-             {},
-             {CoreLogic::UserInterface::AnimationState{0, 1}},
-             {},
-             {CoreLogic::UserInterface::AnimationState{1, 1}},
-             {},
-             {CoreLogic::UserInterface::AnimationState{2, 1}}}
-    );
+void CoreLogic::UserInterface::HUD::hudInit()
+{
 
-    hudElements_.push_back(std::make_unique<Sprite>(temp));
-
-    temp = Sprite("assets/graphics/hive_ARTI_hud-current-life-spritesheet.png", 640, 360,
-                  {
-                          {CoreLogic::UserInterface::AnimationState{0, 1}},
-                          {CoreLogic::UserInterface::AnimationState{1, 1}},
-                          {CoreLogic::UserInterface::AnimationState{2, 1}},
-                          {CoreLogic::UserInterface::AnimationState{3, 1}},
-                          {CoreLogic::UserInterface::AnimationState{4, 1}},
-                          {CoreLogic::UserInterface::AnimationState{5, 1}},
-                          {CoreLogic::UserInterface::AnimationState{6, 1}}
-                  }
-    );
-
-    hudElements_.push_back(std::make_unique<Sprite>(temp));
-
-    temp = Sprite("assets/graphics/hive_ARTI_hud-portrait.png", 640, 360,
-                  {{CoreLogic::UserInterface::AnimationState{0, 1}}});
-
-    hudElements_.push_back(std::make_unique<Sprite>(temp));
-
-    temp = Sprite("assets/graphics/hive_ARTI_hud-example-button-spritesheet.png", 640, 360,
-                  {{CoreLogic::UserInterface::AnimationState{0, 1}},
-                   {CoreLogic::UserInterface::AnimationState{1, 1}}});
-
-    hudElements_.push_back(std::make_unique<Sprite>(temp));
 }
 
 void CoreLogic::UserInterface::HUD::draw(Rectangle pa_cameraRec)
@@ -57,7 +20,7 @@ void CoreLogic::UserInterface::HUD::draw(Rectangle pa_cameraRec)
     for (auto &element: hudElements_)
     {
         DrawTexturePro(element->getTexture(), element->getFrame(), pa_cameraRec, {0, 0}, 0,
-                       WHITE);
+                WHITE);
     }
 }
 
@@ -74,9 +37,12 @@ CoreLogic::UserInterface::HUD *CoreLogic::UserInterface::HUD::getInstance()
     return po_instance_;
 }
 
-void CoreLogic::UserInterface::HUD::update() {
+void CoreLogic::UserInterface::HUD::update()
+{
     CoreLogic::EventManagement::Actors::Drone &player = *CoreLogic::DataProcessing::ActorStorage::getPlayer();
 
     hudElements_[0]->shiftFrame(player.getMaxHealth() - 1);
-    hudElements_[1]->shiftFrame(player.getCurrentHealth() -1);
+    hudElements_[1]->shiftFrame(player.getCurrentHealth() - 1);
+    hudElements_[2]->shiftFrame(player.getDroneType());
+    hudElements_[3]->shiftFrame(player.canInteract());
 }

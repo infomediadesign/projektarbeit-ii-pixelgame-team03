@@ -185,6 +185,27 @@ void CoreLogic::DataProcessing::ActorStorage::addActorByType(int pa_elevation,
         auto actor = std::dynamic_pointer_cast<EventManagement::Actor>(pa_actor);
         addActor(po_allActors_, pa_elevation, actor);
 
+    } else if (auto uplink = std::dynamic_pointer_cast<EventManagement::Object::Uplink>(pa_actor))
+    {
+        addActor(po_uplinks_, pa_elevation, uplink);
+
+        auto interaction = std::dynamic_pointer_cast<EventManagement::Object::Interaction>(pa_actor);
+        addActor(po_interactions_, pa_elevation, interaction);
+
+        auto actor = std::dynamic_pointer_cast<EventManagement::Actor>(pa_actor);
+        addActor(po_collidables_, pa_elevation, actor);
+        addActor(po_allActors_, pa_elevation, actor);
+
+    }else if (auto spawn = std::dynamic_pointer_cast<EventManagement::Object::DroneRespawnPoint>(pa_actor))
+    {
+        addActor(po_respawnPoints_, pa_elevation, spawn);
+
+        auto interaction = std::dynamic_pointer_cast<EventManagement::Object::Interaction>(pa_actor);
+        addActor(po_interactions_, pa_elevation, interaction);
+
+        auto actor = std::dynamic_pointer_cast<EventManagement::Actor>(pa_actor);
+        addActor(po_allActors_, pa_elevation, actor);
+
     }
 }
 
@@ -451,6 +472,18 @@ void CoreLogic::DataProcessing::ActorStorage::setLevelSwitches(
 po_levelSwitches_ = pa_levelSwitches;
 }
 
+std::shared_ptr<std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Object::Uplink>>>>
+CoreLogic::DataProcessing::ActorStorage::getUplinks()
+{
+    return po_uplinks_;
+}
+
+void CoreLogic::DataProcessing::ActorStorage::setUplinks(
+        std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::Uplink>>>> pa_uplinks)
+{
+po_uplinks_ = pa_uplinks;
+}
+
 CoreLogic::DataProcessing::GameState CoreLogic::DataProcessing::StateMachine::getCurrentState()
 {
     return currentState_;
@@ -460,4 +493,322 @@ void CoreLogic::DataProcessing::StateMachine::changeState(CoreLogic::DataProcess
 {
     previousState_ = currentState_;
     currentState_ = newState;
+}
+
+CoreLogic::UserInterface::Sprite
+CoreLogic::DataProcessing::SpriteStorage::getSprite(CoreLogic::DataProcessing::SpriteStorage::SpriteEnum spriteEnum)
+{
+    return po_sprites_[spriteEnum];
+}
+
+void CoreLogic::DataProcessing::SpriteStorage::Initialize()
+{
+    //worker
+    UserInterface::Sprite sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/hive_ARTI_Worker-Spritesheet.png",
+            {
+                    {    //0 - walking
+                        {CoreLogic::UserInterface::AnimationState {1 * 38, 38, 8}}, //up
+                        {CoreLogic::UserInterface::AnimationState {0 * 38, 38, 8}}, //down
+                        {CoreLogic::UserInterface::AnimationState {3 * 38, 38, 8}}, //left
+                        {CoreLogic::UserInterface::AnimationState {2 * 38, 38, 8}}, //right
+                    },
+                    {    //1 - ability
+                            {CoreLogic::UserInterface::AnimationState {5 * 38, 38, 8}}, //up
+                            {CoreLogic::UserInterface::AnimationState {4 * 38, 38, 8}}, //down
+                            {CoreLogic::UserInterface::AnimationState {7 * 38, 38, 8}}, //left
+                            {CoreLogic::UserInterface::AnimationState {6 * 38, 38, 8}}, //right
+                    },
+                    {    //2 - death
+                        {CoreLogic::UserInterface::AnimationState {8 * 38, 38, 12}},
+                    }
+            });
+
+    po_sprites_.insert(po_sprites_.begin() + WORKER_DRONE, sprite);
+
+    //scout
+    sprite = UserInterface::Sprite("", //@todo: insert scout path
+            {
+                    {    //0 - walking
+                            {CoreLogic::UserInterface::AnimationState {1 * 38, 38, 8}}, //up
+                            {CoreLogic::UserInterface::AnimationState {0 * 38, 38, 8}}, //down
+                            {CoreLogic::UserInterface::AnimationState {3 * 38, 38, 8}}, //left
+                            {CoreLogic::UserInterface::AnimationState {2 * 38, 38, 8}}, //right
+                    },
+                    {    //1 - ability
+                            {CoreLogic::UserInterface::AnimationState {5 * 38, 38, 8}}, //up
+                            {CoreLogic::UserInterface::AnimationState {4 * 38, 38, 8}}, //down
+                            {CoreLogic::UserInterface::AnimationState {7 * 38, 38, 8}}, //left
+                            {CoreLogic::UserInterface::AnimationState {6 * 38, 38, 8}}, //right
+                    },
+                    {    //2 - death
+                            {CoreLogic::UserInterface::AnimationState {8 * 38, 38, 12}},
+                    }
+            });
+
+    po_sprites_.insert(po_sprites_.begin() + SCOUT_DRONE, sprite);
+
+    //colonist
+    sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/hive_ARTI_Colonist-Spritesheet.png",
+            {
+                    {    //0 - idle
+                            {CoreLogic::UserInterface::AnimationState {1 * 48, 24, 12}}, //up
+                            {CoreLogic::UserInterface::AnimationState {0 * 48, 24, 12}}, //down
+                            {CoreLogic::UserInterface::AnimationState {3 * 48, 24, 12}}, //left
+                            {CoreLogic::UserInterface::AnimationState {2 * 48, 24, 12}}, //right
+                    },
+                    {    //1 - alert
+                            {CoreLogic::UserInterface::AnimationState {(3 * 48) + (1 * 72), 24, 6, {0, -24}}}, //up
+                            {CoreLogic::UserInterface::AnimationState {(3 * 48) + (0 * 72), 24, 6, {0, -24}}}, //down
+                            {CoreLogic::UserInterface::AnimationState {(3 * 48) + (3 * 72), 24, 6, {0, -24}}}, //left
+                            {CoreLogic::UserInterface::AnimationState {(3 * 48) + (2 * 72), 24, 6, {0, -24}}}, //right
+                    },
+                    {    //2 - shoot
+                            {CoreLogic::UserInterface::AnimationState {(3 * 48) + (5 * 72), 24, 4, {0, -24}}}, //up
+                            {CoreLogic::UserInterface::AnimationState {(3 * 48) + (4 * 72), 24, 4, {0, -24}}}, //down
+                            {CoreLogic::UserInterface::AnimationState {(3 * 48) + (7 * 72), 24, 4, {0, -24}}}, //left
+                            {CoreLogic::UserInterface::AnimationState {(3 * 48) + (6 * 72), 24, 4, {0, -24}}}, //right
+                    },
+                    {    //3 - death
+                            {CoreLogic::UserInterface::AnimationState {(3 * 48) + (8 * 72), 73, 6}},
+                    }
+            });
+
+    po_sprites_.insert(po_sprites_.begin() + COLONIST, sprite);
+
+    //mech
+    sprite = UserInterface::Sprite("", //@todo: insert mech path
+            {
+                    {    //0 - idle
+                            {CoreLogic::UserInterface::AnimationState {1 * 48, 24, 12}}, //up
+                            {CoreLogic::UserInterface::AnimationState {0 * 48, 24, 12}}, //down
+                            {CoreLogic::UserInterface::AnimationState {3 * 48, 24, 12}}, //left
+                            {CoreLogic::UserInterface::AnimationState {2 * 48, 24, 12}}, //right
+                    },
+                    {    //1 - alert
+                            {CoreLogic::UserInterface::AnimationState {(3 * 48) + (1 * 72), 24, 6, {0, -24}}}, //up
+                            {CoreLogic::UserInterface::AnimationState {(3 * 48) + (0 * 72), 24, 6, {0, -24}}}, //down
+                            {CoreLogic::UserInterface::AnimationState {(3 * 48) + (3 * 72), 24, 6, {0, -24}}}, //left
+                            {CoreLogic::UserInterface::AnimationState {(3 * 48) + (2 * 72), 24, 6, {0, -24}}}, //right
+                    },
+                    {    //2 - shoot
+                            {CoreLogic::UserInterface::AnimationState {(3 * 48) + (5 * 72), 24, 4, {0, -24}}}, //up
+                            {CoreLogic::UserInterface::AnimationState {(3 * 48) + (4 * 72), 24, 4, {0, -24}}}, //down
+                            {CoreLogic::UserInterface::AnimationState {(3 * 48) + (7 * 72), 24, 4, {0, -24}}}, //left
+                            {CoreLogic::UserInterface::AnimationState {(3 * 48) + (6 * 72), 24, 4, {0, -24}}}, //right
+                    },
+                    {    //3 - death
+                            {CoreLogic::UserInterface::AnimationState {(3 * 48) + (8 * 72), 73, 6, {-24, -24}}},
+                    }
+            });
+
+    po_sprites_.insert(po_sprites_.begin() + MECH, sprite);
+
+    //rubble - overworld
+    sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/Abilities/hive_ARTI_Overworld-Rubble-Spritesheet.png",
+            {
+                    {    //0 - idle
+                            {CoreLogic::UserInterface::AnimationState {0 * 24, 24, 1}},
+                    },
+                    {    //1 - breaking
+                            {CoreLogic::UserInterface::AnimationState {1 * 24, 24, 11}},
+                    },
+            });
+
+    po_sprites_.insert(po_sprites_.begin() + RUBBLE_OVERWORLD, sprite);
+
+    //rubble - underworld
+    sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/Abilities/hive_ARTI_Underworld-Rubble-Spritesheet.png",
+            {
+                    {    //0 - idle
+                            {CoreLogic::UserInterface::AnimationState {0 * 24, 24, 1}},
+                    },
+                    {    //1 - breaking
+                            {CoreLogic::UserInterface::AnimationState {1 * 24, 24, 11}},
+                    },
+            });
+
+    po_sprites_.insert(po_sprites_.begin() + RUBBLE_UNDERWORLD, sprite);
+
+    //spawn - overworld
+    sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/Abilities/hive_ARTI_Overworld-Rubble-Spritesheet.png",
+            {
+                    {    //0 - idle
+                            {CoreLogic::UserInterface::AnimationState {0 * 24, 24, 1}},
+                    },
+                    {    //1 - breaking
+                            {CoreLogic::UserInterface::AnimationState {1 * 24, 24, 11}},
+                    },
+            });
+
+    po_sprites_.insert(po_sprites_.begin() + SPAWN_OVERWORLD, sprite);
+
+    //spawn - overworld
+    sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/Interacts/hive_ARTI_Overworld-Respawns-Spritesheet.png",
+            {
+                    {    //0 - undiscovered
+                            {CoreLogic::UserInterface::AnimationState {0 * 24, 24, 1}},
+                    },
+                    {    //1 - discovered
+                            {CoreLogic::UserInterface::AnimationState {1 * 24, 24, 1}},
+                    },
+                    {    //1 - active
+                            {CoreLogic::UserInterface::AnimationState {2 * 24, 24, 1}},
+                    },
+            });
+
+    po_sprites_.insert(po_sprites_.begin() + SPAWN_OVERWORLD, sprite);
+
+    //spawn - underworld
+    sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/Interacts/hive_ARTI_Underworld-Respawns-Spritesheet.png",
+            {
+                    {    //0 - undiscovered
+                            {CoreLogic::UserInterface::AnimationState {0 * 24, 24, 1}},
+                    },
+                    {    //1 - discovered
+                            {CoreLogic::UserInterface::AnimationState {1 * 24, 24, 1}},
+                    },
+                    {    //1 - active
+                            {CoreLogic::UserInterface::AnimationState {2 * 24, 24, 1}},
+                    },
+            });
+
+    po_sprites_.insert(po_sprites_.begin() + SPAWN_UNDERWORLD, sprite);
+
+    //boulder - underworld
+    sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/Abilities/hive_ARTI_Underworld-Boulder-Spritesheet.png",
+            {
+                    {    //0 - idle
+                            {CoreLogic::UserInterface::AnimationState {0 * 48, 48, 1}},
+                    },
+                    {    //1 - breaking
+                            {CoreLogic::UserInterface::AnimationState {1 * 48, 96, 6}},
+                    },
+            });
+
+    po_sprites_.insert(po_sprites_.begin() + BOULDER_UNDERWORLD, sprite);
+
+    //barrel
+    sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/hive_ARTI_Explosive-Barrel-Spritesheet.png",
+            {
+                    {    //0 - idle
+                            {CoreLogic::UserInterface::AnimationState {0 * 24, 24, 1}},
+                    },
+                    {    //1 - breaking
+                            {CoreLogic::UserInterface::AnimationState {1 * 24, 120, 11}},
+                    },
+            });
+
+    po_sprites_.insert(po_sprites_.begin() + BARREL, sprite);
+
+    //note
+    sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/Interacts/hive_ARTI_Lore-Item-Spritesheet.png",
+            {
+                    {    //0 - idle
+                            {CoreLogic::UserInterface::AnimationState {0 * 24, 24, 6}},
+                    },
+            });
+
+    po_sprites_.insert(po_sprites_.begin() + NOTE, sprite);
+
+    //uplink
+    sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/Interacts/hive_ARTI_Uplink-Spritesheet.png",
+            {
+                    {    //0 - idle
+                            {CoreLogic::UserInterface::AnimationState {0 * 48, 48, 6}},
+                    },
+            });
+
+    po_sprites_.insert(po_sprites_.begin() + UPLINK, sprite);
+
+
+    //-----HUD-----//
+
+    //max life
+    sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/HUD/hive_ARTI_newHUD_max-drone-life.png",
+            {
+                    {},
+                    {},
+                    {CoreLogic::UserInterface::AnimationState{0 * 360, 640, 1}},
+                    {},
+                    {CoreLogic::UserInterface::AnimationState{1 * 360, 640, 1}},
+                    {},
+                    {CoreLogic::UserInterface::AnimationState{2 * 360, 640, 1}}
+            });
+
+    po_sprites_.insert(po_sprites_.begin() + HUD_MAX, sprite);
+
+    //current life
+    sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/HUD/hive_ARTI_newHUD_current-drone-life.png",
+            {
+                    {CoreLogic::UserInterface::AnimationState{0 * 360, 640, 1}},
+                    {CoreLogic::UserInterface::AnimationState{1 * 360, 640, 1}},
+                    {CoreLogic::UserInterface::AnimationState{2 * 360, 640, 1}},
+                    {CoreLogic::UserInterface::AnimationState{3 * 360, 640, 1}},
+                    {CoreLogic::UserInterface::AnimationState{4 * 360, 640, 1}},
+                    {CoreLogic::UserInterface::AnimationState{5 * 360, 640, 1}},
+                    {CoreLogic::UserInterface::AnimationState{6 * 360, 640, 1}}
+            });
+
+    po_sprites_.insert(po_sprites_.begin() + HUD_CURRENT, sprite);
+
+    //portrait
+    sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/HUD/hive_ARTI_newHUD_portrait.png",
+            {
+                    {CoreLogic::UserInterface::AnimationState{0 * 360, 640, 1}},
+                    {CoreLogic::UserInterface::AnimationState{1 * 360, 640, 1}}
+            });
+
+    po_sprites_.insert(po_sprites_.begin() + HUD_PORTRAIT, sprite);
+
+    //buttons
+    sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/HUD/hive_ARTI_newHUD_buttons.png",
+            {
+                    {CoreLogic::UserInterface::AnimationState{1 * 360, 640, 1}}
+            });
+
+    po_sprites_.insert(po_sprites_.begin() + HUD_BUTTONS, sprite);
+
+    //interact
+    sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/HUD/hive_ARTI_newHUD_interact.png",
+            {
+                    {CoreLogic::UserInterface::AnimationState{1 * 360, 640, 1}},
+                    {CoreLogic::UserInterface::AnimationState{0 * 360, 640, 1}}
+            });
+
+    po_sprites_.insert(po_sprites_.begin() + HUD_INTERACT, sprite);
+
+    //disconnect
+    sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/HUD/hive_ARTI_newHUD_disconnect.png",
+            {
+                    {CoreLogic::UserInterface::AnimationState{0 * 360, 640, 1}}
+            });
+
+    po_sprites_.insert(po_sprites_.begin() + HUD_DISCONNECT, sprite);
+
+    //main ability
+    sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/HUD/hive_ARTI_newHUD_main-ability.png",
+            {
+                    {CoreLogic::UserInterface::AnimationState{1 * 360, 640, 1}},
+                    {CoreLogic::UserInterface::AnimationState{0 * 360, 640, 1}}
+            });
+
+    po_sprites_.insert(po_sprites_.begin() + HUD_MAIN, sprite);
+
+    //death ability
+    sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/HUD/hive_ARTI_newHUD_death-ability.png",
+            {
+                    {CoreLogic::UserInterface::AnimationState{1 * 360, 640, 1}},
+                    {CoreLogic::UserInterface::AnimationState{0 * 360, 640, 1}}
+            });
+
+    po_sprites_.insert(po_sprites_.begin() + HUD_DEATH, sprite);
+
+    //drone selection
+    sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/hive_ARTI_newHUD_drone-selection-screen-Spritesheet.png",
+            {
+                    {CoreLogic::UserInterface::AnimationState{0 * 360, 640, 1}},
+                    {CoreLogic::UserInterface::AnimationState{1 * 360, 640, 2}}
+            });
+
+    po_sprites_.insert(po_sprites_.begin() + DRONE_SELECTION, sprite);
 }

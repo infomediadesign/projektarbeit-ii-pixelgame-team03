@@ -3,6 +3,7 @@
 //
 
 #include "Barrel.h"
+#include "Store.h"
 
 namespace CoreLogic::EventManagement::Object
 {
@@ -17,6 +18,7 @@ namespace CoreLogic::EventManagement::Object
     Ability(pa_position, pa_hitbox, pa_id, CollisionType::COLLISION, pa_size, true, pa_elevation, BARREL)
     {
         newElevation_ = pa_elevation - (pa_fallHeight / 2);
+        sprite_ = DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::BARREL);
     }
 
     void Barrel::setNewElevation(int pa_newElevation)
