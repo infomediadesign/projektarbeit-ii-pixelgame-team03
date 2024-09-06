@@ -5,6 +5,7 @@ set(SCENES_SOURCES
         MainMenuScene.cpp
         PauseScene.cpp
         SettingsScene.cpp
+        DroneSelectionScene.cpp
 )
 
 set(SCENES_HEADERS
@@ -12,7 +13,6 @@ set(SCENES_HEADERS
         MainMenuScene.h
         PauseScene.h
         SettingsScene.h
-        DroneSelectionScene.cpp
         DroneSelectionScene.h
 )
 
