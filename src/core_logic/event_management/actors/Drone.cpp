@@ -350,7 +350,7 @@ void CoreLogic::EventManagement::Actors::Drone::checkInteraction()
     /**
      * @Pseudo_Code: getInteractions() not yet existing
      */
-    std::vector<std::shared_ptr<Actor>> &interactions = DataProcessing::ActorStorage::getInteractions();
+    std::vector<std::shared_ptr<Object::Interaction>> &interactions = DataProcessing::ActorStorage::getInteractions()->at(elevation_);
     for (auto &interaction : interactions)
     {
         if (interaction == nullptr)

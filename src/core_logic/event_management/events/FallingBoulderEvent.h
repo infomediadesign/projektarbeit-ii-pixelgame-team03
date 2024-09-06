@@ -7,7 +7,7 @@
 
 
 #include "FallingEvent.h"
-#include "../objects/Boulder.h"
+#include "actors/objects/Boulder.h"
 
 namespace CoreLogic::EventManagement
 {

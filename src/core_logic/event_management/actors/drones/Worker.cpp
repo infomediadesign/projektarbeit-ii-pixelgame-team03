@@ -29,21 +29,23 @@ namespace CoreLogic::EventManagement::Actors
         /**
         * @Pseudo_Code: getWorkerAbilities() not yet existing
         */
-        std::vector<std::shared_ptr<Ability>> &abilities = DataProcessing::ActorStorage::getWorkerAbilities();
+        std::vector<std::shared_ptr<Object::Ability>> &abilities = DataProcessing::ActorStorage::getWorkerAbilities()->at(elevation_);
         for (auto &ability : abilities)
         {
             if (ability == nullptr)
             {
                 continue;
             }
-            if (ability->getElevation() == elevation_)
+            if (ability->getElevation() != elevation_)
             {
-                if (CheckCollisionRecs(extensionRec, ability->getHitbox()))
-                {
-                    setAbility(ability);
-                    return;
-                }
+                throw std::runtime_error("Elevation does not match");
             }
+            if (CheckCollisionRecs(extensionRec, ability->getHitbox()))
+            {
+                setAbility(ability);
+                return;
+            }
+
         }
         setAbility(nullptr);
     }

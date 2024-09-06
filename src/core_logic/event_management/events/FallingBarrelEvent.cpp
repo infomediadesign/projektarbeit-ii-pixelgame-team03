@@ -10,8 +10,7 @@
 
 namespace CoreLogic::EventManagement
 {
-    FallingBarrelEvent::FallingBarrelEvent(std::shared_ptr<Object::Barrel> pa_barrel) :
-    FallingEvent()
+    FallingBarrelEvent::FallingBarrelEvent(std::shared_ptr<Object::Barrel> pa_barrel) : FallingEvent()
     {
         po_mainActor_ = pa_barrel;
         fallHeight_ = std::dynamic_pointer_cast<Object::Barrel>(po_mainActor_)
@@ -34,8 +33,8 @@ namespace CoreLogic::EventManagement
             explosionRadius.y = po_mainActor_ -> getPosition().y - (tileSize * 2);
             explosionRadius.width = po_mainActor_ -> getSize().x + (tileSize * 5);
             explosionRadius.height = po_mainActor_ -> getSize().y + (tileSize * 5);
-            std::vector<std::shared_ptr<Enemy>> enemies = CoreLogic::DataProcessing::ActorStorage::getEnemies();
-            for (std::shared_ptr<Enemy> enemy: enemies)
+            std::vector<std::shared_ptr<Actors::Enemy>> &enemies = (CoreLogic::DataProcessing::ActorStorage::getEnemies())->at(std::dynamic_pointer_cast<Object::Barrel>(po_mainActor_)->getNewElevation());
+            for (auto &enemy: enemies)
             {
                 if (enemy == nullptr)
                 {
@@ -59,7 +58,7 @@ namespace CoreLogic::EventManagement
         }
         if (ticks_ >= 60)
         {
-            throw true;
+            throw EventException("Falling Event Executed");
         }
         ticks_++;
     }

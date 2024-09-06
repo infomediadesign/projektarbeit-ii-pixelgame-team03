@@ -27,7 +27,7 @@ namespace CoreLogic::EventManagement::Actors {
         [[nodiscard]] bool getDead() const;
         void setDead(bool pa_dead);
 
-        std::map<CoreLogic::UserInterface::Direction, std::pair<int, int>> getTurnCycles() const;
+        [[nodiscard]] std::map<CoreLogic::UserInterface::Direction, std::pair<int, int>> getTurnCycles() const;
         void setTurnCycles(std::map<CoreLogic::UserInterface::Direction, std::pair<int, int>> pa_turnCycles);
 
     protected:

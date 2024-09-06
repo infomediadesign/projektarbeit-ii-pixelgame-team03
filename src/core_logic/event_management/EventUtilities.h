@@ -9,14 +9,15 @@ namespace CoreLogic::EventManagement
 {
     class EventException : public std::exception {
     public:
-        explicit EventException(const char* message) : msg_(message) {}
+        explicit EventException(const char* pa_message, bool pa_success) : msg_(pa_message), success_(pa_success) {}
 
-        [[nodiscard]] const char* what() const noexcept override {
-            return msg_;
-        }
+        [[nodiscard]] bool wasSuccessful() const { return success_; }
+
+        [[nodiscard]] const char* what() const noexcept override { return msg_; }
 
     private:
         const char* msg_;
+        bool success_ = true;
     };
 
     enum EventEnum {

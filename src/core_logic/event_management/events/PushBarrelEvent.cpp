@@ -66,15 +66,15 @@ namespace CoreLogic
                     break;
             }
 
-            po_barrel_->setPosition(destination.x, destination.y);
+            po_barrel_->setPosition({destination.x, destination.y});
 
             ticks_--;
             if (ticks_ == 0)
             {
                 destination.x += push.x;
                 destination.y += push.y;
-                po_barrel_->setPosition(destination.x, destination.y);
-                throw true;
+                po_barrel_->setPosition({destination.x, destination.y});
+                throw EventException("Barrel Pushed");
             }
         }
     } // CoreLogic
