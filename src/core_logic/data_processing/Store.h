@@ -63,13 +63,14 @@ namespace CoreLogic::DataProcessing
      * @note: possibly also get std::map<int, vector<Layer>> po_layers_ as to not have to make the Map class static
      **/
     private:
+        //------------------actives------------------//
         static std::shared_ptr<CoreLogic::EventManagement::Object::DroneRespawnPoint> po_activeRespawnPoint_;
         static std::shared_ptr<CoreLogic::EventManagement::Object::TutorialBox> po_activeTutorialBox_;
         static std::shared_ptr<CoreLogic::EventManagement::Object::Note> po_activeNote_;
 
-
         static std::shared_ptr<EventManagement::Actors::Drone> po_player_;
-        static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Actor>>>> po_actors_;
+
+        //------------------general lists------------------//
         static std::shared_ptr<std::map<int, std::vector<tson::Layer>>> po_layers_;
 
         static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Actor>>>> po_allActors_;
@@ -88,7 +89,7 @@ namespace CoreLogic::DataProcessing
                 po_allEnemies_;
 
 
-
+        //------------------specific lists------------------//
         static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::Barrier>>>>
         po_barriers_;
         static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::Rubble>>>>
@@ -116,9 +117,7 @@ namespace CoreLogic::DataProcessing
     public:
         static void Initialize();
 
-        static std::shared_ptr<EventManagement::Actors::Drone> getPlayer();
-        static void setPlayer(std::shared_ptr<EventManagement::Actors::Drone> pa_player);
-
+        //------------------actives------------------//
         static std::shared_ptr<CoreLogic::EventManagement::Object::DroneRespawnPoint> getActiveSpawnPoint();
         static void setActiveSpawnPoint(std::shared_ptr<CoreLogic::EventManagement::Object::DroneRespawnPoint> pa_spawnPoint);
 
@@ -129,17 +128,29 @@ namespace CoreLogic::DataProcessing
         static std::shared_ptr<CoreLogic::EventManagement::Object::Note> getActiveNote();
         static void setActiveNote(std::shared_ptr<CoreLogic::EventManagement::Object::Note> pa_activeNote);
 
-        static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Actor>>>> getActors();
-        static std::shared_ptr<EventManagement::Actor> getActorByID(int pa_actorID);
-        static void setActors(std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Actor>>>> pa_actors);
+
+        static std::shared_ptr<EventManagement::Actors::Drone> getPlayer();
+        static void setPlayer(std::shared_ptr<EventManagement::Actors::Drone> pa_player);
+
+
+
+        //------------------general lists------------------//
         template <typename T>
         static void addActor(std::shared_ptr<std::map<int, std::vector<std::shared_ptr<T>>>> pa_map, int pa_elevation,
                 std::shared_ptr<T> pa_actor);
         static void addActorByType(int pa_elevation, std::shared_ptr<EventManagement::Actor> pa_actor);
 
+
         static std::shared_ptr<std::map<int, std::vector<tson::Layer>>> getLayers();
         static void setLayers(std::shared_ptr<std::map<int, std::vector<tson::Layer>>> pa_layers);
-        //static void newDrone(//DroneType);
+
+
+        static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Actor>>>> getActors();
+        static void setActors(std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Actor>>>> pa_actors);
+
+
+
+
 
     };
 

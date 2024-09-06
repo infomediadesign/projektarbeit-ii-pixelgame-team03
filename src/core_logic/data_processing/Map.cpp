@@ -166,7 +166,24 @@ void CoreLogic::DataProcessing::Map::loadObjects()
             } else if (objectClass == "colonist")
             {
                 bool objectClockwise = objectProperties.getProperty("clockwise")->getValue<bool>();
-                int objectStartingDirection = objectProperties.getProperty("direction")->getValue<int>();
+                int direction = objectProperties.getProperty("direction")->getValue<int>();
+                CoreLogic::UserInterface::Direction objectStartingDirection;
+
+                switch (direction)
+                {
+                case 0:
+                    objectStartingDirection = UserInterface::Direction::UP;
+                    break;
+                case 1:
+                    objectStartingDirection = UserInterface::Direction::RIGHT;
+                    break;
+                case 2:
+                    objectStartingDirection = UserInterface::Direction::DOWN;
+                    break;
+                case 3:
+                    objectStartingDirection = UserInterface::Direction::LEFT;
+                    break;
+                }
 
                 int intervalEast = objectProperties.getProperty("interval_e")->getValue<int>();
                 int intervalNorth = objectProperties.getProperty("interval_n")->getValue<int>();
@@ -180,7 +197,7 @@ void CoreLogic::DataProcessing::Map::loadObjects()
                         {CoreLogic::UserInterface::Direction::RIGHT, {intervalEast, 0}}};
 
                 actor = std::make_shared<EventManagement::Actor>(CoreLogic::EventManagement::Actors::Colonist
-                        (objectPosition, objectHitbox, objectId, objectSize, objectElevation, objectClockwise, objectStartingDirection, objectTurnCycle));
+                        (objectPosition, objectHitbox,objectId,objectSize, objectElevation, objectClockwise, objectStartingDirection,  objectTurnCycle));
                 ActorStorage::addActorByType(objectElevation, actor);
             } else if (objectClass == "cliffs")
             {

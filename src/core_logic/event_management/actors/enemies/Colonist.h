@@ -5,6 +5,7 @@
 #ifndef HIVE_COLONIST_H
 #define HIVE_COLONIST_H
 
+#include <map>
 #include "../../Actor.h"
 
 namespace CoreLogic::EventManagement::Actors {
@@ -12,9 +13,15 @@ namespace CoreLogic::EventManagement::Actors {
             class Colonist : public EventManagement::Actor{
 
             public:
-                Colonist(Vector2 pa_position, Rectangle pa_hitbox, int pa_id, Vector2 pa_size, int pa_elevation)
-                : Actor(pa_position, pa_hitbox, pa_id, Actor::CollisionType::COLLISION, pa_size, true, pa_elevation) {};
+                Colonist(Vector2 pa_position, Rectangle pa_hitbox, int pa_id, Vector2 pa_size, int pa_elevation, bool pa_clockwise, CoreLogic::UserInterface::Direction pa_startingDirection, std::map<CoreLogic::UserInterface::Direction, std::pair<int, int>> pa_turnCycle);
 
+                bool getClockwise() const;
+                CoreLogic::UserInterface::Direction getStartingDirection() const;
+                std::map<CoreLogic::UserInterface::Direction, std::pair<int, int>> getTurnCycle() const;
+            protected:
+                bool clockwise_;
+                CoreLogic::UserInterface::Direction startingDirection_;
+                std::map<CoreLogic::UserInterface::Direction, std::pair<int, int>> turnCycle_;
             };
 
 }
