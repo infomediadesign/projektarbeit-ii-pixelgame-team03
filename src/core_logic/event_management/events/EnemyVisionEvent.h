@@ -7,6 +7,7 @@
 
 
 #include "Event.h"
+#include "actors/Drone.h"
 
 namespace CoreLogic::EventManagement
 {
@@ -15,7 +16,15 @@ namespace CoreLogic::EventManagement
     {
     public:
         explicit EnemyVisionEvent(int pa_id);
+        ~EnemyVisionEvent();
         void update() override;
+    protected:
+        bool found_ = false;
+
+        std::shared_ptr<Actors::Drone> po_player_;
+
+        void lookout();
+        void shoot();
     };
 
 } // CoreLogic

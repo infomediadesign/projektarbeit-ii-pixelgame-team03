@@ -19,6 +19,8 @@ namespace CoreLogic::EventManagement::Actors {
         void update();
         void forceTurn(Vector2 pa_triggerPoint);
         void die(){dead_=true;}
+        [[nodiscard]] bool getVisionConnected()const{return visionConnected_;}
+        [[nodiscard]] bool getDead()const{return dead_;}
     protected:
         void checkVision();
         bool visionConnected_ = false;
