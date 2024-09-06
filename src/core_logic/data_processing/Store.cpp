@@ -450,3 +450,14 @@ void CoreLogic::DataProcessing::ActorStorage::setLevelSwitches(
 {
 po_levelSwitches_ = pa_levelSwitches;
 }
+
+CoreLogic::DataProcessing::GameState CoreLogic::DataProcessing::StateMachine::getCurrentState()
+{
+    return currentState_;
+}
+
+void CoreLogic::DataProcessing::StateMachine::changeState(CoreLogic::DataProcessing::GameState newState)
+{
+    previousState_ = currentState_;
+    currentState_ = newState;
+}

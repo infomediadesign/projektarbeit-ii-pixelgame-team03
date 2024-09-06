@@ -34,10 +34,11 @@ namespace CoreLogic::DataProcessing
 {
     enum GameState
     {
-        MainMenu = 0,
-        InGame = 1,
-        Pause = 2,
-        Settings = 3
+        MainMenu,
+        InGame,
+        DroneSelection,
+        Pause,
+        Settings
     };
     inline long long int ticks = 1;
     const int tileSize = 24;
@@ -45,7 +46,16 @@ namespace CoreLogic::DataProcessing
     const int screenWidth_ = 640;
     const int screenHeight_ = 360;
 
+struct StateMachine
+{
+public:
+    static GameState getCurrentState();
+    static void changeState(GameState newState);
 
+protected:
+    static GameState currentState_;
+    static GameState previousState_;
+};
 
     struct TileMap
     {
