@@ -18,3 +18,8 @@ void Scenes::SettingsScene::update()
 {
 
 }
+
+void Scenes::SettingsScene::onSwitch()
+{
+    update();
+}

@@ -79,4 +79,5 @@ void Scenes::DroneSelectionScene::onSwitch()
     sprite_.shiftFrame(WORKER_SELECT);
 
     selectedDroneType_ = CoreLogic::EventManagement::Actors::Drone::WORKER;
+    update();
 }

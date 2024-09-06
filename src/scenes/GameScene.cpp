@@ -179,3 +179,8 @@ void Scenes::GameScene::switchLevel()
 {
 
 }
+
+void Scenes::GameScene::onSwitch()
+{
+update();
+}

@@ -21,6 +21,7 @@ namespace CoreLogic
         virtual void draw(RenderTexture2D &pa_canvas) = 0;
 
         virtual void update() = 0;
+        virtual void onSwitch() = 0;
     protected:
         std::shared_ptr<Camera2D> camera_;
         std::shared_ptr<std::map<int, std::vector<CoreLogic::EventManagement::Actor>>> po_actors_;

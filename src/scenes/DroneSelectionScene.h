@@ -18,7 +18,7 @@ public:
         DroneSelectionScene();
         void draw(RenderTexture2D &pa_canvas) override;
         void update() override;
-        void onSwitch();
+        void onSwitch() override;
 
         void unlockDrone(CoreLogic::EventManagement::Actors::Drone::DroneType pa_droneType);
     protected:

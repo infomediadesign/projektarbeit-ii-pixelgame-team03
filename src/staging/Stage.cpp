@@ -44,7 +44,14 @@ void Staging::Stage::update()
      * @Idea: Exception handling to jump out of Scene into other scene
      * @todo: Code Exception handling scene switch? Or static switch scene?
      */
-    po_currentScene_->update();
+     if (CoreLogic::DataProcessing::StateMachine::getCurrentState() == runningGameState_)
+     {
+         po_currentScene_->update();
+     } else
+     {
+         po_currentScene_ = po_scenes_[CoreLogic::DataProcessing::StateMachine::getCurrentState()];
+         po_currentScene_->onSwitch();
+     }
 }
 
 

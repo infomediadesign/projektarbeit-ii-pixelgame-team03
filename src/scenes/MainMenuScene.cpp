@@ -18,3 +18,8 @@ void Scenes::MainMenuScene::update()
 {
 
 }
+
+void Scenes::MainMenuScene::onSwitch()
+{
+    update();
+}
