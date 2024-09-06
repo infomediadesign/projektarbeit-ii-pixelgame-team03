@@ -18,11 +18,21 @@ public:
         DroneSelectionScene();
         void draw(RenderTexture2D &pa_canvas) override;
         void update() override;
+        void onSwitch();
 
         void unlockDrone(CoreLogic::EventManagement::Actors::Drone::DroneType pa_droneType);
     protected:
+        enum DroneSelection{
+            WORKER_SELECT,
+            WORKER_SCOUT_UNLOCKED,
+            SCOUT_SELECT
+        };
+
+        CoreLogic::EventManagement::Actors::Drone::DroneType selectedDroneType_;
         static std::shared_ptr<std::map<CoreLogic::EventManagement::Actors::Drone::DroneType, bool>> po_unlockedDrones_;
+        bool isDroneUnlocked(CoreLogic::EventManagement::Actors::Drone::DroneType pa_droneType);
         CoreLogic::UserInterface::Sprite sprite_;
+        DroneSelection currentDroneSelection_;
     };
 }
 

@@ -13,8 +13,7 @@ namespace CoreLogic::EventManagement::Actors
     class Worker : public Drone
     {
     public:
-        Worker(Vector2 pa_position, Rectangle pa_hitbox, int pa_id,
-                CollisionType pa_collisionType, Vector2 pa_size, bool pa_visible,
+        Worker(Vector2 pa_position, Rectangle pa_hitbox, int pa_id, Vector2 pa_size,
                 int pa_elevation);
         void shiftFrame(int pa_frameShift) override;
     protected:

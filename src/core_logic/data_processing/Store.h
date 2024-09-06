@@ -53,6 +53,7 @@ struct StateMachine
 {
 public:
     static GameState getCurrentState();
+    static GameState getPreviousState();
     static void changeState(GameState newState);
 
 protected:

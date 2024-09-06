@@ -20,6 +20,7 @@ Staging::Stage::Stage(int pa_screenHeight, int pa_screenWidth)
     po_canvas_ = std::make_shared<RenderTexture2D>(LoadRenderTexture(pa_screenWidth, pa_screenHeight));
 
     CoreLogic::DataProcessing::StateMachine::changeState(CoreLogic::DataProcessing::IN_GAME);
+    runningGameState_ = CoreLogic::DataProcessing::StateMachine::getCurrentState();
     po_currentScene_ = po_scenes_[CoreLogic::DataProcessing::StateMachine::getCurrentState()];
 }
 

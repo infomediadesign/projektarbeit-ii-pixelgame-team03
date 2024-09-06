@@ -32,6 +32,7 @@ namespace Staging
         std::map<CoreLogic::DataProcessing::GameState, std::shared_ptr<CoreLogic::Scene>> po_scenes_;
 
         std::shared_ptr<CoreLogic::Scene> po_currentScene_;
+        CoreLogic::DataProcessing::GameState runningGameState_;
 
         std::shared_ptr<RenderTexture2D> po_canvas_;
 
