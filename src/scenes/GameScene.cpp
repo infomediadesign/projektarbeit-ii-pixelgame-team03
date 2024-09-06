@@ -47,7 +47,7 @@ void Scenes::GameScene::update()
 
     CoreLogic::EventManagement::EventHandler &eventHandler = CoreLogic::EventManagement::EventHandler::getInstance();
     std::shared_ptr<CoreLogic::EventManagement::Actors::Drone> player = CoreLogic::DataProcessing::ActorStorage::getPlayer();
-    std::map<int, std::vector<CoreLogic::EventManagement::Actors::Enemy>> &enemies = *CoreLogic::DataProcessing::ActorStorage::getEnemies();
+    std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Actors::Enemy>>> &enemies = *CoreLogic::DataProcessing::ActorStorage::getEnemies();
 
     player->update();
     for (auto &pair: enemies)

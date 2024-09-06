@@ -5,7 +5,7 @@
 #ifndef HIVE_SCOUT_H
 #define HIVE_SCOUT_H
 
-#include "actors/Drone.h"
+#include "event_management/actors/Drone.h"
 
 namespace CoreLogic::EventManagement::Actors
 {
@@ -13,7 +13,7 @@ namespace CoreLogic::EventManagement::Actors
     class Scout : public Drone
     {
     public:
-        Scout(Vector2 pa_position, Rectangle pa_hitbox, int pa_id Vector2 pa_size
+        Scout(Vector2 pa_position, Rectangle pa_hitbox, int pa_id, Vector2 pa_size,
                 int pa_elevation);
     protected:
         void checkAbility() override;

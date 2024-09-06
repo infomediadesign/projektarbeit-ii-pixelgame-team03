@@ -5,7 +5,7 @@
 #ifndef HIVE_WORKER_H
 #define HIVE_WORKER_H
 
-#include "actors/Drone.h"
+#include "event_management/actors/Drone.h"
 
 namespace CoreLogic::EventManagement::Actors
 {

@@ -78,7 +78,7 @@ namespace CoreLogic::EventManagement
         }
         if (ticks_ >= 60)
         {
-            throw EventException("Falling Event Executed");
+            throw EventException("Falling Event Executed", true);
         }
         ticks_++;
     }

@@ -49,7 +49,7 @@ namespace CoreLogic::EventManagement
         if (ticks_ >= 20)
         {
 
-            throw EventException("Boulder Destroyed");
+            throw EventException("Boulder Destroyed", true);
         }
         ticks_++;
     }

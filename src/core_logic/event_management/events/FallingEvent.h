@@ -15,7 +15,7 @@ namespace CoreLogic::EventManagement
     public:
         FallingEvent(int pa_actorID);
         ~FallingEvent();
-        FallingEvent() = delete;
+        FallingEvent(): Event(EventEnum::FALLING){};
         void update() override;
         virtual std::unique_ptr<FallingEvent> transform();
     protected:
