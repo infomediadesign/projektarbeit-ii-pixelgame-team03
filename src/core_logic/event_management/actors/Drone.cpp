@@ -9,7 +9,7 @@
 #include "data_processing/TilesonUtilities.h"
 #include "data_processing/Store.h"
 #include "Sprite.h"
-#include "../../../designConfig"
+#include "../../data_processing/DesignConfig.h"
 
 void CoreLogic::EventManagement::Actors::Drone::move(bool pa_up, bool pa_down, bool pa_left, bool pa_right)
 {
@@ -22,15 +22,15 @@ void CoreLogic::EventManagement::Actors::Drone::move(bool pa_up, bool pa_down, b
 
     int tickMult = CoreLogic::DataProcessing::ticks % 3;
     int diagonalSpeed;
-    if (GameSpace::DesignConfig::DRONE_SPEED == 1)
+    if (CoreLogic::DataProcessing::DesignConfig::DRONE_SPEED == 1)
     {
         diagonalSpeed = (1 - ((int) (tickMult / 2)));
     } else {
-        diagonalSpeed = ((GameSpace::DesignConfig::DRONE_SPEED / 2) + (GameSpace::DesignConfig::DRONE_SPEED % 2) + ((int) (tickMult / 2)));
+        diagonalSpeed = ((CoreLogic::DataProcessing::DesignConfig::DRONE_SPEED / 2) + (CoreLogic::DataProcessing::DesignConfig::DRONE_SPEED % 2) + ((int) (tickMult / 2)));
     }
     if (pa_up && !pa_down)
     {
-        (pa_right || pa_left) ? position_.y -= diagonalSpeed : position_.y -= GameSpace::DesignConfig::DRONE_SPEED;
+        (pa_right || pa_left) ? position_.y -= diagonalSpeed : position_.y -= CoreLogic::DataProcessing::DesignConfig::DRONE_SPEED;
         adjustOutOfBounds();
         updateHitbox();
         if (checkCollision(CoreLogic::UserInterface::Direction::UP, position_))
@@ -41,7 +41,7 @@ void CoreLogic::EventManagement::Actors::Drone::move(bool pa_up, bool pa_down, b
 
     if (pa_down && !pa_up)
     {
-        (pa_right || pa_left) ? position_.y += diagonalSpeed : position_.y += GameSpace::DesignConfig::DRONE_SPEED;
+        (pa_right || pa_left) ? position_.y += diagonalSpeed : position_.y += CoreLogic::DataProcessing::DesignConfig::DRONE_SPEED;
         adjustOutOfBounds();
         updateHitbox();
         if (checkCollision(CoreLogic::UserInterface::Direction::DOWN, {position_.x, position_.y + size_.y}))
@@ -52,7 +52,7 @@ void CoreLogic::EventManagement::Actors::Drone::move(bool pa_up, bool pa_down, b
 
     if (pa_left && !pa_right)
     {
-        (pa_up || pa_down) ? position_.x -= diagonalSpeed : position_.x -= GameSpace::DesignConfig::DRONE_SPEED;
+        (pa_up || pa_down) ? position_.x -= diagonalSpeed : position_.x -= CoreLogic::DataProcessing::DesignConfig::DRONE_SPEED;
         adjustOutOfBounds();
         updateHitbox();
         if (checkCollision(CoreLogic::UserInterface::Direction::LEFT, position_))
@@ -63,7 +63,7 @@ void CoreLogic::EventManagement::Actors::Drone::move(bool pa_up, bool pa_down, b
 
     if (pa_right && !pa_left)
     {
-        (pa_up || pa_down) ? position_.x += diagonalSpeed : position_.x += GameSpace::DesignConfig::DRONE_SPEED;
+        (pa_up || pa_down) ? position_.x += diagonalSpeed : position_.x += CoreLogic::DataProcessing::DesignConfig::DRONE_SPEED;
         adjustOutOfBounds();
         updateHitbox();
         if (checkCollision(CoreLogic::UserInterface::Direction::RIGHT, {position_.x + size_.x, position_.y}))

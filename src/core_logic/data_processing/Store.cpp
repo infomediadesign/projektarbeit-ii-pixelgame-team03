@@ -222,3 +222,231 @@ void CoreLogic::DataProcessing::ActorStorage::setActiveNote(
 {
     po_activeNote_ = pa_activeNote;
 }
+
+std::shared_ptr<std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Actor>>>>
+CoreLogic::DataProcessing::ActorStorage::getCollidables()
+{
+    return po_collidables_;
+}
+
+void CoreLogic::DataProcessing::ActorStorage::setCollidables(
+        std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Actor>>>> pa_collidables)
+{
+po_collidables_ = pa_collidables;
+}
+
+std::shared_ptr<std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Actor>>>>
+CoreLogic::DataProcessing::ActorStorage::getVisibles()
+{
+    return po_visibles_;
+}
+
+void CoreLogic::DataProcessing::ActorStorage::setVisibles(
+        std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Actor>>>> pa_visibles)
+{
+po_visibles_ = pa_visibles;
+}
+
+std::shared_ptr<std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Object::Ability>>>>
+CoreLogic::DataProcessing::ActorStorage::getAbilities()
+{
+    return po_allAbilities_;
+}
+
+void CoreLogic::DataProcessing::ActorStorage::setAbilities(
+        std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::Ability>>>> pa_abilities)
+{
+po_allAbilities_ = pa_abilities;
+}
+
+std::shared_ptr<std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Object::Ability>>>>
+CoreLogic::DataProcessing::ActorStorage::getWorkerAbilities()
+{
+    return po_workerAbilities_;
+}
+
+void CoreLogic::DataProcessing::ActorStorage::setWorkerAbilities(
+        std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::Ability>>>> pa_workerAbilities)
+{
+po_workerAbilities_ = pa_workerAbilities;
+}
+
+std::shared_ptr<std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Object::Ability>>>>
+CoreLogic::DataProcessing::ActorStorage::getScoutAbilities()
+{
+    return po_scoutAbilities_;
+}
+
+void CoreLogic::DataProcessing::ActorStorage::setScoutAbilities(
+        std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::Ability>>>> pa_scoutAbilities)
+{
+po_scoutAbilities_ = pa_scoutAbilities;
+}
+
+std::shared_ptr<std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Object::Interaction>>>>
+CoreLogic::DataProcessing::ActorStorage::getInteractions()
+{
+    return po_interactions_;
+}
+
+void CoreLogic::DataProcessing::ActorStorage::setInteractions(
+        std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::Interaction>>>> pa_interactions)
+{
+po_interactions_ = pa_interactions;
+}
+
+std::shared_ptr<std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Actors::Enemy>>>>
+CoreLogic::DataProcessing::ActorStorage::getEnemies()
+{
+    return po_allEnemies_;
+}
+
+void CoreLogic::DataProcessing::ActorStorage::setEnemies(
+        std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Actors::Enemy>>>> pa_enemies)
+{
+po_allEnemies_ = pa_enemies;
+}
+
+std::shared_ptr<std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Object::Barrier>>>>
+CoreLogic::DataProcessing::ActorStorage::getBarriers()
+{
+    return po_barriers_;
+}
+
+void CoreLogic::DataProcessing::ActorStorage::setBarriers(
+        std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::Barrier>>>> pa_barriers)
+{
+po_barriers_ = pa_barriers;
+}
+
+std::shared_ptr<std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Object::Rubble>>>>
+CoreLogic::DataProcessing::ActorStorage::getRubbles()
+{
+    return po_rubbles_;
+}
+
+void CoreLogic::DataProcessing::ActorStorage::setRubbles(
+        std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::Rubble>>>> pa_rubbles)
+{
+po_rubbles_ = pa_rubbles;
+}
+
+std::shared_ptr<std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Object::Boulder>>>>
+CoreLogic::DataProcessing::ActorStorage::getBoulders()
+{
+    return po_boulders_;
+}
+
+void CoreLogic::DataProcessing::ActorStorage::setBoulders(
+        std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::Boulder>>>> pa_boulders)
+{
+po_boulders_ = pa_boulders;
+}
+
+std::shared_ptr<std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Object::Vine>>>>
+CoreLogic::DataProcessing::ActorStorage::getVines()
+{
+    return po_vines_;
+}
+
+void CoreLogic::DataProcessing::ActorStorage::setVines(
+        std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::Vine>>>> pa_vines)
+{
+po_vines_ = pa_vines;
+}
+
+std::shared_ptr<std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Object::JumpPoint>>>>
+CoreLogic::DataProcessing::ActorStorage::getJumpPoints()
+{
+    return po_jumpPoints_;
+}
+
+void CoreLogic::DataProcessing::ActorStorage::setJumpPoints(
+        std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::JumpPoint>>>> pa_jumpPoints)
+{
+po_jumpPoints_ = pa_jumpPoints;
+}
+
+std::shared_ptr<std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Actors::Colonist>>>>
+CoreLogic::DataProcessing::ActorStorage::getColonists()
+{
+    return po_colonists_;
+}
+
+void CoreLogic::DataProcessing::ActorStorage::setColonists(
+        std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Actors::Colonist>>>> pa_colonists)
+{
+po_colonists_ = pa_colonists;
+}
+
+std::shared_ptr<std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Actors::Mech>>>>
+CoreLogic::DataProcessing::ActorStorage::getMechs()
+{
+    return po_mechs_;
+}
+
+void CoreLogic::DataProcessing::ActorStorage::setMechs(
+        std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Actors::Mech>>>> pa_mechs)
+{
+    po_mechs_ = pa_mechs;
+}
+
+std::shared_ptr<std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Object::Cliff>>>>
+CoreLogic::DataProcessing::ActorStorage::getCliffs()
+{
+    return po_cliffs_;
+}
+
+void CoreLogic::DataProcessing::ActorStorage::setCliffs(
+        std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::Cliff>>>> pa_cliffs)
+{
+po_cliffs_ = pa_cliffs;
+}
+
+std::shared_ptr<std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Object::Barrel>>>>
+CoreLogic::DataProcessing::ActorStorage::getBarrels()
+{
+    return po_barrels_;
+}
+
+void CoreLogic::DataProcessing::ActorStorage::setBarrels(
+        std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::Barrel>>>> pa_barrels)
+{
+po_barrels_ = pa_barrels;
+}
+
+std::shared_ptr<std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Object::TutorialBox>>>>
+CoreLogic::DataProcessing::ActorStorage::getTutorialBoxes()
+{
+    return po_tutorialBoxes_;
+}
+
+void CoreLogic::DataProcessing::ActorStorage::setTutorialBoxes(
+        std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::TutorialBox>>>> pa_tutorialBoxes)
+{
+po_tutorialBoxes_ = pa_tutorialBoxes;
+}
+
+std::shared_ptr<std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Object::Note>>>>
+CoreLogic::DataProcessing::ActorStorage::getNotes()
+{
+    return po_notes_;
+}
+
+void CoreLogic::DataProcessing::ActorStorage::setNotes(
+        std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::Note>>>> pa_notes)
+{
+po_notes_ = pa_notes;
+}
+
+std::shared_ptr<std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Object::LevelSwitch>>>>
+CoreLogic::DataProcessing::ActorStorage::getLevelSwitches()
+{
+    return po_levelSwitches_;
+}
+
+void CoreLogic::DataProcessing::ActorStorage::setLevelSwitches(
+        std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::LevelSwitch>>>> pa_levelSwitches)
+{
+po_levelSwitches_ = pa_levelSwitches;
+}

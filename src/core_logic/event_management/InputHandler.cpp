@@ -5,7 +5,7 @@
 #include <iostream>
 #include "InputHandler.h"
 #include "EventUtilities.h"
-#include "../../designConfig"
+#include "../data_processing/DesignConfig.h"
 
 namespace CoreLogic::EventManagement
 {
@@ -225,30 +225,30 @@ namespace CoreLogic::EventManagement
     {
         keyboardInGameMapping.clear();
 
-        keyboardInGameMapping.insert({GameSpace::DesignConfig::MOVE_UP_KEYBOARD, MOVE_UP});
-        keyboardInGameMapping.insert({GameSpace::DesignConfig::MOVE_DOWN_KEYBOARD, MOVE_DOWN});
-        keyboardInGameMapping.insert({GameSpace::DesignConfig::MOVE_LEFT_KEYBOARD, MOVE_LEFT});
-        keyboardInGameMapping.insert({GameSpace::DesignConfig::MOVE_RIGHT_KEYBOARD, MOVE_RIGHT});
+        keyboardInGameMapping.insert({CoreLogic::DataProcessing::DesignConfig::MOVE_UP_KEYBOARD, MOVE_UP});
+        keyboardInGameMapping.insert({CoreLogic::DataProcessing::DesignConfig::MOVE_DOWN_KEYBOARD, MOVE_DOWN});
+        keyboardInGameMapping.insert({CoreLogic::DataProcessing::DesignConfig::MOVE_LEFT_KEYBOARD, MOVE_LEFT});
+        keyboardInGameMapping.insert({CoreLogic::DataProcessing::DesignConfig::MOVE_RIGHT_KEYBOARD, MOVE_RIGHT});
 
-        keyboardInGameMapping.insert({GameSpace::DesignConfig::INTERACT_KEYBOARD, INTERACT});
-        keyboardInGameMapping.insert({GameSpace::DesignConfig::ABILITY_KEYBOARD, ABILITY});
-        keyboardInGameMapping.insert({GameSpace::DesignConfig::DISCONNECT_KEYBOARD, DISCONNECT});
-        keyboardInGameMapping.insert({GameSpace::DesignConfig::DEATH_ABILITY_KEYBOARD, DEATH_ABILITY});
+        keyboardInGameMapping.insert({CoreLogic::DataProcessing::DesignConfig::INTERACT_KEYBOARD, INTERACT});
+        keyboardInGameMapping.insert({CoreLogic::DataProcessing::DesignConfig::ABILITY_KEYBOARD, ABILITY});
+        keyboardInGameMapping.insert({CoreLogic::DataProcessing::DesignConfig::DISCONNECT_KEYBOARD, DISCONNECT});
+        keyboardInGameMapping.insert({CoreLogic::DataProcessing::DesignConfig::DEATH_ABILITY_KEYBOARD, DEATH_ABILITY});
     }
 
     void InputHandler::controllerDefaultMapping()
     {
         controllerInGameMapping.clear();
 
-        controllerInGameMapping.insert({Input(GameSpace::DesignConfig::MOVE_UP_CONTROLLER), MOVE_UP});
-        controllerInGameMapping.insert({Input(GameSpace::DesignConfig::MOVE_DOWN_CONTROLLER), MOVE_DOWN});
-        controllerInGameMapping.insert({Input(GameSpace::DesignConfig::MOVE_LEFT_CONTROLLER), MOVE_LEFT});
-        controllerInGameMapping.insert({Input(GameSpace::DesignConfig::MOVE_RIGHT_CONTROLLER), MOVE_RIGHT});
+        controllerInGameMapping.insert({Input(CoreLogic::DataProcessing::DesignConfig::MOVE_UP_CONTROLLER), MOVE_UP});
+        controllerInGameMapping.insert({Input(CoreLogic::DataProcessing::DesignConfig::MOVE_DOWN_CONTROLLER), MOVE_DOWN});
+        controllerInGameMapping.insert({Input(CoreLogic::DataProcessing::DesignConfig::MOVE_LEFT_CONTROLLER), MOVE_LEFT});
+        controllerInGameMapping.insert({Input(CoreLogic::DataProcessing::DesignConfig::MOVE_RIGHT_CONTROLLER), MOVE_RIGHT});
 
-        controllerInGameMapping.insert({Input(GameSpace::DesignConfig::INTERACT_CONTROLLER), INTERACT});
-        controllerInGameMapping.insert({Input(GameSpace::DesignConfig::ABILITY_CONTROLLER), ABILITY});
-        controllerInGameMapping.insert({Input(GameSpace::DesignConfig::DISCONNECT_CONTROLLER), DISCONNECT});
-        controllerInGameMapping.insert({Input(GameSpace::DesignConfig::DEATH_ABILITY_CONTROLLER), DEATH_ABILITY});
+        controllerInGameMapping.insert({Input(CoreLogic::DataProcessing::DesignConfig::INTERACT_CONTROLLER), INTERACT});
+        controllerInGameMapping.insert({Input(CoreLogic::DataProcessing::DesignConfig::ABILITY_CONTROLLER), ABILITY});
+        controllerInGameMapping.insert({Input(CoreLogic::DataProcessing::DesignConfig::DISCONNECT_CONTROLLER), DISCONNECT});
+        controllerInGameMapping.insert({Input(CoreLogic::DataProcessing::DesignConfig::DEATH_ABILITY_CONTROLLER), DEATH_ABILITY});
     }
 
 

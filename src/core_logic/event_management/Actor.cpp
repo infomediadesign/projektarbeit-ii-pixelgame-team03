@@ -97,6 +97,13 @@ void CoreLogic::EventManagement::Actor::setPrimaryDirection(CoreLogic::UserInter
 primaryDirection_ = pa_primaryDirection;
 }
 
+void CoreLogic::EventManagement::Actor::draw()
+{
+    Rectangle dest = {hitbox_.x + sprite_.getRelativePosition().x, hitbox_.y + sprite_.getRelativePosition().y,
+            sprite_.getFrame().width, sprite_.getFrame().height};
+
+}
+
 
 
 

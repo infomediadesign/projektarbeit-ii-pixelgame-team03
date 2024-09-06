@@ -64,12 +64,9 @@ void CoreLogic::UserInterface::Renderer::render(std::shared_ptr<std::map<int, st
                 }
             }
 
-            CoreLogic::EventManagement::Actors::Drone &player = *CoreLogic::DataProcessing::ActorStorage::getPlayer();
-            Sprite sprite = player.getSprite();
-            Rectangle destination = {player.getHitbox().x + sprite.getRelativePosition().x,
-                    player.getHitbox().y + sprite.getRelativePosition().y, sprite.getFrame().width,
-                    sprite.getFrame().height};
-            DrawTexturePro(sprite.getTexture(), sprite.getFrame(), destination, {0, 0}, 0, WHITE);
+            std::shared_ptr<CoreLogic::EventManagement::Actors::Drone> player = CoreLogic::DataProcessing::ActorStorage::getPlayer();
+            player->draw();
+
             hud.draw({pa_camera.target.x, pa_camera.target.y, 640, 360});
 
         }

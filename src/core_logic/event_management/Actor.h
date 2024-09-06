@@ -30,6 +30,11 @@ namespace CoreLogic::EventManagement
         virtual ~Actor() = default;
 
 
+        void shiftFrame(int pa_stateID);
+        void resetFrame(int pa_stateID);
+        void draw();
+
+
         Vector2 getPosition() const;
         void setPosition(Vector2 pa_position);
 
@@ -51,10 +56,6 @@ namespace CoreLogic::EventManagement
 
         CoreLogic::UserInterface::Direction getPrimaryDirection();
         void setPrimaryDirection(CoreLogic::UserInterface::Direction pa_primaryDirection);
-
-
-        void shiftFrame(int pa_stateID);
-        void resetFrame(int pa_stateID);
 
         [[nodiscard]] int getElevation() const;
         void setElevation(int pa_elevation);
