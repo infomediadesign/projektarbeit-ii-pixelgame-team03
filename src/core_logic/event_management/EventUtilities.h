@@ -40,6 +40,7 @@ namespace CoreLogic::EventManagement
 
         DEATH_ABILITY,
         DISCONNECT,
+        ENEMY_DEATH,
 
         VISION,
 

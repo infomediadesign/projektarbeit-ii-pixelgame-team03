@@ -34,11 +34,13 @@ namespace CoreLogic::DataProcessing
 {
     enum GameState
     {
-        MainMenu,
-        InGame,
-        DroneSelection,
-        Pause,
-        Settings
+        MAIN_MENU,
+        IN_GAME,
+        DRONE_SELECTION,
+        PAUSE,
+        SETTINGS,
+        END_SCENE,
+        CREDITS
     };
     inline long long int ticks = 1;
     const int tileSize = 24;

@@ -12,7 +12,6 @@ namespace CoreLogic::EventManagement
     {
         po_mainActor_ = CoreLogic::DataProcessing::ActorStorage::getPlayer();
         std::dynamic_pointer_cast<Actors::Drone>(po_mainActor_) -> setState(Actors::Drone::DroneState::DISCONNECTED);
-        ticks_ = 0;
     }
 
     void DroneDisconnectEvent::update()
@@ -32,7 +31,7 @@ namespace CoreLogic::EventManagement
     DroneDisconnectEvent::~DroneDisconnectEvent()
     {
         std::dynamic_pointer_cast<Actors::Drone>(po_mainActor_) -> decreaseCurrentHealth();
-        DataProcessing::setGameState(DRONE_SWITCH);
+        DataProcessing::StateMachine::changeState(DataProcessing::DRONE_SELECTION);
     }
 } // CoreLogic
 // EventManagement

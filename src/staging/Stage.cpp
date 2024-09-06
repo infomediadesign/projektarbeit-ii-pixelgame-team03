@@ -7,15 +7,15 @@ Staging::Stage::Stage(int pa_screenHeight, int pa_screenWidth)
 {
     po_scenes_ =
             {
-                {CoreLogic::DataProcessing::GameState::MainMenu, std::make_shared<Scenes::MainMenuScene>()},
-                {CoreLogic::DataProcessing::GameState::InGame, std::make_shared<Scenes::GameScene>()},
-                {CoreLogic::DataProcessing::GameState::Pause, std::make_shared<Scenes::PauseScene>()},
-                {CoreLogic::DataProcessing::GameState::Settings, std::make_shared<Scenes::SettingsScene>()}
+                {CoreLogic::DataProcessing::GameState::MAIN_MENU, std::make_shared<Scenes::MainMenuScene>()},
+                {CoreLogic::DataProcessing::GameState::IN_GAME,   std::make_shared<Scenes::GameScene>()},
+                {CoreLogic::DataProcessing::GameState::PAUSE,     std::make_shared<Scenes::PauseScene>()},
+                {CoreLogic::DataProcessing::GameState::SETTINGS, std::make_shared<Scenes::SettingsScene>()}
             };
 
     po_canvas_ = std::make_shared<RenderTexture2D>(LoadRenderTexture(pa_screenWidth, pa_screenHeight));
 
-    CoreLogic::DataProcessing::StateMachine::changeState(CoreLogic::DataProcessing::InGame);
+    CoreLogic::DataProcessing::StateMachine::changeState(CoreLogic::DataProcessing::IN_GAME);
     po_currentScene_ = po_scenes_[CoreLogic::DataProcessing::StateMachine::getCurrentState()];
 }
 

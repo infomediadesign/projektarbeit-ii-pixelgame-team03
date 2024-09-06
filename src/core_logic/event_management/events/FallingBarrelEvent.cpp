@@ -48,7 +48,7 @@ namespace CoreLogic::EventManagement
                 }
                 if (CheckCollisionRecs(explosionRadius, enemy -> getHitbox()))
                 {
-                    eventHandler.handleEvents({DISCONNECT}, enemy -> getId());
+                    eventHandler.handleEvents({ENEMY_DEATH}, enemy -> getId());
                 }
             }
         }
