@@ -824,7 +824,7 @@
                          "value":0
                         }],
                  "rotation":0,
-                 "type":"",
+                 "type":"respawnPoint",
                  "visible":true,
                  "width":48,
                  "x":72,
@@ -841,7 +841,7 @@
                          "value":0
                         }],
                  "rotation":0,
-                 "type":"",
+                 "type":"respawnPoint",
                  "visible":true,
                  "width":48,
                  "x":96,
@@ -2683,7 +2683,7 @@
                          "value":0
                         }],
                  "rotation":0,
-                 "type":"",
+                 "type":"respawnPoint",
                  "visible":true,
                  "width":48,
                  "x":984,
@@ -2700,7 +2700,7 @@
                          "value":0
                         }],
                  "rotation":0,
-                 "type":"",
+                 "type":"respawnPoint",
                  "visible":true,
                  "width":48,
                  "x":1296,
@@ -5773,7 +5773,7 @@
                          "value":2
                         }],
                  "rotation":0,
-                 "type":"rubble",
+                 "type":"explosive_barrel",
                  "visible":true,
                  "width":24,
                  "x":1440,
@@ -7335,12 +7335,6 @@
                  "y":600
                 }],
          "opacity":1,
-         "properties":[
-                {
-                 "name":"elevation",
-                 "type":"int",
-                 "value":3
-                }],
          "type":"objectgroup",
          "visible":false,
          "x":0,
@@ -7420,14 +7414,8 @@
                  "y":216
                 }],
          "opacity":1,
-         "properties":[
-                {
-                 "name":"elevation",
-                 "type":"int",
-                 "value":3
-                }],
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -7471,14 +7459,8 @@
                  "y":-48
                 }],
          "opacity":1,
-         "properties":[
-                {
-                 "name":"elevation",
-                 "type":"int",
-                 "value":3
-                }],
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }],
