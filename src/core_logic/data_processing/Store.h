@@ -28,6 +28,7 @@
 #include "actors/Enemy.h"
 #include "actors/objects/DroneRespawnPoint.h"
 #include "actors/enemies/Mech.h"
+#include "actors/objects/Uplink.h"
 
 
 namespace CoreLogic::DataProcessing
@@ -68,6 +69,45 @@ protected:
         static void Initialize();
     };
 
+    struct SpriteStorage
+    {
+        enum SpriteEnum{
+            WORKER_DRONE,
+            SCOUT_DRONE,
+
+            COLONIST,
+            MECH,
+
+            RUBBLE_OVERWORLD,
+            RUBBLE_UNDERWORLD,
+            SPAWN_OVERWORLD,
+            SPAWN_UNDERWORLD,
+            BOULDER_OVERWORLD,
+            BOULDER_UNDERWORLD,
+            BARREL,
+            NOTE,
+            UPLINK,
+
+            HUD_BUTTONS,
+            HUD_INTERACT,
+            HUD_DISCONNECT,
+            HUD_MAIN,
+            HUD_DEATH,
+
+            HUD_CURRENT,
+            HUD_MAX,
+            HUD_PORTRAIT,
+
+            DRONE_SELECTION,
+        };
+
+    public:
+        static void Initialize();
+        static UserInterface::Sprite getSprite(SpriteEnum spriteEnum);
+    protected:
+        static std::vector<UserInterface::Sprite> po_sprites_;
+    };
+
     struct ActorStorage
     {
     /**
@@ -75,6 +115,9 @@ protected:
      * @note: possibly also get std::map<int, vector<Layer>> po_layers_ as to not have to make the Map class static
      **/
     private:
+
+        static std::shared_ptr<std::map<CoreLogic::EventManagement::Actors::Drone::DroneType, bool>> po_unlockedDrones_;
+
         //------------------actives------------------//
         static std::shared_ptr<CoreLogic::EventManagement::Object::DroneRespawnPoint> po_activeRespawnPoint_;
         static std::shared_ptr<CoreLogic::EventManagement::Object::TutorialBox> po_activeTutorialBox_;
@@ -127,6 +170,10 @@ protected:
                 po_notes_;
         static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::LevelSwitch>>>>
                 po_levelSwitches_;
+        static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::Uplink>>>>
+                po_uplinks_;
+        static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::DroneRespawnPoint>>>>
+                po_respawnPoints_;
 
 
     public:
@@ -227,6 +274,9 @@ protected:
         static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::LevelSwitch>>>> getLevelSwitches();
         static void setLevelSwitches(
                 std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::LevelSwitch>>>> pa_levelSwitches);
+
+        static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::Uplink>>>> getUplinks();
+        static void setUplinks(std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::Uplink>>>> pa_uplinks);
     };
 
 }

@@ -3,6 +3,7 @@
 //
 
 #include "Boulder.h"
+#include "Store.h"
 
 int CoreLogic::EventManagement::Object::Boulder::getFallHeight()
 {
@@ -30,7 +31,7 @@ CoreLogic::EventManagement::Object::Boulder::Boulder(Vector2 pa_position, Rectan
         Vector2 pa_size, int pa_elevation) :
         Ability(pa_position, pa_hitbox, pa_id, CollisionType::COLLISION, pa_size, true, pa_elevation, PUSH)
 {
-
+    sprite_ = DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::BOULDER_UNDERWORLD);
 }
 
 std::shared_ptr<CoreLogic::EventManagement::Object::Cliff> CoreLogic::EventManagement::Object::Boulder::getCliff()

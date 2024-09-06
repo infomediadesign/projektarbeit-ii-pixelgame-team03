@@ -12,6 +12,8 @@ set(SCENES_HEADERS
         MainMenuScene.h
         PauseScene.h
         SettingsScene.h
+        DroneSelectionScene.cpp
+        DroneSelectionScene.h
 )
 
 add_library(scenes STATIC ${SCENES_SOURCES} ${SCENES_HEADERS})

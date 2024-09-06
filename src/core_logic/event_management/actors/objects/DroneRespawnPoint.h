@@ -18,6 +18,8 @@ namespace CoreLogic::EventManagement::Object
             ACTIVATED
         };
 
+        DroneRespawnPoint(Vector2 pa_position, Rectangle pa_hitbox, int pa_id, Vector2 pa_size,  int pa_elevation);
+
         [[nodiscard]] DroneRespawnPointState getRespawnState() const;
         void changeState(DroneRespawnPointState pa_state);
 

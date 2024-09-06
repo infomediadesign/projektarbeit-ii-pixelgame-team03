@@ -6,15 +6,15 @@
 #define HIVE_COLONIST_H
 
 #include <map>
-#include "../../Actor.h"
+#include "actors/Enemy.h"
 
 namespace CoreLogic::EventManagement::Actors {
 
-            class Colonist : public EventManagement::Actor{
+            class Colonist : public Enemy {
 
             public:
-                Colonist(Vector2 pa_position, Rectangle pa_hitbox, int pa_id, Vector2 pa_size, int pa_elevation, bool pa_clockwise, CoreLogic::UserInterface::Direction pa_startingDirection, std::map<CoreLogic::UserInterface::Direction, std::pair<int, int>> pa_turnCycle);
-
+                Colonist(Vector2 pa_position, Rectangle pa_hitbox, int pa_objectId, Vector2 pa_objectSize, int pa_objectElevation, bool pa_objectClockwise,
+                        CoreLogic::UserInterface::Direction pa_objectStartingDirection, std::map<CoreLogic::UserInterface::Direction, std::pair<int, int>> pa_objectTurnCycle);
             };
 
 }

@@ -11,20 +11,20 @@
 #include "Sprite.h"
 
 namespace CoreLogic::UserInterface{
-        class HUD
-        {
-            public:
-                HUD();
-                void draw(Rectangle pa_cameraRec);
-                void update();
-            static HUD* getInstance();
-            protected:
-            //todo: rework to map?
-                std::vector<std::unique_ptr<Sprite>> hudElements_;
-            void hudInit();
-            static HUD* po_instance_;
-            static std::mutex mutex_;
-        };
+    class HUD
+    {
+    public:
+        HUD();
+        void draw(Rectangle pa_cameraRec);
+        void update();
+        static HUD* getInstance();
+    protected:
+        //todo: rework to map?
+        std::vector<std::unique_ptr<Sprite>> hudElements_;
+        void hudInit();
+        static HUD* po_instance_;
+        static std::mutex mutex_;
+    };
 }
 
 

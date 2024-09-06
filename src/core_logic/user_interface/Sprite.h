@@ -13,7 +13,8 @@ namespace CoreLogic::UserInterface
 {
     struct AnimationState
     {
-        int row_;
+        int pxRow_; //it has to be measured in px to account for different sized states
+        int pxStep_; // same thing here
         int steps_;
         Vector2 relativePosition_;
     };
@@ -30,7 +31,7 @@ namespace CoreLogic::UserInterface
 
     public:
         Sprite();
-        Sprite(std::string pa_path, int pa_frameWidth, int pa_frameHeight, std::vector<std::vector<AnimationState>>
+        Sprite(std::string pa_path, std::vector<std::vector<AnimationState>>
         pa_animationStates);
         void shiftFrame(int pa_stateID, Direction pa_primaryDirection);
         void shiftFrame(int pa_stateID);
@@ -47,13 +48,11 @@ namespace CoreLogic::UserInterface
     protected:
 
         std::vector<std::vector<AnimationState>> animationStates_; // state<direction<animationState>>
-        int currentState_ = 0;
+        AnimationState currentState_;
+        int currentStateId_ = 0;
         int currentStep_ = 0;
 
         Direction primaryDirection_ = Direction::RIGHT;
-
-        int frameWidth_ = 24;
-        int frameHeight_ = 24;
 
         std::string path_ = "";
         Texture2D texture_;

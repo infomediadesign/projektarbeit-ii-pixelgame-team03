@@ -255,23 +255,14 @@ namespace CoreLogic::EventManagement::Actors
     }
 
 
-    Drone::Drone(Vector2 pa_position, Rectangle pa_hitbox, int pa_id,
-                 CollisionType pa_collisionType, Vector2 pa_size, bool pa_visible,
-                 int pa_elevation)
-            : MovableActor(pa_position, pa_hitbox, pa_id, pa_collisionType, pa_size, pa_visible, pa_elevation)
-    {
-        /**
-         * @todo: remove/change path when drones are implemented and can be switched etc.
-         */
-        sprite_ = CoreLogic::UserInterface::Sprite("assets/graphics/hive_ARTI_spritesheet-worker-drone_2024-07-13.png",
-                                                   38, 38,
-                                                   {{},
-                                                    {
-                                                            CoreLogic::UserInterface::AnimationState{0, 7, {0, 0}},
-                                                            CoreLogic::UserInterface::AnimationState{1, 7, {0, 0}},
-                                                            CoreLogic::UserInterface::AnimationState{2, 8, {0, 0}},
-                                                            CoreLogic::UserInterface::AnimationState{3, 8, {0, 0}}}});
-    }
+
+CoreLogic::EventManagement::Actors::Drone::Drone(Vector2 pa_position, Rectangle pa_hitbox, int pa_id,
+                                                 CollisionType pa_collisionType, Vector2 pa_size, bool pa_visible,
+                                                 int pa_elevation)
+        : MovableActor(pa_position, pa_hitbox, pa_id, pa_collisionType, pa_size, pa_visible, pa_elevation)
+{
+
+}
 
     void Drone::update()
     {
