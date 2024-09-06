@@ -6,7 +6,7 @@
 #define HIVE_ENEMY_H
 
 #include <map>
-#include "Actor.h"
+#include "event_management/Actor.h"
 
 namespace CoreLogic::EventManagement::Actors {
 

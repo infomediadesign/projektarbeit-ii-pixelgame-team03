@@ -5,7 +5,7 @@
 #ifndef HIVE_TUTORIALBOX_H
 #define HIVE_TUTORIALBOX_H
 
-#include "Actor.h"
+#include "event_management/Actor.h"
 
 namespace CoreLogic::EventManagement::Object
 {

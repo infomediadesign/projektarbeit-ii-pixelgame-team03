@@ -5,7 +5,7 @@
 #ifndef HIVE_LEVELSWITCH_H
 #define HIVE_LEVELSWITCH_H
 
-#include "Actor.h"
+#include "event_management/Actor.h"
 
 namespace CoreLogic::EventManagement::Object
 {

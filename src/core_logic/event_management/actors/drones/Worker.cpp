@@ -65,7 +65,7 @@ namespace CoreLogic::EventManagement::Actors
 
     void Worker::shiftFrame(int pa_frameShift)
     {
-        if (currentDroneState_ != ABILITY && pa_frameShift == /**@warning @todo: determine working frames*/)
+        if (currentDroneState_ != ABILITY && pa_frameShift == 1)
         {
             return;
         }

@@ -4,10 +4,6 @@
 
 #include "Cliff.h"
 
-int CoreLogic::EventManagement::Object::Cliff::getElevation() const
-{
-    return elevation_;
-}
 
 int CoreLogic::EventManagement::Object::Cliff::getFallHeight() const
 {

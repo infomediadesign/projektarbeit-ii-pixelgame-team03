@@ -6,7 +6,7 @@
 #define HIVE_COLONIST_H
 
 #include <map>
-#include "actors/Enemy.h"
+#include "event_management/actors/Enemy.h"
 
 namespace CoreLogic::EventManagement::Actors {
 

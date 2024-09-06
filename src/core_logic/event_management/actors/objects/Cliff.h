@@ -5,7 +5,7 @@
 #ifndef HIVE_CLIFF_H
 #define HIVE_CLIFF_H
 
-#include "Actor.h"
+#include "event_management/Actor.h"
 
 namespace CoreLogic::EventManagement::Object
 {

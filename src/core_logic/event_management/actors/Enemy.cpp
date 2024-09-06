@@ -162,7 +162,8 @@ namespace CoreLogic::EventManagement::Actors
             {
                 visionConnected_ = true;
                 auto &eh = EventHandler::getInstance();
-                eh.handleEvents({VISION}, getId());
+                std::vector<EventEnum> events = {EventManagement::EventEnum::VISION};
+                eh.handleEvents(events, getId());
             }
         }
 

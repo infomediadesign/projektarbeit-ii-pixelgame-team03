@@ -5,7 +5,7 @@
 #ifndef HIVE_INTERACTION_H
 #define HIVE_INTERACTION_H
 
-#include "Actor.h"
+#include "event_management/Actor.h"
 
 namespace CoreLogic::EventManagement::Object
 {

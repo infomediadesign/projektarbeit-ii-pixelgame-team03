@@ -69,7 +69,7 @@ namespace CoreLogic::EventManagement
         std::map<Input, EventEnum> controllerMapping;
         std::map<Input, EventEnum> keyboardMapping;
 
-        if (CoreLogic::DataProcessing::StateMachine::getCurrentState() != CoreLogic::DataProcessing::GameState::InGame)
+        if (CoreLogic::DataProcessing::StateMachine::getCurrentState() != CoreLogic::DataProcessing::GameState::IN_GAME)
         {
             controllerMapping = controllerInGameMapping_;
             keyboardMapping = keyboardInGameMapping_;

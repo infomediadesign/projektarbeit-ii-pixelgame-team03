@@ -4,7 +4,7 @@
 
 #ifndef HIVE_ABILITY_H
 #define HIVE_ABILITY_H
-#include "actors/MovableActor.h"
+#include "event_management/actors/MovableActor.h"
 
 namespace CoreLogic::EventManagement::Object
 {

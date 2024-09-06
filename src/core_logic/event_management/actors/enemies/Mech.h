@@ -5,8 +5,8 @@
 #ifndef HIVE_MECH_H
 #define HIVE_MECH_H
 
-#include "../../Actor.h"
-#include "actors/Enemy.h"
+#include "event_management/Actor.h"
+#include "event_management/actors/Enemy.h"
 
 namespace CoreLogic::EventManagement::Actors {
 
