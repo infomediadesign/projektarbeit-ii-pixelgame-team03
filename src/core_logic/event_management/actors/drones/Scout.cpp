@@ -14,21 +14,24 @@ namespace CoreLogic::EventManagement::Actors
         /**
          * @Pseudo_Code: getScoutAbilities() not yet existing
          */
-        std::vector<std::shared_ptr<Ability>> &abilities = DataProcessing::ActorStorage::getScoutAbilities();
+        std::vector<std::shared_ptr<Object::Ability>> &abilities = DataProcessing::ActorStorage::getScoutAbilities() ->at(elevation_);
         for (auto &ability : abilities)
         {
             if (ability == nullptr)
             {
                 continue;
             }
-            if (ability->getElevation() == elevation_)
+            if (ability->getElevation() != elevation_)
             {
-                if (CheckCollisionRecs(hitbox_, ability->getHitbox()))
-                {
-                    setAbility(ability);
-                    return;
-                }
+                throw std::runtime_error("Elevation does not match");
             }
+
+            if (CheckCollisionRecs(hitbox_, ability->getHitbox()))
+            {
+                setAbility(ability);
+                return;
+            }
+
         }
         setAbility(nullptr);
     }

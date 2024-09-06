@@ -7,7 +7,7 @@
 
 
 #include "FallingEvent.h"
-#include "objects/Barrel.h"
+#include "actors/objects/Barrel.h"
 
 namespace CoreLogic::EventManagement
 {

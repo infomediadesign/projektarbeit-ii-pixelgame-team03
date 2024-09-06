@@ -13,8 +13,8 @@ namespace CoreLogic::EventManagement
         PushEvent::PushEvent(std::shared_ptr<Object::Boulder> pa_pushable) : AbilityEvent(PUSH)
         {
             po_pushable_ = pa_pushable;
-            std::vector<std::shared_ptr<Object::Barrier>> barriers = CoreLogic::DataProcessing::ActorStorage::getBarriers();
-            for (std::shared_ptr<Actor> barrier : barriers)
+            std::vector<std::shared_ptr<Actor>> &barriers = CoreLogic::DataProcessing::ActorStorage::getCollidables()->at(po_pushable_->getElevation());
+            for (std::shared_ptr<Actor> &barrier : barriers)
             {
                 if (barrier == nullptr)
                 {
@@ -66,12 +66,12 @@ namespace CoreLogic::EventManagement
              * @Pseudo_code: no Falling triggers
              * @todo: Code Falling Triggers
              */
-            std::vector<std::shared_ptr<Object::Cliff>> cliffs = CoreLogic::DataProcessing::ActorStorage::getCliffs();
+            std::vector<std::shared_ptr<Object::Cliff>> cliffs = CoreLogic::DataProcessing::ActorStorage::getCliffs()->at(po_pushable_ ->getElevation());
 
 
             if (cliffs.size() == 0)
             {
-                throw std::runtime_error("No cliffs found");
+                return;
             }
             for (auto& cliff : cliffs)
             {

@@ -5,6 +5,7 @@
 #include "FallingBoulderEvent.h"
 #include "EventHandler.h"
 #include "actors/Enemy.h"
+#include "Store.h"
 
 
 namespace CoreLogic::EventManagement
@@ -21,8 +22,8 @@ namespace CoreLogic::EventManagement
         {
             auto& eventHandler = EventHandler::getInstance();
             Rectangle hitbox = po_mainActor_ -> getHitbox();
-            std::vector<std::shared_ptr<Actors::Enemy>> enemies = CoreLogic::DataProcessing::ActorStorage::getEnemies();
-            for (auto enemy: enemies)
+            std::vector<std::shared_ptr<Actors::Enemy>> &enemies = CoreLogic::DataProcessing::ActorStorage::getEnemies()->at(std::dynamic_pointer_cast<Object::Boulder>(po_mainActor_)->getNewElevation());
+            for (auto &enemy: enemies)
             {
                 if (enemy == nullptr)
                 {
@@ -45,7 +46,7 @@ namespace CoreLogic::EventManagement
         }
         if (ticks_ >= 20)
         {
-            throw true;
+            throw EventException("Boulder Destroyed");
         }
         ticks_++;
     }

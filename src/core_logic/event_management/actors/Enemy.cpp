@@ -164,11 +164,10 @@ namespace CoreLogic::EventManagement::Actors
 
     bool Enemy::checkVisionCollisionObjects(Ray *pa_visionRays, bool *pa_visionCollisions)
     {
-        std::vector<std::shared_ptr<Actor>> barriers = CoreLogic::DataProcessing::ActorStorage::getBarriers().at(
-                elevation_);
+        std::vector<std::shared_ptr<Actor>> barriers = CoreLogic::DataProcessing::ActorStorage::getCollidables()->at(elevation_);
         bool *visionCollisions = pa_visionCollisions;
 
-        for (auto barrier: barriers)
+        for (auto &barrier: barriers)
         {
             if (barrier == nullptr)
             {
