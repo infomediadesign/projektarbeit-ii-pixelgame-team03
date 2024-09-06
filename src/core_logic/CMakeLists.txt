@@ -139,6 +139,10 @@ set(CORE_LOGIC_HEADERS
         event_management/events/DroneDisconnectEvent.h
         event_management/events/EnemyDisconnectEvent.cpp
         event_management/events/EnemyDisconnectEvent.h
+        event_management/events/BellDeathAbilityEvent.cpp
+        event_management/events/BellDeathAbilityEvent.h
+        event_management/events/DeathAbilityEvent.cpp
+        event_management/events/DeathAbilityEvent.h
 
 )
 

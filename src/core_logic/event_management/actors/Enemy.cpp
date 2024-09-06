@@ -62,6 +62,11 @@ namespace CoreLogic::EventManagement::Actors
 
     void Enemy::forceTurn(Vector2 pa_triggerPoint)
     {
+        int detectionRadius = CoreLogic::DataProcessing::DesignConfig::COLONIST_RANGE * CoreLogic::DataProcessing::tileSize;
+        if (!CheckCollisionPointCircle(pa_triggerPoint, visionOrigin_, static_cast<float>(detectionRadius)))
+        {
+            return;
+        }
         int turnFrames = CoreLogic::DataProcessing::DesignConfig::BELL_TURN_TIME;
         if (abs(pa_triggerPoint.x) >= abs(pa_triggerPoint.y))
         {

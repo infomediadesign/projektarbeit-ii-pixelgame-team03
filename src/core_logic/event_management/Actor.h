@@ -30,7 +30,7 @@ namespace CoreLogic::EventManagement
         virtual ~Actor() = default;
 
 
-        void shiftFrame(int pa_stateID);
+        virtual void shiftFrame(int pa_stateID);
         void resetFrame(int pa_stateID);
         void draw();
 
