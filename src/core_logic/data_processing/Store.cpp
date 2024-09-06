@@ -495,6 +495,11 @@ void CoreLogic::DataProcessing::StateMachine::changeState(CoreLogic::DataProcess
     currentState_ = newState;
 }
 
+CoreLogic::DataProcessing::GameState CoreLogic::DataProcessing::StateMachine::getPreviousState()
+{
+    return previousState_;
+}
+
 CoreLogic::UserInterface::Sprite
 CoreLogic::DataProcessing::SpriteStorage::getSprite(CoreLogic::DataProcessing::SpriteStorage::SpriteEnum spriteEnum)
 {
@@ -807,7 +812,8 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
     sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/hive_ARTI_newHUD_drone-selection-screen-Spritesheet.png",
             {
                     {CoreLogic::UserInterface::AnimationState{0 * 360, 640, 1}},
-                    {CoreLogic::UserInterface::AnimationState{1 * 360, 640, 2}}
+                    {CoreLogic::UserInterface::AnimationState{1 * 360, 640, 1}},
+                    {CoreLogic::UserInterface::AnimationState{2 * 360, 640, 1}},
             });
 
     po_sprites_.insert(po_sprites_.begin() + DRONE_SELECTION, sprite);

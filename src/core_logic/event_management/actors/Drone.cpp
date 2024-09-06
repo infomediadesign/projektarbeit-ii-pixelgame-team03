@@ -256,10 +256,9 @@ namespace CoreLogic::EventManagement::Actors
 
 
 
-CoreLogic::EventManagement::Actors::Drone::Drone(Vector2 pa_position, Rectangle pa_hitbox, int pa_id,
-                                                 CollisionType pa_collisionType, Vector2 pa_size, bool pa_visible,
+CoreLogic::EventManagement::Actors::Drone::Drone(Vector2 pa_position, Rectangle pa_hitbox, int pa_id, Vector2 pa_size,
                                                  int pa_elevation)
-        : MovableActor(pa_position, pa_hitbox, pa_id, pa_collisionType, pa_size, pa_visible, pa_elevation){}
+        : MovableActor(pa_position, pa_hitbox, pa_id, Actor::CollisionType::NONE, pa_size, true, pa_elevation){}
 
     void Drone::update()
     {
