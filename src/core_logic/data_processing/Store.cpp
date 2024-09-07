@@ -47,6 +47,16 @@ std::shared_ptr<std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManage
 std::shared_ptr<std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Object::Uplink>>>> CoreLogic::DataProcessing::ActorStorage::po_uplinks_;
 std::shared_ptr<std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Object::DroneRespawnPoint>>>> CoreLogic::DataProcessing::ActorStorage::po_respawnPoints_;
 
+std::shared_ptr<std::map<CoreLogic::EventManagement::Actors::Drone::DroneType, bool>> po_unlockedDrones_;
+
+
+std::vector<CoreLogic::UserInterface::Sprite> CoreLogic::DataProcessing::SpriteStorage::po_sprites_; 
+
+
+
+CoreLogic::DataProcessing::GameState CoreLogic::DataProcessing::StateMachine::previousState_;
+CoreLogic::DataProcessing::GameState CoreLogic::DataProcessing::StateMachine::currentState_;
+
 
 
 
@@ -62,64 +72,45 @@ void CoreLogic::DataProcessing::TileMap::Initialize()
 
 void CoreLogic::DataProcessing::ActorStorage::Initialize()
 {
-    static std::shared_ptr<std::map<CoreLogic::EventManagement::Actors::Drone::DroneType, bool>> po_unlockedDrones_ = {};
+    po_unlockedDrones_ = {};
 
     //------------------actives------------------//
-    static std::shared_ptr<CoreLogic::EventManagement::Object::DroneRespawnPoint> po_activeRespawnPoint_ = {};
-    static std::shared_ptr<CoreLogic::EventManagement::Object::TutorialBox> po_activeTutorialBox_ = {};
-    static std::shared_ptr<CoreLogic::EventManagement::Object::Note> po_activeNote_ = {};
+    po_activeRespawnPoint_ = {};
+    po_activeTutorialBox_ = {};
+    po_activeNote_ = {};
 
-    static std::shared_ptr<EventManagement::Actors::Drone> po_player_ = {};
+    po_player_ = {};
 
     //------------------general lists------------------//
-    static std::shared_ptr<std::map<int, std::vector<tson::Layer>>> po_layers_ = {};
+    po_layers_ = {};
 
-    static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Actor>>>> po_allActors_ = {};
-    static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Actor>>>> po_collidables_ = {};
+    po_allActors_ = {};
+    po_collidables_ = {};
     //does not include Cliffs
-    static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Actor>>>> po_visibles_ = {};
+    po_visibles_ = {};
     //does not include barrels
-    static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::Ability>>>>
-            po_allAbilities_ = {};
-    static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::Ability>>>>
-            po_workerAbilities_ = {};
-    static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::Ability>>>>
-            po_scoutAbilities_ = {};
-    static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::Interaction>>>>
-            po_interactions_ = {};
-    static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Actors::Enemy>>>>
-            po_allEnemies_ = {};
+    po_allAbilities_ = {};
+    po_workerAbilities_ = {};
+    po_scoutAbilities_ = {};
+    po_interactions_ = {};
+    po_allEnemies_ = {};
 
 
     //------------------specific lists------------------//
-    static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::Barrier>>>>
-            po_barriers_ = {};
-    static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::Rubble>>>>
-            po_rubbles_ = {};
-    static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::Boulder>>>>
-            po_boulders_ = {};
-    static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::Vine>>>>
-            po_vines_ = {};
-    static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::JumpPoint>>>>
-            po_jumpPoints_ = {};
-    static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Actors::Colonist>>>>
-            po_colonists_ = {};
-    static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Actors::Mech>>>>
-            po_mechs_ = {};
-    static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::Cliff>>>>
-            po_cliffs_ = {};
-    static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::Barrel>>>>
-            po_barrels_ = {};
-    static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::TutorialBox>>>>
-            po_tutorialBoxes_ = {};
-    static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::Note>>>>
-            po_notes_ = {};
-    static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::LevelSwitch>>>>
-            po_levelSwitches_ = {};
-    static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::Uplink>>>>
-            po_uplinks_ = {};
-    static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::DroneRespawnPoint>>>>
-            po_respawnPoints_ = {};
+    po_barriers_ = {};
+    po_rubbles_ = {};
+    po_boulders_ = {};
+    po_vines_ = {};
+    po_jumpPoints_ = {};
+    po_colonists_ = {};
+    po_mechs_ = {};
+    po_cliffs_ = {};
+    po_barrels_ = {};
+    po_tutorialBoxes_ = {};
+    po_notes_ = {};
+    po_levelSwitches_ = {};
+    po_uplinks_ = {};
+    po_respawnPoints_ = {};
 
 
 }

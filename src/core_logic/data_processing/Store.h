@@ -107,7 +107,7 @@ protected:
         static void Initialize();
         static UserInterface::Sprite getSprite(SpriteEnum spriteEnum);
     protected:
-        static std::vector<UserInterface::Sprite> po_sprites_;
+        static std::vector<CoreLogic::UserInterface::Sprite> po_sprites_;
     };
 
     struct ActorStorage

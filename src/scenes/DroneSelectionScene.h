@@ -29,7 +29,7 @@ namespace Scenes
         };
 
         CoreLogic::EventManagement::Actors::Drone::DroneType selectedDroneType_;
-        static std::shared_ptr<std::map<CoreLogic::EventManagement::Actors::Drone::DroneType, bool>> po_unlockedDrones_;
+        std::shared_ptr<std::map<CoreLogic::EventManagement::Actors::Drone::DroneType, bool>> po_unlockedDrones_;
         bool isDroneUnlocked(CoreLogic::EventManagement::Actors::Drone::DroneType pa_droneType);
         CoreLogic::UserInterface::Sprite sprite_;
         DroneSelection currentDroneSelection_;
