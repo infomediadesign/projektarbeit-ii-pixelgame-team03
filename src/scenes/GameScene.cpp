@@ -7,11 +7,12 @@
 #include "event_management/SoundHandler.h"
 #include "user_interface/HUD.h"
 #include "event_management/actors/Enemy.h"
+#include "event_management/actors/drones/Worker.h"
 
 
 Scenes::GameScene::GameScene(): Scene(std::make_shared<Camera2D>()),
                                 po_levels_(std::make_unique<std::vector<CoreLogic::DataProcessing::Level>>(std::initializer_list<CoreLogic::DataProcessing::Level>{
-                                        CoreLogic::DataProcessing::Level(std::make_unique<std::vector<std::string>>(std::initializer_list<std::string>{"assets/data/hive_PROG_tech-demo-map_2024-07-14.tmj", "lol"}), 0, CoreLogic::DataProcessing::LevelState::Default),
+                                        CoreLogic::DataProcessing::Level(std::make_unique<std::vector<std::string>>(std::initializer_list<std::string>{"assets/data/level0.tmj", "lol"}), 0, CoreLogic::DataProcessing::LevelState::Default),
                                         CoreLogic::DataProcessing::Level(std::make_unique<std::vector<std::string>>(std::initializer_list<std::string>{"lel", "assets/data/level0.tmj"}), 1, CoreLogic::DataProcessing::LevelState::War)
                         }))
 {
@@ -21,6 +22,9 @@ Scenes::GameScene::GameScene(): Scene(std::make_shared<Camera2D>()),
     po_previousMap_ = std::make_unique<CoreLogic::DataProcessing::Map>(*po_currentMap_);
     currentLevelID_ = po_levels_ -> at(0).getLevelID();
     previousLevelID_ = currentLevelID_;
+
+    CoreLogic::EventManagement::Actors::Worker drone = { {72, 720}, {72, 720, 38, 38}, 0, {38, 38}, 0};
+    CoreLogic::DataProcessing::ActorStorage::setPlayer(std::make_shared<CoreLogic::EventManagement::Actors::Worker>(drone));
 
 }
 

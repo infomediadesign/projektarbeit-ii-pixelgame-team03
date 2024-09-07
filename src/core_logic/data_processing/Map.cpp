@@ -200,7 +200,7 @@ void CoreLogic::DataProcessing::Map::loadObjects()
                 ActorStorage::addActorByType(objectElevation, actor);
             } else if (objectClass == "cliffs")
             {
-                int objectFallHeight = objectProperties.getProperty("fall_height")->getValue<int>();
+                int objectFallHeight = objectProperties.getProperty("height")->getValue<int>();
 
                 actor = std::make_shared<EventManagement::Actor>(
                         EventManagement::Object::Cliff(objectPosition, objectHitbox, objectId, objectSize,
@@ -208,7 +208,7 @@ void CoreLogic::DataProcessing::Map::loadObjects()
                 ActorStorage::addActorByType(objectElevation, actor);
             } else if (objectClass == "explosive_barrel")
             {
-                int objectFallHeight = objectProperties.getProperty("fall_height")->getValue<int>();
+                int objectFallHeight = objectProperties.getProperty("height")->getValue<int>();
                 int direction = objectProperties.getProperty("direction")->getValue<int>();
 
                 UserInterface::Direction objectDirection;
