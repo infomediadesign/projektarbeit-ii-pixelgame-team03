@@ -7,10 +7,48 @@
 std::shared_ptr<Texture2D> CoreLogic::DataProcessing::TileMap::po_tileMap_ = nullptr;
 std::shared_ptr<Texture2D> CoreLogic::DataProcessing::TileMap::getTileMap() {return po_tileMap_;}
 
+// Define the static member variables for ActorStorage
+
+// Define po_unlockedDrones_
+std::shared_ptr<std::map<CoreLogic::EventManagement::Actors::Drone::DroneType, bool>> CoreLogic::DataProcessing::ActorStorage::po_unlockedDrones_;
+
+//------------------actives------------------//
+std::shared_ptr<CoreLogic::EventManagement::Object::DroneRespawnPoint> CoreLogic::DataProcessing::ActorStorage::po_activeRespawnPoint_;
+std::shared_ptr<CoreLogic::EventManagement::Object::TutorialBox> CoreLogic::DataProcessing::ActorStorage::po_activeTutorialBox_;
+std::shared_ptr<CoreLogic::EventManagement::Object::Note> CoreLogic::DataProcessing::ActorStorage::po_activeNote_;
+
 std::shared_ptr<CoreLogic::EventManagement::Actors::Drone> CoreLogic::DataProcessing::ActorStorage::po_player_;
-std::shared_ptr<std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Actor>>>>
-        CoreLogic::DataProcessing::ActorStorage::po_allActors_;
+
+//------------------general lists------------------//
 std::shared_ptr<std::map<int, std::vector<tson::Layer>>> CoreLogic::DataProcessing::ActorStorage::po_layers_;
+
+std::shared_ptr<std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Actor>>>> CoreLogic::DataProcessing::ActorStorage::po_allActors_;
+std::shared_ptr<std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Actor>>>> CoreLogic::DataProcessing::ActorStorage::po_collidables_;
+std::shared_ptr<std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Actor>>>> CoreLogic::DataProcessing::ActorStorage::po_visibles_;
+std::shared_ptr<std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Object::Ability>>>> CoreLogic::DataProcessing::ActorStorage::po_allAbilities_;
+std::shared_ptr<std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Object::Ability>>>> CoreLogic::DataProcessing::ActorStorage::po_workerAbilities_;
+std::shared_ptr<std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Object::Ability>>>> CoreLogic::DataProcessing::ActorStorage::po_scoutAbilities_;
+std::shared_ptr<std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Object::Interaction>>>> CoreLogic::DataProcessing::ActorStorage::po_interactions_;
+std::shared_ptr<std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Actors::Enemy>>>> CoreLogic::DataProcessing::ActorStorage::po_allEnemies_;
+
+//------------------specific lists------------------//
+std::shared_ptr<std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Object::Barrier>>>> CoreLogic::DataProcessing::ActorStorage::po_barriers_;
+std::shared_ptr<std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Object::Rubble>>>> CoreLogic::DataProcessing::ActorStorage::po_rubbles_;
+std::shared_ptr<std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Object::Boulder>>>> CoreLogic::DataProcessing::ActorStorage::po_boulders_;
+std::shared_ptr<std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Object::Vine>>>> CoreLogic::DataProcessing::ActorStorage::po_vines_;
+std::shared_ptr<std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Object::JumpPoint>>>> CoreLogic::DataProcessing::ActorStorage::po_jumpPoints_;
+std::shared_ptr<std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Actors::Colonist>>>> CoreLogic::DataProcessing::ActorStorage::po_colonists_;
+std::shared_ptr<std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Actors::Mech>>>> CoreLogic::DataProcessing::ActorStorage::po_mechs_;
+std::shared_ptr<std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Object::Cliff>>>> CoreLogic::DataProcessing::ActorStorage::po_cliffs_;
+std::shared_ptr<std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Object::Barrel>>>> CoreLogic::DataProcessing::ActorStorage::po_barrels_;
+std::shared_ptr<std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Object::TutorialBox>>>> CoreLogic::DataProcessing::ActorStorage::po_tutorialBoxes_;
+std::shared_ptr<std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Object::Note>>>> CoreLogic::DataProcessing::ActorStorage::po_notes_;
+std::shared_ptr<std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Object::LevelSwitch>>>> CoreLogic::DataProcessing::ActorStorage::po_levelSwitches_;
+std::shared_ptr<std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Object::Uplink>>>> CoreLogic::DataProcessing::ActorStorage::po_uplinks_;
+std::shared_ptr<std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Object::DroneRespawnPoint>>>> CoreLogic::DataProcessing::ActorStorage::po_respawnPoints_;
+
+
+
 
 void CoreLogic::DataProcessing::TileMap::Initialize()
 {
