@@ -3,7 +3,7 @@
 //
 
 #include "Boulder.h"
-#include "Store.h"
+#include "data_processing/Store.h"
 
 int CoreLogic::EventManagement::Object::Boulder::getFallHeight()
 {

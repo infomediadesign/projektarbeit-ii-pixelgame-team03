@@ -5,7 +5,7 @@
 #include <stdexcept>
 #include "FallingEvent.h"
 #include "actors/MovableActor.h"
-#include "Store.h"
+#include "data_processing/Store.h"
 #include "EventHandler.h"
 #include "FallingBarrelEvent.h"
 #include "FallingBoulderEvent.h"

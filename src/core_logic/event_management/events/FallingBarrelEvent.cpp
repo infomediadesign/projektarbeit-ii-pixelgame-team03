@@ -4,8 +4,8 @@
 
 #include "FallingBarrelEvent.h"
 #include "EventHandler.h"
-#include "Store.h"
-#include "../actors/Enemy.h"
+#include "data_processing/Store.h"
+#include "actors/Enemy.h"
 #include "actors/objects/Uplink.h"
 
 

@@ -14,7 +14,7 @@ namespace Scenes
 {
     class DroneSelectionScene : public CoreLogic::Scene
     {
-public:
+    public:
         DroneSelectionScene();
         void draw(RenderTexture2D &pa_canvas) override;
         void update() override;

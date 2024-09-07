@@ -6,7 +6,7 @@
 #define HIVE_UPLINK_H
 
 #include "event_management/Actor.h"
-#include "event_management/actors/objects/Interaction.h"
+#include "Interaction.h"
 
 namespace CoreLogic::EventManagement::Object
 {

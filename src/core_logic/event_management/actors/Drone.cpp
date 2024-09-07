@@ -9,7 +9,7 @@
 #include "data_processing/TilesonUtilities.h"
 #include "data_processing/Store.h"
 #include "Sprite.h"
-#include "../../data_processing/DesignConfig.h"
+#include "data_processing/DesignConfig.h"
 
 namespace CoreLogic::EventManagement::Actors
 {

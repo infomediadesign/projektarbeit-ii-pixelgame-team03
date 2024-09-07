@@ -2,7 +2,7 @@
 
 #include "HUD.h"
 #include "actors/Drone.h"
-#include "Store.h"
+#include "data_processing/Store.h"
 
 CoreLogic::UserInterface::HUD::HUD()
 {

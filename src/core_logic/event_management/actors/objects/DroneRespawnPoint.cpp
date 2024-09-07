@@ -3,7 +3,7 @@
 //
 
 #include "DroneRespawnPoint.h"
-#include "Store.h"
+#include "data_processing/Store.h"
 
 void CoreLogic::EventManagement::Object::DroneRespawnPoint::changeState(
         CoreLogic::EventManagement::Object::DroneRespawnPoint::DroneRespawnPointState pa_state)

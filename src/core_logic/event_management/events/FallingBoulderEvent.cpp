@@ -5,7 +5,7 @@
 #include "FallingBoulderEvent.h"
 #include "EventHandler.h"
 #include "actors/Enemy.h"
-#include "Store.h"
+#include "data_processing/Store.h"
 #include "actors/objects/Uplink.h"
 
 
