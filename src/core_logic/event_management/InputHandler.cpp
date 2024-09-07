@@ -5,7 +5,7 @@
 #include <iostream>
 #include "InputHandler.h"
 #include "EventUtilities.h"
-#include "../data_processing/DesignConfig.h"
+#include "data_processing/DesignConfig.h"
 
 namespace CoreLogic::EventManagement
 {

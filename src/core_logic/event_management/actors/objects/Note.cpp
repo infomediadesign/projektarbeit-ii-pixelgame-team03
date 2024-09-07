@@ -3,7 +3,7 @@
 //
 
 #include "Note.h"
-#include "Store.h"
+#include "data_processing/Store.h"
 
 std::string CoreLogic::EventManagement::Object::Note::getText()
 {

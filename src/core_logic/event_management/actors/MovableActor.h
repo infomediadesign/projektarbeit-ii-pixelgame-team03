@@ -5,7 +5,7 @@
 #ifndef HIVE_MOVABLEACTOR_H
 #define HIVE_MOVABLEACTOR_H
 
-#include "../Actor.h"
+#include "event_management/Actor.h"
 
 namespace CoreLogic::EventManagement::Actors
 {

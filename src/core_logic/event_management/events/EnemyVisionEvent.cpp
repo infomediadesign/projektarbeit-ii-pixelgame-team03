@@ -6,7 +6,7 @@
 #include "EnemyVisionEvent.h"
 #include "actors/Enemy.h"
 #include "DesignConfig.h"
-#include "Store.h"
+#include "data_processing/Store.h"
 #include "EventHandler.h"
 
 
