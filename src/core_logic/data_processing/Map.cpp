@@ -122,44 +122,42 @@ void CoreLogic::DataProcessing::Map::loadObjects()
 
             //-------------------------------------------------------------------------------------------------------//
 
-            std::shared_ptr<EventManagement::Actor> actor = nullptr;
-
             if (objectClass == "collidable")
             {
                 bool objectVisible = object.isVisible();
 
-                actor = std::make_shared<EventManagement::Actor>(EventManagement::Object::Barrier
+                actor = std::make_shared<EventManagement::Object::Barrier>(EventManagement::Object::Barrier
                         (objectPosition, objectHitbox,objectId, objectSize, objectVisible, objectElevation));
                 ActorStorage::addActorByType(objectElevation, actor);
             } else if (objectClass == "rubble")
             {
-                    actor = std::make_shared<EventManagement::Actor>(EventManagement::Object::Rubble(objectPosition,
+                    actor = std::make_shared<EventManagement::Object::Rubble>(EventManagement::Object::Rubble(objectPosition,
                             objectHitbox, objectId, objectSize, objectElevation));
                 ActorStorage::addActorByType(objectElevation, actor);
             } else if (objectClass == "pushable")
             {
-                actor = std::make_shared<EventManagement::Actor>(EventManagement::Object::Boulder(objectPosition,
+                actor = std::make_shared<EventManagement::Object::Boulder>(EventManagement::Object::Boulder(objectPosition,
                         objectHitbox, objectId, objectSize, objectElevation));
                 ActorStorage::addActorByType(objectElevation, actor);
             } else if (objectClass == "vines")
             {
-                Vector2 objectCoordinates = {objectProperties.getProperty("x_dest")->getValue<float>(),
-                        objectProperties.getProperty("y_dest")->getValue<float>()};
+                Vector2 objectCoordinates = {(float)objectProperties.getProperty("x_dest")->getValue<int>(),
+                        (float) objectProperties.getProperty("y_dest")->getValue<int>()};
 
-                actor = std::make_shared<EventManagement::Actor>(
-                        EventManagement::Object::Vine(objectPosition, objectHitbox, objectId, objectSize,objectElevation, objectCoordinates));
+                actor = std::make_shared<EventManagement::Object::Vine>(EventManagement::Object::Vine(objectPosition,
+                        objectHitbox, objectId, objectSize,objectElevation, objectCoordinates));
                 ActorStorage::addActorByType(objectElevation, actor);
             } else if (objectClass == "water")
             {
-                actor = std::make_shared<EventManagement::Actor>(EventManagement::Object::Cliff(objectPosition,
+                actor = std::make_shared<EventManagement::Object::Cliff>(EventManagement::Object::Cliff(objectPosition,
                         objectHitbox, objectId, objectSize, objectElevation, 0));
                 ActorStorage::addActorByType(objectElevation, actor);
             } else if (objectClass == "jump_point")
             {
-                Vector2 objectDestination = {objectProperties.getProperty("x_dest")->getValue<float>(), objectProperties
-                        .getProperty("x_dest")->getValue<float>()};
+                Vector2 objectDestination = {(float)objectProperties.getProperty("x_dest")->getValue<int>(), (float)
+                        objectProperties.getProperty("y_dest")->getValue<int>()};
 
-                actor = std::make_shared<EventManagement::Actor>(EventManagement::Object::JumpPoint
+                actor = std::make_shared<EventManagement::Object::JumpPoint>(EventManagement::Object::JumpPoint
                         (objectPosition, objectHitbox, objectId, objectSize, objectElevation, objectDestination));
                 ActorStorage::addActorByType(objectElevation, actor);
             } else if (objectClass == "colonist")
@@ -195,14 +193,14 @@ void CoreLogic::DataProcessing::Map::loadObjects()
                         {CoreLogic::UserInterface::Direction::LEFT, {intervalWest, 0}},
                         {CoreLogic::UserInterface::Direction::RIGHT, {intervalEast, 0}}};
 
-                actor = std::make_shared<EventManagement::Actor>(CoreLogic::EventManagement::Actors::Colonist
+                actor = std::make_shared<EventManagement::Actors::Colonist>(CoreLogic::EventManagement::Actors::Colonist
                         (objectPosition, objectHitbox,objectId,objectSize, objectElevation, objectClockwise, objectStartingDirection,  objectTurnCycle));
                 ActorStorage::addActorByType(objectElevation, actor);
             } else if (objectClass == "cliffs")
             {
                 int objectFallHeight = objectProperties.getProperty("height")->getValue<int>();
 
-                actor = std::make_shared<EventManagement::Actor>(
+                actor = std::make_shared<EventManagement::Object::Cliff>(
                         EventManagement::Object::Cliff(objectPosition, objectHitbox, objectId, objectSize,
                                 objectElevation, objectFallHeight));
                 ActorStorage::addActorByType(objectElevation, actor);
@@ -229,7 +227,7 @@ void CoreLogic::DataProcessing::Map::loadObjects()
                     break;
                 }
 
-                actor = std::make_shared<EventManagement::Actor>(EventManagement::Object::Barrel
+                actor = std::make_shared<EventManagement::Object::Barrel>(EventManagement::Object::Barrel
                         (objectPosition, objectHitbox, objectId, objectSize, objectElevation, objectFallHeight, objectDirection));
 
                 ActorStorage::addActorByType(objectElevation, actor);
@@ -237,20 +235,20 @@ void CoreLogic::DataProcessing::Map::loadObjects()
             {
                 std::string objectText = objectProperties.getProperty("text")->getValue<std::string>();
 
-                actor = std::make_shared<EventManagement::Actor>(EventManagement::Object::TutorialBox(objectPosition, objectHitbox, objectId, objectSize, objectElevation, objectText));
+                actor = std::make_shared<EventManagement::Object::TutorialBox>(EventManagement::Object::TutorialBox(objectPosition, objectHitbox, objectId, objectSize, objectElevation, objectText));
                 ActorStorage::addActorByType(objectElevation, actor);
             } else if (objectClass == "lore_item")
             {
                 std::string objectText = objectProperties.getProperty("text")->getValue<std::string>();
 
-                actor = std::make_shared<EventManagement::Actor>(EventManagement::Object::Note(objectPosition,
+                actor = std::make_shared<EventManagement::Object::Note>(EventManagement::Object::Note(objectPosition,
                         objectHitbox, objectId, objectSize, objectElevation, objectText));
                 ActorStorage::addActorByType(objectElevation, actor);
             }else if (objectClass == "level_switch")
             {
                 int objectLevelID = objectProperties.getProperty("level_switch")->getValue<int>();
 
-                actor = std::make_shared<EventManagement::Actor>(EventManagement::Object::LevelSwitch
+                actor = std::make_shared<EventManagement::Object::LevelSwitch>(EventManagement::Object::LevelSwitch
                         (objectPosition, objectHitbox, objectId, objectSize, objectElevation, objectLevelID));
                 ActorStorage::addActorByType(objectElevation, actor);
             } else if (objectClass == "mech")
@@ -258,12 +256,12 @@ void CoreLogic::DataProcessing::Map::loadObjects()
 
             } else if (objectClass == "uplink")
             {
-                actor = std::make_shared<EventManagement::Actor>(EventManagement::Object::Uplink
+                actor = std::make_shared<EventManagement::Object::Uplink>(EventManagement::Object::Uplink
                         (objectPosition, objectHitbox, objectId, objectSize, objectElevation));
                 ActorStorage::addActorByType(objectElevation, actor);
             }else if (objectClass == "spawn_point")
             {
-                actor = std::make_shared<EventManagement::Actor>(EventManagement::Object::DroneRespawnPoint
+                actor = std::make_shared<EventManagement::Object::DroneRespawnPoint>(EventManagement::Object::DroneRespawnPoint
                         (objectPosition, objectHitbox, objectId, objectSize, objectElevation));
                 ActorStorage::addActorByType(objectElevation, actor);
             }

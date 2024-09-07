@@ -25,3 +25,8 @@ void CoreLogic::EventManagement::Object::Interaction::setType(
 {
 type_ = pa_type;
 }
+
+void CoreLogic::EventManagement::Object::Interaction::test()
+{
+
+}
