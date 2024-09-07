@@ -65,7 +65,42 @@ void CoreLogic::UserInterface::Renderer::render(std::shared_ptr<std::map<int, st
             }
 
             std::shared_ptr<CoreLogic::EventManagement::Actors::Drone> player = CoreLogic::DataProcessing::ActorStorage::getPlayer();
+            auto &visibles = *CoreLogic::DataProcessing::ActorStorage::getVisibles();
+            for (auto & pair: visibles)
+            {
+                for (auto &visible: pair.second)
+                {
+                    if (visible == nullptr)
+                    {
+                        continue;
+                    }
+                    if (!visible->getVisible())
+                    {
+                        continue;
+                    }
+
+                    visible->draw();
+                }
+            }
+
             player->draw();
+
+            auto &barrels = *CoreLogic::DataProcessing::ActorStorage::getBarrels();
+            for (auto & pair: barrels)
+            {
+                for (auto &barrel: pair.second)
+                {
+                    if (barrel == nullptr)
+                    {
+                        continue;
+                    }
+                    if (!barrel->getVisible())
+                    {
+                        continue;
+                    }
+                    barrel->draw();
+                }
+            }
 
             hud.draw({pa_camera.target.x, pa_camera.target.y, 640, 360});
 
