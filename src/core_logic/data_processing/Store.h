@@ -52,6 +52,7 @@ namespace CoreLogic::DataProcessing
 struct StateMachine
 {
 public:
+    static void Initialize();
     static GameState getCurrentState();
     static GameState getPreviousState();
     static void changeState(GameState newState);

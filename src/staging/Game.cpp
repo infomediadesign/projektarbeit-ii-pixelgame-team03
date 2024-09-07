@@ -21,6 +21,8 @@ Staging::Game::Game(int pa_stage_width, int pa_stage_height, int pa_target_fps, 
     InitAudioDevice();
     CoreLogic::DataProcessing::TileMap::Initialize();
     CoreLogic::DataProcessing::ActorStorage::Initialize();
+    CoreLogic::DataProcessing::SpriteStorage::Initialize();
+    CoreLogic::DataProcessing::StateMachine::Initialize();
 
     fullscreen_ = pa_fullscreen;
     audio_ = pa_audio;
