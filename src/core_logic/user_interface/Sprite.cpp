@@ -13,7 +13,7 @@ namespace CoreLogic::UserInterface
         path_ = pa_path;
         animationStates_ = pa_animationStates;
 
-        texture_ = LoadTexture(pa_path.c_str()); //@todo: rework into store
+        texture_ = LoadTexture(pa_path.c_str());
         frame_ = {0, 0, 0, 0};
     }
 
