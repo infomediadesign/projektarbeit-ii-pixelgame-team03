@@ -20,7 +20,7 @@ namespace CoreLogic::UserInterface{
         static HUD* getInstance();
     protected:
         //todo: rework to map?
-        std::vector<std::unique_ptr<Sprite>> hudElements_;
+        std::vector<Sprite> hudElements_;
         void hudInit();
         static HUD* po_instance_;
         static std::mutex mutex_;
