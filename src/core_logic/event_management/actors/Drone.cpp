@@ -288,8 +288,10 @@ CoreLogic::EventManagement::Actors::Drone::Drone(Vector2 pa_position, Rectangle 
         /**
          * @Pseudo_Code: getInteractions() not yet existing
          */
+
         std::vector<std::shared_ptr<Object::Interaction>> &interactions = DataProcessing::ActorStorage::getInteractions()->at(
                 elevation_);
+
         for (auto &interaction: interactions)
         {
             if (interaction == nullptr)

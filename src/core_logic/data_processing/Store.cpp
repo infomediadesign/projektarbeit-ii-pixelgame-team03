@@ -72,45 +72,45 @@ void CoreLogic::DataProcessing::TileMap::Initialize()
 
 void CoreLogic::DataProcessing::ActorStorage::Initialize()
 {
-    po_unlockedDrones_ = {};
+    po_unlockedDrones_ = std::make_shared<std::map<EventManagement::Actors::Drone::DroneType, bool>>();
 
     //------------------actives------------------//
-    po_activeRespawnPoint_ = {};
-    po_activeTutorialBox_ = {};
-    po_activeNote_ = {};
+    po_activeRespawnPoint_ = nullptr;
+    po_activeTutorialBox_ = nullptr;
+    po_activeNote_ = nullptr;
 
-    po_player_ = {};
+    po_player_ = nullptr;
 
     //------------------general lists------------------//
-    po_layers_ = {};
+    po_layers_ = std::make_shared<std::map<int, std::vector<tson::Layer>>>();
 
-    po_allActors_ = {};
-    po_collidables_ = {};
+    po_allActors_ = std::make_shared<std::map<int, std::vector<std::shared_ptr<EventManagement::Actor>>>>();
+    po_collidables_ = std::make_shared<std::map<int, std::vector<std::shared_ptr<EventManagement::Actor>>>>();
     //does not include Cliffs
-    po_visibles_ = {};
+    po_visibles_ = std::make_shared<std::map<int, std::vector<std::shared_ptr<EventManagement::Actor>>>>();
     //does not include barrels
-    po_allAbilities_ = {};
-    po_workerAbilities_ = {};
-    po_scoutAbilities_ = {};
-    po_interactions_ = {};
-    po_allEnemies_ = {};
+    po_allAbilities_ = std::make_shared<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::Ability>>>>();
+    po_workerAbilities_ = std::make_shared<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::Ability>>>>();
+    po_scoutAbilities_ = std::make_shared<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::Ability>>>>();
+    po_interactions_ = std::make_shared<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::Interaction>>>>();
+    po_allEnemies_ = std::make_shared<std::map<int, std::vector<std::shared_ptr<EventManagement::Actors::Enemy>>>>();
 
 
     //------------------specific lists------------------//
-    po_barriers_ = {};
-    po_rubbles_ = {};
-    po_boulders_ = {};
-    po_vines_ = {};
-    po_jumpPoints_ = {};
-    po_colonists_ = {};
-    po_mechs_ = {};
-    po_cliffs_ = {};
-    po_barrels_ = {};
-    po_tutorialBoxes_ = {};
-    po_notes_ = {};
-    po_levelSwitches_ = {};
-    po_uplinks_ = {};
-    po_respawnPoints_ = {};
+    po_barriers_ = std::make_shared<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::Barrier>>>>();
+    po_rubbles_ = std::make_shared<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::Rubble>>>>();;
+    po_boulders_ = std::make_shared<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::Boulder>>>>();
+    po_vines_ = std::make_shared<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::Vine>>>>();
+    po_jumpPoints_ = std::make_shared<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::JumpPoint>>>>();
+    po_colonists_ = std::make_shared<std::map<int, std::vector<std::shared_ptr<EventManagement::Actors::Colonist>>>>();
+    po_mechs_ = std::make_shared<std::map<int, std::vector<std::shared_ptr<EventManagement::Actors::Mech>>>>();
+    po_cliffs_ = std::make_shared<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::Cliff>>>>();
+    po_barrels_ = std::make_shared<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::Barrel>>>>();
+    po_tutorialBoxes_ = std::make_shared<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::TutorialBox>>>>();
+    po_notes_ = std::make_shared<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::Note>>>>();
+    po_levelSwitches_ = std::make_shared<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::LevelSwitch>>>>();
+    po_uplinks_ = std::make_shared<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::Uplink>>>>();
+    po_respawnPoints_ = std::make_shared<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::DroneRespawnPoint>>>>();
 
 
 }
@@ -134,7 +134,10 @@ void CoreLogic::DataProcessing::ActorStorage::setActors(
 template <typename T>
 void CoreLogic::DataProcessing::ActorStorage::addActor(std::shared_ptr<std::map<int, std::vector<std::shared_ptr<T>>>> pa_map, int pa_elevation,
         std::shared_ptr<T> pa_actor) {
-    if (!pa_map->empty()) {
+    if (pa_map == nullptr) {
+        return;
+    }
+    if (!(*pa_map).empty()) {
         auto it = pa_map->find(pa_elevation);
         if (it != pa_map->end()) {
             it->second.push_back(pa_actor);

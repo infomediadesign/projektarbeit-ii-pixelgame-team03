@@ -12,7 +12,7 @@
 CoreLogic::DataProcessing::Map::Map(std::string pa_filename)
 {
 
-    ActorStorage::Initialize();
+//    ActorStorage::Initialize();
     auto po_mapUnique = DataProcessing::tileson.parse(pa_filename);
     po_map_ = std::move(po_mapUnique);
     auto& map = *po_map_;
