@@ -100,7 +100,7 @@ void CoreLogic::UserInterface::Renderer::render(std::shared_ptr<std::map<int, st
                 }
             }
 
-            hud.draw({pa_camera.target.x, pa_camera.target.y, 640, 360});
+//            hud.draw({pa_camera.target.x, pa_camera.target.y, 640, 360});
 
         }
         EndMode2D();
