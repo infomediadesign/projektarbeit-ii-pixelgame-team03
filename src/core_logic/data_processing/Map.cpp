@@ -193,6 +193,8 @@ void CoreLogic::DataProcessing::Map::loadObjects()
                         {CoreLogic::UserInterface::Direction::LEFT, {intervalWest, 0}},
                         {CoreLogic::UserInterface::Direction::RIGHT, {intervalEast, 0}}};
 
+                if (intervalEast == 0 && intervalNorth == 0 && intervalSouth == 0 && intervalWest == 0) objectTurnCycle.at(objectStartingDirection).first = INT_MAX;
+
                 actor = std::make_shared<EventManagement::Actors::Colonist>(CoreLogic::EventManagement::Actors::Colonist
                         (objectPosition, objectHitbox,objectId,objectSize, objectElevation, objectClockwise, objectStartingDirection,  objectTurnCycle));
                 ActorStorage::addActorByType(objectElevation, actor);
