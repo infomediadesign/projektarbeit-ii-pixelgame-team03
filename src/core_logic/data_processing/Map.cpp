@@ -108,7 +108,6 @@ void CoreLogic::DataProcessing::Map::loadObjects()
         for (auto &object: pair.second)
         {
             if (objectId == 424) {
-                std::cout << "fick dich doch" << std::endl;
             }
             std::string klasse = object.getClassType();
 
@@ -194,7 +193,6 @@ void CoreLogic::DataProcessing::Map::loadObjects()
                 ActorStorage::addActor(pair.first, actor);
             }
 
-            std::cout << objectId << std::endl;
             objectId++;
         }
     }
