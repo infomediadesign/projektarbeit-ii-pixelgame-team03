@@ -43,6 +43,7 @@ void Scenes::GameScene::draw(RenderTexture2D &pa_canvas)
 void Scenes::GameScene::update()
 {
     CoreLogic::DataProcessing::ticks++;
+    TraceLog(LOG_INFO, "ticks");
 
     Camera2D &camera = *camera_;
     /**
@@ -54,6 +55,7 @@ void Scenes::GameScene::update()
     std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Actors::Enemy>>> &enemies = *CoreLogic::DataProcessing::ActorStorage::getEnemies();
 
     player->update();
+    TraceLog(LOG_INFO, "player update");
     for (auto &pair: enemies)
     {
         for (auto &enemy: pair.second)
@@ -66,6 +68,7 @@ void Scenes::GameScene::update()
         }
     }
 
+    TraceLog(LOG_INFO, "enemies update");
 
     /**
      *@todo: InputHandler to be called static
@@ -75,6 +78,8 @@ void Scenes::GameScene::update()
 
     CoreLogic::UserInterface::HUD& hud = *CoreLogic::UserInterface::HUD::getInstance();
     hud.update();
+
+    TraceLog(LOG_INFO, "hud update");
 
 
     if (IsKeyPressed(KEY_M))
@@ -171,6 +176,8 @@ void Scenes::GameScene::update()
     } else {
         camera.target.y = playerPos.y - screenY + (playerSize.y/2);
     }
+
+    TraceLog(LOG_INFO, "end update");
 }
 
 
