@@ -33,6 +33,7 @@ namespace CoreLogic::EventManagement::Actors
             turnOrder[3] = UserInterface::Direction::RIGHT;
         }
         bool start = false;
+        int startIndex = 0;
         int currentIndex = 0;
 
         do
@@ -42,6 +43,7 @@ namespace CoreLogic::EventManagement::Actors
                 if (turnOrder[currentIndex] == currentDir)
                 {
                     start = true;
+                    startIndex = currentIndex;
                 }
             } else
             {
@@ -51,12 +53,12 @@ namespace CoreLogic::EventManagement::Actors
                 } else if (turnCycles.at(turnOrder[currentIndex]).first != 0)
                 {
                     primaryDirection_ = turnOrder[currentIndex];
-                    turnCycles.at(primaryDirection_).second = turnCycles.at(primaryDirection_).first;
                     break;
                 }
             }
             (currentIndex < 5) ? (currentIndex++) : currentIndex = 0;
-        } while (currentDir == primaryDirection_);
+        } while (currentDir == primaryDirection_ && currentIndex != startIndex);
+        turnCycles.at(primaryDirection_).second = turnCycles.at(primaryDirection_).first;
 
     }
 
