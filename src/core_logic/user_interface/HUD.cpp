@@ -14,7 +14,7 @@ void CoreLogic::UserInterface::HUD::hudInit()
 {
 
     hudElements_.push_back(DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::HUD_BUTTONS));
-//    hudElements_.push_back(DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::HUD_DISCONNECT));
+    hudElements_.push_back(DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::HUD_DISCONNECT));
 
     hudElements_.push_back(DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::HUD_MAX));
     hudElements_.push_back(DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::HUD_CURRENT));
@@ -22,6 +22,11 @@ void CoreLogic::UserInterface::HUD::hudInit()
     hudElements_.push_back(DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::HUD_MAIN));
     hudElements_.push_back(DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::HUD_INTERACT));
     hudElements_.push_back(DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::HUD_DEATH));
+
+    for (Sprite element: hudElements_)
+    {
+        element.shiftFrame(0);
+    }
 }
 
 void CoreLogic::UserInterface::HUD::draw(Rectangle pa_cameraRec)

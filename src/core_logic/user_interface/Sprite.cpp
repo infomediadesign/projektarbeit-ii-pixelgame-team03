@@ -14,7 +14,7 @@ namespace CoreLogic::UserInterface
         animationStates_ = pa_animationStates;
 
         texture_ = LoadTexture(pa_path.c_str());
-        frame_ = {0, 0, 0, 0};
+        frame_ = {0, 0, (float)animationStates_[0][0].pxStep_, (float)animationStates_[0][0].pxRow_};
     }
 
     void CoreLogic::UserInterface::Sprite::shiftFrame(int pa_stateID,

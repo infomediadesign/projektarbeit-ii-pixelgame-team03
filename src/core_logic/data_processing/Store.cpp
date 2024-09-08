@@ -821,12 +821,12 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
     //max life
     sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/HUD/hive_ARTI_newHUD_max-drone-life.png",
             {
-                    {},
-                    {},
                     {CoreLogic::UserInterface::AnimationState{0 * 360, 640, 1}},
-                    {},
+                    {CoreLogic::UserInterface::AnimationState{0 * 360, 640, 1}},
+                    {CoreLogic::UserInterface::AnimationState{0 * 360, 640, 1}},
                     {CoreLogic::UserInterface::AnimationState{1 * 360, 640, 1}},
-                    {},
+                    {CoreLogic::UserInterface::AnimationState{1 * 360, 640, 1}},
+                    {CoreLogic::UserInterface::AnimationState{1 * 360, 640, 1}},
                     {CoreLogic::UserInterface::AnimationState{2 * 360, 640, 1}}
             });
 
