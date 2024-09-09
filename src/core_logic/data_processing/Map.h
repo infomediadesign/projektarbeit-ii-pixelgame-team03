@@ -43,6 +43,16 @@ namespace CoreLogic::DataProcessing
         int elevationLevels_;
         Color bgColor_;
         void loadObjects();
+        void initializeLists();
+
+        template <typename T>
+        typename std::enable_if<!std::is_pointer<T>::value && !std::is_same<T, std::shared_ptr<typename std::remove_reference<T>::type>>::value,
+                std::shared_ptr<std::map<int, std::vector<T>>>>::type
+        initializeSpecificLists();
+        template <typename T>
+        typename std::enable_if<std::is_same<T, std::shared_ptr<typename std::remove_reference<T>::type>>::value,
+                std::shared_ptr<std::map<int, std::vector<T>>>>::type
+        initializeSpecificLists();
 
     };
 }

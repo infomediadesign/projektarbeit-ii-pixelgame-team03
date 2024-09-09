@@ -271,98 +271,70 @@ void CoreLogic::DataProcessing::Map::loadObjects()
     }
 }
 
-/*
-void CoreLogic::DataProcessing::Map::loadObjects()
+
+
+#include <type_traits>
+
+// Base template for regular types (e.g., tson::Layer)
+template <typename T>
+typename std::enable_if<!std::is_pointer<T>::value && !std::is_same<T, std::shared_ptr<typename std::remove_reference<T>::type>>::value,
+        std::shared_ptr<std::map<int, std::vector<T>>>>::type
+CoreLogic::DataProcessing::Map::initializeSpecificLists()
 {
-    auto drone = std::make_shared<EventManagement::Actors::Drone>(Vector2{100, 100}, Rectangle{100,
-                                                                                               100, 38, 38}, 0,
-                                                                        EventManagement::Actor::CollisionType::NONE,
-                                                                        Vector2{38, 38}, true, 0);
-    ActorStorage::setPlayer(drone);
+    auto list = std::make_shared<std::map<int, std::vector<T>>>();
 
-    int objectId = 1;
-
-    for (auto &pair: *po_objects_)
+    for (int i = 0; i < elevationLevels_; ++i)
     {
-        for (auto &object: pair.second)
-        {
-            std::string klasse = object.getClassType();
-
-            Vector2 objectPosition = {(float) object.getPosition().x, (float) object.getPosition().y};
-
-            tson::PropertyCollection props = object.getProperties();
-
-            EventManagement::Actor::CollisionType objectCollisionType = static_cast<EventManagement::Actor::CollisionType>(props.getProperty(
-                    "collisionType")->getValue<int>());
-
-            bool objectVisible = object.isVisible();
-            Vector2 objectSize = {0, 0};
-
-            try
-            {
-                if (props.hasProperty("actualSizeX") && props.hasProperty("actualSizeY"))
-                {
-
-                    objectSize = {
-                            props.getProperty("actualSizeX")->getValue<float>(), props.getProperty
-                                    ("actualSizeY")->getValue<float>()
-                    };
-                } else if (object.getSize().x != 0 && object.getSize().y != 0) {
-                    objectSize = {
-                            static_cast<float>(object.getSize().x), static_cast<float>(object.getSize().y)
-                    };
-                }
-            } catch (const std::exception &e)
-            {
-                TraceLog(LOG_INFO, "No actualSize Variable");
-            }
-
-
-            Rectangle objectHitbox;
-            if (object.getObjectType() == tson::ObjectType::Rectangle)
-            {
-                objectHitbox = {objectPosition.x, objectPosition.y, (float) (object.getSize().x),
-                                          (float) (object.getSize().y)};
-            }
-
-            std::shared_ptr<EventManagement::Actor> actor = nullptr;
-
-            if (klasse == "Wall")
-            {
-                actor = std::make_shared<EventManagement::Actor>(
-                        EventManagement::Actor(objectPosition, objectHitbox, objectId, objectCollisionType, objectSize, objectVisible, pair.first));
-            }
-
-            if (klasse == "Colonist")
-            {
-                actor = std::make_shared<EventManagement::Actors::Colonist>(
-                        EventManagement::Actors::Colonist(objectPosition, objectHitbox, objectId,
-                                                          objectCollisionType,
-                                                          objectSize, objectVisible, pair.first));
-            } else if (klasse == "Hazmat")
-            {
-                actor = std::make_shared<EventManagement::Actors::Hazmat>(
-                        EventManagement::Actors::Hazmat(objectPosition, objectHitbox, objectId, objectCollisionType,
-                                                        objectSize, objectVisible, pair.first));
-            } else if (klasse == "Mech")
-            {
-                actor = std::make_shared<EventManagement::Actors::Mech>(
-                        EventManagement::Actors::Mech(objectPosition, objectHitbox, objectId, objectCollisionType,
-                                                      objectSize, objectVisible, pair.first));
-            }
-
-
-            if (actor != nullptr)
-            {
-                ActorStorage::addActor(pair.first, actor);
-            }
-
-
-            objectId++;
-        }
+        (*list)[i] = std::vector<T>();  // Initialize with an empty vector of type T
     }
 
+    return list;
 }
- */
+
+// Specialized template for shared_ptr types
+template <typename T>
+typename std::enable_if<std::is_same<T, std::shared_ptr<typename std::remove_reference<T>::type>>::value,
+        std::shared_ptr<std::map<int, std::vector<T>>>>::type
+CoreLogic::DataProcessing::Map::initializeSpecificLists()
+{
+    auto list = std::make_shared<std::map<int, std::vector<T>>>();
+
+    for (int i = 0; i < elevationLevels_; ++i)
+    {
+        (*list)[i] = std::vector<T>();  // Initialize with an empty vector of shared_ptr<T>
+    }
+
+    return list;
+}
+
+// Example usage
+void CoreLogic::DataProcessing::Map::initializeLists()
+{
+    DataProcessing::ActorStorage::setLayers(initializeSpecificLists<tson::Layer>());
+    DataProcessing::ActorStorage::setActors(initializeSpecificLists<std::shared_ptr<EventManagement::Actor>>());
+    DataProcessing::ActorStorage::setCollidables(initializeSpecificLists<std::shared_ptr<EventManagement::Actor>>());
+    DataProcessing::ActorStorage::setVisibles(initializeSpecificLists<std::shared_ptr<EventManagement::Actor>>());
+    DataProcessing::ActorStorage::setAbilities(initializeSpecificLists<std::shared_ptr<EventManagement::Object::Ability>>());
+    DataProcessing::ActorStorage::setWorkerAbilities(initializeSpecificLists<std::shared_ptr<EventManagement::Object::Ability>>());
+    DataProcessing::ActorStorage::setScoutAbilities(initializeSpecificLists<std::shared_ptr<EventManagement::Object::Ability>>());
+    DataProcessing::ActorStorage::setInteractions
+    (initializeSpecificLists<std::shared_ptr<EventManagement::Object::Interaction>>());
+    DataProcessing::ActorStorage::setEnemies(initializeSpecificLists<std::shared_ptr<EventManagement::Actors::Enemy>>());
+    DataProcessing::ActorStorage::setBarriers(initializeSpecificLists<std::shared_ptr<EventManagement::Object::Barrier>>());
+    DataProcessing::ActorStorage::setRubbles(initializeSpecificLists<std::shared_ptr<EventManagement::Object::Rubble>>());
+    DataProcessing::ActorStorage::setBoulders(initializeSpecificLists<std::shared_ptr<EventManagement::Object::Boulder>>());
+    DataProcessing::ActorStorage::setVines(initializeSpecificLists<std::shared_ptr<EventManagement::Object::Vine>>());
+    DataProcessing::ActorStorage::setJumpPoints
+    (initializeSpecificLists<std::shared_ptr<EventManagement::Object::JumpPoint>>());
+    DataProcessing::ActorStorage::setColonists(initializeSpecificLists<std::shared_ptr<EventManagement::Actors::Colonist>>());
+    DataProcessing::ActorStorage::setMechs(initializeSpecificLists<std::shared_ptr<EventManagement::Actors::Mech>>());
+    DataProcessing::ActorStorage::setCliffs(initializeSpecificLists<std::shared_ptr<EventManagement::Object::Cliff>>());
+    DataProcessing::ActorStorage::setBarrels(initializeSpecificLists<std::shared_ptr<EventManagement::Object::Barrel>>());
+    DataProcessing::ActorStorage::setTutorialBoxes(initializeSpecificLists<std::shared_ptr<EventManagement::Object::TutorialBox>>());
+    DataProcessing::ActorStorage::setNotes(initializeSpecificLists<std::shared_ptr<EventManagement::Object::Note>>());
+    DataProcessing::ActorStorage::setLevelSwitches(initializeSpecificLists<std::shared_ptr<EventManagement::Object::LevelSwitch>>());
+    DataProcessing::ActorStorage::setUplinks(initializeSpecificLists<std::shared_ptr<EventManagement::Object::Uplink>>());
+}
+
 
 

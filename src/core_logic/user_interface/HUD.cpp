@@ -62,9 +62,8 @@ void CoreLogic::UserInterface::HUD::update()
     hudElements_[CURRENT].shiftFrame(player.getCurrentHealth() - 1);
 
 
-    TraceLog(LOG_INFO, "Ability: %i", player.canAct());
     hudElements_[MAIN].shiftFrame(player.canAct());
-    TraceLog(LOG_INFO, "Interact: %i", player.canInteract());
+    hudElements_[DEATH].shiftFrame(player.canDeathAbility());
     hudElements_[INTERACT].shiftFrame(player.canInteract());
 
 }
