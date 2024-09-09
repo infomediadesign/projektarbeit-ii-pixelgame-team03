@@ -37,7 +37,10 @@ namespace CoreLogic::EventManagement
         PUSH,
         BARREL,
         JUMP,
+
         FALLING,
+        BOULDER_FALL,
+        BARREL_FALL,
 
         DEATH_ABILITY,
         DISCONNECT,

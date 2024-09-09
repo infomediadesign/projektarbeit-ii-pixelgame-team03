@@ -11,7 +11,7 @@
 
 namespace CoreLogic::EventManagement
 {
-    FallingBoulderEvent::FallingBoulderEvent(std::shared_ptr<Object::Boulder> pa_boulder) : FallingEvent()
+    FallingBoulderEvent::FallingBoulderEvent(std::shared_ptr<Object::Boulder> pa_boulder) : FallingEvent(BOULDER)
     {
         po_mainActor_ = pa_boulder;
         fallHeight_ = std::dynamic_pointer_cast<Object::Boulder>(po_mainActor_) -> getFallHeight();
