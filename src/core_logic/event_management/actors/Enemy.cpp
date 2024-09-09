@@ -57,7 +57,13 @@ namespace CoreLogic::EventManagement::Actors
                     break;
                 }
             }
-            (currentIndex < 5) ? (currentIndex++) : currentIndex = 0;
+            if (currentIndex != 4)
+            {
+                currentIndex++;
+            }else
+            {
+                currentIndex = 0;
+            }
         } while (currentDir == primaryDirection_ && currentIndex != startIndex);
         turnCycles.at(primaryDirection_).second = turnCycles.at(primaryDirection_).first;
 
