@@ -15,6 +15,8 @@ Scenes::DroneSelectionScene::DroneSelectionScene() :
     po_unlockedDrones_->insert({CoreLogic::EventManagement::Actors::Drone::WORKER, true});
     po_unlockedDrones_->insert({CoreLogic::EventManagement::Actors::Drone::SCOUT, false});
 
+    unlockDrone(CoreLogic::EventManagement::Actors::Drone::SCOUT);
+
     sprite_ = CoreLogic::DataProcessing::SpriteStorage::getSprite(CoreLogic::DataProcessing::SpriteStorage::DRONE_SELECTION);
 }
 
@@ -27,7 +29,11 @@ void Scenes::DroneSelectionScene::unlockDrone(CoreLogic::EventManagement::Actors
 void Scenes::DroneSelectionScene::draw(RenderTexture2D &pa_canvas)
 {
     ClearBackground(BLACK);
-    DrawTexturePro(sprite_.getTexture(), sprite_.getFrame(), {0, 0, 640, 360}, {0, 0}, 0, WHITE);
+    BeginTextureMode(pa_canvas);
+    {
+        DrawTexturePro(sprite_.getTexture(), sprite_.getFrame(), {0, 0, 640, 360}, {0, 0}, 0, WHITE);
+    }
+    EndTextureMode();
 }
 
 void Scenes::DroneSelectionScene::update()
@@ -44,18 +50,24 @@ void Scenes::DroneSelectionScene::update()
             switch (selectedDroneType_)
             {
             case CoreLogic::EventManagement::Actors::Drone::WORKER:
-                newDrone = std::make_shared<CoreLogic::EventManagement::Actors::Worker>(
-                        CoreLogic::DataProcessing::ActorStorage::getActiveSpawnPoint()->getPosition(),
-                        player.getHitbox(), player.getId(), player.getSize(), player.getElevation());
+                newDrone = std::make_shared<CoreLogic::EventManagement::Actors::Worker>(Vector2{984, 336}, player.getHitbox(), player.getId(), player.getSize(), 1);
+
+//                newDrone = std::make_shared<CoreLogic::EventManagement::Actors::Worker>(
+//                        CoreLogic::DataProcessing::ActorStorage::getActiveSpawnPoint()->getPosition(),
+//                        player.getHitbox(), player.getId(), player.getSize(), CoreLogic::DataProcessing::ActorStorage::getActiveSpawnPoint()->getElevation());
                 break;
             case CoreLogic::EventManagement::Actors::Drone::SCOUT:
-                newDrone = std::make_shared<CoreLogic::EventManagement::Actors::Scout>(
-                        CoreLogic::DataProcessing::ActorStorage::getActiveSpawnPoint()->getPosition(),
-                        player.getHitbox(), player.getId(), player.getSize(), player.getElevation());
+                newDrone = std::make_shared<CoreLogic::EventManagement::Actors::Scout>(Vector2{984, 336}, player.getHitbox(), player.getId(), player.getSize(), 1);
+
+//                newDrone = std::make_shared<CoreLogic::EventManagement::Actors::Scout>(
+//                        CoreLogic::DataProcessing::ActorStorage::getActiveSpawnPoint()->getPosition(),
+//                        player.getHitbox(), player.getId(), player.getSize(), CoreLogic::DataProcessing::ActorStorage::getActiveSpawnPoint()->getElevation());
                 break;
             }
 
             CoreLogic::DataProcessing::ActorStorage::setPlayer(newDrone);
+            CoreLogic::DataProcessing::StateMachine::changeState(CoreLogic::DataProcessing::GameState::IN_GAME);
+
         } else if (event == CoreLogic::EventManagement::MOVE_RIGHT) {
             if (currentDroneSelection_ == WORKER_SCOUT_UNLOCKED) {
                 currentDroneSelection_ = SCOUT_SELECT;
@@ -79,7 +91,7 @@ void Scenes::DroneSelectionScene::onSwitch()
 {
     if (isDroneUnlocked(CoreLogic::EventManagement::Actors::Drone::SCOUT)) currentDroneSelection_ =  WORKER_SCOUT_UNLOCKED;
     else currentDroneSelection_ = WORKER_SELECT;
-    sprite_.shiftFrame(WORKER_SELECT);
+    sprite_.shiftFrame(currentDroneSelection_);
 
     selectedDroneType_ = CoreLogic::EventManagement::Actors::Drone::WORKER;
     update();

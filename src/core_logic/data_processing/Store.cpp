@@ -646,19 +646,19 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
                             {CoreLogic::UserInterface::AnimationState {2 * 48, 24, 48, 12}}, //right
                     },
                     {    //1 - alert
-                            {CoreLogic::UserInterface::AnimationState {(3 * 48) + (1 * 72), 24, 72, 6, {0, -24}}}, //up
-                            {CoreLogic::UserInterface::AnimationState {(3 * 48) + (0 * 72), 24, 72, 6, {0, -24}}}, //down
-                            {CoreLogic::UserInterface::AnimationState {(3 * 48) + (3 * 72), 24, 72, 6, {0, -24}}}, //left
-                            {CoreLogic::UserInterface::AnimationState {(3 * 48) + (2 * 72), 24, 72, 6, {0, -24}}}, //right
+                            {CoreLogic::UserInterface::AnimationState {(4 * 48) + (1 * 72), 24, 72, 6, {0, -24}}}, //up
+                            {CoreLogic::UserInterface::AnimationState {(4 * 48) + (0 * 72), 24, 72, 6, {0, -24}}}, //down
+                            {CoreLogic::UserInterface::AnimationState {(4 * 48) + (3 * 72), 24, 72, 6, {0, -24}}}, //left
+                            {CoreLogic::UserInterface::AnimationState {(4 * 48) + (2 * 72), 24, 72, 6, {0, -24}}}, //right
                     },
                     {    //2 - shoot
-                            {CoreLogic::UserInterface::AnimationState {(3 * 48) + (5 * 72), 24, 72, 4, {0, -24}}}, //up
-                            {CoreLogic::UserInterface::AnimationState {(3 * 48) + (4 * 72), 24, 72, 4, {0, -24}}}, //down
-                            {CoreLogic::UserInterface::AnimationState {(3 * 48) + (7 * 72), 24, 72, 4, {0, -24}}}, //left
-                            {CoreLogic::UserInterface::AnimationState {(3 * 48) + (6 * 72), 24, 72, 4, {0, -24}}}, //right
+                            {CoreLogic::UserInterface::AnimationState {(4 * 48) + (5 * 72), 24, 72, 4, {0, -24}}}, //up
+                            {CoreLogic::UserInterface::AnimationState {(4 * 48) + (4 * 72), 24, 72, 4, {0, -24}}}, //down
+                            {CoreLogic::UserInterface::AnimationState {(4 * 48) + (7 * 72), 24, 72, 4, {0, -24}}}, //left
+                            {CoreLogic::UserInterface::AnimationState {(4 * 48) + (6 * 72), 24, 72, 4, {0, -24}}}, //right
                     },
                     {    //3 - death
-                            {CoreLogic::UserInterface::AnimationState {(3 * 48) + (8 * 72), 72, 72, 6}},
+                            {CoreLogic::UserInterface::AnimationState {(4 * 48) + (8 * 72), 72, 72, 6}},
                     }
             });
 
