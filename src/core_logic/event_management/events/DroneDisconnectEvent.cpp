@@ -40,7 +40,7 @@ namespace CoreLogic::EventManagement
     DroneDisconnectEvent::~DroneDisconnectEvent()
     {
         std::dynamic_pointer_cast<Actors::Drone>(po_mainActor_) -> decreaseCurrentHealth();
-//        DataProcessing::StateMachine::changeState(DataProcessing::DRONE_SELECTION);
+        DataProcessing::StateMachine::changeState(DataProcessing::DRONE_SELECTION);
     }
 } // CoreLogic
 // EventManagement

@@ -26,6 +26,7 @@ void Scenes::DroneSelectionScene::unlockDrone(CoreLogic::EventManagement::Actors
 
 void Scenes::DroneSelectionScene::draw(RenderTexture2D &pa_canvas)
 {
+    ClearBackground(BLACK);
     DrawTexturePro(sprite_.getTexture(), sprite_.getFrame(), {0, 0, 640, 360}, {0, 0}, 0, WHITE);
 }
 

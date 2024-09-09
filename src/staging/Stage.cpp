@@ -46,6 +46,7 @@ void Staging::Stage::update()
      } else
      {
          po_currentScene_ = po_scenes_[CoreLogic::DataProcessing::StateMachine::getCurrentState()];
+         runningGameState_ = CoreLogic::DataProcessing::StateMachine::getCurrentState();
          po_currentScene_->onSwitch();
      }
 }
