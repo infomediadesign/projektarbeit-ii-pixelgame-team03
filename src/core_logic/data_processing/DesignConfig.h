@@ -41,7 +41,7 @@ namespace CoreLogic::DataProcessing {
         inline static constexpr GamepadButton MOVE_LEFT_CONTROLLER = GAMEPAD_BUTTON_LEFT_FACE_LEFT;
         inline static constexpr GamepadButton MOVE_RIGHT_CONTROLLER = GAMEPAD_BUTTON_LEFT_FACE_RIGHT;
 
-        inline static constexpr GamepadButton INTERACT_CONTROLLER = GAMEPAD_BUTTON_LEFT_FACE_RIGHT;
+        inline static constexpr GamepadButton INTERACT_CONTROLLER = GAMEPAD_BUTTON_RIGHT_FACE_RIGHT;
         inline static constexpr GamepadButton ABILITY_CONTROLLER = GAMEPAD_BUTTON_RIGHT_TRIGGER_1;
         inline static constexpr GamepadButton DISCONNECT_CONTROLLER = GAMEPAD_BUTTON_RIGHT_FACE_UP;
         inline static constexpr GamepadButton DEATH_ABILITY_CONTROLLER = GAMEPAD_BUTTON_RIGHT_TRIGGER_2;

@@ -12,20 +12,21 @@ CoreLogic::UserInterface::HUD::HUD()
 
 void CoreLogic::UserInterface::HUD::hudInit()
 {
+    hudElements_.resize(8);
 
-    hudElements_.push_back(DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::HUD_BUTTONS));
-    hudElements_.push_back(DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::HUD_DISCONNECT));
+    hudElements_[PORTRAIT] = DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::HUD_PORTRAIT);
+    hudElements_[MAX] = DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::HUD_MAX);
+    hudElements_[CURRENT] = DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::HUD_CURRENT);
 
-    hudElements_.push_back(DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::HUD_MAX));
-    hudElements_.push_back(DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::HUD_CURRENT));
-    hudElements_.push_back(DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::HUD_PORTRAIT));
-    hudElements_.push_back(DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::HUD_MAIN));
-    hudElements_.push_back(DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::HUD_INTERACT));
-    hudElements_.push_back(DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::HUD_DEATH));
+    hudElements_[BUTTONS] = DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::HUD_BUTTONS);
+    hudElements_[DISCONNECT] = DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::HUD_DISCONNECT);
+    hudElements_[MAIN] = DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::HUD_MAIN);
+    hudElements_[DEATH] = DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::HUD_DEATH);
+    hudElements_[INTERACT] = DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::HUD_INTERACT);
 
     for (Sprite element: hudElements_)
     {
-        element.shiftFrame(0);
+        element.resetFrame(0);
     }
 }
 
@@ -55,10 +56,15 @@ void CoreLogic::UserInterface::HUD::update()
 {
     CoreLogic::EventManagement::Actors::Drone &player = *CoreLogic::DataProcessing::ActorStorage::getPlayer();
 
-    hudElements_[2].shiftFrame(player.getMaxHealth() - 1);
-    hudElements_[3].shiftFrame(player.getCurrentHealth() - 1);
-    hudElements_[4].shiftFrame(player.getDroneType());
-    hudElements_[5].shiftFrame(player.canAct());
-    hudElements_[6].shiftFrame(player.canInteract());
+
+    hudElements_[PORTRAIT].shiftFrame(player.getDroneType());
+    hudElements_[MAX].shiftFrame(player.getMaxHealth() - 1);
+    hudElements_[CURRENT].shiftFrame(player.getCurrentHealth() - 1);
+
+
+    TraceLog(LOG_INFO, "Ability: %i", player.canAct());
+    hudElements_[MAIN].shiftFrame(player.canAct());
+    TraceLog(LOG_INFO, "Interact: %i", player.canInteract());
+    hudElements_[INTERACT].shiftFrame(player.canInteract());
 
 }

@@ -19,7 +19,17 @@ namespace CoreLogic::UserInterface{
         void update();
         static HUD* getInstance();
     protected:
-        //todo: rework to map?
+        enum HUDElements{
+            PORTRAIT,
+            MAX,
+            CURRENT,
+
+            BUTTONS,
+            DISCONNECT,
+            MAIN,
+            DEATH,
+            INTERACT,
+        };
         std::vector<Sprite> hudElements_;
         void hudInit();
         static HUD* po_instance_;
