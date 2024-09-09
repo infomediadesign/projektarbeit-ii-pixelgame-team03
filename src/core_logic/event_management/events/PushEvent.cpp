@@ -20,7 +20,11 @@ namespace CoreLogic::EventManagement
                 {
                     continue;
                 }
-                if (std::dynamic_pointer_cast<Actor>(barrier) -> getId() != std::dynamic_pointer_cast<Actor>(po_mainActor_)->getId())
+                if (std::dynamic_pointer_cast<Actor>(barrier) -> getId() == std::dynamic_pointer_cast<Actor>(po_mainActor_)->getId())
+                {
+                    continue;
+                }
+                if (barrier->getId() == po_pushable_->getId())
                 {
                     continue;
                 }
