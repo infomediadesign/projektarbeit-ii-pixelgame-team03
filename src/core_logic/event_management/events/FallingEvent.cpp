@@ -13,8 +13,11 @@
 
 CoreLogic::EventManagement::FallingEvent::~FallingEvent()
 {
-    po_mainActor_ -> setVisible(false);
-    po_mainActor_ -> setCollisionType(Actor::CollisionType::NONE);
+    if (variantId_ != FALLING)
+    {
+        po_mainActor_->setVisible(false);
+        po_mainActor_->setCollisionType(Actor::CollisionType::NONE);
+    }
 }
 
 void CoreLogic::EventManagement::FallingEvent::update()
