@@ -24,7 +24,7 @@ void CoreLogic::EventManagement::CleaningEvent::update()
     {
         po_mainActor_->shiftFrame(1);
     }
-    ticks_--;
+    ticks_++;
     if (ticks_==100)
     {
         po_rubble_->setCleaned();

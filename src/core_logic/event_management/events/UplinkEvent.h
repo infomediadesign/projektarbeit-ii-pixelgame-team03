@@ -15,7 +15,7 @@ namespace CoreLogic::EventManagement
     class UplinkEvent : InteractionEvent
     {
     public:
-        UplinkEvent(std::shared_ptr<Object::Uplink> pa_uplink): InteractionEvent(INTERACT) {};
+        UplinkEvent(std::shared_ptr<Object::Uplink> pa_uplink): InteractionEvent() {};
         ~UplinkEvent() = default;
         void update() override;
     };

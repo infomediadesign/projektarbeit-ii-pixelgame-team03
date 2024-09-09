@@ -15,7 +15,7 @@ namespace CoreLogic::EventManagement
     class NoteEvent : public InteractionEvent
     {
     public:
-        NoteEvent(std::shared_ptr<Object::Note> pa_note);
+        NoteEvent(std::shared_ptr<Object::Note> pa_note): InteractionEvent(){};
     };
 
 } // CoreLogic

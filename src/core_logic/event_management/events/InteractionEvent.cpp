@@ -61,9 +61,9 @@ namespace CoreLogic::EventManagement
             case Object::Interaction::InteractionType::CHECKPOINT:
                 return std::make_unique<CheckpointEvent>(std::dynamic_pointer_cast<Object::DroneRespawnPoint>(interaction));
 
-            case Object::Interaction::InteractionType::UPLINK:
+            /*case Object::Interaction::InteractionType::UPLINK:
                 std::unique_ptr<UplinkEvent> jump = std::make_unique<UplinkEvent>(std::dynamic_pointer_cast<Object::Uplink>(interaction));
-                throw EventException("Jump Event Executed", true);
+                throw EventException("Jump Event Executed", true);*/
         }
     }
 

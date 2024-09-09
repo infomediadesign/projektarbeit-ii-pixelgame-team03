@@ -13,6 +13,7 @@
 #include "events/FallingEvent.h"
 #include "events/EnemyDisconnectEvent.h"
 #include "events/EnemyVisionEvent.h"
+#include "events/InteractionEvent.h"
 
 std::mutex CoreLogic::EventManagement::EventHandler::eventHandler_mutex_;
 CoreLogic::EventManagement::EventHandler::EventHandler()
@@ -154,13 +155,13 @@ void CoreLogic::EventManagement::EventHandler::activateEvent(EventEnum pa_activa
         po_activeEvents_[pa_actorID].push_back(std::move(ability));
         return;
     } else if (pa_activateEvent == INTERACT) {
-        std::unique_ptr<AbilityEvent> interact;
+        std::unique_ptr<InteractionEvent> interact;
         /**
          * @Warning: exception handling?
          */
         try
         {
-            interact = std::make_unique<AbilityEvent>();
+            interact = std::make_unique<InteractionEvent>();
             interact = interact->transform();
         } catch (EventException &e) {
             TraceLog(LOG_INFO, e.what());
