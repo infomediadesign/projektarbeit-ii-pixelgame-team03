@@ -134,10 +134,10 @@ namespace CoreLogic::EventManagement::Actors
         Ray visionLines[4];
 
         Vector3 rayVisionOrigin = {visionOrigin_.x, visionOrigin_.y, 0};
-        visionLines[0] = {rayVisionOrigin, {hitbox_.x, hitbox_.y, 0}};
-        visionLines[1] = {rayVisionOrigin, {hitbox_.x + hitbox_.width, hitbox_.y, 0}};
-        visionLines[2] = {rayVisionOrigin, {hitbox_.x + hitbox_.width, hitbox_.y + hitbox_.height, 0}};
-        visionLines[3] = {rayVisionOrigin, {hitbox_.x, hitbox_.y + hitbox_.height, 0}};
+        visionLines[0] = {rayVisionOrigin, {playerHitbox.x, playerHitbox.y, 0}};
+        visionLines[1] = {rayVisionOrigin, {playerHitbox.x + playerHitbox.width, playerHitbox.y, 0}};
+        visionLines[2] = {rayVisionOrigin, {playerHitbox.x + playerHitbox.width, playerHitbox.y + playerHitbox.height, 0}};
+        visionLines[3] = {rayVisionOrigin, {playerHitbox.x, playerHitbox.y + playerHitbox.height, 0}};
 
         bool collides = false;
         bool collisions[4] = {true, true, true, true};
@@ -164,8 +164,7 @@ namespace CoreLogic::EventManagement::Actors
         if (!intersected)
         {
             visionConnected_ = false;
-        } else
-        {
+        } else {
             if (!visionConnected_)
             {
                 visionConnected_ = true;

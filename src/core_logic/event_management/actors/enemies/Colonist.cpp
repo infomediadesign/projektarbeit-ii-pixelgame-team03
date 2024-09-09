@@ -14,7 +14,7 @@ namespace CoreLogic::EventManagement::Actors
             CoreLogic::UserInterface::Direction pa_objectStartingDirection,
             std::map<CoreLogic::UserInterface::Direction, std::pair<int, int>> pa_objectTurnCycle) :
             Enemy(pa_position, pa_hitbox, pa_objectId, pa_objectSize, pa_objectElevation, pa_objectClockwise,
-                    pa_objectStartingDirection, pa_objectTurnCycle, {12, 12})
+                    pa_objectStartingDirection, pa_objectTurnCycle, {pa_position.x +12, pa_position.y + 12})
     {
         sprite_ = DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::COLONIST);
     }
