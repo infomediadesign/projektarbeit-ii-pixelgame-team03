@@ -112,11 +112,6 @@ void CoreLogic::DataProcessing::ActorStorage::Initialize()
     po_uplinks_ = std::make_shared<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::Uplink>>>>();
     po_respawnPoints_ = std::make_shared<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::DroneRespawnPoint>>>>();
 
-    int elevations = 10;
-    for (int i = 0; i < elevations; i++)
-    {
-        po_layers_->insert({i, std::vector<tson::Layer>()});
-    }
 
 }
 
