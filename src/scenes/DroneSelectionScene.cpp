@@ -10,6 +10,8 @@
 Scenes::DroneSelectionScene::DroneSelectionScene() :
         Scene(std::make_shared<Camera2D>())
 {
+    po_unlockedDrones_ = std::make_shared<std::map<CoreLogic::EventManagement::Actors::Drone::DroneType, bool>>();
+
     po_unlockedDrones_->insert({CoreLogic::EventManagement::Actors::Drone::WORKER, true});
     po_unlockedDrones_->insert({CoreLogic::EventManagement::Actors::Drone::SCOUT, false});
 

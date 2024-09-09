@@ -12,7 +12,7 @@ Staging::Stage::Stage(int pa_screenHeight, int pa_screenWidth)
             {
                 {CoreLogic::DataProcessing::GameState::MAIN_MENU, std::make_shared<Scenes::MainMenuScene>()},
                 {CoreLogic::DataProcessing::GameState::IN_GAME,   std::make_shared<Scenes::GameScene>()},
-//                {CoreLogic::DataProcessing::GameState::DRONE_SELECTION, std::make_shared<Scenes::DroneSelectionScene>()},
+                {CoreLogic::DataProcessing::GameState::DRONE_SELECTION, std::make_shared<Scenes::DroneSelectionScene>()},
                 {CoreLogic::DataProcessing::GameState::PAUSE,     std::make_shared<Scenes::PauseScene>()},
                 {CoreLogic::DataProcessing::GameState::SETTINGS, std::make_shared<Scenes::SettingsScene>()}
             };

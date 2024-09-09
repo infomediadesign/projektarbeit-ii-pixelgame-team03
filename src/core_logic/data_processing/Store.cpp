@@ -9,8 +9,6 @@ std::shared_ptr<Texture2D> CoreLogic::DataProcessing::TileMap::getTileMap() {ret
 
 // Define the static member variables for ActorStorage
 
-// Define po_unlockedDrones_
-std::shared_ptr<std::map<CoreLogic::EventManagement::Actors::Drone::DroneType, bool>> CoreLogic::DataProcessing::ActorStorage::po_unlockedDrones_;
 
 //------------------actives------------------//
 std::shared_ptr<CoreLogic::EventManagement::Object::DroneRespawnPoint> CoreLogic::DataProcessing::ActorStorage::po_activeRespawnPoint_;
@@ -72,7 +70,6 @@ void CoreLogic::DataProcessing::TileMap::Initialize()
 
 void CoreLogic::DataProcessing::ActorStorage::Initialize()
 {
-    po_unlockedDrones_ = std::make_shared<std::map<EventManagement::Actors::Drone::DroneType, bool>>();
 
     //------------------actives------------------//
     po_activeRespawnPoint_ = nullptr;
@@ -760,7 +757,7 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
                             {CoreLogic::UserInterface::AnimationState {0 * 48, 48, 48, 1}},
                     },
                     {    //1 - breaking
-                            {CoreLogic::UserInterface::AnimationState {1 * 48, 96,48, 6}},
+                            {CoreLogic::UserInterface::AnimationState {1 * 48, 96,48, 6, {0, -24}}},
                     },
             });
 
@@ -773,7 +770,7 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
                             {CoreLogic::UserInterface::AnimationState {0 * 48, 48, 48, 1}},
                     },
                     {    //1 - breaking
-                            {CoreLogic::UserInterface::AnimationState {1 * 48, 96,48, 6}},
+                            {CoreLogic::UserInterface::AnimationState {1 * 48, 96,48, 6, {0, -24}}},
                     },
             });
 
@@ -786,7 +783,7 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
                             {CoreLogic::UserInterface::AnimationState {0 * 24, 24, 24, 1}},
                     },
                     {    //1 - breaking
-                            {CoreLogic::UserInterface::AnimationState {1 * 24, 120, 120, 11}},
+                            {CoreLogic::UserInterface::AnimationState {1 * 24, 120, 120, 11, {-48, -48}}},
                     },
             });
 
