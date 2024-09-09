@@ -14,7 +14,8 @@ namespace CoreLogic::UserInterface
     struct AnimationState
     {
         int pxRow_; //it has to be measured in px to account for different sized states
-        int pxStep_; // same thing here
+        int width_; // same thing here
+        int height_; // and here
         int steps_;
         Vector2 relativePosition_;
     };
@@ -52,7 +53,7 @@ namespace CoreLogic::UserInterface
         int currentStateId_ = 0;
         int currentStep_ = 0;
 
-        Direction primaryDirection_ = Direction::RIGHT;
+        Direction primaryDirection_ = Direction::UP;
 
         std::string path_ = "";
         Texture2D texture_;

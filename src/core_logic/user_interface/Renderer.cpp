@@ -20,7 +20,6 @@ CoreLogic::UserInterface::Renderer *CoreLogic::UserInterface::Renderer::getInsta
 
 void CoreLogic::UserInterface::Renderer::render(std::shared_ptr<std::map<int, std::vector<tson::Layer>>> pa_layers, std::shared_ptr<std::map<int,std::vector<EventManagement::Actor>>> &pa_actors, Camera2D &pa_camera, RenderTexture2D &pa_canvas, Color pa_bgColor)
 {
-    TraceLog(LOG_INFO, "Rendering");
     int screenWidth = CoreLogic::DataProcessing::screenWidth_;
     int screenHeight = CoreLogic::DataProcessing::screenHeight_;
     CoreLogic::UserInterface::HUD &hud = *CoreLogic::UserInterface::HUD::getInstance();
@@ -63,7 +62,6 @@ void CoreLogic::UserInterface::Renderer::render(std::shared_ptr<std::map<int, st
                     }
                 }
             }
-            TraceLog(LOG_INFO, "Rendering actors");
             std::shared_ptr<CoreLogic::EventManagement::Actors::Drone> player = CoreLogic::DataProcessing::ActorStorage::getPlayer();
             auto &visibles = *CoreLogic::DataProcessing::ActorStorage::getVisibles();
             for (auto & pair: visibles)
@@ -102,7 +100,7 @@ void CoreLogic::UserInterface::Renderer::render(std::shared_ptr<std::map<int, st
                 }
             }
 
-            hud.draw({pa_camera.target.x, pa_camera.target.y, 640, 360});
+//            hud.draw({pa_camera.target.x, pa_camera.target.y, 640, 360});
 
         }
         EndMode2D();

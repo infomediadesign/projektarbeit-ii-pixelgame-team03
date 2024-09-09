@@ -602,19 +602,19 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
     UserInterface::Sprite sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/hive_ARTI_Worker-Spritesheet.png",
             {
                     {    //0 - walking
-                        {CoreLogic::UserInterface::AnimationState {1 * 38, 38, 8}}, //up
-                        {CoreLogic::UserInterface::AnimationState {0 * 38, 38, 8}}, //down
-                        {CoreLogic::UserInterface::AnimationState {3 * 38, 38, 8}}, //left
-                        {CoreLogic::UserInterface::AnimationState {2 * 38, 38, 8}}, //right
+                        {CoreLogic::UserInterface::AnimationState {1 * 38, 38, 38, 8}}, //up
+                        {CoreLogic::UserInterface::AnimationState {0 * 38, 38, 38, 8}}, //down
+                        {CoreLogic::UserInterface::AnimationState {3 * 38, 38, 38, 8}}, //left
+                        {CoreLogic::UserInterface::AnimationState {2 * 38, 38, 38, 8}}, //right
                     },
                     {    //1 - ability
-                            {CoreLogic::UserInterface::AnimationState {5 * 38, 38, 8}}, //up
-                            {CoreLogic::UserInterface::AnimationState {4 * 38, 38, 8}}, //down
-                            {CoreLogic::UserInterface::AnimationState {7 * 38, 38, 8}}, //left
-                            {CoreLogic::UserInterface::AnimationState {6 * 38, 38, 8}}, //right
+                            {CoreLogic::UserInterface::AnimationState {5 * 38, 38, 38, 8}}, //up
+                            {CoreLogic::UserInterface::AnimationState {4 * 38, 38, 38, 8}}, //down
+                            {CoreLogic::UserInterface::AnimationState {7 * 38, 38, 38, 8}}, //left
+                            {CoreLogic::UserInterface::AnimationState {6 * 38, 38, 38, 8}}, //right
                     },
                     {    //2 - death
-                        {CoreLogic::UserInterface::AnimationState {8 * 38, 38, 12}},
+                        {CoreLogic::UserInterface::AnimationState {8 * 38, 38, 38, 12}},
                     }
             });
 
@@ -624,19 +624,19 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
     sprite = UserInterface::Sprite("", //@todo: insert scout path
             {
                     {    //0 - walking
-                            {CoreLogic::UserInterface::AnimationState {1 * 38, 38, 8}}, //up
-                            {CoreLogic::UserInterface::AnimationState {0 * 38, 38, 8}}, //down
-                            {CoreLogic::UserInterface::AnimationState {3 * 38, 38, 8}}, //left
-                            {CoreLogic::UserInterface::AnimationState {2 * 38, 38, 8}}, //right
+                            {CoreLogic::UserInterface::AnimationState {1 * 38, 38, 38, 8}}, //up
+                            {CoreLogic::UserInterface::AnimationState {0 * 38, 38, 38, 8}}, //down
+                            {CoreLogic::UserInterface::AnimationState {3 * 38, 38, 38, 8}}, //left
+                            {CoreLogic::UserInterface::AnimationState {2 * 38, 38, 38, 8}}, //right
                     },
                     {    //1 - ability
-                            {CoreLogic::UserInterface::AnimationState {5 * 38, 38, 8}}, //up
-                            {CoreLogic::UserInterface::AnimationState {4 * 38, 38, 8}}, //down
-                            {CoreLogic::UserInterface::AnimationState {7 * 38, 38, 8}}, //left
-                            {CoreLogic::UserInterface::AnimationState {6 * 38, 38, 8}}, //right
+                            {CoreLogic::UserInterface::AnimationState {5 * 38, 38, 38, 8}}, //up
+                            {CoreLogic::UserInterface::AnimationState {4 * 38, 38, 38, 8}}, //down
+                            {CoreLogic::UserInterface::AnimationState {7 * 38, 38, 38, 8}}, //left
+                            {CoreLogic::UserInterface::AnimationState {6 * 38, 38, 38, 8}}, //right
                     },
                     {    //2 - death
-                            {CoreLogic::UserInterface::AnimationState {8 * 38, 38, 12}},
+                            {CoreLogic::UserInterface::AnimationState {8 * 38, 38, 38, 12}},
                     }
             });
 
@@ -646,25 +646,25 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
     sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/hive_ARTI_Colonist-Spritesheet.png",
             {
                     {    //0 - idle
-                            {CoreLogic::UserInterface::AnimationState {1 * 48, 24, 12}}, //up
-                            {CoreLogic::UserInterface::AnimationState {0 * 48, 24, 12}}, //down
-                            {CoreLogic::UserInterface::AnimationState {3 * 48, 24, 12}}, //left
-                            {CoreLogic::UserInterface::AnimationState {2 * 48, 24, 12}}, //right
+                            {CoreLogic::UserInterface::AnimationState {1 * 48, 24, 48, 12}}, //up
+                            {CoreLogic::UserInterface::AnimationState {0 * 48, 24, 48, 12}}, //down
+                            {CoreLogic::UserInterface::AnimationState {3 * 48, 24, 48, 12}}, //left
+                            {CoreLogic::UserInterface::AnimationState {2 * 48, 24, 48, 12}}, //right
                     },
                     {    //1 - alert
-                            {CoreLogic::UserInterface::AnimationState {(3 * 48) + (1 * 72), 24, 6, {0, -24}}}, //up
-                            {CoreLogic::UserInterface::AnimationState {(3 * 48) + (0 * 72), 24, 6, {0, -24}}}, //down
-                            {CoreLogic::UserInterface::AnimationState {(3 * 48) + (3 * 72), 24, 6, {0, -24}}}, //left
-                            {CoreLogic::UserInterface::AnimationState {(3 * 48) + (2 * 72), 24, 6, {0, -24}}}, //right
+                            {CoreLogic::UserInterface::AnimationState {(3 * 48) + (1 * 72), 24, 72, 6, {0, -24}}}, //up
+                            {CoreLogic::UserInterface::AnimationState {(3 * 48) + (0 * 72), 24, 72, 6, {0, -24}}}, //down
+                            {CoreLogic::UserInterface::AnimationState {(3 * 48) + (3 * 72), 24, 72, 6, {0, -24}}}, //left
+                            {CoreLogic::UserInterface::AnimationState {(3 * 48) + (2 * 72), 24, 72, 6, {0, -24}}}, //right
                     },
                     {    //2 - shoot
-                            {CoreLogic::UserInterface::AnimationState {(3 * 48) + (5 * 72), 24, 4, {0, -24}}}, //up
-                            {CoreLogic::UserInterface::AnimationState {(3 * 48) + (4 * 72), 24, 4, {0, -24}}}, //down
-                            {CoreLogic::UserInterface::AnimationState {(3 * 48) + (7 * 72), 24, 4, {0, -24}}}, //left
-                            {CoreLogic::UserInterface::AnimationState {(3 * 48) + (6 * 72), 24, 4, {0, -24}}}, //right
+                            {CoreLogic::UserInterface::AnimationState {(3 * 48) + (5 * 72), 24, 72, 4, {0, -24}}}, //up
+                            {CoreLogic::UserInterface::AnimationState {(3 * 48) + (4 * 72), 24, 72, 4, {0, -24}}}, //down
+                            {CoreLogic::UserInterface::AnimationState {(3 * 48) + (7 * 72), 24, 72, 4, {0, -24}}}, //left
+                            {CoreLogic::UserInterface::AnimationState {(3 * 48) + (6 * 72), 24, 72, 4, {0, -24}}}, //right
                     },
                     {    //3 - death
-                            {CoreLogic::UserInterface::AnimationState {(3 * 48) + (8 * 72), 73, 6}},
+                            {CoreLogic::UserInterface::AnimationState {(3 * 48) + (8 * 72), 72, 72, 6}},
                     }
             });
 
@@ -674,25 +674,25 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
     sprite = UserInterface::Sprite("", //@todo: insert mech path
             {
                     {    //0 - idle
-                            {CoreLogic::UserInterface::AnimationState {1 * 48, 24, 12}}, //up
-                            {CoreLogic::UserInterface::AnimationState {0 * 48, 24, 12}}, //down
-                            {CoreLogic::UserInterface::AnimationState {3 * 48, 24, 12}}, //left
-                            {CoreLogic::UserInterface::AnimationState {2 * 48, 24, 12}}, //right
+                            {CoreLogic::UserInterface::AnimationState {1 * 48, 24, 48, 12}}, //up
+                            {CoreLogic::UserInterface::AnimationState {0 * 48, 24, 48, 12}}, //down
+                            {CoreLogic::UserInterface::AnimationState {3 * 48, 24, 48, 12}}, //left
+                            {CoreLogic::UserInterface::AnimationState {2 * 48, 24, 48, 12}}, //right
                     },
                     {    //1 - alert
-                            {CoreLogic::UserInterface::AnimationState {(3 * 48) + (1 * 72), 24, 6, {0, -24}}}, //up
-                            {CoreLogic::UserInterface::AnimationState {(3 * 48) + (0 * 72), 24, 6, {0, -24}}}, //down
-                            {CoreLogic::UserInterface::AnimationState {(3 * 48) + (3 * 72), 24, 6, {0, -24}}}, //left
-                            {CoreLogic::UserInterface::AnimationState {(3 * 48) + (2 * 72), 24, 6, {0, -24}}}, //right
+                            {CoreLogic::UserInterface::AnimationState {(3 * 48) + (1 * 72), 24, 72, 6, {0, -24}}}, //up
+                            {CoreLogic::UserInterface::AnimationState {(3 * 48) + (0 * 72), 24, 72, 6, {0, -24}}}, //down
+                            {CoreLogic::UserInterface::AnimationState {(3 * 48) + (3 * 72), 24, 72, 6, {0, -24}}}, //left
+                            {CoreLogic::UserInterface::AnimationState {(3 * 48) + (2 * 72), 24, 72, 6, {0, -24}}}, //right
                     },
                     {    //2 - shoot
-                            {CoreLogic::UserInterface::AnimationState {(3 * 48) + (5 * 72), 24, 4, {0, -24}}}, //up
-                            {CoreLogic::UserInterface::AnimationState {(3 * 48) + (4 * 72), 24, 4, {0, -24}}}, //down
-                            {CoreLogic::UserInterface::AnimationState {(3 * 48) + (7 * 72), 24, 4, {0, -24}}}, //left
-                            {CoreLogic::UserInterface::AnimationState {(3 * 48) + (6 * 72), 24, 4, {0, -24}}}, //right
+                            {CoreLogic::UserInterface::AnimationState {(3 * 48) + (5 * 72), 24, 72, 4, {0, -24}}}, //up
+                            {CoreLogic::UserInterface::AnimationState {(3 * 48) + (4 * 72), 24, 72, 4, {0, -24}}}, //down
+                            {CoreLogic::UserInterface::AnimationState {(3 * 48) + (7 * 72), 24, 72, 4, {0, -24}}}, //left
+                            {CoreLogic::UserInterface::AnimationState {(3 * 48) + (6 * 72), 24, 72, 4, {0, -24}}}, //right
                     },
                     {    //3 - death
-                            {CoreLogic::UserInterface::AnimationState {(3 * 48) + (8 * 72), 73, 6, {-24, -24}}},
+                            {CoreLogic::UserInterface::AnimationState {(3 * 48) + (8 * 72), 72, 72, 6, {-24, -24}}},
                     }
             });
 
@@ -702,10 +702,10 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
     sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/Abilities/hive_ARTI_Overworld-Rubble-Spritesheet.png",
             {
                     {    //0 - idle
-                            {CoreLogic::UserInterface::AnimationState {0 * 24, 24, 1}},
+                            {CoreLogic::UserInterface::AnimationState {0 * 24, 24, 24, 1}},
                     },
                     {    //1 - breaking
-                            {CoreLogic::UserInterface::AnimationState {1 * 24, 24, 11}},
+                            {CoreLogic::UserInterface::AnimationState {1 * 24, 24, 24, 11}},
                     },
             });
 
@@ -715,39 +715,26 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
     sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/Abilities/hive_ARTI_Underworld-Rubble-Spritesheet.png",
             {
                     {    //0 - idle
-                            {CoreLogic::UserInterface::AnimationState {0 * 24, 24, 1}},
+                            {CoreLogic::UserInterface::AnimationState {0 * 24, 24, 24, 1}},
                     },
                     {    //1 - breaking
-                            {CoreLogic::UserInterface::AnimationState {1 * 24, 24, 11}},
+                            {CoreLogic::UserInterface::AnimationState {1 * 24, 24, 24, 11}},
                     },
             });
 
     po_sprites_.push_back(sprite);
 
     //spawn - overworld
-    sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/Abilities/hive_ARTI_Overworld-Rubble-Spritesheet.png",
-            {
-                    {    //0 - idle
-                            {CoreLogic::UserInterface::AnimationState {0 * 24, 24, 1}},
-                    },
-                    {    //1 - breaking
-                            {CoreLogic::UserInterface::AnimationState {1 * 24, 24, 11}},
-                    },
-            });
-
-    po_sprites_.push_back(sprite);
-
-    //spawn - overworld
-    sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/Interacts/hive_ARTI_Overworld-Respawns-Spritesheet.png",
+    sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/Abilities/hive_ARTI_Overworld-Respawns-Spritesheet.png",
             {
                     {    //0 - undiscovered
-                            {CoreLogic::UserInterface::AnimationState {0 * 24, 24, 1}},
+                            {CoreLogic::UserInterface::AnimationState {0 * 48, 48, 48, 1}},
                     },
                     {    //1 - discovered
-                            {CoreLogic::UserInterface::AnimationState {1 * 24, 24, 1}},
+                            {CoreLogic::UserInterface::AnimationState {1 * 48, 48, 48, 1}},
                     },
-                    {    //1 - active
-                            {CoreLogic::UserInterface::AnimationState {2 * 24, 24, 1}},
+                    {    //2 - active
+                            {CoreLogic::UserInterface::AnimationState {1 * 48, 48, 48, 11}},
                     },
             });
 
@@ -757,13 +744,26 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
     sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/Interacts/hive_ARTI_Underworld-Respawns-Spritesheet.png",
             {
                     {    //0 - undiscovered
-                            {CoreLogic::UserInterface::AnimationState {0 * 24, 24, 1}},
+                            {CoreLogic::UserInterface::AnimationState {0 * 48, 48, 48, 1}},
                     },
                     {    //1 - discovered
-                            {CoreLogic::UserInterface::AnimationState {1 * 24, 24, 1}},
+                            {CoreLogic::UserInterface::AnimationState {1 * 48, 48, 48, 1}},
                     },
-                    {    //1 - active
-                            {CoreLogic::UserInterface::AnimationState {2 * 24, 24, 1}},
+                    {    //2 - active
+                            {CoreLogic::UserInterface::AnimationState {1 * 48, 48, 48, 11}},
+                    },
+            });
+
+    po_sprites_.push_back(sprite);
+
+    //boulder - overworld
+    sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/Abilities/hive_ARTI_Overworld-Boulder-Spritesheet.png",
+            {
+                    {    //0 - idle
+                            {CoreLogic::UserInterface::AnimationState {0 * 48, 48, 48, 1}},
+                    },
+                    {    //1 - breaking
+                            {CoreLogic::UserInterface::AnimationState {1 * 48, 96,48, 6}},
                     },
             });
 
@@ -773,10 +773,10 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
     sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/Abilities/hive_ARTI_Underworld-Boulder-Spritesheet.png",
             {
                     {    //0 - idle
-                            {CoreLogic::UserInterface::AnimationState {0 * 48, 48, 1}},
+                            {CoreLogic::UserInterface::AnimationState {0 * 48, 48, 48, 1}},
                     },
                     {    //1 - breaking
-                            {CoreLogic::UserInterface::AnimationState {1 * 48, 96, 6}},
+                            {CoreLogic::UserInterface::AnimationState {1 * 48, 96,48, 6}},
                     },
             });
 
@@ -786,10 +786,10 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
     sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/hive_ARTI_Explosive-Barrel-Spritesheet.png",
             {
                     {    //0 - idle
-                            {CoreLogic::UserInterface::AnimationState {0 * 24, 24, 1}},
+                            {CoreLogic::UserInterface::AnimationState {0 * 24, 24, 24, 1}},
                     },
                     {    //1 - breaking
-                            {CoreLogic::UserInterface::AnimationState {1 * 24, 120, 11}},
+                            {CoreLogic::UserInterface::AnimationState {1 * 24, 120, 120, 11}},
                     },
             });
 
@@ -799,7 +799,7 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
     sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/Interacts/hive_ARTI_Lore-Item-Spritesheet.png",
             {
                     {    //0 - idle
-                            {CoreLogic::UserInterface::AnimationState {0 * 24, 24, 6}},
+                            {CoreLogic::UserInterface::AnimationState {0 * 24, 24, 24, 6}},
                     },
             });
 
@@ -809,7 +809,7 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
     sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/Interacts/hive_ARTI_Uplink-Spritesheet.png",
             {
                     {    //0 - idle
-                            {CoreLogic::UserInterface::AnimationState {0 * 48, 48, 6}},
+                            {CoreLogic::UserInterface::AnimationState {0 * 48, 24, 48, 6}},
                     },
             });
 
@@ -821,13 +821,13 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
     //max life
     sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/HUD/hive_ARTI_newHUD_max-drone-life.png",
             {
-                    {CoreLogic::UserInterface::AnimationState{0 * 360, 640, 1}},
-                    {CoreLogic::UserInterface::AnimationState{0 * 360, 640, 1}},
-                    {CoreLogic::UserInterface::AnimationState{0 * 360, 640, 1}},
-                    {CoreLogic::UserInterface::AnimationState{1 * 360, 640, 1}},
-                    {CoreLogic::UserInterface::AnimationState{1 * 360, 640, 1}},
-                    {CoreLogic::UserInterface::AnimationState{1 * 360, 640, 1}},
-                    {CoreLogic::UserInterface::AnimationState{2 * 360, 640, 1}}
+                    {CoreLogic::UserInterface::AnimationState{0 * 360, 640, 360, 1}},
+                    {CoreLogic::UserInterface::AnimationState{0 * 360, 640, 360, 1}},
+                    {CoreLogic::UserInterface::AnimationState{0 * 360, 640, 360, 1}},
+                    {CoreLogic::UserInterface::AnimationState{1 * 360, 640, 360, 1}},
+                    {CoreLogic::UserInterface::AnimationState{1 * 360, 640, 360, 1}},
+                    {CoreLogic::UserInterface::AnimationState{1 * 360, 640, 360, 1}},
+                    {CoreLogic::UserInterface::AnimationState{2 * 360, 640, 360, 1}}
             });
 
     po_sprites_.push_back(sprite);
@@ -835,13 +835,13 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
     //current life
     sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/HUD/hive_ARTI_newHUD_current-drone-life.png",
             {
-                    {CoreLogic::UserInterface::AnimationState{0 * 360, 640, 1}},
-                    {CoreLogic::UserInterface::AnimationState{1 * 360, 640, 1}},
-                    {CoreLogic::UserInterface::AnimationState{2 * 360, 640, 1}},
-                    {CoreLogic::UserInterface::AnimationState{3 * 360, 640, 1}},
-                    {CoreLogic::UserInterface::AnimationState{4 * 360, 640, 1}},
-                    {CoreLogic::UserInterface::AnimationState{5 * 360, 640, 1}},
-                    {CoreLogic::UserInterface::AnimationState{6 * 360, 640, 1}}
+                    {CoreLogic::UserInterface::AnimationState{0 * 360, 640, 360, 1}},
+                    {CoreLogic::UserInterface::AnimationState{1 * 360, 640, 360, 1}},
+                    {CoreLogic::UserInterface::AnimationState{2 * 360, 640, 360, 1}},
+                    {CoreLogic::UserInterface::AnimationState{3 * 360, 640, 360, 1}},
+                    {CoreLogic::UserInterface::AnimationState{4 * 360, 640, 360, 1}},
+                    {CoreLogic::UserInterface::AnimationState{5 * 360, 640, 360, 1}},
+                    {CoreLogic::UserInterface::AnimationState{6 * 360, 640, 360, 1}}
             });
 
     po_sprites_.push_back(sprite);
@@ -849,8 +849,8 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
     //portrait
     sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/HUD/hive_ARTI_newHUD_portrait.png",
             {
-                    {CoreLogic::UserInterface::AnimationState{0 * 360, 640, 1}},
-                    {CoreLogic::UserInterface::AnimationState{1 * 360, 640, 1}}
+                    {CoreLogic::UserInterface::AnimationState{0 * 360, 640, 360, 1}},
+                    {CoreLogic::UserInterface::AnimationState{1 * 360, 640, 360, 1}}
             });
 
     po_sprites_.push_back(sprite);
@@ -858,7 +858,7 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
     //buttons
     sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/HUD/hive_ARTI_newHUD_buttons.png",
             {
-                    {CoreLogic::UserInterface::AnimationState{1 * 360, 640, 1}}
+                    {CoreLogic::UserInterface::AnimationState{1 * 360, 640, 360, 1}}
             });
 
     po_sprites_.push_back(sprite);
@@ -866,8 +866,8 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
     //interact
     sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/HUD/hive_ARTI_newHUD_interact.png",
             {
-                    {CoreLogic::UserInterface::AnimationState{1 * 360, 640, 1}},
-                    {CoreLogic::UserInterface::AnimationState{0 * 360, 640, 1}}
+                    {CoreLogic::UserInterface::AnimationState{1 * 360, 640, 360, 1}},
+                    {CoreLogic::UserInterface::AnimationState{0 * 360, 640, 360, 1}}
             });
 
     po_sprites_.push_back(sprite);
@@ -875,7 +875,7 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
     //disconnect
     sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/HUD/hive_ARTI_newHUD_disconnect.png",
             {
-                    {CoreLogic::UserInterface::AnimationState{0 * 360, 640, 1}}
+                    {CoreLogic::UserInterface::AnimationState{0 * 360, 640, 360, 1}}
             });
 
     po_sprites_.push_back(sprite);
@@ -883,8 +883,8 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
     //main ability
     sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/HUD/hive_ARTI_newHUD_main-ability.png",
             {
-                    {CoreLogic::UserInterface::AnimationState{1 * 360, 640, 1}},
-                    {CoreLogic::UserInterface::AnimationState{0 * 360, 640, 1}}
+                    {CoreLogic::UserInterface::AnimationState{1 * 360, 640, 360, 1}},
+                    {CoreLogic::UserInterface::AnimationState{0 * 360, 640, 360, 1}}
             });
 
     po_sprites_.push_back(sprite);
@@ -892,8 +892,8 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
     //death ability
     sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/HUD/hive_ARTI_newHUD_death-ability.png",
             {
-                    {CoreLogic::UserInterface::AnimationState{1 * 360, 640, 1}},
-                    {CoreLogic::UserInterface::AnimationState{0 * 360, 640, 1}}
+                    {CoreLogic::UserInterface::AnimationState{1 * 360, 640, 360, 1}},
+                    {CoreLogic::UserInterface::AnimationState{0 * 360, 640, 360, 1}}
             });
 
     po_sprites_.push_back(sprite);
@@ -901,9 +901,9 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
     //drone selection
     sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/hive_ARTI_newHUD_drone-selection-screen-Spritesheet.png",
             {
-                    {CoreLogic::UserInterface::AnimationState{0 * 360, 640, 1}},
-                    {CoreLogic::UserInterface::AnimationState{1 * 360, 640, 1}},
-                    {CoreLogic::UserInterface::AnimationState{2 * 360, 640, 1}},
+                    {CoreLogic::UserInterface::AnimationState{0 * 360, 640, 360, 1}},
+                    {CoreLogic::UserInterface::AnimationState{1 * 360, 640, 360, 1}},
+                    {CoreLogic::UserInterface::AnimationState{2 * 360, 640, 360, 1}},
             });
 
     po_sprites_.push_back(sprite);

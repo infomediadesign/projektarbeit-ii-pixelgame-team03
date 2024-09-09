@@ -14,7 +14,7 @@ namespace CoreLogic::EventManagement::Actors
     {
         if (turnCycles.at(primaryDirection_).second <= 0)
         {
-            TraceLog(LOG_INFO, "turn");
+            TraceLog(LOG_INFO, "don't remove. It will crash.");
             turn();
         } else
         {
@@ -48,7 +48,6 @@ namespace CoreLogic::EventManagement::Actors
                 }
             } else
             {
-                TraceLog(LOG_INFO, "looking for direction");
                 if (turnOrder[currentIndex] == currentDir)
                 {
                     continue;
@@ -58,9 +57,14 @@ namespace CoreLogic::EventManagement::Actors
                     break;
                 }
             }
-            (currentIndex < 5) ? (currentIndex++) : currentIndex = 0;
+            if (currentIndex != 4)
+            {
+                currentIndex++;
+            }else
+            {
+                currentIndex = 0;
+            }
         } while (currentDir == primaryDirection_ && currentIndex != startIndex);
-        TraceLog(LOG_INFO, "turncycle updated");
         turnCycles.at(primaryDirection_).second = turnCycles.at(primaryDirection_).first;
 
     }
@@ -87,25 +91,20 @@ namespace CoreLogic::EventManagement::Actors
 
     void Enemy::update()
     {
-        TraceLog(LOG_INFO, "Enemy Updating");
         if (dead_)
         {
             return;
         }
-        TraceLog(LOG_INFO, "not dead");
         if (!visionConnected_)
         {
             updateTurnCycle();
-            TraceLog(LOG_INFO, "turn cycle updated");
             shiftFrame(0);
-            TraceLog(LOG_INFO, "frame shifted");
         }
         checkVision();
     }
 
     void Enemy::checkVision()
     {
-        TraceLog(LOG_INFO, "Checking Vision");
         int range = CoreLogic::DataProcessing::DesignConfig::COLONIST_RANGE * CoreLogic::DataProcessing::tileSize;
         auto player = CoreLogic::DataProcessing::ActorStorage::getPlayer();
         Rectangle playerHitbox = player->getHitbox();
@@ -142,7 +141,6 @@ namespace CoreLogic::EventManagement::Actors
 
         bool collides = false;
         bool collisions[4] = {true, true, true, true};
-        TraceLog(LOG_INFO, "Checking Vision");
         for (int i = 0; i < 4; i++)
         {
             Vector2 collisionPoint = {visionLines[i].direction.x, visionLines[i].direction.y};

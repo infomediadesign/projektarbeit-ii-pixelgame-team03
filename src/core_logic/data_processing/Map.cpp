@@ -235,13 +235,13 @@ void CoreLogic::DataProcessing::Map::loadObjects()
                 ActorStorage::addActorByType(objectElevation, actor);
             }else if (objectClass == "textbox")
             {
-                std::string objectText = objectProperties.getProperty("text")->getValue<std::string>();
+                std::string objectText = objectProperties.getProperty("textbox_text")->getValue<std::string>();
 
                 actor = std::make_shared<EventManagement::Object::TutorialBox>(EventManagement::Object::TutorialBox(objectPosition, objectHitbox, objectId, objectSize, objectElevation, objectText));
                 ActorStorage::addActorByType(objectElevation, actor);
             } else if (objectClass == "lore_item")
             {
-                std::string objectText = objectProperties.getProperty("text")->getValue<std::string>();
+                std::string objectText = objectProperties.getProperty("lore_item_text")->getValue<std::string>();
 
                 actor = std::make_shared<EventManagement::Object::Note>(EventManagement::Object::Note(objectPosition,
                         objectHitbox, objectId, objectSize, objectElevation, objectText));
