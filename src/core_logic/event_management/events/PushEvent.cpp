@@ -50,7 +50,22 @@ namespace CoreLogic::EventManagement
                 {
                     throw EventException("Collision with barrier", false);
                 }
-                ticks_ = 30;
+            }
+            ticks_ = 30;
+            switch (po_mainActor_->getPrimaryDirection())
+            {
+                case CoreLogic::UserInterface::Direction::UP:
+                    push_ = {0, -12};
+                    break;
+                case CoreLogic::UserInterface::Direction::DOWN:
+                    push_ = {0, 12};
+                    break;
+                case CoreLogic::UserInterface::Direction::LEFT:
+                    push_ = {-12, 0};
+                    break;
+                case CoreLogic::UserInterface::Direction::RIGHT:
+                    push_ = {12, 0};
+                    break;
             }
 
         }
@@ -97,54 +112,41 @@ namespace CoreLogic::EventManagement
                 po_mainActor_->shiftFrame(1);
             }
 
-            Vector2 push;
-            switch (po_mainActor_->getPrimaryDirection())
-            {
-                case CoreLogic::UserInterface::Direction::UP:
-                    push = {0, -12};
-                    break;
-                case CoreLogic::UserInterface::Direction::DOWN:
-                    push = {0, 12};
-                    break;
-                case CoreLogic::UserInterface::Direction::LEFT:
-                    push = {-12, 0};
-                    break;
-                case CoreLogic::UserInterface::Direction::RIGHT:
-                    push = {12, 0};
-                    break;
-            }
             Rectangle destination = po_pushable_ -> getHitbox();
 
             switch (ticks_)
             {
                 case 21:
-                    destination.x += push.x;
-                    destination.y += push.y;
-                    push.x /= 2;
-                    push.y /= 2;
+                    destination.x += push_.x;
+                    destination.y += push_.y;
+                    push_.x /= 2;
+                    push_.y /= 2;
+                    po_pushable_->setPosition({destination.x, destination.y});
                     break;
                 case 12:
-                    destination.x += push.x;
-                    destination.y += push.y;
-                    push.x /= 2;
-                    push.y /= 2;
+                    destination.x += push_.x;
+                    destination.y += push_.y;
+                    push_.x /= 2;
+                    push_.y /= 2;
+                    po_pushable_->setPosition({destination.x, destination.y});
                     break;
                 case 6:
-                    destination.x += push.x;
-                    destination.y += push.y;
+                    destination.x += push_.x;
+                    destination.y += push_.y;
+                    po_pushable_->setPosition({destination.x, destination.y});
                     break;
             }
 
-            po_pushable_->setPosition({destination.x, destination.y});
 
-            ticks_--;
+
             if (ticks_ == 0)
             {
-                destination.x += push.x;
-                destination.y += push.y;
+                destination.x += push_.x;
+                destination.y += push_.y;
                 po_pushable_->setPosition({destination.x, destination.y});
                 throw EventException("Push Event Executed", true);
             }
+            ticks_--;
         }
     } // CoreLogic
 // EventManagement

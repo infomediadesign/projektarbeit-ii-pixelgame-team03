@@ -14,7 +14,7 @@ namespace CoreLogic::EventManagement::Actors
     {
         if (turnCycles.at(primaryDirection_).second <= 0)
         {
-            TraceLog(LOG_INFO, "don't remove. It will crash.");
+
             turn();
         } else
         {

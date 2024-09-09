@@ -61,6 +61,7 @@ namespace CoreLogic::EventManagement::Actors
             bool canAct();
             bool isDying();
             bool canMove();
+            bool canDeathAbility();
 
             virtual void update();
 

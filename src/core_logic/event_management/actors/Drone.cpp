@@ -263,7 +263,25 @@ CoreLogic::EventManagement::Actors::Drone::Drone(Vector2 pa_position, Rectangle 
     void Drone::update()
     {
         checkInteraction();
+        int interactionTypus;
+        if  (interaction_ == nullptr)
+        {
+            interactionTypus = -1;
+        } else {
+            interactionTypus = interaction_->getType();
+        }
+        std::cout << interactionTypus << std::endl;
         checkAbility();
+        int abilityTypus;
+        if  (ability_ == nullptr)
+        {
+            abilityTypus = -1;
+        } else {
+            abilityTypus = ability_->getAbilityType();
+        }
+        std::cout << abilityTypus << std::endl;
+        std::cout <<std::endl;
+        std::cout <<std::endl;
     }
 
 
@@ -428,6 +446,15 @@ CoreLogic::EventManagement::Actors::Drone::Drone(Vector2 pa_position, Rectangle 
             return false;
         }
         return true;
+    }
+
+    bool Drone::canDeathAbility()
+    {
+        if (currentDroneState_ == MOVING && currentDroneType_ == DroneType::SCOUT)
+        {
+            return true;
+        }
+        return false;
     }
 
     void Drone::setDroneState(Drone::DroneState pa_droneState)

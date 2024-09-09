@@ -110,6 +110,7 @@ namespace CoreLogic::EventManagement {
             std::map<Input, EventEnum> keyboardInGameMapping_;
             std::map<Input, EventEnum> controllerInGameMapping_;
 
+
             std::map<Input, EventEnum> keyboardMenuMapping_;
             std::map<Input, EventEnum> controllerMenuMapping_;
 

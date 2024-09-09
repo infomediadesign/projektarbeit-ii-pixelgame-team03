@@ -23,6 +23,7 @@ namespace CoreLogic::EventManagement
         std::shared_ptr<Object::Boulder> po_pushable_;
         bool reachedDestination_ = false;
         bool extended_ = false;
+        Vector2 push_;
     };
 
 } // CoreLogic

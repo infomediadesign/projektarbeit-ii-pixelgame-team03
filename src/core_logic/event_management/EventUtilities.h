@@ -48,6 +48,18 @@ namespace CoreLogic::EventManagement
         HIGHLIGHT,
         PAUSE
     };
+
+    struct eventNames {
+    public:
+        static std::string getEventName(EventEnum pa_event)
+        {
+            return eventNameMap[pa_event];
+        }
+    private:
+        static std::map<EventEnum, std::string> eventNameMap;
+    };
+
+
 }
 
 #endif //HIVE_EVENTUTILITIES_H

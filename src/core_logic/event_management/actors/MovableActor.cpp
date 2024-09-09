@@ -39,6 +39,6 @@ namespace CoreLogic::EventManagement::Actors {
     {
         position_ = pa_position;
         updateHitbox();
-        adjustOutOfBounds();
+//        adjustOutOfBounds();
     }
 }

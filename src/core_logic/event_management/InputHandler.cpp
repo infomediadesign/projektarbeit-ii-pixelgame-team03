@@ -69,7 +69,7 @@ namespace CoreLogic::EventManagement
         std::map<Input, EventEnum> controllerMapping;
         std::map<Input, EventEnum> keyboardMapping;
 
-        if (CoreLogic::DataProcessing::StateMachine::getCurrentState() != CoreLogic::DataProcessing::GameState::IN_GAME)
+        if (CoreLogic::DataProcessing::StateMachine::getCurrentState() == CoreLogic::DataProcessing::GameState::IN_GAME)
         {
             controllerMapping = controllerInGameMapping_;
             keyboardMapping = keyboardInGameMapping_;
@@ -97,6 +97,12 @@ namespace CoreLogic::EventManagement
         }
         if (keyboardPressed)
         {
+            for (auto event: activatedEvents)
+            {
+
+                std::cout << eventNames::getEventName(event) << ", ";
+            }
+            std::cout << std::endl;
             return activatedEvents;
         }
 
@@ -119,6 +125,8 @@ namespace CoreLogic::EventManagement
                 activatedEvents.push_back(event);
             }
         }
+
+
 
         return activatedEvents;
     }

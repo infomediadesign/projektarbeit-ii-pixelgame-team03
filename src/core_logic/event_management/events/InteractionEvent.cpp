@@ -52,19 +52,31 @@ namespace CoreLogic::EventManagement
 
         InteractionEvent transformEvent;
 
-        switch (interactionType)
+        try
         {
-            case Object::Interaction::InteractionType::CLIMBING:
-                return std::make_unique<ClimbingEvent>(std::dynamic_pointer_cast<Object::Vine>(interaction));
-            case Object::Interaction::InteractionType::NOTE:
-                return std::make_unique<NoteEvent>(std::dynamic_pointer_cast<Object::Note>(interaction));
-            case Object::Interaction::InteractionType::CHECKPOINT:
-                return std::make_unique<CheckpointEvent>(std::dynamic_pointer_cast<Object::DroneRespawnPoint>(interaction));
-
-            /*case Object::Interaction::InteractionType::UPLINK:
-                std::unique_ptr<UplinkEvent> jump = std::make_unique<UplinkEvent>(std::dynamic_pointer_cast<Object::Uplink>(interaction));
-                throw EventException("Jump Event Executed", true);*/
+            std::unique_ptr<ClimbingEvent> climb;
+            std::unique_ptr<NoteEvent> note;
+            std::unique_ptr<CheckpointEvent> checkpoint;
+            switch (interactionType)
+            {
+                case Object::Interaction::InteractionType::CLIMBING:
+                    climb = std::make_unique<ClimbingEvent>(std::dynamic_pointer_cast<Object::Vine>(interaction));
+                    return std::move(climb);
+                case Object::Interaction::InteractionType::NOTE:
+                    note = std::make_unique<NoteEvent>(std::dynamic_pointer_cast<Object::Note>(interaction));
+                    return std::move(note);
+                case Object::Interaction::InteractionType::CHECKPOINT:
+                    checkpoint = std::make_unique<CheckpointEvent>(std::dynamic_pointer_cast<Object::DroneRespawnPoint>(interaction));
+                    return std::move(checkpoint);
+                    /*case Object::Interaction::InteractionType::UPLINK:
+                        std::unique_ptr<UplinkEvent> jump = std::make_unique<UplinkEvent>(std::dynamic_pointer_cast<Object::Uplink>(interaction));
+                        throw EventException("Jump Event Executed", true);*/
+            }
+        } catch (EventException &e) {
+            TraceLog(LOG_INFO, e.what());
+            throw e;
         }
+
     }
 
     InteractionEvent::~InteractionEvent()

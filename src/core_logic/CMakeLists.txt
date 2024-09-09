@@ -143,6 +143,7 @@ set(CORE_LOGIC_HEADERS
         event_management/events/BellDeathAbilityEvent.h
         event_management/events/DeathAbilityEvent.cpp
         event_management/events/DeathAbilityEvent.h
+        event_management/EventUtilities.cpp
 
 )
 

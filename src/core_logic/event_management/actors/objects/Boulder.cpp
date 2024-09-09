@@ -20,7 +20,7 @@ int CoreLogic::EventManagement::Object::Boulder::getNewElevation()
     if (cliff_ != nullptr)
     {
         int currentElevation = cliff_ -> getElevation();
-        int fallHeight = cliff_ -> getFallHeight();
+        int fallHeight = (cliff_ -> getFallHeight()) -1;
         return currentElevation - (fallHeight/2);
     }else{
         return -1;
