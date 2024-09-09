@@ -8,10 +8,7 @@
 
 CoreLogic::EventManagement::JumpEvent::JumpEvent(std::shared_ptr<Object::JumpPoint> pa_jumpPoint) : AbilityEvent(JUMP)
 {
-    /**
-     * @Pseudo_Code: JumpPoint not yet existing, neither is getJumpPosition()
-     * @todo: Code JumpPoint and getJumpPosition()
-     */
+
     try
     {
         std::dynamic_pointer_cast<Actors::Drone>(po_mainActor_) -> setDroneState(Actors::Drone::JUMP);

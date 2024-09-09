@@ -26,9 +26,6 @@ namespace CoreLogic::DataProcessing
 
         std::shared_ptr<std::map<int, std::vector<tson::Layer>>> getLayers();
 
-        /**
-         * @attention: TODO: rework objects into Actors
-         **/
         std::shared_ptr<std::map<int, std::vector<tson::Object>>> getObjects();
 
         Color getBgColor();

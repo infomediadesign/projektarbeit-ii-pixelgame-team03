@@ -23,9 +23,6 @@ namespace CoreLogic::EventManagement
     {
         if (ticks_ == 0)
         {
-            /**
-             * @todo: Code Drawing for different frame sizes
-             */
 
             auto& eventHandler = EventHandler::getInstance();
             Rectangle explosionRadius;

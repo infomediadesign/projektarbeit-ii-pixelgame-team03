@@ -45,9 +45,6 @@ CoreLogic::DataProcessing::Map::Map(std::string pa_filename)
         std::vector<tson::Layer> elevationVector = {};
         for (auto &layer: loadedLayers)
         {
-            /**
-             * @todo: in Tiled: save elevation as int property of each layer or a Map
-             **/
             if (layer.getProp("elevation")->getValue<int>() == i)
             {
                 elevationVector.push_back(layer);

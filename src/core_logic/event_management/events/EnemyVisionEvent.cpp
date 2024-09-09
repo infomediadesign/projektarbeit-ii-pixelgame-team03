@@ -38,10 +38,7 @@ namespace CoreLogic::EventManagement
             throw EventException("Enemy not found", false);
         }
         ticks_ = CoreLogic::DataProcessing::DesignConfig::COLONIST_DETECTION_RATE;
-        /**
-         * @PseudoCode: no enemy state yet
-         * @todo: add enemy state
-         */
+
         std::dynamic_pointer_cast<Actors::Enemy>(po_mainActor_) -> setState(Actors::Enemy::EnemyState::VISION);
         po_player_ = CoreLogic::DataProcessing::ActorStorage::getPlayer();
 

@@ -73,7 +73,7 @@ void CoreLogic::EventManagement::EventHandler::handleEvents(const std::vector<Ev
             try
             {
                 activateEvent(thrownEvent, pa_actorID);
-            } catch (std::exception &e) //@TODO: write Exception Handling for Events
+            } catch (std::exception &e)
             {
                 TraceLog(LOG_INFO, e.what());
             }
@@ -136,10 +136,7 @@ void CoreLogic::EventManagement::EventHandler::activateEvent(EventEnum pa_activa
         }
         TraceLog(LOG_ERROR, "reached unreachable Code");
     } else if (pa_activateEvent == ABILITY) {
-        /**
-         * @warning: Pseudo Code
-         * @TODO: Implement correctly
-         */
+
 
         std::unique_ptr<AbilityEvent> ability;
         /**

@@ -112,10 +112,6 @@ protected:
 
     struct ActorStorage
     {
-    /**
-     * @todo: actual implementaion for po_actors_(convert Objects from map Class)
-     * @note: possibly also get std::map<int, vector<Layer>> po_layers_ as to not have to make the Map class static
-     **/
     private:
 
         static std::shared_ptr<std::map<CoreLogic::EventManagement::Actors::Drone::DroneType, bool>> po_unlockedDrones_;
