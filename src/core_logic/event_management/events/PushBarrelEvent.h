@@ -21,6 +21,7 @@ namespace CoreLogic::EventManagement
     protected:
         std::shared_ptr<Object::Barrel> po_barrel_;
         bool reachedDestination_ = false;
+        Vector2 push_;
     };
 
 } // CoreLogic

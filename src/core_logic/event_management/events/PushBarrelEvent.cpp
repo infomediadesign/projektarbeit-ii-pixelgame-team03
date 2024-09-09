@@ -14,6 +14,20 @@ namespace CoreLogic
         {
             po_barrel_ = pa_barrel;
             ticks_ = 30;
+            switch (po_barrel_->getPrimaryDirection())
+            {
+                case CoreLogic::UserInterface::Direction::UP:
+                    throw EventException("PushBarrelEvent: barrel cannot be pushed up", true);
+                case CoreLogic::UserInterface::Direction::DOWN:
+                    push_ = {0, 12};
+                    break;
+                case CoreLogic::UserInterface::Direction::LEFT:
+                    push_ = {-12, 0};
+                    break;
+                case CoreLogic::UserInterface::Direction::RIGHT:
+                    push_ = {12, 0};
+                    break;
+            }
         }
 
         PushBarrelEvent::~PushBarrelEvent()
@@ -29,40 +43,27 @@ namespace CoreLogic
                 po_mainActor_->shiftFrame(1);
             }
 
-            Vector2 push;
-            switch (po_mainActor_->getPrimaryDirection())
-            {
-                case CoreLogic::UserInterface::Direction::UP:
-                    throw EventException("PushBarrelEvent: barrel cannot be pushed up", true);
-                case CoreLogic::UserInterface::Direction::DOWN:
-                    push = {0, 12};
-                    break;
-                case CoreLogic::UserInterface::Direction::LEFT:
-                    push = {-12, 0};
-                    break;
-                case CoreLogic::UserInterface::Direction::RIGHT:
-                    push = {12, 0};
-                    break;
-            }
+
+
             Rectangle destination = po_barrel_ -> getHitbox();
 
             switch (ticks_)
             {
                 case 21:
-                    destination.x += push.x;
-                    destination.y += push.y;
-                    push.x /= 2;
-                    push.y /= 2;
+                    destination.x += push_.x;
+                    destination.y += push_.y;
+                    push_.x /= 2;
+                    push_.y /= 2;
                     break;
                 case 12:
-                    destination.x += push.x;
-                    destination.y += push.y;
-                    push.x /= 2;
-                    push.y /= 2;
+                    destination.x += push_.x;
+                    destination.y += push_.y;
+                    push_.x /= 2;
+                    push_.y /= 2;
                     break;
                 case 6:
-                    destination.x += push.x;
-                    destination.y += push.y;
+                    destination.x += push_.x;
+                    destination.y += push_.y;
                     break;
             }
 
@@ -71,8 +72,8 @@ namespace CoreLogic
             ticks_--;
             if (ticks_ == 0)
             {
-                destination.x += push.x;
-                destination.y += push.y;
+                destination.x += push_.x;
+                destination.y += push_.y;
                 po_barrel_->setPosition({destination.x, destination.y});
                 throw EventException("Barrel Pushed", true);
             }

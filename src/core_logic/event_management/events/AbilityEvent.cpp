@@ -22,6 +22,10 @@ namespace CoreLogic::EventManagement
     AbilityEvent::AbilityEvent(): Event(ABILITY)
     {
         po_mainActor_ = std::dynamic_pointer_cast<Actor>(CoreLogic::DataProcessing::ActorStorage::getPlayer());
+        if (!(std::dynamic_pointer_cast<Actors::Drone>(po_mainActor_)->canAct()))
+        {
+            throw EventException("No ability Locked", false);
+        }
         try
         {
             std::dynamic_pointer_cast<Actors::Drone>(po_mainActor_) -> setDroneState(Actors::Drone::ABILITY);
@@ -42,7 +46,6 @@ namespace CoreLogic::EventManagement
         std::shared_ptr<Object::Ability> ability = std::dynamic_pointer_cast<Actors::Drone>(po_mainActor_) -> getAbility();
         Object::Ability::AbilityType abilityType = ability -> getAbilityType();
 
-        AbilityEvent transformEvent;
 
         switch (abilityType)
         {

@@ -28,12 +28,17 @@ namespace CoreLogic::UserInterface
     void CoreLogic::UserInterface::Sprite::shiftFrame(int pa_stateID,
             CoreLogic::UserInterface::Direction pa_primaryDirection)
     {
-        if (pa_stateID < animationStates_.size() &&
-                static_cast<int>(pa_primaryDirection) < animationStates_[pa_stateID].size())
-        {
-            currentState_ = animationStates_[pa_stateID][static_cast<int>(pa_primaryDirection)];
 
-            if (pa_stateID == currentStateId_ && pa_primaryDirection == primaryDirection_)
+        if (pa_stateID < animationStates_.size())
+        {
+            Direction animationDirection = Direction::UP;
+            if (static_cast<int>(pa_primaryDirection) < animationStates_[pa_stateID].size())
+            {
+                animationDirection = pa_primaryDirection;
+            }
+            currentState_ = animationStates_[pa_stateID][static_cast<int>(animationDirection)];
+
+            if (pa_stateID == currentStateId_ && animationDirection == primaryDirection_)
             {
                 currentStep_++;
 
@@ -50,7 +55,7 @@ namespace CoreLogic::UserInterface
                 currentStep_ = 0;
             }
             currentStateId_ = pa_stateID;
-            primaryDirection_ = pa_primaryDirection;
+            primaryDirection_ = animationDirection;
         }
     }
 

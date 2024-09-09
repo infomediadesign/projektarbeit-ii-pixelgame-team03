@@ -21,6 +21,10 @@ namespace CoreLogic::EventManagement
    InteractionEvent::InteractionEvent(): Event(CoreLogic::EventManagement::EventEnum::INTERACT)
     {
         po_mainActor_ = std::dynamic_pointer_cast<Actor>(CoreLogic::DataProcessing::ActorStorage::getPlayer());
+        if (!(std::dynamic_pointer_cast<Actors::Drone>(po_mainActor_)->canInteract()))
+        {
+            throw EventException("No interaction Locked", false);
+        }
         try
         {
             std::dynamic_pointer_cast<Actors::Drone>(po_mainActor_) -> setDroneState(Actors::Drone::INTERACTING);
@@ -49,8 +53,6 @@ namespace CoreLogic::EventManagement
         */
         std::shared_ptr<Object::Interaction> interaction = std::dynamic_pointer_cast<Actors::Drone>(po_mainActor_)->getInteraction();
         Object::Interaction::InteractionType interactionType = interaction->getType();
-
-        InteractionEvent transformEvent;
 
         try
         {

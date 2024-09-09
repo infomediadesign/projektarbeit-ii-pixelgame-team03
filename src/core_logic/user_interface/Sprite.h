@@ -21,10 +21,10 @@ namespace CoreLogic::UserInterface
     };
     enum class Direction
     {
-        UP,
-        DOWN,
-        LEFT,
-        RIGHT
+        UP = 0,
+        DOWN = 1,
+        LEFT = 2,
+        RIGHT = 3
     };
 
     class Sprite
