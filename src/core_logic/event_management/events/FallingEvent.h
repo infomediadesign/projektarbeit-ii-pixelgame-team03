@@ -15,7 +15,7 @@ namespace CoreLogic::EventManagement
     public:
         FallingEvent(int pa_actorID);
         ~FallingEvent();
-        FallingEvent(): Event(EventEnum::FALLING){};
+        FallingEvent(EventEnum pa_variantID): Event(EventEnum::FALLING), variantId_(pa_variantID){};
         void update() override;
         virtual std::unique_ptr<FallingEvent> transform();
     protected:
@@ -27,6 +27,7 @@ namespace CoreLogic::EventManagement
         bool barrel_;/*
         void explode();*/
         void crumble();
+        EventEnum variantId_ = FALLING;
     };
 
 }

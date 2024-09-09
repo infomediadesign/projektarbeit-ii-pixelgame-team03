@@ -11,7 +11,7 @@
 
 namespace CoreLogic::EventManagement
 {
-    FallingBarrelEvent::FallingBarrelEvent(std::shared_ptr<Object::Barrel> pa_barrel) : FallingEvent()
+    FallingBarrelEvent::FallingBarrelEvent(std::shared_ptr<Object::Barrel> pa_barrel) : FallingEvent(BARREL_FALL)
     {
         po_mainActor_ = pa_barrel;
         fallHeight_ = std::dynamic_pointer_cast<Object::Barrel>(po_mainActor_)

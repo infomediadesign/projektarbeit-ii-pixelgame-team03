@@ -35,9 +35,12 @@ namespace CoreLogic::EventManagement
         ABILITY,
         CLEAN,
         PUSH,
-        BARREL,
+        BARREL_PUSH,
         JUMP,
+
         FALLING,
+        BOULDER_FALL,
+        BARREL_FALL,
 
         DEATH_ABILITY,
         DISCONNECT,

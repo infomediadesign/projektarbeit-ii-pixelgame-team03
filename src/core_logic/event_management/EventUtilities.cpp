@@ -25,7 +25,7 @@ namespace CoreLogic::EventManagement
         {ABILITY,       "ABILITY"},
         {CLEAN,         "CLEAN"},
         {PUSH,          "PUSH"},
-        {BARREL,        "BARREL"},
+        {BARREL_PUSH,   "BARREL_PUSH"},
         {JUMP,          "JUMP"},
         {FALLING,       "FALLING"},
 
