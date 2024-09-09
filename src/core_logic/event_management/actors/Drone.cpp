@@ -16,11 +16,7 @@ namespace CoreLogic::EventManagement::Actors
 
     void Drone::move(bool pa_up, bool pa_down, bool pa_left, bool pa_right)
     {
-        /**
-         *@pseudo_code
-         * @Commented the collision since actor and layers not yet fully embedded
-         * @todo uncomment when actor and layers function
-         **/
+
         EventHandler &eventHandler = EventHandler::getInstance();
 
         int tickMult = CoreLogic::DataProcessing::ticks % 3;
@@ -80,114 +76,6 @@ namespace CoreLogic::EventManagement::Actors
 
     bool Drone::checkCollision(CoreLogic::UserInterface::Direction pa_direction, Vector2 pa_position)
     {
-        /**
-         * @pseudo_code TODO: Elevation and Input Handler
-         * @brief: This method checks if the Drone is colliding with any Tile or Object on the Tiles that he touches on his
-         *         elevation in the movement direction. If the Collision is a death Collision it throws a KillEvent to the
-         *         Eventhandler if not it just pushes the player outside of the Hitbox of the collision.
-         *         This Method is @recursive, it calls itself for each new tested Tile.
-         *
-         * @should_return: should return true if collides?
-         **/
-
-        /**
-         *@note: to be written Func for convenience
-         **/
-        /*Vector2 tileID = CoreLogic::DataProcessing::coordinatesToTile(pa_position);
-        Vector2 startID = tileID;
-        Vector2 endID;
-        if (pa_direction == CoreLogic::UserInterface::Direction::UP ||
-            pa_direction == CoreLogic::UserInterface::Direction::DOWN)
-        {
-            endID = CoreLogic::DataProcessing::coordinatesToTile({pa_position.x + size_.x, pa_position.y});
-        } else if (pa_direction == CoreLogic::UserInterface::Direction::LEFT ||
-                   pa_direction == CoreLogic::UserInterface::Direction::RIGHT)
-        {
-            endID = CoreLogic::DataProcessing::coordinatesToTile({pa_position.x, pa_position.y + size_.y});
-        } else
-        {
-            throw std::runtime_error("Direction not defined");
-        }
-        std::map<int, std::vector<tson::Layer>> &layers = *CoreLogic::DataProcessing::ActorStorage::getLayers();
-
-
-        for (auto &layer: layers[elevation_])
-        {
-            if (!(layer.getType() == tson::LayerType::TileLayer))
-            {
-                continue;
-            }
-            do
-            {
-                tson::Tile *tilePtr = layer.getTileData(static_cast<int>(tileID.x), static_cast<int>(tileID.y));
-                if (tilePtr == nullptr)
-                {
-                    if (pa_direction == CoreLogic::UserInterface::Direction::UP ||
-                        pa_direction == CoreLogic::UserInterface::Direction::DOWN)
-                    {
-                        tileID.x++;
-                    } else if (pa_direction == CoreLogic::UserInterface::Direction::LEFT ||
-                               pa_direction == CoreLogic::UserInterface::Direction::RIGHT)
-                    {
-                        tileID.y++;
-                    } else
-                    {
-                        throw std::runtime_error("Invalid Direction");
-                    }
-                    continue;
-                }
-                tson::Tile &tile = *tilePtr;
-
-                if (tile.getClassType() == "Wall")
-                {
-
-                    tson::Vector2f tilePosition = tile.getPosition({tileID.x, tileID.y});
-                    Rectangle tileRec = {
-                            tilePosition.x, tilePosition.y, static_cast<float>(tile.getTileSize().x),
-                            static_cast<float>(tile.getTileSize().y)
-                    };
-
-                    Rectangle collisionRec = GetCollisionRec(hitbox_, tileRec);
-                    if (pa_direction == CoreLogic::UserInterface::Direction::UP)
-                    {
-                        position_.y += collisionRec.height;
-                        updateHitbox();
-                    } else if (pa_direction == CoreLogic::UserInterface::Direction::DOWN)
-                    {
-                        position_.y -= collisionRec.height;
-                        updateHitbox();
-                    } else if (pa_direction == CoreLogic::UserInterface::Direction::LEFT)
-                    {
-                        position_.x += collisionRec.width;
-                        updateHitbox();
-                    } else if (pa_direction == CoreLogic::UserInterface::Direction::RIGHT)
-                    {
-                        position_.x -= collisionRec.width;
-                        updateHitbox();
-                    }
-                }
-                if (pa_direction == CoreLogic::UserInterface::Direction::UP ||
-                    pa_direction == CoreLogic::UserInterface::Direction::DOWN)
-                {
-                    tileID.x++;
-                } else if (pa_direction == CoreLogic::UserInterface::Direction::LEFT ||
-                           pa_direction == CoreLogic::UserInterface::Direction::RIGHT)
-                {
-                    tileID.y++;
-                } else
-                {
-                    throw std::runtime_error("Invalid Direction");
-                }
-            } while (tileID.x <= endID.x && tileID.y <= endID.y);
-            tileID = startID;
-
-
-        }
-
-*/
-        /**
-         *@TODO: Map.getActors() and elevation Handling
-         **/
 
         std::vector<std::shared_ptr<Actor>> actors = CoreLogic::DataProcessing::ActorStorage::getCollidables()->at(elevation_);
         std::vector<std::shared_ptr<Object::Cliff>> cliffs = CoreLogic::DataProcessing::ActorStorage::getCliffs()->at(elevation_);
@@ -217,11 +105,7 @@ namespace CoreLogic::EventManagement::Actors
             Rectangle objectHitbox = object.getHitbox();
             if (CheckCollisionRecs(hitbox_, objectHitbox))
             {
-                /*
-                 *@note: object needs Collision Type probably within Tiled
-                 * @note: Death collision probably to be handled outside of event in update func frame after movement
-                 * @TODO: Collision Type
-                 */
+
                 if (object.getCollisionType() == CollisionType::NONE)
                 {
                     continue;

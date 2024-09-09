@@ -28,10 +28,7 @@ namespace CoreLogic::EventManagement
         void update();
     private:
         EventHandler();
-        /**
-         * @todo: rework: std::map<int, std::vector<Event>> activeEvents_;
-         * @todo: reworc activeEventIDs_ as soon as feedback is here
-         **/
+
         std::map<int, std::vector<std::unique_ptr<Event>>> po_activeEvents_;
 
 //      std::unique_ptr<std::map<int, EventEnum>> activeEventIDs_;

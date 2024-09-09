@@ -39,10 +39,7 @@ namespace CoreLogic::EventManagement
 
     std::unique_ptr<AbilityEvent> AbilityEvent::transform() const
     {
-        /**
-         * @Pseudo_Code: enum AbilityType not yet existing
-         * @todo: Code enum AbilityType and Ability Type into Ability Object Class
-         */
+
         std::shared_ptr<Object::Ability> ability = std::dynamic_pointer_cast<Actors::Drone>(po_mainActor_) -> getAbility();
         Object::Ability::AbilityType abilityType = ability -> getAbilityType();
 

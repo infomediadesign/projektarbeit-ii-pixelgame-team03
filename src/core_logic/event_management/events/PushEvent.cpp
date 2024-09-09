@@ -72,15 +72,9 @@ namespace CoreLogic::EventManagement
 
         PushEvent::~PushEvent()
         {
-            /**
-             * @Pseudo_code: no Type for pushables yet, no Cliffs
-             * @todo: Code Cliffs and Derived Actor Classees
-             */
+
             auto& eventHandler = EventHandler::getInstance();
-            /**
-             * @Pseudo_code: no Falling triggers
-             * @todo: Code Falling Triggers
-             */
+
             std::vector<std::shared_ptr<Object::Cliff>> cliffs = CoreLogic::DataProcessing::ActorStorage::getCliffs()->at(po_pushable_ ->getElevation());
 
 

@@ -47,10 +47,7 @@ namespace CoreLogic::EventManagement
 
     std::unique_ptr<InteractionEvent> InteractionEvent::transform() const
     {
-        /**
-        * @Pseudo_Code: enum AbilityType not yet existing
-        * @todo: Code enum AbilityType and Ability Type into Ability Object Class
-        */
+
         std::shared_ptr<Object::Interaction> interaction = std::dynamic_pointer_cast<Actors::Drone>(po_mainActor_)->getInteraction();
         Object::Interaction::InteractionType interactionType = interaction->getType();
 
