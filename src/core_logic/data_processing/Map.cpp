@@ -12,7 +12,6 @@
 CoreLogic::DataProcessing::Map::Map(std::string pa_filename)
 {
 
-//    ActorStorage::Initialize();
     auto po_mapUnique = DataProcessing::tileson.parse(pa_filename);
     po_map_ = std::move(po_mapUnique);
     auto& map = *po_map_;
@@ -70,6 +69,7 @@ CoreLogic::DataProcessing::Map::Map(std::string pa_filename)
 
     po_layers_ = std::make_shared<std::map<int, std::vector<tson::Layer>>>(tempLayerMap);
     po_objects_ = std::make_shared<std::map<int, std::vector<tson::Object>>>(tempObjMap);
+    initializeLists();
     loadObjects();
 
 }
