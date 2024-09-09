@@ -23,17 +23,16 @@ target_include_directories(${PROJECT_NAME} PUBLIC
         )
 
 # Link to Raylib
-# Ensure static linking of Raylib
+# Static linking may be interesting, especially under Windows with MinGW,
+# so that the MinGW DLLs do not have to be supplied.
+# (Unfortunately, there is no easy way to link the C++ standard libraries
+# statically and other libraries dynamically.)
 if(UNIX)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -static-libgcc -static-libstdc++")
-    # Link Raylib statically
-    target_link_libraries(${PROJECT_NAME} ${CMAKE_BINARY_DIR}/_deps/raylib-build/raylib/raylib.lib)
+    target_link_libraries(${PROJECT_NAME} raylib)
 else()
-    # Link Raylib statically on Windows
-    target_link_libraries(${PROJECT_NAME} ${CMAKE_BINARY_DIR}/_deps/raylib-build/raylib/raylib.lib -static)
+    target_link_libraries(${PROJECT_NAME} raylib -static)
 endif()
-
-# Link other libraries
 target_link_libraries(${PROJECT_NAME} core_logic scenes staging)
 
 # Copy assets to assets path
