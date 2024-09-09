@@ -39,8 +39,8 @@ namespace CoreLogic::UserInterface
             } else
             {
 
-                frame_.x = 0;
-                frame_.y = currentState_.pxRow_;
+                frame_ = {0, (float) currentState_.pxRow_, (float)currentState_.width_, (float)currentState_.height_};
+
                 currentStep_ = 0;
             }
             currentStateId_ = pa_stateID;
@@ -54,16 +54,16 @@ namespace CoreLogic::UserInterface
                 static_cast<int>(primaryDirection_) < animationStates_[pa_stateID].size())
         {
             currentState_ = animationStates_[pa_stateID][static_cast<int>(primaryDirection_)];
+            currentStateId_ = pa_stateID;
         } else
         {
-            currentState_ = animationStates_[1][static_cast<int>(primaryDirection_)];
+            currentState_ = animationStates_[0][0];
+            currentStateId_ = 0;
+            primaryDirection_ = Direction::UP;
         }
 
-        frame_.x = 0;
-        frame_.y = currentState_.pxRow_;
+        frame_ = {0, (float) currentState_.pxRow_, (float)currentState_.width_, (float)currentState_.height_};
         currentStep_ = 0;
-
-        currentStateId_ = pa_stateID;
     }
 
     CoreLogic::UserInterface::Sprite::Sprite()
