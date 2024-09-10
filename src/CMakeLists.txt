@@ -7,6 +7,8 @@ project(hive VERSION 0.1 LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
+set(BUILD_SHARED_LIBS OFF)  # Disable shared libraries
+set(RAYLIB_BUILD_EXAMPLES OFF)  # No need for examples
 
 add_subdirectory(core_logic)
 add_subdirectory(scenes)

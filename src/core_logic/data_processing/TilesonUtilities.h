@@ -24,7 +24,7 @@ namespace CoreLogic::DataProcessing {
 
     inline bool CheckCollisionLineRec(Line line, Rectangle rec) {
         bool collides = false;
-        Vector2 *collisionPoint;
+        Vector2 *collisionPoint = new Vector2();
         bool collisionTop = CheckCollisionLines(line.p1, line.p2, {rec.x, rec.y}, {rec.x + rec.width, rec.y}, collisionPoint);
         bool collisionLeft = CheckCollisionLines(line.p1, line.p2, {rec.x,rec.y}, {rec.x, rec.y + rec.height},collisionPoint);
         bool collisionRight = CheckCollisionLines(line.p1, line.p2, {rec.x + rec.width,rec.y}, {rec.x + rec.width, rec.y + rec.height},collisionPoint);

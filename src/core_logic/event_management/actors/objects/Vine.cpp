@@ -20,8 +20,7 @@ CoreLogic::EventManagement::Object::Vine::Vine(Vector2 pa_position, Rectangle pa
         Interaction(pa_position, pa_hitbox, pa_id, Actor::CollisionType::COLLISION, pa_size, false, pa_elevation, CLIMBING)
 {
     elevationChange_ = (int) ((pa_position.y + pa_coordinates.y) / 24) / 2;
-    if (pa_coordinates.y < pa_position.y) newElevation = pa_elevation + elevationChange_;
-    else newElevation = pa_elevation + elevationChange_;
+    newElevation = pa_elevation + elevationChange_;
 }
 
 void CoreLogic::EventManagement::Object::Vine::setCoordinates(Vector2 pa_coordinates)
