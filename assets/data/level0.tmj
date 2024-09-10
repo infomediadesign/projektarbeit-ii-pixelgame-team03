@@ -579,6 +579,11 @@
                  "name":"",
                  "properties":[
                         {
+                         "name":"elevation_dest",
+                         "type":"int",
+                         "value":2
+                        }, 
+                        {
                          "name":"x_dest",
                          "type":"int",
                          "value":578
@@ -600,6 +605,11 @@
                  "id":5,
                  "name":"",
                  "properties":[
+                        {
+                         "name":"elevation_dest",
+                         "type":"int",
+                         "value":2
+                        }, 
                         {
                          "name":"x_dest",
                          "type":"int",
@@ -623,6 +633,11 @@
                  "name":"",
                  "properties":[
                         {
+                         "name":"elevation_dest",
+                         "type":"int",
+                         "value":2
+                        }, 
+                        {
                          "name":"x_dest",
                          "type":"int",
                          "value":746
@@ -644,6 +659,11 @@
                  "id":8,
                  "name":"",
                  "properties":[
+                        {
+                         "name":"elevation_dest",
+                         "type":"int",
+                         "value":2
+                        }, 
                         {
                          "name":"x_dest",
                          "type":"int",
@@ -667,6 +687,11 @@
                  "name":"",
                  "properties":[
                         {
+                         "name":"elevation_dest",
+                         "type":"int",
+                         "value":2
+                        }, 
+                        {
                          "name":"x_dest",
                          "type":"int",
                          "value":242
@@ -688,6 +713,11 @@
                  "id":11,
                  "name":"",
                  "properties":[
+                        {
+                         "name":"elevation_dest",
+                         "type":"int",
+                         "value":2
+                        }, 
                         {
                          "name":"x_dest",
                          "type":"int",
@@ -904,7 +934,7 @@
                  "value":0
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -972,12 +1002,12 @@
                         {
                          "name":"x_dest",
                          "type":"int",
-                         "value":16
+                         "value":386
                         }, 
                         {
                          "name":"y_dest",
                          "type":"int",
-                         "value":29
+                         "value":698
                         }],
                  "rotation":0,
                  "type":"jump_point",
@@ -994,12 +1024,12 @@
                         {
                          "name":"x_dest",
                          "type":"int",
-                         "value":12
+                         "value":290
                         }, 
                         {
                          "name":"y_dest",
                          "type":"int",
-                         "value":29
+                         "value":698
                         }],
                  "rotation":0,
                  "type":"jump_point",
@@ -2230,6 +2260,11 @@
                  "name":"",
                  "properties":[
                         {
+                         "name":"elevation_dest",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
                          "name":"x_dest",
                          "type":"int",
                          "value":794
@@ -2251,6 +2286,11 @@
                  "id":215,
                  "name":"",
                  "properties":[
+                        {
+                         "name":"elevation_dest",
+                         "type":"int",
+                         "value":1
+                        }, 
                         {
                          "name":"x_dest",
                          "type":"int",
@@ -2274,6 +2314,11 @@
                  "name":"",
                  "properties":[
                         {
+                         "name":"elevation_dest",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
                          "name":"x_dest",
                          "type":"int",
                          "value":74
@@ -2295,6 +2340,11 @@
                  "id":217,
                  "name":"",
                  "properties":[
+                        {
+                         "name":"elevation_dest",
+                         "type":"int",
+                         "value":3
+                        }, 
                         {
                          "name":"x_dest",
                          "type":"int",
@@ -2318,6 +2368,11 @@
                  "name":"",
                  "properties":[
                         {
+                         "name":"elevation_dest",
+                         "type":"int",
+                         "value":3
+                        }, 
+                        {
                          "name":"x_dest",
                          "type":"int",
                          "value":866
@@ -2339,6 +2394,11 @@
                  "id":219,
                  "name":"",
                  "properties":[
+                        {
+                         "name":"elevation_dest",
+                         "type":"int",
+                         "value":3
+                        }, 
                         {
                          "name":"x_dest",
                          "type":"int",
@@ -2362,6 +2422,11 @@
                  "name":"",
                  "properties":[
                         {
+                         "name":"elevation_dest",
+                         "type":"int",
+                         "value":3
+                        }, 
+                        {
                          "name":"x_dest",
                          "type":"int",
                          "value":1466
@@ -2383,6 +2448,11 @@
                  "id":222,
                  "name":"",
                  "properties":[
+                        {
+                         "name":"elevation_dest",
+                         "type":"int",
+                         "value":3
+                        }, 
                         {
                          "name":"x_dest",
                          "type":"int",
@@ -2406,6 +2476,11 @@
                  "name":"",
                  "properties":[
                         {
+                         "name":"elevation_dest",
+                         "type":"int",
+                         "value":3
+                        }, 
+                        {
                          "name":"x_dest",
                          "type":"int",
                          "value":1466
@@ -2427,6 +2502,11 @@
                  "id":224,
                  "name":"",
                  "properties":[
+                        {
+                         "name":"elevation_dest",
+                         "type":"int",
+                         "value":3
+                        }, 
                         {
                          "name":"x_dest",
                          "type":"int",
@@ -2450,6 +2530,11 @@
                  "name":"",
                  "properties":[
                         {
+                         "name":"elevation_dest",
+                         "type":"int",
+                         "value":3
+                        }, 
+                        {
                          "name":"x_dest",
                          "type":"int",
                          "value":1394
@@ -2471,6 +2556,11 @@
                  "id":227,
                  "name":"",
                  "properties":[
+                        {
+                         "name":"elevation_dest",
+                         "type":"int",
+                         "value":3
+                        }, 
                         {
                          "name":"x_dest",
                          "type":"int",
@@ -2494,6 +2584,11 @@
                  "name":"",
                  "properties":[
                         {
+                         "name":"elevation_dest",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
                          "name":"x_dest",
                          "type":"int",
                          "value":578
@@ -2516,6 +2611,11 @@
                  "name":"",
                  "properties":[
                         {
+                         "name":"elevation_dest",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
                          "name":"x_dest",
                          "type":"int",
                          "value":314
@@ -2537,6 +2637,11 @@
                  "id":301,
                  "name":"",
                  "properties":[
+                        {
+                         "name":"elevation_dest",
+                         "type":"int",
+                         "value":1
+                        }, 
                         {
                          "name":"x_dest",
                          "type":"int",
@@ -3016,7 +3121,7 @@
                  "value":1
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -3033,12 +3138,12 @@
                         {
                          "name":"x_dest",
                          "type":"int",
-                         "value":33
+                         "value":794
                         }, 
                         {
                          "name":"y_dest",
                          "type":"int",
-                         "value":1
+                         "value":26
                         }],
                  "rotation":0,
                  "type":"jump_point",
@@ -3055,12 +3160,12 @@
                         {
                          "name":"x_dest",
                          "type":"int",
-                         "value":29
+                         "value":698
                         }, 
                         {
                          "name":"y_dest",
                          "type":"int",
-                         "value":1
+                         "value":26
                         }],
                  "rotation":0,
                  "type":"jump_point",
@@ -3077,12 +3182,12 @@
                         {
                          "name":"x_dest",
                          "type":"int",
-                         "value":61
+                         "value":1466
                         }, 
                         {
                          "name":"y_dest",
                          "type":"int",
-                         "value":33
+                         "value":794
                         }],
                  "rotation":0,
                  "type":"jump_point",
@@ -3099,12 +3204,12 @@
                         {
                          "name":"x_dest",
                          "type":"int",
-                         "value":57
+                         "value":1370
                         }, 
                         {
                          "name":"y_dest",
                          "type":"int",
-                         "value":33
+                         "value":794
                         }],
                  "rotation":0,
                  "type":"jump_point",
@@ -3121,12 +3226,12 @@
                         {
                          "name":"x_dest",
                          "type":"int",
-                         "value":51
+                         "value":1226
                         }, 
                         {
                          "name":"y_dest",
                          "type":"int",
-                         "value":6
+                         "value":146
                         }],
                  "rotation":0,
                  "type":"jump_point",
@@ -3143,12 +3248,12 @@
                         {
                          "name":"x_dest",
                          "type":"int",
-                         "value":51
+                         "value":1226
                         }, 
                         {
                          "name":"y_dest",
                          "type":"int",
-                         "value":2
+                         "value":50
                         }],
                  "rotation":0,
                  "type":"jump_point",
@@ -3605,7 +3710,7 @@
                  "value":1
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -5401,6 +5506,11 @@
                  "name":"",
                  "properties":[
                         {
+                         "name":"elevation_dest",
+                         "type":"int",
+                         "value":2
+                        }, 
+                        {
                          "name":"x_dest",
                          "type":"int",
                          "value":866
@@ -5422,6 +5532,11 @@
                  "id":232,
                  "name":"",
                  "properties":[
+                        {
+                         "name":"elevation_dest",
+                         "type":"int",
+                         "value":2
+                        }, 
                         {
                          "name":"x_dest",
                          "type":"int",
@@ -5445,6 +5560,11 @@
                  "name":"",
                  "properties":[
                         {
+                         "name":"elevation_dest",
+                         "type":"int",
+                         "value":2
+                        }, 
+                        {
                          "name":"x_dest",
                          "type":"int",
                          "value":1178
@@ -5466,6 +5586,11 @@
                  "id":234,
                  "name":"",
                  "properties":[
+                        {
+                         "name":"elevation_dest",
+                         "type":"int",
+                         "value":2
+                        }, 
                         {
                          "name":"x_dest",
                          "type":"int",
@@ -5489,6 +5614,11 @@
                  "name":"",
                  "properties":[
                         {
+                         "name":"elevation_dest",
+                         "type":"int",
+                         "value":2
+                        }, 
+                        {
                          "name":"x_dest",
                          "type":"int",
                          "value":1370
@@ -5510,6 +5640,11 @@
                  "id":236,
                  "name":"",
                  "properties":[
+                        {
+                         "name":"elevation_dest",
+                         "type":"int",
+                         "value":2
+                        }, 
                         {
                          "name":"x_dest",
                          "type":"int",
@@ -5533,6 +5668,11 @@
                  "name":"",
                  "properties":[
                         {
+                         "name":"elevation_dest",
+                         "type":"int",
+                         "value":2
+                        }, 
+                        {
                          "name":"x_dest",
                          "type":"int",
                          "value":1418
@@ -5554,6 +5694,11 @@
                  "id":238,
                  "name":"",
                  "properties":[
+                        {
+                         "name":"elevation_dest",
+                         "type":"int",
+                         "value":2
+                        }, 
                         {
                          "name":"x_dest",
                          "type":"int",
@@ -5577,6 +5722,11 @@
                  "name":"",
                  "properties":[
                         {
+                         "name":"elevation_dest",
+                         "type":"int",
+                         "value":2
+                        }, 
+                        {
                          "name":"x_dest",
                          "type":"int",
                          "value":1130
@@ -5598,6 +5748,11 @@
                  "id":303,
                  "name":"",
                  "properties":[
+                        {
+                         "name":"elevation_dest",
+                         "type":"int",
+                         "value":2
+                        }, 
                         {
                          "name":"x_dest",
                          "type":"int",
@@ -5774,12 +5929,12 @@
                         {
                          "name":"x_dest",
                          "type":"int",
-                         "value":48
+                         "value":1154
                         }, 
                         {
                          "name":"y_dest",
                          "type":"int",
-                         "value":18
+                         "value":434
                         }],
                  "rotation":0,
                  "type":"jump_point",
@@ -5796,12 +5951,12 @@
                         {
                          "name":"x_dest",
                          "type":"int",
-                         "value":44
+                         "value":1058
                         }, 
                         {
                          "name":"y_dest",
                          "type":"int",
-                         "value":18
+                         "value":434
                         }],
                  "rotation":0,
                  "type":"jump_point",
@@ -5818,12 +5973,12 @@
                         {
                          "name":"x_dest",
                          "type":"int",
-                         "value":42
+                         "value":1010
                         }, 
                         {
                          "name":"y_dest",
                          "type":"int",
-                         "value":20
+                         "value":482
                         }],
                  "rotation":0,
                  "type":"jump_point",
@@ -5840,12 +5995,12 @@
                         {
                          "name":"x_dest",
                          "type":"int",
-                         "value":38
+                         "value":914
                         }, 
                         {
                          "name":"y_dest",
                          "type":"int",
-                         "value":20
+                         "value":482
                         }],
                  "rotation":0,
                  "type":"jump_point",
@@ -5862,12 +6017,12 @@
                         {
                          "name":"x_dest",
                          "type":"int",
-                         "value":36
+                         "value":866
                         }, 
                         {
                          "name":"y_dest",
                          "type":"int",
-                         "value":18
+                         "value":444
                         }],
                  "rotation":0,
                  "type":"jump_point",
@@ -5884,12 +6039,12 @@
                         {
                          "name":"x_dest",
                          "type":"int",
-                         "value":32
+                         "value":770
                         }, 
                         {
                          "name":"y_dest",
                          "type":"int",
-                         "value":18
+                         "value":444
                         }],
                  "rotation":0,
                  "type":"jump_point",
@@ -5906,12 +6061,12 @@
                         {
                          "name":"x_dest",
                          "type":"int",
-                         "value":19
+                         "value":468
                         }, 
                         {
                          "name":"y_dest",
                          "type":"int",
-                         "value":10
+                         "value":218
                         }],
                  "rotation":0,
                  "type":"jump_point",
@@ -5928,12 +6083,12 @@
                         {
                          "name":"x_dest",
                          "type":"int",
-                         "value":15
+                         "value":372
                         }, 
                         {
                          "name":"y_dest",
                          "type":"int",
-                         "value":10
+                         "value":218
                         }],
                  "rotation":0,
                  "type":"jump_point",
@@ -6033,7 +6188,7 @@
                  "value":2
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
