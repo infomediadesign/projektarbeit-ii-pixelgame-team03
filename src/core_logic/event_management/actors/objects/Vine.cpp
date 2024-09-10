@@ -19,7 +19,7 @@ CoreLogic::EventManagement::Object::Vine::Vine(Vector2 pa_position, Rectangle pa
         coordinates_(pa_coordinates),
         Interaction(pa_position, pa_hitbox, pa_id, Actor::CollisionType::COLLISION, pa_size, false, pa_elevation, CLIMBING)
 {
-    elevationChange_ = (int) ((pa_position.y + pa_coordinates.y) / 24) / 2;
+    elevationChange_ = (int) ((pa_position.y - pa_coordinates.y) / 24) / 2;
     newElevation = pa_elevation + elevationChange_;
 }
 
