@@ -846,6 +846,70 @@
         }, 
         {
          "draworder":"topdown",
+         "id":57,
+         "name":"Enemies 1",
+         "objects":[
+                {
+                 "height":48,
+                 "id":586,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"clockwise",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"direction",
+                         "type":"int",
+                         "value":2
+                        }, 
+                        {
+                         "name":"interval_e",
+                         "type":"int",
+                         "value":180
+                        }, 
+                        {
+                         "name":"interval_n",
+                         "type":"int",
+                         "value":0
+                        }, 
+                        {
+                         "name":"interval_s",
+                         "type":"int",
+                         "value":180
+                        }, 
+                        {
+                         "name":"interval_w",
+                         "type":"int",
+                         "value":0
+                        }, 
+                        {
+                         "name":"turn",
+                         "type":"bool",
+                         "value":true
+                        }],
+                 "rotation":0,
+                 "type":"colonist",
+                 "visible":true,
+                 "width":24,
+                 "x":336,
+                 "y":552
+                }],
+         "opacity":1,
+         "properties":[
+                {
+                 "name":"elevation",
+                 "type":"int",
+                 "value":0
+                }],
+         "type":"objectgroup",
+         "visible":false,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
          "id":54,
          "name":"RespawnPoints 1",
          "objects":[
@@ -2919,6 +2983,45 @@
         }, 
         {
          "draworder":"topdown",
+         "id":58,
+         "name":"Explosive Barrels 2",
+         "objects":[
+                {
+                 "height":24,
+                 "id":588,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"direction",
+                         "type":"int",
+                         "value":2
+                        }, 
+                        {
+                         "name":"height",
+                         "type":"int",
+                         "value":2
+                        }],
+                 "rotation":0,
+                 "type":"explosive_barrel",
+                 "visible":true,
+                 "width":24,
+                 "x":408,
+                 "y":480
+                }],
+         "opacity":1,
+         "properties":[
+                {
+                 "name":"elevation",
+                 "type":"int",
+                 "value":1
+                }],
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
          "id":42,
          "name":"JumpPoints 2",
          "objects":[
@@ -3502,7 +3605,7 @@
                  "value":1
                 }],
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -5930,7 +6033,7 @@
                  "value":2
                 }],
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -7625,8 +7728,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":57,
- "nextobjectid":584,
+ "nextlayerid":59,
+ "nextobjectid":589,
  "orientation":"orthogonal",
  "properties":[
         {

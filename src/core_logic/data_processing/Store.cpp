@@ -237,8 +237,8 @@ void CoreLogic::DataProcessing::ActorStorage::addActorByType(int pa_elevation,
     {
         addActor(po_barrels_, pa_elevation, barrel);
 
-        auto interaction = std::dynamic_pointer_cast<EventManagement::Object::Interaction>(pa_actor);
-        addActor(po_interactions_, pa_elevation, interaction);
+        auto ability = std::dynamic_pointer_cast<EventManagement::Object::Ability>(pa_actor);
+        addActor(po_workerAbilities_, pa_elevation, ability);
 
         auto actor = std::dynamic_pointer_cast<EventManagement::Actor>(pa_actor);
         addActor(po_collidables_, pa_elevation, actor);

@@ -276,12 +276,16 @@ namespace CoreLogic::EventManagement::Actors
     {
         if (pa_frameShift == 0)
         {
-            if (state_ == IDLE && DataProcessing::ticks % 6 == 0)
+            if (state_ == IDLE && !dead_ && DataProcessing::ticks % 6 == 0)
             {
                 sprite_.shiftFrame(pa_frameShift, primaryDirection_);
                 return;
             }
         } else {
+            if (pa_frameShift != 3 && dead_)
+            {
+                return;
+            }
             sprite_.shiftFrame(pa_frameShift, primaryDirection_);
         }
     }
