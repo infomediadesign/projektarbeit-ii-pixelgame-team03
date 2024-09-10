@@ -1,31 +1,68 @@
-# Based on: https://raw.githubusercontent.com/raysan5/raylib/master/projects/CMake/CMakeLists.txt
+# raylib.cmake - Modified to download the correct raylib version based on the platform and use precompiled libraries
 
-# Set this to the minimal version you want to support
-find_package(raylib 5.0.0 QUIET) # Let CMake search for a raylib-config.cmake
+find_package(raylib 5.0.0 QUIET) # Let CMake search for raylib-config.cmake
 
-# You could change the QUIET above to REQUIRED and remove this if() clause
-# This part downloads raylib and builds it if it's not installed on your system
-if (NOT raylib_FOUND) # If there's none, fetch and build raylib
+if (NOT raylib_FOUND)
     include(FetchContent)
 
-    FetchContent_Declare(
-            raylib
-            # Download a specific release
-            URL https://github.com/raysan5/raylib/archive/refs/tags/5.0.tar.gz
-            # Or download current working state
-            # URL https://github.com/raysan5/raylib/archive/master.tar.gz
-    )
+    if (WIN32)
+        # Fetch precompiled Raylib for Windows
+        FetchContent_Declare(
+                raylib
+                URL https://github.com/raysan5/raylib/releases/download/5.0/raylib-5.0_win64_msvc16.zip
+        )
 
-    FetchContent_GetProperties(raylib)
-    if (NOT raylib_POPULATED) # Have we downloaded raylib yet?
-        set(FETCHCONTENT_QUIET NO)
-        FetchContent_Populate(raylib)
+        FetchContent_GetProperties(raylib)
+        if (NOT raylib_POPULATED)
+            FetchContent_Populate(raylib)
 
-        set(BUILD_EXAMPLES OFF CACHE BOOL "" FORCE) # don't build the supplied examples
+            # Define paths to precompiled Raylib for Windows
+            set(RAYLIB_DIR "${raylib_SOURCE_DIR}")
+            set(RAYLIB_LIB "${RAYLIB_DIR}/lib/raylib.lib")
+            set(RAYLIB_INCLUDE_DIR "${RAYLIB_DIR}/include")
 
-        # Build raylib
-        add_subdirectory(${raylib_SOURCE_DIR} ${raylib_BINARY_DIR})
+            if (NOT EXISTS ${RAYLIB_LIB})
+                message(FATAL_ERROR "Raylib library not found: ${RAYLIB_LIB}")
+            endif()
 
+            if (NOT EXISTS ${RAYLIB_INCLUDE_DIR})
+                message(FATAL_ERROR "Raylib include directory not found: ${RAYLIB_INCLUDE_DIR}")
+            endif()
+
+            # Add the precompiled Raylib as an imported library
+            add_library(raylib STATIC IMPORTED)
+            set_target_properties(raylib PROPERTIES IMPORTED_LOCATION ${RAYLIB_LIB})
+
+            # Include Raylib headers
+            include_directories(${RAYLIB_INCLUDE_DIR})
+        endif()
+
+    elseif(APPLE)
+        # Fetch precompiled Raylib for macOS
+        FetchContent_Declare(
+                raylib
+                URL https://github.com/raysan5/raylib/releases/download/5.0.0/raylib-5.0.0_macos.tar.gz
+        )
+
+        FetchContent_GetProperties(raylib)
+        if (NOT raylib_POPULATED)
+            FetchContent_Populate(raylib)
+            set(BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
+            add_subdirectory(${raylib_SOURCE_DIR} ${raylib_BINARY_DIR})
+        endif()
+
+    else()
+        # Fetch Raylib source for Unix/Linux platforms
+        FetchContent_Declare(
+                raylib
+                URL https://github.com/raysan5/raylib/archive/refs/tags/5.0.tar.gz
+        )
+
+        FetchContent_GetProperties(raylib)
+        if (NOT raylib_POPULATED)
+            FetchContent_Populate(raylib)
+            set(BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
+            add_subdirectory(${raylib_SOURCE_DIR} ${raylib_BINARY_DIR})
+        endif()
     endif()
-
 endif()
