@@ -13,10 +13,30 @@
 class SoundHandler
 {
 public:
+    enum SoundEnum
+    {
+        AMBIENT_OVERWORLD,
+        AMBIENT_UNDERWORLD,
+
+        EXPLOSION,
+        IMPACT_FLOOR,
+        IMPACT_WATER,
+        NOTE,
+        PUSH,
+        RESPAWN_ACTIVATE,
+        RESPAWN_REACTIVATE,
+        RUBBLE,
+        SHOT,
+    };
     SoundHandler();
-    void playSound(int eventID);
+    void playSound(SoundEnum pa_sound);
+    void playAmbient(SoundEnum pa_ambient);
+    void update();
 protected:
-    std::map<int, std::vector<Sound>> soundMap;
+    std::map<int, Sound> soundMap;
+    Music currentAmbient;
+    Music overworldAmbient;
+    Music underworldAmbient;
 };
 
 

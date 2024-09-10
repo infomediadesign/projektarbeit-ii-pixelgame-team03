@@ -116,11 +116,11 @@ void Scenes::GameScene::update()
     /**
      * @attention: testing
      */
-    if (IsKeyPressed(KEY_P))
-    {
-        SoundHandler soundHandler;
-        soundHandler.playSound(0);
-    }
+//    if (IsKeyPressed(KEY_P))
+//    {
+//        SoundHandler soundHandler;
+//        soundHandler.playSound(0);
+//    }
 
     if (IsKeyPressed(KEY_UP))
     {
