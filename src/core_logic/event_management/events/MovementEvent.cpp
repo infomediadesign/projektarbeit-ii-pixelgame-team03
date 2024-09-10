@@ -14,7 +14,8 @@
 
 void CoreLogic::EventManagement::MovementEvent::update()
 {
-    if (!std::dynamic_pointer_cast<Actors::Drone>(po_mainActor_)->canMove())
+    std::cout << CoreLogic::DataProcessing::ActorStorage::getPlayer()->canMove() << std::endl;
+    if (!(std::dynamic_pointer_cast<Actors::Drone>(po_mainActor_)->canMove()))
     {
         stop();
         throw EventException("Drone cannot move", true);

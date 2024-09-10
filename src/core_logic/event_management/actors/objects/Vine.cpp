@@ -15,12 +15,11 @@ int CoreLogic::EventManagement::Object::Vine::getNewElevation() const
 }
 
 CoreLogic::EventManagement::Object::Vine::Vine(Vector2 pa_position, Rectangle pa_hitbox, int pa_id, Vector2 pa_size,
-        int pa_elevation, Vector2 pa_coordinates) :
-        coordinates_(pa_coordinates),
+        int pa_elevation, Vector2 pa_coordinates, int pa_newElevation) :
+        coordinates_(pa_coordinates), newElevation(pa_newElevation),
         Interaction(pa_position, pa_hitbox, pa_id, Actor::CollisionType::COLLISION, pa_size, false, pa_elevation, CLIMBING)
 {
-    elevationChange_ = (int) ((pa_position.y - pa_coordinates.y) / 24) / 2;
-    newElevation = pa_elevation + elevationChange_;
+
 }
 
 void CoreLogic::EventManagement::Object::Vine::setCoordinates(Vector2 pa_coordinates)

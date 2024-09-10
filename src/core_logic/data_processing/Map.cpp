@@ -141,8 +141,10 @@ void CoreLogic::DataProcessing::Map::loadObjects()
                 Vector2 objectCoordinates = {(float)objectProperties.getProperty("x_dest")->getValue<int>(),
                         (float) objectProperties.getProperty("y_dest")->getValue<int>()};
 
+                int objectNewElevation = objectProperties.getProperty("elevation_dest")->getValue<int>();
+
                 actor = std::make_shared<EventManagement::Object::Vine>(EventManagement::Object::Vine(objectPosition,
-                        objectHitbox, objectId, objectSize,objectElevation, objectCoordinates));
+                        objectHitbox, objectId, objectSize,objectElevation, objectCoordinates, objectNewElevation));
                 ActorStorage::addActorByType(objectElevation, actor);
             } else if (objectClass == "water")
             {
