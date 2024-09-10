@@ -55,7 +55,7 @@ namespace CoreLogic::EventManagement
         }
         if (ticks_ == 40)
         {
-            std::vector<std::shared_ptr<Object::Uplink>> &uplinks = CoreLogic::DataProcessing::ActorStorage::getUplinks()->at(std::dynamic_pointer_cast<Object::Boulder>(po_mainActor_)->getNewElevation());
+            std::vector<std::shared_ptr<Object::Uplink>> &uplinks = CoreLogic::DataProcessing::ActorStorage::getUplinks()->at(std::dynamic_pointer_cast<Object::Barrel>(po_mainActor_)->getNewElevation());
             for (auto &uplink: uplinks)
             {
                 if (uplink == nullptr)

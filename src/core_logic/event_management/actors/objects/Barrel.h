@@ -24,7 +24,6 @@ class Barrel : public Ability
     protected:
         int newElevation_ = 0;
         int fallHeight_ = 0;
-        UserInterface::Direction primaryDirection_ = UserInterface::Direction::UP;
     };
 }
 

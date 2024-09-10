@@ -14,16 +14,17 @@ namespace CoreLogic::EventManagement::Object
 
     Barrel::Barrel(Vector2 pa_position, Rectangle pa_hitbox, int pa_id, Vector2 pa_size, int pa_elevation,
     int pa_fallHeight, UserInterface::Direction pa_primaryDirection) :
-    primaryDirection_ (pa_primaryDirection),
     Ability(pa_position, pa_hitbox, pa_id, CollisionType::COLLISION, pa_size, true, pa_elevation, BARREL)
     {
+        primaryDirection_ = pa_primaryDirection;
+        fallHeight_ = pa_fallHeight;
         newElevation_ = pa_elevation - (pa_fallHeight / 2);
         sprite_ = DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::BARREL);
     }
 
     void Barrel::setNewElevation(int pa_newElevation)
     {
-newElevation_ = pa_newElevation;
+        newElevation_ = pa_newElevation;
     }
 
     int Barrel::getFallHeight() const
