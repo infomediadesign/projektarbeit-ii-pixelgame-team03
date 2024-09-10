@@ -37,12 +37,12 @@ namespace CoreLogic::EventManagement
         {
             throw EventException("Enemy not found", false);
         }
-        std::dynamic_pointer_cast<Actors::Enemy>(po_mainActor_)->die();
+        std::dynamic_pointer_cast<Actors::Enemy>(po_mainActor_)->setDead(true);
     }
 
     void EnemyDisconnectEvent::update()
     {
-        if (ticks_ % 3 == 0)
+        if (ticks_ % 6 == 0)
         {
             po_mainActor_ ->shiftFrame(3);
         }

@@ -19,8 +19,35 @@ CoreLogic::EventManagement::JumpEvent::JumpEvent(std::shared_ptr<Object::JumpPoi
             throw e;
         }
     }
-    Vector2 position = pa_jumpPoint->getJumpPosition();
-    std::dynamic_pointer_cast<CoreLogic::EventManagement::Actors::MovableActor>(po_mainActor_) ->setPosition(position);
+    Vector2 destination = pa_jumpPoint->getJumpPosition();
+    int elevation = po_mainActor_->getElevation();
+    std::vector<std::shared_ptr<Actor>> barriers = CoreLogic::DataProcessing::ActorStorage::getCollidables()->at(elevation);
+    if (!barriers.empty())
+    {
+        for (auto &barrier: barriers)
+        {
+            if (barrier == nullptr)
+            {
+                continue;
+            }
+            if (barrier->getElevation() != elevation)
+            {
+                continue;
+            }
+            if (barrier->getCollisionType() == Actor::CollisionType::NONE)
+            {
+                continue;
+            }
+            Rectangle barrierHitbox = barrier->getHitbox();
+            Rectangle playerHB = po_mainActor_->getHitbox();
+            Rectangle destinationHB = {destination.x, destination.y, playerHB.width, playerHB.height};
+            if (CheckCollisionRecs(barrierHitbox, destinationHB))
+            {
+                throw EventException("Climbing Event Failed", false);
+            }
+        }
+    }
+    std::dynamic_pointer_cast<CoreLogic::EventManagement::Actors::MovableActor>(po_mainActor_) ->setPosition(destination);
 }
 
 CoreLogic::EventManagement::JumpEvent::~JumpEvent()

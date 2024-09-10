@@ -71,7 +71,7 @@ namespace CoreLogic::EventManagement
         {
             found_ = true;
             po_player_->setDroneState(Actors::Drone::DroneState::DEATH);
-            ticks_ == 24;
+            ticks_ = 24;
         }
     }
 
@@ -93,6 +93,7 @@ namespace CoreLogic::EventManagement
         std::dynamic_pointer_cast<Actors::Enemy>(po_mainActor_) -> setState(Actors::Enemy::EnemyState::IDLE);
         if (found_)
         {
+
             auto &eh = EventHandler::getInstance();
             eh.handleEvents({DISCONNECT}, po_player_->getId());
         }
