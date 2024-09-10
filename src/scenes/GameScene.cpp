@@ -23,7 +23,7 @@ Scenes::GameScene::GameScene(): Scene(std::make_shared<Camera2D>()),
     currentLevelID_ = po_levels_ -> at(0).getLevelID();
     previousLevelID_ = currentLevelID_;
 
-    CoreLogic::EventManagement::Actors::Worker drone = { {72, 720}, {72, 720, 38, 38}, 0, {38, 38}, 0};
+    CoreLogic::EventManagement::Actors::Worker drone = { {72, 720}, {72, 720, 32, 32}, 0, {38, 38}, 0};
     CoreLogic::DataProcessing::ActorStorage::setPlayer(std::make_shared<CoreLogic::EventManagement::Actors::Worker>(drone));
 
 }

@@ -600,19 +600,19 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
     UserInterface::Sprite sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/hive_ARTI_Worker-Spritesheet.png",
             {
                     {    //0 - walking
-                        {CoreLogic::UserInterface::AnimationState {1 * 38, 38, 38, 8}}, //up
-                        {CoreLogic::UserInterface::AnimationState {0 * 38, 38, 38, 8}}, //down
-                        {CoreLogic::UserInterface::AnimationState {3 * 38, 38, 38, 8}}, //left
-                        {CoreLogic::UserInterface::AnimationState {2 * 38, 38, 38, 8}}, //right
+                        {CoreLogic::UserInterface::AnimationState {1 * 38, 38, 38, 8, {-3, -3}}}, //up
+                        {CoreLogic::UserInterface::AnimationState {0 * 38, 38, 38, 8, {-3, -3}}}, //down
+                        {CoreLogic::UserInterface::AnimationState {3 * 38, 38, 38, 8, {-3, -3}}}, //left
+                        {CoreLogic::UserInterface::AnimationState {2 * 38, 38, 38, 8, {-3, -3}}}, //right
                     },
                     {    //1 - ability
-                            {CoreLogic::UserInterface::AnimationState {5 * 38, 38, 38, 8}}, //up
-                            {CoreLogic::UserInterface::AnimationState {4 * 38, 38, 38, 8}}, //down
-                            {CoreLogic::UserInterface::AnimationState {7 * 38, 38, 38, 8}}, //left
-                            {CoreLogic::UserInterface::AnimationState {6 * 38, 38, 38, 8}}, //right
+                            {CoreLogic::UserInterface::AnimationState {5 * 38, 38, 38, 8, {-3, -3}}}, //up
+                            {CoreLogic::UserInterface::AnimationState {4 * 38, 38, 38, 8, {-3, -3}}}, //down
+                            {CoreLogic::UserInterface::AnimationState {7 * 38, 38, 38, 8, {-3, -3}}}, //left
+                            {CoreLogic::UserInterface::AnimationState {6 * 38, 38, 38, 8, {-3, -3}}}, //right
                     },
                     {    //2 - death
-                        {CoreLogic::UserInterface::AnimationState {8 * 38, 38, 38, 12}},
+                        {CoreLogic::UserInterface::AnimationState {8 * 38, 38, 38, 12, {-3, -3}}},
                     }
             });
 
