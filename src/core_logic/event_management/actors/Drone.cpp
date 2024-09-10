@@ -147,16 +147,16 @@ CoreLogic::EventManagement::Actors::Drone::Drone(Vector2 pa_position, Rectangle 
     void Drone::update()
     {
         checkInteraction();
-        int interactionTypus;
+        /*int interactionTypus;
         if  (interaction_ == nullptr)
         {
             interactionTypus = -1;
         } else {
             interactionTypus = interaction_->getType();
         }
-        std::cout << interactionTypus << std::endl;
+        std::cout << interactionTypus << std::endl;*/
         checkAbility();
-        int abilityTypus;
+        /*int abilityTypus;
         if  (ability_ == nullptr)
         {
             abilityTypus = -1;
@@ -165,7 +165,7 @@ CoreLogic::EventManagement::Actors::Drone::Drone(Vector2 pa_position, Rectangle 
         }
         std::cout << abilityTypus << std::endl;
         std::cout <<std::endl;
-        std::cout <<std::endl;
+        std::cout <<std::endl;*/
     }
 
 

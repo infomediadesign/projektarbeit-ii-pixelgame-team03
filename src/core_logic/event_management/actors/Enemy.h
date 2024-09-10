@@ -7,6 +7,7 @@
 
 #include <map>
 #include "event_management/Actor.h"
+#include "data_processing/TilesonUtilities.h"
 
 namespace CoreLogic::EventManagement::Actors {
 
@@ -42,7 +43,7 @@ namespace CoreLogic::EventManagement::Actors {
         const Vector2 visionOrigin_;
         void checkVision();
 
-        bool checkVisionCollisionObjects(Ray *pa_visionRays, bool *pa_visionCollisions);
+        bool checkVisionCollisionObjects(DataProcessing::Line *pa_visionRays, bool *pa_visionCollisions);
         bool clockwise_;
         std::map<CoreLogic::UserInterface::Direction, std::pair<int, int>> turnCycles;
         void updateTurnCycle();

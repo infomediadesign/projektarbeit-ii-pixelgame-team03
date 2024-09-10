@@ -97,12 +97,12 @@ namespace CoreLogic::EventManagement
         }
         if (keyboardPressed)
         {
-            for (auto event: activatedEvents)
+            /*for (auto event: activatedEvents)
             {
 
                 std::cout << eventNames::getEventName(event) << ", ";
             }
-            std::cout << std::endl;
+            std::cout << std::endl;*/
             return activatedEvents;
         }
 

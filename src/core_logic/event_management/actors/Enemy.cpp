@@ -6,6 +6,7 @@
 #include "DesignConfig.h"
 #include "data_processing/Store.h"
 #include "EventHandler.h"
+#include "TilesonUtilities.h"
 
 
 namespace CoreLogic::EventManagement::Actors
@@ -114,6 +115,11 @@ namespace CoreLogic::EventManagement::Actors
             visionConnected_ = false;
             return;
         }
+        if (player -> getElevation() != elevation_)
+        {
+            visionConnected_ = false;
+            return;
+        }
         if (!(CheckCollisionCircleRec(visionOrigin_, static_cast<float>(range), playerHitbox)))
         {
             visionConnected_ = false;
@@ -131,22 +137,20 @@ namespace CoreLogic::EventManagement::Actors
                 primaryDirection_ == UserInterface::Direction::RIGHT) ? p3 = {visionOrigin_.x + range,
                 visionOrigin_.y + range} : p3 = {visionOrigin_.x - range, visionOrigin_.y - range};
 
-        Ray visionLines[4];
+        DataProcessing::Line visionLines[4];
 
-        Vector3 rayVisionOrigin = {visionOrigin_.x, visionOrigin_.y, 0};
-        visionLines[0] = {rayVisionOrigin, {playerHitbox.x, playerHitbox.y, 0}};
-        visionLines[1] = {rayVisionOrigin, {playerHitbox.x + playerHitbox.width, playerHitbox.y, 0}};
-        visionLines[2] = {rayVisionOrigin, {playerHitbox.x + playerHitbox.width, playerHitbox.y + playerHitbox.height, 0}};
-        visionLines[3] = {rayVisionOrigin, {playerHitbox.x, playerHitbox.y + playerHitbox.height, 0}};
+        visionLines[0] = {visionOrigin_, {playerHitbox.x, playerHitbox.y}};
+        visionLines[1] = {visionOrigin_, {playerHitbox.x + playerHitbox.width, playerHitbox.y}};
+        visionLines[2] = {visionOrigin_, {playerHitbox.x + playerHitbox.width, playerHitbox.y + playerHitbox.height}};
+        visionLines[3] = {visionOrigin_, {playerHitbox.x, playerHitbox.y + playerHitbox.height}};
 
         bool collides = false;
         bool collisions[4] = {true, true, true, true};
         for (int i = 0; i < 4; i++)
         {
-            Vector2 collisionPoint = {visionLines[i].direction.x, visionLines[i].direction.y};
+            Vector2 collisionPoint = visionLines[i].p2;
             if (!CheckCollisionPointTriangle(collisionPoint, p1, p2, p3))
             {
-                visionLines[i] = {{-1, -1, -1}, {-2, -1, -1}};
                 collisions[i] = false;
                 continue;
             }
@@ -161,7 +165,7 @@ namespace CoreLogic::EventManagement::Actors
 
         bool intersected = checkVisionCollisionObjects(visionLines, collisions);
 
-        if (!intersected)
+        if (intersected)
         {
             visionConnected_ = false;
         } else {
@@ -177,7 +181,7 @@ namespace CoreLogic::EventManagement::Actors
 
     }
 
-    bool Enemy::checkVisionCollisionObjects(Ray *pa_visionRays, bool *pa_visionCollisions)
+    bool Enemy::checkVisionCollisionObjects(DataProcessing::Line *pa_visionRays, bool *pa_visionCollisions)
     {
         std::vector<std::shared_ptr<Actor>> barriers = CoreLogic::DataProcessing::ActorStorage::getCollidables()->at(elevation_);
         bool *visionCollisions = pa_visionCollisions;
@@ -188,14 +192,16 @@ namespace CoreLogic::EventManagement::Actors
             {
                 continue;
             }
+            if (barrier->getElevation() != elevation_)
+            {
+                continue;
+            }
             if (barrier->getCollisionType() == Actor::CollisionType::NONE)
             {
                 continue;
             }
 
-            Rectangle barrierRec = barrier->getHitbox();
-            BoundingBox barrierHitbox = {{barrierRec.x, barrierRec.y, 0},
-                    {barrierRec.x + barrierRec.width, barrierRec.y + barrierRec.height, 0}};
+            Rectangle barrierHitbox = barrier->getHitbox();
 
             for (int i = 0; i < 4; ++i)
             {
@@ -203,7 +209,7 @@ namespace CoreLogic::EventManagement::Actors
                 {
                     continue;
                 }
-                if (GetRayCollisionBox(pa_visionRays[i], barrierHitbox).hit)
+                if (DataProcessing::CheckCollisionLineRec(pa_visionRays[i], barrierHitbox))
                 {
                     visionCollisions[i] = false;
                 }
