@@ -28,14 +28,17 @@ void CoreLogic::UserInterface::HUD::hudInit()
     {
         element.resetFrame(0);
     }
+
+    activeTutorialBox_ = {{0, 0}, ""};
 }
 
 void CoreLogic::UserInterface::HUD::draw(Rectangle pa_cameraRec)
 {
     for (auto &element: hudElements_)
     {
-        DrawTexturePro(element.getTexture(), element.getFrame(), pa_cameraRec, {0, 0}, 0,
-                WHITE);
+        DrawTexturePro(element.getTexture(), element.getFrame(), pa_cameraRec, {0, 0}, 0, WHITE);
+        DrawTextPro(CoreLogic::DataProcessing::Fonts::getFont(0), activeTutorialBox_.second.c_str(),
+                {activeTutorialBox_.first.x, activeTutorialBox_.first.y}, {0, 0}, 0, 20, 3, WHITE);
     }
 }
 
@@ -56,7 +59,6 @@ void CoreLogic::UserInterface::HUD::update()
 {
     CoreLogic::EventManagement::Actors::Drone &player = *CoreLogic::DataProcessing::ActorStorage::getPlayer();
 
-
     hudElements_[PORTRAIT].shiftFrame(player.getDroneType());
     hudElements_[MAX].shiftFrame(player.getMaxHealth() - 1);
     hudElements_[CURRENT].shiftFrame(player.getCurrentHealth() - 1);
@@ -65,5 +67,14 @@ void CoreLogic::UserInterface::HUD::update()
     hudElements_[MAIN].shiftFrame(player.canAct());
     hudElements_[DEATH].shiftFrame(player.canDeathAbility());
     hudElements_[INTERACT].shiftFrame(player.canInteract());
+
+    auto tutorialBoxes = CoreLogic::DataProcessing::ActorStorage::getTutorialBoxes()->at(player.getElevation());
+    for(auto tutorialBox : tutorialBoxes)
+    {
+        if (CheckCollisionRecs(tutorialBox->getHitbox(), player.getHitbox()))
+        {
+            activeTutorialBox_ = {tutorialBox->getPosition(), tutorialBox->getText()};
+        }
+    }
 
 }

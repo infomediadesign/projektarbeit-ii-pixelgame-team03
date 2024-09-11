@@ -34,6 +34,7 @@ namespace CoreLogic::UserInterface{
         void hudInit();
         static HUD* po_instance_;
         static std::mutex mutex_;
+        std::pair<Vector2, std::string> activeTutorialBox_;
     };
 }
 
