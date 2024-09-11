@@ -16,7 +16,7 @@ void CoreLogic::EventManagement::MovementEvent::update()
 {
     if (!std::dynamic_pointer_cast<Actors::Drone>(po_mainActor_)->canMove())
     {
-        stop();
+//        stop();
         throw EventException("Drone cannot move", true);
     }
     checkStillPressed();
@@ -63,10 +63,10 @@ void CoreLogic::EventManagement::MovementEvent::updateActorDir()
 
 void CoreLogic::EventManagement::MovementEvent::startMove(CoreLogic::EventManagement::EventEnum pa_Event)
 {
-    if (!std::dynamic_pointer_cast<Actors::Drone>(po_mainActor_)->canMove())
+    /*if (!std::dynamic_pointer_cast<Actors::Drone>(po_mainActor_)->canMove())
     {
         throw EventException("Drone can't move", false);
-    }
+    }*/
 
     if (primaryDir_ == EVENT_NULL)
     {
