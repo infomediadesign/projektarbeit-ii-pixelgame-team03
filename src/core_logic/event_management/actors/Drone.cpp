@@ -142,7 +142,10 @@ namespace CoreLogic::EventManagement::Actors
 
 CoreLogic::EventManagement::Actors::Drone::Drone(Vector2 pa_position, Rectangle pa_hitbox, int pa_id, Vector2 pa_size,
                                                  int pa_elevation)
-        : MovableActor(pa_position, pa_hitbox, pa_id, Actor::CollisionType::NONE, pa_size, true, pa_elevation){}
+        : MovableActor(pa_position, pa_hitbox, pa_id, Actor::CollisionType::NONE, pa_size, true, pa_elevation)
+        {
+
+        }
 
     void Drone::update()
     {
@@ -400,6 +403,14 @@ CoreLogic::EventManagement::Actors::Drone::Drone(Vector2 pa_position, Rectangle 
         {
             currentDroneState_ = MOVING;
         }
+    }
+
+    Drone::Drone(Vector2 pa_position, Rectangle pa_hitbox, int pa_id, Vector2 pa_size, int pa_elevation,
+            int pa_maxHealth, int pa_currentHealth)
+            : MovableActor(pa_position, pa_hitbox, pa_id, Actor::CollisionType::NONE, pa_size, true, pa_elevation)
+    {
+        maxHealth_ = pa_maxHealth;
+        currentHealth_ = pa_currentHealth;
     }
 
 }

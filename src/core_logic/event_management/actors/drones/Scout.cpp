@@ -42,4 +42,11 @@ namespace CoreLogic::EventManagement::Actors
     {
         sprite_ = DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::SCOUT_DRONE);
     }
+
+    Scout::Scout(Vector2 pa_position, Rectangle pa_hitbox, int pa_id, Vector2 pa_size, int pa_elevation,
+            int pa_maxHealth, int pa_currentHealth) :
+            Drone(pa_position, pa_hitbox, pa_id, pa_size, pa_elevation, pa_maxHealth, pa_currentHealth)
+    {
+
+    }
 }

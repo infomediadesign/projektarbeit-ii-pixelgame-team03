@@ -17,8 +17,6 @@ Scenes::DroneSelectionScene::DroneSelectionScene() :
     po_unlockedDrones_->insert({CoreLogic::EventManagement::Actors::Drone::WORKER, true});
     po_unlockedDrones_->insert({CoreLogic::EventManagement::Actors::Drone::SCOUT, false});
 
-    unlockDrone(CoreLogic::EventManagement::Actors::Drone::SCOUT);
-
     sprite_ = CoreLogic::DataProcessing::SpriteStorage::getSprite(CoreLogic::DataProcessing::SpriteStorage::DRONE_SELECTION);
 }
 
@@ -51,6 +49,7 @@ void Scenes::DroneSelectionScene::update()
         {
             std::shared_ptr<CoreLogic::EventManagement::Actors::Drone> newDrone;
             CoreLogic::EventManagement::Actors::Drone& player = *CoreLogic::DataProcessing::ActorStorage::getPlayer();
+
             switch (selectedDroneType_)
             {
             case CoreLogic::EventManagement::Actors::Drone::WORKER:
@@ -61,7 +60,9 @@ void Scenes::DroneSelectionScene::update()
 //                        player.getHitbox(), player.getId(), player.getSize(), CoreLogic::DataProcessing::ActorStorage::getActiveSpawnPoint()->getElevation());
                 break;
             case CoreLogic::EventManagement::Actors::Drone::SCOUT:
-                newDrone = std::make_shared<CoreLogic::EventManagement::Actors::Scout>(Vector2{984, 336}, player.getHitbox(), player.getId(), player.getSize(), 1);
+                newDrone = std::make_shared<CoreLogic::EventManagement::Actors::Scout>(Vector2{984, 336},
+                        Rectangle{72, 720, player.getHitbox().width, player.getHitbox().height}, player.getId(), player.getSize(), 1, player.getMaxHealth(),
+                        player.getCurrentHealth());
 
 //                newDrone = std::make_shared<CoreLogic::EventManagement::Actors::Scout>(
 //                        CoreLogic::DataProcessing::ActorStorage::getActiveSpawnPoint()->getPosition(),
@@ -69,9 +70,10 @@ void Scenes::DroneSelectionScene::update()
                 break;
             }
 
-            CoreLogic::DataProcessing::ActorStorage::setPlayer(newDrone);
+
             auto &eventHandler = CoreLogic::EventManagement::EventHandler::getInstance();
             eventHandler.resetPlayer();
+            CoreLogic::DataProcessing::ActorStorage::setPlayer(newDrone);
             CoreLogic::DataProcessing::StateMachine::changeState(CoreLogic::DataProcessing::GameState::IN_GAME);
 
         } else if (event == CoreLogic::EventManagement::MOVE_RIGHT) {

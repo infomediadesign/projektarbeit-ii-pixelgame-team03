@@ -34,6 +34,7 @@ namespace CoreLogic::EventManagement::Actors
             };
 
             Drone(Vector2 pa_position, Rectangle pa_hitbox, int pa_id, Vector2 pa_size, int pa_elevation);
+            Drone(Vector2 pa_position, Rectangle pa_hitbox, int pa_id, Vector2 pa_size, int pa_elevation, int pa_maxHealth, int pa_currentHealth);
 
 
             void move(bool pa_up, bool pa_down, bool pa_left, bool pa_right);
