@@ -57,7 +57,6 @@ CoreLogic::DataProcessing::GameState CoreLogic::DataProcessing::StateMachine::cu
 
 
 
-
 void CoreLogic::DataProcessing::TileMap::Initialize()
 {
     if (po_tileMap_ == nullptr)
