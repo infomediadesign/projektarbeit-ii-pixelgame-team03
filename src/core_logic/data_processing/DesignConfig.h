@@ -51,6 +51,9 @@ namespace CoreLogic::DataProcessing {
         inline static constexpr GamepadButton DISCONNECT_CONTROLLER = GAMEPAD_BUTTON_RIGHT_FACE_UP;
         inline static constexpr GamepadButton DEATH_ABILITY_CONTROLLER = GAMEPAD_BUTTON_RIGHT_TRIGGER_2;
 
+        inline static constexpr GamepadButton MENU_CONFIRM_CONTROLLER = GAMEPAD_BUTTON_RIGHT_FACE_DOWN;
+        inline static constexpr GamepadButton MENU_BACK_CONTROLLER = GAMEPAD_BUTTON_RIGHT_FACE_RIGHT;
+
         //default keyboard mapping; strg click on the right side to be navigated to a list of names of all available keys.
         inline static constexpr KeyboardKey MOVE_UP_KEYBOARD = KEY_W;
         inline static constexpr KeyboardKey MOVE_DOWN_KEYBOARD = KEY_S;
@@ -61,6 +64,9 @@ namespace CoreLogic::DataProcessing {
         inline static constexpr KeyboardKey ABILITY_KEYBOARD = KEY_J;
         inline static constexpr KeyboardKey DISCONNECT_KEYBOARD = KEY_I;
         inline static constexpr KeyboardKey DEATH_ABILITY_KEYBOARD = KEY_L;
+
+        inline static constexpr KeyboardKey MENU_CONFIRM_KEYBOARD = KEY_ENTER;
+        inline static constexpr KeyboardKey MENU_BACK_KEYBOARD = KEY_BACKSPACE;
     };
 
     //#define GAME_START_FULLSCREEN
