@@ -49,7 +49,7 @@ namespace CoreLogic::DataProcessing
     const int screenWidth_ = 640;
     const int screenHeight_ = 360;
 
-    std::vector<Font> fonts = {LoadFont("assets/fonts/PixelOperator.ttf"), LoadFont("assets/fonts/PixelOperatorHB.ttf")};
+
 
 struct StateMachine
 {
@@ -62,6 +62,17 @@ public:
 protected:
     static GameState currentState_;
     static GameState previousState_;
+};
+
+struct Fonts
+{
+public:
+    Font getFont(int pa_index);
+
+protected:
+    std::vector<Font> fonts_;
+
+    void Initialize();
 };
 
     struct TileMap

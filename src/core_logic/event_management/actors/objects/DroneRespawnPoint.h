@@ -18,13 +18,16 @@ namespace CoreLogic::EventManagement::Object
             ACTIVATED
         };
 
-        DroneRespawnPoint(Vector2 pa_position, Rectangle pa_hitbox, int pa_id, Vector2 pa_size,  int pa_elevation);
+        DroneRespawnPoint(Vector2 pa_position, Rectangle pa_hitbox, int pa_id, Vector2 pa_size,  int pa_elevation, bool pa_newDrone);
 
         [[nodiscard]] DroneRespawnPointState getRespawnState() const;
         void changeState(DroneRespawnPointState pa_state);
 
-    protected:
+        bool getNewDrone() const;
+        void setNewDrone(bool pa_newDrone);
 
+    protected:
+        bool newDrone_ = false;
         DroneRespawnPointState state_ = UNDISCOVERED;
     };
 }
