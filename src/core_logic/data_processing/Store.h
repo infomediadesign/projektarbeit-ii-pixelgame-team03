@@ -49,6 +49,8 @@ namespace CoreLogic::DataProcessing
     const int screenWidth_ = 640;
     const int screenHeight_ = 360;
 
+    std::vector<Font> fonts = {LoadFont("assets/fonts/PixelOperator.ttf"), LoadFont("assets/fonts/PixelOperatorHB.ttf")};
+
 struct StateMachine
 {
 public:
