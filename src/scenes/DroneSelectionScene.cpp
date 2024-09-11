@@ -51,11 +51,10 @@ void Scenes::DroneSelectionScene::update()
         {
             std::shared_ptr<CoreLogic::EventManagement::Actors::Drone> newDrone;
             CoreLogic::EventManagement::Actors::Drone& player = *CoreLogic::DataProcessing::ActorStorage::getPlayer();
-
             switch (selectedDroneType_)
             {
             case CoreLogic::EventManagement::Actors::Drone::WORKER:
-                newDrone = std::make_shared<CoreLogic::EventManagement::Actors::Worker>(Vector2{72, 720}, player.getHitbox(), player.getId(), player.getSize(), 1);
+                newDrone = std::make_shared<CoreLogic::EventManagement::Actors::Worker>(Vector2{72, 720}, Rectangle({72, 720, player.getHitbox().width, player.getHitbox().height}), player.getId(), player.getSize(), 1);
 
 //                newDrone = std::make_shared<CoreLogic::EventManagement::Actors::Worker>(
 //                        CoreLogic::DataProcessing::ActorStorage::getActiveSpawnPoint()->getPosition(),
