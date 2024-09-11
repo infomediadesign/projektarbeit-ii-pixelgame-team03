@@ -17,6 +17,12 @@ namespace CoreLogic::EventManagement
         }
         if (pa_checkpoint->getRespawnState() == Object::DroneRespawnPoint::UNDISCOVERED || pa_checkpoint->getRespawnState() == Object::DroneRespawnPoint::DISCOVERED)
         {
+            if (pa_checkpoint->getRespawnState() == Object::DroneRespawnPoint::UNDISCOVERED)
+            {
+                auto player = CoreLogic::DataProcessing::ActorStorage::getPlayer();
+                player->increaseMaxHealth();
+                player->increaseCurrentHealth();
+            }
             pa_checkpoint->changeState(Object::DroneRespawnPoint::ACTIVATED);
             activeSpawnPoint->changeState(Object::DroneRespawnPoint::DISCOVERED);
             DataProcessing::ActorStorage::setActiveSpawnPoint(pa_checkpoint);

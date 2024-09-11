@@ -5,6 +5,7 @@
 #include "raylib.h"
 
 std::shared_ptr<Texture2D> CoreLogic::DataProcessing::TileMap::po_tileMap_ = nullptr;
+std::shared_ptr<std::vector<Font>> CoreLogic::DataProcessing::Fonts::po_fonts_ = nullptr;
 std::shared_ptr<Texture2D> CoreLogic::DataProcessing::TileMap::getTileMap() {return po_tileMap_;}
 
 // Define the static member variables for ActorStorage
@@ -909,11 +910,14 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
 
 void CoreLogic::DataProcessing::Fonts::Initialize()
 {
-fonts_[0] = LoadFont("assets/fonts/PixelOperator.ttf");
-fonts_[1] = LoadFont("assets/fonts/PixelOperatorHB.ttf");
+    if (po_fonts_ == nullptr)
+    {
+        po_fonts_ = std::make_shared<std::vector<Font>>(std::vector<Font>({LoadFont("assets/fonts/PixelOperator.ttf"), LoadFont("assets/fonts/PixelOperatorHB.ttf")}));
+    }
+
 }
 
 Font CoreLogic::DataProcessing::Fonts::getFont(int pa_index)
 {
-    return fonts_[pa_index];
+    return po_fonts_->at(pa_index);
 }

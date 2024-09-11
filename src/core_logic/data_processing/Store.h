@@ -68,11 +68,9 @@ struct Fonts
 {
 public:
     static Font getFont(int pa_index);
-
     static void Initialize();
-protected:
-
-    static std::vector<Font> fonts_;
+private:
+    static std::shared_ptr<std::vector<Font>> po_fonts_;
 };
 
     struct TileMap
