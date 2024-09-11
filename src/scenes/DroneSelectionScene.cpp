@@ -53,7 +53,8 @@ void Scenes::DroneSelectionScene::update()
             switch (selectedDroneType_)
             {
             case CoreLogic::EventManagement::Actors::Drone::WORKER:
-                newDrone = std::make_shared<CoreLogic::EventManagement::Actors::Worker>(Vector2{72, 720}, Rectangle({72, 720, player.getHitbox().width, player.getHitbox().height}), player.getId(), player.getSize(), 0);
+                newDrone = std::make_shared<CoreLogic::EventManagement::Actors::Worker>(Vector2{72, 720}, Rectangle({72, 720, player.getHitbox().width, player.getHitbox().height}), player.getId(), player.getSize(), 0, player.getMaxHealth(),
+                        player.getCurrentHealth());
 
 //                newDrone = std::make_shared<CoreLogic::EventManagement::Actors::Worker>(
 //                        CoreLogic::DataProcessing::ActorStorage::getActiveSpawnPoint()->getPosition(),
@@ -70,10 +71,9 @@ void Scenes::DroneSelectionScene::update()
                 break;
             }
 
-
+            CoreLogic::DataProcessing::ActorStorage::setPlayer(newDrone);
             auto &eventHandler = CoreLogic::EventManagement::EventHandler::getInstance();
             eventHandler.resetPlayer();
-            CoreLogic::DataProcessing::ActorStorage::setPlayer(newDrone);
             CoreLogic::DataProcessing::StateMachine::changeState(CoreLogic::DataProcessing::GameState::IN_GAME);
 
         } else if (event == CoreLogic::EventManagement::MOVE_RIGHT) {
