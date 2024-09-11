@@ -67,12 +67,12 @@ protected:
 struct Fonts
 {
 public:
-    Font getFont(int pa_index);
+    static Font getFont(int pa_index);
 
+    static void Initialize();
 protected:
-    std::vector<Font> fonts_;
 
-    void Initialize();
+    static std::vector<Font> fonts_;
 };
 
     struct TileMap
