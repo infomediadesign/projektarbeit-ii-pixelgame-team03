@@ -152,10 +152,6 @@ void CoreLogic::DataProcessing::ActorStorage::setLayers(std::shared_ptr<std::map
 }
 
 void CoreLogic::DataProcessing::ActorStorage::setPlayer(std::shared_ptr<EventManagement::Actors::Drone> pa_player) {
-    po_player_.reset();
-    std::shared_ptr<EventManagement::Actors::Drone> old_player = po_player_; //for debug
-    po_player_ = nullptr;
-    std::shared_ptr<EventManagement::Actors::Drone> debug_player = po_player_;
     po_player_ = pa_player;
 }
 
