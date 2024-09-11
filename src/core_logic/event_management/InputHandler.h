@@ -104,6 +104,7 @@ namespace CoreLogic::EventManagement {
             std::vector<EventEnum> handleInput();
 
             bool isCommandReleased(EventEnum pa_enum);
+            bool isCommandUp(EventEnum pa_enum);
 
 
         protected:
