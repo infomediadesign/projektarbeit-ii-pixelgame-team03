@@ -216,11 +216,11 @@ namespace CoreLogic::EventManagement
         return false;
     }
 
-    bool InputHandler::isCommandUp(EventEnum pa_enum)
+    bool InputHandler::isCommandDown(EventEnum pa_enum)
     {
         for (auto it: keyboardInGameMapping_)
         {
-            if (it.second == pa_enum && !IsKeyDown(it.first.key))
+            if (it.second == pa_enum && IsKeyDown(it.first.key))
             {
                 return true;
             }
@@ -230,7 +230,7 @@ namespace CoreLogic::EventManagement
             Input& input = const_cast<Input &>(it.first); // "When dealing with a union in a struct, accessing a member of the union can sometimes create a temporary object if the original context does not match the expected type." ~ChatGPT (ich hab kein Plan was genau das heißt aber es funktioniert :])
 
             if (it.second == pa_enum &&
-                    (!IsGamepadButtonDown(0, it.first.button)))
+                    (IsGamepadButtonDown(0, it.first.button)))
             {
                 return true;
             }
