@@ -906,3 +906,9 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
 
     po_sprites_[DRONE_SELECTION] = sprite;
 }
+
+void CoreLogic::DataProcessing::Fonts::Initialize()
+{
+fonts_[0] = LoadFont("assets/fonts/PixelOperator.ttf");
+fonts_[1] = LoadFont("assets/fonts/PixelOperatorHB.ttf");
+}
