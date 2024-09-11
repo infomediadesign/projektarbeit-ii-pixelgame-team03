@@ -19,7 +19,7 @@ namespace CoreLogic::EventManagement
         {
             pa_checkpoint->changeState(Object::DroneRespawnPoint::ACTIVATED);
             activeSpawnPoint->changeState(Object::DroneRespawnPoint::DISCOVERED);
-            activeSpawnPoint = pa_checkpoint;
+            DataProcessing::ActorStorage::setActiveSpawnPoint(pa_checkpoint);
             CoreLogic::DataProcessing::StateMachine::changeState(DataProcessing::DRONE_SELECTION);
             throw EventException("Checkpoint Event Executed", true);
         } else if (pa_checkpoint->getRespawnState() == Object::DroneRespawnPoint::ACTIVATED) {
