@@ -260,7 +260,7 @@ void CoreLogic::DataProcessing::Map::loadObjects()
                 actor = std::make_shared<EventManagement::Object::Uplink>(EventManagement::Object::Uplink
                         (objectPosition, objectHitbox, objectId, objectSize, objectElevation));
                 ActorStorage::addActorByType(objectElevation, actor);
-            }else if (objectClass == "spawn_point")
+            }else if (objectClass == "respawnPoint")
             {
                 bool objectNewDrone = objectProperties.getProperty("newDrone")->getValue<bool>();
 
