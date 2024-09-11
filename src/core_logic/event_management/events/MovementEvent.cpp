@@ -14,12 +14,12 @@
 
 void CoreLogic::EventManagement::MovementEvent::update()
 {
+    checkStillPressed();
     if (!std::dynamic_pointer_cast<Actors::Drone>(po_mainActor_)->canMove())
     {
 //        stop();
         throw EventException("Drone cannot move", true);
     }
-    checkStillPressed();
     if (!ticksRunning_)
     {
         po_mainActor_->resetFrame(0);
