@@ -420,8 +420,8 @@
                  "rotation":0,
                  "type":"water",
                  "visible":true,
-                 "width":120,
-                 "x":936,
+                 "width":108.666666666667,
+                 "x":947.333333333333,
                  "y":648
                 }, 
                 {
@@ -431,8 +431,8 @@
                  "rotation":0,
                  "type":"water",
                  "visible":true,
-                 "width":120,
-                 "x":984,
+                 "width":131.625,
+                 "x":972.375,
                  "y":672
                 }, 
                 {
@@ -2289,33 +2289,6 @@
                  "y":144
                 }, 
                 {
-                 "height":48,
-                 "id":217,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"elevation_dest",
-                         "type":"int",
-                         "value":2
-                        }, 
-                        {
-                         "name":"x_dest",
-                         "type":"int",
-                         "value":59
-                        }, 
-                        {
-                         "name":"y_dest",
-                         "type":"int",
-                         "value":3
-                        }],
-                 "rotation":0,
-                 "type":"vines",
-                 "visible":true,
-                 "width":24,
-                 "x":1416,
-                 "y":120
-                }, 
-                {
                  "height":24,
                  "id":218,
                  "name":"",
@@ -3026,6 +2999,17 @@
                  "width":48,
                  "x":1224,
                  "y":648
+                }, 
+                {
+                 "height":48,
+                 "id":590,
+                 "name":"",
+                 "rotation":0,
+                 "type":"pushable",
+                 "visible":true,
+                 "width":48,
+                 "x":1104,
+                 "y":456
                 }],
          "opacity":1,
          "properties":[
@@ -4260,8 +4244,8 @@
                  "type":"collidable",
                  "visible":true,
                  "width":24,
-                 "x":1392,
-                 "y":72
+                 "x":1418.25,
+                 "y":68
                 }, 
                 {
                  "height":72,
@@ -5646,7 +5630,7 @@
                         {
                          "name":"elevation_dest",
                          "type":"int",
-                         "value":1
+                         "value":2
                         }, 
                         {
                          "name":"x_dest",
@@ -7779,7 +7763,7 @@
          "y":0
         }],
  "nextlayerid":59,
- "nextobjectid":590,
+ "nextobjectid":594,
  "orientation":"orthogonal",
  "properties":[
         {
