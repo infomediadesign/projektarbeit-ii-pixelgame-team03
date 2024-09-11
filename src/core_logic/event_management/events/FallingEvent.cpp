@@ -56,7 +56,7 @@ void CoreLogic::EventManagement::FallingEvent::fall()
     if (ticks_ != 0 && ticks_ % 5 == 0)
     {
         Vector2 newPosition = po_mainActor_ -> getPosition();
-        int tileSize = CoreLogic::DataProcessing::tileSize;
+        int tileSize = CoreLogic::DataProcessing::global_tileSize;
         newPosition.y += (0.5 * tileSize);
         std::dynamic_pointer_cast<CoreLogic::EventManagement::Actors::MovableActor>(po_mainActor_)
                 -> setPosition(newPosition);

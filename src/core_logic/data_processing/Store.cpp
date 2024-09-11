@@ -4,6 +4,7 @@
 #include "Store.h"
 #include "raylib.h"
 
+
 std::shared_ptr<Texture2D> CoreLogic::DataProcessing::TileMap::po_tileMap_ = nullptr;
 std::shared_ptr<std::vector<Font>> CoreLogic::DataProcessing::Fonts::po_fonts_ = nullptr;
 std::shared_ptr<Texture2D> CoreLogic::DataProcessing::TileMap::getTileMap() {return po_tileMap_;}

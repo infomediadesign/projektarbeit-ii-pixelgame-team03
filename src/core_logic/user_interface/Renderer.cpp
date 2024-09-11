@@ -27,19 +27,19 @@ void CoreLogic::UserInterface::Renderer::render(std::shared_ptr<std::map<int, st
     Rectangle cameraRec = {0, 0, 0, 0};
     if (pa_camera.target.x > 0)
     {
-        cameraRec.x = floorf(pa_camera.target.x / 24);
+        cameraRec.x = floorf(pa_camera.target.x / DataProcessing::global_tileSize);
     }
     if (pa_camera.target.y > 0)
     {
-        cameraRec.y = floorf(pa_camera.target.y / 24);
+        cameraRec.y = floorf(pa_camera.target.y / DataProcessing::global_tileSize);
     }
     if (pa_camera.target.x + screenWidth > 0)
     {
-        cameraRec.width = floorf((pa_camera.target.x + screenWidth + 24) / 24);
+        cameraRec.width = floorf((pa_camera.target.x + screenWidth + DataProcessing::global_tileSize) / DataProcessing::global_tileSize);
     }
     if (pa_camera.target.y + screenHeight > 0)
     {
-        cameraRec.height = floorf((pa_camera.target.y + screenHeight + 24) / 24);
+        cameraRec.height = floorf((pa_camera.target.y + screenHeight + DataProcessing::global_tileSize) / DataProcessing::global_tileSize);
     }
     ClearBackground(pa_bgColor);
     BeginTextureMode(pa_canvas);

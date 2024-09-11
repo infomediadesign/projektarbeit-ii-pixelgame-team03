@@ -26,7 +26,7 @@ namespace CoreLogic::EventManagement
 
             auto& eventHandler = EventHandler::getInstance();
             Rectangle explosionRadius;
-            int tileSize = CoreLogic::DataProcessing::tileSize;
+            int tileSize = CoreLogic::DataProcessing::global_tileSize;
             explosionRadius.x = po_mainActor_ -> getPosition().x - (tileSize * 2);
             explosionRadius.y = po_mainActor_ -> getPosition().y - (tileSize * 2);
             explosionRadius.width = po_mainActor_ -> getSize().x + (tileSize * 5);

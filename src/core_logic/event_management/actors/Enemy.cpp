@@ -72,7 +72,7 @@ namespace CoreLogic::EventManagement::Actors
 
     void Enemy::forceTurn(Vector2 pa_triggerPoint)
     {
-        int detectionRadius = CoreLogic::DataProcessing::DesignConfig::COLONIST_RANGE * CoreLogic::DataProcessing::tileSize;
+        int detectionRadius = CoreLogic::DataProcessing::DesignConfig::COLONIST_RANGE * CoreLogic::DataProcessing::global_tileSize;
         if (!CheckCollisionPointCircle(pa_triggerPoint, visionOrigin_, static_cast<float>(detectionRadius)))
         {
             return;
@@ -106,7 +106,7 @@ namespace CoreLogic::EventManagement::Actors
 
     void Enemy::checkVision()
     {
-        int range = CoreLogic::DataProcessing::DesignConfig::COLONIST_RANGE * CoreLogic::DataProcessing::tileSize;
+        int range = CoreLogic::DataProcessing::DesignConfig::COLONIST_RANGE * CoreLogic::DataProcessing::global_tileSize;
         auto player = CoreLogic::DataProcessing::ActorStorage::getPlayer();
         Rectangle playerHitbox = player->getHitbox();
 
@@ -276,7 +276,7 @@ namespace CoreLogic::EventManagement::Actors
     {
         if (pa_frameShift == 0)
         {
-            if (state_ == IDLE && !dead_ && DataProcessing::ticks % 6 == 0)
+            if (state_ == IDLE && !dead_ && DataProcessing::global_ticks % 6 == 0)
             {
                 sprite_.shiftFrame(pa_frameShift, primaryDirection_);
                 return;

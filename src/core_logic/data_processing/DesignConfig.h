@@ -35,7 +35,7 @@ namespace CoreLogic::DataProcessing {
         inline static constexpr int COLONIST_RANGE = 8;
         inline static constexpr int MECH_RANGE = 8;
 
-        //enemy detection rate; in ticks
+        //enemy detection rate; in global_ticks
         inline static constexpr int COLONIST_DETECTION_RATE = 120;
         inline static constexpr int MECH_DETECTION_RATE = 120;
 

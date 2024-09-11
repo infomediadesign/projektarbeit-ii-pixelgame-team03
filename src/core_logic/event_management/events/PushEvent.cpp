@@ -37,17 +37,17 @@ namespace CoreLogic::EventManagement
                 switch (po_mainActor_->getPrimaryDirection())
                 {
                     case UserInterface::Direction::UP:
-                        destination.y -= CoreLogic::DataProcessing::tileSize;
+                        destination.y -= CoreLogic::DataProcessing::global_tileSize;
                         break;
 
                     case UserInterface::Direction::DOWN:
-                        destination.y += CoreLogic::DataProcessing::tileSize;
+                        destination.y += CoreLogic::DataProcessing::global_tileSize;
                         break;
                     case UserInterface::Direction::LEFT:
-                        destination.x -= CoreLogic::DataProcessing::tileSize;
+                        destination.x -= CoreLogic::DataProcessing::global_tileSize;
                         break;
                     case UserInterface::Direction::RIGHT:
-                        destination.x += CoreLogic::DataProcessing::tileSize;
+                        destination.x += CoreLogic::DataProcessing::global_tileSize;
                         break;
                 }
                 if (CheckCollisionRecs(destination, barrier->getHitbox()))

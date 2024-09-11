@@ -43,8 +43,8 @@ namespace CoreLogic::DataProcessing
         END_SCENE,
         CREDITS
     };
-    inline long long int ticks = 1;
-    const int tileSize = 24;
+    inline long long int global_ticks = 1;
+    inline const int global_tileSize = 24;
 
     const int screenWidth_ = 640;
     const int screenHeight_ = 360;

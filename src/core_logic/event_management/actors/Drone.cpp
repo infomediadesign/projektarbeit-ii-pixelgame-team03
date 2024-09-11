@@ -19,7 +19,7 @@ namespace CoreLogic::EventManagement::Actors
 
         EventHandler &eventHandler = EventHandler::getInstance();
 
-        int tickMult = CoreLogic::DataProcessing::ticks % 3;
+        int tickMult = CoreLogic::DataProcessing::global_ticks % 3;
         int diagonalSpeed;
         if (CoreLogic::DataProcessing::DesignConfig::DRONE_SPEED == 1)
         {
@@ -178,16 +178,16 @@ CoreLogic::EventManagement::Actors::Drone::Drone(Vector2 pa_position, Rectangle 
         switch (primaryDirection_)
         {
             case UserInterface::Direction::RIGHT:
-                extensionRec.x += DataProcessing::tileSize / 2;
+                extensionRec.x += DataProcessing::global_tileSize / 2;
                 break;
             case UserInterface::Direction::LEFT:
-                extensionRec.x -= DataProcessing::tileSize / 2;
+                extensionRec.x -= DataProcessing::global_tileSize / 2;
                 break;
             case UserInterface::Direction::UP:
-                extensionRec.y -= DataProcessing::tileSize / 2;
+                extensionRec.y -= DataProcessing::global_tileSize / 2;
                 break;
             case UserInterface::Direction::DOWN:
-                extensionRec.y += DataProcessing::tileSize / 2;
+                extensionRec.y += DataProcessing::global_tileSize / 2;
                 break;
         }
         /**
