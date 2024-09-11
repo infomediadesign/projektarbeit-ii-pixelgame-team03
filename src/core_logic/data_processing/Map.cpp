@@ -235,8 +235,14 @@ void CoreLogic::DataProcessing::Map::loadObjects()
             }else if (objectClass == "textbox")
             {
                 std::string objectText = objectProperties.getProperty("textbox_text")->getValue<std::string>();
+                int objectFontSize = objectProperties.getProperty("textbox_font_size")->getValue<int>();
+                int objectSpacing = objectProperties.getProperty("textbox_spacing")->getValue<int>();
+                Vector2 objectAnchor = {(float) objectProperties.getProperty("textbox_anchor_x")->getValue<int>(),
+                        (float) objectProperties.getProperty("textbox_anchor_y")->getValue<int>()};
 
-                actor = std::make_shared<EventManagement::Object::TutorialBox>(EventManagement::Object::TutorialBox(objectPosition, objectHitbox, objectId, objectSize, objectElevation, objectText));
+                actor = std::make_shared<EventManagement::Object::TutorialBox>(
+                        EventManagement::Object::TutorialBox(objectPosition, objectHitbox, objectId, objectSize,
+                                objectElevation, objectText, objectFontSize, objectSpacing, objectAnchor));
                 ActorStorage::addActorByType(objectElevation, actor);
             } else if (objectClass == "lore_item")
             {
@@ -263,9 +269,15 @@ void CoreLogic::DataProcessing::Map::loadObjects()
             }else if (objectClass == "respawnPoint")
             {
                 bool objectNewDrone = objectProperties.getProperty("newDrone")->getValue<bool>();
+                bool objectActive = false;
+                if (objectProperties.hasProperty("active"))
+                {
+                    objectActive = objectProperties.getProperty("active")->getValue<bool>();
+                }
 
                 actor = std::make_shared<EventManagement::Object::DroneRespawnPoint>(EventManagement::Object::DroneRespawnPoint
-                        (objectPosition, objectHitbox, objectId, objectSize, objectElevation, objectNewDrone));
+                        (objectPosition, objectHitbox, objectId, objectSize, objectElevation, objectNewDrone, objectActive));
+
                 ActorStorage::addActorByType(objectElevation, actor);
             }
         }

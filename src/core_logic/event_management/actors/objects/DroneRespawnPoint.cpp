@@ -19,12 +19,18 @@ CoreLogic::EventManagement::Object::DroneRespawnPoint::getRespawnState() const
 }
 
 CoreLogic::EventManagement::Object::DroneRespawnPoint::DroneRespawnPoint(Vector2 pa_position, Rectangle pa_hitbox,
-        int pa_id, Vector2 pa_size, int pa_elevation, bool pa_newDrone) :
+        int pa_id, Vector2 pa_size, int pa_elevation, bool pa_newDrone, bool pa_active) :
         newDrone_(pa_newDrone),
         Interaction(pa_position, pa_hitbox, pa_id, Actor::CollisionType::NONE, pa_size, true, pa_elevation,
                 CHECKPOINT)
 {
     sprite_ = DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::SPAWN_UNDERWORLD);
+    if (pa_active == true)
+    {
+        changeState(DroneRespawnPointState::ACTIVATED);
+    } else {
+        changeState(DroneRespawnPointState::UNDISCOVERED);
+    }
 }
 
 bool CoreLogic::EventManagement::Object::DroneRespawnPoint::getNewDrone() const

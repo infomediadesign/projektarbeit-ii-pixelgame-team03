@@ -53,21 +53,16 @@ void Scenes::DroneSelectionScene::update()
             switch (selectedDroneType_)
             {
             case CoreLogic::EventManagement::Actors::Drone::WORKER:
-                newDrone = std::make_shared<CoreLogic::EventManagement::Actors::Worker>(Vector2{72, 720}, Rectangle({72, 720, player.getHitbox().width, player.getHitbox().height}), player.getId(), player.getSize(), 0, player.getMaxHealth(),
-                        player.getCurrentHealth());
 
-//                newDrone = std::make_shared<CoreLogic::EventManagement::Actors::Worker>(
-//                        CoreLogic::DataProcessing::ActorStorage::getActiveSpawnPoint()->getPosition(),
-//                        player.getHitbox(), player.getId(), player.getSize(), CoreLogic::DataProcessing::ActorStorage::getActiveSpawnPoint()->getElevation());
+                newDrone = std::make_shared<CoreLogic::EventManagement::Actors::Worker>(
+                        CoreLogic::DataProcessing::ActorStorage::getActiveSpawnPoint()->getPosition(),
+                        player.getHitbox(), player.getId(), player.getSize(), CoreLogic::DataProcessing::ActorStorage::getActiveSpawnPoint()->getElevation());
                 break;
             case CoreLogic::EventManagement::Actors::Drone::SCOUT:
-                newDrone = std::make_shared<CoreLogic::EventManagement::Actors::Scout>(Vector2{984, 336},
-                        Rectangle{72, 720, player.getHitbox().width, player.getHitbox().height}, player.getId(), player.getSize(), 1, player.getMaxHealth(),
-                        player.getCurrentHealth());
 
-//                newDrone = std::make_shared<CoreLogic::EventManagement::Actors::Scout>(
-//                        CoreLogic::DataProcessing::ActorStorage::getActiveSpawnPoint()->getPosition(),
-//                        player.getHitbox(), player.getId(), player.getSize(), CoreLogic::DataProcessing::ActorStorage::getActiveSpawnPoint()->getElevation());
+                newDrone = std::make_shared<CoreLogic::EventManagement::Actors::Scout>(
+                        CoreLogic::DataProcessing::ActorStorage::getActiveSpawnPoint()->getPosition(),
+                        player.getHitbox(), player.getId(), player.getSize(), CoreLogic::DataProcessing::ActorStorage::getActiveSpawnPoint()->getElevation());
                 break;
             }
 

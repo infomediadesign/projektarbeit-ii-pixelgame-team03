@@ -9,6 +9,7 @@
 #include <mutex>
 #include "raylib.h"
 #include "Sprite.h"
+#include "../event_management/actors/objects/TutorialBox.h"
 
 namespace CoreLogic::UserInterface{
     class HUD
@@ -34,7 +35,7 @@ namespace CoreLogic::UserInterface{
         void hudInit();
         static HUD* po_instance_;
         static std::mutex mutex_;
-        std::pair<Vector2, std::string> activeTutorialBox_;
+        std::shared_ptr<CoreLogic::EventManagement::Object::TutorialBox> activeTutorialBox_;
     };
 }
 

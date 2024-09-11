@@ -280,13 +280,23 @@ void CoreLogic::DataProcessing::ActorStorage::addActorByType(int pa_elevation,
 
     }else if (auto spawn = std::dynamic_pointer_cast<EventManagement::Object::DroneRespawnPoint>(pa_actor))
     {
+        bool activeSpawn = false;
+        if (spawn->getRespawnState() == EventManagement::Object::DroneRespawnPoint::DroneRespawnPointState::ACTIVATED)
+        {
+            activeSpawn = true;
+        }
         addActor(po_respawnPoints_, pa_elevation, spawn);
 
         auto interaction = std::dynamic_pointer_cast<EventManagement::Object::Interaction>(pa_actor);
         addActor(po_interactions_, pa_elevation, interaction);
 
         auto actor = std::dynamic_pointer_cast<EventManagement::Actor>(pa_actor);
+        addActor(po_visibles_, pa_elevation, actor);
         addActor(po_allActors_, pa_elevation, actor);
+        if (activeSpawn)
+        {
+            po_activeRespawnPoint_ = spawn;
+        }
 
     }
 }
@@ -749,7 +759,7 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
                             {CoreLogic::UserInterface::AnimationState {1 * 48, 48, 48, 1}},
                     },
                     {    //2 - active
-                            {CoreLogic::UserInterface::AnimationState {1 * 48, 48, 48, 11}},
+                            {CoreLogic::UserInterface::AnimationState {2 * 48, 48, 48, 11}},
                     },
             });
 
