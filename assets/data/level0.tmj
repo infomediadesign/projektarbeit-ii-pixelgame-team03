@@ -878,54 +878,7 @@
          "draworder":"topdown",
          "id":57,
          "name":"Enemies 1",
-         "objects":[
-                {
-                 "height":48,
-                 "id":586,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"clockwise",
-                         "type":"bool",
-                         "value":false
-                        }, 
-                        {
-                         "name":"direction",
-                         "type":"int",
-                         "value":2
-                        }, 
-                        {
-                         "name":"interval_e",
-                         "type":"int",
-                         "value":180
-                        }, 
-                        {
-                         "name":"interval_n",
-                         "type":"int",
-                         "value":0
-                        }, 
-                        {
-                         "name":"interval_s",
-                         "type":"int",
-                         "value":180
-                        }, 
-                        {
-                         "name":"interval_w",
-                         "type":"int",
-                         "value":0
-                        }, 
-                        {
-                         "name":"turn",
-                         "type":"bool",
-                         "value":true
-                        }],
-                 "rotation":0,
-                 "type":"colonist",
-                 "visible":true,
-                 "width":24,
-                 "x":360,
-                 "y":552
-                }],
+         "objects":[],
          "opacity":1,
          "properties":[
                 {
@@ -934,7 +887,7 @@
                  "value":0
                 }],
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -2904,7 +2857,7 @@
                  "value":1
                 }],
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -3082,7 +3035,7 @@
                  "value":1
                 }],
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -3090,29 +3043,7 @@
          "draworder":"topdown",
          "id":58,
          "name":"Explosive Barrels 2",
-         "objects":[
-                {
-                 "height":24,
-                 "id":588,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"direction",
-                         "type":"int",
-                         "value":2
-                        }, 
-                        {
-                         "name":"height",
-                         "type":"int",
-                         "value":2
-                        }],
-                 "rotation":0,
-                 "type":"explosive_barrel",
-                 "visible":true,
-                 "width":24,
-                 "x":408,
-                 "y":480
-                }],
+         "objects":[],
          "opacity":1,
          "properties":[
                 {
@@ -3121,7 +3052,7 @@
                  "value":1
                 }],
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -3654,53 +3585,6 @@
                  "width":24,
                  "x":1344,
                  "y":648
-                }, 
-                {
-                 "height":48,
-                 "id":583,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"clockwise",
-                         "type":"bool",
-                         "value":false
-                        }, 
-                        {
-                         "name":"direction",
-                         "type":"int",
-                         "value":2
-                        }, 
-                        {
-                         "name":"interval_e",
-                         "type":"int",
-                         "value":180
-                        }, 
-                        {
-                         "name":"interval_n",
-                         "type":"int",
-                         "value":0
-                        }, 
-                        {
-                         "name":"interval_s",
-                         "type":"int",
-                         "value":180
-                        }, 
-                        {
-                         "name":"interval_w",
-                         "type":"int",
-                         "value":0
-                        }, 
-                        {
-                         "name":"turn",
-                         "type":"bool",
-                         "value":true
-                        }],
-                 "rotation":0,
-                 "type":"colonist",
-                 "visible":true,
-                 "width":24,
-                 "x":216,
-                 "y":336
                 }],
          "opacity":1,
          "properties":[
@@ -3710,7 +3594,7 @@
                  "value":1
                 }],
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -4684,7 +4568,7 @@
                  "rotation":0,
                  "type":"collidable",
                  "visible":true,
-                 "width":96,
+                 "width":72,
                  "x":288,
                  "y":192
                 }, 
@@ -4709,6 +4593,17 @@
                  "width":24,
                  "x":768,
                  "y":-24
+                }, 
+                {
+                 "height":144,
+                 "id":589,
+                 "name":"",
+                 "rotation":0,
+                 "type":"collidable",
+                 "visible":true,
+                 "width":72,
+                 "x":312,
+                 "y":216
                 }],
          "opacity":1,
          "properties":[
@@ -4718,7 +4613,7 @@
                  "value":1
                 }],
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -7884,7 +7779,7 @@
          "y":0
         }],
  "nextlayerid":59,
- "nextobjectid":589,
+ "nextobjectid":590,
  "orientation":"orthogonal",
  "properties":[
         {

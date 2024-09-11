@@ -48,6 +48,7 @@ void CoreLogic::UserInterface::Renderer::render(std::shared_ptr<std::map<int, st
         BeginMode2D(pa_camera);
         {
             ClearBackground(pa_bgColor);
+            std::shared_ptr<CoreLogic::EventManagement::Actors::Drone> player = CoreLogic::DataProcessing::ActorStorage::getPlayer();
             for (const auto &pair: *pa_layers)
             {
                 const std::vector<tson::Layer> &layers = pair.second;
@@ -61,9 +62,29 @@ void CoreLogic::UserInterface::Renderer::render(std::shared_ptr<std::map<int, st
                         }
                     }
                 }
+                auto &visibles = CoreLogic::DataProcessing::ActorStorage::getVisibles()->at(pair.first);
+                if (!visibles.empty())
+                {
+                    for (auto &visible: visibles)
+                    {
+                        if (visible == nullptr)
+                        {
+                            continue;
+                        }
+                        if (!visible->getVisible())
+                        {
+                            continue;
+                        }
+
+                        visible->draw();
+                    }
+                }
+                if (player->getElevation() == pair.first)
+                {
+                    player->draw();
+                }
             }
-            std::shared_ptr<CoreLogic::EventManagement::Actors::Drone> player = CoreLogic::DataProcessing::ActorStorage::getPlayer();
-            auto &visibles = *CoreLogic::DataProcessing::ActorStorage::getVisibles();
+            /*auto &visibles = *CoreLogic::DataProcessing::ActorStorage::getVisibles();
             for (auto & pair: visibles)
             {
                 for (auto &visible: pair.second)
@@ -82,7 +103,7 @@ void CoreLogic::UserInterface::Renderer::render(std::shared_ptr<std::map<int, st
             }
 
             player->draw();
-
+*/
             auto &barrels = *CoreLogic::DataProcessing::ActorStorage::getBarrels();
             for (auto & pair: barrels)
             {
