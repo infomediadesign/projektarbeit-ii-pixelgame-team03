@@ -252,9 +252,10 @@ void CoreLogic::EventManagement::EventHandler::deactivateEvent(EventEnum pa_deac
     }
 }
 
-void CoreLogic::EventManagement::EventHandler::switchLevels()
+void CoreLogic::EventManagement::EventHandler::resetPlayer()
 {
     po_movementEvent_->updateMainActor();
+    po_activeEvents_[0].clear();
 }
 
 

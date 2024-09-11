@@ -112,7 +112,7 @@ void Scenes::GameScene::update()
         } else if (currentLevelID_ == 0) {
             player->setPosition({100,100});
         }
-        eventHandler.switchLevels();
+        eventHandler.resetPlayer();
 
     }
 

@@ -6,6 +6,7 @@
 #include "event_management/actors/drones/Worker.h"
 #include "event_management/actors/drones/Scout.h"
 #include "event_management/SoundHandler.h"
+#include "event_management/EventHandler.h"
 
 
 Scenes::DroneSelectionScene::DroneSelectionScene() :
@@ -54,7 +55,7 @@ void Scenes::DroneSelectionScene::update()
             switch (selectedDroneType_)
             {
             case CoreLogic::EventManagement::Actors::Drone::WORKER:
-                newDrone = std::make_shared<CoreLogic::EventManagement::Actors::Worker>(Vector2{984, 336}, player.getHitbox(), player.getId(), player.getSize(), 1);
+                newDrone = std::make_shared<CoreLogic::EventManagement::Actors::Worker>(Vector2{72, 720}, player.getHitbox(), player.getId(), player.getSize(), 1);
 
 //                newDrone = std::make_shared<CoreLogic::EventManagement::Actors::Worker>(
 //                        CoreLogic::DataProcessing::ActorStorage::getActiveSpawnPoint()->getPosition(),
@@ -70,6 +71,8 @@ void Scenes::DroneSelectionScene::update()
             }
 
             CoreLogic::DataProcessing::ActorStorage::setPlayer(newDrone);
+            auto &eventHandler = CoreLogic::EventManagement::EventHandler::getInstance();
+            eventHandler.resetPlayer();
             CoreLogic::DataProcessing::StateMachine::changeState(CoreLogic::DataProcessing::GameState::IN_GAME);
 
         } else if (event == CoreLogic::EventManagement::MOVE_RIGHT) {
