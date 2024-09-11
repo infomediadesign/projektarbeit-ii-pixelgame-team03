@@ -47,6 +47,6 @@ namespace CoreLogic::EventManagement::Actors
             int pa_maxHealth, int pa_currentHealth) :
             Drone(pa_position, pa_hitbox, pa_id, pa_size, pa_elevation, pa_maxHealth, pa_currentHealth)
     {
-
+        sprite_ = DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::SCOUT_DRONE);
     }
 }
