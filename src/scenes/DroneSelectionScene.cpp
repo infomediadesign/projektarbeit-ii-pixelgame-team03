@@ -5,6 +5,7 @@
 #include "DroneSelectionScene.h"
 #include "event_management/actors/drones/Worker.h"
 #include "event_management/actors/drones/Scout.h"
+#include "event_management/SoundHandler.h"
 
 
 Scenes::DroneSelectionScene::DroneSelectionScene() :
@@ -38,6 +39,9 @@ void Scenes::DroneSelectionScene::draw(RenderTexture2D &pa_canvas)
 
 void Scenes::DroneSelectionScene::update()
 {
+    CoreLogic::EventManagement::SoundHandler &soundHandler = CoreLogic::EventManagement::SoundHandler::getInstance();
+    soundHandler.update();
+
     std::vector<CoreLogic::EventManagement::EventEnum> events = po_inputHandler_->handleInput();
 
     for (CoreLogic::EventManagement::EventEnum event : events)

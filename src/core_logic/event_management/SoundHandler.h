@@ -10,34 +10,36 @@
 #include <vector>
 #include "raylib.h"
 
-class SoundHandler
+namespace CoreLogic::EventManagement
 {
-public:
-    enum SoundEnum
+    class SoundHandler
     {
-        AMBIENT_OVERWORLD,
-        AMBIENT_UNDERWORLD,
+    public:
+        enum SoundEnum
+        {
+            //ambient music has to be written before sfx / have a smaller numeber
+            AMBIENT_OVERWORLD, AMBIENT_UNDERWORLD,
 
-        EXPLOSION,
-        IMPACT_FLOOR,
-        IMPACT_WATER,
-        NOTE,
-        PUSH,
-        RESPAWN_ACTIVATE,
-        RESPAWN_REACTIVATE,
-        RUBBLE,
-        SHOT,
+            EXPLOSION, IMPACT_FLOOR, IMPACT_WATER, NOTE, PUSH, RESPAWN_ACTIVATE, RESPAWN_REACTIVATE, RUBBLE, SHOT,
+        };
+
+        static SoundHandler &getInstance();
+
+        SoundHandler();
+
+        void playSound(SoundEnum pa_sound);
+
+        void playAmbient(SoundEnum pa_ambient);
+
+        void update();
+
+    protected:
+        std::map<int, Sound> soundMap_;
+        std::map<int, Music> ambientMap_;
+
+        SoundEnum currentAmbient_;
+        static std::mutex soundHandler_mutex_;
     };
-    SoundHandler();
-    void playSound(SoundEnum pa_sound);
-    void playAmbient(SoundEnum pa_ambient);
-    void update();
-protected:
-    std::map<int, Sound> soundMap;
-    Music currentAmbient;
-    Music overworldAmbient;
-    Music underworldAmbient;
-};
-
+}
 
 #endif //HIVE_SOUNDHANDLER_H

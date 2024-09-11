@@ -19,6 +19,11 @@ namespace CoreLogic::DataProcessing {
          */
 
     public:
+
+        //Volume in 0.0f - 1.0f
+        inline static constexpr float MUSIC_VOLUME = 0.2f;
+        inline static constexpr float SFX_VOLUME = 0.5f;
+
         //drone speeds; in pixel per tick
         inline static constexpr int DRONE_SPEED = 2;
         inline static constexpr int WORKER_SPEED = 2;

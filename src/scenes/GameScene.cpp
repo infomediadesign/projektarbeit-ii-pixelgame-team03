@@ -50,6 +50,7 @@ void Scenes::GameScene::update()
      **/
 
     CoreLogic::EventManagement::EventHandler &eventHandler = CoreLogic::EventManagement::EventHandler::getInstance();
+    CoreLogic::EventManagement::SoundHandler &soundHandler = CoreLogic::EventManagement::SoundHandler::getInstance();
     std::shared_ptr<CoreLogic::EventManagement::Actors::Drone> player = CoreLogic::DataProcessing::ActorStorage::getPlayer();
     std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Actors::Enemy>>> &enemies = *CoreLogic::DataProcessing::ActorStorage::getEnemies();
 
@@ -71,6 +72,8 @@ void Scenes::GameScene::update()
      **/
     eventHandler.handleEvents(po_inputHandler_->handleInput(), player->getId());
     eventHandler.update();
+
+    soundHandler.update();
 
     CoreLogic::UserInterface::HUD& hud = *CoreLogic::UserInterface::HUD::getInstance();
     hud.update();
