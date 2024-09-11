@@ -856,7 +856,8 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
     //16 - buttons
     sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/HUD/hive_ARTI_newHUD_buttons.png",
             {
-                    {CoreLogic::UserInterface::AnimationState{1 * 360, 640, 360, 1}}
+                    {CoreLogic::UserInterface::AnimationState{0 * 360, 640, 360, 1}}, //keyboard
+                    {CoreLogic::UserInterface::AnimationState{1 * 360, 640, 360, 1}} //controller
             });
 
     po_sprites_[HUD_BUTTONS] = sprite;

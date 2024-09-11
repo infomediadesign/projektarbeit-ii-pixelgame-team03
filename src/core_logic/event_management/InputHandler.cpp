@@ -116,6 +116,9 @@ namespace CoreLogic::EventManagement
             }
         }
 
+        /**
+         *  @attention: currently not working; causing crash with vs compiler
+         *
         std::vector<InputHandler::Input> axisInput = GetGamepadAxisPressed();
         for (InputHandler::Input currentAxis: axisInput)
         {
@@ -125,6 +128,7 @@ namespace CoreLogic::EventManagement
                 activatedEvents.push_back(event);
             }
         }
+         */
 
 
 
@@ -264,8 +268,8 @@ namespace CoreLogic::EventManagement
         keyboardMenuMapping_.insert({CoreLogic::DataProcessing::DesignConfig::MOVE_LEFT_KEYBOARD, MOVE_LEFT});
         keyboardMenuMapping_.insert({CoreLogic::DataProcessing::DesignConfig::MOVE_RIGHT_KEYBOARD, MOVE_RIGHT});
 
-        keyboardMenuMapping_.insert({CoreLogic::DataProcessing::DesignConfig::INTERACT_KEYBOARD, INTERACT});
-        keyboardMenuMapping_.insert({CoreLogic::DataProcessing::DesignConfig::DISCONNECT_KEYBOARD, DISCONNECT});
+        keyboardMenuMapping_.insert({CoreLogic::DataProcessing::DesignConfig::MENU_CONFIRM_KEYBOARD, INTERACT});
+        keyboardMenuMapping_.insert({CoreLogic::DataProcessing::DesignConfig::MENU_BACK_KEYBOARD, DISCONNECT});
     }
 
     void InputHandler::controllerDefaultMapping()
@@ -291,8 +295,8 @@ namespace CoreLogic::EventManagement
         controllerMenuMapping_.insert({Input(CoreLogic::DataProcessing::DesignConfig::MOVE_RIGHT_CONTROLLER),
                 MOVE_RIGHT});
 
-        controllerMenuMapping_.insert({Input(CoreLogic::DataProcessing::DesignConfig::INTERACT_CONTROLLER), INTERACT});
-        controllerMenuMapping_.insert({Input(CoreLogic::DataProcessing::DesignConfig::DISCONNECT_CONTROLLER),
+        controllerMenuMapping_.insert({Input(CoreLogic::DataProcessing::DesignConfig::MENU_CONFIRM_CONTROLLER), INTERACT});
+        controllerMenuMapping_.insert({Input(CoreLogic::DataProcessing::DesignConfig::MENU_BACK_CONTROLLER),
                 DISCONNECT});
     }
 
