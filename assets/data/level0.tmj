@@ -2589,6 +2589,33 @@
                  "width":48,
                  "x":816,
                  "y":528
+                }, 
+                {
+                 "height":48,
+                 "id":622,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"elevation_dest",
+                         "type":"int",
+                         "value":2
+                        }, 
+                        {
+                         "name":"x_dest",
+                         "type":"int",
+                         "value":1418
+                        }, 
+                        {
+                         "name":"y_dest",
+                         "type":"int",
+                         "value":74
+                        }],
+                 "rotation":0,
+                 "type":"vines",
+                 "visible":true,
+                 "width":24,
+                 "x":1416,
+                 "y":120
                 }],
          "opacity":1,
          "properties":[
@@ -2598,7 +2625,7 @@
                  "value":1
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -2886,7 +2913,7 @@
                  "value":1
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -3024,7 +3051,7 @@
                  "value":1
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -3583,7 +3610,7 @@
                  "value":1
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -4635,7 +4662,7 @@
                  "value":1
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -5659,33 +5686,6 @@
                  "width":24,
                  "x":1152,
                  "y":312
-                }, 
-                {
-                 "height":48,
-                 "id":303,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"elevation_dest",
-                         "type":"int",
-                         "value":2
-                        }, 
-                        {
-                         "name":"x_dest",
-                         "type":"int",
-                         "value":1418
-                        }, 
-                        {
-                         "name":"y_dest",
-                         "type":"int",
-                         "value":74
-                        }],
-                 "rotation":0,
-                 "type":"vines",
-                 "visible":true,
-                 "width":24,
-                 "x":1416,
-                 "y":120
                 }],
          "opacity":1,
          "properties":[
@@ -5790,7 +5790,7 @@
                  "value":2
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -6243,7 +6243,7 @@
                  "value":2
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -7661,7 +7661,7 @@
                  "value":0
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -7804,7 +7804,7 @@
                  "value":1
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -7947,7 +7947,7 @@
                  "value":2
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -8083,12 +8083,12 @@
                  "value":2
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }],
  "nextlayerid":61,
- "nextobjectid":622,
+ "nextobjectid":623,
  "orientation":"orthogonal",
  "properties":[
         {
