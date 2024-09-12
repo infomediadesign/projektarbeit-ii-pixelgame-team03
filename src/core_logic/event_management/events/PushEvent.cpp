@@ -14,6 +14,23 @@ namespace CoreLogic::EventManagement
         {
             po_pushable_ = pa_pushable;
             std::vector<std::shared_ptr<Actor>> &barriers = CoreLogic::DataProcessing::ActorStorage::getCollidables()->at(po_pushable_->getElevation());
+            Rectangle destination = po_pushable_ -> getHitbox();
+            switch (po_mainActor_->getPrimaryDirection())
+            {
+                case UserInterface::Direction::UP:
+                    destination.y -= CoreLogic::DataProcessing::global_tileSize;
+                    break;
+
+                case UserInterface::Direction::DOWN:
+                    destination.y += CoreLogic::DataProcessing::global_tileSize;
+                    break;
+                case UserInterface::Direction::LEFT:
+                    destination.x -= CoreLogic::DataProcessing::global_tileSize;
+                    break;
+                case UserInterface::Direction::RIGHT:
+                    destination.x += CoreLogic::DataProcessing::global_tileSize;
+                    break;
+            }
             for (std::shared_ptr<Actor> &barrier : barriers)
             {
                 if (barrier == nullptr)
@@ -33,42 +50,49 @@ namespace CoreLogic::EventManagement
                     continue;
                 }
 
-                Rectangle destination = po_pushable_ -> getHitbox();
-                switch (po_mainActor_->getPrimaryDirection())
-                {
-                    case UserInterface::Direction::UP:
-                        destination.y -= CoreLogic::DataProcessing::global_tileSize;
-                        break;
 
-                    case UserInterface::Direction::DOWN:
-                        destination.y += CoreLogic::DataProcessing::global_tileSize;
-                        break;
-                    case UserInterface::Direction::LEFT:
-                        destination.x -= CoreLogic::DataProcessing::global_tileSize;
-                        break;
-                    case UserInterface::Direction::RIGHT:
-                        destination.x += CoreLogic::DataProcessing::global_tileSize;
-                        break;
-                }
+
                 if (CheckCollisionRecs(destination, barrier->getHitbox()))
                 {
                     throw EventException("Collision with barrier", false);
                 }
             }
             ticks_ = 30;
+            std::vector<std::shared_ptr<Object::Cliff>> cliffs = CoreLogic::DataProcessing::ActorStorage::getCliffs()->at(po_pushable_ ->getElevation());
+
+            bool cliffPush = false;
+            if (cliffs.size() != 0)
+            {
+                for (auto &cliff: cliffs)
+                {
+                    if (cliff == nullptr)
+                    {
+                        continue;
+                    }
+                    Rectangle cliffHitbox = cliff->getHitbox();
+
+                    if (CheckCollisionRecs(cliffHitbox, destination))
+                    {
+                        cliffPush = true;
+                    }
+                }
+            }
+
+            float mult = 1;
+            cliffPush ? mult = 2 : mult = 1;
             switch (po_mainActor_->getPrimaryDirection())
             {
                 case CoreLogic::UserInterface::Direction::UP:
-                    push_ = {0, -12};
+                    push_ = {0, -12 * mult};
                     break;
                 case CoreLogic::UserInterface::Direction::DOWN:
-                    push_ = {0, 12};
+                    push_ = {0, 12 * mult};
                     break;
                 case CoreLogic::UserInterface::Direction::LEFT:
-                    push_ = {-12, 0};
+                    push_ = {-12 * mult, 0};
                     break;
                 case CoreLogic::UserInterface::Direction::RIGHT:
-                    push_ = {12, 0};
+                    push_ = {12 * mult, 0};
                     break;
             }
 
@@ -101,6 +125,7 @@ namespace CoreLogic::EventManagement
                     return;
                 }
             }
+
         }
 
         void PushEvent::update()
