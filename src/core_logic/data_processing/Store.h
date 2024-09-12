@@ -42,6 +42,7 @@ namespace CoreLogic::DataProcessing
         SETTINGS,
         END_SCENE,
         CREDITS,
+        DEATH,
     };
     inline long long int global_ticks = 1;
     inline const int global_tileSize = 24;
@@ -113,6 +114,7 @@ private:
 
             DRONE_SELECTION,
             MAIN_MENU,
+            DEATH_SCENE,
         };
 
     public:

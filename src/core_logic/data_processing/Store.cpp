@@ -679,10 +679,11 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
                             {CoreLogic::UserInterface::AnimationState {2 * 38, 38, 38, 8}}, //left
                             {CoreLogic::UserInterface::AnimationState {3 * 38, 38, 38, 8}}, //right
                     },
-                    {    //1 - death
+                    {},  //1- ability; not handled via Sprites
+                    {    //2 - death
                             {CoreLogic::UserInterface::AnimationState {(4 * 38) + (2 * 38), 2 * 38, 2 * 38, 12, {-22, -27}}},
                     },
-                    {   //2 - death ability
+                    {   //3 - death ability
                             {CoreLogic::UserInterface::AnimationState {4 * 38, 38, 38, 12}},
                     }
             });
@@ -964,6 +965,16 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
             });
 
     po_sprites_[MAIN_MENU] = sprite;
+
+    //death scene
+    sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/hive_ARTI_newHUD_death-screen-Spritesheet.png",
+            {
+                    {CoreLogic::UserInterface::AnimationState{0 * 360, 640, 360, 1}},
+                    {CoreLogic::UserInterface::AnimationState{1 * 360, 640, 360, 1}},
+            });
+
+    po_sprites_[DEATH_SCENE] = sprite;
+
 }
 
 void CoreLogic::DataProcessing::Fonts::Initialize()

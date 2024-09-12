@@ -20,7 +20,6 @@ Staging::Game::Game(int pa_stage_width, int pa_stage_height, int pa_target_fps, 
     InitWindow(stageWidth_, stageHeight_, gameTitle_.c_str());
     SetWindowMinSize(stageWidth_, stageHeight_);
     SetTargetFPS(targetFPS_);
-    InitAudioDevice();
     CoreLogic::DataProcessing::TileMap::Initialize();
     CoreLogic::DataProcessing::ActorStorage::Initialize();
     CoreLogic::DataProcessing::SpriteStorage::Initialize();
@@ -83,4 +82,5 @@ void Staging::Game::requestExit()
 {
     running_ = false;
 }
+
 

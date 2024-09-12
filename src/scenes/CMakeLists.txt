@@ -6,6 +6,7 @@ set(SCENES_SOURCES
         PauseScene.cpp
         SettingsScene.cpp
         DroneSelectionScene.cpp
+        DeathScene.cpp
 )
 
 set(SCENES_HEADERS
@@ -14,6 +15,7 @@ set(SCENES_HEADERS
         PauseScene.h
         SettingsScene.h
         DroneSelectionScene.h
+        DeathScene.h
 )
 
 add_library(scenes STATIC ${SCENES_SOURCES} ${SCENES_HEADERS})

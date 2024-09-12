@@ -4,6 +4,7 @@
 
 #include "Stage.h"
 #include "DroneSelectionScene.h"
+#include "DeathScene.h"
 
 
 Staging::Stage::Stage(int pa_screenHeight, int pa_screenWidth)
@@ -14,7 +15,8 @@ Staging::Stage::Stage(int pa_screenHeight, int pa_screenWidth)
                 {CoreLogic::DataProcessing::GameState::IN_GAME,   std::make_shared<Scenes::GameScene>()},
                 {CoreLogic::DataProcessing::GameState::DRONE_SELECTION, std::make_shared<Scenes::DroneSelectionScene>()},
                 {CoreLogic::DataProcessing::GameState::PAUSE,     std::make_shared<Scenes::PauseScene>()},
-                {CoreLogic::DataProcessing::GameState::SETTINGS, std::make_shared<Scenes::SettingsScene>()}
+                {CoreLogic::DataProcessing::GameState::SETTINGS, std::make_shared<Scenes::SettingsScene>()},
+                {CoreLogic::DataProcessing::GameState::DEATH, std::make_shared<Scenes::DeathScene>()}
             };
 
     po_canvas_ = std::make_shared<RenderTexture2D>(LoadRenderTexture(pa_screenWidth, pa_screenHeight));
