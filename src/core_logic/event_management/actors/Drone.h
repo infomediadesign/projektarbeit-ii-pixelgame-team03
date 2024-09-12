@@ -10,6 +10,7 @@
 #include "MovableActor.h"
 #include "objects/Ability.h"
 #include "objects/Interaction.h"
+#include "data_processing/DesignConfig.h"
 
 
 namespace CoreLogic::EventManagement::Actors
@@ -79,8 +80,8 @@ namespace CoreLogic::EventManagement::Actors
             std::shared_ptr<CoreLogic::EventManagement::Object::Interaction> interaction_;
             std::shared_ptr<CoreLogic::EventManagement::Object::Ability> ability_;
 
-            int maxHealth_ = 3;
-            int currentHealth_ = 3;
+            int maxHealth_ = CoreLogic::DataProcessing::DesignConfig::STARTING_MAX_DRONE_LIFE;
+            int currentHealth_ = CoreLogic::DataProcessing::DesignConfig::STARTING_CURRENT_DRONE_LIFE;
             DroneType currentDroneType_ = DroneType::WORKER;
             DroneState currentDroneState_ = DroneState::MOVING;
 

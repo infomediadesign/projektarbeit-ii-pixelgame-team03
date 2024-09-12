@@ -20,6 +20,11 @@ namespace CoreLogic::DataProcessing {
 
     public:
 
+        //drone life in well life
+        inline static constexpr int STARTING_MAX_DRONE_LIFE = 3;
+        inline static constexpr int STARTING_CURRENT_DRONE_LIFE = 3;
+        inline static constexpr int REGENERATION_LIFE = 2;
+
         //Volume in 0.0f - 1.0f
         inline static constexpr float MUSIC_VOLUME = 0.2f;
         inline static constexpr float SFX_VOLUME = 0.5f;

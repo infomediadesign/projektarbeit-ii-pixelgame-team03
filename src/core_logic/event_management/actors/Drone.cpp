@@ -263,7 +263,7 @@ CoreLogic::EventManagement::Actors::Drone::Drone(Vector2 pa_position, Rectangle 
 
     void Drone::increaseCurrentHealth()
     {
-        currentHealth_ += 2;
+        currentHealth_ += CoreLogic::DataProcessing::DesignConfig::REGENERATION_LIFE;
         if (currentHealth_ > maxHealth_)
         {
             currentHealth_ = maxHealth_;
