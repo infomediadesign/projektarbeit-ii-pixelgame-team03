@@ -43,8 +43,7 @@ void Staging::Stage::update()
      if (CoreLogic::DataProcessing::StateMachine::getCurrentState() == runningGameState_)
      {
          po_currentScene_->update();
-     } else
-     {
+     } else {
          po_currentScene_ = po_scenes_[CoreLogic::DataProcessing::StateMachine::getCurrentState()];
          runningGameState_ = CoreLogic::DataProcessing::StateMachine::getCurrentState();
          po_currentScene_->onSwitch();
