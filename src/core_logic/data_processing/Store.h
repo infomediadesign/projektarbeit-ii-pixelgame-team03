@@ -124,7 +124,7 @@ private:
     struct ActorStorage
     {
     private:
-
+        static std::shared_ptr<std::map<CoreLogic::EventManagement::Actors::Drone::DroneType, bool>> po_unlockedDrones_;
 
         //------------------actives------------------//
         static std::shared_ptr<CoreLogic::EventManagement::Object::DroneRespawnPoint> po_activeRespawnPoint_;
@@ -186,6 +186,13 @@ private:
 
     public:
         static void Initialize();
+
+        static bool isDroneUnlocked(CoreLogic::EventManagement::Actors::Drone::DroneType pa_droneType);
+        static void unlockDrone(CoreLogic::EventManagement::Actors::Drone::DroneType pa_droneType);
+
+        static std::shared_ptr<std::map<CoreLogic::EventManagement::Actors::Drone::DroneType, bool>> getUnlockedDrones();
+        static void setUnlockedDrones(std::shared_ptr<std::map<CoreLogic::EventManagement::Actors::Drone::DroneType, bool>>
+        pa_unlockedDrones);
 
         //------------------actives------------------//
         static std::shared_ptr<CoreLogic::EventManagement::Object::DroneRespawnPoint> getActiveSpawnPoint();

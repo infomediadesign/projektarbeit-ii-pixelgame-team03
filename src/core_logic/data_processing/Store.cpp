@@ -11,6 +11,9 @@ std::shared_ptr<Texture2D> CoreLogic::DataProcessing::TileMap::getTileMap() {ret
 
 // Define the static member variables for ActorStorage
 
+std::shared_ptr<std::map<CoreLogic::EventManagement::Actors::Drone::DroneType, bool>> CoreLogic::DataProcessing::ActorStorage::po_unlockedDrones_ =
+        std::make_shared<std::map<CoreLogic::EventManagement::Actors::Drone::DroneType, bool>>();
+
 
 //------------------actives------------------//
 std::shared_ptr<CoreLogic::EventManagement::Object::DroneRespawnPoint> CoreLogic::DataProcessing::ActorStorage::po_activeRespawnPoint_;
@@ -47,11 +50,8 @@ std::shared_ptr<std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManage
 std::shared_ptr<std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Object::Uplink>>>> CoreLogic::DataProcessing::ActorStorage::po_uplinks_;
 std::shared_ptr<std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Object::DroneRespawnPoint>>>> CoreLogic::DataProcessing::ActorStorage::po_respawnPoints_;
 
-std::shared_ptr<std::map<CoreLogic::EventManagement::Actors::Drone::DroneType, bool>> po_unlockedDrones_;
-
 
 std::vector<CoreLogic::UserInterface::Sprite> CoreLogic::DataProcessing::SpriteStorage::po_sprites_;
-
 
 
 CoreLogic::DataProcessing::GameState CoreLogic::DataProcessing::StateMachine::previousState_;
@@ -65,12 +65,16 @@ void CoreLogic::DataProcessing::TileMap::Initialize()
     {
         po_tileMap_ = std::make_shared<Texture2D>(LoadTexture("assets/graphics/Tile_Atlas_.png"));
     }
-
 }
 
 
 void CoreLogic::DataProcessing::ActorStorage::Initialize()
 {
+    std::map<CoreLogic::EventManagement::Actors::Drone::DroneType, bool> map = {
+            {CoreLogic::EventManagement::Actors::Drone::DroneType::WORKER, false},
+            {CoreLogic::EventManagement::Actors::Drone::DroneType::SCOUT, false},};
+
+    po_unlockedDrones_ = std::make_shared<std::map<CoreLogic::EventManagement::Actors::Drone::DroneType, bool>>(map);
 
     //------------------actives------------------//
     po_activeRespawnPoint_ = nullptr;
@@ -575,6 +579,31 @@ void CoreLogic::DataProcessing::ActorStorage::setUplinks(
 {
 po_uplinks_ = pa_uplinks;
 }
+
+void CoreLogic::DataProcessing::ActorStorage::unlockDrone(CoreLogic::EventManagement::Actors::Drone::DroneType pa_droneType)
+{
+    if (po_unlockedDrones_->find(pa_droneType) != po_unlockedDrones_->end())
+        po_unlockedDrones_->at(pa_droneType) = true;
+}
+
+std::shared_ptr<std::map<CoreLogic::EventManagement::Actors::Drone::DroneType, bool>>
+CoreLogic::DataProcessing::ActorStorage::getUnlockedDrones()
+{
+    return po_unlockedDrones_;
+}
+
+void CoreLogic::DataProcessing::ActorStorage::setUnlockedDrones(
+        std::shared_ptr<std::map<CoreLogic::EventManagement::Actors::Drone::DroneType, bool>> pa_unlockedDrones)
+{
+    po_unlockedDrones_ = pa_unlockedDrones;
+}
+
+bool CoreLogic::DataProcessing::ActorStorage::isDroneUnlocked(
+        CoreLogic::EventManagement::Actors::Drone::DroneType pa_droneType)
+{
+        return po_unlockedDrones_->at(pa_droneType);
+}
+
 
 CoreLogic::DataProcessing::GameState CoreLogic::DataProcessing::StateMachine::getCurrentState()
 {
