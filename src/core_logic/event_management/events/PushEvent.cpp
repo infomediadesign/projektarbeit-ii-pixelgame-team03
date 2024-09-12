@@ -122,7 +122,6 @@ namespace CoreLogic::EventManagement
                 if (CheckCollisionRecs(cliffHitbox, po_pushable_ -> getHitbox()))
                 {
                     po_pushable_ -> setCliff(cliff);
-                    CoreLogic::DataProcessing::ActorStorage::changeDrawingElevation(po_pushable_, po_pushable_ ->getElevation() - 1);
                     eventHandler.handleEvents({FALLING}, po_pushable_->getId());
                     return;
                 }

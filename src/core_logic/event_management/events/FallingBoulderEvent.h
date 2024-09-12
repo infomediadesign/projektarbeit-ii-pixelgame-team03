@@ -19,6 +19,7 @@ namespace CoreLogic::EventManagement
         FallingBoulderEvent(std::shared_ptr<Object::Boulder> pa_boulder);
     protected:
         void destroy() override;
+        void fall() override;
     };
 
 } // CoreLogic

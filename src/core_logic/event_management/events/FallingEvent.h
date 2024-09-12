@@ -22,7 +22,7 @@ namespace CoreLogic::EventManagement
         int fallHeight_;
         float fallenHeight_ = 0.0f;
         bool broken_ = false;
-        void fall();
+        virtual void fall();
         virtual void destroy(){};
         bool barrel_;/*
         void explode();*/

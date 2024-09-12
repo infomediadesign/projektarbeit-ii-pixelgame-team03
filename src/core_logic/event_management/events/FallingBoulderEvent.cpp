@@ -53,5 +53,14 @@ namespace CoreLogic::EventManagement
         }
         ticks_++;
     }
+
+    void FallingBoulderEvent::fall()
+    {
+        FallingEvent::fall();
+        if (fallenHeight_ == 1)
+        {
+            CoreLogic::DataProcessing::ActorStorage::changeDrawingElevation(po_mainActor_, po_mainActor_ ->getElevation() - 1);
+        }
+    }
 } // CoreLogic
 // EventManagement

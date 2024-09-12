@@ -149,7 +149,7 @@ void CoreLogic::DataProcessing::Map::loadObjects()
             } else if (objectClass == "water")
             {
                 actor = std::make_shared<EventManagement::Object::Cliff>(EventManagement::Object::Cliff(objectPosition,
-                        objectHitbox, objectId, objectSize, objectElevation, 0));
+                        objectHitbox, objectId, objectSize, objectElevation, 1));
                 ActorStorage::addActorByType(objectElevation, actor);
             } else if (objectClass == "jump_point")
             {
