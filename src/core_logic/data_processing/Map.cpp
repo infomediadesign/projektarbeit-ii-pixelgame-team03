@@ -203,7 +203,7 @@ void CoreLogic::DataProcessing::Map::loadObjects()
 
                 actor = std::make_shared<EventManagement::Object::Cliff>(
                         EventManagement::Object::Cliff(objectPosition, objectHitbox, objectId, objectSize,
-                                objectElevation, objectFallHeight));
+                                objectElevation, objectFallHeight + 1));
                 ActorStorage::addActorByType(objectElevation, actor);
             } else if (objectClass == "explosive_barrel")
             {
