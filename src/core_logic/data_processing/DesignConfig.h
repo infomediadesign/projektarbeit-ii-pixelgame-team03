@@ -24,7 +24,7 @@ namespace CoreLogic::DataProcessing {
         inline static constexpr float MUSIC_VOLUME = 0.2f;
         inline static constexpr float SFX_VOLUME = 0.5f;
 
-        //drone speeds; in pixel per tick
+        //drone speeds; in pixel per tick; currently only affected with drone speed
         inline static constexpr int DRONE_SPEED = 2;
         inline static constexpr int WORKER_SPEED = 2;
         inline static constexpr int SCOUT_SPEED = 3;
@@ -35,7 +35,7 @@ namespace CoreLogic::DataProcessing {
         inline static constexpr int COLONIST_RANGE = 8;
         inline static constexpr int MECH_RANGE = 8;
 
-        //enemy detection rate; in global_ticks
+        //enemy detection rate; in ticks
         inline static constexpr int COLONIST_DETECTION_RATE = 120;
         inline static constexpr int MECH_DETECTION_RATE = 120;
 

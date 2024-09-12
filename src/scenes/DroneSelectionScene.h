@@ -20,7 +20,6 @@ namespace Scenes
         void update() override;
         void onSwitch() override;
 
-        void unlockDrone(CoreLogic::EventManagement::Actors::Drone::DroneType pa_droneType);
     protected:
         enum DroneSelection{
             WORKER_SELECT,
@@ -29,8 +28,6 @@ namespace Scenes
         };
 
         CoreLogic::EventManagement::Actors::Drone::DroneType selectedDroneType_;
-        std::shared_ptr<std::map<CoreLogic::EventManagement::Actors::Drone::DroneType, bool>> po_unlockedDrones_;
-        bool isDroneUnlocked(CoreLogic::EventManagement::Actors::Drone::DroneType pa_droneType);
         CoreLogic::UserInterface::Sprite sprite_;
         DroneSelection currentDroneSelection_;
     };

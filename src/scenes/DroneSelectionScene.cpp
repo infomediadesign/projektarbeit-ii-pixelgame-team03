@@ -12,18 +12,13 @@
 Scenes::DroneSelectionScene::DroneSelectionScene() :
         Scene(std::make_shared<Camera2D>())
 {
-    po_unlockedDrones_ = std::make_shared<std::map<CoreLogic::EventManagement::Actors::Drone::DroneType, bool>>();
+    auto unlockedDrones = CoreLogic::DataProcessing::ActorStorage::getUnlockedDrones();
+    unlockedDrones = std::make_shared<std::map<CoreLogic::EventManagement::Actors::Drone::DroneType, bool>>();
 
-    po_unlockedDrones_->insert({CoreLogic::EventManagement::Actors::Drone::WORKER, true});
-    po_unlockedDrones_->insert({CoreLogic::EventManagement::Actors::Drone::SCOUT, false});
+    unlockedDrones->insert({CoreLogic::EventManagement::Actors::Drone::WORKER, true});
+    unlockedDrones->insert({CoreLogic::EventManagement::Actors::Drone::SCOUT, false});
 
     sprite_ = CoreLogic::DataProcessing::SpriteStorage::getSprite(CoreLogic::DataProcessing::SpriteStorage::DRONE_SELECTION);
-}
-
-void Scenes::DroneSelectionScene::unlockDrone(CoreLogic::EventManagement::Actors::Drone::DroneType pa_droneType)
-{
-    if (po_unlockedDrones_->find(pa_droneType) != po_unlockedDrones_->end())
-        po_unlockedDrones_->at(pa_droneType) = true;
 }
 
 void Scenes::DroneSelectionScene::draw(RenderTexture2D &pa_canvas)
@@ -85,14 +80,9 @@ void Scenes::DroneSelectionScene::update()
     }
 }
 
-bool Scenes::DroneSelectionScene::isDroneUnlocked(CoreLogic::EventManagement::Actors::Drone::DroneType pa_droneType)
-{
-    return po_unlockedDrones_->at(pa_droneType);
-}
-
 void Scenes::DroneSelectionScene::onSwitch()
 {
-    if (isDroneUnlocked(CoreLogic::EventManagement::Actors::Drone::SCOUT)) currentDroneSelection_ =  WORKER_SCOUT_UNLOCKED;
+    if (CoreLogic::DataProcessing::ActorStorage::isDroneUnlocked(CoreLogic::EventManagement::Actors::Drone::SCOUT)) currentDroneSelection_ =  WORKER_SCOUT_UNLOCKED;
     else currentDroneSelection_ = WORKER_SELECT;
     sprite_.shiftFrame(currentDroneSelection_);
 
