@@ -12,12 +12,6 @@
 Scenes::DroneSelectionScene::DroneSelectionScene() :
         Scene(std::make_shared<Camera2D>())
 {
-    auto unlockedDrones = CoreLogic::DataProcessing::ActorStorage::getUnlockedDrones();
-    unlockedDrones = std::make_shared<std::map<CoreLogic::EventManagement::Actors::Drone::DroneType, bool>>();
-
-    unlockedDrones->insert({CoreLogic::EventManagement::Actors::Drone::WORKER, true});
-    unlockedDrones->insert({CoreLogic::EventManagement::Actors::Drone::SCOUT, false});
-
     sprite_ = CoreLogic::DataProcessing::SpriteStorage::getSprite(CoreLogic::DataProcessing::SpriteStorage::DRONE_SELECTION);
 }
 

@@ -43,6 +43,12 @@
          "id":58,
          "name":"-1",
          "opacity":1,
+         "properties":[
+                {
+                 "name":"elevation",
+                 "type":"int",
+                 "value":0
+                }],
          "type":"tilelayer",
          "visible":true,
          "width":64,
@@ -90,6 +96,12 @@
          "id":1,
          "name":"0",
          "opacity":1,
+         "properties":[
+                {
+                 "name":"elevation",
+                 "type":"int",
+                 "value":0
+                }],
          "type":"tilelayer",
          "visible":true,
          "width":64,
@@ -137,6 +149,12 @@
          "id":2,
          "name":"Background 1",
          "opacity":1,
+         "properties":[
+                {
+                 "name":"elevation",
+                 "type":"int",
+                 "value":0
+                }],
          "type":"tilelayer",
          "visible":true,
          "width":64,
@@ -184,6 +202,12 @@
          "id":59,
          "name":"Non-Collidables 1",
          "opacity":1,
+         "properties":[
+                {
+                 "name":"elevation",
+                 "type":"int",
+                 "value":0
+                }],
          "type":"tilelayer",
          "visible":true,
          "width":64,
@@ -231,6 +255,12 @@
          "id":3,
          "name":"Non-Interactables 1",
          "opacity":1,
+         "properties":[
+                {
+                 "name":"elevation",
+                 "type":"int",
+                 "value":0
+                }],
          "type":"tilelayer",
          "visible":true,
          "width":64,
@@ -278,6 +308,12 @@
          "id":4,
          "name":"Interactables 1",
          "opacity":1,
+         "properties":[
+                {
+                 "name":"elevation",
+                 "type":"int",
+                 "value":0
+                }],
          "type":"tilelayer",
          "visible":true,
          "width":64,
@@ -325,6 +361,12 @@
          "id":5,
          "name":"Invisibles 1",
          "opacity":1,
+         "properties":[
+                {
+                 "name":"elevation",
+                 "type":"int",
+                 "value":0
+                }],
          "type":"tilelayer",
          "visible":true,
          "width":64,
@@ -473,7 +515,7 @@
                 {
                  "name":"elevation",
                  "type":"int",
-                 "value":1
+                 "value":0
                 }],
          "type":"objectgroup",
          "visible":false,
@@ -534,7 +576,7 @@
                 {
                  "name":"elevation",
                  "type":"int",
-                 "value":1
+                 "value":0
                 }],
          "type":"objectgroup",
          "visible":false,
@@ -552,6 +594,11 @@
                  "name":"",
                  "properties":[
                         {
+                         "name":"level",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
                          "name":"newDrone",
                          "type":"int",
                          "value":1
@@ -568,7 +615,7 @@
                 {
                  "name":"elevation",
                  "type":"int",
-                 "value":1
+                 "value":0
                 }],
          "type":"objectgroup",
          "visible":false,
@@ -607,7 +654,7 @@
                 {
                  "name":"elevation",
                  "type":"int",
-                 "value":1
+                 "value":0
                 }],
          "type":"objectgroup",
          "visible":false,
@@ -668,7 +715,7 @@
                 {
                  "name":"elevation",
                  "type":"int",
-                 "value":1
+                 "value":0
                 }],
          "type":"objectgroup",
          "visible":false,
@@ -732,7 +779,7 @@
                 {
                  "name":"elevation",
                  "type":"int",
-                 "value":1
+                 "value":0
                 }],
          "type":"objectgroup",
          "visible":false,
@@ -1222,7 +1269,7 @@
                 {
                  "name":"elevation",
                  "type":"int",
-                 "value":1
+                 "value":0
                 }],
          "type":"objectgroup",
          "visible":false,
@@ -1470,7 +1517,7 @@
                 {
                  "name":"elevation",
                  "type":"int",
-                 "value":1
+                 "value":0
                 }],
          "type":"objectgroup",
          "visible":false,
@@ -1518,6 +1565,12 @@
          "id":6,
          "name":"Background 2",
          "opacity":1,
+         "properties":[
+                {
+                 "name":"elevation",
+                 "type":"int",
+                 "value":1
+                }],
          "type":"tilelayer",
          "visible":true,
          "width":64,
@@ -1565,6 +1618,12 @@
          "id":60,
          "name":"Non-Collidables 2",
          "opacity":1,
+         "properties":[
+                {
+                 "name":"elevation",
+                 "type":"int",
+                 "value":1
+                }],
          "type":"tilelayer",
          "visible":true,
          "width":64,
@@ -1612,6 +1671,12 @@
          "id":7,
          "name":"Non-Interactables 2",
          "opacity":1,
+         "properties":[
+                {
+                 "name":"elevation",
+                 "type":"int",
+                 "value":1
+                }],
          "type":"tilelayer",
          "visible":true,
          "width":64,
@@ -1659,6 +1724,12 @@
          "id":8,
          "name":"Interactables 2",
          "opacity":1,
+         "properties":[
+                {
+                 "name":"elevation",
+                 "type":"int",
+                 "value":1
+                }],
          "type":"tilelayer",
          "visible":true,
          "width":64,
@@ -1706,6 +1777,12 @@
          "id":9,
          "name":"Invisibles 2",
          "opacity":1,
+         "properties":[
+                {
+                 "name":"elevation",
+                 "type":"int",
+                 "value":1
+                }],
          "type":"tilelayer",
          "visible":true,
          "width":64,
@@ -1964,7 +2041,7 @@
                 {
                  "name":"elevation",
                  "type":"int",
-                 "value":2
+                 "value":1
                 }],
          "type":"objectgroup",
          "visible":false,
@@ -2003,7 +2080,7 @@
                 {
                  "name":"elevation",
                  "type":"int",
-                 "value":2
+                 "value":1
                 }],
          "type":"objectgroup",
          "visible":false,
@@ -2020,6 +2097,11 @@
                  "id":299,
                  "name":"",
                  "properties":[
+                        {
+                         "name":"level",
+                         "type":"int",
+                         "value":1
+                        }, 
                         {
                          "name":"newDrone",
                          "type":"int",
@@ -2038,6 +2120,11 @@
                  "name":"",
                  "properties":[
                         {
+                         "name":"level",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
                          "name":"newDrone",
                          "type":"int",
                          "value":0
@@ -2054,7 +2141,7 @@
                 {
                  "name":"elevation",
                  "type":"int",
-                 "value":2
+                 "value":1
                 }],
          "type":"objectgroup",
          "visible":false,
@@ -2071,7 +2158,7 @@
                 {
                  "name":"elevation",
                  "type":"int",
-                 "value":2
+                 "value":1
                 }],
          "type":"objectgroup",
          "visible":false,
@@ -2220,7 +2307,7 @@
                 {
                  "name":"elevation",
                  "type":"int",
-                 "value":2
+                 "value":1
                 }],
          "type":"objectgroup",
          "visible":false,
@@ -2259,7 +2346,7 @@
                 {
                  "name":"elevation",
                  "type":"int",
-                 "value":2
+                 "value":1
                 }],
          "type":"objectgroup",
          "visible":false,
@@ -2417,7 +2504,7 @@
                 {
                  "name":"elevation",
                  "type":"int",
-                 "value":2
+                 "value":1
                 }],
          "type":"objectgroup",
          "visible":false,
@@ -2962,7 +3049,7 @@
                 {
                  "name":"elevation",
                  "type":"int",
-                 "value":2
+                 "value":1
                 }],
          "type":"objectgroup",
          "visible":false,
@@ -3472,7 +3559,7 @@
                 {
                  "name":"elevation",
                  "type":"int",
-                 "value":2
+                 "value":1
                 }],
          "type":"objectgroup",
          "visible":false,
@@ -3520,6 +3607,12 @@
          "id":13,
          "name":"Background 3",
          "opacity":1,
+         "properties":[
+                {
+                 "name":"elevation",
+                 "type":"int",
+                 "value":2
+                }],
          "type":"tilelayer",
          "visible":true,
          "width":64,
@@ -3567,6 +3660,12 @@
          "id":61,
          "name":"Non-Collidables 3",
          "opacity":1,
+         "properties":[
+                {
+                 "name":"elevation",
+                 "type":"int",
+                 "value":2
+                }],
          "type":"tilelayer",
          "visible":true,
          "width":64,
@@ -3614,6 +3713,12 @@
          "id":14,
          "name":"Non-Interactables 3",
          "opacity":1,
+         "properties":[
+                {
+                 "name":"elevation",
+                 "type":"int",
+                 "value":2
+                }],
          "type":"tilelayer",
          "visible":true,
          "width":64,
@@ -3661,6 +3766,12 @@
          "id":15,
          "name":"Interactables 3",
          "opacity":1,
+         "properties":[
+                {
+                 "name":"elevation",
+                 "type":"int",
+                 "value":2
+                }],
          "type":"tilelayer",
          "visible":true,
          "width":64,
@@ -3708,6 +3819,12 @@
          "id":16,
          "name":"Invisibles 3",
          "opacity":1,
+         "properties":[
+                {
+                 "name":"elevation",
+                 "type":"int",
+                 "value":2
+                }],
          "type":"tilelayer",
          "visible":true,
          "width":64,
@@ -3856,7 +3973,7 @@
                 {
                  "name":"elevation",
                  "type":"int",
-                 "value":3
+                 "value":2
                 }],
          "type":"objectgroup",
          "visible":false,
@@ -3873,7 +3990,7 @@
                 {
                  "name":"elevation",
                  "type":"int",
-                 "value":3
+                 "value":2
                 }],
          "type":"objectgroup",
          "visible":false,
@@ -3891,6 +4008,11 @@
                  "name":"",
                  "properties":[
                         {
+                         "name":"level",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
                          "name":"newDrone",
                          "type":"int",
                          "value":0
@@ -3907,7 +4029,7 @@
                 {
                  "name":"elevation",
                  "type":"int",
-                 "value":3
+                 "value":2
                 }],
          "type":"objectgroup",
          "visible":false,
@@ -3924,7 +4046,7 @@
                 {
                  "name":"elevation",
                  "type":"int",
-                 "value":3
+                 "value":2
                 }],
          "type":"objectgroup",
          "visible":false,
@@ -4073,7 +4195,7 @@
                 {
                  "name":"elevation",
                  "type":"int",
-                 "value":3
+                 "value":2
                 }],
          "type":"objectgroup",
          "visible":false,
@@ -4156,7 +4278,7 @@
                 {
                  "name":"elevation",
                  "type":"int",
-                 "value":3
+                 "value":2
                 }],
          "type":"objectgroup",
          "visible":false,
@@ -4360,7 +4482,7 @@
                 {
                  "name":"elevation",
                  "type":"int",
-                 "value":3
+                 "value":2
                 }],
          "type":"objectgroup",
          "visible":false,
@@ -4904,7 +5026,7 @@
                 {
                  "name":"elevation",
                  "type":"int",
-                 "value":3
+                 "value":2
                 }],
          "type":"objectgroup",
          "visible":false,
@@ -4952,6 +5074,12 @@
          "id":20,
          "name":"Background 4",
          "opacity":1,
+         "properties":[
+                {
+                 "name":"elevation",
+                 "type":"int",
+                 "value":3
+                }],
          "type":"tilelayer",
          "visible":true,
          "width":64,
@@ -4999,6 +5127,12 @@
          "id":19,
          "name":"Non-Interactables 4",
          "opacity":1,
+         "properties":[
+                {
+                 "name":"elevation",
+                 "type":"int",
+                 "value":3
+                }],
          "type":"tilelayer",
          "visible":true,
          "width":64,
@@ -5046,6 +5180,12 @@
          "id":18,
          "name":"Interactables 4",
          "opacity":1,
+         "properties":[
+                {
+                 "name":"elevation",
+                 "type":"int",
+                 "value":3
+                }],
          "type":"tilelayer",
          "visible":true,
          "width":64,
@@ -5093,6 +5233,12 @@
          "id":17,
          "name":"Invisibles 4",
          "opacity":1,
+         "properties":[
+                {
+                 "name":"elevation",
+                 "type":"int",
+                 "value":3
+                }],
          "type":"tilelayer",
          "visible":true,
          "width":64,
@@ -5131,7 +5277,7 @@
                 {
                  "name":"elevation",
                  "type":"int",
-                 "value":4
+                 "value":3
                 }],
          "type":"objectgroup",
          "visible":false,
@@ -5195,7 +5341,7 @@
                 {
                  "name":"elevation",
                  "type":"int",
-                 "value":4
+                 "value":3
                 }],
          "type":"objectgroup",
          "visible":false,
@@ -5355,7 +5501,7 @@
                 {
                  "name":"elevation",
                  "type":"int",
-                 "value":4
+                 "value":3
                 }],
          "type":"objectgroup",
          "visible":false,
@@ -5440,7 +5586,7 @@
                 {
                  "name":"elevation",
                  "type":"int",
-                 "value":4
+                 "value":3
                 }],
          "type":"objectgroup",
          "visible":false,
@@ -5475,6 +5621,12 @@
                  "y":768
                 }],
          "opacity":1,
+         "properties":[
+                {
+                 "name":"elevation",
+                 "type":"int",
+                 "value":3
+                }],
          "type":"objectgroup",
          "visible":false,
          "x":0,
@@ -5571,6 +5723,12 @@
                  "y":24
                 }],
          "opacity":1,
+         "properties":[
+                {
+                 "name":"elevation",
+                 "type":"int",
+                 "value":3
+                }],
          "type":"objectgroup",
          "visible":false,
          "x":0,
@@ -5599,6 +5757,12 @@
                  "y":72
                 }],
          "opacity":1,
+         "properties":[
+                {
+                 "name":"elevation",
+                 "type":"int",
+                 "value":3
+                }],
          "type":"objectgroup",
          "visible":false,
          "x":0,
@@ -5607,6 +5771,12 @@
  "nextlayerid":62,
  "nextobjectid":418,
  "orientation":"orthogonal",
+ "properties":[
+        {
+         "name":"elevation_levels",
+         "type":"int",
+         "value":3
+        }],
  "renderorder":"right-down",
  "tiledversion":"1.10.2",
  "tileheight":24,

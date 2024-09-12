@@ -15,13 +15,13 @@ void CoreLogic::UserInterface::HUD::hudInit()
     hudElements_.resize(8);
 
     hudElements_[PORTRAIT] = DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::HUD_PORTRAIT);
-    hudElements_[MAX] = DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::HUD_MAX);
-    hudElements_[CURRENT] = DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::HUD_CURRENT);
+    hudElements_[MAX] = DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::HUD_MAX_LIFE);
+    hudElements_[CURRENT] = DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::HUD_CURRENT_LIFE);
 
     hudElements_[BUTTONS] = DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::HUD_BUTTONS);
     hudElements_[DISCONNECT] = DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::HUD_DISCONNECT);
-    hudElements_[MAIN] = DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::HUD_MAIN);
-    hudElements_[DEATH] = DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::HUD_DEATH);
+    hudElements_[MAIN] = DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::HUD_MAIN_ABILITY);
+    hudElements_[DEATH] = DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::HUD_DEATH_ABILITY);
     hudElements_[INTERACT] = DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::HUD_INTERACT);
 
     for (Sprite element: hudElements_)

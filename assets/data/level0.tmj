@@ -907,6 +907,11 @@
                          "value":true
                         }, 
                         {
+                         "name":"level",
+                         "type":"int",
+                         "value":0
+                        }, 
+                        {
                          "name":"newDrone",
                          "type":"int",
                          "value":0
@@ -923,6 +928,11 @@
                  "id":574,
                  "name":"",
                  "properties":[
+                        {
+                         "name":"level",
+                         "type":"int",
+                         "value":0
+                        }, 
                         {
                          "name":"newDrone",
                          "type":"int",
@@ -943,7 +953,7 @@
                  "value":0
                 }],
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -2850,6 +2860,11 @@
                  "name":"",
                  "properties":[
                         {
+                         "name":"level",
+                         "type":"int",
+                         "value":0
+                        }, 
+                        {
                          "name":"newDrone",
                          "type":"int",
                          "value":0
@@ -2866,6 +2881,11 @@
                  "id":580,
                  "name":"",
                  "properties":[
+                        {
+                         "name":"level",
+                         "type":"int",
+                         "value":0
+                        }, 
                         {
                          "name":"newDrone",
                          "type":"int",
@@ -5770,6 +5790,11 @@
                  "id":581,
                  "name":"",
                  "properties":[
+                        {
+                         "name":"level",
+                         "type":"int",
+                         "value":0
+                        }, 
                         {
                          "name":"newDrone",
                          "type":"int",
