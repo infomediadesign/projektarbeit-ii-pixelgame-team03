@@ -671,22 +671,19 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
     po_sprites_[WORKER_DRONE] = sprite;
 
     //1 - scout
-    sprite = UserInterface::Sprite("", //@todo: insert scout path
+    sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/hive_ARTI_Scout-Spritesheet_2024-09-12.png",
             {
                     {    //0 - walking
-                            {CoreLogic::UserInterface::AnimationState {1 * 38, 38, 38, 8}}, //up
+                            {CoreLogic::UserInterface::AnimationState {1 * 38, 38, 38, 5}}, //up
                             {CoreLogic::UserInterface::AnimationState {0 * 38, 38, 38, 8}}, //down
-                            {CoreLogic::UserInterface::AnimationState {3 * 38, 38, 38, 8}}, //left
-                            {CoreLogic::UserInterface::AnimationState {2 * 38, 38, 38, 8}}, //right
+                            {CoreLogic::UserInterface::AnimationState {2 * 38, 38, 38, 8}}, //left
+                            {CoreLogic::UserInterface::AnimationState {3 * 38, 38, 38, 8}}, //right
                     },
-                    {    //1 - ability
-                            {CoreLogic::UserInterface::AnimationState {5 * 38, 38, 38, 8}}, //up
-                            {CoreLogic::UserInterface::AnimationState {4 * 38, 38, 38, 8}}, //down
-                            {CoreLogic::UserInterface::AnimationState {7 * 38, 38, 38, 8}}, //left
-                            {CoreLogic::UserInterface::AnimationState {6 * 38, 38, 38, 8}}, //right
+                    {    //1 - death
+                            {CoreLogic::UserInterface::AnimationState {(4 * 38) + (2 * 38), 2 * 38, 2 * 38, 12, {-22, -27}}},
                     },
-                    {    //2 - death
-                            {CoreLogic::UserInterface::AnimationState {8 * 38, 38, 38, 12}},
+                    {   //2 - death ability
+                            {CoreLogic::UserInterface::AnimationState {4 * 38, 38, 38, 12}},
                     }
             });
 
