@@ -41,7 +41,7 @@ namespace CoreLogic::DataProcessing
         PAUSE,
         SETTINGS,
         END_SCENE,
-        CREDITS
+        CREDITS,
     };
     inline long long int global_ticks = 1;
     inline const int global_tileSize = 24;
@@ -104,14 +104,15 @@ private:
             HUD_BUTTONS,
             HUD_INTERACT,
             HUD_DISCONNECT,
-            HUD_MAIN,
-            HUD_DEATH,
+            HUD_MAIN_ABILITY,
+            HUD_DEATH_ABILITY,
 
-            HUD_CURRENT,
-            HUD_MAX,
+            HUD_CURRENT_LIFE,
+            HUD_MAX_LIFE,
             HUD_PORTRAIT,
 
             DRONE_SELECTION,
+            MAIN_MENU,
         };
 
     public:
