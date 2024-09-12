@@ -273,10 +273,6 @@ CoreLogic::EventManagement::Actors::Drone::Drone(Vector2 pa_position, Rectangle 
     void Drone::decreaseCurrentHealth()
     {
         currentHealth_--;
-        if (currentHealth_ < 1)
-        {
-            currentHealth_ = 1;
-        }
     }
 
     void Drone::setCurrentHealth(int pa_currentHealth)

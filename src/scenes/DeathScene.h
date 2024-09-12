@@ -2,18 +2,18 @@
 // Created by keanu on 5/26/2024.
 //
 
-#ifndef RAYLIBSTARTER_MAINMENUSCENE_H
-#define RAYLIBSTARTER_MAINMENUSCENE_H
+#ifndef RAYLIBSTARTER_DEATHSCENE_H
+#define RAYLIBSTARTER_DEATHSCENE_H
 
 
 #include "Scene.h"
 
 namespace Scenes
 {
-    class MainMenuScene : public CoreLogic::Scene
+    class DeathScene : public CoreLogic::Scene
     {
     public:
-        MainMenuScene();
+        DeathScene();
 
         void draw(RenderTexture2D &pa_canvas) override;
         void update() override;
@@ -21,10 +21,10 @@ namespace Scenes
 
     protected:
         CoreLogic::UserInterface::Sprite sprite_;
-        bool startGame_ = true;
+        bool restartGame_ = true;
 
     };
 }
 
 
-#endif //RAYLIBSTARTER_MAINMENUSCENE_H
+#endif //RAYLIBSTARTER_DEATHSCENE_H

@@ -2,16 +2,17 @@
 // Created by keanu on 5/26/2024.
 //
 
-#include "MainMenuScene.h"
+#include "DeathScene.h"
 #include "event_management/SoundHandler.h"
 #include "../staging/Game.h"
 
-Scenes::MainMenuScene::MainMenuScene(): Scene(std::make_shared<Camera2D>())
+Scenes::DeathScene::DeathScene(): Scene(std::make_shared<Camera2D>())
 {
-    sprite_ = CoreLogic::DataProcessing::SpriteStorage::getSprite(CoreLogic::DataProcessing::SpriteStorage::MAIN_MENU);
+    sprite_ = CoreLogic::DataProcessing::SpriteStorage::getSprite
+            (CoreLogic::DataProcessing::SpriteStorage::DEATH_SCENE);
 }
 
-void Scenes::MainMenuScene::draw(RenderTexture2D &pa_canvas)
+void Scenes::DeathScene::draw(RenderTexture2D &pa_canvas)
 {
     ClearBackground(BLACK);
     BeginTextureMode(pa_canvas);
@@ -21,7 +22,7 @@ void Scenes::MainMenuScene::draw(RenderTexture2D &pa_canvas)
     EndTextureMode();
 }
 
-void Scenes::MainMenuScene::update()
+void Scenes::DeathScene::update()
 {
 
     std::vector<CoreLogic::EventManagement::EventEnum> events = po_inputHandler_->handleInput();
@@ -30,28 +31,29 @@ void Scenes::MainMenuScene::update()
     {
         if (event == CoreLogic::EventManagement::INTERACT)
         {
-            if (startGame_)
+            //@todo: reset level
+            if (!restartGame_)
             {
-                CoreLogic::DataProcessing::StateMachine::changeState(CoreLogic::DataProcessing::GameState::IN_GAME);
+                CoreLogic::DataProcessing::StateMachine::changeState(CoreLogic::DataProcessing::GameState::MAIN_MENU);
             } else {
-                Staging::Game::requestExit();
+                CoreLogic::DataProcessing::StateMachine::changeState(CoreLogic::DataProcessing::GameState::IN_GAME);
             }
 
         } else if (event == CoreLogic::EventManagement::MOVE_DOWN) {
-            if (startGame_) {
-                startGame_ = false;
+            if (restartGame_) {
+                restartGame_ = false;
                 sprite_.shiftFrame(1);
             }
         } else if (event == CoreLogic::EventManagement::MOVE_UP) {
-            if (!startGame_) {
-                startGame_ = true;
+            if (!restartGame_) {
+                restartGame_ = true;
                 sprite_.shiftFrame(0);
             }
         }
     }
 }
 
-void Scenes::MainMenuScene::onSwitch()
+void Scenes::DeathScene::onSwitch()
 {
     update();
 }

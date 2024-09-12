@@ -93,6 +93,7 @@ Color CoreLogic::DataProcessing::Map::getBgColor()
 
 void CoreLogic::DataProcessing::Map::loadObjects()
 {
+    CoreLogic::DataProcessing::ActorStorage::Initialize();
     std::shared_ptr<EventManagement::Actor> actor = nullptr;
 
     for (auto &pair: *po_objects_)

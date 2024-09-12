@@ -27,6 +27,7 @@ namespace Staging
         Game(const Staging::Game &game) = delete;
         Game &operator=(const Game &) = delete;
 
+
         void run();
 
         ~Game();
