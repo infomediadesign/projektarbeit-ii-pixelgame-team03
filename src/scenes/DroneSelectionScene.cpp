@@ -51,13 +51,13 @@ void Scenes::DroneSelectionScene::update()
 
                 newDrone = std::make_shared<CoreLogic::EventManagement::Actors::Worker>(
                         CoreLogic::DataProcessing::ActorStorage::getActiveSpawnPoint()->getPosition(),
-                        player.getHitbox(), player.getId(), player.getSize(), CoreLogic::DataProcessing::ActorStorage::getActiveSpawnPoint()->getElevation());
+                        Rectangle{player.getHitbox().x, player.getHitbox().y, 32, 32}, player.getId(), player.getSize(), CoreLogic::DataProcessing::ActorStorage::getActiveSpawnPoint()->getElevation(), player.getMaxHealth(), player.getCurrentHealth());
                 break;
             case CoreLogic::EventManagement::Actors::Drone::SCOUT:
 
                 newDrone = std::make_shared<CoreLogic::EventManagement::Actors::Scout>(
                         CoreLogic::DataProcessing::ActorStorage::getActiveSpawnPoint()->getPosition(),
-                        player.getHitbox(), player.getId(), player.getSize(), CoreLogic::DataProcessing::ActorStorage::getActiveSpawnPoint()->getElevation());
+                        Rectangle{player.getHitbox().x, player.getHitbox().y, 32, 32}, player.getId(), player.getSize(), CoreLogic::DataProcessing::ActorStorage::getActiveSpawnPoint()->getElevation(),  player.getMaxHealth(), player.getCurrentHealth());
                 break;
             }
 
