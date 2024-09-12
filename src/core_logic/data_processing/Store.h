@@ -231,6 +231,8 @@ private:
 
         static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Actor>>>> getVisibles();
         static void setVisibles(std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Actor>>>> pa_visibles);
+        static void changeDrawingElevation(std::shared_ptr<CoreLogic::EventManagement::Actor> pa_actor, int pa_newElevation);
+
 
         static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::Ability>>>> getAbilities();
         static void setAbilities(std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::Ability>>>> pa_abilities);

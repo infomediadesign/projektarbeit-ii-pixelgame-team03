@@ -361,8 +361,21 @@ CoreLogic::DataProcessing::ActorStorage::getVisibles()
 void CoreLogic::DataProcessing::ActorStorage::setVisibles(
         std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Actor>>>> pa_visibles)
 {
-po_visibles_ = pa_visibles;
+    po_visibles_ = pa_visibles;
 }
+void CoreLogic::DataProcessing::ActorStorage::changeDrawingElevation(std::shared_ptr<CoreLogic::EventManagement::Actor> pa_actor, int pa_newElevation)
+{
+    auto &vec = po_visibles_->at(pa_actor->getElevation());
+    for (auto it = vec.begin(); it != vec.end(); ++it) {
+        if (*it == pa_actor) {
+            vec.erase(it);
+            break;
+        }
+    }
+    po_visibles_->at(pa_newElevation).push_back(pa_actor);
+
+}
+
 
 std::shared_ptr<std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Object::Ability>>>>
 CoreLogic::DataProcessing::ActorStorage::getAbilities()

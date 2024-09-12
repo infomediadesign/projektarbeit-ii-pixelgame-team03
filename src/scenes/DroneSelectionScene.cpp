@@ -45,19 +45,22 @@ void Scenes::DroneSelectionScene::update()
             std::shared_ptr<CoreLogic::EventManagement::Actors::Drone> newDrone;
             CoreLogic::EventManagement::Actors::Drone& player = *CoreLogic::DataProcessing::ActorStorage::getPlayer();
 
+            Vector2 position;
             switch (selectedDroneType_)
             {
             case CoreLogic::EventManagement::Actors::Drone::WORKER:
 
+                position = CoreLogic::DataProcessing::ActorStorage::getActiveSpawnPoint()->getPosition();
                 newDrone = std::make_shared<CoreLogic::EventManagement::Actors::Worker>(
-                        CoreLogic::DataProcessing::ActorStorage::getActiveSpawnPoint()->getPosition(),
-                        Rectangle{player.getHitbox().x, player.getHitbox().y, 32, 32}, player.getId(), player.getSize(), CoreLogic::DataProcessing::ActorStorage::getActiveSpawnPoint()->getElevation(), player.getMaxHealth(), player.getCurrentHealth());
+                        position,
+                        Rectangle{position.x, position.y, 32, 32}, player.getId(), player.getSize(), CoreLogic::DataProcessing::ActorStorage::getActiveSpawnPoint()->getElevation(), player.getMaxHealth(), player.getCurrentHealth());
                 break;
             case CoreLogic::EventManagement::Actors::Drone::SCOUT:
 
+                position = CoreLogic::DataProcessing::ActorStorage::getActiveSpawnPoint()->getPosition();
                 newDrone = std::make_shared<CoreLogic::EventManagement::Actors::Scout>(
-                        CoreLogic::DataProcessing::ActorStorage::getActiveSpawnPoint()->getPosition(),
-                        Rectangle{player.getHitbox().x, player.getHitbox().y, 32, 32}, player.getId(), player.getSize(), CoreLogic::DataProcessing::ActorStorage::getActiveSpawnPoint()->getElevation(),  player.getMaxHealth(), player.getCurrentHealth());
+                        position,
+                        Rectangle{position.x, position.y, 32, 32}, player.getId(), player.getSize(), CoreLogic::DataProcessing::ActorStorage::getActiveSpawnPoint()->getElevation(),  player.getMaxHealth(), player.getCurrentHealth());
                 break;
             }
 
