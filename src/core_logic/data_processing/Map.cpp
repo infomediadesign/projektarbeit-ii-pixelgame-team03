@@ -301,6 +301,8 @@ CoreLogic::DataProcessing::Map::initializeSpecificLists()
         (*list)[i] = std::vector<T>();  // Initialize with an empty vector of type T
     }
 
+    (*list)[9] = std::vector<T>();  // Initialize elevation 9 for debug purposes
+
     return list;
 }
 
@@ -316,6 +318,9 @@ CoreLogic::DataProcessing::Map::initializeSpecificLists()
     {
         (*list)[i] = std::vector<T>();  // Initialize with an empty vector of shared_ptr<T>
     }
+
+        (*list)[9] = std::vector<T>();  // Initialize elevation 9 for debug purposes
+
 
     return list;
 }

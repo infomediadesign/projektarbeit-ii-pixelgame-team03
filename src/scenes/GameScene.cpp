@@ -79,6 +79,9 @@ void Scenes::GameScene::update()
     hud.update();
 
 
+    /**
+    * @attention: debug stuff
+    */
 
     if (IsKeyPressed(KEY_M))
     {
@@ -116,32 +119,12 @@ void Scenes::GameScene::update()
 
     }
 
-    /**
-     * @attention: testing
-     */
-//    if (IsKeyPressed(KEY_P))
-//    {
-//        SoundHandler soundHandler;
-//        soundHandler.playSound(0);
-//    }
+    if (IsKeyPressed(KEY_ZERO)) player->setElevation(0);
+    if (IsKeyPressed(KEY_ONE)) player->setElevation(1);
+    if (IsKeyPressed(KEY_TWO)) player->setElevation(2);
 
-    if (IsKeyPressed(KEY_UP))
-    {
-        CoreLogic::EventManagement::Actors::Drone &player = *CoreLogic::DataProcessing::ActorStorage::getPlayer();
-        player.increaseMaxHealth();
-    }
+    if (IsKeyPressed(KEY_NINE)) player->setElevation(9);
 
-    if (IsKeyPressed(KEY_DELETE))
-    {
-        CoreLogic::EventManagement::Actors::Drone &player = *CoreLogic::DataProcessing::ActorStorage::getPlayer();
-        player.decreaseCurrentHealth();
-    }
-
-    if (IsKeyPressed(KEY_ENTER))
-    {
-        CoreLogic::EventManagement::Actors::Drone &player = *CoreLogic::DataProcessing::ActorStorage::getPlayer();
-        player.increaseCurrentHealth();
-    }
 
     Vector2 playerPos = player->getPosition();
 
