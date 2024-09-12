@@ -2886,7 +2886,7 @@
                  "value":1
                 }],
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -5765,7 +5765,7 @@
                          "value":0
                         }],
                  "rotation":0,
-                 "type":"",
+                 "type":"respawnPoint",
                  "visible":true,
                  "width":48,
                  "x":1464,
@@ -5779,7 +5779,7 @@
                  "value":2
                 }],
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
