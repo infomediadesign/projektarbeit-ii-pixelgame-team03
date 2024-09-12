@@ -35,9 +35,11 @@ namespace CoreLogic::DataProcessing {
         inline static constexpr int COLONIST_RANGE = 8;
         inline static constexpr int MECH_RANGE = 8;
 
+
         //enemy detection rate; in ticks
-        inline static constexpr int COLONIST_DETECTION_RATE = 120;
-        inline static constexpr int MECH_DETECTION_RATE = 120;
+        inline static constexpr int COLONIST_DETECTION_RATE = 100;
+        inline static constexpr int MECH_DETECTION_RATE = 80;
+
 
 
         //default controller mapping; strg click on the right side to be navigated to a list of names of all available buttons.
