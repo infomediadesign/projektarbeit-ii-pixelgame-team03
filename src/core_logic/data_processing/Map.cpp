@@ -258,13 +258,13 @@ void CoreLogic::DataProcessing::Map::loadObjects()
             }else if (objectClass == "level_switch")
             {
                 int objectLevelID = objectProperties.getProperty("level_switch")->getValue<int>();
-                Vector2 objectSwitchCoordinates;
-                objectSwitchCoordinates.x = objectProperties.getProperty("x_dest")->getValue<int>();
-                objectSwitchCoordinates.y = objectProperties.getProperty("y_dest")->getValue<int>();
-                int objectSwitchElevation = objectProperties.getProperty("elevation_dest")->getValue<int>();
+                Vector2 objectDestination = {(float) objectProperties.getProperty("level_switch")->getValue<int>(),
+                        (float) objectProperties.getProperty("level_switch")->getValue<int>()};
+                int objectDestinationElevation = objectProperties.getProperty("elevation_dest")->getValue<int>();
 
                 actor = std::make_shared<EventManagement::Object::LevelSwitch>(EventManagement::Object::LevelSwitch
-                        (objectPosition, objectHitbox, objectId, objectSize, objectElevation, objectLevelID, objectSwitchCoordinates, objectSwitchElevation));
+                        (objectPosition, objectHitbox, objectId, objectSize, objectElevation, objectLevelID,
+                                objectDestination, objectDestinationElevation));
                 ActorStorage::addActorByType(objectElevation, actor);
             } else if (objectClass == "mech")
             {
@@ -289,8 +289,6 @@ void CoreLogic::DataProcessing::Map::loadObjects()
                     objectUnlockType = (CoreLogic::EventManagement::Actors::Drone::DroneType) objectProperties
                             .getProperty("droneType")->getValue<int>();
                 }
-
-
                 actor = std::make_shared<EventManagement::Object::DroneRespawnPoint>(EventManagement::Object::DroneRespawnPoint
                         (objectPosition, objectHitbox, objectId, objectSize, objectElevation, objectNewDrone, objectUnlockType, objectActive, objectLevel));
 
