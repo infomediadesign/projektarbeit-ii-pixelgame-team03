@@ -948,7 +948,7 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
     po_sprites_[HUD_DEATH_ABILITY] = sprite;
 
     //drone selection
-    sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/hive_ARTI_newHUD_drone-selection-screen-Spritesheet.png",
+    sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/Scenes/hive_ARTI_newHUD_drone-selection-screen-Spritesheet.png",
             {
                     {CoreLogic::UserInterface::AnimationState{0 * 360, 640, 360, 1}},
                     {CoreLogic::UserInterface::AnimationState{1 * 360, 640, 360, 1}},
@@ -958,7 +958,7 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
     po_sprites_[DRONE_SELECTION] = sprite;
 
     //main menu
-    sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/hive_ARTI_newHUD_main-menu-screen-Spritesheet.png",
+    sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/Scenes/hive_ARTI_newHUD_main-menu-screen-Spritesheet.png",
             {
                     {CoreLogic::UserInterface::AnimationState{0 * 360, 640, 360, 1}},
                     {CoreLogic::UserInterface::AnimationState{1 * 360, 640, 360, 1}},
@@ -967,7 +967,7 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
     po_sprites_[MAIN_MENU] = sprite;
 
     //death scene
-    sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/hive_ARTI_newHUD_death-screen-Spritesheet.png",
+    sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/Scenes/hive_ARTI_newHUD_death-screen-Spritesheet.png",
             {
                     {CoreLogic::UserInterface::AnimationState{0 * 360, 640, 360, 1}},
                     {CoreLogic::UserInterface::AnimationState{1 * 360, 640, 360, 1}},

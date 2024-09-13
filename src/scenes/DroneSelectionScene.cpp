@@ -67,11 +67,13 @@ void Scenes::DroneSelectionScene::update()
             if (currentDroneSelection_ == WORKER_SCOUT_UNLOCKED) {
                 currentDroneSelection_ = SCOUT_SELECT;
                 sprite_.shiftFrame(SCOUT_SELECT);
+                selectedDroneType_ = CoreLogic::EventManagement::Actors::Drone::SCOUT;
             }
         } else if (event == CoreLogic::EventManagement::MOVE_LEFT) {
             if (currentDroneSelection_ == SCOUT_SELECT) {
                 currentDroneSelection_ = WORKER_SCOUT_UNLOCKED;
                 sprite_.shiftFrame(WORKER_SCOUT_UNLOCKED);
+                selectedDroneType_ = CoreLogic::EventManagement::Actors::Drone::WORKER;
             }
         }
     }
