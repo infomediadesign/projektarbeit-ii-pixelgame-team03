@@ -259,9 +259,9 @@ void CoreLogic::DataProcessing::Map::loadObjects()
             {
                 int objectLevelID = objectProperties.getProperty("level_switch")->getValue<int>();
                 Vector2 objectSwitchCoordinates;
-                objectSwitchCoordinates.x = objectProperties.getProperty("switch_x")->getValue<int>();
-                objectSwitchCoordinates.y = objectProperties.getProperty("switch_y")->getValue<int>();
-                int objectSwitchElevation = objectProperties.getProperty("switch_elevation")->getValue<int>();
+                objectSwitchCoordinates.x = objectProperties.getProperty("x_dest")->getValue<int>();
+                objectSwitchCoordinates.y = objectProperties.getProperty("y_dest")->getValue<int>();
+                int objectSwitchElevation = objectProperties.getProperty("elevation_dest")->getValue<int>();
 
                 actor = std::make_shared<EventManagement::Object::LevelSwitch>(EventManagement::Object::LevelSwitch
                         (objectPosition, objectHitbox, objectId, objectSize, objectElevation, objectLevelID, objectSwitchCoordinates, objectSwitchElevation));
