@@ -709,12 +709,12 @@
                         {
                          "name":"x_dest",
                          "type":"int",
-                         "value":37
+                         "value":890
                         }, 
                         {
                          "name":"y_dest",
                          "type":"int",
-                         "value":28
+                         "value":674
                         }],
                  "rotation":0,
                  "type":"jump_point",
@@ -731,12 +731,12 @@
                         {
                          "name":"x_dest",
                          "type":"int",
-                         "value":33
+                         "value":794
                         }, 
                         {
                          "name":"y_dest",
                          "type":"int",
-                         "value":28
+                         "value":672
                         }],
                  "rotation":0,
                  "type":"jump_point",
@@ -2268,12 +2268,12 @@
                         {
                          "name":"x_dest",
                          "type":"int",
-                         "value":16
+                         "value":386
                         }, 
                         {
                          "name":"y_dest",
                          "type":"int",
-                         "value":14
+                         "value":338
                         }],
                  "rotation":0,
                  "type":"jump_point",
@@ -2290,12 +2290,12 @@
                         {
                          "name":"x_dest",
                          "type":"int",
-                         "value":16
+                         "value":386
                         }, 
                         {
                          "name":"y_dest",
                          "type":"int",
-                         "value":10
+                         "value":242
                         }],
                  "rotation":0,
                  "type":"jump_point",
@@ -2312,12 +2312,12 @@
                         {
                          "name":"x_dest",
                          "type":"int",
-                         "value":16
+                         "value":386
                         }, 
                         {
                          "name":"y_dest",
                          "type":"int",
-                         "value":21
+                         "value":506
                         }],
                  "rotation":0,
                  "type":"jump_point",
@@ -2334,12 +2334,12 @@
                         {
                          "name":"x_dest",
                          "type":"int",
-                         "value":16
+                         "value":386
                         }, 
                         {
                          "name":"y_dest",
                          "type":"int",
-                         "value":17
+                         "value":410
                         }],
                  "rotation":0,
                  "type":"jump_point",
@@ -2356,12 +2356,12 @@
                         {
                          "name":"x_dest",
                          "type":"int",
-                         "value":9
+                         "value":218
                         }, 
                         {
                          "name":"y_dest",
                          "type":"int",
-                         "value":28
+                         "value":674
                         }],
                  "rotation":0,
                  "type":"jump_point",
@@ -2378,12 +2378,12 @@
                         {
                          "name":"x_dest",
                          "type":"int",
-                         "value":9
+                         "value":218
                         }, 
                         {
                          "name":"y_dest",
                          "type":"int",
-                         "value":24
+                         "value":578
                         }],
                  "rotation":0,
                  "type":"jump_point",
@@ -2400,7 +2400,7 @@
                  "value":1
                 }],
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -3652,7 +3652,7 @@
                  "value":1
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -4186,12 +4186,12 @@
                         {
                          "name":"x_dest",
                          "type":"int",
-                         "value":59
+                         "value":1418
                         }, 
                         {
                          "name":"y_dest",
                          "type":"int",
-                         "value":29
+                         "value":698
                         }],
                  "rotation":0,
                  "type":"jump_point",
@@ -4208,12 +4208,12 @@
                         {
                          "name":"x_dest",
                          "type":"int",
-                         "value":59
+                         "value":1418
                         }, 
                         {
                          "name":"y_dest",
                          "type":"int",
-                         "value":25
+                         "value":602
                         }],
                  "rotation":0,
                  "type":"jump_point",
@@ -4230,12 +4230,12 @@
                         {
                          "name":"x_dest",
                          "type":"int",
-                         "value":54
+                         "value":1298
                         }, 
                         {
                          "name":"y_dest",
                          "type":"int",
-                         "value":20
+                         "value":482
                         }],
                  "rotation":0,
                  "type":"jump_point",
@@ -4252,12 +4252,12 @@
                         {
                          "name":"x_dest",
                          "type":"int",
-                         "value":50
+                         "value":1202
                         }, 
                         {
                          "name":"y_dest",
                          "type":"int",
-                         "value":20
+                         "value":482
                         }],
                  "rotation":0,
                  "type":"jump_point",
@@ -4274,12 +4274,12 @@
                         {
                          "name":"x_dest",
                          "type":"int",
-                         "value":33
+                         "value":794
                         }, 
                         {
                          "name":"y_dest",
                          "type":"int",
-                         "value":2
+                         "value":50
                         }],
                  "rotation":0,
                  "type":"jump_point",
@@ -4296,12 +4296,12 @@
                         {
                          "name":"x_dest",
                          "type":"int",
-                         "value":37
+                         "value":890
                         }, 
                         {
                          "name":"y_dest",
                          "type":"int",
-                         "value":2
+                         "value":50
                         }],
                  "rotation":0,
                  "type":"jump_point",
@@ -5149,7 +5149,7 @@
                  "value":2
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -5800,74 +5800,6 @@
                  "width":24,
                  "x":216,
                  "y":168
-                }, 
-                {
-                 "height":24,
-                 "id":290,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"lore_item_text",
-                         "type":"string",
-                         "value":""
-                        }],
-                 "rotation":0,
-                 "type":"lore_item",
-                 "visible":true,
-                 "width":24,
-                 "x":528,
-                 "y":768
-                }, 
-                {
-                 "height":24,
-                 "id":291,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"lore_item_text",
-                         "type":"string",
-                         "value":""
-                        }],
-                 "rotation":0,
-                 "type":"lore_item",
-                 "visible":true,
-                 "width":24,
-                 "x":72,
-                 "y":696
-                }, 
-                {
-                 "height":24,
-                 "id":292,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"lore_item_text",
-                         "type":"string",
-                         "value":""
-                        }],
-                 "rotation":0,
-                 "type":"lore_item",
-                 "visible":true,
-                 "width":24,
-                 "x":1392,
-                 "y":672
-                }, 
-                {
-                 "height":24,
-                 "id":416,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"lore_item_text",
-                         "type":"string",
-                         "value":""
-                        }],
-                 "rotation":0,
-                 "type":"lore_item",
-                 "visible":true,
-                 "width":24,
-                 "x":864,
-                 "y":24
                 }],
          "opacity":1,
          "properties":[
@@ -5886,23 +5818,6 @@
          "id":64,
          "name":"LoreItems 2",
          "objects":[
-                {
-                 "height":24,
-                 "id":430,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"lore_item_text",
-                         "type":"string",
-                         "value":""
-                        }],
-                 "rotation":0,
-                 "type":"lore_item",
-                 "visible":true,
-                 "width":24,
-                 "x":216,
-                 "y":168
-                }, 
                 {
                  "height":24,
                  "id":431,
