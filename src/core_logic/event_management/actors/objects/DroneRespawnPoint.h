@@ -15,10 +15,11 @@ namespace CoreLogic::EventManagement::Object
         enum DroneRespawnPointState {
             UNDISCOVERED,
             DISCOVERED,
-            ACTIVATED
+            ACTIVATED,
         };
 
-        DroneRespawnPoint(Vector2 pa_position, Rectangle pa_hitbox, int pa_id, Vector2 pa_size,  int pa_elevation, bool pa_newDrone, int pa_unlockType, bool pa_active);
+        DroneRespawnPoint(Vector2 pa_position, Rectangle pa_hitbox, int pa_id, Vector2 pa_size,  int pa_elevation,
+                bool pa_newDrone, int pa_unlockType, bool pa_active, int pa_level);
 
         [[nodiscard]] DroneRespawnPointState getRespawnState() const;
         void changeState(DroneRespawnPointState pa_state);
@@ -29,10 +30,14 @@ namespace CoreLogic::EventManagement::Object
         int getUnlockType() const;
         void setUnlockType(int pa_unlockType);
 
+        int getLevel() const;
+        void setLevel(int pa_level);
+
     protected:
         bool newDrone_ = false;
         int unlockType_ = 0;
         DroneRespawnPointState state_ = UNDISCOVERED;
+        int level_;
     };
 }
 

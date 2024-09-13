@@ -19,17 +19,31 @@ CoreLogic::EventManagement::Object::DroneRespawnPoint::getRespawnState() const
 }
 
 CoreLogic::EventManagement::Object::DroneRespawnPoint::DroneRespawnPoint(Vector2 pa_position, Rectangle pa_hitbox,
-        int pa_id, Vector2 pa_size, int pa_elevation, bool pa_newDrone, int pa_unlockType, bool pa_active) :
+        int pa_id, Vector2 pa_size, int pa_elevation, bool pa_newDrone, int pa_unlockType, bool pa_active, int
+        pa_level) :
         newDrone_(pa_newDrone), unlockType_(pa_unlockType),
         Interaction(pa_position, pa_hitbox, pa_id, Actor::CollisionType::NONE, pa_size, true, pa_elevation,
                 CHECKPOINT)
 {
-    sprite_ = DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::SPAWN_UNDERWORLD);
+    if (CoreLogic::DataProcessing::ActorStorage::getCurrentLevelID() == 0){
+        sprite_ = DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::SPAWN_UNDERWORLD);
+    } else {
+        sprite_ = DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::SPAWN_OVERWORLD);
+    }
+
+    level_ = pa_level;
+
+    unlockType_ = (CoreLogic::EventManagement::Actors::Drone::DroneType) pa_unlockType;
+
     if (pa_active == true)
     {
         changeState(DroneRespawnPointState::ACTIVATED);
     } else {
         changeState(DroneRespawnPointState::UNDISCOVERED);
+        if (pa_newDrone == true)
+        {
+            shiftFrame(3);
+        }
     }
 }
 
@@ -51,4 +65,14 @@ int CoreLogic::EventManagement::Object::DroneRespawnPoint::getUnlockType() const
 void CoreLogic::EventManagement::Object::DroneRespawnPoint::setUnlockType(int pa_unlockType)
 {
     unlockType_ = pa_unlockType;
+}
+
+int CoreLogic::EventManagement::Object::DroneRespawnPoint::getLevel() const
+{
+    return level_;
+}
+
+void CoreLogic::EventManagement::Object::DroneRespawnPoint::setLevel(int pa_level)
+{
+    level_ = pa_level;
 }
