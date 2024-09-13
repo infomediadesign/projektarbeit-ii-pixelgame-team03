@@ -5,3 +5,7 @@
 #include "NoteScene.h"
 
 
+Scenes::NoteScene::NoteScene()
+{
+
+}

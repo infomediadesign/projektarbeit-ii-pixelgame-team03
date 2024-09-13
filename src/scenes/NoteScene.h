@@ -18,6 +18,10 @@ namespace Scenes
         void draw(RenderTexture2D &pa_canvas) override;
         void update() override;
         void onSwitch() override;
+
+    protected:
+
+        std::string text_;
     };
 }
 
