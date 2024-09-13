@@ -204,7 +204,7 @@ void Scenes::GameScene::switchLevel(int pa_levelID)
     {
         if (level.getLevelID() == pa_levelID)
         {
-            if (level.getLlevelActorStateStorage() == nullptr)
+            if (level.getLevelActorStateStorage() == nullptr)
             {
                 po_loadMap_ = std::make_unique<CoreLogic::DataProcessing::Map>(level.getMapPath());
             } else {

@@ -69,7 +69,7 @@ void CoreLogic::DataProcessing::Level::setLevelState(LevelState pa_levelState)
 }
 
 std::shared_ptr<std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Actor>>>>
-CoreLogic::DataProcessing::Level::getLlevelActorStateStorage()
+CoreLogic::DataProcessing::Level::getLevelActorStateStorage()
 {
     return po_levelActorStateStorage_;
 }

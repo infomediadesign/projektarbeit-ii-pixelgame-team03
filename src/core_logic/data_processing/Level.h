@@ -45,7 +45,7 @@ namespace CoreLogic::DataProcessing
         void saveLevelStates();
         void loadLevelData();
 
-        std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Actor>>>> getLlevelActorStateStorage();
+        std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Actor>>>> getLevelActorStateStorage();
 
     private:
         Level() = delete;

@@ -59,7 +59,9 @@ namespace CoreLogic::EventManagement
         FallingEvent::fall();
         if (fallenHeight_ == 1)
         {
-            CoreLogic::DataProcessing::ActorStorage::changeDrawingElevation(po_mainActor_, po_mainActor_ ->getElevation() - 1);
+            int newElevation = 0;
+            (po_mainActor_ ->getElevation() > 0) ? newElevation = po_mainActor_ ->getElevation() - 1 : newElevation = 0;
+            CoreLogic::DataProcessing::ActorStorage::changeDrawingElevation(po_mainActor_, newElevation);
         }
     }
 } // CoreLogic
