@@ -20,7 +20,8 @@ namespace CoreLogic::EventManagement
             NONE = 0,
             COLLISION = 1,
             ENEMYDEATH = 2,
-            DEATH = 3
+            DEATH = 3,
+            WALKABLE = 4
         };
 
 
@@ -28,25 +29,33 @@ namespace CoreLogic::EventManagement
         : position_(pa_position), hitbox_(pa_hitbox), id_(pa_id), collisionType_(pa_collidable), visible_(pa_visible), size_(pa_size), elevation_(pa_elevation) {};
         virtual ~Actor() = default;
 
-        //getters
-        Vector2 getPosition(){return position_;};
-        Rectangle getHitbox(){return hitbox_;};
-        int getId(){return id_;};
-        CollisionType getCollisionType(){return collisionType_;};
-        bool getVisible(){return visible_;};
-        std::string getName(){return name_;};
-        Vector2 getSize(){return size_;};
 
-        Texture2D getTexture(){return sprite_.getTexture();};
-        Rectangle getFrame(){return sprite_.getFrame();};
-        int getStateID(){return stateID_;};
-
-        CoreLogic::UserInterface::Direction getPrimaryDirection(){return primaryDirection_;};
-        void setPrimaryDirection(CoreLogic::UserInterface::Direction pa_primaryDirection){ primaryDirection_ = pa_primaryDirection;};
-
-
-        void shiftFrame(int pa_stateID);
+        virtual void shiftFrame(int pa_stateID);
         void resetFrame(int pa_stateID);
+        void draw();
+
+
+        Vector2 getPosition() const;
+        virtual void setPosition(Vector2 pa_position);
+
+        Rectangle getHitbox() const;
+        void setHitbox(Rectangle pa_hitbox);
+
+        int getId() const;
+
+        CollisionType getCollisionType() const;
+        void setCollisionType(CollisionType pa_collisionType);
+
+        bool getVisible() const;
+        void setVisible(bool pa_visible);
+
+        Vector2 getSize() const;
+
+        UserInterface::Sprite getSprite();
+        void setSprite(UserInterface::Sprite pa_sprite);
+
+        CoreLogic::UserInterface::Direction getPrimaryDirection();
+        void setPrimaryDirection(CoreLogic::UserInterface::Direction pa_primaryDirection);
 
         [[nodiscard]] int getElevation() const;
         void setElevation(int pa_elevation);
@@ -57,7 +66,6 @@ namespace CoreLogic::EventManagement
         const int id_;
         CollisionType collisionType_;
         bool visible_;
-        std::string name_;
         const Vector2 size_;
         int elevation_;
 

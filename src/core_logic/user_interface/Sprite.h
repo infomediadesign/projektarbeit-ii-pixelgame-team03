@@ -13,15 +13,18 @@ namespace CoreLogic::UserInterface
 {
     struct AnimationState
     {
-        int row_;
+        int pxRow_; //it has to be measured in px to account for different sized states
+        int width_; // same thing here
+        int height_; // and here
         int steps_;
+        Vector2 relativePosition_;
     };
     enum class Direction
     {
-        UP,
-        DOWN,
-        LEFT,
-        RIGHT
+        UP = 0,
+        DOWN = 1,
+        LEFT = 2,
+        RIGHT = 3
     };
 
     class Sprite
@@ -29,24 +32,28 @@ namespace CoreLogic::UserInterface
 
     public:
         Sprite();
-        Sprite(std::string pa_path, int pa_frameWidth, int pa_frameHeight, std::vector<std::vector<AnimationState>>
+        Sprite(std::string pa_path, std::vector<std::vector<AnimationState>>
         pa_animationStates);
         void shiftFrame(int pa_stateID, Direction pa_primaryDirection);
+        void shiftFrame(int pa_stateID);
         void resetFrame(int pa_stateID);
+
+        int getFrameAmount(int pa_stateID, Direction pa_primaryDirection);
+        int getFrameAmount(int pa_stateID);
+        int getFrameAmount();
 
         Texture2D getTexture(){return texture_;};
         Rectangle getFrame(){return frame_;};
+        Vector2 getRelativePosition();
 
     protected:
 
         std::vector<std::vector<AnimationState>> animationStates_; // state<direction<animationState>>
-        int currentState_ = 0;
+        AnimationState currentState_;
+        int currentStateId_ = 0;
         int currentStep_ = 0;
 
-        Direction primaryDirection_ = Direction::RIGHT;
-
-        int frameWidth_ = 24;
-        int frameHeight_ = 24;
+        Direction primaryDirection_ = Direction::UP;
 
         std::string path_ = "";
         Texture2D texture_;

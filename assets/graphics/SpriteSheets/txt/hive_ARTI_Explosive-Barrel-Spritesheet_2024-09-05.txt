@@ -1,0 +1,2 @@
+Normal: 24x24px (1x1 Tiles)
+Explosion: 120x120px (5x5 Tiles)

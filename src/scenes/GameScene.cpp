@@ -4,21 +4,38 @@
 
 #include "GameScene.h"
 #include "event_management/EventHandler.h"
+#include "event_management/SoundHandler.h"
+#include "user_interface/HUD.h"
+#include "event_management/actors/Enemy.h"
+#include "event_management/actors/drones/Worker.h"
+#include "event_management/actors/drones/Scout.h"
 
-
+//assets/data/hive_PROG_tech-demo-map_2024-07-14.tmj
 Scenes::GameScene::GameScene(): Scene(std::make_shared<Camera2D>()),
                                 po_levels_(std::make_unique<std::vector<CoreLogic::DataProcessing::Level>>(std::initializer_list<CoreLogic::DataProcessing::Level>{
-                                        CoreLogic::DataProcessing::Level(std::make_unique<std::vector<std::string>>(std::initializer_list<std::string>{"assets/data/hive_PROG_tech-demo-map_2024-07-14.tmj", "lol"}), 0, CoreLogic::DataProcessing::LevelState::Default),
+                                        CoreLogic::DataProcessing::Level(std::make_unique<std::vector<std::string>>
+                                        (std::initializer_list<std::string>{"assets/data/level1.tmj", "lol"}), 0,
+                                        CoreLogic::DataProcessing::LevelState::Default),
                                         CoreLogic::DataProcessing::Level(std::make_unique<std::vector<std::string>>(std::initializer_list<std::string>{"lel", "assets/data/level0.tmj"}), 1, CoreLogic::DataProcessing::LevelState::War)
                         }))
 {
     camera_ -> zoom = 1.0f;
     po_currentMap_ = std::make_unique<CoreLogic::DataProcessing::Map>(po_levels_ -> at(0).getMapPath());
-    CoreLogic::DataProcessing::ActorStorage::setLayers(po_currentMap_ -> getLayers());
+//    CoreLogic::DataProcessing::ActorStorage::setLayers(po_currentMap_ -> getLayers());
     po_previousMap_ = std::make_unique<CoreLogic::DataProcessing::Map>(*po_currentMap_);
     currentLevelID_ = po_levels_ -> at(0).getLevelID();
     previousLevelID_ = currentLevelID_;
 
+    auto spawnPoint = CoreLogic::DataProcessing::ActorStorage::getActiveSpawnPoint();
+    CoreLogic::EventManagement::Actors::Worker drone = { {spawnPoint->getPosition().x, spawnPoint->getPosition().y},
+            {spawnPoint->getPosition().x, spawnPoint->getPosition().y, 32, 32}, 0,
+            {38, 38}, 0};
+    CoreLogic::DataProcessing::ActorStorage::setPlayer(std::make_shared<CoreLogic::EventManagement::Actors::Worker>
+            (drone));
+    auto &eventHandler = CoreLogic::EventManagement::EventHandler::getInstance();
+    eventHandler.resetPlayer();
+
+    CoreLogic::DataProcessing::ActorStorage::unlockDrone(CoreLogic::EventManagement::Actors::Drone::DroneType::SCOUT);
 }
 
 int Scenes::GameScene::getCurrentLevelID()
@@ -35,7 +52,7 @@ void Scenes::GameScene::draw(RenderTexture2D &pa_canvas)
 
 void Scenes::GameScene::update()
 {
-    CoreLogic::DataProcessing::ticks++;
+    CoreLogic::DataProcessing::global_ticks++;
 
     Camera2D &camera = *camera_;
     /**
@@ -43,7 +60,22 @@ void Scenes::GameScene::update()
      **/
 
     CoreLogic::EventManagement::EventHandler &eventHandler = CoreLogic::EventManagement::EventHandler::getInstance();
-    std::shared_ptr<CoreLogic::EventManagement::Actors::Drone>player = CoreLogic::DataProcessing::ActorStorage::getPlayer();
+    CoreLogic::EventManagement::SoundHandler &soundHandler = CoreLogic::EventManagement::SoundHandler::getInstance();
+    std::shared_ptr<CoreLogic::EventManagement::Actors::Drone> player = CoreLogic::DataProcessing::ActorStorage::getPlayer();
+    std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Actors::Enemy>>> &enemies = *CoreLogic::DataProcessing::ActorStorage::getEnemies();
+
+    player->update();
+    for (auto &pair: enemies)
+    {
+        for (auto &enemy: pair.second)
+        {
+            if (enemy == nullptr)
+            {
+                continue;
+            }
+            enemy->update();
+        }
+    }
 
     /**
      *@todo: InputHandler to be called static
@@ -51,14 +83,23 @@ void Scenes::GameScene::update()
     eventHandler.handleEvents(po_inputHandler_->handleInput(), player->getId());
     eventHandler.update();
 
+    soundHandler.update();
+
+    CoreLogic::UserInterface::HUD& hud = *CoreLogic::UserInterface::HUD::getInstance();
+    hud.update();
+
+
+    /**
+    * @attention: debug stuff
+    */
 
     if (IsKeyPressed(KEY_M))
     {
         if (player->getElevation() == 0)
         {
-            player->setElevation(1);
-            player->setPosition({744, 600});
-        } else if (player->getElevation() == 1) {
+            player->setElevation(2);
+            player->setPosition({985, 55});
+        } else if (player->getElevation() == 2) {
             player->setElevation(0);
             player->setPosition({816,648});
         }
@@ -84,9 +125,17 @@ void Scenes::GameScene::update()
         } else if (currentLevelID_ == 0) {
             player->setPosition({100,100});
         }
-        eventHandler.switchLevels();
+        eventHandler.resetPlayer();
 
     }
+
+    if (IsKeyPressed(KEY_ZERO)) player->setElevation(0);
+    if (IsKeyPressed(KEY_ONE)) player->setElevation(1);
+    if (IsKeyPressed(KEY_TWO)) player->setElevation(2);
+
+    if (IsKeyPressed(KEY_NINE))
+        player->setElevation(9);
+
 
     Vector2 playerPos = player->getPosition();
 
@@ -130,4 +179,9 @@ void Scenes::GameScene::render()
 void Scenes::GameScene::switchLevel()
 {
 
+}
+
+void Scenes::GameScene::onSwitch()
+{
+update();
 }

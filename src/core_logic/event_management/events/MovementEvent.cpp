@@ -9,14 +9,20 @@
 #include "event_management/actors/Drone.h"
 #include "data_processing/Store.h"
 #include "Sprite.h"
+#include "Event.h"
 
 
 void CoreLogic::EventManagement::MovementEvent::update()
 {
+    if (!std::dynamic_pointer_cast<Actors::Drone>(po_mainActor_)->canMove())
+    {
+//        stop();
+        throw EventException("Drone cannot move", true);
+    }
     checkStillPressed();
     if (!ticksRunning_)
     {
-        po_mainActor_->resetFrame(1);
+        po_mainActor_->resetFrame(0);
         return;
     }
 
@@ -30,7 +36,7 @@ void CoreLogic::EventManagement::MovementEvent::update()
 
     if (ticks_ % 3 == 0)
     {
-        po_mainActor_->shiftFrame(1);
+        po_mainActor_->shiftFrame(0);
     }
 }
 
@@ -57,6 +63,11 @@ void CoreLogic::EventManagement::MovementEvent::updateActorDir()
 
 void CoreLogic::EventManagement::MovementEvent::startMove(CoreLogic::EventManagement::EventEnum pa_Event)
 {
+    /*if (!std::dynamic_pointer_cast<Actors::Drone>(po_mainActor_)->canMove())
+    {
+        throw EventException("Drone can't move", false);
+    }*/
+
     if (primaryDir_ == EVENT_NULL)
     {
         primaryDir_ = pa_Event;
@@ -65,7 +76,7 @@ void CoreLogic::EventManagement::MovementEvent::startMove(CoreLogic::EventManage
 
     directionMap_[pa_Event] = true;
     updateActorDir();
-    po_mainActor_->shiftFrame(1);
+    po_mainActor_->shiftFrame(0);
 }
 
 void CoreLogic::EventManagement::MovementEvent::checkStillPressed()
@@ -76,7 +87,7 @@ void CoreLogic::EventManagement::MovementEvent::checkStillPressed()
      *@attention: It assumes here that the InputHandler gives the Option to handle an Axis like a Button
      **/
 
-    if (directionMap_.at(MOVE_UP) && (inputHandler_.isCommandReleased(MOVE_UP)))
+    if (directionMap_.at(MOVE_UP) && !(inputHandler_.isCommandDown(MOVE_UP)))
     {
         directionMap_.at(MOVE_UP) = false;
         if (primaryDir_ == MOVE_UP)
@@ -84,7 +95,7 @@ void CoreLogic::EventManagement::MovementEvent::checkStillPressed()
             newPrimary = true;
         }
     }
-    if (directionMap_.at(MOVE_DOWN) && (inputHandler_.isCommandReleased(MOVE_DOWN)))
+    if (directionMap_.at(MOVE_DOWN) && !(inputHandler_.isCommandDown(MOVE_DOWN)))
     {
         directionMap_.at(MOVE_DOWN) = false;
         if (primaryDir_ == MOVE_DOWN)
@@ -92,7 +103,7 @@ void CoreLogic::EventManagement::MovementEvent::checkStillPressed()
             newPrimary = true;
         }
     }
-    if (directionMap_.at(MOVE_LEFT) && (inputHandler_.isCommandReleased(MOVE_LEFT)))
+    if (directionMap_.at(MOVE_LEFT) && !(inputHandler_.isCommandDown(MOVE_LEFT)))
     {
         directionMap_.at(MOVE_LEFT) = false;
         if (primaryDir_ == MOVE_LEFT)
@@ -100,7 +111,7 @@ void CoreLogic::EventManagement::MovementEvent::checkStillPressed()
             newPrimary = true;
         }
     }
-    if (directionMap_.at(MOVE_RIGHT) && (inputHandler_.isCommandReleased(MOVE_RIGHT)))
+    if (directionMap_.at(MOVE_RIGHT) && !(inputHandler_.isCommandDown(MOVE_RIGHT)))
     {
         directionMap_.at(MOVE_RIGHT) = false;
         if (primaryDir_ == MOVE_RIGHT)
@@ -114,30 +125,28 @@ void CoreLogic::EventManagement::MovementEvent::checkStillPressed()
         {
             primaryDir_ = MOVE_UP;
             updateActorDir();
-            po_mainActor_->shiftFrame(1);
+            po_mainActor_->shiftFrame(0);
         } else if (directionMap_.at(MOVE_DOWN)) {
             primaryDir_ = MOVE_DOWN;
             updateActorDir();
-            po_mainActor_->shiftFrame(1);
+            po_mainActor_->shiftFrame(0);
         } else if (directionMap_.at(MOVE_LEFT)) {
             primaryDir_ = MOVE_LEFT;
             updateActorDir();
-            po_mainActor_->shiftFrame(1);
+            po_mainActor_->shiftFrame(0);
         } else if (directionMap_.at(MOVE_RIGHT)) {
             primaryDir_ = MOVE_RIGHT;
             updateActorDir();
-            po_mainActor_->shiftFrame(1);
+            po_mainActor_->shiftFrame(0);
         } else {
-            primaryDir_ = EVENT_NULL;
-            ticksRunning_ = false;
-            ticks_ = 0;
+            stop();
         }
     }
 }
 
 CoreLogic::EventManagement::MovementEvent::MovementEvent(): Event(MOVE_UP)
 {
-    po_mainActor_ = CoreLogic::DataProcessing::ActorStorage::getPlayer();
+    po_mainActor_ = std::dynamic_pointer_cast<Actor>(CoreLogic::DataProcessing::ActorStorage::getPlayer());
     primaryDir_ = EVENT_NULL;
     ticksRunning_ = false;
     directionMap_ = {{MOVE_UP, false}, {MOVE_DOWN, false}, {MOVE_LEFT, false}, {MOVE_RIGHT, false}};
@@ -145,10 +154,17 @@ CoreLogic::EventManagement::MovementEvent::MovementEvent(): Event(MOVE_UP)
 
 void CoreLogic::EventManagement::MovementEvent::updateMainActor()
 {
-    po_mainActor_ = CoreLogic::DataProcessing::ActorStorage::getPlayer();
+    po_mainActor_ = std::dynamic_pointer_cast<Actor>(CoreLogic::DataProcessing::ActorStorage::getPlayer());
     primaryDir_ = EVENT_NULL;
     ticksRunning_ = false;
     directionMap_ = {{MOVE_UP, false}, {MOVE_DOWN, false}, {MOVE_LEFT, false}, {MOVE_RIGHT, false}};
+}
+
+void CoreLogic::EventManagement::MovementEvent::stop()
+{
+    primaryDir_ = EVENT_NULL;
+    ticksRunning_ = false;
+    ticks_ = 0;
 }
 
 

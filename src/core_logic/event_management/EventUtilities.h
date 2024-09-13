@@ -7,21 +7,62 @@
 
 namespace CoreLogic::EventManagement
 {
-    enum EventEnum {
-        EVENT_NULL = 0x00000,
-        MOVE_UP = 0x00001,
-        MOVE_DOWN = 0x00002,
-        MOVE_LEFT = 0x00004,
-        MOVE_RIGHT = 0x00008,
+    class EventException : public std::exception {
+    public:
+        explicit EventException(const char* pa_message, bool pa_success) : msg_(pa_message), success_(pa_success) {}
 
-        INTERACT = 0x00010,
-        ABILITY = 0x00020,
-        DEATH_ABILITY = 0x00040,
-        DISCONNECT = 0x00080,
+        [[nodiscard]] bool wasSuccessful() const { return success_; }
 
-        HIGHLIGHT = 0x00100,
-        PAUSE = 0x00200,
+        [[nodiscard]] const char* what() const noexcept override { return msg_; }
+
+    private:
+        const char* msg_;
+        bool success_ = true;
     };
+
+    enum EventEnum {
+        EVENT_NULL,
+        MOVE_UP,
+        MOVE_DOWN,
+        MOVE_LEFT,
+        MOVE_RIGHT,
+
+        INTERACT,
+        CLIMB,
+        CHECKPOINT,
+        NOTE,
+
+        ABILITY,
+        CLEAN,
+        PUSH,
+        BARREL_PUSH,
+        JUMP,
+
+        FALLING,
+        BOULDER_FALL,
+        BARREL_FALL,
+
+        DEATH_ABILITY,
+        DISCONNECT,
+        ENEMY_DEATH,
+
+        VISION,
+
+        HIGHLIGHT,
+        PAUSE
+    };
+
+    struct eventNames {
+    public:
+        static std::string getEventName(EventEnum pa_event)
+        {
+            return eventNameMap[pa_event];
+        }
+    private:
+        static std::map<EventEnum, std::string> eventNameMap;
+    };
+
+
 }
 
 #endif //HIVE_EVENTUTILITIES_H

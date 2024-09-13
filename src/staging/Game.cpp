@@ -5,6 +5,8 @@
 
 #include "Game.h"
 
+bool Staging::Game::running_;
+
 Staging::Game::Game(int pa_stage_width, int pa_stage_height, int pa_target_fps, int pa_window_flags,
                     int pa_exit_key, bool pa_audio, bool pa_fullscreen,
                     const std::string &pa_game_title) : stageWidth_(pa_stage_width), gameTitle_(pa_game_title),
@@ -20,6 +22,9 @@ Staging::Game::Game(int pa_stage_width, int pa_stage_height, int pa_target_fps, 
     SetTargetFPS(targetFPS_);
     CoreLogic::DataProcessing::TileMap::Initialize();
     CoreLogic::DataProcessing::ActorStorage::Initialize();
+    CoreLogic::DataProcessing::SpriteStorage::Initialize();
+    CoreLogic::DataProcessing::StateMachine::Initialize();
+    CoreLogic::DataProcessing::Fonts::Initialize();
 
     fullscreen_ = pa_fullscreen;
     audio_ = pa_audio;
@@ -48,8 +53,13 @@ Staging::Game::~Game()
 
 void Staging::Game::run()
 {
-    while (!WindowShouldClose())
+    running_ = true;
+    while (running_)
     {
+        if (WindowShouldClose())
+        {
+            running_ = false;
+        }
 
         if (IsKeyPressed(KEY_F11))
         {
@@ -65,9 +75,12 @@ void Staging::Game::run()
         po_stage_->update();
 
         po_stage_->draw();
-
-//        BeginDrawing();
-//        ClearBackground(BLACK);
-//        EndDrawing();
     }
 }
+
+void Staging::Game::requestExit()
+{
+    running_ = false;
+}
+
+

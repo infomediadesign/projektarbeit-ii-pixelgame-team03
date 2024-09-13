@@ -5,7 +5,7 @@
 #ifndef HIVE_HAZMAT_H
 #define HIVE_HAZMAT_H
 
-#include "../../Actor.h"
+#include "event_management/Actor.h"
 
 namespace CoreLogic::EventManagement::Actors {
 

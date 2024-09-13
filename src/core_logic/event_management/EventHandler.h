@@ -23,15 +23,12 @@ namespace CoreLogic::EventManagement
         static EventHandler &getInstance();
         ~EventHandler();
         void handleEvents(const std::vector<EventEnum> &pa_Events, int pa_actorID);
-        void switchLevels();
+        void resetPlayer();
 
         void update();
     private:
         EventHandler();
-        /**
-         * @todo: rework: std::map<int, std::vector<Event>> activeEvents_;
-         * @todo: reworc activeEventIDs_ as soon as feedback is here
-         **/
+
         std::map<int, std::vector<std::unique_ptr<Event>>> po_activeEvents_;
 
 //      std::unique_ptr<std::map<int, EventEnum>> activeEventIDs_;
@@ -40,8 +37,8 @@ namespace CoreLogic::EventManagement
         bool movementBlocked_ = false;
         std::unique_ptr<MovementEvent> po_movementEvent_;
 
-        void activateEvent(EventEnum pa_activateEvent);
-        void deactivateEvent(EventEnum pa_deactivateEvent);
+        void activateEvent(EventEnum pa_activateEvent, int pa_actorID);
+        void deactivateEvent(EventEnum pa_deactivateEvent, int pa_actorID);
 
         static std::mutex eventHandler_mutex_;
 
