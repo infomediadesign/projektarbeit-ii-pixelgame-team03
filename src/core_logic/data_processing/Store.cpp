@@ -797,28 +797,36 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
     po_sprites_[COLONIST] = sprite;
 
     //3 - mech
-    sprite = UserInterface::Sprite("", //@todo: insert mech path
+    sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/hive_ARTI_Mech-Spritesheet_2024-09-13.png",
             {
                     {    //0 - idle
-                            {CoreLogic::UserInterface::AnimationState {1 * 48, 24, 48, 12}}, //up
-                            {CoreLogic::UserInterface::AnimationState {0 * 48, 24, 48, 12}}, //down
-                            {CoreLogic::UserInterface::AnimationState {3 * 48, 24, 48, 12}}, //left
-                            {CoreLogic::UserInterface::AnimationState {2 * 48, 24, 48, 12}}, //right
+                            {CoreLogic::UserInterface::AnimationState {3 * (3 * 24), 24, 48, 12}}, //up
+                            {CoreLogic::UserInterface::AnimationState {0 * (3 * 24), 24, 48, 12}}, //down
+                            {CoreLogic::UserInterface::AnimationState {1 * (3 * 24), 24, 48, 12}}, //left
+                            {CoreLogic::UserInterface::AnimationState {2 * (3 * 24), 24, 48, 12}}, //right
                     },
                     {    //1 - alert
-                            {CoreLogic::UserInterface::AnimationState {(3 * 48) + (1 * 72), 24, 72, 6, {0, -24}}}, //up
-                            {CoreLogic::UserInterface::AnimationState {(3 * 48) + (0 * 72), 24, 72, 6, {0, -24}}}, //down
-                            {CoreLogic::UserInterface::AnimationState {(3 * 48) + (3 * 72), 24, 72, 6, {0, -24}}}, //left
-                            {CoreLogic::UserInterface::AnimationState {(3 * 48) + (2 * 72), 24, 72, 6, {0, -24}}}, //right
+                            {CoreLogic::UserInterface::AnimationState {(4 * (3 * 24) + (3 * (4 * 24))), 24, 72, 6, {0,
+                                    -24}}}, //up
+                            {CoreLogic::UserInterface::AnimationState {(4 * (3 * 24) + (0 * (4 * 24))), 24, 72, 6,
+                                    {0, -24}}}, //down
+                            {CoreLogic::UserInterface::AnimationState {(4 * (3 * 24) + (1 * (4 * 24))), 24, 72, 6,
+                                    {0, -24}}}, //left
+                            {CoreLogic::UserInterface::AnimationState {(4 * (3 * 24) + (2 * (4 * 24))), 24, 72, 6,
+                                    {0, -24}}}, //right
                     },
                     {    //2 - shoot
-                            {CoreLogic::UserInterface::AnimationState {(3 * 48) + (5 * 72), 24, 72, 4, {0, -24}}}, //up
-                            {CoreLogic::UserInterface::AnimationState {(3 * 48) + (4 * 72), 24, 72, 4, {0, -24}}}, //down
-                            {CoreLogic::UserInterface::AnimationState {(3 * 48) + (7 * 72), 24, 72, 4, {0, -24}}}, //left
-                            {CoreLogic::UserInterface::AnimationState {(3 * 48) + (6 * 72), 24, 72, 4, {0, -24}}}, //right
+                            {CoreLogic::UserInterface::AnimationState {(4 * (3 * 24) + (7 * (4 * 24))), 24, 72, 6,
+                                    {0, -24}}}, //up
+                            {CoreLogic::UserInterface::AnimationState {(4 * (3 * 24) + (4 * (4 * 24))), 24, 72, 6,
+                                    {0, -24}}}, //down
+                            {CoreLogic::UserInterface::AnimationState {(4 * (3 * 24) + (5 * (4 * 24))), 24, 72, 6,
+                                    {0, -24}}}, //left
+                            {CoreLogic::UserInterface::AnimationState {(4 * (3 * 24) + (6 * (4 * 24))), 24, 72, 6,
+                                    {0, -24}}}, //right
                     },
                     {    //3 - death
-                            {CoreLogic::UserInterface::AnimationState {(3 * 48) + (8 * 72), 72, 72, 6, {-24, -24}}},
+                            {CoreLogic::UserInterface::AnimationState {(4 * (3 * 24) + (8 * (4 * 24))), 72, 72, 12}},
                     }
             });
 

@@ -13,7 +13,9 @@
 //assets/data/hive_PROG_tech-demo-map_2024-07-14.tmj
 Scenes::GameScene::GameScene(): Scene(std::make_shared<Camera2D>()),
                                 po_levels_(std::make_unique<std::vector<CoreLogic::DataProcessing::Level>>(std::initializer_list<CoreLogic::DataProcessing::Level>{
-                                        CoreLogic::DataProcessing::Level(std::make_unique<std::vector<std::string>>(std::initializer_list<std::string>{"assets/data/level0.tmj", "lol"}), 0, CoreLogic::DataProcessing::LevelState::Default),
+                                        CoreLogic::DataProcessing::Level(std::make_unique<std::vector<std::string>>
+                                        (std::initializer_list<std::string>{"assets/data/level1.tmj", "lol"}), 0,
+                                        CoreLogic::DataProcessing::LevelState::Default),
                                         CoreLogic::DataProcessing::Level(std::make_unique<std::vector<std::string>>(std::initializer_list<std::string>{"lel", "assets/data/level0.tmj"}), 1, CoreLogic::DataProcessing::LevelState::War)
                         }))
 {
@@ -24,7 +26,10 @@ Scenes::GameScene::GameScene(): Scene(std::make_shared<Camera2D>()),
     currentLevelID_ = po_levels_ -> at(0).getLevelID();
     previousLevelID_ = currentLevelID_;
 
-    CoreLogic::EventManagement::Actors::Worker drone = { {72, 720}, {72, 720, 32, 32}, 0, {38, 38}, 0};
+    auto spawnPoint = CoreLogic::DataProcessing::ActorStorage::getActiveSpawnPoint();
+    CoreLogic::EventManagement::Actors::Worker drone = { {spawnPoint->getPosition().x, spawnPoint->getPosition().y},
+            {spawnPoint->getPosition().x, spawnPoint->getPosition().y, 32, 32}, 0,
+            {38, 38}, 0};
     CoreLogic::DataProcessing::ActorStorage::setPlayer(std::make_shared<CoreLogic::EventManagement::Actors::Worker>
             (drone));
     auto &eventHandler = CoreLogic::EventManagement::EventHandler::getInstance();
