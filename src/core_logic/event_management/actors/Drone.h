@@ -85,6 +85,7 @@ namespace CoreLogic::EventManagement::Actors
             DroneType currentDroneType_ = DroneType::WORKER;
             DroneState currentDroneState_ = DroneState::MOVING;
 
+            int speed_ = CoreLogic::DataProcessing::DesignConfig::DRONE_SPEED;
         };
     }
 

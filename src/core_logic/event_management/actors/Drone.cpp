@@ -21,18 +21,18 @@ namespace CoreLogic::EventManagement::Actors
 
         int tickMult = CoreLogic::DataProcessing::global_ticks % 3;
         int diagonalSpeed;
-        if (CoreLogic::DataProcessing::DesignConfig::DRONE_SPEED == 1)
+        if (speed_ == 1)
         {
             diagonalSpeed = (1 - ((int) (tickMult / 2)));
         } else
         {
-            diagonalSpeed = ((CoreLogic::DataProcessing::DesignConfig::DRONE_SPEED / 2) +
-                             (CoreLogic::DataProcessing::DesignConfig::DRONE_SPEED % 2) + ((int) (tickMult / 2)));
+            diagonalSpeed = ((speed_ / 2) +
+                             (speed_ % 2) + ((int) (tickMult / 2)));
         }
         if (pa_up && !pa_down)
         {
             (pa_right || pa_left) ? position_.y -= diagonalSpeed
-                                  : position_.y -= CoreLogic::DataProcessing::DesignConfig::DRONE_SPEED;
+                                  : position_.y -= speed_;
             updateHitbox();
             if (checkCollision(CoreLogic::UserInterface::Direction::UP, position_))
             {
@@ -43,7 +43,7 @@ namespace CoreLogic::EventManagement::Actors
         if (pa_down && !pa_up)
         {
             (pa_right || pa_left) ? position_.y += diagonalSpeed
-                                  : position_.y += CoreLogic::DataProcessing::DesignConfig::DRONE_SPEED;
+                                  : position_.y += speed_;
             updateHitbox();
             if (checkCollision(CoreLogic::UserInterface::Direction::DOWN, {position_.x, position_.y + size_.y}))
             {
@@ -54,7 +54,7 @@ namespace CoreLogic::EventManagement::Actors
         if (pa_left && !pa_right)
         {
             (pa_up || pa_down) ? position_.x -= diagonalSpeed
-                               : position_.x -= CoreLogic::DataProcessing::DesignConfig::DRONE_SPEED;
+                               : position_.x -= speed_;
             updateHitbox();
             if (checkCollision(CoreLogic::UserInterface::Direction::LEFT, position_))
             {
@@ -65,7 +65,7 @@ namespace CoreLogic::EventManagement::Actors
         if (pa_right && !pa_left)
         {
             (pa_up || pa_down) ? position_.x += diagonalSpeed
-                               : position_.x += CoreLogic::DataProcessing::DesignConfig::DRONE_SPEED;
+                               : position_.x += speed_;
             updateHitbox();
             if (checkCollision(CoreLogic::UserInterface::Direction::RIGHT, {position_.x + size_.x, position_.y}))
             {

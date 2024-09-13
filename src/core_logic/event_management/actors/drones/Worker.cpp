@@ -59,6 +59,7 @@ namespace CoreLogic::EventManagement::Actors
             Drone(pa_position, pa_hitbox, pa_id,  pa_size, pa_elevation)
     {
         sprite_ = DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::WORKER_DRONE);
+        speed_ = CoreLogic::DataProcessing::DesignConfig::WORKER_SPEED;
     }
 
 
@@ -77,6 +78,7 @@ namespace CoreLogic::EventManagement::Actors
             Drone(pa_position, pa_hitbox, pa_id, pa_size, pa_elevation, pa_maxHealth, pa_currentHealth)
     {
         sprite_ = DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::WORKER_DRONE);
+        speed_ = CoreLogic::DataProcessing::DesignConfig::WORKER_SPEED;
     }
 
 }
