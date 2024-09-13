@@ -24,6 +24,7 @@ namespace CoreLogic::EventManagement
             if (pa_checkpoint->getNewDrone())
             {
                 DataProcessing::ActorStorage::unlockDrone(static_cast<Actors::Drone::DroneType>(pa_checkpoint->getUnlockType()));
+                player->increaseMaxHealth();
             }
             pa_checkpoint->changeState(Object::DroneRespawnPoint::ACTIVATED);
             activeSpawnPoint->changeState(Object::DroneRespawnPoint::DISCOVERED);

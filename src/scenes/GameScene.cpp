@@ -14,9 +14,9 @@
 Scenes::GameScene::GameScene(): Scene(std::make_shared<Camera2D>()),
                                 po_levels_(std::make_unique<std::vector<CoreLogic::DataProcessing::Level>>(std::initializer_list<CoreLogic::DataProcessing::Level>{
                                         CoreLogic::DataProcessing::Level(std::make_unique<std::vector<std::string>>
-                                        (std::initializer_list<std::string>{"assets/data/level1.tmj", "lol"}), 0,
+                                        (std::initializer_list<std::string>{"assets/data/level0.tmj", "lol"}), 0,
                                         CoreLogic::DataProcessing::LevelState::Default),
-                                        CoreLogic::DataProcessing::Level(std::make_unique<std::vector<std::string>>(std::initializer_list<std::string>{"lel", "assets/data/level0.tmj"}), 1, CoreLogic::DataProcessing::LevelState::War)
+                                        CoreLogic::DataProcessing::Level(std::make_unique<std::vector<std::string>>(std::initializer_list<std::string>{"lel", "assets/data/level1.tmj"}), 1, CoreLogic::DataProcessing::LevelState::War)
                         }))
 {
     camera_ -> zoom = 1.0f;
@@ -35,7 +35,7 @@ Scenes::GameScene::GameScene(): Scene(std::make_shared<Camera2D>()),
     auto &eventHandler = CoreLogic::EventManagement::EventHandler::getInstance();
     eventHandler.resetPlayer();
 
-    CoreLogic::DataProcessing::ActorStorage::unlockDrone(CoreLogic::EventManagement::Actors::Drone::DroneType::SCOUT);
+//    CoreLogic::DataProcessing::ActorStorage::unlockDrone(CoreLogic::EventManagement::Actors::Drone::DroneType::SCOUT);
 }
 
 int Scenes::GameScene::getCurrentLevelID()
@@ -73,6 +73,7 @@ void Scenes::GameScene::update()
             player->setElevation(levelSwitch->getSwitchElevation());
             player->setPosition(levelSwitch->getSwitchCoordinates());
             switchLevel(levelSwitch->getNewLevelID());
+            return;
         }
     }
 

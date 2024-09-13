@@ -123,7 +123,7 @@ void CoreLogic::DataProcessing::ActorStorage::Initialize()
 
 void CoreLogic::DataProcessing::ActorStorage::Initialize(int pa_elevationLevels, int pa_levelID)
 {
-    CoreLogic::DataProcessing::ActorStorage::Initialize();
+//    CoreLogic::DataProcessing::ActorStorage::Initialize();
     DataProcessing::ActorStorage::setCurrentElevationLevels(pa_elevationLevels);
     DataProcessing::ActorStorage::setCurrentLevelID(pa_levelID);
     DataProcessing::ActorStorage::setLayers(initializeSpecificLists<tson::Layer>(pa_elevationLevels));
