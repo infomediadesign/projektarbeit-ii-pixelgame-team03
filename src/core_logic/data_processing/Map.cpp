@@ -271,6 +271,7 @@ void CoreLogic::DataProcessing::Map::loadObjects()
                 ActorStorage::addActorByType(objectElevation, actor);
             }else if (objectClass == "respawnPoint")
             {
+                int objectLevel = objectProperties.getProperty("level")->getValue<int>();
                 bool objectNewDrone = objectProperties.getProperty("newDrone")->getValue<bool>();
                 int objectUnlockType = CoreLogic::EventManagement::Actors::Drone::DroneType::NONE;
                 bool objectActive = false;
@@ -286,7 +287,7 @@ void CoreLogic::DataProcessing::Map::loadObjects()
 
 
                 actor = std::make_shared<EventManagement::Object::DroneRespawnPoint>(EventManagement::Object::DroneRespawnPoint
-                        (objectPosition, objectHitbox, objectId, objectSize, objectElevation, objectNewDrone, objectUnlockType, objectActive));
+                        (objectPosition, objectHitbox, objectId, objectSize, objectElevation, objectNewDrone, objectUnlockType, objectActive, objectLevel));
 
                 ActorStorage::addActorByType(objectElevation, actor);
             }
