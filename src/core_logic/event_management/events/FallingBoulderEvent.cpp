@@ -60,7 +60,13 @@ namespace CoreLogic::EventManagement
         if (fallenHeight_ == 1)
         {
             int newElevation = 0;
-            (po_mainActor_ ->getElevation() > 0) ? newElevation = po_mainActor_ ->getElevation() - 1 : newElevation = 0;
+            if (po_mainActor_ ->getElevation() > 0)
+            {
+                newElevation = po_mainActor_ ->getElevation() - 1 ;
+            } else {
+                newElevation = 0;
+                po_mainActor_->setVisible(false);
+            }
             CoreLogic::DataProcessing::ActorStorage::changeDrawingElevation(po_mainActor_, newElevation);
         }
     }

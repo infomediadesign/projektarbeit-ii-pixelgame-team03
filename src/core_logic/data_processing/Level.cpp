@@ -12,7 +12,7 @@ CoreLogic::DataProcessing::Level::Level(std::unique_ptr<std::vector<std::string>
     levelState_ = pa_levelState;
 }
 
-CoreLogic::DataProcessing::Level::Level(const Level &other): po_mapPath_(std::make_unique<std::vector<std::string>>(*other.po_mapPath_)), levelID_(other.levelID_), levelState_(other.levelState_){}
+CoreLogic::DataProcessing::Level::Level(const Level &other): po_mapPath_(std::make_unique<std::vector<std::string>>(*other.po_mapPath_)), levelID_(other.levelID_), levelState_(other.levelState_), ambientID_(other.ambientID_){}
 
 std::string CoreLogic::DataProcessing::Level::getMapPath() const
 {
