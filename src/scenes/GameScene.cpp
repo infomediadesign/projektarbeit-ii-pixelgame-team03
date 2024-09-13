@@ -227,6 +227,8 @@ void Scenes::GameScene::onSwitch()
             switchLevel(activeSpawnPoint->getLevel());
         }
     }
+    auto &eventHandler = CoreLogic::EventManagement::EventHandler::getInstance();
+    eventHandler.resetPlayer();
     update();
 }
 
