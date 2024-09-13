@@ -49,7 +49,8 @@ namespace CoreLogic::EventManagement
         VISION,
 
         HIGHLIGHT,
-        PAUSE
+        PAUSE,
+        ENTER
     };
 
     struct eventNames {

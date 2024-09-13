@@ -103,52 +103,17 @@ void Scenes::GameScene::update()
     hud.update();
 
 
-    /**
-    * @attention: debug stuff
-    */
-
-    if (IsKeyPressed(KEY_M))
-    {
-        if (player->getElevation() == 0)
-        {
-            player->setElevation(2);
-            player->setPosition({985, 55});
-        } else if (player->getElevation() == 2) {
-            player->setElevation(0);
-            player->setPosition({816,648});
-        }
-    }
-
-    if (IsKeyPressed(KEY_T))
-    {
-        if(currentLevelID_ == 0)
-        {
-            currentLevelID_ = 1;
-
-        } else if (currentLevelID_ == 1)
-        {
-            currentLevelID_ = 0;
-
-        }
-        po_loadMap_ = std::make_unique<CoreLogic::DataProcessing::Map>(po_levels_ -> at(currentLevelID_).getMapPath());
-        CoreLogic::DataProcessing::ActorStorage::setLayers(po_loadMap_ -> getLayers());
-        player = CoreLogic::DataProcessing::ActorStorage::getPlayer();
-        if (currentLevelID_ == 1)
-        {
-            player->setPosition({80,700});
-        } else if (currentLevelID_ == 0) {
-            player->setPosition({100,100});
-        }
-        eventHandler.resetPlayer();
-
-    }
-
     if (IsKeyPressed(KEY_ZERO)) player->setElevation(0);
     if (IsKeyPressed(KEY_ONE)) player->setElevation(1);
     if (IsKeyPressed(KEY_TWO)) player->setElevation(2);
 
     if (IsKeyPressed(KEY_NINE))
         player->setElevation(9);
+
+    if (IsKeyPressed(CoreLogic::DataProcessing::DesignConfig::PAUSE_KEYBOARD) || IsGamepadButtonPressed(CoreLogic::DataProcessing::DesignConfig::PAUSE_CONTROLLER, 0))
+    {
+        CoreLogic::DataProcessing::StateMachine::changeState(CoreLogic::DataProcessing::GameState::MAIN_MENU);
+    }
 
 
     Vector2 playerPos = player->getPosition();
