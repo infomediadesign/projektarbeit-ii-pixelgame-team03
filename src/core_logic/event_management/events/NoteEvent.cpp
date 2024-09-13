@@ -11,6 +11,6 @@ namespace CoreLogic::EventManagement
     {
         pa_note ->setVisible(true);
         CoreLogic::DataProcessing::ActorStorage::setActiveNote(pa_note);
-        CoreLogic::DataProcessing::StateMachine::changeState()
+        CoreLogic::DataProcessing::StateMachine::changeState(DataProcessing::NOTE);
     } // CoreLogic
 // EventManagement
