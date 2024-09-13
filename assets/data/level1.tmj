@@ -910,7 +910,7 @@
                  "rotation":0,
                  "type":"collidable",
                  "visible":true,
-                 "width":48,
+                 "width":72,
                  "x":120,
                  "y":48
                 }, 
@@ -932,8 +932,8 @@
                  "rotation":0,
                  "type":"collidable",
                  "visible":true,
-                 "width":72,
-                 "x":96,
+                 "width":48,
+                 "x":120,
                  "y":264
                 }, 
                 {
@@ -943,8 +943,8 @@
                  "rotation":0,
                  "type":"collidable",
                  "visible":true,
-                 "width":48,
-                 "x":120,
+                 "width":24,
+                 "x":144,
                  "y":288
                 }, 
                 {
@@ -954,7 +954,7 @@
                  "rotation":0,
                  "type":"collidable",
                  "visible":true,
-                 "width":48,
+                 "width":24,
                  "x":144,
                  "y":312
                 }, 
@@ -966,7 +966,7 @@
                  "type":"collidable",
                  "visible":true,
                  "width":24,
-                 "x":168,
+                 "x":192,
                  "y":336
                 }, 
                 {
@@ -1000,7 +1000,7 @@
                  "visible":true,
                  "width":144,
                  "x":336,
-                 "y":144
+                 "y":168
                 }, 
                 {
                  "height":48,
@@ -1267,7 +1267,7 @@
                  "y":144
                 }, 
                 {
-                 "height":24,
+                 "height":48,
                  "id":370,
                  "name":"",
                  "rotation":0,
@@ -1275,18 +1275,7 @@
                  "visible":true,
                  "width":24,
                  "x":576,
-                 "y":216
-                }, 
-                {
-                 "height":48,
-                 "id":371,
-                 "name":"",
-                 "rotation":0,
-                 "type":"collidable",
-                 "visible":true,
-                 "width":24,
-                 "x":624,
-                 "y":96
+                 "y":168
                 }, 
                 {
                  "height":144,
@@ -2134,7 +2123,7 @@
                  "value":1
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -2234,7 +2223,7 @@
                  "value":1
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -2937,7 +2926,7 @@
                  "y":360
                 }, 
                 {
-                 "height":48,
+                 "height":96,
                  "id":308,
                  "name":"",
                  "rotation":0,
@@ -4096,7 +4085,7 @@
                  "value":2
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -5405,7 +5394,7 @@
                  "value":3
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -5736,14 +5725,36 @@
                         {
                          "name":"textbox_text",
                          "type":"string",
-                         "value":""
+                         "value":"The scout drone is very agile\n\npress <J> to jump over small chasms"
                         }],
                  "rotation":0,
                  "type":"textbox",
                  "visible":true,
-                 "width":72,
-                 "x":24,
-                 "y":768
+                 "width":144,
+                 "x":336,
+                 "y":216
+                }, 
+                {
+                 "height":72,
+                 "id":419,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"text_zone",
+                         "type":"int",
+                         "value":11
+                        }, 
+                        {
+                         "name":"textbox_text",
+                         "type":"string",
+                         "value":"With the scout drone you can also attract the attention of Enemies\n\npress <L> to sacrifice your drone so that enemies in range turn to you\nCAUTION! YOU LOSE ONE LIFE"
+                        }],
+                 "rotation":0,
+                 "type":"textbox",
+                 "visible":true,
+                 "width":144,
+                 "x":269.333333333333,
+                 "y":686
                 }],
          "opacity":1,
          "properties":[
@@ -5753,7 +5764,7 @@
                  "value":3
                 }],
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -5904,12 +5915,12 @@
                  "value":3
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }],
  "nextlayerid":62,
- "nextobjectid":419,
+ "nextobjectid":420,
  "orientation":"orthogonal",
  "properties":[
         {
