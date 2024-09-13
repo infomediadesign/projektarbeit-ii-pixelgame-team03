@@ -72,8 +72,8 @@ void Scenes::GameScene::update()
     {
         if (CheckCollisionRecs(levelSwitch->getHitbox(), player->getHitbox()))
         {
-            player->setElevation(levelSwitch->getNewElevation());
-            player->setPosition(levelSwitch->getNewPosition());
+            player->setElevation(levelSwitch->getSwitchElevation());
+            player->setPosition(levelSwitch->getSwitchCoordinates());
             switchLevel(levelSwitch->getNewLevelID());
         }
     }

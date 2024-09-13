@@ -21,3 +21,23 @@ void CoreLogic::EventManagement::Object::LevelSwitch::setNewLevelID(int pa_newLe
 {
 newLevelID_ = pa_newLevelID;
 }
+
+Vector2 CoreLogic::EventManagement::Object::LevelSwitch::getSwitchCoordinates() const
+{
+    return switchCoordinates_;
+}
+
+void CoreLogic::EventManagement::Object::LevelSwitch::setSwitchCoordinates(Vector2 pa_switchCoordinates)
+{
+    switchCoordinates_ = pa_switchCoordinates;
+}
+
+int CoreLogic::EventManagement::Object::LevelSwitch::getSwitchElevation() const
+{
+    return switchElevation_;
+}
+
+void CoreLogic::EventManagement::Object::LevelSwitch::setSwitchElevation(int pa_switchElevation)
+{
+    switchElevation_ = pa_switchElevation;
+}

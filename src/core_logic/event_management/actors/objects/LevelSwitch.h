@@ -16,6 +16,12 @@ namespace CoreLogic::EventManagement::Object
 
         int getNewLevelID() const;
         void setNewLevelID(int pa_newLevelID);
+
+        Vector2 getSwitchCoordinates() const;
+        void setSwitchCoordinates(Vector2 pa_switchCoordinates);
+
+        int getSwitchElevation() const;
+        void setSwitchElevation(int pa_switchElevation);
     protected:
         int newLevelID_;
         Vector2 switchCoordinates_;
