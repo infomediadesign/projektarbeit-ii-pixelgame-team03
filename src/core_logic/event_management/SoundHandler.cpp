@@ -74,6 +74,7 @@ namespace CoreLogic::EventManagement
             StopMusicStream(ambientMap_[currentAmbient_]);
             PlayMusicStream(ambientMap_[pa_ambient]);
             currentAmbient_ = pa_ambient;
+            return;
         }
     }
 

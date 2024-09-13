@@ -15,8 +15,9 @@ Scenes::GameScene::GameScene(): Scene(std::make_shared<Camera2D>()),
                                 po_levels_(std::make_unique<std::vector<CoreLogic::DataProcessing::Level>>(std::initializer_list<CoreLogic::DataProcessing::Level>{
                                         CoreLogic::DataProcessing::Level(std::make_unique<std::vector<std::string>>
                                         (std::initializer_list<std::string>{"assets/data/level0.tmj", "lol"}), 0,
-                                        CoreLogic::DataProcessing::LevelState::Default),
-                                        CoreLogic::DataProcessing::Level(std::make_unique<std::vector<std::string>>(std::initializer_list<std::string>{"lel", "assets/data/level1.tmj"}), 1, CoreLogic::DataProcessing::LevelState::War)
+                                        CoreLogic::DataProcessing::LevelState::Default, 0),
+                                        CoreLogic::DataProcessing::Level(std::make_unique<std::vector<std::string>>(std::initializer_list<std::string>{"lel", "assets/data/level1.tmj"}),
+                                                                         1, CoreLogic::DataProcessing::LevelState::War, 1)
                         }))
 {
     camera_ -> zoom = 1.0f;
@@ -200,6 +201,7 @@ void Scenes::GameScene::switchLevel(int pa_levelID)
         }
     }
 
+    auto &soundHandler = CoreLogic::EventManagement::SoundHandler::getInstance();
     for (auto &level: *po_levels_)
     {
         if (level.getLevelID() == pa_levelID)
@@ -210,6 +212,7 @@ void Scenes::GameScene::switchLevel(int pa_levelID)
             } else {
                 level.loadLevelData();
             }
+            soundHandler.playAmbient(static_cast<CoreLogic::EventManagement::SoundHandler::SoundEnum>(level.getAmbientId()));
         }
     }
 }
