@@ -5,7 +5,12 @@
 #include "NoteEvent.h"
 
 
-    namespace CoreLogic::EventManagement
+namespace CoreLogic::EventManagement
+{
+    NoteEvent::NoteEvent(std::shared_ptr<Object::Note> pa_note): InteractionEvent(NOTE)
     {
+        pa_note ->setVisible(true);
+        CoreLogic::DataProcessing::ActorStorage::setActiveNote(pa_note);
+        CoreLogic::DataProcessing::StateMachine::changeState()
     } // CoreLogic
 // EventManagement
