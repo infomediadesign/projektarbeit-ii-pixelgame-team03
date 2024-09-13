@@ -67,9 +67,11 @@ namespace CoreLogic::EventManagement
     {
         std::lock_guard<std::mutex> lock(soundHandler_mutex_);
         if (pa_ambient < ambientMap_.size())
+        {
             StopMusicStream(ambientMap_[currentAmbient_]);
-        PlayMusicStream(ambientMap_[pa_ambient]);
-        currentAmbient_ = pa_ambient;
+            PlayMusicStream(ambientMap_[pa_ambient]);
+            currentAmbient_ = pa_ambient;
+        }
     }
 
     SoundHandler &SoundHandler::getInstance()
