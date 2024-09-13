@@ -25,7 +25,9 @@ namespace CoreLogic::EventManagement
             {
                 DataProcessing::ActorStorage::unlockDrone(static_cast<Actors::Drone::DroneType>(pa_checkpoint->getUnlockType()));
             }
-            pa_checkpoint->changeState(Object::DroneRespawnPoint::DISCOVERED);
+            pa_checkpoint->changeState(Object::DroneRespawnPoint::ACTIVATED);
+            activeSpawnPoint->changeState(Object::DroneRespawnPoint::DISCOVERED);
+            DataProcessing::ActorStorage::setActiveSpawnPoint(pa_checkpoint);
             throw EventException("Checkpoint Event Executed", true);
         } else if (pa_checkpoint->getRespawnState() == Object::DroneRespawnPoint::DISCOVERED) {
             pa_checkpoint->changeState(Object::DroneRespawnPoint::ACTIVATED);
