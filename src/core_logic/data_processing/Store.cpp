@@ -347,6 +347,9 @@ void CoreLogic::DataProcessing::ActorStorage::addActorByType(int pa_elevation,
     {
         addActor(po_notes_, pa_elevation, note);
 
+        auto interaction = std::dynamic_pointer_cast<EventManagement::Object::Interaction>(pa_actor);
+        addActor(po_interactions_, pa_elevation, interaction);
+
         auto actor = std::dynamic_pointer_cast<EventManagement::Actor>(pa_actor);
         addActor(po_allActors_, pa_elevation, actor);
 

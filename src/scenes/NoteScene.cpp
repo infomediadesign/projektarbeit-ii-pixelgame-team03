@@ -24,7 +24,7 @@ void Scenes::NoteScene::update()
     {
         if (event == CoreLogic::EventManagement::INTERACT)
         {
-
+            CoreLogic::DataProcessing::StateMachine::changeState(CoreLogic::DataProcessing::GameState::IN_GAME);
         }
     }
 }
