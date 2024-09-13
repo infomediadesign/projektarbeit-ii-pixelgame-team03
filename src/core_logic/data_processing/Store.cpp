@@ -22,9 +22,10 @@ std::shared_ptr<CoreLogic::EventManagement::Object::Note> CoreLogic::DataProcess
 
 std::shared_ptr<CoreLogic::EventManagement::Actors::Drone> CoreLogic::DataProcessing::ActorStorage::po_player_;
 
+int CoreLogic::DataProcessing::ActorStorage::currentElevationLevels_;
+int CoreLogic::DataProcessing::ActorStorage::currentLevelID_;
 //------------------general lists------------------//
 std::shared_ptr<std::map<int, std::vector<tson::Layer>>> CoreLogic::DataProcessing::ActorStorage::po_layers_;
-std::shared_ptr<int> CoreLogic::DataProcessing::ActorStorage::po_currentElevationLevels_;
 
 std::shared_ptr<std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Actor>>>> CoreLogic::DataProcessing::ActorStorage::po_allActors_;
 std::shared_ptr<std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Actor>>>> CoreLogic::DataProcessing::ActorStorage::po_collidables_;
@@ -86,7 +87,8 @@ void CoreLogic::DataProcessing::ActorStorage::Initialize()
 
     //------------------general lists------------------//
     po_layers_ = std::make_shared<std::map<int, std::vector<tson::Layer>>>();
-    po_currentElevationLevels_ = std::make_shared<int>(1);
+    currentElevationLevels_ = 1;
+    currentLevelID_ = 0;
 
     po_allActors_ = std::make_shared<std::map<int, std::vector<std::shared_ptr<EventManagement::Actor>>>>();
     po_collidables_ = std::make_shared<std::map<int, std::vector<std::shared_ptr<EventManagement::Actor>>>>();
@@ -122,7 +124,7 @@ void CoreLogic::DataProcessing::ActorStorage::Initialize()
 void CoreLogic::DataProcessing::ActorStorage::Initialize(int pa_elevationLevels)
 {
     CoreLogic::DataProcessing::ActorStorage::Initialize();
-    DataProcessing::ActorStorage::setCurrentElevationLevels(std::make_shared<int>(pa_elevationLevels));
+    DataProcessing::ActorStorage::setCurrentElevationLevels(pa_elevationLevels);
     DataProcessing::ActorStorage::setLayers(initializeSpecificLists<tson::Layer>(pa_elevationLevels));
     DataProcessing::ActorStorage::setActors(initializeSpecificLists<std::shared_ptr<EventManagement::Actor>>(pa_elevationLevels));
     DataProcessing::ActorStorage::setCollidables(initializeSpecificLists<std::shared_ptr<EventManagement::Actor>>(pa_elevationLevels));
@@ -192,7 +194,7 @@ std::shared_ptr<std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManage
 
 std::shared_ptr<std::map<int, std::vector<tson::Layer>>> CoreLogic::DataProcessing::ActorStorage::getLayers() {return po_layers_;}
 
-std::shared_ptr<int> CoreLogic::DataProcessing::ActorStorage::getCurrentElevationLevels(){return po_currentElevationLevels_;};
+int CoreLogic::DataProcessing::ActorStorage::getCurrentElevationLevels(){return currentElevationLevels_;};
 
 
 /**
@@ -227,9 +229,14 @@ void CoreLogic::DataProcessing::ActorStorage::setLayers(std::shared_ptr<std::map
     po_layers_ = pa_layers;
 }
 
-void CoreLogic::DataProcessing::ActorStorage::setCurrentElevationLevels(std::shared_ptr<int> pa_currentElevationLayers)
+void CoreLogic::DataProcessing::ActorStorage::setCurrentElevationLevels(int pa_currentElevationLayers)
 {
-    po_currentElevationLevels_ = pa_currentElevationLayers;
+    currentElevationLevels_ = pa_currentElevationLayers;
+}
+
+void CoreLogic::DataProcessing::ActorStorage::setCurrentLevelID(int pa_currentLevelID)
+{
+    currentLevelID_ = pa_currentLevelID;
 }
 
 void CoreLogic::DataProcessing::ActorStorage::setPlayer(std::shared_ptr<EventManagement::Actors::Drone> pa_player) {
@@ -698,6 +705,11 @@ bool CoreLogic::DataProcessing::ActorStorage::isDroneUnlocked(
 CoreLogic::DataProcessing::GameState CoreLogic::DataProcessing::StateMachine::getCurrentState()
 {
     return currentState_;
+}
+
+int CoreLogic::DataProcessing::ActorStorage::getCurrentLevelID()
+{
+    return currentLevelID_;
 }
 
 void CoreLogic::DataProcessing::StateMachine::changeState(CoreLogic::DataProcessing::GameState newState)

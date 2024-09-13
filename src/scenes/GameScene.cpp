@@ -20,9 +20,9 @@ Scenes::GameScene::GameScene(): Scene(std::make_shared<Camera2D>()),
                         }))
 {
     camera_ -> zoom = 1.0f;
-    po_currentMap_ = std::make_unique<CoreLogic::DataProcessing::Map>(po_levels_ -> at(0).getMapPath());
-//    CoreLogic::DataProcessing::ActorStorage::setLayers(po_currentMap_ -> getLayers());
-    po_previousMap_ = std::make_unique<CoreLogic::DataProcessing::Map>(*po_currentMap_);
+    po_loadMap_ = std::make_unique<CoreLogic::DataProcessing::Map>(po_levels_ -> at(0).getMapPath());
+//    CoreLogic::DataProcessing::ActorStorage::setLayers(po_loadMap_ -> getLayers());
+    po_previousMap_ = std::make_unique<CoreLogic::DataProcessing::Map>(*po_loadMap_);
     currentLevelID_ = po_levels_ -> at(0).getLevelID();
     previousLevelID_ = currentLevelID_;
 
@@ -46,13 +46,16 @@ int Scenes::GameScene::getCurrentLevelID()
 void Scenes::GameScene::draw(RenderTexture2D &pa_canvas)
 {
     CoreLogic::UserInterface::Renderer& renderer = *CoreLogic::UserInterface::Renderer::getInstance();
-    Color bgColor = po_currentMap_ -> getBgColor();
+    Color bgColor = po_loadMap_ -> getBgColor();
     renderer.render(CoreLogic::DataProcessing::ActorStorage::getLayers(), po_actors_, *camera_, pa_canvas, bgColor);
 }
 
 void Scenes::GameScene::update()
 {
     CoreLogic::DataProcessing::global_ticks++;
+
+    updateLevelSwitch();
+
 
     Camera2D &camera = *camera_;
     /**
@@ -63,6 +66,17 @@ void Scenes::GameScene::update()
     CoreLogic::EventManagement::SoundHandler &soundHandler = CoreLogic::EventManagement::SoundHandler::getInstance();
     std::shared_ptr<CoreLogic::EventManagement::Actors::Drone> player = CoreLogic::DataProcessing::ActorStorage::getPlayer();
     std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Actors::Enemy>>> &enemies = *CoreLogic::DataProcessing::ActorStorage::getEnemies();
+
+    auto levelSwitches = CoreLogic::DataProcessing::ActorStorage::getLevelSwitches()->at(player->getElevation());
+    for (auto &levelSwitch: levelSwitches)
+    {
+        if (CheckCollisionRecs(levelSwitch->getHitbox(), player->getHitbox()))
+        {
+            player->setElevation(levelSwitch->getNewElevation());
+            player->setPosition(levelSwitch->getNewPosition());
+            switchLevel(levelSwitch->getNewLevelID());
+        }
+    }
 
     player->update();
     for (auto &pair: enemies)
@@ -116,8 +130,8 @@ void Scenes::GameScene::update()
             currentLevelID_ = 0;
 
         }
-        po_currentMap_ = std::make_unique<CoreLogic::DataProcessing::Map>(po_levels_ -> at(currentLevelID_).getMapPath());
-        CoreLogic::DataProcessing::ActorStorage::setLayers(po_currentMap_ -> getLayers());
+        po_loadMap_ = std::make_unique<CoreLogic::DataProcessing::Map>(po_levels_ -> at(currentLevelID_).getMapPath());
+        CoreLogic::DataProcessing::ActorStorage::setLayers(po_loadMap_ -> getLayers());
         player = CoreLogic::DataProcessing::ActorStorage::getPlayer();
         if (currentLevelID_ == 1)
         {
@@ -176,12 +190,41 @@ void Scenes::GameScene::render()
 
 }
 
-void Scenes::GameScene::switchLevel()
+void Scenes::GameScene::switchLevel(int pa_levelID)
 {
+    int currentLevelID = CoreLogic::DataProcessing::ActorStorage::getCurrentLevelID();
+    for (auto &level: *po_levels_)
+    {
+        if (level.getLevelID() == currentLevelID)
+        {
+            level.saveLevelStates();
+        }
+    }
 
+    for (auto &level: *po_levels_)
+    {
+        if (level.getLevelID() == pa_levelID)
+        {
+            if (level.getLlevelActorStateStorage() == nullptr)
+            {
+                po_loadMap_ = std::make_unique<CoreLogic::DataProcessing::Map>(level.getMapPath());
+            } else {
+                level.loadLevelData();
+            }
+        }
+    }
 }
 
 void Scenes::GameScene::onSwitch()
 {
-update();
+    auto activeSpawnPoint = CoreLogic::DataProcessing::ActorStorage::getActiveSpawnPoint();
+    if (activeSpawnPoint != nullptr)
+    {
+        if (activeSpawnPoint->getLevelID() != CoreLogic::DataProcessing::ActorStorage::getCurrentLevelID())
+        {
+            switchLevel(activeSpawnPoint->getLevelID());
+        }
+    }
+    update();
 }
+
