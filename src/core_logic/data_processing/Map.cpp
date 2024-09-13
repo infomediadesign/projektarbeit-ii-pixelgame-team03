@@ -64,9 +64,11 @@ CoreLogic::DataProcessing::Map::Map(std::string pa_filename)
         tempLayerMap.insert({i, elevationVector});
     }
 
-    initializeLists();
     po_layers_ = std::make_shared<std::map<int, std::vector<tson::Layer>>>(tempLayerMap);
     po_objects_ = std::make_shared<std::map<int, std::vector<tson::Object>>>(tempObjMap);
+
+    CoreLogic::DataProcessing::ActorStorage::Initialize(elevationLevels_);
+//    initializeLists();
     loadObjects();
     CoreLogic::DataProcessing::ActorStorage::setLayers(po_layers_);
 
@@ -94,7 +96,6 @@ Color CoreLogic::DataProcessing::Map::getBgColor()
 
 void CoreLogic::DataProcessing::Map::loadObjects()
 {
-    CoreLogic::DataProcessing::ActorStorage::Initialize();
     std::shared_ptr<EventManagement::Actor> actor = nullptr;
 
     for (auto &pair: *po_objects_)
@@ -271,6 +272,7 @@ void CoreLogic::DataProcessing::Map::loadObjects()
             }else if (objectClass == "respawnPoint")
             {
                 bool objectNewDrone = objectProperties.getProperty("newDrone")->getValue<bool>();
+                int objectUnlockType = objectProperties.getProperty("newDrone")->getValue<int>();
                 bool objectActive = false;
                 if (objectProperties.hasProperty("active"))
                 {
@@ -278,7 +280,7 @@ void CoreLogic::DataProcessing::Map::loadObjects()
                 }
 
                 actor = std::make_shared<EventManagement::Object::DroneRespawnPoint>(EventManagement::Object::DroneRespawnPoint
-                        (objectPosition, objectHitbox, objectId, objectSize, objectElevation, objectNewDrone, objectActive));
+                        (objectPosition, objectHitbox, objectId, objectSize, objectElevation, objectNewDrone, objectUnlockType, objectActive));
 
                 ActorStorage::addActorByType(objectElevation, actor);
             }

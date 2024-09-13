@@ -19,8 +19,8 @@ CoreLogic::EventManagement::Object::DroneRespawnPoint::getRespawnState() const
 }
 
 CoreLogic::EventManagement::Object::DroneRespawnPoint::DroneRespawnPoint(Vector2 pa_position, Rectangle pa_hitbox,
-        int pa_id, Vector2 pa_size, int pa_elevation, bool pa_newDrone, bool pa_active) :
-        newDrone_(pa_newDrone),
+        int pa_id, Vector2 pa_size, int pa_elevation, bool pa_newDrone, int pa_unlockType, bool pa_active) :
+        newDrone_(pa_newDrone), unlockType_(pa_unlockType),
         Interaction(pa_position, pa_hitbox, pa_id, Actor::CollisionType::NONE, pa_size, true, pa_elevation,
                 CHECKPOINT)
 {
@@ -41,4 +41,14 @@ bool CoreLogic::EventManagement::Object::DroneRespawnPoint::getNewDrone() const
 void CoreLogic::EventManagement::Object::DroneRespawnPoint::setNewDrone(bool pa_newDrone)
 {
     newDrone_ = pa_newDrone;
+}
+
+int CoreLogic::EventManagement::Object::DroneRespawnPoint::getUnlockType() const
+{
+    return unlockType_;
+}
+
+void CoreLogic::EventManagement::Object::DroneRespawnPoint::setUnlockType(int pa_unlockType)
+{
+    unlockType_ = pa_unlockType;
 }

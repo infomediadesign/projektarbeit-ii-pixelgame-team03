@@ -42,6 +42,7 @@ namespace CoreLogic::EventManagement::Actors
     {
         sprite_ = DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::SCOUT_DRONE);
         speed_ = CoreLogic::DataProcessing::DesignConfig::SCOUT_SPEED;
+        currentDroneType_ = DroneType::SCOUT;
     }
 
     Scout::Scout(Vector2 pa_position, Rectangle pa_hitbox, int pa_id, Vector2 pa_size, int pa_elevation,
@@ -50,5 +51,6 @@ namespace CoreLogic::EventManagement::Actors
     {
         sprite_ = DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::SCOUT_DRONE);
         speed_ = CoreLogic::DataProcessing::DesignConfig::SCOUT_SPEED;
+        currentDroneType_ = DroneType::SCOUT;
     }
 }

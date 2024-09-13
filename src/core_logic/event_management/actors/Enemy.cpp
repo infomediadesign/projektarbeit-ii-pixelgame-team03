@@ -72,19 +72,20 @@ namespace CoreLogic::EventManagement::Actors
 
     void Enemy::forceTurn(Vector2 pa_triggerPoint)
     {
-        int detectionRadius = CoreLogic::DataProcessing::DesignConfig::COLONIST_RANGE * CoreLogic::DataProcessing::global_tileSize;
+        int detectionRadius = CoreLogic::DataProcessing::DesignConfig::BELL_DETECTION_TILES * CoreLogic::DataProcessing::global_tileSize;
         if (!CheckCollisionPointCircle(pa_triggerPoint, visionOrigin_, static_cast<float>(detectionRadius)))
         {
             return;
         }
+        Vector2 relativePosition = {pa_triggerPoint.x - visionOrigin_.x, pa_triggerPoint.y - visionOrigin_.y};
         int turnFrames = CoreLogic::DataProcessing::DesignConfig::BELL_TURN_TIME;
-        if (abs(pa_triggerPoint.x) >= abs(pa_triggerPoint.y))
+        if (abs(relativePosition.x) >= abs(relativePosition.y))
         {
-            (pa_triggerPoint.x >
+            (relativePosition.x >
                     0) ? primaryDirection_ = UserInterface::Direction::RIGHT : primaryDirection_ = UserInterface::Direction::LEFT;
         } else
         {
-            (pa_triggerPoint.y >
+            (relativePosition.y >
                     0) ? primaryDirection_ = UserInterface::Direction::DOWN : primaryDirection_ = UserInterface::Direction::UP;
         }
         turnCycles.at(primaryDirection_).second = turnFrames;

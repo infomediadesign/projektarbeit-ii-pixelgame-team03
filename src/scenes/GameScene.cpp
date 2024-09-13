@@ -128,7 +128,8 @@ void Scenes::GameScene::update()
     if (IsKeyPressed(KEY_ONE)) player->setElevation(1);
     if (IsKeyPressed(KEY_TWO)) player->setElevation(2);
 
-    if (IsKeyPressed(KEY_NINE)) player->setElevation(9);
+    if (IsKeyPressed(KEY_NINE))
+        player->setElevation(9);
 
 
     Vector2 playerPos = player->getPosition();

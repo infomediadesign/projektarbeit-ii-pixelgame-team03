@@ -24,6 +24,7 @@ std::shared_ptr<CoreLogic::EventManagement::Actors::Drone> CoreLogic::DataProces
 
 //------------------general lists------------------//
 std::shared_ptr<std::map<int, std::vector<tson::Layer>>> CoreLogic::DataProcessing::ActorStorage::po_layers_;
+std::shared_ptr<int> CoreLogic::DataProcessing::ActorStorage::po_currentElevationLevels_;
 
 std::shared_ptr<std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Actor>>>> CoreLogic::DataProcessing::ActorStorage::po_allActors_;
 std::shared_ptr<std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Actor>>>> CoreLogic::DataProcessing::ActorStorage::po_collidables_;
@@ -85,6 +86,7 @@ void CoreLogic::DataProcessing::ActorStorage::Initialize()
 
     //------------------general lists------------------//
     po_layers_ = std::make_shared<std::map<int, std::vector<tson::Layer>>>();
+    po_currentElevationLevels_ = std::make_shared<int>(1);
 
     po_allActors_ = std::make_shared<std::map<int, std::vector<std::shared_ptr<EventManagement::Actor>>>>();
     po_collidables_ = std::make_shared<std::map<int, std::vector<std::shared_ptr<EventManagement::Actor>>>>();
@@ -117,12 +119,81 @@ void CoreLogic::DataProcessing::ActorStorage::Initialize()
 
 }
 
+void CoreLogic::DataProcessing::ActorStorage::Initialize(int pa_elevationLevels)
+{
+    CoreLogic::DataProcessing::ActorStorage::Initialize();
+    DataProcessing::ActorStorage::setCurrentElevationLevels(pa_elevationLevels);
+    DataProcessing::ActorStorage::setLayers(initializeSpecificLists<tson::Layer>(pa_elevationLevels));
+    DataProcessing::ActorStorage::setActors(initializeSpecificLists<std::shared_ptr<EventManagement::Actor>>(pa_elevationLevels));
+    DataProcessing::ActorStorage::setCollidables(initializeSpecificLists<std::shared_ptr<EventManagement::Actor>>(pa_elevationLevels));
+    DataProcessing::ActorStorage::setVisibles(initializeSpecificLists<std::shared_ptr<EventManagement::Actor>>(pa_elevationLevels));
+    DataProcessing::ActorStorage::setAbilities(initializeSpecificLists<std::shared_ptr<EventManagement::Object::Ability>>(pa_elevationLevels));
+    DataProcessing::ActorStorage::setWorkerAbilities(initializeSpecificLists<std::shared_ptr<EventManagement::Object::Ability>>(pa_elevationLevels));
+    DataProcessing::ActorStorage::setScoutAbilities(initializeSpecificLists<std::shared_ptr<EventManagement::Object::Ability>>(pa_elevationLevels));
+    DataProcessing::ActorStorage::setInteractions
+            (initializeSpecificLists<std::shared_ptr<EventManagement::Object::Interaction>>(pa_elevationLevels));
+    DataProcessing::ActorStorage::setEnemies(initializeSpecificLists<std::shared_ptr<EventManagement::Actors::Enemy>>(pa_elevationLevels));
+    DataProcessing::ActorStorage::setBarriers(initializeSpecificLists<std::shared_ptr<EventManagement::Object::Barrier>>(pa_elevationLevels));
+    DataProcessing::ActorStorage::setRubbles(initializeSpecificLists<std::shared_ptr<EventManagement::Object::Rubble>>(pa_elevationLevels));
+    DataProcessing::ActorStorage::setBoulders(initializeSpecificLists<std::shared_ptr<EventManagement::Object::Boulder>>(pa_elevationLevels));
+    DataProcessing::ActorStorage::setVines(initializeSpecificLists<std::shared_ptr<EventManagement::Object::Vine>>(pa_elevationLevels));
+    DataProcessing::ActorStorage::setJumpPoints
+            (initializeSpecificLists<std::shared_ptr<EventManagement::Object::JumpPoint>>(pa_elevationLevels));
+    DataProcessing::ActorStorage::setColonists(initializeSpecificLists<std::shared_ptr<EventManagement::Actors::Colonist>>(pa_elevationLevels));
+    DataProcessing::ActorStorage::setMechs(initializeSpecificLists<std::shared_ptr<EventManagement::Actors::Mech>>(pa_elevationLevels));
+    DataProcessing::ActorStorage::setCliffs(initializeSpecificLists<std::shared_ptr<EventManagement::Object::Cliff>>(pa_elevationLevels));
+    DataProcessing::ActorStorage::setBarrels(initializeSpecificLists<std::shared_ptr<EventManagement::Object::Barrel>>(pa_elevationLevels));
+    DataProcessing::ActorStorage::setTutorialBoxes(initializeSpecificLists<std::shared_ptr<EventManagement::Object::TutorialBox>>(pa_elevationLevels));
+    DataProcessing::ActorStorage::setNotes(initializeSpecificLists<std::shared_ptr<EventManagement::Object::Note>>(pa_elevationLevels));
+    DataProcessing::ActorStorage::setLevelSwitches(initializeSpecificLists<std::shared_ptr<EventManagement::Object::LevelSwitch>>(pa_elevationLevels));
+    DataProcessing::ActorStorage::setUplinks(initializeSpecificLists<std::shared_ptr<EventManagement::Object::Uplink>>(pa_elevationLevels));
+}
+
+// Base template for regular types (e.g., tson::Layer)
+template <typename T>
+typename std::enable_if<!std::is_pointer<T>::value && !std::is_same<T, std::shared_ptr<typename std::remove_reference<T>::type>>::value,
+        std::shared_ptr<std::map<int, std::vector<T>>>>::type
+CoreLogic::DataProcessing::ActorStorage::initializeSpecificLists(int pa_elevationLevels)
+{
+    auto list = std::make_shared<std::map<int, std::vector<T>>>();
+
+    for (int i = 0; i < pa_elevationLevels; ++i)
+    {
+        (*list)[i] = std::vector<T>();  // Initialize with an empty vector of type T
+    }
+
+    (*list)[9] = std::vector<T>();  // Initialize elevation 9 for debug purposes
+
+    return list;
+}
+
+// Specialized template for shared_ptr types
+template <typename T>
+typename std::enable_if<std::is_same<T, std::shared_ptr<typename std::remove_reference<T>::type>>::value,
+        std::shared_ptr<std::map<int, std::vector<T>>>>::type
+CoreLogic::DataProcessing::ActorStorage::initializeSpecificLists(int pa_elevationLevels)
+{
+    auto list = std::make_shared<std::map<int, std::vector<T>>>();
+
+    for (int i = 0; i < pa_elevationLevels; ++i)
+    {
+        (*list)[i] = std::vector<T>();  // Initialize with an empty vector of shared_ptr<T>
+    }
+
+    (*list)[9] = std::vector<T>();  // Initialize elevation 9 for debug purposes
+
+
+    return list;
+}
 
 std::shared_ptr<CoreLogic::EventManagement::Actors::Drone> CoreLogic::DataProcessing::ActorStorage::getPlayer() {return po_player_;}
 
 std::shared_ptr<std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Actor>>>> CoreLogic::DataProcessing::ActorStorage::getActors() {return po_allActors_;}
 
 std::shared_ptr<std::map<int, std::vector<tson::Layer>>> CoreLogic::DataProcessing::ActorStorage::getLayers() {return po_layers_;}
+
+std::shared_ptr<int> CoreLogic::DataProcessing::ActorStorage::getCurrentElevationLevels(){return po_currentElevationLevels_;};
+
 
 /**
  * @brief: Zum hinzufügen von Actors, die als tson::Object's aus der Map geladen werden
@@ -154,6 +225,11 @@ void CoreLogic::DataProcessing::ActorStorage::addActor(std::shared_ptr<std::map<
 void CoreLogic::DataProcessing::ActorStorage::setLayers(std::shared_ptr<std::map<int, std::vector<tson::Layer>>> pa_layers)
 {
     po_layers_ = pa_layers;
+}
+
+void CoreLogic::DataProcessing::ActorStorage::setCurrentElevationLevels(std::shared_ptr<int> pa_currentElevationLayers)
+{
+    po_currentElevationLevels_ = pa_currentElevationLayers;
 }
 
 void CoreLogic::DataProcessing::ActorStorage::setPlayer(std::shared_ptr<EventManagement::Actors::Drone> pa_player) {
@@ -415,6 +491,7 @@ po_scoutAbilities_ = pa_scoutAbilities;
 std::shared_ptr<std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Object::Interaction>>>>
 CoreLogic::DataProcessing::ActorStorage::getInteractions()
 {
+    auto interacts = po_interactions_;
     return po_interactions_;
 }
 
@@ -427,13 +504,14 @@ po_interactions_ = pa_interactions;
 std::shared_ptr<std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Actors::Enemy>>>>
 CoreLogic::DataProcessing::ActorStorage::getEnemies()
 {
+    auto enem = po_allEnemies_;
     return po_allEnemies_;
 }
 
 void CoreLogic::DataProcessing::ActorStorage::setEnemies(
         std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Actors::Enemy>>>> pa_enemies)
 {
-po_allEnemies_ = pa_enemies;
+    po_allEnemies_ = pa_enemies;
 }
 
 std::shared_ptr<std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Object::Barrier>>>>

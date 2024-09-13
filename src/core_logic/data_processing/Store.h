@@ -138,6 +138,7 @@ private:
 
         //------------------general lists------------------//
         static std::shared_ptr<std::map<int, std::vector<tson::Layer>>> po_layers_;
+        static std::shared_ptr<int> po_currentElevationLevels_;
 
         static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Actor>>>> po_allActors_;
         static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Actor>>>> po_collidables_;
@@ -186,9 +187,19 @@ private:
         static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::DroneRespawnPoint>>>>
                 po_respawnPoints_;
 
+        template <typename T>
+        static typename std::enable_if<!std::is_pointer<T>::value && !std::is_same<T, std::shared_ptr<typename std::remove_reference<T>::type>>::value,
+                std::shared_ptr<std::map<int, std::vector<T>>>>::type
+        initializeSpecificLists(int pa_elevationLevels);
+        template <typename T>
+        static typename std::enable_if<std::is_same<T, std::shared_ptr<typename std::remove_reference<T>::type>>::value,
+                std::shared_ptr<std::map<int, std::vector<T>>>>::type
+        initializeSpecificLists(int pa_elevationLevels);
+
 
     public:
         static void Initialize();
+        static void Initialize(int pa_elevationLevels);
 
         static bool isDroneUnlocked(CoreLogic::EventManagement::Actors::Drone::DroneType pa_droneType);
         static void unlockDrone(CoreLogic::EventManagement::Actors::Drone::DroneType pa_droneType);
@@ -223,6 +234,9 @@ private:
 
         static std::shared_ptr<std::map<int, std::vector<tson::Layer>>> getLayers();
         static void setLayers(std::shared_ptr<std::map<int, std::vector<tson::Layer>>> pa_layers);
+
+        static std::shared_ptr<int> getCurrentElevationLevels();
+        static void setCurrentElevationLevels(std::shared_ptr<int> pa_currentElevationLayers);
 
 
         static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Actor>>>> getActors();

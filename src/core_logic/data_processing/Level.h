@@ -10,6 +10,8 @@
 #include <memory>
 #include <vector>
 #include "raylib.h"
+#include "event_management/Actor.h"
+#include "../../tileson.h"
 
 
 
@@ -40,16 +42,22 @@ namespace CoreLogic::DataProcessing
         void setLevelState(LevelState pa_levelState);
 
 
+        void saveLevelStates();
+        void loadLevelData();
     private:
         Level() = delete;
-
     protected:
         const int levelID_;
         std::unique_ptr<std::vector<std::string>> po_mapPath_;
+
+
         LevelState levelState_;
         //to be changed as soon as we know how to handle object state changes(if we cant handle certain obj-changes via a map)
         std::unique_ptr<std::vector<std::string>> stateChanges_;
 
+        std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Actor>>>> po_levelActorStateStorage_ = nullptr;
+        std::shared_ptr<std::map<int, std::vector<tson::Layer>>> po_layers_ = nullptr;
+        int elevationLevels_ = 0;
     };
 }
 

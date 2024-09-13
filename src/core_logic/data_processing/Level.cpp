@@ -2,7 +2,9 @@
 // Created by keanu on 5/23/2024.
 //
 
+#include <map>
 #include "Level.h"
+#include "Store.h"
 
 CoreLogic::DataProcessing::Level::Level(std::unique_ptr<std::vector<std::string>> pa_mapPath, int pa_levelID, LevelState pa_levelState): levelID_(pa_levelID)
 {
@@ -36,8 +38,37 @@ std::vector<std::string> CoreLogic::DataProcessing::Level::getStateChanges() con
     return *stateChanges_;
 }
 
+
+
+void CoreLogic::DataProcessing::Level::saveLevelStates()
+{
+    std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Actor>>>> actors = CoreLogic::DataProcessing::ActorStorage::getActors();
+    std::shared_ptr<std::map<int, std::vector<tson::Layer>>> layers = CoreLogic::DataProcessing::ActorStorage::getLayers();
+    elevationLevels_ = *CoreLogic::DataProcessing::ActorStorage::getCurrentElevationLevels();
+    po_levelActorStateStorage_ = actors;
+    po_layers_ = layers;
+}
+
+void CoreLogic::DataProcessing::Level::loadLevelData()
+{
+    CoreLogic::DataProcessing::ActorStorage::Initialize(elevationLevels_);
+    CoreLogic::DataProcessing::ActorStorage::setLayers(po_layers_);
+
+    for (auto &pair : *po_levelActorStateStorage_)
+    {
+        for (auto &actor : pair.second)
+        {
+            CoreLogic::DataProcessing::ActorStorage::addActorByType(pair.first, actor);
+        }
+    }
+}
+
 void CoreLogic::DataProcessing::Level::setLevelState(LevelState pa_levelState)
 {
     levelState_ = pa_levelState;
 }
+
+
+
+
 
