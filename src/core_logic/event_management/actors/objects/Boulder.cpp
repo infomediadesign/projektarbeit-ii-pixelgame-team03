@@ -31,7 +31,11 @@ CoreLogic::EventManagement::Object::Boulder::Boulder(Vector2 pa_position, Rectan
         Vector2 pa_size, int pa_elevation) :
         Ability(pa_position, pa_hitbox, pa_id, CollisionType::COLLISION, pa_size, true, pa_elevation, PUSH)
 {
-    sprite_ = DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::BOULDER_UNDERWORLD);
+    if (CoreLogic::DataProcessing::ActorStorage::getCurrentLevelID() == 0){
+        sprite_ = DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::BOULDER_UNDERWORLD);
+    } else {
+        sprite_ = DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::BOULDER_OVERWORLD);
+    }
 }
 
 std::shared_ptr<CoreLogic::EventManagement::Object::Cliff> CoreLogic::EventManagement::Object::Boulder::getCliff()

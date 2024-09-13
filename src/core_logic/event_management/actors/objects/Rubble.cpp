@@ -8,7 +8,11 @@
 CoreLogic::EventManagement::Object::Rubble::Rubble(Vector2 pa_position, Rectangle pa_hitbox, int pa_id, Vector2 pa_size, int pa_elevation) :
         Ability(pa_position, pa_hitbox, pa_id, CollisionType::COLLISION, pa_size, true, pa_elevation, CLEANING)
 {
-    sprite_ = DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::RUBBLE_UNDERWORLD);
+    if (CoreLogic::DataProcessing::ActorStorage::getCurrentLevelID() == 0){
+        sprite_ = DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::RUBBLE_UNDERWORLD);
+    } else {
+        sprite_ = DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::RUBBLE_OVERWORLD);
+    }
 }
 
 void CoreLogic::EventManagement::Object::Rubble::setCleaned()

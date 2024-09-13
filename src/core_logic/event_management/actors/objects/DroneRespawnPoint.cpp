@@ -24,7 +24,11 @@ CoreLogic::EventManagement::Object::DroneRespawnPoint::DroneRespawnPoint(Vector2
         Interaction(pa_position, pa_hitbox, pa_id, Actor::CollisionType::NONE, pa_size, true, pa_elevation,
                 CHECKPOINT)
 {
-    sprite_ = DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::SPAWN_OVERWORLD);
+    if (CoreLogic::DataProcessing::ActorStorage::getCurrentLevelID() == 0){
+        sprite_ = DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::SPAWN_UNDERWORLD);
+    } else {
+        sprite_ = DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::SPAWN_OVERWORLD);
+    }
 
     unlockType_ = (CoreLogic::EventManagement::Actors::Drone::DroneType) pa_unlockType;
 
