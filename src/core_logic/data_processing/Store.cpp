@@ -759,10 +759,10 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
                     },
                     {},  //1- ability; not handled via Sprites
                     {    //2 - death
-                            {CoreLogic::UserInterface::AnimationState {(4 * 38) + (2 * 38), 2 * 38, 2 * 38, 12, {-22, -27}}},
+                            {CoreLogic::UserInterface::AnimationState {(4 * 38) + (2 * 38), 38, 38, 12}},
                     },
                     {   //3 - death ability
-                            {CoreLogic::UserInterface::AnimationState {4 * 38, 38, 38, 12}},
+                            {CoreLogic::UserInterface::AnimationState {4 * 38, 2 * 38, 2 * 38, 12, {-22, -27}}},
                     }
             });
 
