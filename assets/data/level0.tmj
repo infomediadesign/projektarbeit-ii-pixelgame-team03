@@ -8183,6 +8183,11 @@
          "name":"elevation_levels",
          "type":"int",
          "value":3
+        }, 
+        {
+         "name":"level_id",
+         "type":"int",
+         "value":0
         }],
  "renderorder":"right-down",
  "tiledversion":"1.10.2",

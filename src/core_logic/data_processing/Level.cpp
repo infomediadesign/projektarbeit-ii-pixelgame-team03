@@ -44,14 +44,14 @@ void CoreLogic::DataProcessing::Level::saveLevelStates()
 {
     std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Actor>>>> actors = CoreLogic::DataProcessing::ActorStorage::getActors();
     std::shared_ptr<std::map<int, std::vector<tson::Layer>>> layers = CoreLogic::DataProcessing::ActorStorage::getLayers();
-    elevationLevels_ = *CoreLogic::DataProcessing::ActorStorage::getCurrentElevationLevels();
+    elevationLevels_ = CoreLogic::DataProcessing::ActorStorage::getCurrentElevationLevels();
     po_levelActorStateStorage_ = actors;
     po_layers_ = layers;
 }
 
 void CoreLogic::DataProcessing::Level::loadLevelData()
 {
-    CoreLogic::DataProcessing::ActorStorage::Initialize(elevationLevels_);
+    CoreLogic::DataProcessing::ActorStorage::Initialize(elevationLevels_, levelID_);
     CoreLogic::DataProcessing::ActorStorage::setLayers(po_layers_);
 
     for (auto &pair : *po_levelActorStateStorage_)
@@ -66,6 +66,12 @@ void CoreLogic::DataProcessing::Level::loadLevelData()
 void CoreLogic::DataProcessing::Level::setLevelState(LevelState pa_levelState)
 {
     levelState_ = pa_levelState;
+}
+
+std::shared_ptr<std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Actor>>>>
+CoreLogic::DataProcessing::Level::getLlevelActorStateStorage()
+{
+    return po_levelActorStateStorage_;
 }
 
 

@@ -50,9 +50,7 @@ namespace CoreLogic::DataProcessing
     const int screenWidth_ = 640;
     const int screenHeight_ = 360;
 
-
-
-struct StateMachine
+    struct StateMachine
 {
 public:
     static void Initialize();
@@ -65,7 +63,7 @@ protected:
     static GameState previousState_;
 };
 
-struct Fonts
+    struct Fonts
 {
 public:
     static Font getFont(int pa_index);
@@ -128,17 +126,18 @@ private:
     {
     private:
         static std::shared_ptr<std::map<CoreLogic::EventManagement::Actors::Drone::DroneType, bool>> po_unlockedDrones_;
-
         //------------------actives------------------//
         static std::shared_ptr<CoreLogic::EventManagement::Object::DroneRespawnPoint> po_activeRespawnPoint_;
+
         static std::shared_ptr<CoreLogic::EventManagement::Object::TutorialBox> po_activeTutorialBox_;
         static std::shared_ptr<CoreLogic::EventManagement::Object::Note> po_activeNote_;
-
         static std::shared_ptr<EventManagement::Actors::Drone> po_player_;
+
+        static int currentLevelID_;
+        static int currentElevationLevels_;
 
         //------------------general lists------------------//
         static std::shared_ptr<std::map<int, std::vector<tson::Layer>>> po_layers_;
-        static std::shared_ptr<int> po_currentElevationLevels_;
 
         static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Actor>>>> po_allActors_;
         static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Actor>>>> po_collidables_;
@@ -199,7 +198,7 @@ private:
 
     public:
         static void Initialize();
-        static void Initialize(int pa_elevationLevels);
+        static void Initialize(int pa_elevationLevels, int pa_levelID);
 
         static bool isDroneUnlocked(CoreLogic::EventManagement::Actors::Drone::DroneType pa_droneType);
         static void unlockDrone(CoreLogic::EventManagement::Actors::Drone::DroneType pa_droneType);
@@ -224,19 +223,21 @@ private:
         static void setPlayer(std::shared_ptr<EventManagement::Actors::Drone> pa_player);
 
 
+        static int getCurrentElevationLevels();
+        static void setCurrentElevationLevels(int pa_currentElevationLayers);
 
+        static int getCurrentLevelID();
+        static void setCurrentLevelID(int pa_currentLevelID);
         //------------------general lists------------------//
         template <typename T>
         static void addActor(std::shared_ptr<std::map<int, std::vector<std::shared_ptr<T>>>> pa_map, int pa_elevation,
                 std::shared_ptr<T> pa_actor);
+
+
         static void addActorByType(int pa_elevation, std::shared_ptr<EventManagement::Actor> pa_actor);
-
-
         static std::shared_ptr<std::map<int, std::vector<tson::Layer>>> getLayers();
-        static void setLayers(std::shared_ptr<std::map<int, std::vector<tson::Layer>>> pa_layers);
 
-        static std::shared_ptr<int> getCurrentElevationLevels();
-        static void setCurrentElevationLevels(std::shared_ptr<int> pa_currentElevationLayers);
+        static void setLayers(std::shared_ptr<std::map<int, std::vector<tson::Layer>>> pa_layers);
 
 
         static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Actor>>>> getActors();

@@ -38,6 +38,7 @@ namespace CoreLogic::DataProcessing
         std::shared_ptr<std::map<int, std::vector<tson::Layer>>> po_layers_;
         std::shared_ptr<std::map<int, std::vector<tson::Object>>> po_objects_;
         int elevationLevels_;
+        int levelID_;
         Color bgColor_;
         void loadObjects();
         void initializeLists();
