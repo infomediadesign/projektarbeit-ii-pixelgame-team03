@@ -5734,6 +5734,26 @@
                          "value":10
                         }, 
                         {
+                         "name":"textbox_anchor_x",
+                         "type":"int",
+                         "value":72
+                        }, 
+                        {
+                         "name":"textbox_anchor_y",
+                         "type":"int",
+                         "value":600
+                        }, 
+                        {
+                         "name":"textbox_font_size",
+                         "type":"int",
+                         "value":17
+                        }, 
+                        {
+                         "name":"textbox_spacing",
+                         "type":"int",
+                         "value":0
+                        }, 
+                        {
                          "name":"textbox_text",
                          "type":"string",
                          "value":"The scout drone is very agile\n\npress <J> to jump over small chasms"
@@ -5756,6 +5776,26 @@
                          "value":11
                         }, 
                         {
+                         "name":"textbox_anchor_x",
+                         "type":"int",
+                         "value":72
+                        }, 
+                        {
+                         "name":"textbox_anchor_y",
+                         "type":"int",
+                         "value":600
+                        }, 
+                        {
+                         "name":"textbox_font_size",
+                         "type":"int",
+                         "value":17
+                        }, 
+                        {
+                         "name":"textbox_spacing",
+                         "type":"int",
+                         "value":0
+                        }, 
+                        {
                          "name":"textbox_text",
                          "type":"string",
                          "value":"With the scout drone you can also attract the attention of Enemies\n\npress <L> to sacrifice your drone so that enemies in range turn to you\nCAUTION! YOU LOSE ONE LIFE"
@@ -5775,7 +5815,7 @@
                  "value":3
                 }],
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -5792,7 +5832,7 @@
                         {
                          "name":"lore_item_text",
                          "type":"string",
-                         "value":""
+                         "value":"Sample 84-03\nThis green substance seems to cover a good quarter of the planets surface, mostly gathered into rivers and lakes.\nIt is highly acidic, though the orange-brown rocks on the planets surface seem to be resistant to this effect."
                         }],
                  "rotation":0,
                  "type":"lore_item",
@@ -5826,7 +5866,7 @@
                         {
                          "name":"lore_item_text",
                          "type":"string",
-                         "value":""
+                         "value":"Mission Briefing\nDestination: X-09\nDistance: 3.71 Lightyears\nThough it's surface looks rather scorched, orbital scans indicate that under X-09's surface lie huge cavities filled with water.\nYour Mission is to scout the planet's surface and caves. Determine its potential for colonization.\nScience teams will be dispatched into the caves and security detail forms a perimeter around the landing zone, just in case the orbital scans missed something."
                         }],
                  "rotation":0,
                  "type":"lore_item",
@@ -5843,7 +5883,7 @@
                         {
                          "name":"lore_item_text",
                          "type":"string",
-                         "value":""
+                         "value":"Mission-Log 14-93\nThe planet's surface appears dry and dead, just like the scans indicated. No sign of life or vegetation.\nWe'll have another look around and return to base before nightfall."
                         }],
                  "rotation":0,
                  "type":"lore_item",
@@ -5860,7 +5900,7 @@
                         {
                          "name":"lore_item_text",
                          "type":"string",
-                         "value":""
+                         "value":"Mission-Log 34-81\nWe have confirmed reports of hostile life forms in the area. They appear to be some kind of primitive crawler species.\nDo NOT take any risks! I want them to be shot on sight. This is to important to let a couple of bugs get into our way!"
                         }],
                  "rotation":0,
                  "type":"lore_item",
@@ -5877,7 +5917,7 @@
                         {
                          "name":"lore_item_text",
                          "type":"string",
-                         "value":""
+                         "value":"Mission-Log 01-07\nTeams 2 and 3 where dispatched to the ravines to scout ahead and identify potential dangers and further landing spots.\nThe other teams are to remain at the ship and secure the landing site - just in case...\n"
                         }],
                  "rotation":0,
                  "type":"lore_item",
