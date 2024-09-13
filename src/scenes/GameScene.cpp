@@ -54,8 +54,6 @@ void Scenes::GameScene::update()
 {
     CoreLogic::DataProcessing::global_ticks++;
 
-    updateLevelSwitch();
-
 
     Camera2D &camera = *camera_;
     /**
