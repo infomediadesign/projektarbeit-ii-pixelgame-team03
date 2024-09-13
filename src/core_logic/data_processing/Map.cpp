@@ -64,7 +64,8 @@ CoreLogic::DataProcessing::Map::Map(std::string pa_filename)
         tempLayerMap.insert({i, elevationVector});
     }
 
-    po_layers_ = std::make_shared<std::map<int, std::vector<tson::Layer>>>(tempLayerMap);
+    CoreLogic::DataProcessing::ActorStorage::setLayers(std::make_shared<std::map<int, std::vector<tson::Layer>>>
+            (tempLayerMap));
     po_objects_ = std::make_shared<std::map<int, std::vector<tson::Object>>>(tempObjMap);
     initializeLists();
     loadObjects();
