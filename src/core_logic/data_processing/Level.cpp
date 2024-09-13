@@ -6,7 +6,7 @@
 #include "Level.h"
 #include "Store.h"
 
-CoreLogic::DataProcessing::Level::Level(std::unique_ptr<std::vector<std::string>> pa_mapPath, int pa_levelID, LevelState pa_levelState): levelID_(pa_levelID)
+CoreLogic::DataProcessing::Level::Level(std::unique_ptr<std::vector<std::string>> pa_mapPath, int pa_levelID, LevelState pa_levelState, int pa_ambientID): levelID_(pa_levelID), ambientID_(pa_ambientID)
 {
     po_mapPath_ = std::move(pa_mapPath);
     levelState_ = pa_levelState;
@@ -72,6 +72,16 @@ std::shared_ptr<std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManage
 CoreLogic::DataProcessing::Level::getLevelActorStateStorage()
 {
     return po_levelActorStateStorage_;
+}
+
+int CoreLogic::DataProcessing::Level::getAmbientId() const
+{
+    return ambientID_;
+}
+
+void CoreLogic::DataProcessing::Level::setAmbientId(int ambientId)
+{
+    ambientID_ = ambientId;
 }
 
 

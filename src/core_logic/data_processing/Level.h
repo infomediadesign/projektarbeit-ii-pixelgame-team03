@@ -27,7 +27,7 @@ namespace CoreLogic::DataProcessing
     class Level
     {
     public:
-        Level(std::unique_ptr<std::vector<std::string>> pa_mapPath, int pa_levelID, LevelState pa_levelState);
+        Level(std::unique_ptr<std::vector<std::string>> pa_mapPath, int pa_levelID, LevelState pa_levelState, int pa_ambientID);
 
         Level(const Level &other);
 
@@ -61,6 +61,11 @@ namespace CoreLogic::DataProcessing
         std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Actor>>>> po_levelActorStateStorage_ = nullptr;
         std::shared_ptr<std::map<int, std::vector<tson::Layer>>> po_layers_ = nullptr;
         int elevationLevels_ = 0;
+        int ambientID_ = 0;
+    public:
+        int getAmbientId() const;
+
+        void setAmbientId(int ambientId);
     };
 }
 
