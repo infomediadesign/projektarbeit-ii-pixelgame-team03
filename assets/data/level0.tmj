@@ -8105,9 +8105,24 @@
                  "name":"",
                  "properties":[
                         {
+                         "name":"elevation_dest",
+                         "type":"int",
+                         "value":0
+                        }, 
+                        {
                          "name":"level_switch",
                          "type":"int",
                          "value":1
+                        }, 
+                        {
+                         "name":"x_dest",
+                         "type":"int",
+                         "value":12
+                        }, 
+                        {
+                         "name":"y_dest",
+                         "type":"int",
+                         "value":98
                         }],
                  "rotation":0,
                  "type":"level_switch",
@@ -8122,9 +8137,24 @@
                  "name":"",
                  "properties":[
                         {
+                         "name":"elevation_dest",
+                         "type":"int",
+                         "value":0
+                        }, 
+                        {
                          "name":"level_switch",
                          "type":"int",
                          "value":99
+                        }, 
+                        {
+                         "name":"x_dest",
+                         "type":"int",
+                         "value":482
+                        }, 
+                        {
+                         "name":"y_dest",
+                         "type":"int",
+                         "value":242
                         }],
                  "rotation":0,
                  "type":"level_switch",
@@ -8141,7 +8171,7 @@
                  "value":2
                 }],
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }],
