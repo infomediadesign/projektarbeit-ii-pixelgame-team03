@@ -2565,7 +2565,7 @@
                  "y":648
                 }, 
                 {
-                 "height":48,
+                 "height":72,
                  "id":306,
                  "name":"",
                  "properties":[
@@ -2605,9 +2605,9 @@
                          "value":true
                         }],
                  "rotation":0,
-                 "type":"colonist",
+                 "type":"mech",
                  "visible":true,
-                 "width":24,
+                 "width":48,
                  "x":816,
                  "y":120
                 }],
@@ -4489,7 +4489,7 @@
                  "value":2
                 }],
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -5857,7 +5857,7 @@
                         {
                          "name":"textbox_anchor_x",
                          "type":"int",
-                         "value":270
+                         "value":190
                         }, 
                         {
                          "name":"textbox_anchor_y",
@@ -5894,7 +5894,7 @@
                  "value":0
                 }],
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
