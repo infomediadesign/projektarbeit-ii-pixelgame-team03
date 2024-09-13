@@ -953,7 +953,7 @@
                  "value":0
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -2933,7 +2933,7 @@
                  "value":1
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -4715,7 +4715,7 @@
                  "value":1
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -5276,7 +5276,7 @@
                  "value":1
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -5848,7 +5848,7 @@
                  "value":2
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -7492,7 +7492,7 @@
                  "value":2
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -7719,7 +7719,7 @@
                  "value":0
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -7862,7 +7862,7 @@
                  "value":1
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -8005,14 +8005,14 @@
                  "value":2
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
         {
          "draworder":"topdown",
          "id":47,
-         "name":"LoreItems",
+         "name":"LoreItems 2",
          "objects":[
                 {
                  "height":24,
@@ -8064,16 +8064,84 @@
                  "width":24,
                  "x":1200,
                  "y":96
-                }, 
+                }],
+         "opacity":1,
+         "properties":[
+                {
+                 "name":"elevation",
+                 "type":"int",
+                 "value":2
+                }],
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":61,
+         "name":"LoreItems 3",
+         "objects":[
                 {
                  "height":24,
-                 "id":310,
+                 "id":626,
                  "name":"",
                  "properties":[
                         {
                          "name":"lore_item_text",
                          "type":"string",
-                         "value":""
+                         "value":"Science-Log 90-83\nThick, dark green vines grow on some walls of the cave system.\nThey appear to be one of the few species down here that do not have a bioluminescent effect."
+                        }],
+                 "rotation":0,
+                 "type":"lore_item",
+                 "visible":true,
+                 "width":24,
+                 "x":432,
+                 "y":768
+                }, 
+                {
+                 "height":24,
+                 "id":627,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"lore_item_text",
+                         "type":"string",
+                         "value":"Mission-Log 74-20\nHi Markus,\nI hope that you are well, and that the mothership is fine.\nI know, leaving in a hurry probably wasn't the best course of action, but if I had told you in person you wouldn't have let me go.\n3.7-somehting light years is far, but know that every meter broke my heart. I had to do it - for the future of humanity.\nJust know that, for as long as there are stars above, you will have my heart, my love.\nYours forever,\nJulia"
+                        }],
+                 "rotation":0,
+                 "type":"lore_item",
+                 "visible":true,
+                 "width":24,
+                 "x":1488,
+                 "y":768
+                }, 
+                {
+                 "height":24,
+                 "id":628,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"lore_item_text",
+                         "type":"string",
+                         "value":"Sample 82-15\nThough it has a minimal bioluminescent effect, the base of this substance is identical to that of the water from Earth!\nMaybe it is the reason for the glowing plants?\n"
+                        }],
+                 "rotation":0,
+                 "type":"lore_item",
+                 "visible":true,
+                 "width":24,
+                 "x":1200,
+                 "y":96
+                }, 
+                {
+                 "height":24,
+                 "id":629,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"lore_item_text",
+                         "type":"string",
+                         "value":"Science-Log 31-23\nWhile the orbitals scans correctly located the large bodies of water, they failed to detect the large underground cave systems surrounding them.\nX-09 proves to have more surprises packed for us than we thought!"
                         }],
                  "rotation":0,
                  "type":"lore_item",
@@ -8090,7 +8158,7 @@
                  "value":2
                 }],
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -8171,12 +8239,12 @@
                  "value":2
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }],
- "nextlayerid":61,
- "nextobjectid":626,
+ "nextlayerid":62,
+ "nextobjectid":630,
  "orientation":"orthogonal",
  "properties":[
         {
