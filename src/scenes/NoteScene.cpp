@@ -6,10 +6,7 @@
 #include "event_management/SoundHandler.h"
 
 
-Scenes::NoteScene::NoteScene()
-{
-
-}
+Scenes::NoteScene::NoteScene(): CoreLogic::Scene(std::make_shared<Camera2D>()){}
 
 void Scenes::NoteScene::update()
 {
@@ -36,9 +33,10 @@ void Scenes::NoteScene::onSwitch()
 
 void Scenes::NoteScene::draw(RenderTexture2D &pa_canvas)
 {
-    ClearBackground(BLACK);
+    ClearBackground(GREEN);
     BeginTextureMode(pa_canvas);
     {
+        ClearBackground(GREEN);
         DrawTextPro(CoreLogic::DataProcessing::Fonts::getFont(0), text_.c_str(),
                 {20, 20}, {0, 0}, 0,
                 20, 0, WHITE);
