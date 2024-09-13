@@ -366,6 +366,7 @@ void CoreLogic::DataProcessing::ActorStorage::addActorByType(int pa_elevation,
 
         auto actor = std::dynamic_pointer_cast<EventManagement::Actor>(pa_actor);
         addActor(po_collidables_, pa_elevation, actor);
+        addActor(po_visibles_, pa_elevation, actor);
         addActor(po_allActors_, pa_elevation, actor);
 
     }else if (auto spawn = std::dynamic_pointer_cast<EventManagement::Object::DroneRespawnPoint>(pa_actor))
@@ -387,6 +388,15 @@ void CoreLogic::DataProcessing::ActorStorage::addActorByType(int pa_elevation,
         {
             po_activeRespawnPoint_ = spawn;
         }
+    } else if (auto mech = std::dynamic_pointer_cast<EventManagement::Actors::Mech>(pa_actor)) {
+        addActor(po_mechs_, pa_elevation, mech);
+
+        auto enemy = std::dynamic_pointer_cast<EventManagement::Actors::Enemy>(pa_actor);
+        addActor(po_allEnemies_, pa_elevation, enemy);
+
+        auto actor = std::dynamic_pointer_cast<EventManagement::Actor>(pa_actor);
+        addActor(po_visibles_, pa_elevation, actor);
+        addActor(po_allActors_, pa_elevation, actor);
 
     }
 }

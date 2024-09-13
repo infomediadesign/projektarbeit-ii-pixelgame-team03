@@ -268,7 +268,42 @@ void CoreLogic::DataProcessing::Map::loadObjects()
                 ActorStorage::addActorByType(objectElevation, actor);
             } else if (objectClass == "mech")
             {
+                bool objectClockwise = objectProperties.getProperty("clockwise")->getValue<bool>();
+                int direction = objectProperties.getProperty("direction")->getValue<int>();
+                CoreLogic::UserInterface::Direction objectStartingDirection;
 
+                switch (direction)
+                {
+                case 0:
+                    objectStartingDirection = UserInterface::Direction::UP;
+                    break;
+                case 1:
+                    objectStartingDirection = UserInterface::Direction::RIGHT;
+                    break;
+                case 2:
+                    objectStartingDirection = UserInterface::Direction::DOWN;
+                    break;
+                case 3:
+                    objectStartingDirection = UserInterface::Direction::LEFT;
+                    break;
+                }
+
+                int intervalEast = objectProperties.getProperty("interval_e")->getValue<int>();
+                int intervalNorth = objectProperties.getProperty("interval_n")->getValue<int>();
+                int intervalSouth = objectProperties.getProperty("interval_s")->getValue<int>();
+                int intervalWest = objectProperties.getProperty("interval_w")->getValue<int>();
+
+                std::map<CoreLogic::UserInterface::Direction, std::pair<int, int>> objectTurnCycle = {
+                        {CoreLogic::UserInterface::Direction::UP, {intervalNorth, 0}},
+                        {CoreLogic::UserInterface::Direction::DOWN, {intervalSouth, 0}},
+                        {CoreLogic::UserInterface::Direction::LEFT, {intervalWest, 0}},
+                        {CoreLogic::UserInterface::Direction::RIGHT, {intervalEast, 0}}};
+
+                if (intervalEast == 0 && intervalNorth == 0 && intervalSouth == 0 && intervalWest == 0) objectTurnCycle.at(objectStartingDirection).first = INT_MAX;
+
+                actor = std::make_shared<EventManagement::Actors::Mech>(CoreLogic::EventManagement::Actors::Mech
+                        (objectPosition, objectHitbox,objectId,objectSize, objectElevation, objectClockwise, objectStartingDirection,  objectTurnCycle));
+                ActorStorage::addActorByType(objectElevation, actor);
             } else if (objectClass == "uplink")
             {
                 actor = std::make_shared<EventManagement::Object::Uplink>(EventManagement::Object::Uplink
