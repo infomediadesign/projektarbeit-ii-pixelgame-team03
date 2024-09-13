@@ -198,7 +198,7 @@ private:
 
     public:
         static void Initialize();
-        static void Initialize(int pa_elevationLevels);
+        static void Initialize(int pa_elevationLevels, int pa_levelID);
 
         static bool isDroneUnlocked(CoreLogic::EventManagement::Actors::Drone::DroneType pa_droneType);
         static void unlockDrone(CoreLogic::EventManagement::Actors::Drone::DroneType pa_droneType);

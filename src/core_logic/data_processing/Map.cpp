@@ -36,6 +36,7 @@ CoreLogic::DataProcessing::Map::Map(std::string pa_filename)
 
 
     elevationLevels_ = map.getProp("elevation_levels")->getValue<int>();
+    levelID_ = map.getProp("level_id")->getValue<int>();
 
     /**
      *@note: new Parser automatically adds Layer and Object-Vectors to their respective elevation value within their std::map
@@ -67,7 +68,7 @@ CoreLogic::DataProcessing::Map::Map(std::string pa_filename)
     po_layers_ = std::make_shared<std::map<int, std::vector<tson::Layer>>>(tempLayerMap);
     po_objects_ = std::make_shared<std::map<int, std::vector<tson::Object>>>(tempObjMap);
 
-    CoreLogic::DataProcessing::ActorStorage::Initialize(elevationLevels_);
+    CoreLogic::DataProcessing::ActorStorage::Initialize(elevationLevels_, levelID_);
 //    initializeLists();
     loadObjects();
     CoreLogic::DataProcessing::ActorStorage::setLayers(po_layers_);
@@ -257,9 +258,13 @@ void CoreLogic::DataProcessing::Map::loadObjects()
             }else if (objectClass == "level_switch")
             {
                 int objectLevelID = objectProperties.getProperty("level_switch")->getValue<int>();
+                Vector2 objectSwitchCoordinates;
+                objectSwitchCoordinates.x = objectProperties.getProperty("switch_x")->getValue<int>();
+                objectSwitchCoordinates.y = objectProperties.getProperty("switch_y")->getValue<int>();
+                int objectSwitchElevation = objectProperties.getProperty("switch_elevation")->getValue<int>();
 
                 actor = std::make_shared<EventManagement::Object::LevelSwitch>(EventManagement::Object::LevelSwitch
-                        (objectPosition, objectHitbox, objectId, objectSize, objectElevation, objectLevelID));
+                        (objectPosition, objectHitbox, objectId, objectSize, objectElevation, objectLevelID, objectSwitchCoordinates, objectSwitchElevation));
                 ActorStorage::addActorByType(objectElevation, actor);
             } else if (objectClass == "mech")
             {

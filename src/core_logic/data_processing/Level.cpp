@@ -51,9 +51,8 @@ void CoreLogic::DataProcessing::Level::saveLevelStates()
 
 void CoreLogic::DataProcessing::Level::loadLevelData()
 {
-    CoreLogic::DataProcessing::ActorStorage::Initialize(elevationLevels_);
+    CoreLogic::DataProcessing::ActorStorage::Initialize(elevationLevels_, levelID_);
     CoreLogic::DataProcessing::ActorStorage::setLayers(po_layers_);
-    CoreLogic::DataProcessing::ActorStorage::setCurrentLevelID(levelID_);
 
     for (auto &pair : *po_levelActorStateStorage_)
     {

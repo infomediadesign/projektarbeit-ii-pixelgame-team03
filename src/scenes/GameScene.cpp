@@ -220,9 +220,9 @@ void Scenes::GameScene::onSwitch()
     auto activeSpawnPoint = CoreLogic::DataProcessing::ActorStorage::getActiveSpawnPoint();
     if (activeSpawnPoint != nullptr)
     {
-        if (activeSpawnPoint->getLevelID() != CoreLogic::DataProcessing::ActorStorage::getCurrentLevelID())
+        if (activeSpawnPoint->getLevel() != CoreLogic::DataProcessing::ActorStorage::getCurrentLevelID())
         {
-            switchLevel(activeSpawnPoint->getLevelID());
+            switchLevel(activeSpawnPoint->getLevel());
         }
     }
     update();
