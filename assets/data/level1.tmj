@@ -807,7 +807,7 @@
                  "visible":true,
                  "width":24,
                  "x":312,
-                 "y":624
+                 "y":648
                 }],
          "opacity":1,
          "properties":[
@@ -817,7 +817,7 @@
                  "value":0
                 }],
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -1307,7 +1307,7 @@
                  "value":0
                 }],
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -2597,7 +2597,7 @@
                  "value":1
                 }],
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -3036,7 +3036,7 @@
                  "y":144
                 }, 
                 {
-                 "height":120,
+                 "height":96,
                  "id":317,
                  "name":"",
                  "rotation":0,
@@ -3142,7 +3142,7 @@
                  "value":1
                 }],
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -5469,7 +5469,7 @@
                  "value":3
                 }],
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -5721,27 +5721,86 @@
         {
          "draworder":"topdown",
          "id":40,
-         "name":"Textboxen",
+         "name":"Textboxen 1",
          "objects":[
                 {
-                 "height":72,
-                 "id":417,
+                 "height":192,
+                 "id":419,
                  "name":"",
                  "properties":[
                         {
                          "name":"text_zone",
                          "type":"int",
-                         "value":10
+                         "value":12
                         }, 
                         {
                          "name":"textbox_anchor_x",
                          "type":"int",
-                         "value":72
+                         "value":270
                         }, 
                         {
                          "name":"textbox_anchor_y",
                          "type":"int",
-                         "value":600
+                         "value":700
+                        }, 
+                        {
+                         "name":"textbox_font_size",
+                         "type":"int",
+                         "value":17
+                        }, 
+                        {
+                         "name":"textbox_spacing",
+                         "type":"int",
+                         "value":0
+                        }, 
+                        {
+                         "name":"textbox_text",
+                         "type":"string",
+                         "value":"With the scout drone you can also attract the attention of Enemies\n\npress <L> to sacrifice your drone so that enemies in range turn to you\nCAUTION! YOU LOSE ONE LIFE"
+                        }],
+                 "rotation":0,
+                 "type":"textbox",
+                 "visible":true,
+                 "width":336,
+                 "x":216,
+                 "y":648
+                }],
+         "opacity":1,
+         "properties":[
+                {
+                 "name":"elevation",
+                 "type":"int",
+                 "value":0
+                }],
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":65,
+         "name":"Textboxen 2",
+         "objects":[
+                {
+                 "height":288,
+                 "id":436,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"text_zone",
+                         "type":"int",
+                         "value":11
+                        }, 
+                        {
+                         "name":"textbox_anchor_x",
+                         "type":"int",
+                         "value":310
+                        }, 
+                        {
+                         "name":"textbox_anchor_y",
+                         "type":"int",
+                         "value":280
                         }, 
                         {
                          "name":"textbox_font_size",
@@ -5763,56 +5822,14 @@
                  "visible":true,
                  "width":144,
                  "x":336,
-                 "y":216
-                }, 
-                {
-                 "height":72,
-                 "id":419,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"text_zone",
-                         "type":"int",
-                         "value":11
-                        }, 
-                        {
-                         "name":"textbox_anchor_x",
-                         "type":"int",
-                         "value":72
-                        }, 
-                        {
-                         "name":"textbox_anchor_y",
-                         "type":"int",
-                         "value":600
-                        }, 
-                        {
-                         "name":"textbox_font_size",
-                         "type":"int",
-                         "value":17
-                        }, 
-                        {
-                         "name":"textbox_spacing",
-                         "type":"int",
-                         "value":0
-                        }, 
-                        {
-                         "name":"textbox_text",
-                         "type":"string",
-                         "value":"With the scout drone you can also attract the attention of Enemies\n\npress <L> to sacrifice your drone so that enemies in range turn to you\nCAUTION! YOU LOSE ONE LIFE"
-                        }],
-                 "rotation":0,
-                 "type":"textbox",
-                 "visible":true,
-                 "width":144,
-                 "x":269.333333333333,
-                 "y":686
+                 "y":168
                 }],
          "opacity":1,
          "properties":[
                 {
                  "name":"elevation",
                  "type":"int",
-                 "value":3
+                 "value":1
                 }],
          "type":"objectgroup",
          "visible":true,
@@ -5987,8 +6004,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":65,
- "nextobjectid":435,
+ "nextlayerid":66,
+ "nextobjectid":438,
  "orientation":"orthogonal",
  "properties":[
         {
