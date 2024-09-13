@@ -8,6 +8,7 @@
 #include "user_interface/HUD.h"
 #include "event_management/actors/Enemy.h"
 #include "event_management/actors/drones/Worker.h"
+#include "event_management/actors/drones/Scout.h"
 
 //assets/data/hive_PROG_tech-demo-map_2024-07-14.tmj
 Scenes::GameScene::GameScene(): Scene(std::make_shared<Camera2D>()),
@@ -23,8 +24,11 @@ Scenes::GameScene::GameScene(): Scene(std::make_shared<Camera2D>()),
     currentLevelID_ = po_levels_ -> at(0).getLevelID();
     previousLevelID_ = currentLevelID_;
 
-    CoreLogic::EventManagement::Actors::Worker drone = { {72, 720}, {72, 720, 32, 32}, 0, {38, 38}, 0};
-    CoreLogic::DataProcessing::ActorStorage::setPlayer(std::make_shared<CoreLogic::EventManagement::Actors::Worker>(drone));
+    CoreLogic::EventManagement::Actors::Scout drone = { {72, 720}, {72, 720, 32, 32}, 0, {38, 38}, 0};
+    CoreLogic::DataProcessing::ActorStorage::setPlayer(std::make_shared<CoreLogic::EventManagement::Actors::Scout>
+            (drone));
+    auto &eventHandler = CoreLogic::EventManagement::EventHandler::getInstance();
+    eventHandler.resetPlayer();
 
 }
 
