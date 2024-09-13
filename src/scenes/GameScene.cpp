@@ -26,6 +26,8 @@ Scenes::GameScene::GameScene(): Scene(std::make_shared<Camera2D>()),
     CoreLogic::EventManagement::Actors::Scout drone = { {72, 720}, {72, 720, 32, 32}, 0, {38, 38}, 0};
     CoreLogic::DataProcessing::ActorStorage::setPlayer(std::make_shared<CoreLogic::EventManagement::Actors::Scout>
             (drone));
+    auto &eventHandler = CoreLogic::EventManagement::EventHandler::getInstance();
+    eventHandler.resetPlayer();
 
 }
 
