@@ -7719,7 +7719,7 @@
                  "value":0
                 }],
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -7761,7 +7761,7 @@
                         {
                          "name":"textbox_text",
                          "type":"string",
-                         "value":"These rocks block our way, but the worker is strong\n\npress <K> as the worker drone to push round rocks\n"
+                         "value":"These rocks block our way, but the worker is strong\n\npress <J> as the worker drone to push round rocks\n"
                         }],
                  "rotation":0,
                  "type":"textbox",
@@ -7862,7 +7862,7 @@
                  "value":1
                 }],
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -7904,7 +7904,7 @@
                         {
                          "name":"textbox_text",
                          "type":"string",
-                         "value":"What are these black rocks?\n\npress <K> to interact with barrels\n"
+                         "value":"What are these black rocks?\n\npress <J> to push down barrels\n"
                         }],
                  "rotation":0,
                  "type":"textbox",
@@ -7988,7 +7988,7 @@
                         {
                          "name":"textbox_text",
                          "type":"string",
-                         "value":"What are these black rocks?\n\npress <K> to interact with barrels\n"
+                         "value":"What are these black rocks?\n\npress <J> to push down barrels\n"
                         }],
                  "rotation":0,
                  "type":"textbox",
@@ -8005,7 +8005,7 @@
                  "value":2
                 }],
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
