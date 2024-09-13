@@ -644,33 +644,6 @@
                  "width":48,
                  "x":432,
                  "y":72
-                }, 
-                {
-                 "height":48,
-                 "id":418,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"active",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"level",
-                         "type":"int",
-                         "value":1
-                        }, 
-                        {
-                         "name":"newDrone",
-                         "type":"bool",
-                         "value":false
-                        }],
-                 "rotation":0,
-                 "type":"respawnPoint",
-                 "visible":true,
-                 "width":48,
-                 "x":96,
-                 "y":96
                 }],
          "opacity":1,
          "properties":[
