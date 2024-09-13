@@ -272,12 +272,18 @@ void CoreLogic::DataProcessing::Map::loadObjects()
             }else if (objectClass == "respawnPoint")
             {
                 bool objectNewDrone = objectProperties.getProperty("newDrone")->getValue<bool>();
-                int objectUnlockType = objectProperties.getProperty("newDrone")->getValue<int>();
+                int objectUnlockType = CoreLogic::EventManagement::Actors::Drone::DroneType::NONE;
                 bool objectActive = false;
                 if (objectProperties.hasProperty("active"))
                 {
                     objectActive = objectProperties.getProperty("active")->getValue<bool>();
                 }
+                if (objectNewDrone == true)
+                {
+                    objectUnlockType = (CoreLogic::EventManagement::Actors::Drone::DroneType) objectProperties
+                            .getProperty("droneType")->getValue<int>();
+                }
+
 
                 actor = std::make_shared<EventManagement::Object::DroneRespawnPoint>(EventManagement::Object::DroneRespawnPoint
                         (objectPosition, objectHitbox, objectId, objectSize, objectElevation, objectNewDrone, objectUnlockType, objectActive));

@@ -15,7 +15,7 @@ namespace CoreLogic::EventManagement::Object
         enum DroneRespawnPointState {
             UNDISCOVERED,
             DISCOVERED,
-            ACTIVATED
+            ACTIVATED,
         };
 
         DroneRespawnPoint(Vector2 pa_position, Rectangle pa_hitbox, int pa_id, Vector2 pa_size,  int pa_elevation, bool pa_newDrone, int pa_unlockType, bool pa_active);

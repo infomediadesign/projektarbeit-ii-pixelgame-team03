@@ -913,8 +913,8 @@
                         }, 
                         {
                          "name":"newDrone",
-                         "type":"int",
-                         "value":0
+                         "type":"bool",
+                         "value":false
                         }],
                  "rotation":0,
                  "type":"respawnPoint",
@@ -935,8 +935,8 @@
                         }, 
                         {
                          "name":"newDrone",
-                         "type":"int",
-                         "value":0
+                         "type":"bool",
+                         "value":false
                         }],
                  "rotation":0,
                  "type":"respawnPoint",
@@ -953,7 +953,7 @@
                  "value":0
                 }],
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -2893,8 +2893,8 @@
                         }, 
                         {
                          "name":"newDrone",
-                         "type":"int",
-                         "value":0
+                         "type":"bool",
+                         "value":false
                         }],
                  "rotation":0,
                  "type":"respawnPoint",
@@ -2915,8 +2915,8 @@
                         }, 
                         {
                          "name":"newDrone",
-                         "type":"int",
-                         "value":0
+                         "type":"bool",
+                         "value":false
                         }],
                  "rotation":0,
                  "type":"respawnPoint",
@@ -2933,7 +2933,7 @@
                  "value":1
                 }],
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -5830,8 +5830,8 @@
                         }, 
                         {
                          "name":"newDrone",
-                         "type":"int",
-                         "value":0
+                         "type":"bool",
+                         "value":false
                         }],
                  "rotation":0,
                  "type":"respawnPoint",
@@ -5848,7 +5848,7 @@
                  "value":2
                 }],
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 

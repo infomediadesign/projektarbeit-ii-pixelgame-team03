@@ -859,7 +859,7 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
     po_sprites_[RUBBLE_UNDERWORLD] = sprite;
 
     //6 - spawn - overworld
-    sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/Abilities/hive_ARTI_Overworld-Respawns-Spritesheet.png",
+    sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/Interacts/hive_ARTI_Overworld-Respawns-Spritesheet.png",
             {
                     {    //0 - undiscovered
                             {CoreLogic::UserInterface::AnimationState {0 * 48, 48, 48, 1}},
@@ -868,8 +868,11 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
                             {CoreLogic::UserInterface::AnimationState {1 * 48, 48, 48, 1}},
                     },
                     {    //2 - active
-                            {CoreLogic::UserInterface::AnimationState {1 * 48, 48, 48, 11}},
+                            {CoreLogic::UserInterface::AnimationState {2 * 48, 48, 48, 1}},
                     },
+                    {   //3 - egg
+                            {CoreLogic::UserInterface::AnimationState {3 * 48, 48, 48, 1}},
+                    }
             });
 
     po_sprites_[SPAWN_OVERWORLD] = sprite;

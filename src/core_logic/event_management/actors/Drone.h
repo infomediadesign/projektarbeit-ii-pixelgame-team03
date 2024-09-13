@@ -20,6 +20,7 @@ namespace CoreLogic::EventManagement::Actors
         public:
             enum DroneType
             {
+                NONE = -1,
                 WORKER = 0,
                 SCOUT = 1
             };
