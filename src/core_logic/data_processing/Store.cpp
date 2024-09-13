@@ -122,7 +122,7 @@ void CoreLogic::DataProcessing::ActorStorage::Initialize()
 void CoreLogic::DataProcessing::ActorStorage::Initialize(int pa_elevationLevels)
 {
     CoreLogic::DataProcessing::ActorStorage::Initialize();
-    DataProcessing::ActorStorage::setCurrentElevationLevels(pa_elevationLevels);
+    DataProcessing::ActorStorage::setCurrentElevationLevels(std::make_shared<int>(pa_elevationLevels));
     DataProcessing::ActorStorage::setLayers(initializeSpecificLists<tson::Layer>(pa_elevationLevels));
     DataProcessing::ActorStorage::setActors(initializeSpecificLists<std::shared_ptr<EventManagement::Actor>>(pa_elevationLevels));
     DataProcessing::ActorStorage::setCollidables(initializeSpecificLists<std::shared_ptr<EventManagement::Actor>>(pa_elevationLevels));
