@@ -43,6 +43,7 @@ namespace CoreLogic::DataProcessing
         END_SCENE,
         CREDITS,
         DEATH,
+        NOTE,
     };
     inline long long int global_ticks = 1;
     inline const int global_tileSize = 24;
