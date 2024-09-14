@@ -31,7 +31,6 @@ void Scenes::DeathScene::update()
     {
         if (event == CoreLogic::EventManagement::INTERACT)
         {
-            //@todo: reset level
             if (!restartGame_)
             {
                 CoreLogic::DataProcessing::StateMachine::changeState(CoreLogic::DataProcessing::GameState::MAIN_MENU);

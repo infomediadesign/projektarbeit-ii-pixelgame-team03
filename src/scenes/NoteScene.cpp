@@ -10,7 +10,6 @@ Scenes::NoteScene::NoteScene(): CoreLogic::Scene(std::make_shared<Camera2D>()){}
 
 void Scenes::NoteScene::update()
 {
-    text_ = CoreLogic::DataProcessing::ActorStorage::getActiveNote()->getText();
 
     CoreLogic::EventManagement::SoundHandler &soundHandler = CoreLogic::EventManagement::SoundHandler::getInstance();
     soundHandler.update();
@@ -28,6 +27,7 @@ void Scenes::NoteScene::update()
 
 void Scenes::NoteScene::onSwitch()
 {
+    text_ = CoreLogic::DataProcessing::ActorStorage::getActiveNote()->getText();
     update();
 }
 

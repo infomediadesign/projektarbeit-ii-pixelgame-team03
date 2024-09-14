@@ -751,7 +751,7 @@ CoreLogic::DataProcessing::SpriteStorage::getSprite(CoreLogic::DataProcessing::S
 
 void CoreLogic::DataProcessing::SpriteStorage::Initialize()
 {
-    po_sprites_.resize(30);
+    po_sprites_.resize(40);
     //0 - worker
     UserInterface::Sprite sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/hive_ARTI_Worker-Spritesheet.png",
             {
@@ -1090,6 +1090,22 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
 
     po_sprites_[DEATH_SCENE] = sprite;
 
+    //victory background
+    sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/Scenes/hive_ARTI_newHUD_victory-background.png",
+            {
+                    {CoreLogic::UserInterface::AnimationState{0 * 360, 640, 360, 12}},
+            });
+
+    po_sprites_[VICTORY_BACKGROUND] = sprite;
+
+    //victory buttons
+    sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/Scenes/hive_ARTI_newHUD_victory-buttons.png",
+            {
+                    {CoreLogic::UserInterface::AnimationState{0 * 360, 640, 360, 1}},
+                    {CoreLogic::UserInterface::AnimationState{1 * 360, 640, 360, 1}},
+            });
+
+    po_sprites_[VICTORY_BUTTONS] = sprite;
 }
 
 void CoreLogic::DataProcessing::Fonts::Initialize()
