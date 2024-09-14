@@ -116,7 +116,9 @@ private:
             MAIN_MENU,
             DEATH_SCENE,
             VICTORY_BACKGROUND,
-            VICTORY_BUTTONS
+            VICTORY_BUTTONS,
+            LORE_ITEM,
+            LORE_CRACKS
         };
 
     public:

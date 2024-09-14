@@ -1109,6 +1109,22 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
             });
 
     po_sprites_[VICTORY_BUTTONS] = sprite;
+
+    //lore screen
+    sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/Scenes/hive_ARTI_Lore-Items-Tablet_2024-09-13.png",
+            {
+                    {CoreLogic::UserInterface::AnimationState{0 * 360, 640, 360, 1}}
+            });
+
+    po_sprites_[LORE_ITEM] = sprite;
+
+    //lore cracks
+    sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/Scenes/hive_ARTI_Lore-Item-Cracks_2024-09-13.png",
+            {
+                    {CoreLogic::UserInterface::AnimationState{0 * 360, 640, 360, 1}}
+            });
+
+    po_sprites_[LORE_CRACKS] = sprite;
 }
 
 void CoreLogic::DataProcessing::Fonts::Initialize()
