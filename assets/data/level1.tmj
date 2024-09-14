@@ -2162,6 +2162,34 @@
         }, 
         {
          "draworder":"topdown",
+         "id":66,
+         "name":"Uplink 2",
+         "objects":[
+                {
+                 "height":72,
+                 "id":450,
+                 "name":"",
+                 "rotation":0,
+                 "type":"uplink",
+                 "visible":true,
+                 "width":48,
+                 "x":1056,
+                 "y":216
+                }],
+         "opacity":1,
+         "properties":[
+                {
+                 "name":"elevation",
+                 "type":"int",
+                 "value":1
+                }],
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
          "id":38,
          "name":"Rubble2",
          "objects":[
@@ -4504,7 +4532,7 @@
                  "name":"",
                  "rotation":0,
                  "type":"collidable",
-                 "visible":false,
+                 "visible":true,
                  "width":48,
                  "x":1056,
                  "y":456
@@ -4515,7 +4543,7 @@
                  "name":"",
                  "rotation":0,
                  "type":"collidable",
-                 "visible":false,
+                 "visible":true,
                  "width":72,
                  "x":1440,
                  "y":480
@@ -4526,7 +4554,7 @@
                  "name":"",
                  "rotation":0,
                  "type":"collidable",
-                 "visible":false,
+                 "visible":true,
                  "width":48,
                  "x":1464,
                  "y":528
@@ -4537,7 +4565,7 @@
                  "name":"",
                  "rotation":0,
                  "type":"collidable",
-                 "visible":false,
+                 "visible":true,
                  "width":24,
                  "x":1512,
                  "y":552
@@ -4548,7 +4576,7 @@
                  "name":"",
                  "rotation":0,
                  "type":"collidable",
-                 "visible":false,
+                 "visible":true,
                  "width":24,
                  "x":1464,
                  "y":696
@@ -4559,7 +4587,7 @@
                  "name":"",
                  "rotation":0,
                  "type":"collidable",
-                 "visible":false,
+                 "visible":true,
                  "width":24,
                  "x":1488,
                  "y":720
@@ -4570,7 +4598,7 @@
                  "name":"",
                  "rotation":0,
                  "type":"collidable",
-                 "visible":false,
+                 "visible":true,
                  "width":24,
                  "x":1464,
                  "y":816
@@ -4581,7 +4609,7 @@
                  "name":"",
                  "rotation":0,
                  "type":"collidable",
-                 "visible":false,
+                 "visible":true,
                  "width":576,
                  "x":888,
                  "y":840
@@ -4592,7 +4620,7 @@
                  "name":"",
                  "rotation":0,
                  "type":"collidable",
-                 "visible":false,
+                 "visible":true,
                  "width":72,
                  "x":984,
                  "y":792
@@ -4603,7 +4631,7 @@
                  "name":"",
                  "rotation":0,
                  "type":"collidable",
-                 "visible":false,
+                 "visible":true,
                  "width":48,
                  "x":1128,
                  "y":720
@@ -4614,7 +4642,7 @@
                  "name":"",
                  "rotation":0,
                  "type":"collidable",
-                 "visible":false,
+                 "visible":true,
                  "width":24,
                  "x":1224,
                  "y":648
@@ -4625,7 +4653,7 @@
                  "name":"",
                  "rotation":0,
                  "type":"collidable",
-                 "visible":false,
+                 "visible":true,
                  "width":24,
                  "x":1224,
                  "y":696
@@ -4636,7 +4664,7 @@
                  "name":"",
                  "rotation":0,
                  "type":"collidable",
-                 "visible":false,
+                 "visible":true,
                  "width":24,
                  "x":792,
                  "y":144
@@ -4647,7 +4675,7 @@
                  "name":"",
                  "rotation":0,
                  "type":"collidable",
-                 "visible":false,
+                 "visible":true,
                  "width":24,
                  "x":648,
                  "y":24
@@ -4658,7 +4686,7 @@
                  "name":"",
                  "rotation":0,
                  "type":"collidable",
-                 "visible":false,
+                 "visible":true,
                  "width":312,
                  "x":672,
                  "y":0
@@ -4680,7 +4708,7 @@
                  "name":"",
                  "rotation":0,
                  "type":"collidable",
-                 "visible":false,
+                 "visible":true,
                  "width":48,
                  "x":1248,
                  "y":120
@@ -4691,7 +4719,7 @@
                  "name":"",
                  "rotation":0,
                  "type":"collidable",
-                 "visible":false,
+                 "visible":true,
                  "width":72,
                  "x":1152,
                  "y":120
@@ -4702,7 +4730,7 @@
                  "name":"",
                  "rotation":0,
                  "type":"collidable",
-                 "visible":false,
+                 "visible":true,
                  "width":24,
                  "x":1056,
                  "y":168
@@ -4713,7 +4741,7 @@
                  "name":"",
                  "rotation":0,
                  "type":"collidable",
-                 "visible":false,
+                 "visible":true,
                  "width":24,
                  "x":1080,
                  "y":168
@@ -6125,8 +6153,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":66,
- "nextobjectid":450,
+ "nextlayerid":67,
+ "nextobjectid":451,
  "orientation":"orthogonal",
  "properties":[
         {
