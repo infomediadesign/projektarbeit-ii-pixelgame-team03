@@ -6097,7 +6097,7 @@
                 {
                  "name":"elevation",
                  "type":"int",
-                 "value":2
+                 "value":1
                 }],
          "type":"objectgroup",
          "visible":true,

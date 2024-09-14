@@ -318,8 +318,8 @@ namespace CoreLogic::EventManagement
                 MOVE_RIGHT});
 
         controllerMenuMapping_.insert({Input(CoreLogic::DataProcessing::DesignConfig::MENU_CONFIRM_CONTROLLER), INTERACT});
-        controllerMenuMapping_.insert({Input(CoreLogic::DataProcessing::DesignConfig::MENU_BACK_CONTROLLER),
-                DISCONNECT});
+//        controllerMenuMapping_.insert({Input(CoreLogic::DataProcessing::DesignConfig::MENU_BACK_CONTROLLER),
+//                DISCONNECT});
     }
 
     bool InputHandler::gatLastInputKeyboard()
