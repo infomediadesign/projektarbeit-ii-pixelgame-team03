@@ -26,6 +26,7 @@ namespace Scenes
         CoreLogic::UserInterface::Sprite background_;
         CoreLogic::UserInterface::Sprite buttons_;
         bool restartGame_ = true;
+        int loopdyloops_ = 0;
     };
 
 } // Scenes

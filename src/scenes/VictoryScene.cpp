@@ -22,7 +22,7 @@ namespace Scenes
             DrawTexturePro(background_.getTexture(), background_.getFrame(), {0, 0, 640, 360}, {0, 0}, 0, WHITE);
             if (handleInput_)
             {
-                DrawTexturePro(background_.getTexture(), background_.getFrame(), {0, 0, 640, 360}, {0, 0}, 0, WHITE);
+                DrawTexturePro(buttons_.getTexture(), buttons_.getFrame(), {0, 0, 640, 360}, {0, 0}, 0, WHITE);
             }
         }
         EndTextureMode();
@@ -36,9 +36,16 @@ namespace Scenes
             return;
         }
         //shift frame your way through this
-        if (CoreLogic::DataProcessing::global_ticks % 10 == 0)
+
+        if (loopdyloops_ < 11)
         {
-            background_.shiftFrame(0);
+            if (CoreLogic::DataProcessing::global_ticks % 10 == 0)
+            {
+                background_.shiftFrame(0);
+                loopdyloops_++;
+            }
+        } else {
+            handleInput_ = true;
         }
 
     }
@@ -74,6 +81,7 @@ namespace Scenes
 
     void VictoryScene::onSwitch()
     {
+        loopdyloops_ = 0;
         update();
     }
 } // Scenes

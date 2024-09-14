@@ -6,6 +6,7 @@
 #include "DroneSelectionScene.h"
 #include "DeathScene.h"
 #include "NoteScene.h"
+#include "VictoryScene.h"
 
 
 Staging::Stage::Stage(int pa_screenHeight, int pa_screenWidth)
@@ -19,6 +20,7 @@ Staging::Stage::Stage(int pa_screenHeight, int pa_screenWidth)
                 {CoreLogic::DataProcessing::GameState::SETTINGS, std::make_shared<Scenes::SettingsScene>()},
                 {CoreLogic::DataProcessing::GameState::DEATH, std::make_shared<Scenes::DeathScene>()},
                 {CoreLogic::DataProcessing::GameState::NOTE, std::make_shared<Scenes::NoteScene>()},
+                {CoreLogic::DataProcessing::GameState::VICTORY, std::make_shared<Scenes::VictoryScene>()},
             };
 
     po_canvas_ = std::make_shared<RenderTexture2D>(LoadRenderTexture(pa_screenWidth, pa_screenHeight));
@@ -44,6 +46,8 @@ void Staging::Stage::draw()
 
 void Staging::Stage::update()
 {
+    CoreLogic::DataProcessing::global_ticks++;
+
      if (CoreLogic::DataProcessing::StateMachine::getCurrentState() == runningGameState_)
      {
          po_currentScene_->update();

@@ -316,6 +316,7 @@ void CoreLogic::DataProcessing::ActorStorage::addActorByType(int pa_elevation,
 
         auto actor = std::dynamic_pointer_cast<EventManagement::Actor>(pa_actor);
         addActor(po_visibles_, pa_elevation, actor);
+        addActor(po_collidables_, pa_elevation, actor);
         addActor(po_allActors_, pa_elevation, actor);
 
     } else if (auto cliff = std::dynamic_pointer_cast<EventManagement::Object::Cliff>(pa_actor))
@@ -396,6 +397,7 @@ void CoreLogic::DataProcessing::ActorStorage::addActorByType(int pa_elevation,
 
         auto actor = std::dynamic_pointer_cast<EventManagement::Actor>(pa_actor);
         addActor(po_visibles_, pa_elevation, actor);
+        addActor(po_collidables_, pa_elevation, actor);
         addActor(po_allActors_, pa_elevation, actor);
 
     }

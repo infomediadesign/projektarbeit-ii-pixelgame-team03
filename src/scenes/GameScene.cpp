@@ -53,8 +53,6 @@ void Scenes::GameScene::draw(RenderTexture2D &pa_canvas)
 
 void Scenes::GameScene::update()
 {
-    CoreLogic::DataProcessing::global_ticks++;
-
 
     Camera2D &camera = *camera_;
     /**
