@@ -32,7 +32,7 @@ namespace CoreLogic::DataProcessing {
         //drone speeds; in pixel per tick; currently only affected with drone speed
         inline static constexpr int DRONE_SPEED = 2;
         inline static constexpr int WORKER_SPEED = 2;
-        inline static constexpr int SCOUT_SPEED = 2;
+        inline static constexpr int SCOUT_SPEED = 4;
         inline static constexpr int BELL_TURN_TIME = 1200;
         inline static constexpr int BELL_DETECTION_TILES = 20;
 

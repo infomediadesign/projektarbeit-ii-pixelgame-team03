@@ -7,6 +7,7 @@
 #include "data_processing/Store.h"
 #include "actors/Enemy.h"
 #include "actors/objects/Uplink.h"
+#include "SoundHandler.h"
 
 
 namespace CoreLogic::EventManagement
@@ -23,7 +24,8 @@ namespace CoreLogic::EventManagement
     {
         if (ticks_ == 0)
         {
-
+            auto &soundHandler = CoreLogic::EventManagement::SoundHandler::getInstance();
+            soundHandler.playSound(SoundHandler::EXPLOSION);
             auto& eventHandler = EventHandler::getInstance();
             Rectangle explosionRadius;
             int tileSize = CoreLogic::DataProcessing::global_tileSize;

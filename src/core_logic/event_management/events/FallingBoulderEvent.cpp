@@ -7,6 +7,7 @@
 #include "actors/Enemy.h"
 #include "data_processing/Store.h"
 #include "actors/objects/Uplink.h"
+#include "SoundHandler.h"
 
 
 namespace CoreLogic::EventManagement
@@ -21,6 +22,13 @@ namespace CoreLogic::EventManagement
     {
         if (ticks_ == 0)
         {
+            auto &soundHandler = CoreLogic::EventManagement::SoundHandler::getInstance();
+            if (fallHeight_ == 1)
+            {
+                soundHandler.playSound(SoundHandler::IMPACT_WATER);
+            } else {
+                soundHandler.playSound(SoundHandler::IMPACT_FLOOR);
+            }
             auto& eventHandler = EventHandler::getInstance();
             Rectangle hitbox = po_mainActor_ -> getHitbox();
             std::vector<std::shared_ptr<Actors::Enemy>> &enemies = CoreLogic::DataProcessing::ActorStorage::getEnemies()->at(std::dynamic_pointer_cast<Object::Boulder>(po_mainActor_)->getNewElevation());

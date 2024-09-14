@@ -3107,7 +3107,7 @@
                  "name":"",
                  "rotation":0,
                  "type":"collidable",
-                 "visible":true,
+                 "visible":false,
                  "width":240,
                  "x":888,
                  "y":24
@@ -4504,7 +4504,7 @@
                  "name":"",
                  "rotation":0,
                  "type":"collidable",
-                 "visible":true,
+                 "visible":false,
                  "width":48,
                  "x":1056,
                  "y":456
@@ -4515,7 +4515,7 @@
                  "name":"",
                  "rotation":0,
                  "type":"collidable",
-                 "visible":true,
+                 "visible":false,
                  "width":72,
                  "x":1440,
                  "y":480
@@ -4526,7 +4526,7 @@
                  "name":"",
                  "rotation":0,
                  "type":"collidable",
-                 "visible":true,
+                 "visible":false,
                  "width":48,
                  "x":1464,
                  "y":528
@@ -4537,7 +4537,7 @@
                  "name":"",
                  "rotation":0,
                  "type":"collidable",
-                 "visible":true,
+                 "visible":false,
                  "width":24,
                  "x":1512,
                  "y":552
@@ -4548,7 +4548,7 @@
                  "name":"",
                  "rotation":0,
                  "type":"collidable",
-                 "visible":true,
+                 "visible":false,
                  "width":24,
                  "x":1464,
                  "y":696
@@ -4559,7 +4559,7 @@
                  "name":"",
                  "rotation":0,
                  "type":"collidable",
-                 "visible":true,
+                 "visible":false,
                  "width":24,
                  "x":1488,
                  "y":720
@@ -4570,7 +4570,7 @@
                  "name":"",
                  "rotation":0,
                  "type":"collidable",
-                 "visible":true,
+                 "visible":false,
                  "width":24,
                  "x":1464,
                  "y":816
@@ -4581,7 +4581,7 @@
                  "name":"",
                  "rotation":0,
                  "type":"collidable",
-                 "visible":true,
+                 "visible":false,
                  "width":576,
                  "x":888,
                  "y":840
@@ -4592,7 +4592,7 @@
                  "name":"",
                  "rotation":0,
                  "type":"collidable",
-                 "visible":true,
+                 "visible":false,
                  "width":72,
                  "x":984,
                  "y":792
@@ -4603,7 +4603,7 @@
                  "name":"",
                  "rotation":0,
                  "type":"collidable",
-                 "visible":true,
+                 "visible":false,
                  "width":48,
                  "x":1128,
                  "y":720
@@ -4614,7 +4614,7 @@
                  "name":"",
                  "rotation":0,
                  "type":"collidable",
-                 "visible":true,
+                 "visible":false,
                  "width":24,
                  "x":1224,
                  "y":648
@@ -4625,7 +4625,7 @@
                  "name":"",
                  "rotation":0,
                  "type":"collidable",
-                 "visible":true,
+                 "visible":false,
                  "width":24,
                  "x":1224,
                  "y":696
@@ -4636,7 +4636,7 @@
                  "name":"",
                  "rotation":0,
                  "type":"collidable",
-                 "visible":true,
+                 "visible":false,
                  "width":24,
                  "x":792,
                  "y":144
@@ -4647,7 +4647,7 @@
                  "name":"",
                  "rotation":0,
                  "type":"collidable",
-                 "visible":true,
+                 "visible":false,
                  "width":24,
                  "x":648,
                  "y":24
@@ -4658,7 +4658,7 @@
                  "name":"",
                  "rotation":0,
                  "type":"collidable",
-                 "visible":true,
+                 "visible":false,
                  "width":312,
                  "x":672,
                  "y":0
@@ -4669,7 +4669,7 @@
                  "name":"",
                  "rotation":0,
                  "type":"collidable",
-                 "visible":true,
+                 "visible":false,
                  "width":144,
                  "x":984,
                  "y":24
@@ -4680,7 +4680,7 @@
                  "name":"",
                  "rotation":0,
                  "type":"collidable",
-                 "visible":true,
+                 "visible":false,
                  "width":48,
                  "x":1248,
                  "y":120
@@ -4691,7 +4691,7 @@
                  "name":"",
                  "rotation":0,
                  "type":"collidable",
-                 "visible":true,
+                 "visible":false,
                  "width":72,
                  "x":1152,
                  "y":120
@@ -4702,7 +4702,7 @@
                  "name":"",
                  "rotation":0,
                  "type":"collidable",
-                 "visible":true,
+                 "visible":false,
                  "width":24,
                  "x":1056,
                  "y":168
@@ -4713,7 +4713,7 @@
                  "name":"",
                  "rotation":0,
                  "type":"collidable",
-                 "visible":true,
+                 "visible":false,
                  "width":24,
                  "x":1080,
                  "y":168

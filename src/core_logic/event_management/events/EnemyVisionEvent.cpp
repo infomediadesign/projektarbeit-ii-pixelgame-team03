@@ -8,6 +8,7 @@
 #include "DesignConfig.h"
 #include "data_processing/Store.h"
 #include "EventHandler.h"
+#include "SoundHandler.h"
 
 
 namespace CoreLogic::EventManagement
@@ -72,6 +73,8 @@ namespace CoreLogic::EventManagement
             found_ = true;
             po_player_->setDroneState(Actors::Drone::DroneState::DEATH);
             ticks_ = 24;
+            auto &soundHandler = CoreLogic::EventManagement::SoundHandler::getInstance();
+            soundHandler.playSound(SoundHandler::SHOT);
         }
     }
 

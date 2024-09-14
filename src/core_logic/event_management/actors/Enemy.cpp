@@ -49,7 +49,7 @@ namespace CoreLogic::EventManagement::Actors
                 }
             } else
             {
-                if (turnOrder[currentIndex] == currentDir)
+                if (turnOrder[currentIndex] == currentDir && currentIndex != 4)
                 {
                     continue;
                 } else if (turnCycles.at(turnOrder[currentIndex]).first != 0)
@@ -116,7 +116,7 @@ namespace CoreLogic::EventManagement::Actors
             visionConnected_ = false;
             return;
         }
-        if (player -> getElevation() != elevation_)
+        if (player -> getElevation() > elevation_)
         {
             visionConnected_ = false;
             return;
@@ -193,11 +193,15 @@ namespace CoreLogic::EventManagement::Actors
             {
                 continue;
             }
-            if (barrier->getElevation() != elevation_)
+            if (barrier->getElevation() < elevation_)
             {
                 continue;
             }
             if (barrier->getCollisionType() == Actor::CollisionType::NONE)
+            {
+                continue;
+            }
+            if (!barrier->getVisible())
             {
                 continue;
             }

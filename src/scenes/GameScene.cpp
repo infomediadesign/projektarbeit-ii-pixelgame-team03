@@ -36,7 +36,7 @@ Scenes::GameScene::GameScene(): Scene(std::make_shared<Camera2D>()),
     auto &eventHandler = CoreLogic::EventManagement::EventHandler::getInstance();
     eventHandler.resetPlayer();
 
-//    CoreLogic::DataProcessing::ActorStorage::unlockDrone(CoreLogic::EventManagement::Actors::Drone::DroneType::SCOUT);
+    CoreLogic::DataProcessing::ActorStorage::unlockDrone(CoreLogic::EventManagement::Actors::Drone::DroneType::SCOUT);
 }
 
 int Scenes::GameScene::getCurrentLevelID()
@@ -184,12 +184,15 @@ void Scenes::GameScene::switchLevel(int pa_levelID)
 
 void Scenes::GameScene::onSwitch()
 {
-    auto activeSpawnPoint = CoreLogic::DataProcessing::ActorStorage::getActiveSpawnPoint();
-    if (activeSpawnPoint != nullptr)
+    if (CoreLogic::DataProcessing::StateMachine::getPreviousState() == CoreLogic::DataProcessing::DRONE_SELECTION)
     {
-        if (activeSpawnPoint->getLevel() != CoreLogic::DataProcessing::ActorStorage::getCurrentLevelID())
+        auto activeSpawnPoint = CoreLogic::DataProcessing::ActorStorage::getActiveSpawnPoint();
+        if (activeSpawnPoint != nullptr)
         {
-            switchLevel(activeSpawnPoint->getLevel());
+            if (activeSpawnPoint->getLevel() != CoreLogic::DataProcessing::ActorStorage::getCurrentLevelID())
+            {
+                switchLevel(activeSpawnPoint->getLevel());
+            }
         }
     }
     auto &eventHandler = CoreLogic::EventManagement::EventHandler::getInstance();
