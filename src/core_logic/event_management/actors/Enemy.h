@@ -19,10 +19,15 @@ namespace CoreLogic::EventManagement::Actors {
             IDLE,
             VISION
         };
+        enum EnemyType
+        {
+            COLONIST,
+            MECH
+        };
 
         Enemy(Vector2 pa_position, Rectangle pa_hitbox, int pa_objectId, Vector2 pa_objectSize, int pa_objectElevation, bool pa_objectClockwise,
               CoreLogic::UserInterface::Direction pa_objectStartingDirection, std::map<CoreLogic::UserInterface::Direction, std::pair<int, int>> pa_objectTurnCycle,
-              Vector2 pa_visionPoint);
+              Vector2 pa_visionPoint, EnemyType pa_enemyType);
         void update();
         void forceTurn(Vector2 pa_triggerPoint);
         void die();
@@ -52,6 +57,7 @@ namespace CoreLogic::EventManagement::Actors {
         void turn();
         bool dead_ = false;
         EnemyState state_ = IDLE;
+        EnemyType enemyType_ = COLONIST;
 
     };
 }
