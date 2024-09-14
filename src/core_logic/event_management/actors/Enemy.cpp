@@ -190,47 +190,44 @@ namespace CoreLogic::EventManagement::Actors
 
     bool Enemy::checkVisionCollisionObjects(DataProcessing::Line *pa_visionRays, bool *pa_visionCollisions)
     {
-        auto barriers = CoreLogic::DataProcessing::ActorStorage::getCollidables();
+        auto barriers = CoreLogic::DataProcessing::ActorStorage::getCollidables()->at(elevation_);
         bool *visionCollisions = pa_visionCollisions;
 
-        for (auto &pair: *barriers)
+
+        for (auto &barrier: barriers)
         {
-
-
-            for (auto &barrier: pair.second)
+            if (barrier == nullptr)
             {
-                if (barrier == nullptr)
-                {
-                    continue;
-                }
-                if (barrier->getId() == id_)
-                {
-                    continue;
-                }
-                if (barrier->getCollisionType() == Actor::CollisionType::NONE)
-                {
-                    continue;
-                }
-                if (!barrier->getVisible())
-                {
-                    continue;
-                }
+                continue;
+            }
+            if (barrier->getId() == id_)
+            {
+                continue;
+            }
+            if (barrier->getCollisionType() == Actor::CollisionType::NONE)
+            {
+                continue;
+            }
+            if (!barrier->getVisible())
+            {
+                continue;
+            }
 
-                Rectangle barrierHitbox = barrier->getHitbox();
+            Rectangle barrierHitbox = barrier->getHitbox();
 
-                for (int i = 0; i < 4; ++i)
+            for (int i = 0; i < 4; ++i)
+            {
+                if (!visionCollisions[i])
                 {
-                    if (!visionCollisions[i])
-                    {
-                        continue;
-                    }
-                    if (DataProcessing::CheckCollisionLineRec(pa_visionRays[i], barrierHitbox))
-                    {
-                        visionCollisions[i] = false;
-                    }
+                    continue;
+                }
+                if (DataProcessing::CheckCollisionLineRec(pa_visionRays[i], barrierHitbox))
+                {
+                    visionCollisions[i] = false;
                 }
             }
         }
+
         for (int i = 0; i < 4; ++i)
         {
             if (pa_visionCollisions[i])
