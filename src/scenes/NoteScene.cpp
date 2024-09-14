@@ -6,7 +6,11 @@
 #include "event_management/SoundHandler.h"
 
 
-Scenes::NoteScene::NoteScene(): CoreLogic::Scene(std::make_shared<Camera2D>()){}
+Scenes::NoteScene::NoteScene(): CoreLogic::Scene(std::make_shared<Camera2D>())
+{
+    background_ = CoreLogic::DataProcessing::SpriteStorage::getSprite(CoreLogic::DataProcessing::SpriteStorage::LORE_ITEM);
+    cracks_ = CoreLogic::DataProcessing::SpriteStorage::getSprite(CoreLogic::DataProcessing::SpriteStorage::LORE_CRACKS);
+}
 
 void Scenes::NoteScene::update()
 {
@@ -33,16 +37,18 @@ void Scenes::NoteScene::onSwitch()
 
 void Scenes::NoteScene::draw(RenderTexture2D &pa_canvas)
 {
-    ClearBackground(GREEN);
+    ClearBackground(BLACK);
     BeginTextureMode(pa_canvas);
     {
-        ClearBackground(GREEN);
+        ClearBackground(BLACK);
+        DrawTexturePro(background_.getTexture(), background_.getFrame(), {0, 0, 640, 360}, {0, 0}, 0, WHITE);
         DrawTextPro(CoreLogic::DataProcessing::Fonts::getFont(0), text_.c_str(),
-                {20, 20}, {0, 0}, 0,
+                {60, 60}, {0, 0}, 0,
                 20, 0, WHITE);
         DrawTextPro(CoreLogic::DataProcessing::Fonts::getFont(0), "Press ENTER to continue",
-                {640 - 100, 360 - 20}, {0, 0}, 0,
+                {640 - 250, 360 - 40}, {0, 0}, 0,
                 20, 0, WHITE);
+        DrawTexturePro(cracks_.getTexture(), cracks_.getFrame(), {0, 0, 640, 360}, {0, 0}, 0, {255, 255, 255, 100});
     }
     EndTextureMode();
 }
