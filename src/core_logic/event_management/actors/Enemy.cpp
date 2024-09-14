@@ -107,7 +107,7 @@ namespace CoreLogic::EventManagement::Actors
 
     void Enemy::checkVision()
     {
-aa        int range = CoreLogic::DataProcessing::DesignConfig::COLONIST_RANGE * CoreLogic::DataProcessing::global_tileSize;
+        int range = CoreLogic::DataProcessing::DesignConfig::COLONIST_RANGE * CoreLogic::DataProcessing::global_tileSize;
         auto player = CoreLogic::DataProcessing::ActorStorage::getPlayer();
         Rectangle playerHitbox = player->getHitbox();
 

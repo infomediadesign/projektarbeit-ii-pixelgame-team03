@@ -64,14 +64,14 @@ namespace CoreLogic::EventManagement
                 {
                     continue;
                 }
-                if (std::dynamic_pointer_cast<Actor>(uplink)->getElevation() != std::static_pointer_cast<Object::Boulder>
+                if (std::dynamic_pointer_cast<Actor>(uplink)->getElevation() != std::static_pointer_cast<Object::Barrel>
                         (po_mainActor_) -> getNewElevation())
                 {
                     continue;
                 }
                 if (CheckCollisionRecs(uplink -> getHitbox(), po_mainActor_ -> getHitbox()))
                 {
-                    DataProcessing::StateMachine::changeState(DataProcessing::END_SCENE);
+                    DataProcessing::StateMachine::changeState(DataProcessing::VICTORY);
                 }
             }
         }
