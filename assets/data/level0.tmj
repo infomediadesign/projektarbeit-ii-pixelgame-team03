@@ -5487,7 +5487,7 @@
                  "value":2
                 }],
          "type":"tilelayer",
-         "visible":false,
+         "visible":true,
          "width":64,
          "x":0,
          "y":0
@@ -7509,7 +7509,7 @@
                  "value":2
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -7879,7 +7879,7 @@
                  "value":1
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -8039,7 +8039,7 @@
                         {
                          "name":"lore_item_text",
                          "type":"string",
-                         "value":"Science-Log 90-83\nThick, dark green vines grow on some walls of the cave system.\nThey appear to be one of the few species down here that do not have a bioluminescent effect."
+                         "value":"Science-Log 90-83\nThick, dark green vines grow on some walls of the\ncave system. They appear to be one of the few species\ndown here that do not have a bioluminescent effect."
                         }],
                  "rotation":0,
                  "type":"lore_item",
@@ -8056,7 +8056,7 @@
                         {
                          "name":"lore_item_text",
                          "type":"string",
-                         "value":"Mission-Log 74-20\nHi Markus,\nI hope that you are well, and that the mothership is fine.\nI know, leaving in a hurry probably wasn't the best course of action, but if I had told you in person you wouldn't have let me go.\n3.7-somehting light years is far, but know that every meter broke my heart. I had to do it - for the future of humanity.\nJust know that, for as long as there are stars above, you will have my heart, my love.\nYours forever,\nJulia"
+                         "value":"Mission-Log 74-20\nHi Markus,\nI hope that you are well, and that the mothership\nis fine. I know, leaving in a hurry probably wasn't\nthe best course of action, but if I had told you in\nperson you wouldn't have let me go. 3.7-somehting\nlight years is far, but know that every meter broke\nmy heart. I had to do it - for the future of humanity.\nJust know that, for as long as there are stars above,\nyou will have my heart, my love.\nYours forever,\nJulia"
                         }],
                  "rotation":0,
                  "type":"lore_item",
@@ -8073,7 +8073,7 @@
                         {
                          "name":"lore_item_text",
                          "type":"string",
-                         "value":"Sample 82-15\nThough it has a minimal bioluminescent effect, the base of this substance is identical to that of the water from Earth!\nMaybe it is the reason for the glowing plants?\n"
+                         "value":"Sample 82-15\nThough it has a minimal bioluminescent effect, the\nbase of this substance is identical to that of the\nwater from Earth! Maybe it is the reason for the\nglowing plants?\n"
                         }],
                  "rotation":0,
                  "type":"lore_item",
@@ -8090,7 +8090,7 @@
                  "value":1
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -8107,7 +8107,7 @@
                         {
                          "name":"lore_item_text",
                          "type":"string",
-                         "value":"Science-Log 31-23\nWhile the orbitals scans correctly located the large bodies of water, they failed to detect the large underground cave systems surrounding them.\nX-09 proves to have more surprises packed for us than we thought!"
+                         "value":"Science-Log 31-23\nWhile the orbitals scans correctly located the large\nbodies of water, they failed to detect the large\nunderground cave systems surrounding them. X-09 proves\nto have more surprises packed for us than we thought!"
                         }],
                  "rotation":0,
                  "type":"lore_item",
