@@ -38,7 +38,7 @@ namespace CoreLogic::DataProcessing {
 
         //enemy range; in tiles
         inline static constexpr int COLONIST_RANGE = 8;
-        inline static constexpr int MECH_RANGE = 8;
+        inline static constexpr int MECH_RANGE = 4;
 
 
         //enemy detection rate; in ticks

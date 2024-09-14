@@ -107,7 +107,13 @@ namespace CoreLogic::EventManagement::Actors
 
     void Enemy::checkVision()
     {
-        int range = CoreLogic::DataProcessing::DesignConfig::COLONIST_RANGE * CoreLogic::DataProcessing::global_tileSize;
+        int range =0;
+        if (enemyType_ == EnemyType::COLONIST)
+        {
+            range = CoreLogic::DataProcessing::DesignConfig::COLONIST_RANGE * CoreLogic::DataProcessing::global_tileSize;
+        } else if (enemyType_ == MECH) {
+            range = CoreLogic::DataProcessing::DesignConfig::MECH_RANGE * CoreLogic::DataProcessing::global_tileSize;
+        }
         auto player = CoreLogic::DataProcessing::ActorStorage::getPlayer();
         Rectangle playerHitbox = player->getHitbox();
 
@@ -239,12 +245,13 @@ namespace CoreLogic::EventManagement::Actors
             int pa_objectElevation, bool pa_objectClockwise,
             CoreLogic::UserInterface::Direction pa_objectStartingDirection,
             std::map<CoreLogic::UserInterface::Direction, std::pair<int, int>> pa_objectTurnCycle,
-            Vector2 pa_visionPoint) :
+            Vector2 pa_visionPoint, EnemyType pa_enemyType) :
             Actor(pa_position, pa_hitbox, pa_objectId, CollisionType::COLLISION, pa_objectSize, true,
                     pa_objectElevation), visionOrigin_(pa_visionPoint), turnCycles(pa_objectTurnCycle)
     {
         primaryDirection_ = pa_objectStartingDirection;
         clockwise_ = pa_objectClockwise;
+        enemyType_ = pa_enemyType;
     }
 
     bool Enemy::getClockwise() const

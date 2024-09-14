@@ -13,8 +13,6 @@ namespace CoreLogic::EventManagement
     {
         PushEvent::PushEvent(std::shared_ptr<Object::Boulder> pa_pushable) : AbilityEvent(PUSH)
         {
-            auto &soundHandler = CoreLogic::EventManagement::SoundHandler::getInstance();
-            soundHandler.playSound(SoundHandler::PUSH);
             po_pushable_ = pa_pushable;
             std::vector<std::shared_ptr<Actor>> &barriers = CoreLogic::DataProcessing::ActorStorage::getCollidables()->at(po_pushable_->getElevation());
             Rectangle destination = po_pushable_ -> getHitbox();
@@ -134,6 +132,11 @@ namespace CoreLogic::EventManagement
 
         void PushEvent::update()
         {
+            if (ticks_ == 0)
+            {
+                auto &soundHandler = CoreLogic::EventManagement::SoundHandler::getInstance();
+                soundHandler.playSound(SoundHandler::PUSH);
+            }
             if (ticks_ % 20 == 0)
             {
                 po_mainActor_->shiftFrame(1);
