@@ -5877,7 +5877,7 @@
                         {
                          "name":"textbox_text",
                          "type":"string",
-                         "value":"With the scout drone you can also attract the attention of Enemies\n\npress <L> to sacrifice your drone so that enemies in range turn to you\nCAUTION! YOU LOSE ONE LIFE"
+                         "value":"With the scout drone, you can also attract the attention of Enemies\n\npress <L> to sacrifice your drone so that enemies in range turn to you\nCAUTION! YOU LOSE ONE LIFE"
                         }],
                  "rotation":0,
                  "type":"textbox",

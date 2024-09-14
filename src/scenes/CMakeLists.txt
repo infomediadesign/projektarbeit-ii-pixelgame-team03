@@ -18,6 +18,8 @@ set(SCENES_HEADERS
         DeathScene.h
         NoteScene.cpp
         NoteScene.h
+        VictoryScene.cpp
+        VictoryScene.h
 )
 
 add_library(scenes STATIC ${SCENES_SOURCES} ${SCENES_HEADERS})
