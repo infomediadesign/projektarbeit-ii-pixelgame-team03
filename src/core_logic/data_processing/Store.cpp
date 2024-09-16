@@ -22,9 +22,10 @@ std::shared_ptr<CoreLogic::EventManagement::Object::Note> CoreLogic::DataProcess
 
 std::shared_ptr<CoreLogic::EventManagement::Actors::Drone> CoreLogic::DataProcessing::ActorStorage::po_player_;
 
+int CoreLogic::DataProcessing::ActorStorage::currentElevationLevels_;
+int CoreLogic::DataProcessing::ActorStorage::currentLevelID_;
 //------------------general lists------------------//
 std::shared_ptr<std::map<int, std::vector<tson::Layer>>> CoreLogic::DataProcessing::ActorStorage::po_layers_;
-std::shared_ptr<int> CoreLogic::DataProcessing::ActorStorage::po_currentElevationLevels_;
 
 std::shared_ptr<std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Actor>>>> CoreLogic::DataProcessing::ActorStorage::po_allActors_;
 std::shared_ptr<std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Actor>>>> CoreLogic::DataProcessing::ActorStorage::po_collidables_;
@@ -86,7 +87,8 @@ void CoreLogic::DataProcessing::ActorStorage::Initialize()
 
     //------------------general lists------------------//
     po_layers_ = std::make_shared<std::map<int, std::vector<tson::Layer>>>();
-    po_currentElevationLevels_ = std::make_shared<int>(1);
+    currentElevationLevels_ = 1;
+    currentLevelID_ = 0;
 
     po_allActors_ = std::make_shared<std::map<int, std::vector<std::shared_ptr<EventManagement::Actor>>>>();
     po_collidables_ = std::make_shared<std::map<int, std::vector<std::shared_ptr<EventManagement::Actor>>>>();
@@ -119,10 +121,11 @@ void CoreLogic::DataProcessing::ActorStorage::Initialize()
 
 }
 
-void CoreLogic::DataProcessing::ActorStorage::Initialize(int pa_elevationLevels)
+void CoreLogic::DataProcessing::ActorStorage::Initialize(int pa_elevationLevels, int pa_levelID)
 {
-    CoreLogic::DataProcessing::ActorStorage::Initialize();
-    DataProcessing::ActorStorage::setCurrentElevationLevels(std::make_shared<int>(pa_elevationLevels));
+//    CoreLogic::DataProcessing::ActorStorage::Initialize();
+    DataProcessing::ActorStorage::setCurrentElevationLevels(pa_elevationLevels);
+    DataProcessing::ActorStorage::setCurrentLevelID(pa_levelID);
     DataProcessing::ActorStorage::setLayers(initializeSpecificLists<tson::Layer>(pa_elevationLevels));
     DataProcessing::ActorStorage::setActors(initializeSpecificLists<std::shared_ptr<EventManagement::Actor>>(pa_elevationLevels));
     DataProcessing::ActorStorage::setCollidables(initializeSpecificLists<std::shared_ptr<EventManagement::Actor>>(pa_elevationLevels));
@@ -192,7 +195,7 @@ std::shared_ptr<std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManage
 
 std::shared_ptr<std::map<int, std::vector<tson::Layer>>> CoreLogic::DataProcessing::ActorStorage::getLayers() {return po_layers_;}
 
-std::shared_ptr<int> CoreLogic::DataProcessing::ActorStorage::getCurrentElevationLevels(){return po_currentElevationLevels_;};
+int CoreLogic::DataProcessing::ActorStorage::getCurrentElevationLevels(){return currentElevationLevels_;};
 
 
 /**
@@ -227,9 +230,14 @@ void CoreLogic::DataProcessing::ActorStorage::setLayers(std::shared_ptr<std::map
     po_layers_ = pa_layers;
 }
 
-void CoreLogic::DataProcessing::ActorStorage::setCurrentElevationLevels(std::shared_ptr<int> pa_currentElevationLayers)
+void CoreLogic::DataProcessing::ActorStorage::setCurrentElevationLevels(int pa_currentElevationLayers)
 {
-    po_currentElevationLevels_ = pa_currentElevationLayers;
+    currentElevationLevels_ = pa_currentElevationLayers;
+}
+
+void CoreLogic::DataProcessing::ActorStorage::setCurrentLevelID(int pa_currentLevelID)
+{
+    currentLevelID_ = pa_currentLevelID;
 }
 
 void CoreLogic::DataProcessing::ActorStorage::setPlayer(std::shared_ptr<EventManagement::Actors::Drone> pa_player) {
@@ -308,6 +316,7 @@ void CoreLogic::DataProcessing::ActorStorage::addActorByType(int pa_elevation,
 
         auto actor = std::dynamic_pointer_cast<EventManagement::Actor>(pa_actor);
         addActor(po_visibles_, pa_elevation, actor);
+        addActor(po_collidables_, pa_elevation, actor);
         addActor(po_allActors_, pa_elevation, actor);
 
     } else if (auto cliff = std::dynamic_pointer_cast<EventManagement::Object::Cliff>(pa_actor))
@@ -339,6 +348,9 @@ void CoreLogic::DataProcessing::ActorStorage::addActorByType(int pa_elevation,
     {
         addActor(po_notes_, pa_elevation, note);
 
+        auto interaction = std::dynamic_pointer_cast<EventManagement::Object::Interaction>(pa_actor);
+        addActor(po_interactions_, pa_elevation, interaction);
+
         auto actor = std::dynamic_pointer_cast<EventManagement::Actor>(pa_actor);
         addActor(po_allActors_, pa_elevation, actor);
 
@@ -355,6 +367,7 @@ void CoreLogic::DataProcessing::ActorStorage::addActorByType(int pa_elevation,
 
         auto actor = std::dynamic_pointer_cast<EventManagement::Actor>(pa_actor);
         addActor(po_collidables_, pa_elevation, actor);
+        addActor(po_visibles_, pa_elevation, actor);
         addActor(po_allActors_, pa_elevation, actor);
 
     }else if (auto spawn = std::dynamic_pointer_cast<EventManagement::Object::DroneRespawnPoint>(pa_actor))
@@ -376,6 +389,16 @@ void CoreLogic::DataProcessing::ActorStorage::addActorByType(int pa_elevation,
         {
             po_activeRespawnPoint_ = spawn;
         }
+    } else if (auto mech = std::dynamic_pointer_cast<EventManagement::Actors::Mech>(pa_actor)) {
+        addActor(po_mechs_, pa_elevation, mech);
+
+        auto enemy = std::dynamic_pointer_cast<EventManagement::Actors::Enemy>(pa_actor);
+        addActor(po_allEnemies_, pa_elevation, enemy);
+
+        auto actor = std::dynamic_pointer_cast<EventManagement::Actor>(pa_actor);
+        addActor(po_visibles_, pa_elevation, actor);
+        addActor(po_collidables_, pa_elevation, actor);
+        addActor(po_allActors_, pa_elevation, actor);
 
     }
 }
@@ -700,6 +723,11 @@ CoreLogic::DataProcessing::GameState CoreLogic::DataProcessing::StateMachine::ge
     return currentState_;
 }
 
+int CoreLogic::DataProcessing::ActorStorage::getCurrentLevelID()
+{
+    return currentLevelID_;
+}
+
 void CoreLogic::DataProcessing::StateMachine::changeState(CoreLogic::DataProcessing::GameState newState)
 {
     previousState_ = currentState_;
@@ -725,7 +753,7 @@ CoreLogic::DataProcessing::SpriteStorage::getSprite(CoreLogic::DataProcessing::S
 
 void CoreLogic::DataProcessing::SpriteStorage::Initialize()
 {
-    po_sprites_.resize(30);
+    po_sprites_.resize(40);
     //0 - worker
     UserInterface::Sprite sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/hive_ARTI_Worker-Spritesheet.png",
             {
@@ -800,33 +828,34 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
     sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/hive_ARTI_Mech-Spritesheet_2024-09-13.png",
             {
                     {    //0 - idle
-                            {CoreLogic::UserInterface::AnimationState {3 * (3 * 24), 24, 48, 12}}, //up
-                            {CoreLogic::UserInterface::AnimationState {0 * (3 * 24), 24, 48, 12}}, //down
-                            {CoreLogic::UserInterface::AnimationState {1 * (3 * 24), 24, 48, 12}}, //left
-                            {CoreLogic::UserInterface::AnimationState {2 * (3 * 24), 24, 48, 12}}, //right
+                            {CoreLogic::UserInterface::AnimationState {3 * (3 * 24), 48, 72, 12}}, //up
+                            {CoreLogic::UserInterface::AnimationState {0 * (3 * 24), 48, 72, 12}}, //down
+                            {CoreLogic::UserInterface::AnimationState {1 * (3 * 24), 48, 72, 12}}, //left
+                            {CoreLogic::UserInterface::AnimationState {2 * (3 * 24), 48, 72, 12}}, //right
                     },
                     {    //1 - alert
-                            {CoreLogic::UserInterface::AnimationState {(4 * (3 * 24) + (3 * (4 * 24))), 24, 72, 6, {0,
+                            {CoreLogic::UserInterface::AnimationState {(4 * (3 * 24) + (3 * (4 * 24))), 48, 72 + 24, 6,
+                                    {0,
                                     -24}}}, //up
-                            {CoreLogic::UserInterface::AnimationState {(4 * (3 * 24) + (0 * (4 * 24))), 24, 72, 6,
+                            {CoreLogic::UserInterface::AnimationState {(4 * (3 * 24) + (0 * (4 * 24))), 48, 72 + 24, 6,
                                     {0, -24}}}, //down
-                            {CoreLogic::UserInterface::AnimationState {(4 * (3 * 24) + (1 * (4 * 24))), 24, 72, 6,
+                            {CoreLogic::UserInterface::AnimationState {(4 * (3 * 24) + (1 * (4 * 24))), 48, 72 + 24, 6,
                                     {0, -24}}}, //left
-                            {CoreLogic::UserInterface::AnimationState {(4 * (3 * 24) + (2 * (4 * 24))), 24, 72, 6,
+                            {CoreLogic::UserInterface::AnimationState {(4 * (3 * 24) + (2 * (4 * 24))), 48, 72 + 24, 6,
                                     {0, -24}}}, //right
                     },
                     {    //2 - shoot
-                            {CoreLogic::UserInterface::AnimationState {(4 * (3 * 24) + (7 * (4 * 24))), 24, 72, 6,
+                            {CoreLogic::UserInterface::AnimationState {(4 * (3 * 24) + (7 * (4 * 24))), 48, 72 + 24, 6,
                                     {0, -24}}}, //up
-                            {CoreLogic::UserInterface::AnimationState {(4 * (3 * 24) + (4 * (4 * 24))), 24, 72, 6,
+                            {CoreLogic::UserInterface::AnimationState {(4 * (3 * 24) + (4 * (4 * 24))), 48, 72 + 24, 6,
                                     {0, -24}}}, //down
-                            {CoreLogic::UserInterface::AnimationState {(4 * (3 * 24) + (5 * (4 * 24))), 24, 72, 6,
+                            {CoreLogic::UserInterface::AnimationState {(4 * (3 * 24) + (5 * (4 * 24))), 48, 72 + 24, 6,
                                     {0, -24}}}, //left
-                            {CoreLogic::UserInterface::AnimationState {(4 * (3 * 24) + (6 * (4 * 24))), 24, 72, 6,
+                            {CoreLogic::UserInterface::AnimationState {(4 * (3 * 24) + (6 * (4 * 24))), 48, 72 + 24, 6,
                                     {0, -24}}}, //right
                     },
                     {    //3 - death
-                            {CoreLogic::UserInterface::AnimationState {(4 * (3 * 24) + (8 * (4 * 24))), 72, 72, 12}},
+                            {CoreLogic::UserInterface::AnimationState {(4 * (3 * 24) + (8 * (4 * 24))), 48, 72, 12}},
                     }
             });
 
@@ -859,7 +888,7 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
     po_sprites_[RUBBLE_UNDERWORLD] = sprite;
 
     //6 - spawn - overworld
-    sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/Abilities/hive_ARTI_Overworld-Respawns-Spritesheet.png",
+    sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/Interacts/hive_ARTI_Overworld-Respawns-Spritesheet.png",
             {
                     {    //0 - undiscovered
                             {CoreLogic::UserInterface::AnimationState {0 * 48, 48, 48, 1}},
@@ -868,8 +897,11 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
                             {CoreLogic::UserInterface::AnimationState {1 * 48, 48, 48, 1}},
                     },
                     {    //2 - active
-                            {CoreLogic::UserInterface::AnimationState {1 * 48, 48, 48, 11}},
+                            {CoreLogic::UserInterface::AnimationState {2 * 48, 48, 48, 1}},
                     },
+                    {   //3 - egg
+                            {CoreLogic::UserInterface::AnimationState {3 * 48, 48, 48, 1}},
+                    }
             });
 
     po_sprites_[SPAWN_OVERWORLD] = sprite;
@@ -943,7 +975,7 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
     sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/Interacts/hive_ARTI_Uplink-Spritesheet.png",
             {
                     {    //0 - idle
-                            {CoreLogic::UserInterface::AnimationState {0 * 48, 24, 48, 6}},
+                            {CoreLogic::UserInterface::AnimationState {0 * 72, 48, 72, 6}},
                     },
             });
 
@@ -1061,6 +1093,38 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
 
     po_sprites_[DEATH_SCENE] = sprite;
 
+    //victory background
+    sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/Scenes/hive_ARTI_newHUD_victory-background.png",
+            {
+                    {CoreLogic::UserInterface::AnimationState{0 * 360, 640, 360, 12}},
+            });
+
+    po_sprites_[VICTORY_BACKGROUND] = sprite;
+
+    //victory buttons
+    sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/Scenes/hive_ARTI_newHUD_victory-buttons.png",
+            {
+                    {CoreLogic::UserInterface::AnimationState{0 * 360, 640, 360, 1}},
+                    {CoreLogic::UserInterface::AnimationState{1 * 360, 640, 360, 1}},
+            });
+
+    po_sprites_[VICTORY_BUTTONS] = sprite;
+
+    //lore screen
+    sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/Scenes/hive_ARTI_Lore-Items-Tablet_2024-09-13.png",
+            {
+                    {CoreLogic::UserInterface::AnimationState{0 * 360, 640, 360, 1}}
+            });
+
+    po_sprites_[LORE_ITEM] = sprite;
+
+    //lore cracks
+    sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/Scenes/hive_ARTI_Lore-Item-Cracks_2024-09-13.png",
+            {
+                    {CoreLogic::UserInterface::AnimationState{0 * 360, 640, 360, 1}}
+            });
+
+    po_sprites_[LORE_CRACKS] = sprite;
 }
 
 void CoreLogic::DataProcessing::Fonts::Initialize()

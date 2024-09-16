@@ -17,7 +17,6 @@ namespace CoreLogic::EventManagement::Actors {
                         CoreLogic::UserInterface::Direction pa_objectStartingDirection, std::map<CoreLogic::UserInterface::Direction, std::pair<int, int>> pa_objectTurnCycle);
 
             };
-
 }
 
 #endif //HIVE_MECH_H

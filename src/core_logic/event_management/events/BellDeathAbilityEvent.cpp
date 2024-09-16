@@ -3,11 +3,16 @@
 //
 
 #include "BellDeathAbilityEvent.h"
+#include "SoundHandler.h"
 
 
-    namespace CoreLogic::EventManagement
+namespace CoreLogic::EventManagement
     {
-        BellDeathAbilityEvent::BellDeathAbilityEvent(): DeathAbilityEvent(){}
+        BellDeathAbilityEvent::BellDeathAbilityEvent(): DeathAbilityEvent()
+        {
+            auto &soundHandler = EventManagement::SoundHandler::getInstance();
+            soundHandler.playSound(SoundHandler::BELL);
+        }
 
         void BellDeathAbilityEvent::update()
         {

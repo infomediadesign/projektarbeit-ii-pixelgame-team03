@@ -6,13 +6,13 @@
 #include "Level.h"
 #include "Store.h"
 
-CoreLogic::DataProcessing::Level::Level(std::unique_ptr<std::vector<std::string>> pa_mapPath, int pa_levelID, LevelState pa_levelState): levelID_(pa_levelID)
+CoreLogic::DataProcessing::Level::Level(std::unique_ptr<std::vector<std::string>> pa_mapPath, int pa_levelID, LevelState pa_levelState, int pa_ambientID): levelID_(pa_levelID), ambientID_(pa_ambientID)
 {
     po_mapPath_ = std::move(pa_mapPath);
     levelState_ = pa_levelState;
 }
 
-CoreLogic::DataProcessing::Level::Level(const Level &other): po_mapPath_(std::make_unique<std::vector<std::string>>(*other.po_mapPath_)), levelID_(other.levelID_), levelState_(other.levelState_){}
+CoreLogic::DataProcessing::Level::Level(const Level &other): po_mapPath_(std::make_unique<std::vector<std::string>>(*other.po_mapPath_)), levelID_(other.levelID_), levelState_(other.levelState_), ambientID_(other.ambientID_){}
 
 std::string CoreLogic::DataProcessing::Level::getMapPath() const
 {
@@ -44,14 +44,14 @@ void CoreLogic::DataProcessing::Level::saveLevelStates()
 {
     std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Actor>>>> actors = CoreLogic::DataProcessing::ActorStorage::getActors();
     std::shared_ptr<std::map<int, std::vector<tson::Layer>>> layers = CoreLogic::DataProcessing::ActorStorage::getLayers();
-    elevationLevels_ = *CoreLogic::DataProcessing::ActorStorage::getCurrentElevationLevels();
+    elevationLevels_ = CoreLogic::DataProcessing::ActorStorage::getCurrentElevationLevels();
     po_levelActorStateStorage_ = actors;
     po_layers_ = layers;
 }
 
 void CoreLogic::DataProcessing::Level::loadLevelData()
 {
-    CoreLogic::DataProcessing::ActorStorage::Initialize(elevationLevels_);
+    CoreLogic::DataProcessing::ActorStorage::Initialize(elevationLevels_, levelID_);
     CoreLogic::DataProcessing::ActorStorage::setLayers(po_layers_);
 
     for (auto &pair : *po_levelActorStateStorage_)
@@ -66,6 +66,22 @@ void CoreLogic::DataProcessing::Level::loadLevelData()
 void CoreLogic::DataProcessing::Level::setLevelState(LevelState pa_levelState)
 {
     levelState_ = pa_levelState;
+}
+
+std::shared_ptr<std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Actor>>>>
+CoreLogic::DataProcessing::Level::getLevelActorStateStorage()
+{
+    return po_levelActorStateStorage_;
+}
+
+int CoreLogic::DataProcessing::Level::getAmbientId() const
+{
+    return ambientID_;
+}
+
+void CoreLogic::DataProcessing::Level::setAmbientId(int ambientId)
+{
+    ambientID_ = ambientId;
 }
 
 

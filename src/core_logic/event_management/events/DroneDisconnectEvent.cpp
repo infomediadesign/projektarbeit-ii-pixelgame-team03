@@ -4,12 +4,15 @@
 
 #include "DroneDisconnectEvent.h"
 #include "data_processing/Store.h"
+#include "SoundHandler.h"
 
 
 namespace CoreLogic::EventManagement
 {
     DroneDisconnectEvent::DroneDisconnectEvent(): Event(DISCONNECT)
     {
+        auto &soundHandler = CoreLogic::EventManagement::SoundHandler::getInstance();
+        soundHandler.playSound(SoundHandler::DEATH_DRONE);
         po_mainActor_ = CoreLogic::DataProcessing::ActorStorage::getPlayer();
         try
         {

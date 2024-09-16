@@ -4,12 +4,14 @@
 
 #include "CheckpointEvent.h"
 #include "data_processing/Store.h"
+#include "SoundHandler.h"
 
 
 namespace CoreLogic::EventManagement
 {
     CheckpointEvent::CheckpointEvent(std::shared_ptr<Object::DroneRespawnPoint> pa_checkpoint): InteractionEvent(CHECKPOINT)
     {
+        auto &soundHandler = CoreLogic::EventManagement::SoundHandler::getInstance();
         auto activeSpawnPoint = CoreLogic::DataProcessing::ActorStorage::getActiveSpawnPoint();
         if (activeSpawnPoint == nullptr)
         {
@@ -20,10 +22,12 @@ namespace CoreLogic::EventManagement
         {
             auto player = CoreLogic::DataProcessing::ActorStorage::getPlayer();
             player->increaseCurrentHealth();
+            soundHandler.playSound(CoreLogic::EventManagement::SoundHandler::SoundEnum::RESPAWN_ACTIVATE);
 
             if (pa_checkpoint->getNewDrone())
             {
                 DataProcessing::ActorStorage::unlockDrone(static_cast<Actors::Drone::DroneType>(pa_checkpoint->getUnlockType()));
+                player->increaseMaxHealth();
             }
             pa_checkpoint->changeState(Object::DroneRespawnPoint::ACTIVATED);
             activeSpawnPoint->changeState(Object::DroneRespawnPoint::DISCOVERED);
@@ -31,6 +35,7 @@ namespace CoreLogic::EventManagement
             throw EventException("Checkpoint Event Executed", true);
         } else if (pa_checkpoint->getRespawnState() == Object::DroneRespawnPoint::DISCOVERED) {
             pa_checkpoint->changeState(Object::DroneRespawnPoint::ACTIVATED);
+            soundHandler.playSound(CoreLogic::EventManagement::SoundHandler::SoundEnum::RESPAWN_REACTIVATE);
             activeSpawnPoint->changeState(Object::DroneRespawnPoint::DISCOVERED);
             DataProcessing::ActorStorage::setActiveSpawnPoint(pa_checkpoint);
             throw EventException("Checkpoint Event Executed", true);

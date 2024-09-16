@@ -6,6 +6,7 @@
 #include "data_processing/Store.h"
 #include "EventHandler.h"
 #include "actors//objects/Cliff.h"
+#include "SoundHandler.h"
 
 
 namespace CoreLogic::EventManagement
@@ -131,6 +132,11 @@ namespace CoreLogic::EventManagement
 
         void PushEvent::update()
         {
+            if (ticks_ == 0)
+            {
+                auto &soundHandler = CoreLogic::EventManagement::SoundHandler::getInstance();
+                soundHandler.playSound(SoundHandler::PUSH);
+            }
             if (ticks_ % 20 == 0)
             {
                 po_mainActor_->shiftFrame(1);
