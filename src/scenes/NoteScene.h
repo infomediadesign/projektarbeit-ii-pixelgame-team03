@@ -20,8 +20,9 @@ namespace Scenes
         void onSwitch() override;
 
     protected:
-
+        CoreLogic::UserInterface::Sprite background_;
         std::string text_;
+        CoreLogic::UserInterface::Sprite cracks_;
     };
 }
 

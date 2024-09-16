@@ -87,6 +87,8 @@ namespace CoreLogic::EventManagement {
         public:
             InputHandler();
 
+            static bool gatLastInputKeyboard();
+
             bool IsAxisPressed(Input &pa_axis);
 
             bool IsAxisReleased(Input &pa_axis);
@@ -118,6 +120,8 @@ namespace CoreLogic::EventManagement {
             void updateInputActivated(Input &pa_input, bool pa_activated);
 
             GamepadButton lastPressedButton = GAMEPAD_BUTTON_UNKNOWN;
+
+            static bool lastInputKeyBoard_;
 
         };
 

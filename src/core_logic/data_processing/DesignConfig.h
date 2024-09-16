@@ -26,8 +26,8 @@ namespace CoreLogic::DataProcessing {
         inline static constexpr int REGENERATION_LIFE = 2;
 
         //Volume in 0.0f - 1.0f
-        inline static constexpr float MUSIC_VOLUME = 0.2f;
-        inline static constexpr float SFX_VOLUME = 0.5f;
+        inline static constexpr float MUSIC_VOLUME = 0.5f;
+        inline static constexpr float SFX_VOLUME = 0.2f;
 
         //drone speeds; in pixel per tick; currently only affected with drone speed
         inline static constexpr int DRONE_SPEED = 2;
@@ -38,7 +38,7 @@ namespace CoreLogic::DataProcessing {
 
         //enemy range; in tiles
         inline static constexpr int COLONIST_RANGE = 8;
-        inline static constexpr int MECH_RANGE = 8;
+        inline static constexpr int MECH_RANGE = 4;
 
 
         //enemy detection rate; in ticks
@@ -54,9 +54,9 @@ namespace CoreLogic::DataProcessing {
         inline static constexpr GamepadButton MOVE_RIGHT_CONTROLLER = GAMEPAD_BUTTON_LEFT_FACE_RIGHT;
 
         inline static constexpr GamepadButton INTERACT_CONTROLLER = GAMEPAD_BUTTON_RIGHT_FACE_DOWN;
-        inline static constexpr GamepadButton ABILITY_CONTROLLER = GAMEPAD_BUTTON_LEFT_TRIGGER_1;
+        inline static constexpr GamepadButton ABILITY_CONTROLLER = GAMEPAD_BUTTON_RIGHT_FACE_LEFT;
         inline static constexpr GamepadButton DISCONNECT_CONTROLLER = GAMEPAD_BUTTON_RIGHT_FACE_UP;
-        inline static constexpr GamepadButton DEATH_ABILITY_CONTROLLER = GAMEPAD_BUTTON_RIGHT_TRIGGER_2;
+        inline static constexpr GamepadButton DEATH_ABILITY_CONTROLLER = GAMEPAD_BUTTON_RIGHT_FACE_RIGHT;
 
         inline static constexpr GamepadButton MENU_CONFIRM_CONTROLLER = GAMEPAD_BUTTON_RIGHT_FACE_DOWN;
         inline static constexpr GamepadButton MENU_BACK_CONTROLLER = GAMEPAD_BUTTON_RIGHT_FACE_RIGHT;

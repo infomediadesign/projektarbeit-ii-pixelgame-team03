@@ -7,6 +7,8 @@
 #include "EventUtilities.h"
 #include "data_processing/DesignConfig.h"
 
+bool CoreLogic::EventManagement::InputHandler::lastInputKeyBoard_ = true;
+
 namespace CoreLogic::EventManagement
 {
 
@@ -66,6 +68,7 @@ namespace CoreLogic::EventManagement
 
     std::vector<EventEnum> InputHandler::handleInput()
     {
+
         std::map<Input, EventEnum> controllerMapping;
         std::map<Input, EventEnum> keyboardMapping;
 
@@ -97,12 +100,7 @@ namespace CoreLogic::EventManagement
         }
         if (keyboardPressed)
         {
-            /*for (auto event: activatedEvents)
-            {
-
-                std::cout << eventNames::getEventName(event) << ", ";
-            }
-            std::cout << std::endl;*/
+            lastInputKeyBoard_ = true;
             return activatedEvents;
         }
 
@@ -113,7 +111,9 @@ namespace CoreLogic::EventManagement
             {
                 EventEnum event = controllerMapping.at(currentButton);
                 activatedEvents.push_back(event);
+                lastInputKeyBoard_ = false;
             }
+
         }
 
         /**
@@ -318,10 +318,14 @@ namespace CoreLogic::EventManagement
                 MOVE_RIGHT});
 
         controllerMenuMapping_.insert({Input(CoreLogic::DataProcessing::DesignConfig::MENU_CONFIRM_CONTROLLER), INTERACT});
-        controllerMenuMapping_.insert({Input(CoreLogic::DataProcessing::DesignConfig::MENU_BACK_CONTROLLER),
-                DISCONNECT});
+//        controllerMenuMapping_.insert({Input(CoreLogic::DataProcessing::DesignConfig::MENU_BACK_CONTROLLER),
+//                DISCONNECT});
     }
 
+    bool InputHandler::gatLastInputKeyboard()
+    {
+        return lastInputKeyBoard_;
+    }
 
 
 }

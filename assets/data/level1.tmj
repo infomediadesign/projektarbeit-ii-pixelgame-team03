@@ -548,7 +548,7 @@
                  "value":0
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -817,7 +817,7 @@
                  "value":0
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -1311,7 +1311,7 @@
                  "y":168
                 }, 
                 {
-                 "height":144,
+                 "height":192,
                  "id":372,
                  "name":"",
                  "rotation":0,
@@ -1319,7 +1319,7 @@
                  "visible":true,
                  "width":24,
                  "x":648,
-                 "y":144
+                 "y":96
                 }],
          "opacity":1,
          "properties":[
@@ -1329,7 +1329,7 @@
                  "value":0
                 }],
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -1918,7 +1918,7 @@
                         {
                          "name":"x_dest",
                          "type":"int",
-                         "value":866
+                         "value":842
                         }, 
                         {
                          "name":"y_dest",
@@ -2184,7 +2184,7 @@
                  "value":1
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -2450,7 +2450,7 @@
                  "value":1
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -2647,7 +2647,7 @@
                  "value":1
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -3124,7 +3124,7 @@
                  "name":"",
                  "rotation":0,
                  "type":"collidable",
-                 "visible":true,
+                 "visible":false,
                  "width":360,
                  "x":1008,
                  "y":120
@@ -4212,7 +4212,7 @@
                  "value":2
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -4517,7 +4517,7 @@
                  "value":2
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -5618,7 +5618,7 @@
                  "value":3
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -5769,6 +5769,17 @@
                  "width":144,
                  "x":984,
                  "y":0
+                }, 
+                {
+                 "height":48,
+                 "id":451,
+                 "name":"",
+                 "rotation":0,
+                 "type":"collidable",
+                 "visible":true,
+                 "width":72,
+                 "x":1152,
+                 "y":120
                 }],
          "opacity":1,
          "properties":[
@@ -5778,7 +5789,7 @@
                  "value":3
                 }],
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -5922,7 +5933,7 @@
                  "value":0
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -5981,7 +5992,7 @@
                  "value":1
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -5998,7 +6009,7 @@
                         {
                          "name":"lore_item_text",
                          "type":"string",
-                         "value":"Sample 84-03\nThis green substance seems to cover a good quarter of the planets surface, mostly gathered into rivers and lakes.\nIt is highly acidic, though the orange-brown rocks on the planets surface seem to be resistant to this effect."
+                         "value":"Sample 84-03\nThis green substance seems to cover a good quarter\nof the planets surface, mostly gathered into rivers\nand lakes. It is highly acidic, though the orange-brown\nrocks on the planets surface seem to be resistant to\nthis effect."
                         }],
                  "rotation":0,
                  "type":"lore_item",
@@ -6015,7 +6026,7 @@
                  "value":0
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -6032,7 +6043,7 @@
                         {
                          "name":"lore_item_text",
                          "type":"string",
-                         "value":"Mission Briefing\nDestination: X-09\nDistance: 3.71 Lightyears\nThough it's surface looks rather scorched, orbital scans indicate that under X-09's surface lie huge cavities filled with water.\nYour Mission is to scout the planet's surface and caves. Determine its potential for colonization.\nScience teams will be dispatched into the caves and security detail forms a perimeter around the landing zone, just in case the orbital scans missed something."
+                         "value":"Mission Briefing\nDestination: X-09\nDistance: 3.71 Lightyears\nThough it's surface looks rather scorched, orbital\nscans indicate that under X-09's surface lie huge\ncavities filled with water. Your Mission is to scout\nthe planet's surface and caves. Determine its potential\nfor colonization. Science teams will be dispatched into\nthe caves and security detail forms a perimeter around\nthe landing zone, just in case the orbital scans missed\nsomething."
                         }],
                  "rotation":0,
                  "type":"lore_item",
@@ -6049,7 +6060,7 @@
                         {
                          "name":"lore_item_text",
                          "type":"string",
-                         "value":"Mission-Log 14-93\nThe planet's surface appears dry and dead, just like the scans indicated. No sign of life or vegetation.\nWe'll have another look around and return to base before nightfall."
+                         "value":"Mission-Log 14-93\nThe planet's surface appears dry and dead, just\nlike the scans indicated. No sign of life or\nvegetation. We'll have another look around and\nreturn to base before nightfall."
                         }],
                  "rotation":0,
                  "type":"lore_item",
@@ -6083,7 +6094,7 @@
                         {
                          "name":"lore_item_text",
                          "type":"string",
-                         "value":"Mission-Log 01-07\nTeams 2 and 3 where dispatched to the ravines to scout ahead and identify potential dangers and further landing spots.\nThe other teams are to remain at the ship and secure the landing site - just in case...\n"
+                         "value":"Mission-Log 01-07\nTeams 2 and 3 where dispatched to the ravines to scout\nahead and identify potential dangers and further landing\nspots. The other teams are to remain at the ship and\nsecure the landing site - just in case...\n"
                         }],
                  "rotation":0,
                  "type":"lore_item",
@@ -6097,7 +6108,7 @@
                 {
                  "name":"elevation",
                  "type":"int",
-                 "value":2
+                 "value":1
                 }],
          "type":"objectgroup",
          "visible":true,
@@ -6149,12 +6160,12 @@
                  "value":0
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }],
  "nextlayerid":67,
- "nextobjectid":451,
+ "nextobjectid":452,
  "orientation":"orthogonal",
  "properties":[
         {
