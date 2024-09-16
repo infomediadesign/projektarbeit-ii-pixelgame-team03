@@ -3,6 +3,7 @@
 #include "HUD.h"
 #include "actors/Drone.h"
 #include "data_processing/Store.h"
+#include "InputHandler.h"
 
 CoreLogic::UserInterface::HUD::HUD()
 {
@@ -66,7 +67,7 @@ void CoreLogic::UserInterface::HUD::update()
     hudElements_[MAX].shiftFrame(player.getMaxHealth() - 1);
     hudElements_[CURRENT].shiftFrame(player.getCurrentHealth() - 1);
 
-    hudElements_[BUTTONS].shiftFrame(IsGamepadAvailable(0));
+    hudElements_[BUTTONS].shiftFrame(!CoreLogic::EventManagement::InputHandler::gatLastInputKeyboard());
     hudElements_[MAIN].shiftFrame(player.canAct());
     hudElements_[DEATH].shiftFrame(player.canDeathAbility());
     hudElements_[INTERACT].shiftFrame(player.canInteract());

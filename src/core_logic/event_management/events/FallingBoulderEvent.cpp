@@ -7,6 +7,7 @@
 #include "actors/Enemy.h"
 #include "data_processing/Store.h"
 #include "actors/objects/Uplink.h"
+#include "SoundHandler.h"
 
 
 namespace CoreLogic::EventManagement
@@ -21,6 +22,13 @@ namespace CoreLogic::EventManagement
     {
         if (ticks_ == 0)
         {
+            auto &soundHandler = CoreLogic::EventManagement::SoundHandler::getInstance();
+            if (fallHeight_ == 1)
+            {
+                soundHandler.playSound(SoundHandler::IMPACT_WATER);
+            } else {
+                soundHandler.playSound(SoundHandler::IMPACT_FLOOR);
+            }
             auto& eventHandler = EventHandler::getInstance();
             Rectangle hitbox = po_mainActor_ -> getHitbox();
             std::vector<std::shared_ptr<Actors::Enemy>> &enemies = CoreLogic::DataProcessing::ActorStorage::getEnemies()->at(std::dynamic_pointer_cast<Object::Boulder>(po_mainActor_)->getNewElevation());
@@ -59,7 +67,15 @@ namespace CoreLogic::EventManagement
         FallingEvent::fall();
         if (fallenHeight_ == 1)
         {
-            CoreLogic::DataProcessing::ActorStorage::changeDrawingElevation(po_mainActor_, po_mainActor_ ->getElevation() - 1);
+            int newElevation = 0;
+            if (po_mainActor_ ->getElevation() > 0)
+            {
+                newElevation = po_mainActor_ ->getElevation() - 1 ;
+            } else {
+                newElevation = 0;
+                po_mainActor_->setVisible(false);
+            }
+            CoreLogic::DataProcessing::ActorStorage::changeDrawingElevation(po_mainActor_, newElevation);
         }
     }
 } // CoreLogic

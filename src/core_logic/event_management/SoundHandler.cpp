@@ -27,6 +27,9 @@ namespace CoreLogic::EventManagement
         soundMap_[RESPAWN_REACTIVATE] = LoadSound("assets/audio/sfx/sfx_respawnpoint_reactivate.wav");
         soundMap_[RUBBLE] = LoadSound("assets/audio/sfx/sfx_rubble_remove.wav");
         soundMap_[SHOT] = LoadSound("assets/audio/sfx/sfx_shot_pistol.wav");
+        soundMap_[BELL] = LoadSound("assets/audio/sfx/sfx_bell.wav");
+        soundMap_[DEATH_DRONE] = LoadSound("assets/audio/sfx/sfx_death_drone.wav");
+        soundMap_[DEATH_HUMAN] = LoadSound("assets/audio/sfx/sfx_death_human.wav");
 
         for (auto music : ambientMap_)
         {
@@ -67,9 +70,12 @@ namespace CoreLogic::EventManagement
     {
         std::lock_guard<std::mutex> lock(soundHandler_mutex_);
         if (pa_ambient < ambientMap_.size())
+        {
             StopMusicStream(ambientMap_[currentAmbient_]);
-        PlayMusicStream(ambientMap_[pa_ambient]);
-        currentAmbient_ = pa_ambient;
+            PlayMusicStream(ambientMap_[pa_ambient]);
+            currentAmbient_ = pa_ambient;
+            return;
+        }
     }
 
     SoundHandler &SoundHandler::getInstance()

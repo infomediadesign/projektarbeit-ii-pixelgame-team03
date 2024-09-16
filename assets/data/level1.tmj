@@ -386,17 +386,17 @@
                         {
                          "name":"elevation_dest",
                          "type":"int",
-                         "value":0
+                         "value":1
                         }, 
                         {
                          "name":"x_dest",
                          "type":"int",
-                         "value":18
+                         "value":434
                         }, 
                         {
                          "name":"y_dest",
                          "type":"int",
-                         "value":8
+                         "value":194
                         }],
                  "rotation":0,
                  "type":"vines",
@@ -413,17 +413,17 @@
                         {
                          "name":"elevation_dest",
                          "type":"int",
-                         "value":0
+                         "value":1
                         }, 
                         {
                          "name":"x_dest",
                          "type":"int",
-                         "value":9
+                         "value":218
                         }, 
                         {
                          "name":"y_dest",
                          "type":"int",
-                         "value":29
+                         "value":698
                         }],
                  "rotation":0,
                  "type":"vines",
@@ -440,17 +440,17 @@
                         {
                          "name":"elevation_dest",
                          "type":"int",
-                         "value":0
+                         "value":1
                         }, 
                         {
                          "name":"x_dest",
                          "type":"int",
-                         "value":37
+                         "value":890
                         }, 
                         {
                          "name":"y_dest",
                          "type":"int",
-                         "value":17
+                         "value":410
                         }],
                  "rotation":0,
                  "type":"vines",
@@ -467,17 +467,17 @@
                         {
                          "name":"elevation_dest",
                          "type":"int",
-                         "value":0
+                         "value":1
                         }, 
                         {
                          "name":"x_dest",
                          "type":"int",
-                         "value":46
+                         "value":1106
                         }, 
                         {
                          "name":"y_dest",
                          "type":"int",
-                         "value":27
+                         "value":650
                         }],
                  "rotation":0,
                  "type":"vines",
@@ -494,17 +494,17 @@
                         {
                          "name":"elevation_dest",
                          "type":"int",
-                         "value":0
+                         "value":1
                         }, 
                         {
                          "name":"x_dest",
                          "type":"int",
-                         "value":15
+                         "value":362
                         }, 
                         {
                          "name":"y_dest",
                          "type":"int",
-                         "value":23
+                         "value":554
                         }],
                  "rotation":0,
                  "type":"vines",
@@ -521,17 +521,17 @@
                         {
                          "name":"elevation_dest",
                          "type":"int",
-                         "value":0
+                         "value":1
                         }, 
                         {
                          "name":"x_dest",
                          "type":"int",
-                         "value":42
+                         "value":1010
                         }, 
                         {
                          "name":"y_dest",
                          "type":"int",
-                         "value":24
+                         "value":578
                         }],
                  "rotation":0,
                  "type":"vines",
@@ -548,7 +548,7 @@
                  "value":0
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -624,14 +624,19 @@
                  "name":"",
                  "properties":[
                         {
+                         "name":"droneType",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
                          "name":"level",
                          "type":"int",
                          "value":1
                         }, 
                         {
                          "name":"newDrone",
-                         "type":"int",
-                         "value":1
+                         "type":"bool",
+                         "value":true
                         }],
                  "rotation":0,
                  "type":"respawnPoint",
@@ -639,33 +644,6 @@
                  "width":48,
                  "x":432,
                  "y":72
-                }, 
-                {
-                 "height":48,
-                 "id":418,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"active",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"level",
-                         "type":"int",
-                         "value":1
-                        }, 
-                        {
-                         "name":"newDrone",
-                         "type":"int",
-                         "value":1
-                        }],
-                 "rotation":0,
-                 "type":"respawnPoint",
-                 "visible":true,
-                 "width":48,
-                 "x":96,
-                 "y":96
                 }],
          "opacity":1,
          "properties":[
@@ -675,7 +653,7 @@
                  "value":0
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -731,12 +709,12 @@
                         {
                          "name":"x_dest",
                          "type":"int",
-                         "value":37
+                         "value":890
                         }, 
                         {
                          "name":"y_dest",
                          "type":"int",
-                         "value":28
+                         "value":674
                         }],
                  "rotation":0,
                  "type":"jump_point",
@@ -753,12 +731,12 @@
                         {
                          "name":"x_dest",
                          "type":"int",
-                         "value":33
+                         "value":794
                         }, 
                         {
                          "name":"y_dest",
                          "type":"int",
-                         "value":28
+                         "value":672
                         }],
                  "rotation":0,
                  "type":"jump_point",
@@ -829,7 +807,7 @@
                  "visible":true,
                  "width":24,
                  "x":312,
-                 "y":624
+                 "y":648
                 }],
          "opacity":1,
          "properties":[
@@ -932,7 +910,7 @@
                  "rotation":0,
                  "type":"collidable",
                  "visible":true,
-                 "width":48,
+                 "width":72,
                  "x":120,
                  "y":48
                 }, 
@@ -976,9 +954,20 @@
                  "rotation":0,
                  "type":"collidable",
                  "visible":true,
-                 "width":48,
+                 "width":24,
                  "x":144,
                  "y":312
+                }, 
+                {
+                 "height":24,
+                 "id":447,
+                 "name":"",
+                 "rotation":0,
+                 "type":"collidable",
+                 "visible":true,
+                 "width":24,
+                 "x":96,
+                 "y":240
                 }, 
                 {
                  "height":24,
@@ -988,7 +977,7 @@
                  "type":"collidable",
                  "visible":true,
                  "width":24,
-                 "x":168,
+                 "x":192,
                  "y":336
                 }, 
                 {
@@ -1158,6 +1147,28 @@
                 }, 
                 {
                  "height":24,
+                 "id":448,
+                 "name":"",
+                 "rotation":0,
+                 "type":"collidable",
+                 "visible":true,
+                 "width":24,
+                 "x":696,
+                 "y":624
+                }, 
+                {
+                 "height":24,
+                 "id":449,
+                 "name":"",
+                 "rotation":0,
+                 "type":"collidable",
+                 "visible":true,
+                 "width":24,
+                 "x":792,
+                 "y":720
+                }, 
+                {
+                 "height":24,
                  "id":54,
                  "name":"",
                  "rotation":0,
@@ -1289,17 +1300,6 @@
                  "y":144
                 }, 
                 {
-                 "height":24,
-                 "id":370,
-                 "name":"",
-                 "rotation":0,
-                 "type":"collidable",
-                 "visible":true,
-                 "width":24,
-                 "x":576,
-                 "y":216
-                }, 
-                {
                  "height":48,
                  "id":371,
                  "name":"",
@@ -1307,11 +1307,11 @@
                  "type":"collidable",
                  "visible":true,
                  "width":24,
-                 "x":624,
-                 "y":96
+                 "x":576,
+                 "y":168
                 }, 
                 {
-                 "height":144,
+                 "height":192,
                  "id":372,
                  "name":"",
                  "rotation":0,
@@ -1319,7 +1319,7 @@
                  "visible":true,
                  "width":24,
                  "x":648,
-                 "y":144
+                 "y":96
                 }],
          "opacity":1,
          "properties":[
@@ -1329,7 +1329,7 @@
                  "value":0
                 }],
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -1646,12 +1646,12 @@
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 152, 153, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 58, 59, 60, 60, 62, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 60, 60, 61, 62, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2763, 106, 107, 108, 109, 110, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 108, 108, 109, 110, 0, 0, 0, 0, 58, 60, 60, 60, 60, 62, 58, 59, 61, 62, 0, 0, 0, 0, 58, 60, 159, 160, 0, 154, 155, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 157, 158, 60, 60, 60, 60, 159, 156, 156, 156, 156, 110, 157, 156, 156, 158, 61, 62, 0, 0, 106, 107, 207, 208, 0, 154, 155, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 205, 206, 108, 108, 108, 108, 108, 206, 109, 156, 156, 155, 205, 206, 108, 108, 109, 110, 0, 0, 157, 158, 60, 60, 60, 159, 160, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 157, 156, 156, 158, 61, 62, 0, 0, 157, 158, 61, 62, 205, 206, 108, 109, 107, 207, 208, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 63, 63, 205, 206, 109, 156, 156, 110, 0, 0, 205, 206, 109, 110, 0, 0, 0, 154, 155, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 63, 63, 63, 63, 0, 154, 156, 156, 155, 0, 0, 0, 0, 154, 155, 0, 0, 0, 154, 155, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 108, 108, 109, 110, 0, 0, 0, 0, 58, 60, 60, 60, 60, 62, 58, 59, 61, 62, 0, 157, 158, 60, 61, 60, 159, 160, 0, 154, 155, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 157, 158, 60, 60, 60, 60, 159, 156, 156, 156, 156, 110, 157, 156, 156, 110, 0, 205, 206, 108, 109, 107, 207, 208, 0, 154, 155, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 205, 206, 108, 108, 108, 108, 108, 206, 109, 156, 156, 155, 205, 206, 109, 158, 61, 62, 0, 0, 157, 158, 60, 60, 60, 159, 160, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 157, 156, 156, 158, 61, 62, 205, 206, 109, 110, 0, 0, 205, 206, 108, 109, 107, 207, 208, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 63, 63, 205, 206, 109, 156, 156, 110, 0, 0, 157, 158, 61, 62, 0, 0, 0, 154, 155, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 63, 63, 63, 63, 0, 154, 156, 156, 155, 0, 0, 205, 206, 109, 110, 0, 0, 0, 154, 155, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 64, 0, 0, 63, 63, 0, 154, 156, 156, 158, 60, 60, 60, 60, 159, 158, 60, 60, 60, 159, 158, 60, 60, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 64, 63, 63, 64, 0, 0, 157, 156, 156, 156, 156, 156, 156, 156, 156, 156, 156, 156, 156, 156, 156, 156, 156, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 205, 206, 108, 108, 108, 108, 109, 107, 108, 108, 108, 108, 108, 108, 108, 108, 108, 0,
@@ -1702,7 +1702,7 @@
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2715, 2715, 2716, 0, 2765, 0, 0, 2766, 0, 0, 2813, 2814, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2714, 2813, 2814, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2716, 2617, 0, 0, 0, 0, 2765, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2716, 2617, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2616, 0, 0, 0, 2617, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2765, 2666, 2667, 2617, 0, 103, 0, 103, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2617, 0, 0, 0, 0, 2616, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2620, 2621, 2622, 0, 0, 103, 0, 103, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2668, 2669, 2670, 0, 0, 103, 0, 201, 57, 57, 57, 57, 57, 57, 57, 57, 57, 57, 57, 57, 57, 57, 0,
@@ -1752,7 +1752,7 @@
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2422, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2422, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2469, 2469, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2573, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2565, 2565, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2573, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 55, 55, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2573, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 157, 158, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -1864,12 +1864,12 @@
                         {
                          "name":"x_dest",
                          "type":"int",
-                         "value":20
+                         "value":482
                         }, 
                         {
                          "name":"y_dest",
                          "type":"int",
-                         "value":10
+                         "value":242
                         }],
                  "rotation":0,
                  "type":"vines",
@@ -1891,12 +1891,12 @@
                         {
                          "name":"x_dest",
                          "type":"int",
-                         "value":7
+                         "value":170
                         }, 
                         {
                          "name":"y_dest",
                          "type":"int",
-                         "value":31
+                         "value":746
                         }],
                  "rotation":0,
                  "type":"vines",
@@ -1918,12 +1918,12 @@
                         {
                          "name":"x_dest",
                          "type":"int",
-                         "value":35
+                         "value":842
                         }, 
                         {
                          "name":"y_dest",
                          "type":"int",
-                         "value":19
+                         "value":458
                         }],
                  "rotation":0,
                  "type":"vines",
@@ -1945,12 +1945,12 @@
                         {
                          "name":"x_dest",
                          "type":"int",
-                         "value":44
+                         "value":1058
                         }, 
                         {
                          "name":"y_dest",
                          "type":"int",
-                         "value":29
+                         "value":698
                         }],
                  "rotation":0,
                  "type":"vines",
@@ -1972,12 +1972,12 @@
                         {
                          "name":"x_dest",
                          "type":"int",
-                         "value":42
+                         "value":1010
                         }, 
                         {
                          "name":"y_dest",
                          "type":"int",
-                         "value":28
+                         "value":674
                         }],
                  "rotation":0,
                  "type":"vines",
@@ -1994,17 +1994,17 @@
                         {
                          "name":"elevation_dest",
                          "type":"int",
-                         "value":0
+                         "value":2
                         }, 
                         {
                          "name":"x_dest",
                          "type":"int",
-                         "value":37
+                         "value":890
                         }, 
                         {
                          "name":"y_dest",
                          "type":"int",
-                         "value":31
+                         "value":746
                         }],
                  "rotation":0,
                  "type":"vines",
@@ -2021,23 +2021,23 @@
                         {
                          "name":"elevation_dest",
                          "type":"int",
-                         "value":0
+                         "value":2
                         }, 
                         {
                          "name":"x_dest",
                          "type":"int",
-                         "value":40
+                         "value":986
                         }, 
                         {
                          "name":"y_dest",
                          "type":"int",
-                         "value":20
+                         "value":488
                         }],
                  "rotation":0,
                  "type":"vines",
                  "visible":true,
                  "width":48,
-                 "x":960,
+                 "x":984,
                  "y":552
                 }, 
                 {
@@ -2048,17 +2048,17 @@
                         {
                          "name":"elevation_dest",
                          "type":"int",
-                         "value":0
+                         "value":2
                         }, 
                         {
                          "name":"x_dest",
                          "type":"int",
-                         "value":55
+                         "value":1322
                         }, 
                         {
                          "name":"y_dest",
                          "type":"int",
-                         "value":23
+                         "value":554
                         }],
                  "rotation":0,
                  "type":"vines",
@@ -2080,12 +2080,12 @@
                         {
                          "name":"x_dest",
                          "type":"int",
-                         "value":15
+                         "value":362
                         }, 
                         {
                          "name":"y_dest",
                          "type":"int",
-                         "value":27
+                         "value":650
                         }],
                  "rotation":0,
                  "type":"vines",
@@ -2102,23 +2102,23 @@
                         {
                          "name":"elevation_dest",
                          "type":"int",
-                         "value":0
+                         "value":2
                         }, 
                         {
                          "name":"x_dest",
                          "type":"int",
-                         "value":54
+                         "value":1298
                         }, 
                         {
                          "name":"y_dest",
                          "type":"int",
-                         "value":7
+                         "value":170
                         }],
                  "rotation":0,
                  "type":"vines",
                  "visible":true,
                  "width":48,
-                 "x":1296,
+                 "x":1272,
                  "y":240
                 }, 
                 {
@@ -2129,17 +2129,17 @@
                         {
                          "name":"elevation_dest",
                          "type":"int",
-                         "value":0
+                         "value":2
                         }, 
                         {
                          "name":"x_dest",
                          "type":"int",
-                         "value":32
+                         "value":770
                         }, 
                         {
                          "name":"y_dest",
                          "type":"int",
-                         "value":8
+                         "value":194
                         }],
                  "rotation":0,
                  "type":"vines",
@@ -2157,6 +2157,34 @@
                 }],
          "type":"objectgroup",
          "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":66,
+         "name":"Uplink 2",
+         "objects":[
+                {
+                 "height":72,
+                 "id":450,
+                 "name":"",
+                 "rotation":0,
+                 "type":"uplink",
+                 "visible":true,
+                 "width":48,
+                 "x":1056,
+                 "y":216
+                }],
+         "opacity":1,
+         "properties":[
+                {
+                 "name":"elevation",
+                 "type":"int",
+                 "value":1
+                }],
+         "type":"objectgroup",
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -2216,8 +2244,8 @@
                         }, 
                         {
                          "name":"newDrone",
-                         "type":"int",
-                         "value":0
+                         "type":"bool",
+                         "value":false
                         }],
                  "rotation":0,
                  "type":"respawnPoint",
@@ -2238,8 +2266,8 @@
                         }, 
                         {
                          "name":"newDrone",
-                         "type":"int",
-                         "value":0
+                         "type":"bool",
+                         "value":false
                         }],
                  "rotation":0,
                  "type":"respawnPoint",
@@ -2290,12 +2318,12 @@
                         {
                          "name":"x_dest",
                          "type":"int",
-                         "value":16
+                         "value":386
                         }, 
                         {
                          "name":"y_dest",
                          "type":"int",
-                         "value":14
+                         "value":338
                         }],
                  "rotation":0,
                  "type":"jump_point",
@@ -2312,12 +2340,12 @@
                         {
                          "name":"x_dest",
                          "type":"int",
-                         "value":16
+                         "value":386
                         }, 
                         {
                          "name":"y_dest",
                          "type":"int",
-                         "value":10
+                         "value":242
                         }],
                  "rotation":0,
                  "type":"jump_point",
@@ -2334,12 +2362,12 @@
                         {
                          "name":"x_dest",
                          "type":"int",
-                         "value":16
+                         "value":386
                         }, 
                         {
                          "name":"y_dest",
                          "type":"int",
-                         "value":21
+                         "value":506
                         }],
                  "rotation":0,
                  "type":"jump_point",
@@ -2356,12 +2384,12 @@
                         {
                          "name":"x_dest",
                          "type":"int",
-                         "value":16
+                         "value":386
                         }, 
                         {
                          "name":"y_dest",
                          "type":"int",
-                         "value":17
+                         "value":410
                         }],
                  "rotation":0,
                  "type":"jump_point",
@@ -2378,12 +2406,12 @@
                         {
                          "name":"x_dest",
                          "type":"int",
-                         "value":9
+                         "value":218
                         }, 
                         {
                          "name":"y_dest",
                          "type":"int",
-                         "value":28
+                         "value":674
                         }],
                  "rotation":0,
                  "type":"jump_point",
@@ -2400,12 +2428,12 @@
                         {
                          "name":"x_dest",
                          "type":"int",
-                         "value":9
+                         "value":218
                         }, 
                         {
                          "name":"y_dest",
                          "type":"int",
-                         "value":24
+                         "value":578
                         }],
                  "rotation":0,
                  "type":"jump_point",
@@ -2565,7 +2593,7 @@
                  "y":648
                 }, 
                 {
-                 "height":48,
+                 "height":72,
                  "id":306,
                  "name":"",
                  "properties":[
@@ -2605,9 +2633,9 @@
                          "value":true
                         }],
                  "rotation":0,
-                 "type":"colonist",
+                 "type":"mech",
                  "visible":true,
-                 "width":24,
+                 "width":48,
                  "x":816,
                  "y":120
                 }],
@@ -2959,7 +2987,7 @@
                  "y":360
                 }, 
                 {
-                 "height":48,
+                 "height":72,
                  "id":308,
                  "name":"",
                  "rotation":0,
@@ -2967,7 +2995,7 @@
                  "visible":true,
                  "width":24,
                  "x":1032,
-                 "y":336
+                 "y":360
                 }, 
                 {
                  "height":24,
@@ -2990,6 +3018,72 @@
                  "width":48,
                  "x":888,
                  "y":336
+                }, 
+                {
+                 "height":24,
+                 "id":438,
+                 "name":"",
+                 "rotation":0,
+                 "type":"collidable",
+                 "visible":true,
+                 "width":72,
+                 "x":1056,
+                 "y":288
+                }, 
+                {
+                 "height":24,
+                 "id":439,
+                 "name":"",
+                 "rotation":0,
+                 "type":"collidable",
+                 "visible":true,
+                 "width":24,
+                 "x":1032,
+                 "y":264
+                }, 
+                {
+                 "height":48,
+                 "id":440,
+                 "name":"",
+                 "rotation":0,
+                 "type":"collidable",
+                 "visible":true,
+                 "width":24,
+                 "x":1104,
+                 "y":240
+                }, 
+                {
+                 "height":24,
+                 "id":441,
+                 "name":"",
+                 "rotation":0,
+                 "type":"collidable",
+                 "visible":true,
+                 "width":24,
+                 "x":1392,
+                 "y":144
+                }, 
+                {
+                 "height":24,
+                 "id":442,
+                 "name":"",
+                 "rotation":0,
+                 "type":"collidable",
+                 "visible":true,
+                 "width":24,
+                 "x":1368,
+                 "y":240
+                }, 
+                {
+                 "height":24,
+                 "id":443,
+                 "name":"",
+                 "rotation":0,
+                 "type":"collidable",
+                 "visible":true,
+                 "width":48,
+                 "x":1440,
+                 "y":72
                 }, 
                 {
                  "height":24,
@@ -3030,7 +3124,7 @@
                  "name":"",
                  "rotation":0,
                  "type":"collidable",
-                 "visible":true,
+                 "visible":false,
                  "width":360,
                  "x":1008,
                  "y":120
@@ -3041,7 +3135,7 @@
                  "name":"",
                  "rotation":0,
                  "type":"collidable",
-                 "visible":true,
+                 "visible":false,
                  "width":240,
                  "x":888,
                  "y":24
@@ -3058,7 +3152,7 @@
                  "y":144
                 }, 
                 {
-                 "height":120,
+                 "height":96,
                  "id":317,
                  "name":"",
                  "rotation":0,
@@ -3164,7 +3258,7 @@
                  "value":1
                 }],
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -3184,7 +3278,7 @@
                          "value":2
                         }],
                  "rotation":0,
-                 "type":"cliff",
+                 "type":"cliffs",
                  "visible":true,
                  "width":288,
                  "x":96,
@@ -3201,7 +3295,7 @@
                          "value":2
                         }],
                  "rotation":0,
-                 "type":"cliff",
+                 "type":"cliffs",
                  "visible":true,
                  "width":48,
                  "x":384,
@@ -3218,7 +3312,7 @@
                          "value":2
                         }],
                  "rotation":0,
-                 "type":"cliff",
+                 "type":"cliffs",
                  "visible":true,
                  "width":120,
                  "x":432,
@@ -3235,7 +3329,7 @@
                          "value":2
                         }],
                  "rotation":0,
-                 "type":"cliff",
+                 "type":"cliffs",
                  "visible":true,
                  "width":336,
                  "x":264,
@@ -3252,7 +3346,7 @@
                          "value":2
                         }],
                  "rotation":0,
-                 "type":"cliff",
+                 "type":"cliffs",
                  "visible":true,
                  "width":72,
                  "x":144,
@@ -3269,7 +3363,7 @@
                          "value":2
                         }],
                  "rotation":0,
-                 "type":"cliff",
+                 "type":"cliffs",
                  "visible":true,
                  "width":24,
                  "x":120,
@@ -3286,7 +3380,7 @@
                          "value":2
                         }],
                  "rotation":0,
-                 "type":"cliff",
+                 "type":"cliffs",
                  "visible":true,
                  "width":48,
                  "x":216,
@@ -3303,7 +3397,7 @@
                          "value":2
                         }],
                  "rotation":0,
-                 "type":"cliff",
+                 "type":"cliffs",
                  "visible":true,
                  "width":24,
                  "x":264,
@@ -3320,7 +3414,7 @@
                          "value":2
                         }],
                  "rotation":0,
-                 "type":"cliff",
+                 "type":"cliffs",
                  "visible":true,
                  "width":24,
                  "x":288,
@@ -3337,7 +3431,7 @@
                          "value":2
                         }],
                  "rotation":0,
-                 "type":"cliff",
+                 "type":"cliffs",
                  "visible":true,
                  "width":96,
                  "x":216,
@@ -3354,7 +3448,7 @@
                          "value":2
                         }],
                  "rotation":0,
-                 "type":"cliff",
+                 "type":"cliffs",
                  "visible":true,
                  "width":24,
                  "x":192,
@@ -3371,7 +3465,7 @@
                          "value":2
                         }],
                  "rotation":0,
-                 "type":"cliff",
+                 "type":"cliffs",
                  "visible":true,
                  "width":24,
                  "x":432,
@@ -3388,7 +3482,7 @@
                          "value":2
                         }],
                  "rotation":0,
-                 "type":"cliff",
+                 "type":"cliffs",
                  "visible":true,
                  "width":120,
                  "x":456,
@@ -3405,7 +3499,7 @@
                          "value":2
                         }],
                  "rotation":0,
-                 "type":"cliff",
+                 "type":"cliffs",
                  "visible":true,
                  "width":24,
                  "x":624,
@@ -3422,7 +3516,7 @@
                          "value":2
                         }],
                  "rotation":0,
-                 "type":"cliff",
+                 "type":"cliffs",
                  "visible":true,
                  "width":240,
                  "x":648,
@@ -3439,7 +3533,7 @@
                          "value":2
                         }],
                  "rotation":0,
-                 "type":"cliff",
+                 "type":"cliffs",
                  "visible":true,
                  "width":24,
                  "x":912,
@@ -3456,7 +3550,7 @@
                          "value":2
                         }],
                  "rotation":0,
-                 "type":"cliff",
+                 "type":"cliffs",
                  "visible":true,
                  "width":168,
                  "x":936,
@@ -3473,7 +3567,7 @@
                          "value":2
                         }],
                  "rotation":0,
-                 "type":"cliff",
+                 "type":"cliffs",
                  "visible":true,
                  "width":24,
                  "x":1080,
@@ -3490,7 +3584,7 @@
                          "value":2
                         }],
                  "rotation":0,
-                 "type":"cliff",
+                 "type":"cliffs",
                  "visible":true,
                  "width":72,
                  "x":816,
@@ -3507,7 +3601,7 @@
                          "value":2
                         }],
                  "rotation":0,
-                 "type":"cliff",
+                 "type":"cliffs",
                  "visible":true,
                  "width":24,
                  "x":888,
@@ -3524,7 +3618,7 @@
                          "value":2
                         }],
                  "rotation":0,
-                 "type":"cliff",
+                 "type":"cliffs",
                  "visible":true,
                  "width":24,
                  "x":336,
@@ -3541,7 +3635,7 @@
                          "value":2
                         }],
                  "rotation":0,
-                 "type":"cliff",
+                 "type":"cliffs",
                  "visible":true,
                  "width":24,
                  "x":456,
@@ -3558,7 +3652,7 @@
                          "value":2
                         }],
                  "rotation":0,
-                 "type":"cliff",
+                 "type":"cliffs",
                  "visible":true,
                  "width":48,
                  "x":336,
@@ -3575,7 +3669,7 @@
                          "value":2
                         }],
                  "rotation":0,
-                 "type":"cliff",
+                 "type":"cliffs",
                  "visible":true,
                  "width":48,
                  "x":384,
@@ -3592,7 +3686,7 @@
                          "value":2
                         }],
                  "rotation":0,
-                 "type":"cliff",
+                 "type":"cliffs",
                  "visible":true,
                  "width":48,
                  "x":432,
@@ -3609,7 +3703,7 @@
                          "value":2
                         }],
                  "rotation":0,
-                 "type":"cliff",
+                 "type":"cliffs",
                  "visible":true,
                  "width":24,
                  "x":312,
@@ -3626,7 +3720,7 @@
                          "value":2
                         }],
                  "rotation":0,
-                 "type":"cliff",
+                 "type":"cliffs",
                  "visible":true,
                  "width":24,
                  "x":480,
@@ -3643,7 +3737,7 @@
                          "value":2
                         }],
                  "rotation":0,
-                 "type":"cliff",
+                 "type":"cliffs",
                  "visible":true,
                  "width":24,
                  "x":456,
@@ -3660,7 +3754,7 @@
                          "value":2
                         }],
                  "rotation":0,
-                 "type":"cliff",
+                 "type":"cliffs",
                  "visible":true,
                  "width":72,
                  "x":384,
@@ -3796,8 +3890,8 @@
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 157, 158, 61, 62, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2714, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 205, 206, 207, 208, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 157, 158, 61, 61, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 205, 206, 108, 109, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -3956,23 +4050,23 @@
                         {
                          "name":"elevation_dest",
                          "type":"int",
-                         "value":0
+                         "value":1
                         }, 
                         {
                          "name":"x_dest",
                          "type":"int",
-                         "value":40
+                         "value":986
                         }, 
                         {
                          "name":"y_dest",
                          "type":"int",
-                         "value":24
+                         "value":578
                         }],
                  "rotation":0,
                  "type":"vines",
                  "visible":true,
                  "width":48,
-                 "x":960,
+                 "x":984,
                  "y":528
                 }, 
                 {
@@ -3983,17 +4077,17 @@
                         {
                          "name":"elevation_dest",
                          "type":"int",
-                         "value":0
+                         "value":1
                         }, 
                         {
                          "name":"x_dest",
                          "type":"int",
-                         "value":55
+                         "value":1322
                         }, 
                         {
                          "name":"y_dest",
                          "type":"int",
-                         "value":27
+                         "value":650
                         }],
                  "rotation":0,
                  "type":"vines",
@@ -4010,23 +4104,23 @@
                         {
                          "name":"elevation_dest",
                          "type":"int",
-                         "value":0
+                         "value":1
                         }, 
                         {
                          "name":"x_dest",
                          "type":"int",
-                         "value":35
+                         "value":842
                         }, 
                         {
                          "name":"y_dest",
                          "type":"int",
-                         "value":33
+                         "value":794
                         }],
                  "rotation":0,
                  "type":"vines",
                  "visible":true,
                  "width":24,
-                 "x":888,
+                 "x":864,
                  "y":744
                 }, 
                 {
@@ -4037,23 +4131,23 @@
                         {
                          "name":"elevation_dest",
                          "type":"int",
-                         "value":0
+                         "value":1
                         }, 
                         {
                          "name":"x_dest",
                          "type":"int",
-                         "value":54
+                         "value":1298
                         }, 
                         {
                          "name":"y_dest",
                          "type":"int",
-                         "value":11
+                         "value":266
                         }],
                  "rotation":0,
                  "type":"vines",
                  "visible":true,
                  "width":48,
-                 "x":1296,
+                 "x":1272,
                  "y":216
                 }, 
                 {
@@ -4064,23 +4158,23 @@
                         {
                          "name":"elevation_dest",
                          "type":"int",
-                         "value":0
+                         "value":1
                         }, 
                         {
                          "name":"x_dest",
                          "type":"int",
-                         "value":34
+                         "value":818
                         }, 
                         {
                          "name":"y_dest",
                          "type":"int",
-                         "value":10
+                         "value":242
                         }],
                  "rotation":0,
                  "type":"vines",
                  "visible":true,
                  "width":24,
-                 "x":792,
+                 "x":816,
                  "y":192
                 }, 
                 {
@@ -4091,17 +4185,17 @@
                         {
                          "name":"elevation_dest",
                          "type":"int",
-                         "value":0
+                         "value":3
                         }, 
                         {
                          "name":"x_dest",
                          "type":"int",
-                         "value":41
+                         "value":986
                         }, 
                         {
                          "name":"y_dest",
                          "type":"int",
-                         "value":1
+                         "value":26
                         }],
                  "rotation":0,
                  "type":"vines",
@@ -4156,8 +4250,8 @@
                         }, 
                         {
                          "name":"newDrone",
-                         "type":"int",
-                         "value":0
+                         "type":"bool",
+                         "value":false
                         }],
                  "rotation":0,
                  "type":"respawnPoint",
@@ -4208,12 +4302,12 @@
                         {
                          "name":"x_dest",
                          "type":"int",
-                         "value":59
+                         "value":1418
                         }, 
                         {
                          "name":"y_dest",
                          "type":"int",
-                         "value":29
+                         "value":698
                         }],
                  "rotation":0,
                  "type":"jump_point",
@@ -4230,12 +4324,12 @@
                         {
                          "name":"x_dest",
                          "type":"int",
-                         "value":59
+                         "value":1418
                         }, 
                         {
                          "name":"y_dest",
                          "type":"int",
-                         "value":25
+                         "value":602
                         }],
                  "rotation":0,
                  "type":"jump_point",
@@ -4252,12 +4346,12 @@
                         {
                          "name":"x_dest",
                          "type":"int",
-                         "value":54
+                         "value":1298
                         }, 
                         {
                          "name":"y_dest",
                          "type":"int",
-                         "value":20
+                         "value":482
                         }],
                  "rotation":0,
                  "type":"jump_point",
@@ -4274,12 +4368,12 @@
                         {
                          "name":"x_dest",
                          "type":"int",
-                         "value":50
+                         "value":1202
                         }, 
                         {
                          "name":"y_dest",
                          "type":"int",
-                         "value":20
+                         "value":482
                         }],
                  "rotation":0,
                  "type":"jump_point",
@@ -4296,12 +4390,12 @@
                         {
                          "name":"x_dest",
                          "type":"int",
-                         "value":33
+                         "value":794
                         }, 
                         {
                          "name":"y_dest",
                          "type":"int",
-                         "value":2
+                         "value":50
                         }],
                  "rotation":0,
                  "type":"jump_point",
@@ -4318,12 +4412,12 @@
                         {
                          "name":"x_dest",
                          "type":"int",
-                         "value":37
+                         "value":890
                         }, 
                         {
                          "name":"y_dest",
                          "type":"int",
-                         "value":2
+                         "value":50
                         }],
                  "rotation":0,
                  "type":"jump_point",
@@ -4527,8 +4621,8 @@
                  "rotation":0,
                  "type":"collidable",
                  "visible":true,
-                 "width":48,
-                 "x":1008,
+                 "width":72,
+                 "x":984,
                  "y":792
                 }, 
                 {
@@ -4603,7 +4697,7 @@
                  "name":"",
                  "rotation":0,
                  "type":"collidable",
-                 "visible":true,
+                 "visible":false,
                  "width":144,
                  "x":984,
                  "y":24
@@ -4618,6 +4712,39 @@
                  "width":48,
                  "x":1248,
                  "y":120
+                }, 
+                {
+                 "height":48,
+                 "id":444,
+                 "name":"",
+                 "rotation":0,
+                 "type":"collidable",
+                 "visible":true,
+                 "width":72,
+                 "x":1152,
+                 "y":120
+                }, 
+                {
+                 "height":24,
+                 "id":445,
+                 "name":"",
+                 "rotation":0,
+                 "type":"collidable",
+                 "visible":true,
+                 "width":24,
+                 "x":1056,
+                 "y":168
+                }, 
+                {
+                 "height":48,
+                 "id":446,
+                 "name":"",
+                 "rotation":0,
+                 "type":"collidable",
+                 "visible":true,
+                 "width":24,
+                 "x":1080,
+                 "y":168
                 }],
          "opacity":1,
          "properties":[
@@ -4627,7 +4754,7 @@
                  "value":2
                 }],
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -4647,7 +4774,7 @@
                          "value":2
                         }],
                  "rotation":0,
-                 "type":"cliff",
+                 "type":"cliffs",
                  "visible":true,
                  "width":24,
                  "x":912,
@@ -4664,7 +4791,7 @@
                          "value":2
                         }],
                  "rotation":0,
-                 "type":"cliff",
+                 "type":"cliffs",
                  "visible":true,
                  "width":24,
                  "x":936,
@@ -4681,7 +4808,7 @@
                          "value":2
                         }],
                  "rotation":0,
-                 "type":"cliff",
+                 "type":"cliffs",
                  "visible":true,
                  "width":264,
                  "x":960,
@@ -4698,7 +4825,7 @@
                          "value":2
                         }],
                  "rotation":0,
-                 "type":"cliff",
+                 "type":"cliffs",
                  "visible":true,
                  "width":24,
                  "x":1224,
@@ -4715,7 +4842,7 @@
                          "value":2
                         }],
                  "rotation":0,
-                 "type":"cliff",
+                 "type":"cliffs",
                  "visible":true,
                  "width":48,
                  "x":1248,
@@ -4732,7 +4859,7 @@
                          "value":2
                         }],
                  "rotation":0,
-                 "type":"cliff",
+                 "type":"cliffs",
                  "visible":true,
                  "width":384,
                  "x":936,
@@ -4749,7 +4876,7 @@
                          "value":2
                         }],
                  "rotation":0,
-                 "type":"cliff",
+                 "type":"cliffs",
                  "visible":true,
                  "width":24,
                  "x":1296,
@@ -4766,7 +4893,7 @@
                          "value":2
                         }],
                  "rotation":0,
-                 "type":"cliff",
+                 "type":"cliffs",
                  "visible":true,
                  "width":168,
                  "x":1248,
@@ -4783,7 +4910,7 @@
                          "value":2
                         }],
                  "rotation":0,
-                 "type":"cliff",
+                 "type":"cliffs",
                  "visible":true,
                  "width":216,
                  "x":1296,
@@ -4800,7 +4927,7 @@
                          "value":2
                         }],
                  "rotation":0,
-                 "type":"cliff",
+                 "type":"cliffs",
                  "visible":true,
                  "width":72,
                  "x":1248,
@@ -4817,7 +4944,7 @@
                          "value":2
                         }],
                  "rotation":0,
-                 "type":"cliff",
+                 "type":"cliffs",
                  "visible":true,
                  "width":72,
                  "x":1176,
@@ -4834,7 +4961,7 @@
                          "value":2
                         }],
                  "rotation":0,
-                 "type":"cliff",
+                 "type":"cliffs",
                  "visible":true,
                  "width":24,
                  "x":1152,
@@ -4851,7 +4978,7 @@
                          "value":2
                         }],
                  "rotation":0,
-                 "type":"cliff",
+                 "type":"cliffs",
                  "visible":true,
                  "width":240,
                  "x":888,
@@ -4868,7 +4995,7 @@
                          "value":2
                         }],
                  "rotation":0,
-                 "type":"cliff",
+                 "type":"cliffs",
                  "visible":true,
                  "width":24,
                  "x":864,
@@ -4885,7 +5012,7 @@
                          "value":2
                         }],
                  "rotation":0,
-                 "type":"cliff",
+                 "type":"cliffs",
                  "visible":true,
                  "width":48,
                  "x":1416,
@@ -4902,7 +5029,7 @@
                          "value":2
                         }],
                  "rotation":0,
-                 "type":"cliff",
+                 "type":"cliffs",
                  "visible":true,
                  "width":48,
                  "x":1464,
@@ -4919,7 +5046,7 @@
                          "value":2
                         }],
                  "rotation":0,
-                 "type":"cliff",
+                 "type":"cliffs",
                  "visible":true,
                  "width":96,
                  "x":816,
@@ -4936,7 +5063,7 @@
                          "value":2
                         }],
                  "rotation":0,
-                 "type":"cliff",
+                 "type":"cliffs",
                  "visible":true,
                  "width":48,
                  "x":840,
@@ -4953,7 +5080,7 @@
                          "value":2
                         }],
                  "rotation":0,
-                 "type":"cliff",
+                 "type":"cliffs",
                  "visible":true,
                  "width":96,
                  "x":816,
@@ -4970,7 +5097,7 @@
                          "value":2
                         }],
                  "rotation":0,
-                 "type":"cliff",
+                 "type":"cliffs",
                  "visible":true,
                  "width":96,
                  "x":912,
@@ -4987,7 +5114,7 @@
                          "value":2
                         }],
                  "rotation":0,
-                 "type":"cliff",
+                 "type":"cliffs",
                  "visible":true,
                  "width":360,
                  "x":1008,
@@ -5004,7 +5131,7 @@
                          "value":2
                         }],
                  "rotation":0,
-                 "type":"cliff",
+                 "type":"cliffs",
                  "visible":true,
                  "width":24,
                  "x":1368,
@@ -5021,7 +5148,7 @@
                          "value":2
                         }],
                  "rotation":0,
-                 "type":"cliff",
+                 "type":"cliffs",
                  "visible":true,
                  "width":24,
                  "x":1368,
@@ -5038,7 +5165,7 @@
                          "value":2
                         }],
                  "rotation":0,
-                 "type":"cliff",
+                 "type":"cliffs",
                  "visible":true,
                  "width":240,
                  "x":1128,
@@ -5055,7 +5182,7 @@
                          "value":2
                         }],
                  "rotation":0,
-                 "type":"cliff",
+                 "type":"cliffs",
                  "visible":true,
                  "width":24,
                  "x":1392,
@@ -5072,7 +5199,7 @@
                          "value":2
                         }],
                  "rotation":0,
-                 "type":"cliff",
+                 "type":"cliffs",
                  "visible":true,
                  "width":24,
                  "x":624,
@@ -5089,7 +5216,7 @@
                          "value":2
                         }],
                  "rotation":0,
-                 "type":"cliff",
+                 "type":"cliffs",
                  "visible":true,
                  "width":24,
                  "x":672,
@@ -5106,7 +5233,7 @@
                          "value":2
                         }],
                  "rotation":0,
-                 "type":"cliff",
+                 "type":"cliffs",
                  "visible":true,
                  "width":24,
                  "x":696,
@@ -5123,7 +5250,7 @@
                          "value":2
                         }],
                  "rotation":0,
-                 "type":"cliff",
+                 "type":"cliffs",
                  "visible":true,
                  "width":24,
                  "x":720,
@@ -5140,7 +5267,7 @@
                          "value":2
                         }],
                  "rotation":0,
-                 "type":"cliff",
+                 "type":"cliffs",
                  "visible":true,
                  "width":72,
                  "x":744,
@@ -5157,7 +5284,7 @@
                          "value":2
                         }],
                  "rotation":0,
-                 "type":"cliff",
+                 "type":"cliffs",
                  "visible":true,
                  "width":24,
                  "x":648,
@@ -5400,17 +5527,17 @@
                         {
                          "name":"elevation_dest",
                          "type":"int",
-                         "value":0
+                         "value":2
                         }, 
                         {
                          "name":"x_dest",
                          "type":"int",
-                         "value":39
+                         "value":938
                         }, 
                         {
                          "name":"y_dest",
                          "type":"int",
-                         "value":3
+                         "value":74
                         }],
                  "rotation":0,
                  "type":"vines",
@@ -5642,6 +5769,17 @@
                  "width":144,
                  "x":984,
                  "y":0
+                }, 
+                {
+                 "height":48,
+                 "id":451,
+                 "name":"",
+                 "rotation":0,
+                 "type":"collidable",
+                 "visible":true,
+                 "width":72,
+                 "x":1152,
+                 "y":120
                 }],
          "opacity":1,
          "properties":[
@@ -5651,7 +5789,7 @@
                  "value":3
                 }],
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -5671,7 +5809,7 @@
                          "value":2
                         }],
                  "rotation":0,
-                 "type":"cliff",
+                 "type":"cliffs",
                  "visible":true,
                  "width":24,
                  "x":960,
@@ -5688,7 +5826,7 @@
                          "value":4
                         }],
                  "rotation":0,
-                 "type":"cliff",
+                 "type":"cliffs",
                  "visible":true,
                  "width":24,
                  "x":1128,
@@ -5705,7 +5843,7 @@
                          "value":4
                         }],
                  "rotation":0,
-                 "type":"cliff",
+                 "type":"cliffs",
                  "visible":true,
                  "width":24,
                  "x":984,
@@ -5722,7 +5860,7 @@
                          "value":2
                         }],
                  "rotation":0,
-                 "type":"cliff",
+                 "type":"cliffs",
                  "visible":true,
                  "width":120,
                  "x":1008,
@@ -5743,36 +5881,115 @@
         {
          "draworder":"topdown",
          "id":40,
-         "name":"Textboxen",
+         "name":"Textboxen 1",
          "objects":[
                 {
-                 "height":72,
-                 "id":417,
+                 "height":192,
+                 "id":419,
                  "name":"",
                  "properties":[
                         {
                          "name":"text_zone",
                          "type":"int",
-                         "value":10
+                         "value":12
+                        }, 
+                        {
+                         "name":"textbox_anchor_x",
+                         "type":"int",
+                         "value":190
+                        }, 
+                        {
+                         "name":"textbox_anchor_y",
+                         "type":"int",
+                         "value":700
+                        }, 
+                        {
+                         "name":"textbox_font_size",
+                         "type":"int",
+                         "value":17
+                        }, 
+                        {
+                         "name":"textbox_spacing",
+                         "type":"int",
+                         "value":0
                         }, 
                         {
                          "name":"textbox_text",
                          "type":"string",
-                         "value":""
+                         "value":"With the scout drone, you can also attract the attention of Enemies\n\npress <L> to sacrifice your drone so that enemies in range turn to you\nCAUTION! YOU LOSE ONE LIFE"
                         }],
                  "rotation":0,
                  "type":"textbox",
                  "visible":true,
-                 "width":72,
-                 "x":24,
-                 "y":768
+                 "width":360,
+                 "x":192,
+                 "y":648
                 }],
          "opacity":1,
          "properties":[
                 {
                  "name":"elevation",
                  "type":"int",
-                 "value":3
+                 "value":0
+                }],
+         "type":"objectgroup",
+         "visible":false,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":65,
+         "name":"Textboxen 2",
+         "objects":[
+                {
+                 "height":288,
+                 "id":436,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"text_zone",
+                         "type":"int",
+                         "value":11
+                        }, 
+                        {
+                         "name":"textbox_anchor_x",
+                         "type":"int",
+                         "value":310
+                        }, 
+                        {
+                         "name":"textbox_anchor_y",
+                         "type":"int",
+                         "value":280
+                        }, 
+                        {
+                         "name":"textbox_font_size",
+                         "type":"int",
+                         "value":17
+                        }, 
+                        {
+                         "name":"textbox_spacing",
+                         "type":"int",
+                         "value":0
+                        }, 
+                        {
+                         "name":"textbox_text",
+                         "type":"string",
+                         "value":"The scout drone is very agile\n\npress <J> to jump over small chasms"
+                        }],
+                 "rotation":0,
+                 "type":"textbox",
+                 "visible":true,
+                 "width":144,
+                 "x":336,
+                 "y":168
+                }],
+         "opacity":1,
+         "properties":[
+                {
+                 "name":"elevation",
+                 "type":"int",
+                 "value":1
                 }],
          "type":"objectgroup",
          "visible":false,
@@ -5782,7 +5999,7 @@
         {
          "draworder":"topdown",
          "id":41,
-         "name":"LoreItems",
+         "name":"LoreItems 1",
          "objects":[
                 {
                  "height":24,
@@ -5792,7 +6009,7 @@
                         {
                          "name":"lore_item_text",
                          "type":"string",
-                         "value":""
+                         "value":"Sample 84-03\nThis green substance seems to cover a good quarter\nof the planets surface, mostly gathered into rivers\nand lakes. It is highly acidic, though the orange-brown\nrocks on the planets surface seem to be resistant to\nthis effect."
                         }],
                  "rotation":0,
                  "type":"lore_item",
@@ -5800,16 +6017,33 @@
                  "width":24,
                  "x":216,
                  "y":168
-                }, 
+                }],
+         "opacity":1,
+         "properties":[
+                {
+                 "name":"elevation",
+                 "type":"int",
+                 "value":0
+                }],
+         "type":"objectgroup",
+         "visible":false,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":64,
+         "name":"LoreItems 2",
+         "objects":[
                 {
                  "height":24,
-                 "id":290,
+                 "id":431,
                  "name":"",
                  "properties":[
                         {
                          "name":"lore_item_text",
                          "type":"string",
-                         "value":""
+                         "value":"Mission Briefing\nDestination: X-09\nDistance: 3.71 Lightyears\nThough it's surface looks rather scorched, orbital\nscans indicate that under X-09's surface lie huge\ncavities filled with water. Your Mission is to scout\nthe planet's surface and caves. Determine its potential\nfor colonization. Science teams will be dispatched into\nthe caves and security detail forms a perimeter around\nthe landing zone, just in case the orbital scans missed\nsomething."
                         }],
                  "rotation":0,
                  "type":"lore_item",
@@ -5820,13 +6054,13 @@
                 }, 
                 {
                  "height":24,
-                 "id":291,
+                 "id":432,
                  "name":"",
                  "properties":[
                         {
                          "name":"lore_item_text",
                          "type":"string",
-                         "value":""
+                         "value":"Mission-Log 14-93\nThe planet's surface appears dry and dead, just\nlike the scans indicated. No sign of life or\nvegetation. We'll have another look around and\nreturn to base before nightfall."
                         }],
                  "rotation":0,
                  "type":"lore_item",
@@ -5837,13 +6071,13 @@
                 }, 
                 {
                  "height":24,
-                 "id":292,
+                 "id":433,
                  "name":"",
                  "properties":[
                         {
                          "name":"lore_item_text",
                          "type":"string",
-                         "value":""
+                         "value":"Mission-Log 34-81\nWe have confirmed reports of hostile life forms in the area. They appear to be some kind of primitive crawler species.\nDo NOT take any risks! I want them to be shot on sight. This is to important to let a couple of bugs get into our way!"
                         }],
                  "rotation":0,
                  "type":"lore_item",
@@ -5854,13 +6088,13 @@
                 }, 
                 {
                  "height":24,
-                 "id":416,
+                 "id":434,
                  "name":"",
                  "properties":[
                         {
                          "name":"lore_item_text",
                          "type":"string",
-                         "value":""
+                         "value":"Mission-Log 01-07\nTeams 2 and 3 where dispatched to the ravines to scout\nahead and identify potential dangers and further landing\nspots. The other teams are to remain at the ship and\nsecure the landing site - just in case...\n"
                         }],
                  "rotation":0,
                  "type":"lore_item",
@@ -5874,10 +6108,10 @@
                 {
                  "name":"elevation",
                  "type":"int",
-                 "value":3
+                 "value":1
                 }],
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -5892,15 +6126,30 @@
                  "name":"",
                  "properties":[
                         {
+                         "name":"elevation_dest",
+                         "type":"int",
+                         "value":2
+                        }, 
+                        {
                          "name":"level_switch",
                          "type":"int",
                          "value":0
+                        }, 
+                        {
+                         "name":"x_dest",
+                         "type":"int",
+                         "value":1490
+                        }, 
+                        {
+                         "name":"y_dest",
+                         "type":"int",
+                         "value":672
                         }],
                  "rotation":0,
                  "type":"level_switch",
                  "visible":true,
                  "width":24,
-                 "x":0,
+                 "x":-48,
                  "y":72
                 }],
          "opacity":1,
@@ -5908,21 +6157,26 @@
                 {
                  "name":"elevation",
                  "type":"int",
-                 "value":3
+                 "value":0
                 }],
          "type":"objectgroup",
          "visible":false,
          "x":0,
          "y":0
         }],
- "nextlayerid":62,
- "nextobjectid":419,
+ "nextlayerid":67,
+ "nextobjectid":452,
  "orientation":"orthogonal",
  "properties":[
         {
          "name":"elevation_levels",
          "type":"int",
-         "value":3
+         "value":4
+        }, 
+        {
+         "name":"level_id",
+         "type":"int",
+         "value":1
         }],
  "renderorder":"right-down",
  "tiledversion":"1.10.2",

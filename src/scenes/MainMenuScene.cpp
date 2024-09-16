@@ -34,7 +34,7 @@ void Scenes::MainMenuScene::update()
             {
                 CoreLogic::DataProcessing::StateMachine::changeState(CoreLogic::DataProcessing::GameState::IN_GAME);
             } else {
-                Staging::Game::requestExit();
+                CoreLogic::DataProcessing::StateMachine::changeState(CoreLogic::DataProcessing::GameState::DEATH);
             }
 
         } else if (event == CoreLogic::EventManagement::MOVE_DOWN) {

@@ -18,9 +18,22 @@ namespace CoreLogic::EventManagement
         enum SoundEnum
         {
             //ambient music has to be written before sfx / have a smaller numeber
-            AMBIENT_OVERWORLD, AMBIENT_UNDERWORLD,
+            AMBIENT_UNDERWORLD = 0,
+            AMBIENT_OVERWORLD = 1,
 
-            EXPLOSION, IMPACT_FLOOR, IMPACT_WATER, NOTE, PUSH, RESPAWN_ACTIVATE, RESPAWN_REACTIVATE, RUBBLE, SHOT,
+            EXPLOSION,
+            IMPACT_FLOOR,
+            IMPACT_WATER,
+            NOTE,
+            PUSH,
+            RESPAWN_ACTIVATE,
+            RESPAWN_REACTIVATE,
+            RUBBLE,
+            SHOT,
+            BELL,
+            DEATH_DRONE,
+            DEATH_HUMAN,
+
         };
 
         static SoundHandler &getInstance();

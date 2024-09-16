@@ -36,6 +36,7 @@ CoreLogic::DataProcessing::Map::Map(std::string pa_filename)
 
 
     elevationLevels_ = map.getProp("elevation_levels")->getValue<int>();
+    levelID_ = map.getProp("level_id")->getValue<int>();
 
     /**
      *@note: new Parser automatically adds Layer and Object-Vectors to their respective elevation value within their std::map
@@ -67,7 +68,7 @@ CoreLogic::DataProcessing::Map::Map(std::string pa_filename)
     po_layers_ = std::make_shared<std::map<int, std::vector<tson::Layer>>>(tempLayerMap);
     po_objects_ = std::make_shared<std::map<int, std::vector<tson::Object>>>(tempObjMap);
 
-    CoreLogic::DataProcessing::ActorStorage::Initialize(elevationLevels_);
+    CoreLogic::DataProcessing::ActorStorage::Initialize(elevationLevels_, levelID_);
 //    initializeLists();
     loadObjects();
     CoreLogic::DataProcessing::ActorStorage::setLayers(po_layers_);
@@ -257,13 +258,52 @@ void CoreLogic::DataProcessing::Map::loadObjects()
             }else if (objectClass == "level_switch")
             {
                 int objectLevelID = objectProperties.getProperty("level_switch")->getValue<int>();
+                Vector2 objectDestination = {(float) objectProperties.getProperty("x_dest")->getValue<int>(),
+                        (float) objectProperties.getProperty("y_dest")->getValue<int>()};
+                int objectDestinationElevation = objectProperties.getProperty("elevation_dest")->getValue<int>();
 
                 actor = std::make_shared<EventManagement::Object::LevelSwitch>(EventManagement::Object::LevelSwitch
-                        (objectPosition, objectHitbox, objectId, objectSize, objectElevation, objectLevelID));
+                        (objectPosition, objectHitbox, objectId, objectSize, objectElevation, objectLevelID,
+                                objectDestination, objectDestinationElevation));
                 ActorStorage::addActorByType(objectElevation, actor);
             } else if (objectClass == "mech")
             {
+                bool objectClockwise = objectProperties.getProperty("clockwise")->getValue<bool>();
+                int direction = objectProperties.getProperty("direction")->getValue<int>();
+                CoreLogic::UserInterface::Direction objectStartingDirection;
 
+                switch (direction)
+                {
+                case 0:
+                    objectStartingDirection = UserInterface::Direction::UP;
+                    break;
+                case 1:
+                    objectStartingDirection = UserInterface::Direction::RIGHT;
+                    break;
+                case 2:
+                    objectStartingDirection = UserInterface::Direction::DOWN;
+                    break;
+                case 3:
+                    objectStartingDirection = UserInterface::Direction::LEFT;
+                    break;
+                }
+
+                int intervalEast = objectProperties.getProperty("interval_e")->getValue<int>();
+                int intervalNorth = objectProperties.getProperty("interval_n")->getValue<int>();
+                int intervalSouth = objectProperties.getProperty("interval_s")->getValue<int>();
+                int intervalWest = objectProperties.getProperty("interval_w")->getValue<int>();
+
+                std::map<CoreLogic::UserInterface::Direction, std::pair<int, int>> objectTurnCycle = {
+                        {CoreLogic::UserInterface::Direction::UP, {intervalNorth, 0}},
+                        {CoreLogic::UserInterface::Direction::DOWN, {intervalSouth, 0}},
+                        {CoreLogic::UserInterface::Direction::LEFT, {intervalWest, 0}},
+                        {CoreLogic::UserInterface::Direction::RIGHT, {intervalEast, 0}}};
+
+                if (intervalEast == 0 && intervalNorth == 0 && intervalSouth == 0 && intervalWest == 0) objectTurnCycle.at(objectStartingDirection).first = INT_MAX;
+
+                actor = std::make_shared<EventManagement::Actors::Mech>(CoreLogic::EventManagement::Actors::Mech
+                        (objectPosition, objectHitbox,objectId,objectSize, objectElevation, objectClockwise, objectStartingDirection,  objectTurnCycle));
+                ActorStorage::addActorByType(objectElevation, actor);
             } else if (objectClass == "uplink")
             {
                 actor = std::make_shared<EventManagement::Object::Uplink>(EventManagement::Object::Uplink
@@ -271,16 +311,21 @@ void CoreLogic::DataProcessing::Map::loadObjects()
                 ActorStorage::addActorByType(objectElevation, actor);
             }else if (objectClass == "respawnPoint")
             {
+                int objectLevel = objectProperties.getProperty("level")->getValue<int>();
                 bool objectNewDrone = objectProperties.getProperty("newDrone")->getValue<bool>();
-                int objectUnlockType = objectProperties.getProperty("newDrone")->getValue<int>();
+                int objectUnlockType = CoreLogic::EventManagement::Actors::Drone::DroneType::NONE;
                 bool objectActive = false;
                 if (objectProperties.hasProperty("active"))
                 {
                     objectActive = objectProperties.getProperty("active")->getValue<bool>();
                 }
-
+                if (objectNewDrone == true)
+                {
+                    objectUnlockType = (CoreLogic::EventManagement::Actors::Drone::DroneType) objectProperties
+                            .getProperty("droneType")->getValue<int>();
+                }
                 actor = std::make_shared<EventManagement::Object::DroneRespawnPoint>(EventManagement::Object::DroneRespawnPoint
-                        (objectPosition, objectHitbox, objectId, objectSize, objectElevation, objectNewDrone, objectUnlockType, objectActive));
+                        (objectPosition, objectHitbox, objectId, objectSize, objectElevation, objectNewDrone, objectUnlockType, objectActive, objectLevel));
 
                 ActorStorage::addActorByType(objectElevation, actor);
             }

@@ -16,7 +16,7 @@ namespace CoreLogic
     class Scene
     {
     public:
-        Scene() = delete;
+        Scene() = default;
         Scene(std::shared_ptr<Camera2D> pa_camera);
         virtual void draw(RenderTexture2D &pa_canvas) = 0;
 

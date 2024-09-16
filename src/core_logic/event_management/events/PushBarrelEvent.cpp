@@ -5,6 +5,7 @@
 #include <stdexcept>
 #include "PushBarrelEvent.h"
 #include "EventHandler.h"
+#include "SoundHandler.h"
 
 namespace CoreLogic
 {
@@ -12,6 +13,8 @@ namespace CoreLogic
     {
         PushBarrelEvent::PushBarrelEvent(std::shared_ptr<Object::Barrel> pa_barrel) : AbilityEvent(BARREL_PUSH)
         {
+            auto &soundHandler = CoreLogic::EventManagement::SoundHandler::getInstance();
+            soundHandler.playSound(SoundHandler::PUSH);
             po_barrel_ = pa_barrel;
             ticks_ = 30;
             switch (po_barrel_->getPrimaryDirection())

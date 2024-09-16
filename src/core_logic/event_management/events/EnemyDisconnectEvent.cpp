@@ -5,12 +5,15 @@
 #include "EnemyDisconnectEvent.h"
 #include "actors/Enemy.h"
 #include "data_processing/Store.h"
+#include "SoundHandler.h"
 
 
 namespace CoreLogic::EventManagement
 {
     EnemyDisconnectEvent::EnemyDisconnectEvent(int pa_enemyID): Event(ENEMY_DEATH)
     {
+        auto &soundHandler = CoreLogic::EventManagement::SoundHandler::getInstance();
+        soundHandler.playSound(SoundHandler::DEATH_HUMAN);
         std::map<int, std::vector<std::shared_ptr<Actors::Enemy>>> &enemyPairs = *DataProcessing::ActorStorage::getEnemies();
         bool found= false;
         for (auto &enemyPair : enemyPairs)

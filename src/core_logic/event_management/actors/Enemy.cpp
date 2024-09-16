@@ -49,7 +49,7 @@ namespace CoreLogic::EventManagement::Actors
                 }
             } else
             {
-                if (turnOrder[currentIndex] == currentDir)
+                if (turnOrder[currentIndex] == currentDir && currentIndex != 4)
                 {
                     continue;
                 } else if (turnCycles.at(turnOrder[currentIndex]).first != 0)
@@ -107,7 +107,13 @@ namespace CoreLogic::EventManagement::Actors
 
     void Enemy::checkVision()
     {
-        int range = CoreLogic::DataProcessing::DesignConfig::COLONIST_RANGE * CoreLogic::DataProcessing::global_tileSize;
+        int range =0;
+        if (enemyType_ == EnemyType::COLONIST)
+        {
+            range = CoreLogic::DataProcessing::DesignConfig::COLONIST_RANGE * CoreLogic::DataProcessing::global_tileSize;
+        } else if (enemyType_ == MECH) {
+            range = CoreLogic::DataProcessing::DesignConfig::MECH_RANGE * CoreLogic::DataProcessing::global_tileSize;
+        }
         auto player = CoreLogic::DataProcessing::ActorStorage::getPlayer();
         Rectangle playerHitbox = player->getHitbox();
 
@@ -116,7 +122,7 @@ namespace CoreLogic::EventManagement::Actors
             visionConnected_ = false;
             return;
         }
-        if (player -> getElevation() != elevation_)
+        if (player -> getElevation() > elevation_)
         {
             visionConnected_ = false;
             return;
@@ -184,8 +190,9 @@ namespace CoreLogic::EventManagement::Actors
 
     bool Enemy::checkVisionCollisionObjects(DataProcessing::Line *pa_visionRays, bool *pa_visionCollisions)
     {
-        std::vector<std::shared_ptr<Actor>> barriers = CoreLogic::DataProcessing::ActorStorage::getCollidables()->at(elevation_);
+        auto barriers = CoreLogic::DataProcessing::ActorStorage::getCollidables()->at(elevation_);
         bool *visionCollisions = pa_visionCollisions;
+
 
         for (auto &barrier: barriers)
         {
@@ -193,11 +200,15 @@ namespace CoreLogic::EventManagement::Actors
             {
                 continue;
             }
-            if (barrier->getElevation() != elevation_)
+            if (barrier->getId() == id_)
             {
                 continue;
             }
             if (barrier->getCollisionType() == Actor::CollisionType::NONE)
+            {
+                continue;
+            }
+            if (!barrier->getVisible())
             {
                 continue;
             }
@@ -216,6 +227,7 @@ namespace CoreLogic::EventManagement::Actors
                 }
             }
         }
+
         for (int i = 0; i < 4; ++i)
         {
             if (pa_visionCollisions[i])
@@ -230,12 +242,13 @@ namespace CoreLogic::EventManagement::Actors
             int pa_objectElevation, bool pa_objectClockwise,
             CoreLogic::UserInterface::Direction pa_objectStartingDirection,
             std::map<CoreLogic::UserInterface::Direction, std::pair<int, int>> pa_objectTurnCycle,
-            Vector2 pa_visionPoint) :
+            Vector2 pa_visionPoint, EnemyType pa_enemyType) :
             Actor(pa_position, pa_hitbox, pa_objectId, CollisionType::COLLISION, pa_objectSize, true,
                     pa_objectElevation), visionOrigin_(pa_visionPoint), turnCycles(pa_objectTurnCycle)
     {
         primaryDirection_ = pa_objectStartingDirection;
         clockwise_ = pa_objectClockwise;
+        enemyType_ = pa_enemyType;
     }
 
     bool Enemy::getClockwise() const
