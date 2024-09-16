@@ -6044,7 +6044,7 @@
                         {
                          "name":"lore_item_text",
                          "type":"string",
-                         "value":"Mission-Log 34-81\nWe have confirmed reports of hostile life forms in the area. They appear to be some kind of primitive crawler species.\nDo NOT take any risks! I want them to be shot on sight. This is to important to let a couple of bugs get into our way!"
+                         "value":"Mission-Log 34-81\nWe have confirmed reports of hostile life forms in the\narea. They appear to be some kind of primitive crawler\nspecies. Do NOT take any risks! I want them to be shot on\nsight. This is to important to let a couple of bugs get into\nour way!"
                         }],
                  "rotation":0,
                  "type":"lore_item",
