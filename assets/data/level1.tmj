@@ -672,17 +672,6 @@
                  "width":48,
                  "x":288,
                  "y":312
-                }, 
-                {
-                 "height":48,
-                 "id":301,
-                 "name":"",
-                 "rotation":0,
-                 "type":"pushable",
-                 "visible":true,
-                 "width":48,
-                 "x":744,
-                 "y":672
                 }],
          "opacity":1,
          "properties":[
@@ -2458,29 +2447,7 @@
          "draworder":"topdown",
          "id":53,
          "name":"ExplosiveBarrels 2",
-         "objects":[
-                {
-                 "height":24,
-                 "id":287,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"direction",
-                         "type":"int",
-                         "value":2
-                        }, 
-                        {
-                         "name":"height",
-                         "type":"int",
-                         "value":2
-                        }],
-                 "rotation":0,
-                 "type":"explosive_barrel",
-                 "visible":true,
-                 "width":24,
-                 "x":312,
-                 "y":576
-                }],
+         "objects":[],
          "opacity":1,
          "properties":[
                 {
@@ -6099,7 +6066,7 @@
                         {
                          "name":"lore_item_text",
                          "type":"string",
-                         "value":"Mission-Log 34-81\nWe have confirmed reports of hostile life forms in the area. They appear to be some kind of primitive crawler species.\nDo NOT take any risks! I want them to be shot on sight. This is to important to let a couple of bugs get into our way!"
+                         "value":"Mission-Log 34-81\nWe have confirmed reports of hostile life forms in the\narea. They appear to be some kind of primitive crawler\nspecies. Do NOT take any risks! I want them to be shot on\nsight. This is to important to let a couple of bugs get into\nour way!"
                         }],
                  "rotation":0,
                  "type":"lore_item",
