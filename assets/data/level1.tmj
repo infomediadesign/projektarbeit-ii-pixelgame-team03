@@ -5896,7 +5896,7 @@
                         {
                          "name":"textbox_anchor_x",
                          "type":"int",
-                         "value":190
+                         "value":120
                         }, 
                         {
                          "name":"textbox_anchor_y",
@@ -5916,7 +5916,7 @@
                         {
                          "name":"textbox_text",
                          "type":"string",
-                         "value":"With the scout drone, you can also attract the attention of Enemies\n\npress <L> to sacrifice your drone so that enemies in range turn to you\nCAUTION! YOU LOSE ONE LIFE"
+                         "value":"With the scout drone, you can also attract the\nattention of Enemies\n\npress <L> to sacrifice your drone so that enemies in\nrange turn to you and you can sneak past them.\nYou spawn at the last Checkpoint.\nCAUTION! YOU LOSE ONE LIFE"
                         }],
                  "rotation":0,
                  "type":"textbox",
@@ -5933,7 +5933,7 @@
                  "value":0
                 }],
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
