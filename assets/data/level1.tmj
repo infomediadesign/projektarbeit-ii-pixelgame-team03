@@ -5885,7 +5885,7 @@
                         {
                          "name":"textbox_anchor_x",
                          "type":"int",
-                         "value":120
+                         "value":130
                         }, 
                         {
                          "name":"textbox_anchor_y",
@@ -5895,7 +5895,7 @@
                         {
                          "name":"textbox_font_size",
                          "type":"int",
-                         "value":17
+                         "value":16
                         }, 
                         {
                          "name":"textbox_spacing",
@@ -5949,12 +5949,12 @@
                         {
                          "name":"textbox_anchor_y",
                          "type":"int",
-                         "value":280
+                         "value":300
                         }, 
                         {
                          "name":"textbox_font_size",
                          "type":"int",
-                         "value":17
+                         "value":16
                         }, 
                         {
                          "name":"textbox_spacing",
@@ -5964,7 +5964,7 @@
                         {
                          "name":"textbox_text",
                          "type":"string",
-                         "value":"The scout drone is very agile\n\npress <J> to jump over small chasms"
+                         "value":"The scout drone is very agile.\nPress <J> to jump over small chasms"
                         }],
                  "rotation":0,
                  "type":"textbox",
@@ -5981,7 +5981,7 @@
                  "value":1
                 }],
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
