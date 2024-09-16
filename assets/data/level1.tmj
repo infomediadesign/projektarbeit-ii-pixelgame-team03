@@ -672,17 +672,6 @@
                  "width":48,
                  "x":288,
                  "y":312
-                }, 
-                {
-                 "height":48,
-                 "id":301,
-                 "name":"",
-                 "rotation":0,
-                 "type":"pushable",
-                 "visible":true,
-                 "width":48,
-                 "x":744,
-                 "y":672
                 }],
          "opacity":1,
          "properties":[
