@@ -20,39 +20,37 @@ namespace CoreLogic::DataProcessing {
 
     public:
 
-        //drone life in well life
+        //drone life; in life
         inline static constexpr int STARTING_MAX_DRONE_LIFE = 3;
         inline static constexpr int STARTING_CURRENT_DRONE_LIFE = 3;
         inline static constexpr int REGENERATION_LIFE = 2;
 
-        //Volume in 0.0f - 1.0f
+        //volume; in 0.0f - 1.0f
         inline static constexpr float MUSIC_VOLUME = 0.5f;
         inline static constexpr float SFX_VOLUME = 0.2f;
 
-        //drone speeds; in pixel per tick; currently only affected with drone speed
+        //drone speed; in pixel per tick
         inline static constexpr int DRONE_SPEED = 2;
         inline static constexpr int WORKER_SPEED = 2;
         inline static constexpr int SCOUT_SPEED = 2;
-        inline static constexpr int BELL_TURN_TIME = 1200;
-        inline static constexpr int BELL_DETECTION_TILES = 20;
 
-        //enemy range; in tiles
+        //range; in tiles
         inline static constexpr int COLONIST_RANGE = 8;
         inline static constexpr int MECH_RANGE = 4;
+        inline static constexpr int BELL_DETECTION_TILES = 20;
 
-
-        //enemy detection rate; in ticks
+        //detection rate; in ticks
         inline static constexpr int COLONIST_DETECTION_RATE = 90;
         inline static constexpr int MECH_DETECTION_RATE = 60;
 
+        //how long enemies are turned by the bell; in ticks
+        inline static constexpr int BELL_TURN_TIME = 1200;
 
+
+        //axis threshold (how much tolerance the joysticks have when detecting input (0.0f = no tolerance, 1.0f = tbd))
+        inline static constexpr float AXIS_THRESHOLD = 0.5f;
 
         //default controller mapping; strg click on the right side to be navigated to a list of names of all available buttons.
-        inline static constexpr GamepadButton MOVE_UP_CONTROLLER = GAMEPAD_BUTTON_LEFT_FACE_UP;
-        inline static constexpr GamepadButton MOVE_DOWN_CONTROLLER = GAMEPAD_BUTTON_LEFT_FACE_DOWN;
-        inline static constexpr GamepadButton MOVE_LEFT_CONTROLLER = GAMEPAD_BUTTON_LEFT_FACE_LEFT;
-        inline static constexpr GamepadButton MOVE_RIGHT_CONTROLLER = GAMEPAD_BUTTON_LEFT_FACE_RIGHT;
-
         inline static constexpr GamepadButton INTERACT_CONTROLLER = GAMEPAD_BUTTON_RIGHT_FACE_DOWN;
         inline static constexpr GamepadButton ABILITY_CONTROLLER = GAMEPAD_BUTTON_RIGHT_FACE_LEFT;
         inline static constexpr GamepadButton DISCONNECT_CONTROLLER = GAMEPAD_BUTTON_RIGHT_FACE_UP;
@@ -65,11 +63,6 @@ namespace CoreLogic::DataProcessing {
         inline static constexpr GamepadButton EXIT_CONTROLLER = GAMEPAD_BUTTON_MIDDLE_LEFT;
 
         //default keyboard mapping; strg click on the right side to be navigated to a list of names of all available keys.
-        inline static constexpr KeyboardKey MOVE_UP_KEYBOARD = KEY_W;
-        inline static constexpr KeyboardKey MOVE_DOWN_KEYBOARD = KEY_S;
-        inline static constexpr KeyboardKey MOVE_LEFT_KEYBOARD = KEY_A;
-        inline static constexpr KeyboardKey MOVE_RIGHT_KEYBOARD = KEY_D;
-
         inline static constexpr KeyboardKey INTERACT_KEYBOARD = KEY_K;
         inline static constexpr KeyboardKey ABILITY_KEYBOARD = KEY_J;
         inline static constexpr KeyboardKey DISCONNECT_KEYBOARD = KEY_I;
