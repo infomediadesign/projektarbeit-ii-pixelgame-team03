@@ -19,6 +19,7 @@ namespace CoreLogic::EventManagement
         FallingBarrelEvent(std::shared_ptr<Object::Barrel> pa_barrel);
     protected:
         void destroy() override;
+        int explosionFrames_ = 0;
 
     };
 

@@ -17,6 +17,7 @@ namespace CoreLogic::EventManagement
         po_mainActor_ = pa_barrel;
         fallHeight_ = std::dynamic_pointer_cast<Object::Barrel>(po_mainActor_)
                 ->getFallHeight();
+        explosionFrames_ = po_mainActor_->getSprite().getFrameAmount(1);
     }
 
 
@@ -51,7 +52,7 @@ namespace CoreLogic::EventManagement
                 }
             }
         }
-        if (ticks_ % 5 == 0)
+       if (ticks_ % (60/explosionFrames_+1) == 0)
         {
             po_mainActor_ -> shiftFrame(1);
         }

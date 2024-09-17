@@ -18,6 +18,7 @@ namespace CoreLogic::EventManagement
         explicit EnemyVisionEvent(int pa_id);
         ~EnemyVisionEvent();
         void update() override;
+        void resetFound() { found_ = false; };
     protected:
         bool found_ = false;
 
