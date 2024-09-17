@@ -5975,7 +5975,7 @@
                         {
                          "name":"textbox_text",
                          "type":"string",
-                         "value":"The scout drone is very agile\n\npress <J> to jump over small chasms"
+                         "value":"The scout drone is very agile\n\npress <J> as the scout to jump over small chasms"
                         }],
                  "rotation":0,
                  "type":"textbox",
@@ -5992,7 +5992,7 @@
                  "value":1
                 }],
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
