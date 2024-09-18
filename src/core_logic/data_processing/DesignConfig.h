@@ -26,13 +26,13 @@ namespace CoreLogic::DataProcessing {
         inline static constexpr int REGENERATION_LIFE = 2;
 
         //volume; in 0.0f - 1.0f
-        inline static constexpr float MUSIC_VOLUME = 0.5f;
-        inline static constexpr float SFX_VOLUME = 0.2f;
+        inline static constexpr float MUSIC_VOLUME = 0.4f;
+        inline static constexpr float SFX_VOLUME = 0.1f;
 
         //drone speed; in pixel per tick
         inline static constexpr int DRONE_SPEED = 2;
         inline static constexpr int WORKER_SPEED = 2;
-        inline static constexpr int SCOUT_SPEED = 2;
+        inline static constexpr int SCOUT_SPEED = 3;
 
         //range; in tiles
         inline static constexpr int COLONIST_RANGE = 8;
