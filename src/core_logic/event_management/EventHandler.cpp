@@ -255,7 +255,26 @@ void CoreLogic::EventManagement::EventHandler::deactivateEvent(EventEnum pa_deac
 void CoreLogic::EventManagement::EventHandler::resetPlayer()
 {
     po_movementEvent_->updateMainActor();
-    po_activeEvents_[0].clear();
+    for (auto &pair: po_activeEvents_)
+    {
+        for (auto it = pair.second.begin(); it != pair.second.end(); ++it)
+        {
+            if (*it == nullptr)
+            {
+                continue;
+            }
+            if (it->get() -> getID() == VISION)
+            {
+                if (EnemyVisionEvent* eve = dynamic_cast<EnemyVisionEvent*>(it->get())) {
+                    // Call the child cldass function if the cast is successful
+                    eve->resetFound();
+                }
+                pair.second.erase(it);
+                break;
+            }
+        }
+        po_activeEvents_[0].clear();
+    }
 }
 
 

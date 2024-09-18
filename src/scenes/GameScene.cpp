@@ -36,7 +36,7 @@ Scenes::GameScene::GameScene(): Scene(std::make_shared<Camera2D>()),
     auto &eventHandler = CoreLogic::EventManagement::EventHandler::getInstance();
     eventHandler.resetPlayer();
 
-//    CoreLogic::DataProcessing::ActorStorage::unlockDrone(CoreLogic::EventManagement::Actors::Drone::DroneType::SCOUT);
+    CoreLogic::DataProcessing::ActorStorage::unlockDrone(CoreLogic::EventManagement::Actors::Drone::DroneType::SCOUT);
 }
 
 int Scenes::GameScene::getCurrentLevelID()
@@ -75,6 +75,11 @@ void Scenes::GameScene::update()
             return;
         }
     }
+
+    if (IsKeyPressed(KEY_ZERO)) player->setElevation(0);
+    if (IsKeyPressed(KEY_ONE)) player->setElevation(1);
+    if (IsKeyPressed(KEY_TWO)) player->setElevation(2);
+    if (IsKeyPressed(KEY_NINE)) player->setElevation(9);
 
     player->update();
     for (auto &pair: enemies)

@@ -21,17 +21,17 @@ void CoreLogic::EventManagement::CleaningEvent::update()
      * @first: rubble -> setCleaned
      * @second: shiftFrame for working number
      */
-    if (ticks_ % 20 == 0)
+    if (ticks_ % 10 == 0)
     {
         po_mainActor_->shiftFrame(1);
     }
-    if (ticks_ == 20)
+    if (ticks_ == 10)
     {
         auto &soundHandler = CoreLogic::EventManagement::SoundHandler::getInstance();
         soundHandler.playSound(SoundHandler::RUBBLE);
     }
     ticks_++;
-    if (ticks_==100)
+    if (ticks_==50)
     {
         po_rubble_->setCleaned();
         throw EventException("Rubble Cleaned", true);
