@@ -4,21 +4,39 @@
 
 #include "GameScene.h"
 #include "event_management/EventHandler.h"
+#include "event_management/SoundHandler.h"
+#include "user_interface/HUD.h"
+#include "event_management/actors/Enemy.h"
+#include "event_management/actors/drones/Worker.h"
+#include "event_management/actors/drones/Scout.h"
 
-
+//assets/data/hive_PROG_tech-demo-map_2024-07-14.tmj
 Scenes::GameScene::GameScene(): Scene(std::make_shared<Camera2D>()),
                                 po_levels_(std::make_unique<std::vector<CoreLogic::DataProcessing::Level>>(std::initializer_list<CoreLogic::DataProcessing::Level>{
-                                        CoreLogic::DataProcessing::Level(std::make_unique<std::vector<std::string>>(std::initializer_list<std::string>{"assets/data/hive_PROG_tech-demo-map_2024-07-14.tmj", "lol"}), 0, CoreLogic::DataProcessing::LevelState::Default),
-                                        CoreLogic::DataProcessing::Level(std::make_unique<std::vector<std::string>>(std::initializer_list<std::string>{"lel", "assets/data/level0.tmj"}), 1, CoreLogic::DataProcessing::LevelState::War)
+                                        CoreLogic::DataProcessing::Level(std::make_unique<std::vector<std::string>>
+                                        (std::initializer_list<std::string>{"assets/data/level0.tmj", "lol"}), 0,
+                                        CoreLogic::DataProcessing::LevelState::Default, 0),
+                                        CoreLogic::DataProcessing::Level(std::make_unique<std::vector<std::string>>(std::initializer_list<std::string>{"lel", "assets/data/level1.tmj"}),
+                                                                         1, CoreLogic::DataProcessing::LevelState::War, 1)
                         }))
 {
     camera_ -> zoom = 1.0f;
-    po_currentMap_ = std::make_unique<CoreLogic::DataProcessing::Map>(po_levels_ -> at(0).getMapPath());
-    CoreLogic::DataProcessing::ActorStorage::setLayers(po_currentMap_ -> getLayers());
-    po_previousMap_ = std::make_unique<CoreLogic::DataProcessing::Map>(*po_currentMap_);
+    po_loadMap_ = std::make_unique<CoreLogic::DataProcessing::Map>(po_levels_ -> at(0).getMapPath());
+//    CoreLogic::DataProcessing::ActorStorage::setLayers(po_loadMap_ -> getLayers());
+    po_previousMap_ = std::make_unique<CoreLogic::DataProcessing::Map>(*po_loadMap_);
     currentLevelID_ = po_levels_ -> at(0).getLevelID();
     previousLevelID_ = currentLevelID_;
 
+    auto spawnPoint = CoreLogic::DataProcessing::ActorStorage::getActiveSpawnPoint();
+    CoreLogic::EventManagement::Actors::Worker drone = { {spawnPoint->getPosition().x, spawnPoint->getPosition().y},
+            {spawnPoint->getPosition().x, spawnPoint->getPosition().y, 32, 32}, 0,
+            {38, 38}, 0};
+    CoreLogic::DataProcessing::ActorStorage::setPlayer(std::make_shared<CoreLogic::EventManagement::Actors::Worker>
+            (drone));
+    auto &eventHandler = CoreLogic::EventManagement::EventHandler::getInstance();
+    eventHandler.resetPlayer();
+
+    CoreLogic::DataProcessing::ActorStorage::unlockDrone(CoreLogic::EventManagement::Actors::Drone::DroneType::SCOUT);
 }
 
 int Scenes::GameScene::getCurrentLevelID()
@@ -29,13 +47,12 @@ int Scenes::GameScene::getCurrentLevelID()
 void Scenes::GameScene::draw(RenderTexture2D &pa_canvas)
 {
     CoreLogic::UserInterface::Renderer& renderer = *CoreLogic::UserInterface::Renderer::getInstance();
-    Color bgColor = po_currentMap_ -> getBgColor();
+    Color bgColor = po_loadMap_ -> getBgColor();
     renderer.render(CoreLogic::DataProcessing::ActorStorage::getLayers(), po_actors_, *camera_, pa_canvas, bgColor);
 }
 
 void Scenes::GameScene::update()
 {
-    CoreLogic::DataProcessing::ticks++;
 
     Camera2D &camera = *camera_;
     /**
@@ -43,7 +60,39 @@ void Scenes::GameScene::update()
      **/
 
     CoreLogic::EventManagement::EventHandler &eventHandler = CoreLogic::EventManagement::EventHandler::getInstance();
-    std::shared_ptr<CoreLogic::EventManagement::Actors::Drone>player = CoreLogic::DataProcessing::ActorStorage::getPlayer();
+    CoreLogic::EventManagement::SoundHandler &soundHandler = CoreLogic::EventManagement::SoundHandler::getInstance();
+    std::shared_ptr<CoreLogic::EventManagement::Actors::Drone> player = CoreLogic::DataProcessing::ActorStorage::getPlayer();
+    std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Actors::Enemy>>> &enemies = *CoreLogic::DataProcessing::ActorStorage::getEnemies();
+
+    auto levelSwitches = CoreLogic::DataProcessing::ActorStorage::getLevelSwitches()->at(player->getElevation());
+    for (auto &levelSwitch: levelSwitches)
+    {
+        if (CheckCollisionRecs(levelSwitch->getHitbox(), player->getHitbox()))
+        {
+            player->setElevation(levelSwitch->getSwitchElevation());
+            player->setPosition(levelSwitch->getSwitchCoordinates());
+            switchLevel(levelSwitch->getNewLevelID());
+            return;
+        }
+    }
+
+    if (IsKeyPressed(KEY_ZERO)) player->setElevation(0);
+    if (IsKeyPressed(KEY_ONE)) player->setElevation(1);
+    if (IsKeyPressed(KEY_TWO)) player->setElevation(2);
+    if (IsKeyPressed(KEY_NINE)) player->setElevation(9);
+
+    player->update();
+    for (auto &pair: enemies)
+    {
+        for (auto &enemy: pair.second)
+        {
+            if (enemy == nullptr)
+            {
+                continue;
+            }
+            enemy->update();
+        }
+    }
 
     /**
      *@todo: InputHandler to be called static
@@ -51,41 +100,27 @@ void Scenes::GameScene::update()
     eventHandler.handleEvents(po_inputHandler_->handleInput(), player->getId());
     eventHandler.update();
 
+    soundHandler.update();
 
-    if (IsKeyPressed(KEY_M))
+    CoreLogic::UserInterface::HUD& hud = *CoreLogic::UserInterface::HUD::getInstance();
+    hud.update();
+    
+
+    if (IsKeyPressed(CoreLogic::DataProcessing::DesignConfig::PAUSE_KEYBOARD) || IsGamepadButtonPressed(CoreLogic::DataProcessing::DesignConfig::PAUSE_CONTROLLER, 0))
     {
-        if (player->getElevation() == 0)
-        {
-            player->setElevation(1);
-            player->setPosition({744, 600});
-        } else if (player->getElevation() == 1) {
-            player->setElevation(0);
-            player->setPosition({816,648});
-        }
+        CoreLogic::DataProcessing::StateMachine::changeState(CoreLogic::DataProcessing::GameState::MAIN_MENU);
     }
 
-    if (IsKeyPressed(KEY_T))
+    if (CoreLogic::DataProcessing::global_ticks % 10 == 0)
     {
-        if(currentLevelID_ == 0)
+        auto links = CoreLogic::DataProcessing::ActorStorage::getUplinks();
+        for (auto &linklayer: *links)
         {
-            currentLevelID_ = 1;
-
-        } else if (currentLevelID_ == 1)
-        {
-            currentLevelID_ = 0;
-
+            for (auto &uplink: linklayer.second)
+            {
+                uplink->shiftFrame(0);
+            }
         }
-        po_currentMap_ = std::make_unique<CoreLogic::DataProcessing::Map>(po_levels_ -> at(currentLevelID_).getMapPath());
-        CoreLogic::DataProcessing::ActorStorage::setLayers(po_currentMap_ -> getLayers());
-        player = CoreLogic::DataProcessing::ActorStorage::getPlayer();
-        if (currentLevelID_ == 1)
-        {
-            player->setPosition({80,700});
-        } else if (currentLevelID_ == 0) {
-            player->setPosition({100,100});
-        }
-        eventHandler.switchLevels();
-
     }
 
     Vector2 playerPos = player->getPosition();
@@ -127,7 +162,48 @@ void Scenes::GameScene::render()
 
 }
 
-void Scenes::GameScene::switchLevel()
+void Scenes::GameScene::switchLevel(int pa_levelID)
 {
+    int currentLevelID = CoreLogic::DataProcessing::ActorStorage::getCurrentLevelID();
+    for (auto &level: *po_levels_)
+    {
+        if (level.getLevelID() == currentLevelID)
+        {
+            level.saveLevelStates();
+        }
+    }
 
+    auto &soundHandler = CoreLogic::EventManagement::SoundHandler::getInstance();
+    for (auto &level: *po_levels_)
+    {
+        if (level.getLevelID() == pa_levelID)
+        {
+            if (level.getLevelActorStateStorage() == nullptr)
+            {
+                po_loadMap_ = std::make_unique<CoreLogic::DataProcessing::Map>(level.getMapPath());
+            } else {
+                level.loadLevelData();
+            }
+            soundHandler.playAmbient(static_cast<CoreLogic::EventManagement::SoundHandler::SoundEnum>(level.getAmbientId()));
+        }
+    }
 }
+
+void Scenes::GameScene::onSwitch()
+{
+    if (CoreLogic::DataProcessing::StateMachine::getPreviousState() == CoreLogic::DataProcessing::DRONE_SELECTION)
+    {
+        auto activeSpawnPoint = CoreLogic::DataProcessing::ActorStorage::getActiveSpawnPoint();
+        if (activeSpawnPoint != nullptr)
+        {
+            if (activeSpawnPoint->getLevel() != CoreLogic::DataProcessing::ActorStorage::getCurrentLevelID())
+            {
+                switchLevel(activeSpawnPoint->getLevel());
+            }
+        }
+    }
+    auto &eventHandler = CoreLogic::EventManagement::EventHandler::getInstance();
+    eventHandler.resetPlayer();
+    update();
+}
+

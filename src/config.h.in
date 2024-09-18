@@ -20,7 +20,7 @@ namespace GameSpace {
         inline static constexpr int Def_ExitKey = KEY_NULL;
 
         inline static constexpr bool Def_FullScreen = false;
-        inline static constexpr bool Def_Audio = false;
+        inline static constexpr bool Def_Audio = true;
     };
 
     //#define GAME_START_FULLSCREEN

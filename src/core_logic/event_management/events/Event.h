@@ -10,29 +10,29 @@
 #include "event_management/InputHandler.h"
 
 
-class Event
+namespace CoreLogic::EventManagement
 {
+    class Event
+    {
 
-public:
-    explicit Event(CoreLogic::EventManagement::EventEnum pa_ID);
-    virtual ~Event() = default;
-    virtual void update() = 0;
-    CoreLogic::EventManagement::EventEnum getID();
-protected:
-    /**
-     *@question: needed?
-     **/
-    std::shared_ptr<CoreLogic::EventManagement::Actor> po_mainActor_;
+    public:
+        explicit Event(EventEnum pa_ID);
+        virtual ~Event() = default;
+        virtual void update() = 0;
+        EventEnum getID();
+    protected:
+        /**
+         *@question: needed?
+         **/
+        std::shared_ptr<Actor> po_mainActor_;
 
-    Event() = delete;
+        Event() = delete;
 
-    const CoreLogic::EventManagement::EventEnum id_;
+        const EventEnum id_;
+        int ticks_ = 0;
 
-    /**
-     *@todo: static input Handler?
-     **/
-
-};
+    };
+}
 
 
 #endif //HIVE_EVENT_H

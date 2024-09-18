@@ -27,11 +27,16 @@ namespace Staging
         Game(const Staging::Game &game) = delete;
         Game &operator=(const Game &) = delete;
 
+
         void run();
 
         ~Game();
 
+        static void requestExit();
+
     private:
+        static bool running_;
+
         const int stageWidth_;
         const int stageHeight_;
         const int targetFPS_;

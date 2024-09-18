@@ -3,6 +3,7 @@
 //
 
 #include "Renderer.h"
+#include "HUD.h"
 
 CoreLogic::UserInterface::Renderer* CoreLogic::UserInterface::Renderer::po_instance_ = nullptr;
 std::mutex CoreLogic::UserInterface::Renderer::mutex_;
@@ -19,26 +20,26 @@ CoreLogic::UserInterface::Renderer *CoreLogic::UserInterface::Renderer::getInsta
 
 void CoreLogic::UserInterface::Renderer::render(std::shared_ptr<std::map<int, std::vector<tson::Layer>>> pa_layers, std::shared_ptr<std::map<int,std::vector<EventManagement::Actor>>> &pa_actors, Camera2D &pa_camera, RenderTexture2D &pa_canvas, Color pa_bgColor)
 {
-
     int screenWidth = CoreLogic::DataProcessing::screenWidth_;
     int screenHeight = CoreLogic::DataProcessing::screenHeight_;
+    CoreLogic::UserInterface::HUD &hud = *CoreLogic::UserInterface::HUD::getInstance();
 
     Rectangle cameraRec = {0, 0, 0, 0};
     if (pa_camera.target.x > 0)
     {
-        cameraRec.x = floorf(pa_camera.target.x / 24);
+        cameraRec.x = floorf(pa_camera.target.x / DataProcessing::global_tileSize);
     }
     if (pa_camera.target.y > 0)
     {
-        cameraRec.y = floorf(pa_camera.target.y / 24);
+        cameraRec.y = floorf(pa_camera.target.y / DataProcessing::global_tileSize);
     }
     if (pa_camera.target.x + screenWidth > 0)
     {
-        cameraRec.width = floorf((pa_camera.target.x + screenWidth+24) / 24);
+        cameraRec.width = floorf((pa_camera.target.x + screenWidth + DataProcessing::global_tileSize) / DataProcessing::global_tileSize);
     }
     if (pa_camera.target.y + screenHeight > 0)
     {
-        cameraRec.height = floorf((pa_camera.target.y + screenHeight+24) / 24);
+        cameraRec.height = floorf((pa_camera.target.y + screenHeight + DataProcessing::global_tileSize) / DataProcessing::global_tileSize);
     }
     ClearBackground(pa_bgColor);
     BeginTextureMode(pa_canvas);
@@ -47,24 +48,85 @@ void CoreLogic::UserInterface::Renderer::render(std::shared_ptr<std::map<int, st
         BeginMode2D(pa_camera);
         {
             ClearBackground(pa_bgColor);
-            for (const auto& pair : *pa_layers) {
+            std::shared_ptr<CoreLogic::EventManagement::Actors::Drone> player = CoreLogic::DataProcessing::ActorStorage::getPlayer();
+            for (const auto &pair: *pa_layers)
+            {
                 const std::vector<tson::Layer> &layers = pair.second;
-                for (tson::Layer layer: layers) {
-                    if (layer.getType() == tson::LayerType::TileLayer) {
+                for (tson::Layer layer: layers)
+                {
+                    if (layer.getType() == tson::LayerType::TileLayer)
+                    {
                         if (layer.isVisible())
                         {
                             renderTileLayer(layer, cameraRec);
                         }
                     }
                 }
+                auto &visibles = CoreLogic::DataProcessing::ActorStorage::getVisibles()->at(pair.first);
+                if (!visibles.empty())
+                {
+                    for (auto &visible: visibles)
+                    {
+                        if (visible == nullptr)
+                        {
+                            continue;
+                        }
+                        if (!visible->getVisible())
+                        {
+                            continue;
+                        }
+
+                        visible->draw();
+                    }
+                }
+                if (player->getElevation() == pair.first)
+                {
+                    player->draw();
+                }
+            }
+            /*auto &visibles = *CoreLogic::DataProcessing::ActorStorage::getVisibles();
+            for (auto & pair: visibles)
+            {
+                for (auto &visible: pair.second)
+                {
+                    if (visible == nullptr)
+                    {
+                        continue;
+                    }
+                    if (!visible->getVisible())
+                    {
+                        continue;
+                    }
+
+                    visible->draw();
+                }
             }
 
-            CoreLogic::EventManagement::Actors::Drone &player = *CoreLogic::DataProcessing::ActorStorage::getPlayer();
-            DrawTexturePro(player.getTexture(), player.getFrame(), player.getHitbox(), {0,0}, 0,
-             WHITE);
+            player->draw();
+*/
+            auto &barrels = *CoreLogic::DataProcessing::ActorStorage::getBarrels();
+            for (auto & pair: barrels)
+            {
+                for (auto &barrel: pair.second)
+                {
+                    if (barrel == nullptr)
+                    {
+                        continue;
+                    }
+                    if (!barrel->getVisible())
+                    {
+                        continue;
+                    }
+                    barrel->draw();
+                }
+            }
 
-        } EndMode2D();
-    } EndTextureMode();
+            hud.draw({pa_camera.target.x, pa_camera.target.y, 640, 360});
+
+        }
+        EndMode2D();
+    }
+    EndTextureMode();
 }
 
 void CoreLogic::UserInterface::Renderer::renderTileLayer(tson::Layer &pa_layer, Rectangle pa_cameraRec)

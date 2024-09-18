@@ -5,18 +5,18 @@
 #ifndef HIVE_MECH_H
 #define HIVE_MECH_H
 
-#include "../../Actor.h"
+#include "event_management/Actor.h"
+#include "event_management/actors/Enemy.h"
 
 namespace CoreLogic::EventManagement::Actors {
 
-            class Mech : public EventManagement::Actor{
+            class Mech : public Enemy{
 
             public:
-                Mech(Vector2 pa_position, Rectangle pa_hitbox, int pa_id, CollisionType pa_collidable, Vector2 pa_size, bool pa_visible, int pa_elevation)
-                : Actor(pa_position, pa_hitbox, pa_id, pa_collidable, pa_size, pa_visible, pa_elevation) {};
+                Mech(Vector2 pa_position, Rectangle pa_hitbox, int pa_objectId, Vector2 pa_objectSize, int pa_objectElevation, bool pa_objectClockwise,
+                        CoreLogic::UserInterface::Direction pa_objectStartingDirection, std::map<CoreLogic::UserInterface::Direction, std::pair<int, int>> pa_objectTurnCycle);
 
             };
-
 }
 
 #endif //HIVE_MECH_H

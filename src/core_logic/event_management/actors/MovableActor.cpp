@@ -33,15 +33,12 @@ namespace CoreLogic::EventManagement::Actors {
         }
     }
 
-    void MovableActor::update()
-    {
 
-    }
 
     void MovableActor::setPosition(Vector2 pa_position)
     {
         position_ = pa_position;
         updateHitbox();
-        adjustOutOfBounds();
+//        adjustOutOfBounds();
     }
 }

@@ -17,6 +17,12 @@ namespace Scenes
 
         void draw(RenderTexture2D &pa_canvas) override;
         void update() override;
+        void onSwitch() override;
+
+    protected:
+        CoreLogic::UserInterface::Sprite sprite_;
+        bool startGame_ = true;
+
     };
 }
 

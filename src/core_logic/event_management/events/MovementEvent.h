@@ -18,10 +18,10 @@ namespace CoreLogic::EventManagement
         void update() override;
         void startMove(EventEnum pa_Event);
         void updateMainActor();
-    private:
+    protected:
         void checkStillPressed();
         void updateActorDir();
-        int ticks_ = 0;
+        void stop();
         bool ticksRunning_ = false;
         EventEnum primaryDir_;
         std::map<EventEnum, bool> directionMap_;

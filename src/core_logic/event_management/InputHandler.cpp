@@ -5,206 +5,138 @@
 #include <iostream>
 #include "InputHandler.h"
 #include "EventUtilities.h"
+#include "data_processing/DesignConfig.h"
+
+bool CoreLogic::EventManagement::InputHandler::lastInputKeyBoard_ = true;
 
 namespace CoreLogic::EventManagement
 {
 
     InputHandler::InputHandler()
     {
+        keyboardInGameMapping_ = std::make_shared<std::map<EventEnum, std::shared_ptr<Input>>>();
+        controllerInGameMapping_ = std::make_shared<std::map<EventEnum, std::shared_ptr<Input>>>();
+
+        keyboardMenuMapping_ = std::make_shared<std::map<EventEnum, std::shared_ptr<Input>>>();
+        controllerMenuMapping_ = std::make_shared<std::map<EventEnum, std::shared_ptr<Input>>>();
+
         keyboardDefaultMapping();
         controllerDefaultMapping();
     }
 
 
-    bool InputHandler::IsAxisPressed(Input &pa_axis)
-    {
-        if (pa_axis.type == Input::AXIS)
-        {
-            if (pa_axis.direction == Input::AxisDirection::Positive
-                && (!pa_axis.activated && GetGamepadAxisMovement(0, pa_axis.axis) < pa_axis.axisThreshold))
-            {
-                updateInputActivated(pa_axis, true);
-                return true;
-            } else if (pa_axis.direction == Input::AxisDirection::Negative
-                       && (!pa_axis.activated && GetGamepadAxisMovement(0, pa_axis.axis) > pa_axis.axisThreshold * -1))
-            {
-                updateInputActivated(pa_axis, true);
-                return true;
-            }
-        }
-        return false;
-    }
-
-    bool InputHandler::IsAxisReleased(Input &pa_axis)
-    {
-        if (pa_axis.type == Input::AXIS)
-        {
-            if (pa_axis.direction == Input::AxisDirection::Positive)
-            {
-                if (pa_axis.activated)
-                {
-                    if (GetGamepadAxisMovement(0, pa_axis.axis) > pa_axis.axisThreshold)
-                    {
-                        updateInputActivated(pa_axis, false);
-                        return true;
-                    }
-                }
-            }else if (pa_axis.direction == Input::AxisDirection::Negative)
-            {
-                if (pa_axis.activated && GetGamepadAxisMovement(0, pa_axis.axis) < pa_axis.axisThreshold * -1)
-                {
-                    updateInputActivated(pa_axis, false);
-                    return true;
-                }
-            }
-
-        }
-        return false;
-    }
-
-
     std::vector<EventEnum> InputHandler::handleInput()
     {
+
+        std::shared_ptr<std::map<EventEnum, std::shared_ptr<Input>>> controllerMapping;
+        std::shared_ptr<std::map<EventEnum, std::shared_ptr<Input>>> keyboardMapping;
+
+        if (CoreLogic::DataProcessing::StateMachine::getCurrentState() == CoreLogic::DataProcessing::GameState::IN_GAME)
+        {
+            controllerMapping = controllerInGameMapping_;
+            keyboardMapping = keyboardInGameMapping_;
+        } else {
+            controllerMapping = controllerMenuMapping_;
+            keyboardMapping = keyboardMenuMapping_;
+        }
+
         std::vector<EventEnum> activatedEvents;
 
-        KeyboardKey currentKey = (KeyboardKey) GetKeyPressed();
         GamepadButton currentButton = (GamepadButton) GetGamepadButtonPressednotDown();
 
-        bool keyboardPressed = (currentKey != KEY_NULL);
+        bool keyboardPressed = false;
 
         //keyboard input
-        while (currentKey != KEY_NULL)
+        for (auto pair : *keyboardMapping)
         {
-            if (keyboardInGameMapping.find(currentKey) != keyboardInGameMapping.end())
+            if (IsKeyPressed((KeyboardKey) *pair.second))
             {
-                EventEnum event = keyboardInGameMapping.at(currentKey);
-                activatedEvents.push_back(event);
+                activatedEvents.push_back(pair.first);
+                keyboardPressed = true;
             }
-            currentKey = (KeyboardKey) GetKeyPressed();
         }
         if (keyboardPressed)
         {
+            lastInputKeyBoard_ = true;
             return activatedEvents;
         }
 
         //controller input
-        if (currentButton != GAMEPAD_BUTTON_UNKNOWN)
+        for (auto pair : *controllerMapping)
         {
-            if (controllerInGameMapping.find(currentButton) != controllerInGameMapping.end())
+            if (pair.second->type == Input::BUTTON)
             {
-                EventEnum event = controllerInGameMapping.at(currentButton);
-                activatedEvents.push_back(event);
-            }
-        }
-
-        std::vector<InputHandler::Input> axisInput = GetGamepadAxisPressed();
-        for (InputHandler::Input currentAxis: axisInput)
-        {
-            if (controllerInGameMapping.find(currentAxis) != controllerInGameMapping.end())
+                if (IsGamepadButtonPressed(0, (GamepadButton) *pair.second))
+                {
+                    activatedEvents.push_back(pair.first);
+                    lastInputKeyBoard_ = false;
+                }
+            } else if (pair.second->type == Input::AXIS)
             {
-                EventEnum event = controllerInGameMapping.at(currentAxis);
-                activatedEvents.push_back(event);
+                if (IsGamepadAxisPressed(pair.second))
+                {
+                    activatedEvents.push_back(pair.first);
+                    pair.second->activated = true;
+                    lastInputKeyBoard_ = false;
+                } else {
+                    pair.second->activated = false;
+                }
             }
         }
 
         return activatedEvents;
     }
 
-    std::vector<InputHandler::Input> InputHandler::GetGamepadAxisPressed()
-    {
-        std::vector<InputHandler::Input> axisInput;
-
-        //left stick
-        Input input(GAMEPAD_AXIS_LEFT_X, Input::AxisDirection::Positive);
-        if ((GetGamepadAxisMovement(0, GAMEPAD_AXIS_LEFT_X) > 0.5f))
-        {
-            updateInputActivated(input, true);
-            axisInput.push_back(controllerInGameMapping.find(input)->first);
-        }
-
-        input = Input(GAMEPAD_AXIS_LEFT_X, Input::AxisDirection::Negative);
-        if (GetGamepadAxisMovement(0, GAMEPAD_AXIS_LEFT_X) < -0.5f)
-        {
-            updateInputActivated(input, true);
-            axisInput.push_back(controllerInGameMapping.find(input)->first);
-        }
-
-        input = Input(GAMEPAD_AXIS_LEFT_Y, Input::AxisDirection::Positive);
-        if (GetGamepadAxisMovement(0, GAMEPAD_AXIS_LEFT_Y) > 0.5f)
-        {
-            updateInputActivated(input, true);
-            axisInput.push_back(controllerInGameMapping.find(input)->first);
-        }
-
-        input = Input(GAMEPAD_AXIS_LEFT_Y, Input::AxisDirection::Negative);
-        if (GetGamepadAxisMovement(0, GAMEPAD_AXIS_LEFT_Y) < -0.5f)
-        {
-            updateInputActivated(input, true);
-            axisInput.push_back(controllerInGameMapping.find(input)->first);
-        }
-
-        //right stick
-        if ((GetGamepadAxisMovement(0, GAMEPAD_AXIS_RIGHT_X) > 0.5f))
-        {
-            axisInput.push_back(Input(GAMEPAD_AXIS_RIGHT_X, Input::AxisDirection::Positive));
-        }
-
-        if (GetGamepadAxisMovement(0, GAMEPAD_AXIS_RIGHT_X) < -0.5f)
-        {
-            axisInput.push_back(Input(GAMEPAD_AXIS_RIGHT_X, Input::AxisDirection::Negative));
-        }
-
-        if (GetGamepadAxisMovement(0, GAMEPAD_AXIS_RIGHT_Y) > 0.5f)
-        {
-            axisInput.push_back(Input(GAMEPAD_AXIS_RIGHT_Y, Input::AxisDirection::Positive));
-        }
-
-        if (GetGamepadAxisMovement(0, GAMEPAD_AXIS_RIGHT_Y) < -0.5f)
-        {
-            axisInput.push_back(Input(GAMEPAD_AXIS_RIGHT_Y, Input::AxisDirection::Negative));
-        }
-
-        return axisInput;
-    }
-
     bool InputHandler::isCommandReleased(EventEnum pa_enum)
     {
-        for (auto it: keyboardInGameMapping)
+        for (auto pair: *keyboardInGameMapping_)
         {
-            if (it.second == pa_enum && IsKeyReleased(it.first.key))
+            if (pair.first == pa_enum && IsKeyReleased(pair.second->key))
             {
                 return true;
             }
         }
-        for (auto it: controllerInGameMapping)
+        for (auto pair: *controllerInGameMapping_)
         {
-            Input& input = const_cast<Input &>(it.first); // "When dealing with a union in a struct, accessing a member of the union can sometimes create a temporary object if the original context does not match the expected type." ~ChatGPT (ich hab kein Plan was genau das heißt aber es funktioniert :])
 
-            if (it.second == pa_enum &&
-                (IsGamepadButtonReleased(0, it.first.button) || IsAxisReleased(input)))
+            if (pair.first == pa_enum )
+            {
+            if (pair.second->type == Input::BUTTON && IsGamepadButtonReleased(0, pair.second->button))
             {
                 return true;
+            } else if (pair.second->type == Input::AXIS && IsGamepadAxisReleased(pair.second))
+            {
+                return true;
+            }
             }
         }
         return false;
     }
 
-    void InputHandler::updateInputActivated(InputHandler::Input &pa_input, bool pa_activated)
+    bool InputHandler::isCommandDown(EventEnum pa_enum)
     {
-        if (controllerInGameMapping.find(pa_input) != controllerInGameMapping.end())
+        for (auto pair: *keyboardInGameMapping_)
         {
-            auto it = controllerInGameMapping.find(pa_input);
-            EventEnum event = it->second;
-            Input input = pa_input;
-            input.activated = pa_activated;
-            std::cout << "activated = pa_activated" << std::endl;
-            controllerInGameMapping.erase(it);
-            controllerInGameMapping.insert({input, event});
-            if (controllerInGameMapping.find(input) != controllerInGameMapping.end())
+            if (pair.first == pa_enum && IsKeyDown(pair.second->key))
             {
-                std::cout << "Input found" << std::endl;
+                return true;
             }
         }
+        for (auto pair: *controllerInGameMapping_)
+        {
+
+            if (pair.first == pa_enum )
+            {
+                if (pair.second->type == Input::BUTTON && IsGamepadButtonDown(0, pair.second->button))
+                {
+                    return true;
+                } else if (pair.second->type == Input::AXIS && IsGamepadAxisDown(pair.second))
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     GamepadButton InputHandler::GetGamepadButtonPressednotDown()
@@ -222,37 +154,117 @@ namespace CoreLogic::EventManagement
 
     void InputHandler::keyboardDefaultMapping()
     {
-        keyboardInGameMapping.clear();
+        keyboardInGameMapping_->clear();
 
-        keyboardInGameMapping.insert({KEY_W, MOVE_UP});
-        keyboardInGameMapping.insert({KEY_S, MOVE_DOWN});
-        keyboardInGameMapping.insert({KEY_A, MOVE_LEFT});
-        keyboardInGameMapping.insert({KEY_D, MOVE_RIGHT});
+        keyboardInGameMapping_->insert({MOVE_UP, std::make_shared<Input>(KEY_W)});
+        keyboardInGameMapping_->insert({MOVE_DOWN, std::make_shared<Input>(KEY_S)});
+        keyboardInGameMapping_->insert({MOVE_LEFT, std::make_shared<Input>(KEY_A)});
+        keyboardInGameMapping_->insert({MOVE_RIGHT, std::make_shared<Input>(KEY_D)});
 
-        keyboardInGameMapping.insert({KEY_K, INTERACT});
-        keyboardInGameMapping.insert({KEY_J, ABILITY});
-        keyboardInGameMapping.insert({KEY_I, DISCONNECT});
-        keyboardInGameMapping.insert({KEY_L, DEATH_ABILITY});
-        keyboardInGameMapping.insert({KEY_H, HIGHLIGHT});
-        keyboardInGameMapping.insert({KEY_ESCAPE, PAUSE});
+        keyboardInGameMapping_->insert({INTERACT, std::make_shared<Input>(CoreLogic::DataProcessing::DesignConfig::INTERACT_KEYBOARD)});
+        keyboardInGameMapping_->insert({ABILITY, std::make_shared<Input>(CoreLogic::DataProcessing::DesignConfig::ABILITY_KEYBOARD)});
+        keyboardInGameMapping_->insert({DISCONNECT, std::make_shared<Input>(CoreLogic::DataProcessing::DesignConfig::DISCONNECT_KEYBOARD)});
+        keyboardInGameMapping_->insert({DEATH_ABILITY, std::make_shared<Input>(CoreLogic::DataProcessing::DesignConfig::DEATH_ABILITY_KEYBOARD)});
+
+
+        keyboardMenuMapping_->clear();
+
+        keyboardMenuMapping_->insert({MOVE_UP, std::make_shared<Input>(KEY_W)});
+        keyboardMenuMapping_->insert({MOVE_DOWN, std::make_shared<Input>(KEY_S)});
+        keyboardMenuMapping_->insert({MOVE_LEFT, std::make_shared<Input>(KEY_A)});
+        keyboardMenuMapping_->insert({MOVE_RIGHT, std::make_shared<Input>(KEY_D)});
+
+        keyboardMenuMapping_->insert({INTERACT, std::make_shared<Input>(CoreLogic::DataProcessing::DesignConfig::MENU_CONFIRM_KEYBOARD)});
+        keyboardMenuMapping_->insert({DISCONNECT, std::make_shared<Input>(CoreLogic::DataProcessing::DesignConfig::MENU_BACK_KEYBOARD)});
+
     }
 
     void InputHandler::controllerDefaultMapping()
     {
+        controllerInGameMapping_->clear();
 
-        controllerInGameMapping.clear();
+        controllerInGameMapping_->insert({MOVE_UP, std::make_shared<Input>(GAMEPAD_AXIS_LEFT_Y, Input::NEGATIVE)});
+        controllerInGameMapping_->insert({MOVE_DOWN, std::make_shared<Input>(GAMEPAD_AXIS_LEFT_Y, Input::POSITIVE)});
+        controllerInGameMapping_->insert({MOVE_LEFT, std::make_shared<Input>(GAMEPAD_AXIS_LEFT_X, Input::NEGATIVE)});
+        controllerInGameMapping_->insert({MOVE_RIGHT, std::make_shared<Input>(GAMEPAD_AXIS_LEFT_X, Input::POSITIVE)});
 
-        controllerInGameMapping.insert({Input(GAMEPAD_BUTTON_LEFT_FACE_UP), MOVE_UP});
-        controllerInGameMapping.insert({Input(GAMEPAD_BUTTON_LEFT_FACE_DOWN), MOVE_DOWN});
-        controllerInGameMapping.insert({Input(GAMEPAD_BUTTON_LEFT_FACE_LEFT), MOVE_LEFT});
-        controllerInGameMapping.insert({Input(GAMEPAD_BUTTON_LEFT_FACE_RIGHT), MOVE_RIGHT});
+        controllerInGameMapping_->insert({INTERACT, std::make_shared<Input>(CoreLogic::DataProcessing::DesignConfig::INTERACT_CONTROLLER)});
+        controllerInGameMapping_->insert({ABILITY, std::make_shared<Input>(CoreLogic::DataProcessing::DesignConfig::ABILITY_CONTROLLER)});
+        // controllerInGameMapping_->insert({DISCONNECT, std::make_shared<Input>(CoreLogic::DataProcessing::DesignConfig::DISCONNECT_CONTROLLER)});
+        controllerInGameMapping_->insert({DEATH_ABILITY, std::make_shared<Input>(CoreLogic::DataProcessing::DesignConfig::DEATH_ABILITY_CONTROLLER)});
 
-        controllerInGameMapping.insert({Input(GAMEPAD_BUTTON_RIGHT_FACE_DOWN), INTERACT});
-        controllerInGameMapping.insert({Input(GAMEPAD_BUTTON_RIGHT_TRIGGER_1), ABILITY});
-        controllerInGameMapping.insert({Input(GAMEPAD_BUTTON_RIGHT_FACE_DOWN), DISCONNECT});
-        controllerInGameMapping.insert({Input(GAMEPAD_BUTTON_RIGHT_TRIGGER_2), DEATH_ABILITY});
-        controllerInGameMapping.insert({Input(GAMEPAD_BUTTON_LEFT_TRIGGER_1), HIGHLIGHT});
-        controllerInGameMapping.insert({Input(GAMEPAD_BUTTON_MIDDLE_RIGHT), PAUSE});
+
+        controllerMenuMapping_->clear();
+
+        controllerMenuMapping_->insert({MOVE_UP, std::make_shared<Input>(GAMEPAD_AXIS_LEFT_Y, Input::NEGATIVE)});
+        controllerMenuMapping_->insert({MOVE_DOWN, std::make_shared<Input>(GAMEPAD_AXIS_LEFT_Y, Input::POSITIVE)});
+        controllerMenuMapping_->insert({MOVE_LEFT, std::make_shared<Input>(GAMEPAD_AXIS_LEFT_X, Input::NEGATIVE)});
+        controllerMenuMapping_->insert({MOVE_RIGHT, std::make_shared<Input>(GAMEPAD_AXIS_LEFT_X, Input::POSITIVE)});
+
+        controllerMenuMapping_->insert({INTERACT, std::make_shared<Input>(CoreLogic::DataProcessing::DesignConfig::MENU_CONFIRM_CONTROLLER)});
+        controllerMenuMapping_->insert({DISCONNECT, std::make_shared<Input>(CoreLogic::DataProcessing::DesignConfig::MENU_BACK_CONTROLLER)});
+
+    }
+
+    bool InputHandler::gatLastInputKeyboard()
+    {
+        return lastInputKeyBoard_;
+    }
+
+    bool InputHandler::IsGamepadAxisPressed(std::shared_ptr<Input> pa_axis)
+    {
+        if ((!pa_axis->activated))
+            if (pa_axis->direction == Input::AxisDirection::POSITIVE
+                && GetGamepadAxisMovement(0, (GamepadAxis) *pa_axis) >
+                    CoreLogic::DataProcessing::DesignConfig::AXIS_THRESHOLD)
+            {
+                pa_axis->activated = true;
+                return true;
+            } else if (pa_axis->direction == Input::AxisDirection::NEGATIVE
+                && GetGamepadAxisMovement(0,(GamepadAxis) *pa_axis) <
+                    CoreLogic::DataProcessing::DesignConfig::AXIS_THRESHOLD * -1)
+            {
+                pa_axis->activated = true;
+                return true;
+            }
+        return false;
+    }
+
+    bool InputHandler::IsGamepadAxisReleased(std::shared_ptr<Input> pa_axis)
+    {
+        if ((pa_axis->activated))
+            if (pa_axis->direction == Input::AxisDirection::POSITIVE
+                    && GetGamepadAxisMovement(0, (GamepadAxis) *pa_axis) <=
+                    CoreLogic::DataProcessing::DesignConfig::AXIS_THRESHOLD)
+            {
+                pa_axis->activated = false;
+                return true;
+            } else if (pa_axis->direction == Input::AxisDirection::NEGATIVE
+            && GetGamepadAxisMovement(0, (GamepadAxis) *pa_axis) >=
+                    CoreLogic::DataProcessing::DesignConfig::AXIS_THRESHOLD * -1)
+            {
+                pa_axis->activated = false;
+                return true;
+            }
+        return false;
+    }
+
+    bool InputHandler::IsGamepadAxisDown(std::shared_ptr<Input> pa_axis)
+    {
+        if (pa_axis->direction == Input::AxisDirection::POSITIVE
+                && GetGamepadAxisMovement(0, (GamepadAxis) *pa_axis) >
+                CoreLogic::DataProcessing::DesignConfig::AXIS_THRESHOLD)
+        {
+            pa_axis->activated = true;
+            return true;
+        } else if (pa_axis->direction == Input::AxisDirection::NEGATIVE
+                && GetGamepadAxisMovement(0,(GamepadAxis) *pa_axis) <
+                CoreLogic::DataProcessing::DesignConfig::AXIS_THRESHOLD * -1)
+        {
+            pa_axis->activated = true;
+            return true;
+        }
+        return false;
     }
 
 
