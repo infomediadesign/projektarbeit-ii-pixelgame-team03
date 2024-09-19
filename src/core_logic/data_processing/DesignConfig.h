@@ -49,7 +49,7 @@ namespace CoreLogic::DataProcessing {
 
         //range; in tiles
         inline static constexpr int COLONIST_RANGE = 8;
-        inline static constexpr int MECH_RANGE = 4;
+        inline static constexpr int MECH_RANGE = 6;
         inline static constexpr int BELL_DETECTION_TILES = 20;
 
         //detection rate; in ticks
