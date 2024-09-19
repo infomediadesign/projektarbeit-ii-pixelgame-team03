@@ -223,9 +223,6 @@ CoreLogic::EventManagement::Actors::Drone::Drone(Vector2 pa_position, Rectangle 
     void Drone::setInteraction(std::shared_ptr<CoreLogic::EventManagement::Object::Interaction> pa_interaction)
     {
         interaction_ = pa_interaction;
-        /**
-         * @todo: setGlowing() not yet existing
-         */
         if (pa_interaction != nullptr)
         {
             interaction_->setGlowing();

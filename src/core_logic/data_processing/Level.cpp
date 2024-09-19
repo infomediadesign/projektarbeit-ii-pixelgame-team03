@@ -30,9 +30,6 @@ CoreLogic::DataProcessing::LevelState CoreLogic::DataProcessing::Level::getLevel
     return levelState_;
 }
 
-/*
- * @brief: TODO change to correct return Value
- * */
 std::vector<std::string> CoreLogic::DataProcessing::Level::getStateChanges() const
 {
     return *stateChanges_;

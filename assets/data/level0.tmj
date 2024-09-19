@@ -8458,7 +8458,7 @@
                  "value":1
                 }],
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -8480,17 +8480,17 @@
                         {
                          "name":"level_switch",
                          "type":"int",
-                         "value":-1
+                         "value":1
                         }, 
                         {
                          "name":"x_dest",
                          "type":"int",
-                         "value":794
+                         "value":2
                         }, 
                         {
                          "name":"y_dest",
                          "type":"int",
-                         "value":2
+                         "value":110
                         }],
                  "rotation":0,
                  "type":"level_switch",
@@ -8507,7 +8507,7 @@
                  "value":2
                 }],
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }],

@@ -39,12 +39,14 @@ int main() {
  *         1.@todo: clean up the GameScene.update() func so it has access to private funcs that outsouce its work
  *         2.@todo: undo the hard-coded timings of events, so that designers can config how long animations should take
  *                  (this is not really an issue right now, as we will not have more time to improve the game anyway)
- *         3.@todo: make the Game framerate independent
+ *         3.@todo: generally rework all hardcoded values (like the camera bounds, tile size in some areas etc.)
+ *         3.@todo: make the Game framerate independent using deltaTime
  *         4.@todo: custom button mapping
- *         5.@todo: Multithread Drawing, Sound, Update
+ *         5.@todo: Menus to access button mapping, sound settings and similar
+ *         6.@todo: Multithread Drawing, Sound, Update
  *
  *
  *         With this we will bid you adieu.
- *         - @author: Keanu Grespan @date: 2024/9/19
+ *         - @author: Keanu Grespan, Josefine Chollé @date: 2024/9/19
  *
  **/

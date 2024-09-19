@@ -83,17 +83,10 @@ void Scenes::GameScene::update()
         }
     }
 
-
-
     if (IsKeyPressed(KEY_ZERO)) player->setElevation(0);
     if (IsKeyPressed(KEY_ONE)) player->setElevation(1);
     if (IsKeyPressed(KEY_TWO)) player->setElevation(2);
     if (IsKeyPressed(KEY_NINE)) player->setElevation(9);
-
-    /**
-     * @note: this will reset Interacts and Abilities from Glowing once implemented
-     * @todo: implement Glowing reset
-     */
 
     auto &interacts = *CoreLogic::DataProcessing::ActorStorage::getInteractions();
     auto &abilities = *CoreLogic::DataProcessing::ActorStorage::getAbilities();

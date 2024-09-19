@@ -17,11 +17,6 @@ CoreLogic::EventManagement::CleaningEvent::CleaningEvent(std::shared_ptr<CoreLog
 
 void CoreLogic::EventManagement::CleaningEvent::update()
 {
-    /**
-     * @todo: Some kinks yet to review:
-     * @first: rubble -> setCleaned
-     * @second: shiftFrame for working number
-     */
     if (ticks_ % 10 == 0)
     {
         po_mainActor_->shiftFrame(1);
