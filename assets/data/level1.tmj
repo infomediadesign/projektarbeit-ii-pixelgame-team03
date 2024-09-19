@@ -548,7 +548,7 @@
                  "value":0
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -609,7 +609,7 @@
                  "value":0
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -653,7 +653,7 @@
                  "value":0
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -672,17 +672,6 @@
                  "width":48,
                  "x":288,
                  "y":312
-                }, 
-                {
-                 "height":48,
-                 "id":301,
-                 "name":"",
-                 "rotation":0,
-                 "type":"pushable",
-                 "visible":true,
-                 "width":48,
-                 "x":744,
-                 "y":672
                 }],
          "opacity":1,
          "properties":[
@@ -692,7 +681,7 @@
                  "value":0
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -753,7 +742,7 @@
                  "value":0
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -817,7 +806,7 @@
                  "value":0
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -932,8 +921,8 @@
                  "rotation":0,
                  "type":"collidable",
                  "visible":true,
-                 "width":72,
-                 "x":96,
+                 "width":48,
+                 "x":120,
                  "y":264
                 }, 
                 {
@@ -943,8 +932,8 @@
                  "rotation":0,
                  "type":"collidable",
                  "visible":true,
-                 "width":48,
-                 "x":120,
+                 "width":24,
+                 "x":144,
                  "y":288
                 }, 
                 {
@@ -1011,7 +1000,7 @@
                  "visible":true,
                  "width":144,
                  "x":336,
-                 "y":144
+                 "y":168
                 }, 
                 {
                  "height":48,
@@ -1713,7 +1702,7 @@
             0, 0, 0, 0, 0, 0, 0, 0, 2715, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2714, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2616, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2765, 2714, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2617, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2617, 0, 0, 0, 0, 0, 0, 0, 0, 2813, 2814, 2617, 2714, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2716, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2813, 2814, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 2617, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 2666, 2667, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 2665, 2617, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 2713, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -2064,8 +2053,8 @@
                  "type":"vines",
                  "visible":true,
                  "width":48,
-                 "x":1344.01673666008,
-                 "y":624.014513339921
+                 "x":1320,
+                 "y":624
                 }, 
                 {
                  "height":24,
@@ -2184,7 +2173,7 @@
                  "value":1
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -2223,7 +2212,7 @@
                  "value":1
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -2284,7 +2273,7 @@
                  "value":1
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -2301,7 +2290,7 @@
                  "value":1
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -2450,7 +2439,7 @@
                  "value":1
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -2458,29 +2447,7 @@
          "draworder":"topdown",
          "id":53,
          "name":"ExplosiveBarrels 2",
-         "objects":[
-                {
-                 "height":24,
-                 "id":287,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"direction",
-                         "type":"int",
-                         "value":2
-                        }, 
-                        {
-                         "name":"height",
-                         "type":"int",
-                         "value":2
-                        }],
-                 "rotation":0,
-                 "type":"explosive_barrel",
-                 "visible":true,
-                 "width":24,
-                 "x":312,
-                 "y":576
-                }],
+         "objects":[],
          "opacity":1,
          "properties":[
                 {
@@ -2489,7 +2456,7 @@
                  "value":1
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -2647,7 +2614,7 @@
                  "value":1
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -3768,7 +3735,7 @@
                  "value":1
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -4093,8 +4060,8 @@
                  "type":"vines",
                  "visible":true,
                  "width":48,
-                 "x":1344.015625,
-                 "y":600.015625
+                 "x":1320,
+                 "y":600
                 }, 
                 {
                  "height":48,
@@ -4212,7 +4179,7 @@
                  "value":2
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -4229,7 +4196,7 @@
                  "value":2
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -4268,7 +4235,7 @@
                  "value":2
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -4285,7 +4252,7 @@
                  "value":2
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -4434,7 +4401,7 @@
                  "value":2
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -4517,7 +4484,7 @@
                  "value":2
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -5554,7 +5521,7 @@
                  "value":3
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -5618,7 +5585,7 @@
                  "value":3
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -5874,7 +5841,7 @@
                  "value":3
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -5896,7 +5863,7 @@
                         {
                          "name":"textbox_anchor_x",
                          "type":"int",
-                         "value":190
+                         "value":130
                         }, 
                         {
                          "name":"textbox_anchor_y",
@@ -5916,13 +5883,13 @@
                         {
                          "name":"textbox_text",
                          "type":"string",
-                         "value":"With the scout drone, you can also attract the attention of Enemies\n\npress <L> to sacrifice your drone so that enemies in range turn to you\nCAUTION! YOU LOSE ONE LIFE"
+                         "value":"With the scout drone, you can also attract the\nattention of Enemies\n\npress <L> to sacrifice your drone so that enemies in\nrange turn to you and you can sneak past them.\nYou spawn at the last Checkpoint.\nCAUTION! YOU LOSE ONE LIFE"
                         }],
                  "rotation":0,
                  "type":"textbox",
                  "visible":true,
-                 "width":360,
-                 "x":192,
+                 "width":288,
+                 "x":144,
                  "y":648
                 }],
          "opacity":1,
@@ -5960,7 +5927,7 @@
                         {
                          "name":"textbox_anchor_y",
                          "type":"int",
-                         "value":280
+                         "value":300
                         }, 
                         {
                          "name":"textbox_font_size",
@@ -5975,7 +5942,9 @@
                         {
                          "name":"textbox_text",
                          "type":"string",
-                         "value":"The scout drone is very agile\n\npress <J> as the scout to jump over small chasms"
+
+                         "value":"The scout drone is very agile.\nPress <J> to jump over small chasms"
+
                         }],
                  "rotation":0,
                  "type":"textbox",
@@ -6026,7 +5995,7 @@
                  "value":0
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -6077,7 +6046,9 @@
                         {
                          "name":"lore_item_text",
                          "type":"string",
-                         "value":"Mission-Log 34-81\nWe have confirmed reports of hostile life forms in the area.\nThey appear to be some kind of primitive crawler species.\nDo NOT take any risks! I want them to be shot on sight. This\nis too important to let a couple of bugs get in our way!"
+
+                         "value":"Mission-Log 34-81\nWe have confirmed reports of hostile life forms in the\narea. They appear to be some kind of primitive crawler\nspecies. Do NOT take any risks! I want them to be shot on\nsight. This is to important to let a couple of bugs get into\nour way!"
+
                         }],
                  "rotation":0,
                  "type":"lore_item",
@@ -6165,7 +6136,7 @@
          "y":0
         }],
  "nextlayerid":67,
- "nextobjectid":453,
+ "nextobjectid":458,
  "orientation":"orthogonal",
  "properties":[
         {
