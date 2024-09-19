@@ -116,6 +116,11 @@ void CoreLogic::UserInterface::Renderer::render(std::shared_ptr<std::map<int, st
                     vine->draw();
                 }
             }
+            if (player->getInteraction() != nullptr &&
+                    player->getInteraction()->getType() == EventManagement::Object::Interaction::CLIMBING)
+            {
+                player->draw();
+            }
             auto &barrels = *CoreLogic::DataProcessing::ActorStorage::getBarrels();
             for (auto & pair: barrels)
             {
