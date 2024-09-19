@@ -1756,6 +1756,16 @@
                  "name":"",
                  "properties":[
                         {
+                         "name":"pan_ticks",
+                         "type":"int",
+                         "value":120
+                        }, 
+                        {
+                         "name":"resting_ticks",
+                         "type":"int",
+                         "value":120
+                        }, 
+                        {
                          "name":"x_dest",
                          "type":"int",
                          "value":0

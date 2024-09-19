@@ -13,7 +13,7 @@ namespace CoreLogic::EventManagement::Object
     {
     public:
         CameraPan(Vector2 pa_position, Rectangle pa_hitbox, int pa_id, Vector2 pa_size, int pa_elevation, Vector2
-        pa_destination);
+        pa_destination, int pa_panTicks, int pa_restingTicks);
 
         Vector2 getDestination() const;
         void setDestination(Vector2 pa_destination);
@@ -23,6 +23,10 @@ namespace CoreLogic::EventManagement::Object
 
     protected:
         Vector2 destination_;
+
+        int panTicks_;
+        int restingTicks_;
+
         bool played_ = false;
     };
 }
