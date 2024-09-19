@@ -104,6 +104,18 @@ void CoreLogic::UserInterface::Renderer::render(std::shared_ptr<std::map<int, st
 
             player->draw();
 */
+            auto &vines = *CoreLogic::DataProcessing::ActorStorage::getVines();
+            for (auto & pair: vines)
+            {
+                for (auto &vine: pair.second)
+                {
+                    if (vine == nullptr)
+                    {
+                        continue;
+                    }
+                    vine->draw();
+                }
+            }
             auto &barrels = *CoreLogic::DataProcessing::ActorStorage::getBarrels();
             for (auto & pair: barrels)
             {
