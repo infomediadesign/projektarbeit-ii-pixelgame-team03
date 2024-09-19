@@ -637,6 +637,11 @@
                          "value":1
                         }, 
                         {
+                         "name":"sprite_state",
+                         "type":"int",
+                         "value":0
+                        }, 
+                        {
                          "name":"x_dest",
                          "type":"int",
                          "value":578
@@ -662,6 +667,11 @@
                          "name":"elevation_dest",
                          "type":"int",
                          "value":1
+                        }, 
+                        {
+                         "name":"sprite_state",
+                         "type":"int",
+                         "value":0
                         }, 
                         {
                          "name":"x_dest",
@@ -691,6 +701,11 @@
                          "value":1
                         }, 
                         {
+                         "name":"sprite_state",
+                         "type":"int",
+                         "value":2
+                        }, 
+                        {
                          "name":"x_dest",
                          "type":"int",
                          "value":746
@@ -716,6 +731,11 @@
                          "name":"elevation_dest",
                          "type":"int",
                          "value":1
+                        }, 
+                        {
+                         "name":"sprite_state",
+                         "type":"int",
+                         "value":2
                         }, 
                         {
                          "name":"x_dest",
@@ -745,6 +765,11 @@
                          "value":1
                         }, 
                         {
+                         "name":"sprite_state",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
                          "name":"x_dest",
                          "type":"int",
                          "value":242
@@ -768,6 +793,11 @@
                  "properties":[
                         {
                          "name":"elevation_dest",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
+                         "name":"sprite_state",
                          "type":"int",
                          "value":1
                         }, 
@@ -2286,6 +2316,11 @@
                          "value":0
                         }, 
                         {
+                         "name":"sprite_state",
+                         "type":"int",
+                         "value":2
+                        }, 
+                        {
                          "name":"x_dest",
                          "type":"int",
                          "value":794
@@ -2311,6 +2346,11 @@
                          "name":"elevation_dest",
                          "type":"int",
                          "value":0
+                        }, 
+                        {
+                         "name":"sprite_state",
+                         "type":"int",
+                         "value":1
                         }, 
                         {
                          "name":"x_dest",
@@ -2340,6 +2380,11 @@
                          "value":0
                         }, 
                         {
+                         "name":"sprite_state",
+                         "type":"int",
+                         "value":2
+                        }, 
+                        {
                          "name":"x_dest",
                          "type":"int",
                          "value":74
@@ -2365,6 +2410,11 @@
                          "name":"elevation_dest",
                          "type":"int",
                          "value":2
+                        }, 
+                        {
+                         "name":"sprite_state",
+                         "type":"int",
+                         "value":0
                         }, 
                         {
                          "name":"x_dest",
@@ -2394,6 +2444,11 @@
                          "value":2
                         }, 
                         {
+                         "name":"sprite_state",
+                         "type":"int",
+                         "value":0
+                        }, 
+                        {
                          "name":"x_dest",
                          "type":"int",
                          "value":1178
@@ -2421,6 +2476,11 @@
                          "value":2
                         }, 
                         {
+                         "name":"sprite_state",
+                         "type":"int",
+                         "value":0
+                        }, 
+                        {
                          "name":"x_dest",
                          "type":"int",
                          "value":1466
@@ -2444,6 +2504,11 @@
                  "properties":[
                         {
                          "name":"elevation_dest",
+                         "type":"int",
+                         "value":2
+                        }, 
+                        {
+                         "name":"sprite_state",
                          "type":"int",
                          "value":2
                         }, 
@@ -2475,6 +2540,11 @@
                          "value":2
                         }, 
                         {
+                         "name":"sprite_state",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
                          "name":"x_dest",
                          "type":"int",
                          "value":1466
@@ -2500,6 +2570,11 @@
                          "name":"elevation_dest",
                          "type":"int",
                          "value":2
+                        }, 
+                        {
+                         "name":"sprite_state",
+                         "type":"int",
+                         "value":1
                         }, 
                         {
                          "name":"x_dest",
@@ -2529,6 +2604,11 @@
                          "value":2
                         }, 
                         {
+                         "name":"sprite_state",
+                         "type":"int",
+                         "value":0
+                        }, 
+                        {
                          "name":"x_dest",
                          "type":"int",
                          "value":1394
@@ -2556,6 +2636,11 @@
                          "value":2
                         }, 
                         {
+                         "name":"sprite_state",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
                          "name":"x_dest",
                          "type":"int",
                          "value":1178
@@ -2579,6 +2664,11 @@
                  "properties":[
                         {
                          "name":"elevation_dest",
+                         "type":"int",
+                         "value":0
+                        }, 
+                        {
+                         "name":"sprite_state",
                          "type":"int",
                          "value":0
                         }, 
@@ -2610,6 +2700,11 @@
                          "value":0
                         }, 
                         {
+                         "name":"sprite_state",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
                          "name":"x_dest",
                          "type":"int",
                          "value":314
@@ -2633,6 +2728,11 @@
                  "properties":[
                         {
                          "name":"elevation_dest",
+                         "type":"int",
+                         "value":0
+                        }, 
+                        {
+                         "name":"sprite_state",
                          "type":"int",
                          "value":0
                         }, 
@@ -2662,6 +2762,11 @@
                          "name":"elevation_dest",
                          "type":"int",
                          "value":2
+                        }, 
+                        {
+                         "name":"sprite_state",
+                         "type":"int",
+                         "value":1
                         }, 
                         {
                          "name":"x_dest",
@@ -4801,7 +4906,7 @@
                  "value":1
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -5595,6 +5700,11 @@
                          "value":1
                         }, 
                         {
+                         "name":"sprite_state",
+                         "type":"int",
+                         "value":0
+                        }, 
+                        {
                          "name":"x_dest",
                          "type":"int",
                          "value":866
@@ -5620,6 +5730,11 @@
                          "name":"elevation_dest",
                          "type":"int",
                          "value":1
+                        }, 
+                        {
+                         "name":"sprite_state",
+                         "type":"int",
+                         "value":0
                         }, 
                         {
                          "name":"x_dest",
@@ -5649,6 +5764,11 @@
                          "value":1
                         }, 
                         {
+                         "name":"sprite_state",
+                         "type":"int",
+                         "value":0
+                        }, 
+                        {
                          "name":"x_dest",
                          "type":"int",
                          "value":1178
@@ -5676,6 +5796,11 @@
                          "value":1
                         }, 
                         {
+                         "name":"sprite_state",
+                         "type":"int",
+                         "value":2
+                        }, 
+                        {
                          "name":"x_dest",
                          "type":"int",
                          "value":1322
@@ -5699,6 +5824,11 @@
                  "properties":[
                         {
                          "name":"elevation_dest",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
+                         "name":"sprite_state",
                          "type":"int",
                          "value":1
                         }, 
@@ -5730,6 +5860,11 @@
                          "value":1
                         }, 
                         {
+                         "name":"sprite_state",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
                          "name":"x_dest",
                          "type":"int",
                          "value":1370
@@ -5753,6 +5888,11 @@
                  "properties":[
                         {
                          "name":"elevation_dest",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
+                         "name":"sprite_state",
                          "type":"int",
                          "value":1
                         }, 
@@ -5784,6 +5924,11 @@
                          "value":1
                         }, 
                         {
+                         "name":"sprite_state",
+                         "type":"int",
+                         "value":0
+                        }, 
+                        {
                          "name":"x_dest",
                          "type":"int",
                          "value":1394
@@ -5807,6 +5952,11 @@
                  "properties":[
                         {
                          "name":"elevation_dest",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
+                         "name":"sprite_state",
                          "type":"int",
                          "value":1
                         }, 
@@ -7823,7 +7973,7 @@
                  "value":0
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -7966,7 +8116,7 @@
                  "value":1
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -8109,7 +8259,7 @@
                  "value":2
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
