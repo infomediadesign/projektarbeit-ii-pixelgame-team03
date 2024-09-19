@@ -1034,7 +1034,7 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
     sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/Interacts/hive_ARTI_Lore-Item-Spritesheet.png",
             {
                     {    //0 - idle
-                            {CoreLogic::UserInterface::AnimationState {0 * 24, 24, 24, 1}},
+                            {CoreLogic::UserInterface::AnimationState {0 * 24, 24, 24, 6}},
                     },
             });
 
