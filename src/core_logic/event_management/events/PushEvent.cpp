@@ -59,6 +59,7 @@ namespace CoreLogic::EventManagement
                 }
             }
             ticks_ = 30;
+            frameCount_ = 30/ po_mainActor_->getSprite().getFrameAmount(1)*2+1;
             std::vector<std::shared_ptr<Object::Cliff>> cliffs = CoreLogic::DataProcessing::ActorStorage::getCliffs()->at(po_pushable_ ->getElevation());
 
             bool cliffPush = false;
@@ -137,7 +138,7 @@ namespace CoreLogic::EventManagement
               auto &soundHandler = CoreLogic::EventManagement::SoundHandler::getInstance();
                 soundHandler.playSound(SoundHandler::PUSH);
             }
-            if (ticks_ % 20 == 0)
+            if (ticks_ % frameCount_ == 0)
             {
                 po_mainActor_->shiftFrame(1);
             }

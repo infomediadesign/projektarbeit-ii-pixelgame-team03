@@ -86,7 +86,7 @@ namespace CoreLogic::EventManagement
                     activatedEvents.push_back(pair.first);
                     pair.second->activated = true;
                     lastInputKeyBoard_ = false;
-                } else {
+                } else if (IsGamepadAxisReleased(pair.second)) {
                     pair.second->activated = false;
                 }
             }

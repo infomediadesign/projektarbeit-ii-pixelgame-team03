@@ -24,6 +24,7 @@ namespace CoreLogic::EventManagement
         bool reachedDestination_ = false;
         bool extended_ = false;
         Vector2 push_;
+        int frameCount_=0;
     };
 
 } // CoreLogic

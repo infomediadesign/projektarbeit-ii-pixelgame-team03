@@ -21,6 +21,10 @@ namespace CoreLogic::EventManagement
         {
             for (auto &enemy : enemyPair.second)
             {
+                if (enemy == nullptr)
+                {
+                    continue;
+                }
                 if (enemy->getId() == pa_id)
                 {
                     po_mainActor_ = enemy;
