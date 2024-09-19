@@ -71,11 +71,6 @@ void CoreLogic::UserInterface::HUD::update()
     hudElements_[MAX].shiftFrame(player.getMaxHealth() - 1);
     hudElements_[CURRENT].shiftFrame(player.getCurrentHealth() - 1);
 
-    if (CoreLogic::EventManagement::InputHandler::gatLastInputKeyboard())
-    {
-        //;-;
-    }
-
     hudElements_[BUTTONS].shiftFrame(!CoreLogic::EventManagement::InputHandler::gatLastInputKeyboard());
     hudElements_[MAIN].shiftFrame(player.canAct());
     hudElements_[DEATH].shiftFrame(player.canDeathAbility());
