@@ -902,11 +902,11 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
                     {    //0 - idle
                             {CoreLogic::UserInterface::AnimationState {0 * 24, 24, 24, 1}},
                     },
-                    {    //1 - glowing
-                            {CoreLogic::UserInterface::AnimationState {1 * 24, 24, 24, 1}},
-                    },
                     {    //2 - breaking
                             {CoreLogic::UserInterface::AnimationState {2 * 24, 24, 24, 11}},
+                    },
+                    {    //1 - glowing
+                            {CoreLogic::UserInterface::AnimationState {1 * 24, 24, 24, 1}},
                     },
             });
 
