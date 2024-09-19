@@ -37,3 +37,9 @@ void Scenes::CameraPanScene::update()
     }
     CoreLogic::DataProcessing::StateMachine::changeState(CoreLogic::DataProcessing::GameState::IN_GAME);
 }
+
+void Scenes::CameraPanScene::draw(RenderTexture2D &pa_canvas)
+{
+    CoreLogic::UserInterface::Renderer& renderer = *CoreLogic::UserInterface::Renderer::getInstance();
+    renderer.render(CoreLogic::DataProcessing::ActorStorage::getLayers(), po_actors_, *camera_, pa_canvas, BLACK);
+}

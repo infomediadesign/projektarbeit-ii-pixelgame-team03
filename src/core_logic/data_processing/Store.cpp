@@ -19,12 +19,14 @@ std::shared_ptr<std::map<CoreLogic::EventManagement::Actors::Drone::DroneType, b
 //------------------actives------------------//
 std::shared_ptr<CoreLogic::EventManagement::Object::DroneRespawnPoint> CoreLogic::DataProcessing::ActorStorage::po_activeRespawnPoint_;
 std::shared_ptr<CoreLogic::EventManagement::Object::TutorialBox> CoreLogic::DataProcessing::ActorStorage::po_activeTutorialBox_;
+std::shared_ptr<CoreLogic::EventManagement::Object::CameraPan> CoreLogic::DataProcessing::ActorStorage::po_activeCameraPan_;
 std::shared_ptr<CoreLogic::EventManagement::Object::Note> CoreLogic::DataProcessing::ActorStorage::po_activeNote_;
 
 std::shared_ptr<CoreLogic::EventManagement::Actors::Drone> CoreLogic::DataProcessing::ActorStorage::po_player_;
 
 int CoreLogic::DataProcessing::ActorStorage::currentElevationLevels_;
 int CoreLogic::DataProcessing::ActorStorage::currentLevelID_;
+
 //------------------general lists------------------//
 std::shared_ptr<std::map<int, std::vector<tson::Layer>>> CoreLogic::DataProcessing::ActorStorage::po_layers_;
 
@@ -904,8 +906,11 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
                     {    //0 - idle
                             {CoreLogic::UserInterface::AnimationState {0 * 24, 24, 24, 1}},
                     },
-                    {    //1 - breaking
-                            {CoreLogic::UserInterface::AnimationState {1 * 24, 24, 24, 11}},
+                    {    //1 - glowing
+                            {CoreLogic::UserInterface::AnimationState {1 * 24, 24, 24, 1}},
+                    },
+                    {    //2 - breaking
+                            {CoreLogic::UserInterface::AnimationState {2 * 24, 24, 24, 11}},
                     },
             });
 
@@ -917,8 +922,11 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
                     {    //0 - idle
                             {CoreLogic::UserInterface::AnimationState {0 * 24, 24, 24, 1}},
                     },
-                    {    //1 - breaking
-                            {CoreLogic::UserInterface::AnimationState {1 * 24, 24, 24, 11}},
+                    {    //1 - glowing
+                            {CoreLogic::UserInterface::AnimationState {1 * 24, 24, 24, 1}},
+                    },
+                    {    //2 - breaking
+                            {CoreLogic::UserInterface::AnimationState {2 * 24, 24, 24, 11}},
                     },
             });
 
@@ -959,14 +967,30 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
 
     po_sprites_[SPAWN_UNDERWORLD] = sprite;
 
+    //7.5 - spawn - glowing
+    sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/Interacts/hive_ARTI_Respawn-Outlines.png",
+            {
+                    {    //0 - undiscovered
+                            {CoreLogic::UserInterface::AnimationState {0 * 48, 48, 48, 1}},
+                    },
+                    {    //1 - eggs
+                            {CoreLogic::UserInterface::AnimationState {1 * 48, 48, 48, 1}},
+                    },
+            });
+
+    po_sprites_[SPAWN_SECONDARY] = sprite;
+
     //8 - boulder - overworld
     sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/Abilities/hive_ARTI_Overworld-Boulder-Spritesheet.png",
             {
                     {    //0 - idle
                             {CoreLogic::UserInterface::AnimationState {0 * 48, 48, 48, 1}},
                     },
+                    {    //0 - glowing
+                            {CoreLogic::UserInterface::AnimationState {1 * 48, 48, 48, 1}},
+                    },
                     {    //1 - breaking
-                            {CoreLogic::UserInterface::AnimationState {1 * 48, 96,48, 6, {-24, 0}}},
+                            {CoreLogic::UserInterface::AnimationState {2 * 48, 96,48, 6, {-24, 0}}},
                     },
             });
 
@@ -978,21 +1002,27 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
                     {    //0 - idle
                             {CoreLogic::UserInterface::AnimationState {0 * 48, 48, 48, 1}},
                     },
+                    {    //0 - glowing
+                            {CoreLogic::UserInterface::AnimationState {1 * 48, 48, 48, 1}},
+                    },
                     {    //1 - breaking
-                            {CoreLogic::UserInterface::AnimationState {1 * 48, 96,48, 6, {-24, 0}}},
+                            {CoreLogic::UserInterface::AnimationState {2 * 48, 96,48, 6, {-24, 0}}},
                     },
             });
 
     po_sprites_[BOULDER_UNDERWORLD] = sprite;
 
     //10 - barrel
-    sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/hive_ARTI_Explosive-Barrel-Spritesheet.png",
+    sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/Abilities/hive_ARTI_Explosive-Barrel-Spritesheet.png",
             {
                     {    //0 - idle
                             {CoreLogic::UserInterface::AnimationState {0 * 24, 24, 24, 1}},
                     },
+                    {    //0 - glowing
+                            {CoreLogic::UserInterface::AnimationState {1 * 24, 24, 24, 1}},
+                    },
                     {    //1 - breaking
-                            {CoreLogic::UserInterface::AnimationState {1 * 24, 120, 120, 11, {-48, -48}}},
+                            {CoreLogic::UserInterface::AnimationState {2 * 24, 120, 120, 11, {-48, -48}}},
                     },
             });
 
@@ -1008,6 +1038,16 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
 
     po_sprites_[NOTE] = sprite;
 
+    //11.5 - note secondary
+    sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/Interacts/hive_ARTI_Lore-Item-Outline.png",
+            {
+                    {    //0 - idle
+                            {CoreLogic::UserInterface::AnimationState {0 * 24, 24, 24, 6}},
+                    },
+            });
+
+    po_sprites_[NOTE_SECONDARY] = sprite;
+
     //12 - uplink
     sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/Interacts/hive_ARTI_Uplink-Spritesheet.png",
             {
@@ -1017,6 +1057,60 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
             });
 
     po_sprites_[UPLINK] = sprite;
+
+    //12 - vine - overworld secondary
+    sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/Interacts/hive_ARTI_Overworld-Climbable-Wall.png",
+            {
+                    {   //right corner
+                            {CoreLogic::UserInterface::AnimationState {0 * 24, 48, 96, 1, {-24, 0}}},
+                            {CoreLogic::UserInterface::AnimationState {0 * 24, 48, 96, 1,  {0, -84}}},
+                    },
+                    {   //front
+                            {CoreLogic::UserInterface::AnimationState {4 * 24, 96, 48, 1, {-24, 0}}},
+                            {CoreLogic::UserInterface::AnimationState {4 * 24, 96, 48, 1,  {-24, -84}}},
+                    },
+                    {   //left lower corner
+                            {CoreLogic::UserInterface::AnimationState{6 * 24, 48, 96, 1, {0, 0}}},
+                            {CoreLogic::UserInterface::AnimationState{6 * 24, 48, 96, 1, {-24, -84}}},
+                    },
+                    {   //left upper corner
+                            {CoreLogic::UserInterface::AnimationState{10 * 24, 48, 96, 1, {0, 0}}},
+                            {CoreLogic::UserInterface::AnimationState{10 * 24, 48, 96, 1, {-24, -84}}},
+                    },
+                    {   //left
+                            {CoreLogic::UserInterface::AnimationState{14 * 24, 48, 96, 1, {0, 0}}},
+                            {CoreLogic::UserInterface::AnimationState{14 * 24, 48, 96, 1, {-24, -84}}},
+                    },
+                    {   //right corner
+                            {CoreLogic::UserInterface::AnimationState {18 * 24, 48, 96, 1, {-24, 0}}},
+                            {CoreLogic::UserInterface::AnimationState {18 * 24, 48, 96, 1,  {0, -84}}},
+                    },
+                    {   //left
+                            {CoreLogic::UserInterface::AnimationState{22 * 24, 48, 96, 1, {0, 0}}},
+                            {CoreLogic::UserInterface::AnimationState{22 * 24, 48, 96, 1, {-24, -84}}},
+                    },
+            });
+
+    po_sprites_[VINE_OVERWORLD_SECONDARY] = sprite;
+
+    //12 - vine - underworld secondary
+    sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/Interacts/hive_ARTI_Overworld-Climbable-Wall.png",
+            {
+                    {   //front
+                            {CoreLogic::UserInterface::AnimationState {0 * 24, 48, 72, 1, {0, -24}}},
+                            {CoreLogic::UserInterface::AnimationState {0 * 24, 48, 72, 1,  {0, -84}}},
+                    },
+                    {   //left
+                            {CoreLogic::UserInterface::AnimationState {3 * 24, 96, 48, 1, {0, 0}}},
+                            {CoreLogic::UserInterface::AnimationState {3 * 24, 96, 48, 1,  {-24, -84}}},
+                    },
+                    {   //right
+                            {CoreLogic::UserInterface::AnimationState{6 * 24, 48, 96, 1, {-24, 0}}},
+                            {CoreLogic::UserInterface::AnimationState{6 * 24, 48, 96, 1, {0, -84}}},
+                    },
+            });
+
+    po_sprites_[VINE_OVERWORLD_SECONDARY] = sprite;
 
 
     //-----HUD-----//

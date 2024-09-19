@@ -21,10 +21,19 @@ CoreLogic::EventManagement::Object::Vine::Vine(Vector2 pa_position, Rectangle pa
         Interaction(pa_position, pa_hitbox, pa_id, Actor::CollisionType::COLLISION, pa_size, true, pa_elevation, CLIMBING)
 {
     if (CoreLogic::DataProcessing::ActorStorage::getCurrentLevelID() == 0){
-        secondarySprite_ = DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::VINES_UNDERWORLD_SECONDARY);
+        secondarySprite_ = DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::VINE_UNTERWORLD_SECONDARY);
     } else {
-        secondarySprite_ = DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::VINES_OVERWORLD_SECONDARY);
+        secondarySprite_ = DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::VINE_OVERWORLD_SECONDARY);
     }
+
+    if (elevation_ > newElevation)
+    {
+        primaryDirection_ = UserInterface::Direction::DOWN;
+    } else
+    {
+        primaryDirection_ = UserInterface::Direction::UP;
+    }
+
     initFrame(pa_spriteState);
 }
 
