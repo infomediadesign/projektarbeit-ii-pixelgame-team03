@@ -408,9 +408,6 @@ void CoreLogic::DataProcessing::ActorStorage::addActorByType(int pa_elevation,
     }else if (auto camera = std::dynamic_pointer_cast<EventManagement::Object::CameraPan>(pa_actor)) {
         addActor(po_cameraPans_, pa_elevation, camera);
 
-        auto enemy = std::dynamic_pointer_cast<EventManagement::Actors::Enemy>(pa_actor);
-        addActor(po_allEnemies_, pa_elevation, enemy);
-
         auto actor = std::dynamic_pointer_cast<EventManagement::Actor>(pa_actor);
         addActor(po_allActors_, pa_elevation, actor);
 
