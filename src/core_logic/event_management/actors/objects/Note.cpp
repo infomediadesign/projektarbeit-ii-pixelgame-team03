@@ -15,6 +15,7 @@ CoreLogic::EventManagement::Object::Note::Note(Vector2 pa_position, Rectangle pa
         Interaction(pa_position, pa_hitbox, pa_id, Actor::CollisionType::NONE, pa_size, true, pa_elevation, NOTE)
 {
     sprite_ = DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::NOTE);
+    secondarySprite_ = DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::NOTE_SECONDARY);
 }
 
 void CoreLogic::EventManagement::Object::Note::setText(std::string pa_text)

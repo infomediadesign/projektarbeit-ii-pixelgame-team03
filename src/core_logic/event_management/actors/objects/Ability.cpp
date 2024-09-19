@@ -27,14 +27,14 @@ abilityType_ = pa_abilityType;
 void CoreLogic::EventManagement::Object::Ability::setGlowing()
 {
     glowing_ = true;
-    sprite_.shiftFrame(/**@todo: Get glowing standart State*/);
+    sprite_.shiftFrame(2);
 }
 
 void CoreLogic::EventManagement::Object::Ability::resetGlowing()
 {
     glowing_ = false;
-    if (sprite_.getCurrentStateId() == /**@todo Get glowing standart State*/)
+    if (sprite_.getCurrentStateId() == 2)
     {
-        sprite_.shiftFrame(/**@todo: Get standart idle State*/);
+        sprite_.shiftFrame(0);
     }
 }
