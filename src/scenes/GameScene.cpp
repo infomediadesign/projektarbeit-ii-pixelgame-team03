@@ -288,8 +288,14 @@ void Scenes::GameScene::onSwitch()
             panTargetY = playerPos.y - screenY + (playerSize.y/2);
         }
 
+        double panLength = sqrt(pow(abs(panTargetX - playerPos.x),2) + pow(abs(panTargetY - playerPos.y),2));
+        int panTicks = static_cast<int>(panLength / 10);
+
         std::shared_ptr<CoreLogic::EventManagement::Object::CameraPan> pan = std::make_shared<CoreLogic::EventManagement::Object::CameraPan>(
-                CoreLogic::EventManagement::Object::CameraPan({},{}, 50, {}, 0, {panTargetX,panTargetY}));
+                CoreLogic::EventManagement::Object::CameraPan(Vector2(),Rectangle(), 50, Vector2(), 0,
+                                                              Vector2({panTargetX, panTargetY}), panTicks, 0));
+        CoreLogic::DataProcessing::ActorStorage::setActiveCameraPan(pan);
+        CoreLogic::DataProcessing::StateMachine::changeState(CoreLogic::DataProcessing::CAMERA_PAN);
 
     }
     auto &eventHandler = CoreLogic::EventManagement::EventHandler::getInstance();
