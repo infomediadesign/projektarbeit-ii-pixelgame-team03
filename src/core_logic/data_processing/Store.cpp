@@ -1112,7 +1112,7 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
                     },
             });
 
-    po_sprites_[VINE_OVERWORLD_SECONDARY] = sprite;
+    po_sprites_[VINE_UNDERWORLD_SECONDARY] = sprite;
 
 
     //-----HUD-----//

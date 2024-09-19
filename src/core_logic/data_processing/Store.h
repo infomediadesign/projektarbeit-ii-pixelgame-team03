@@ -105,7 +105,7 @@ private:
             NOTE,
             NOTE_SECONDARY,
             VINE_OVERWORLD_SECONDARY,
-            VINE_UNTERWORLD_SECONDARY,
+            VINE_UNDERWORLD_SECONDARY,
             UPLINK,
 
             HUD_BUTTONS,
