@@ -7,6 +7,7 @@
 #include "event_management/actors/Drone.h"
 #include "event_management/actors/drones/Worker.h"
 #include "event_management/actors/objects/Uplink.h"
+#include <climits>
 
 
 CoreLogic::DataProcessing::Map::Map(std::string pa_filename)
