@@ -2127,7 +2127,7 @@
                         {
                          "name":"sprite_state",
                          "type":"int",
-                         "value":6
+                         "value":3
                         }, 
                         {
                          "name":"x_dest",

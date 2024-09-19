@@ -1067,7 +1067,7 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
                             {CoreLogic::UserInterface::AnimationState {0 * 24, 48, 96, 1, {-24, 0}}},
                     },
                     {   //front
-                            {CoreLogic::UserInterface::AnimationState {4 * 24, 96, 48, 1,  {-24, -48}}},
+                            {CoreLogic::UserInterface::AnimationState {4 * 24, 96, 48, 1,  {-24, -24}}},
                             {CoreLogic::UserInterface::AnimationState {4 * 24, 96, 48, 1, {-24, 0}}},
                     },
                     {   //left lower corner
