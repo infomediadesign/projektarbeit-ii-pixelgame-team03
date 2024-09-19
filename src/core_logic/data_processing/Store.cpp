@@ -1063,31 +1063,31 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
     sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/Interacts/hive_ARTI_Overworld-Climbable-Wall.png",
             {
                     {   //right corner
-                            {CoreLogic::UserInterface::AnimationState {0 * 24, 48, 96, 1,  {0, -84}}},
+                            {CoreLogic::UserInterface::AnimationState {0 * 24, 48, 96, 1,  {0, -48}}},
                             {CoreLogic::UserInterface::AnimationState {0 * 24, 48, 96, 1, {-24, 0}}},
                     },
                     {   //front
-                            {CoreLogic::UserInterface::AnimationState {4 * 24, 96, 48, 1,  {-24, -84}}},
+                            {CoreLogic::UserInterface::AnimationState {4 * 24, 96, 48, 1,  {-24, -48}}},
                             {CoreLogic::UserInterface::AnimationState {4 * 24, 96, 48, 1, {-24, 0}}},
                     },
                     {   //left lower corner
-                            {CoreLogic::UserInterface::AnimationState{6 * 24, 48, 96, 1, {-24, -84}}},
+                            {CoreLogic::UserInterface::AnimationState{6 * 24, 48, 96, 1, {-24, -48}}},
                             {CoreLogic::UserInterface::AnimationState{6 * 24, 48, 96, 1, {0, 0}}},
                     },
                     {   //left upper corner
-                            {CoreLogic::UserInterface::AnimationState{10 * 24, 48, 96, 1, {-24, -84}}},
+                            {CoreLogic::UserInterface::AnimationState{10 * 24, 48, 96, 1, {-24, -48}}},
                             {CoreLogic::UserInterface::AnimationState{10 * 24, 48, 96, 1, {0, 0}}},
                     },
                     {   //left
-                            {CoreLogic::UserInterface::AnimationState{14 * 24, 48, 96, 1, {-24, -84}}},
+                            {CoreLogic::UserInterface::AnimationState{14 * 24, 48, 96, 1, {-24, -48}}},
                             {CoreLogic::UserInterface::AnimationState{14 * 24, 48, 96, 1, {0, 0}}},
                     },
                     {   //right corner
-                            {CoreLogic::UserInterface::AnimationState {18 * 24, 48, 96, 1,  {0, -84}}},
+                            {CoreLogic::UserInterface::AnimationState {18 * 24, 48, 96, 1,  {0, -48}}},
                             {CoreLogic::UserInterface::AnimationState {18 * 24, 48, 96, 1, {-24, 0}}},
                     },
                     {   //left
-                            {CoreLogic::UserInterface::AnimationState{22 * 24, 48, 96, 1, {-24, -84}}},
+                            {CoreLogic::UserInterface::AnimationState{22 * 24, 48, 96, 1, {-24, -48}}},
                             {CoreLogic::UserInterface::AnimationState{22 * 24, 48, 96, 1, {0, 0}}},
                     },
             });
@@ -1098,15 +1098,15 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
     sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/Interacts/hive_ARTI_Underworld-Climbable-Walls.png",
             {
                     {   //front
-                            {CoreLogic::UserInterface::AnimationState {0 * 24, 48, 72, 1,  {0, -84}}},
+                            {CoreLogic::UserInterface::AnimationState {0 * 24, 48, 72, 1,  {0, -48}}},
                             {CoreLogic::UserInterface::AnimationState {0 * 24, 48, 72, 1, {0, -24}}},
                     },
-                    {   //left
-                            {CoreLogic::UserInterface::AnimationState {3 * 24, 96, 48, 1,  {-24, -84}}},
-                            {CoreLogic::UserInterface::AnimationState {3 * 24, 96, 48, 1, {0, 0}}},
-                    },
                     {   //right
-                            {CoreLogic::UserInterface::AnimationState{7 * 24, 48, 96, 1, {0, -84}}},
+                            {CoreLogic::UserInterface::AnimationState {3 * 24, 48, 96, 1,  {-24, -48}}},
+                            {CoreLogic::UserInterface::AnimationState {3 * 24, 48, 96, 1, {0, 0}}},
+                    },
+                    {   //left
+                            {CoreLogic::UserInterface::AnimationState{7 * 24, 48, 96, 1, {0, -48}}},
                             {CoreLogic::UserInterface::AnimationState{7 * 24, 48, 96, 1, {-24, 0}}},
                     },
             });
