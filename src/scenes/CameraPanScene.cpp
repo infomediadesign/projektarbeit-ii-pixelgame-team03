@@ -13,7 +13,7 @@ Scenes::CameraPanScene::CameraPanScene():
 
 void Scenes::CameraPanScene::onSwitch()
 {
-    panTicks_ = 3 * 60;
+    panTicks_ = 2 * 60;
     restingTicks_ = 2 * 60;
 
     CoreLogic::EventManagement::Actors::Drone& player = *CoreLogic::DataProcessing::ActorStorage::getPlayer();
@@ -61,8 +61,8 @@ void Scenes::CameraPanScene::update()
         panTicks_--;
             auto xPos = differenceVector_.x / panTicks_;
             auto yPos = differenceVector_.y / panTicks_;
-            camera.target.x = xPos;
-            camera.target.y = yPos;
+            camera.target.x += xPos;
+            camera.target.y += yPos;
         return;
     }
     while (restingTicks_ > 0)
