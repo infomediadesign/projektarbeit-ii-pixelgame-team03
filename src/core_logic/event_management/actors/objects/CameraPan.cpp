@@ -5,8 +5,8 @@
 #include "CameraPan.h"
 
 CoreLogic::EventManagement::Object::CameraPan::CameraPan(Vector2 pa_position, Rectangle pa_hitbox, int pa_id,
-        Vector2 pa_size, int pa_elevation, Vector2 pa_destination)
-        : destination_(pa_destination), Actor(pa_position, pa_hitbox, pa_id, Actor::CollisionType::WALKABLE, pa_size, false, pa_elevation)
+        Vector2 pa_size, int pa_elevation, Vector2 pa_destination, int pa_panTicks, int pa_restingTicks)
+        : destination_(pa_destination), panTicks_(pa_panTicks), restingTicks_(pa_restingTicks), Actor(pa_position, pa_hitbox, pa_id, Actor::CollisionType::WALKABLE, pa_size, false, pa_elevation)
 {
 
 }

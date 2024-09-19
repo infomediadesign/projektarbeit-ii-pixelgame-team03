@@ -336,9 +336,11 @@ void CoreLogic::DataProcessing::Map::loadObjects()
             {
                 Vector2 objectDestination = {(float) objectProperties.getProperty("x_dest")->getValue<int>(),
                         (float) objectProperties.getProperty("y_dest")->getValue<int>()};
+                int objectPanTicks = objectProperties.getProperty("pan_ticks")->getValue<int>();
+                int objectRestingTicks = objectProperties.getProperty("resting_ticks")->getValue<int>();
 
                 actor = std::make_shared<EventManagement::Object::CameraPan>(EventManagement::Object::CameraPan
-                        (objectPosition, objectHitbox, objectId, objectSize, objectElevation, objectDestination));
+                        (objectPosition, objectHitbox, objectId, objectSize, objectElevation, objectDestination, objectPanTicks, objectRestingTicks));
                 ActorStorage::addActorByType(objectElevation, actor);
             }
         }
