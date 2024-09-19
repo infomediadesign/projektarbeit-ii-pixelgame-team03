@@ -8416,40 +8416,8 @@
         {
          "draworder":"topdown",
          "id":46,
-         "name":"LevelSwitches",
+         "name":"LevelSwitches 2",
          "objects":[
-                {
-                 "height":72,
-                 "id":304,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"elevation_dest",
-                         "type":"int",
-                         "value":0
-                        }, 
-                        {
-                         "name":"level_switch",
-                         "type":"int",
-                         "value":-1
-                        }, 
-                        {
-                         "name":"x_dest",
-                         "type":"int",
-                         "value":794
-                        }, 
-                        {
-                         "name":"y_dest",
-                         "type":"int",
-                         "value":2
-                        }],
-                 "rotation":0,
-                 "type":"level_switch",
-                 "visible":true,
-                 "width":24,
-                 "x":1560,
-                 "y":648
-                }, 
                 {
                  "height":24,
                  "id":305,
@@ -8487,6 +8455,55 @@
                 {
                  "name":"elevation",
                  "type":"int",
+                 "value":1
+                }],
+         "type":"objectgroup",
+         "visible":false,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":64,
+         "name":"LevelSwitches 3",
+         "objects":[
+                {
+                 "height":72,
+                 "id":639,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"elevation_dest",
+                         "type":"int",
+                         "value":0
+                        }, 
+                        {
+                         "name":"level_switch",
+                         "type":"int",
+                         "value":-1
+                        }, 
+                        {
+                         "name":"x_dest",
+                         "type":"int",
+                         "value":794
+                        }, 
+                        {
+                         "name":"y_dest",
+                         "type":"int",
+                         "value":2
+                        }],
+                 "rotation":0,
+                 "type":"level_switch",
+                 "visible":true,
+                 "width":24,
+                 "x":1560,
+                 "y":648
+                }],
+         "opacity":1,
+         "properties":[
+                {
+                 "name":"elevation",
+                 "type":"int",
                  "value":2
                 }],
          "type":"objectgroup",
@@ -8494,8 +8511,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":64,
- "nextobjectid":639,
+ "nextlayerid":65,
+ "nextobjectid":641,
  "orientation":"orthogonal",
  "properties":[
         {
