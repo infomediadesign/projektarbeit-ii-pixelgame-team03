@@ -11,8 +11,8 @@ namespace GameSpace {
         inline static constexpr char* PROJECT_VERSION_MINOR = "@PROJECT_VERSION_MINOR@";
         inline static constexpr char* PROJECT_VERSION_PATCH = "@PROJECT_VERSION_PATCH@";
 
-        inline static constexpr int Def_ScreenWidth = 960;
-        inline static constexpr int Def_ScreenHeight = 540;
+        inline static constexpr int Def_ScreenWidth = 640;
+        inline static constexpr int Def_ScreenHeight = 360;
 
         inline static constexpr int Def_TargetFPS = 60;
         inline static constexpr int Def_WindowFlags = FLAG_WINDOW_UNDECORATED | FLAG_WINDOW_RESIZABLE | FLAG_VSYNC_HINT;
@@ -20,7 +20,7 @@ namespace GameSpace {
         inline static constexpr int Def_ExitKey = KEY_NULL;
 
         inline static constexpr bool Def_FullScreen = false;
-        inline static constexpr bool Def_Audio = false;
+        inline static constexpr bool Def_Audio = true;
     };
 
     //#define GAME_START_FULLSCREEN

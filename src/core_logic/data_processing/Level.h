@@ -10,6 +10,8 @@
 #include <memory>
 #include <vector>
 #include "raylib.h"
+#include "event_management/Actor.h"
+#include "../../tileson.h"
 
 
 
@@ -25,7 +27,7 @@ namespace CoreLogic::DataProcessing
     class Level
     {
     public:
-        Level(std::unique_ptr<std::vector<std::string>> pa_mapPath, int pa_levelID, LevelState pa_levelState);
+        Level(std::unique_ptr<std::vector<std::string>> pa_mapPath, int pa_levelID, LevelState pa_levelState, int pa_ambientID);
 
         Level(const Level &other);
 
@@ -40,16 +42,30 @@ namespace CoreLogic::DataProcessing
         void setLevelState(LevelState pa_levelState);
 
 
+        void saveLevelStates();
+        void loadLevelData();
+
+        std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Actor>>>> getLevelActorStateStorage();
+
     private:
         Level() = delete;
-
     protected:
         const int levelID_;
         std::unique_ptr<std::vector<std::string>> po_mapPath_;
+
+
         LevelState levelState_;
         //to be changed as soon as we know how to handle object state changes(if we cant handle certain obj-changes via a map)
         std::unique_ptr<std::vector<std::string>> stateChanges_;
 
+        std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Actor>>>> po_levelActorStateStorage_ = nullptr;
+        std::shared_ptr<std::map<int, std::vector<tson::Layer>>> po_layers_ = nullptr;
+        int elevationLevels_ = 0;
+        int ambientID_ = 0;
+    public:
+        int getAmbientId() const;
+
+        void setAmbientId(int ambientId);
     };
 }
 

@@ -18,3 +18,8 @@ void Scenes::PauseScene::update()
 {
 
 }
+
+void Scenes::PauseScene::onSwitch()
+{
+    update();
+}

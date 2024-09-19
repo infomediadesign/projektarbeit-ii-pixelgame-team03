@@ -1,0 +1,4 @@
+Idle: 24x48px (1x2 Tiles)
+Alert: 24x72px (1x3 Tiles)
+Shoot: 24x72px (1x3 Tiles)
+Death: 72x72px (3x3 Tiles)
