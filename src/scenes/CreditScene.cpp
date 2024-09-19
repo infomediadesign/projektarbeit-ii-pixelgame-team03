@@ -3,6 +3,7 @@
 //
 
 #include "CreditScene.h"
+#include "event_management/SoundHandler.h"
 
 Scenes::CreditScene::CreditScene()
 {
@@ -12,6 +13,9 @@ Scenes::CreditScene::CreditScene()
 
 void Scenes::CreditScene::draw(RenderTexture2D &pa_canvas)
 {
+    CoreLogic::EventManagement::SoundHandler &soundHandler = CoreLogic::EventManagement::SoundHandler::getInstance();
+    soundHandler.update();
+
     ClearBackground(BLACK);
     BeginTextureMode(pa_canvas);
     {
