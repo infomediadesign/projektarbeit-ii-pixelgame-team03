@@ -20,6 +20,7 @@ namespace CoreLogic::EventManagement::Object
         int getNewElevation() const;
         void setNewElevation(int pa_newElevation);
         void initFrame(int pa_state) {secondarySprite_.shiftFrame(pa_state, primaryDirection_);};
+        void draw() override;
     protected:
         Vector2 coordinates_;
         int newElevation;

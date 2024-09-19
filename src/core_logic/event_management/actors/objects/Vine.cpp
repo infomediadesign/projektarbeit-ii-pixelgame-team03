@@ -37,6 +37,18 @@ CoreLogic::EventManagement::Object::Vine::Vine(Vector2 pa_position, Rectangle pa
     initFrame(pa_spriteState);
 }
 
+void CoreLogic::EventManagement::Object::Vine::draw()
+{
+    if (glowing_)
+    {
+        Rectangle dest = {hitbox_.x + secondarySprite_.getRelativePosition().x, hitbox_.y + secondarySprite_.getRelativePosition().y,
+                          secondarySprite_.getFrame().width, secondarySprite_.getFrame().height};
+
+        DrawTexturePro(secondarySprite_.getTexture(), secondarySprite_.getFrame(), dest, {0, 0}, 0, WHITE);
+
+    }
+}
+
 void CoreLogic::EventManagement::Object::Vine::setCoordinates(Vector2 pa_coordinates)
 {
     coordinates_ = pa_coordinates;
