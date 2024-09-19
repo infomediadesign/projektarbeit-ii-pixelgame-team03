@@ -137,15 +137,13 @@ void CoreLogic::DataProcessing::ActorStorage::Initialize(int pa_elevationLevels,
     DataProcessing::ActorStorage::setAbilities(initializeSpecificLists<std::shared_ptr<EventManagement::Object::Ability>>(pa_elevationLevels));
     DataProcessing::ActorStorage::setWorkerAbilities(initializeSpecificLists<std::shared_ptr<EventManagement::Object::Ability>>(pa_elevationLevels));
     DataProcessing::ActorStorage::setScoutAbilities(initializeSpecificLists<std::shared_ptr<EventManagement::Object::Ability>>(pa_elevationLevels));
-    DataProcessing::ActorStorage::setInteractions
-            (initializeSpecificLists<std::shared_ptr<EventManagement::Object::Interaction>>(pa_elevationLevels));
+    DataProcessing::ActorStorage::setInteractions(initializeSpecificLists<std::shared_ptr<EventManagement::Object::Interaction>>(pa_elevationLevels));
     DataProcessing::ActorStorage::setEnemies(initializeSpecificLists<std::shared_ptr<EventManagement::Actors::Enemy>>(pa_elevationLevels));
     DataProcessing::ActorStorage::setBarriers(initializeSpecificLists<std::shared_ptr<EventManagement::Object::Barrier>>(pa_elevationLevels));
     DataProcessing::ActorStorage::setRubbles(initializeSpecificLists<std::shared_ptr<EventManagement::Object::Rubble>>(pa_elevationLevels));
     DataProcessing::ActorStorage::setBoulders(initializeSpecificLists<std::shared_ptr<EventManagement::Object::Boulder>>(pa_elevationLevels));
     DataProcessing::ActorStorage::setVines(initializeSpecificLists<std::shared_ptr<EventManagement::Object::Vine>>(pa_elevationLevels));
-    DataProcessing::ActorStorage::setJumpPoints
-            (initializeSpecificLists<std::shared_ptr<EventManagement::Object::JumpPoint>>(pa_elevationLevels));
+    DataProcessing::ActorStorage::setJumpPoints(initializeSpecificLists<std::shared_ptr<EventManagement::Object::JumpPoint>>(pa_elevationLevels));
     DataProcessing::ActorStorage::setColonists(initializeSpecificLists<std::shared_ptr<EventManagement::Actors::Colonist>>(pa_elevationLevels));
     DataProcessing::ActorStorage::setMechs(initializeSpecificLists<std::shared_ptr<EventManagement::Actors::Mech>>(pa_elevationLevels));
     DataProcessing::ActorStorage::setCliffs(initializeSpecificLists<std::shared_ptr<EventManagement::Object::Cliff>>(pa_elevationLevels));
@@ -154,6 +152,8 @@ void CoreLogic::DataProcessing::ActorStorage::Initialize(int pa_elevationLevels,
     DataProcessing::ActorStorage::setNotes(initializeSpecificLists<std::shared_ptr<EventManagement::Object::Note>>(pa_elevationLevels));
     DataProcessing::ActorStorage::setLevelSwitches(initializeSpecificLists<std::shared_ptr<EventManagement::Object::LevelSwitch>>(pa_elevationLevels));
     DataProcessing::ActorStorage::setUplinks(initializeSpecificLists<std::shared_ptr<EventManagement::Object::Uplink>>(pa_elevationLevels));
+    DataProcessing::ActorStorage::setCameraPans(initializeSpecificLists<std::shared_ptr<EventManagement::Object::CameraPan>>
+    (pa_elevationLevels));
 }
 
 // Base template for regular types (e.g., tson::Layer)
