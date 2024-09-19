@@ -49,8 +49,6 @@ void Scenes::CameraPanScene::update()
 {
     CoreLogic::EventManagement::SoundHandler &soundHandler = CoreLogic::EventManagement::SoundHandler::getInstance();
     soundHandler.update();
-    Camera2D &camera = *camera_;
-
 
     Vector2 dest = CoreLogic::DataProcessing::ActorStorage::getActiveCameraPan()->getDestination();
     differenceVector_ = {dest.x - camera_->target.x, dest.y - camera_->target.y};
@@ -59,15 +57,14 @@ void Scenes::CameraPanScene::update()
     while (panTicks_ > 0)
     {
         panTicks_--;
-            auto xPos = differenceVector_.x / panTicks_;
-            auto yPos = differenceVector_.y / panTicks_;
-            camera.target.x += xPos;
-            camera.target.y += yPos;
+        camera_->target.x += differenceVector_.x / panTicks_;
+        camera_->target.y += differenceVector_.y / panTicks_;
         return;
     }
     while (restingTicks_ > 0)
     {
         restingTicks_--;
+        camera_->target = dest;
         return;
     }
     CoreLogic::DataProcessing::StateMachine::changeState(CoreLogic::DataProcessing::GameState::IN_GAME);
