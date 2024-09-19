@@ -5906,7 +5906,7 @@
                         {
                          "name":"textbox_font_size",
                          "type":"int",
-                         "value":17
+                         "value":16
                         }, 
                         {
                          "name":"textbox_spacing",
@@ -5965,7 +5965,7 @@
                         {
                          "name":"textbox_font_size",
                          "type":"int",
-                         "value":17
+                         "value":16
                         }, 
                         {
                          "name":"textbox_spacing",

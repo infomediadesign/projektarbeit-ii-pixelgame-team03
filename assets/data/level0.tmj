@@ -368,7 +368,7 @@
                  "value":0
                 }],
          "type":"tilelayer",
-         "visible":true,
+         "visible":false,
          "width":64,
          "x":0,
          "y":0
@@ -2028,7 +2028,7 @@
                  "value":1
                 }],
          "type":"tilelayer",
-         "visible":true,
+         "visible":false,
          "width":64,
          "x":0,
          "y":0
@@ -4729,6 +4729,28 @@
                 }, 
                 {
                  "height":24,
+                 "id":636,
+                 "name":"",
+                 "rotation":0,
+                 "type":"collidable",
+                 "visible":true,
+                 "width":24,
+                 "x":408,
+                 "y":816
+                }, 
+                {
+                 "height":24,
+                 "id":637,
+                 "name":"",
+                 "rotation":0,
+                 "type":"collidable",
+                 "visible":true,
+                 "width":24,
+                 "x":432,
+                 "y":744
+                }, 
+                {
+                 "height":24,
                  "id":625,
                  "name":"",
                  "rotation":0,
@@ -4790,7 +4812,7 @@
                  "value":1
                 }],
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -5563,7 +5585,7 @@
                  "value":2
                 }],
          "type":"tilelayer",
-         "visible":true,
+         "visible":false,
          "width":64,
          "x":0,
          "y":0
@@ -7617,7 +7639,7 @@
                         {
                          "name":"textbox_font_size",
                          "type":"int",
-                         "value":17
+                         "value":16
                         }, 
                         {
                          "name":"textbox_spacing",
@@ -7654,12 +7676,12 @@
                         {
                          "name":"textbox_anchor_y",
                          "type":"int",
-                         "value":528
+                         "value":552
                         }, 
                         {
                          "name":"textbox_font_size",
                          "type":"int",
-                         "value":17
+                         "value":16
                         }, 
                         {
                          "name":"textbox_spacing",
@@ -7701,7 +7723,7 @@
                         {
                          "name":"textbox_font_size",
                          "type":"int",
-                         "value":17
+                         "value":16
                         }, 
                         {
                          "name":"textbox_spacing",
@@ -7738,12 +7760,12 @@
                         {
                          "name":"textbox_anchor_y",
                          "type":"int",
-                         "value":96
+                         "value":168
                         }, 
                         {
                          "name":"textbox_font_size",
                          "type":"int",
-                         "value":17
+                         "value":16
                         }, 
                         {
                          "name":"textbox_spacing",
@@ -7753,7 +7775,7 @@
                         {
                          "name":"textbox_text",
                          "type":"string",
-                         "value":"A weakspot in the ground - we can use this to connect to the HIVE\n\npress <K> to uncover and set a new spawnpoint and gain more drone lives\nyou can also reactivate an older spawnpoint, though you will not regain lives this way"
+                         "value":"A weakspot in the ground - we can use this \nto connect to the HIVE\n\npress <K> to uncover and set a new spawnpoint\nand gain more drone lives\n\nyou can also reactivate an older spawnpoint,\nthough you will not regain lives this way"
                         }],
                  "rotation":0,
                  "type":"textbox",
@@ -7785,7 +7807,7 @@
                         {
                          "name":"textbox_font_size",
                          "type":"int",
-                         "value":17
+                         "value":16
                         }, 
                         {
                          "name":"textbox_spacing",
@@ -7812,7 +7834,7 @@
                  "value":0
                 }],
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -7822,7 +7844,7 @@
          "name":"Textboxen 2",
          "objects":[
                 {
-                 "height":120,
+                 "height":96,
                  "id":602,
                  "name":"",
                  "properties":[
@@ -7844,7 +7866,7 @@
                         {
                          "name":"textbox_font_size",
                          "type":"int",
-                         "value":17
+                         "value":16
                         }, 
                         {
                          "name":"textbox_spacing",
@@ -7861,7 +7883,7 @@
                  "visible":true,
                  "width":120,
                  "x":408,
-                 "y":384
+                 "y":408
                 }, 
                 {
                  "height":168,
@@ -7886,7 +7908,7 @@
                         {
                          "name":"textbox_font_size",
                          "type":"int",
-                         "value":17
+                         "value":16
                         }, 
                         {
                          "name":"textbox_spacing",
@@ -7928,7 +7950,7 @@
                         {
                          "name":"textbox_font_size",
                          "type":"int",
-                         "value":17
+                         "value":16
                         }, 
                         {
                          "name":"textbox_spacing",
@@ -7955,7 +7977,7 @@
                  "value":1
                 }],
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -7987,7 +8009,7 @@
                         {
                          "name":"textbox_font_size",
                          "type":"int",
-                         "value":17
+                         "value":16
                         }, 
                         {
                          "name":"textbox_spacing",
@@ -8019,17 +8041,17 @@
                         {
                          "name":"textbox_anchor_x",
                          "type":"int",
-                         "value":1176
+                         "value":1200
                         }, 
                         {
                          "name":"textbox_anchor_y",
                          "type":"int",
-                         "value":600
+                         "value":624
                         }, 
                         {
                          "name":"textbox_font_size",
                          "type":"int",
-                         "value":17
+                         "value":16
                         }, 
                         {
                          "name":"textbox_spacing",
@@ -8071,7 +8093,7 @@
                         {
                          "name":"textbox_font_size",
                          "type":"int",
-                         "value":17
+                         "value":16
                         }, 
                         {
                          "name":"textbox_spacing",
@@ -8098,7 +8120,7 @@
                  "value":2
                 }],
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -8286,7 +8308,7 @@
          "y":0
         }],
  "nextlayerid":63,
- "nextobjectid":636,
+ "nextobjectid":638,
  "orientation":"orthogonal",
  "properties":[
         {
