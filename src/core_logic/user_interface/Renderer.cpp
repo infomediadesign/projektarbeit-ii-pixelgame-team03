@@ -49,7 +49,8 @@ void CoreLogic::UserInterface::Renderer::render(std::shared_ptr<std::map<int, st
         {
             ClearBackground(pa_bgColor);
             std::shared_ptr<CoreLogic::EventManagement::Actors::Drone> player = CoreLogic::DataProcessing::ActorStorage::getPlayer();
-            for (const auto &pair: *pa_layers)
+            auto layersStore = CoreLogic::DataProcessing::ActorStorage::getLayers();
+            for (const auto &pair: *layersStore)
             {
                 const std::vector<tson::Layer> &layers = pair.second;
                 for (tson::Layer layer: layers)
