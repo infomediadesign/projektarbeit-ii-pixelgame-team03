@@ -123,6 +123,8 @@ private:
             DEATH_SCENE,
             VICTORY_BACKGROUND,
             VICTORY_BUTTONS,
+            CREDIT_SCENE,
+
             LORE_ITEM,
             LORE_CRACKS
         };

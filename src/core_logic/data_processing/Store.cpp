@@ -1197,6 +1197,9 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
 
     po_sprites_[HUD_DEATH_ABILITY] = sprite;
 
+
+    //-----Menus-----//
+
     //drone selection
     sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/Scenes/hive_ARTI_newHUD_drone-selection-screen-Spritesheet.png",
             {
@@ -1224,6 +1227,14 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
             });
 
     po_sprites_[DEATH_SCENE] = sprite;
+
+    //credit scene
+    sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/Scenes/hive_ARTI_credit-scene.png",
+            {
+                    {CoreLogic::UserInterface::AnimationState{0 * 360, 640, 360, 1}},
+            });
+
+    po_sprites_[CREDIT_SCENE] = sprite;
 
     //victory background
     sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/Scenes/hive_ARTI_newHUD_victory-background.png",
