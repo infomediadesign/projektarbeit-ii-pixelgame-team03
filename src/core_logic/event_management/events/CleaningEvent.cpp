@@ -12,6 +12,7 @@ CoreLogic::EventManagement::CleaningEvent::CleaningEvent(std::shared_ptr<CoreLog
 {
     po_rubble_ = pa_rubble;
     ticks_ = 0;
+    rubbleBreakRate_ = 50/po_rubble_->getSprite().getFrameAmount(1)+1;
 }
 
 void CoreLogic::EventManagement::CleaningEvent::update()
@@ -24,6 +25,10 @@ void CoreLogic::EventManagement::CleaningEvent::update()
     if (ticks_ % 10 == 0)
     {
         po_mainActor_->shiftFrame(1);
+    }
+    if (ticks_ % rubbleBreakRate_==0)
+    {
+        po_rubble_->shiftFrame(1);
     }
     if (ticks_ == 10)
     {

@@ -25,6 +25,7 @@ namespace CoreLogic::EventManagement
          */
         std::shared_ptr<Object::Rubble> po_rubble_;
         bool cleaningDone_ = false;
+        int rubbleBreakRate_;
     };
 }
 
