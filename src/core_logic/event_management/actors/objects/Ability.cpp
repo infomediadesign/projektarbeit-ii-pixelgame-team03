@@ -27,7 +27,10 @@ abilityType_ = pa_abilityType;
 void CoreLogic::EventManagement::Object::Ability::setGlowing()
 {
     glowing_ = true;
-    sprite_.shiftFrame(2);
+    if (sprite_.getCurrentStateId() == 0)
+    {
+        sprite_.shiftFrame(2);
+    }
 }
 
 void CoreLogic::EventManagement::Object::Ability::resetGlowing()
