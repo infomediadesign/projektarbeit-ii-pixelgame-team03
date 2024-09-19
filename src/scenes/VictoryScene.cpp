@@ -52,7 +52,8 @@ namespace Scenes
 
     void VictoryScene::updateInput()
     {
-        std::vector<CoreLogic::EventManagement::EventEnum> events = po_inputHandler_->handleInput();
+        auto &inputHandler = CoreLogic::EventManagement::InputHandler::getInstance();
+        std::vector<CoreLogic::EventManagement::EventEnum> events = inputHandler.handleInput();
 
         for (CoreLogic::EventManagement::EventEnum event : events)
         {

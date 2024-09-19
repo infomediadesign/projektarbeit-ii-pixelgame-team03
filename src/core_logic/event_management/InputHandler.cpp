@@ -8,6 +8,14 @@
 #include "data_processing/DesignConfig.h"
 
 bool CoreLogic::EventManagement::InputHandler::lastInputKeyBoard_ = true;
+std::mutex CoreLogic::EventManagement::InputHandler::inputHandler_mutex_;
+
+
+CoreLogic::EventManagement::InputHandler &CoreLogic::EventManagement::InputHandler::getInstance()
+{
+    static CoreLogic::EventManagement::InputHandler instance;
+    return instance;
+}
 
 namespace CoreLogic::EventManagement
 {
@@ -163,8 +171,9 @@ namespace CoreLogic::EventManagement
 
         keyboardInGameMapping_->insert({INTERACT, std::make_shared<Input>(CoreLogic::DataProcessing::DesignConfig::INTERACT_KEYBOARD)});
         keyboardInGameMapping_->insert({ABILITY, std::make_shared<Input>(CoreLogic::DataProcessing::DesignConfig::ABILITY_KEYBOARD)});
-        keyboardInGameMapping_->insert({DISCONNECT, std::make_shared<Input>(CoreLogic::DataProcessing::DesignConfig::DISCONNECT_KEYBOARD)});
+//        keyboardInGameMapping_->insert({DISCONNECT, std::make_shared<Input>(CoreLogic::DataProcessing::DesignConfig::DISCONNECT_KEYBOARD)});
         keyboardInGameMapping_->insert({DEATH_ABILITY, std::make_shared<Input>(CoreLogic::DataProcessing::DesignConfig::DEATH_ABILITY_KEYBOARD)});
+        keyboardInGameMapping_->insert({HUD_TOGGLE, std::make_shared<Input>(CoreLogic::DataProcessing::DesignConfig::DEATH_ABILITY_KEYBOARD)});
 
 
         keyboardMenuMapping_->clear();
@@ -174,8 +183,8 @@ namespace CoreLogic::EventManagement
         keyboardMenuMapping_->insert({MOVE_LEFT, std::make_shared<Input>(KEY_A)});
         keyboardMenuMapping_->insert({MOVE_RIGHT, std::make_shared<Input>(KEY_D)});
 
-        keyboardMenuMapping_->insert({INTERACT, std::make_shared<Input>(CoreLogic::DataProcessing::DesignConfig::MENU_CONFIRM_KEYBOARD)});
-        keyboardMenuMapping_->insert({DISCONNECT, std::make_shared<Input>(CoreLogic::DataProcessing::DesignConfig::MENU_BACK_KEYBOARD)});
+        keyboardMenuMapping_->insert({ENTER, std::make_shared<Input>
+                (CoreLogic::DataProcessing::DesignConfig::MENU_CONFIRM_KEYBOARD)});
 
     }
 
@@ -192,6 +201,7 @@ namespace CoreLogic::EventManagement
         controllerInGameMapping_->insert({ABILITY, std::make_shared<Input>(CoreLogic::DataProcessing::DesignConfig::ABILITY_CONTROLLER)});
         // controllerInGameMapping_->insert({DISCONNECT, std::make_shared<Input>(CoreLogic::DataProcessing::DesignConfig::DISCONNECT_CONTROLLER)});
         controllerInGameMapping_->insert({DEATH_ABILITY, std::make_shared<Input>(CoreLogic::DataProcessing::DesignConfig::DEATH_ABILITY_CONTROLLER)});
+        controllerInGameMapping_->insert({HUD_TOGGLE, std::make_shared<Input>(CoreLogic::DataProcessing::DesignConfig::DEATH_ABILITY_CONTROLLER)});
 
 
         controllerMenuMapping_->clear();
@@ -201,8 +211,8 @@ namespace CoreLogic::EventManagement
         controllerMenuMapping_->insert({MOVE_LEFT, std::make_shared<Input>(GAMEPAD_AXIS_LEFT_X, Input::NEGATIVE)});
         controllerMenuMapping_->insert({MOVE_RIGHT, std::make_shared<Input>(GAMEPAD_AXIS_LEFT_X, Input::POSITIVE)});
 
-        controllerMenuMapping_->insert({INTERACT, std::make_shared<Input>(CoreLogic::DataProcessing::DesignConfig::MENU_CONFIRM_CONTROLLER)});
-        controllerMenuMapping_->insert({DISCONNECT, std::make_shared<Input>(CoreLogic::DataProcessing::DesignConfig::MENU_BACK_CONTROLLER)});
+        controllerMenuMapping_->insert({ENTER, std::make_shared<Input>
+                (CoreLogic::DataProcessing::DesignConfig::MENU_CONFIRM_CONTROLLER)});
 
     }
 

@@ -30,11 +30,12 @@ void Scenes::DroneSelectionScene::update()
     CoreLogic::EventManagement::SoundHandler &soundHandler = CoreLogic::EventManagement::SoundHandler::getInstance();
     soundHandler.update();
 
-    std::vector<CoreLogic::EventManagement::EventEnum> events = po_inputHandler_->handleInput();
+    auto &inputHandler = CoreLogic::EventManagement::InputHandler::getInstance();
+    std::vector<CoreLogic::EventManagement::EventEnum> events = inputHandler.handleInput();
 
     for (CoreLogic::EventManagement::EventEnum event : events)
     {
-        if (event == CoreLogic::EventManagement::INTERACT)
+        if (event == CoreLogic::EventManagement::ENTER)
         {
             std::shared_ptr<CoreLogic::EventManagement::Actors::Drone> newDrone;
             CoreLogic::EventManagement::Actors::Drone& player = *CoreLogic::DataProcessing::ActorStorage::getPlayer();

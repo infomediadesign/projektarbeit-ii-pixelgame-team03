@@ -83,11 +83,9 @@ void CoreLogic::EventManagement::MovementEvent::checkStillPressed()
 {
     bool newPrimary = false;
 
-    /**
-     *@attention: It assumes here that the InputHandler gives the Option to handle an Axis like a Button
-     **/
+    auto &inputHandler = CoreLogic::EventManagement::InputHandler::getInstance();
 
-    if (directionMap_.at(MOVE_UP) && !(inputHandler_.isCommandDown(MOVE_UP)))
+    if (directionMap_.at(MOVE_UP) && !(inputHandler.isCommandDown(MOVE_UP)))
     {
         directionMap_.at(MOVE_UP) = false;
         if (primaryDir_ == MOVE_UP)
@@ -95,7 +93,7 @@ void CoreLogic::EventManagement::MovementEvent::checkStillPressed()
             newPrimary = true;
         }
     }
-    if (directionMap_.at(MOVE_DOWN) && !(inputHandler_.isCommandDown(MOVE_DOWN)))
+    if (directionMap_.at(MOVE_DOWN) && !(inputHandler.isCommandDown(MOVE_DOWN)))
     {
         directionMap_.at(MOVE_DOWN) = false;
         if (primaryDir_ == MOVE_DOWN)
@@ -103,7 +101,7 @@ void CoreLogic::EventManagement::MovementEvent::checkStillPressed()
             newPrimary = true;
         }
     }
-    if (directionMap_.at(MOVE_LEFT) && !(inputHandler_.isCommandDown(MOVE_LEFT)))
+    if (directionMap_.at(MOVE_LEFT) && !(inputHandler.isCommandDown(MOVE_LEFT)))
     {
         directionMap_.at(MOVE_LEFT) = false;
         if (primaryDir_ == MOVE_LEFT)
@@ -111,7 +109,7 @@ void CoreLogic::EventManagement::MovementEvent::checkStillPressed()
             newPrimary = true;
         }
     }
-    if (directionMap_.at(MOVE_RIGHT) && !(inputHandler_.isCommandDown(MOVE_RIGHT)))
+    if (directionMap_.at(MOVE_RIGHT) && !(inputHandler.isCommandDown(MOVE_RIGHT)))
     {
         directionMap_.at(MOVE_RIGHT) = false;
         if (primaryDir_ == MOVE_RIGHT)

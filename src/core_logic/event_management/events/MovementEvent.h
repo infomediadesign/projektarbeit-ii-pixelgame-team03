@@ -25,7 +25,6 @@ namespace CoreLogic::EventManagement
         bool ticksRunning_ = false;
         EventEnum primaryDir_;
         std::map<EventEnum, bool> directionMap_;
-        InputHandler inputHandler_;
     };
 }
 

@@ -25,11 +25,12 @@ void Scenes::DeathScene::draw(RenderTexture2D &pa_canvas)
 void Scenes::DeathScene::update()
 {
 
-    std::vector<CoreLogic::EventManagement::EventEnum> events = po_inputHandler_->handleInput();
+    auto &inputHandler = CoreLogic::EventManagement::InputHandler::getInstance();
+    std::vector<CoreLogic::EventManagement::EventEnum> events = inputHandler.handleInput();
 
     for (CoreLogic::EventManagement::EventEnum event : events)
     {
-        if (event == CoreLogic::EventManagement::INTERACT)
+        if (event == CoreLogic::EventManagement::ENTER)
         {
             if (!restartGame_)
             {

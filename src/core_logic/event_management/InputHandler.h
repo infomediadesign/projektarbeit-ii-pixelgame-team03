@@ -113,6 +113,7 @@ namespace CoreLogic::EventManagement {
             };
 
             InputHandler();
+            static InputHandler &getInstance();
 
             static bool gatLastInputKeyboard();
 
@@ -133,6 +134,8 @@ namespace CoreLogic::EventManagement {
 
 
         protected:
+            static std::mutex inputHandler_mutex_;
+
             std::shared_ptr<std::map<EventEnum, std::shared_ptr<Input>>> keyboardInGameMapping_;
             std::shared_ptr<std::map<EventEnum, std::shared_ptr<Input>>> controllerInGameMapping_;
 

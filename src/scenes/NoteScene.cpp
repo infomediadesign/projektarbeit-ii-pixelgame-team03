@@ -18,11 +18,12 @@ void Scenes::NoteScene::update()
     CoreLogic::EventManagement::SoundHandler &soundHandler = CoreLogic::EventManagement::SoundHandler::getInstance();
     soundHandler.update();
 
-    std::vector<CoreLogic::EventManagement::EventEnum> events = po_inputHandler_->handleInput();
+    auto &inputHandler = CoreLogic::EventManagement::InputHandler::getInstance();
+    std::vector<CoreLogic::EventManagement::EventEnum> events = inputHandler.handleInput();
 
     for (CoreLogic::EventManagement::EventEnum event: events)
     {
-        if (event == CoreLogic::EventManagement::INTERACT)
+        if (event == CoreLogic::EventManagement::ENTER)
         {
             CoreLogic::DataProcessing::StateMachine::changeState(CoreLogic::DataProcessing::GameState::IN_GAME);
         }

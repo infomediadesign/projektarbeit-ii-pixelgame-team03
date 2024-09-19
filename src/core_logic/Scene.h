@@ -25,7 +25,6 @@ namespace CoreLogic
     protected:
         std::shared_ptr<Camera2D> camera_;
         std::shared_ptr<std::map<int, std::vector<CoreLogic::EventManagement::Actor>>> po_actors_;
-        const std::unique_ptr<CoreLogic::EventManagement::InputHandler> po_inputHandler_;
     };
 }
 

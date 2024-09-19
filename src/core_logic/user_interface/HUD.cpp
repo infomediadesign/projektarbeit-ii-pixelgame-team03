@@ -74,13 +74,25 @@ void CoreLogic::UserInterface::HUD::update()
 
     activeTutorialBox_ = nullptr;
     auto tutorialBoxes = CoreLogic::DataProcessing::ActorStorage::getTutorialBoxes()->at(player.getElevation());
-    for(auto tutorialBox : tutorialBoxes)
+    for (auto tutorialBox: tutorialBoxes)
     {
         if (CheckCollisionRecs(tutorialBox->getHitbox(), player.getHitbox()))
         {
             activeTutorialBox_ = tutorialBox;
             return;
         }
+    }
+
+    auto &inputHandler = CoreLogic::EventManagement::InputHandler::getInstance();
+    std::vector<CoreLogic::EventManagement::EventEnum> events = inputHandler.handleInput();
+
+    for (CoreLogic::EventManagement::EventEnum event: events)
+    {
+        if (event == CoreLogic::EventManagement::HUD_TOGGLE)
+        {
+
+        }
+
     }
 
 }
