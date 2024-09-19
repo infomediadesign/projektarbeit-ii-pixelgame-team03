@@ -45,7 +45,7 @@ namespace CoreLogic::DataProcessing {
         //drone speed; in pixel per tick
         inline static constexpr int DRONE_SPEED = 2;
         inline static constexpr int WORKER_SPEED = 2;
-        inline static constexpr int SCOUT_SPEED = 3;
+        inline static constexpr int SCOUT_SPEED = 2;
 
         //range; in tiles
         inline static constexpr int COLONIST_RANGE = 8;
