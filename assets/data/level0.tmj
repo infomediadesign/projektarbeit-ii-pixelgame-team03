@@ -7787,7 +7787,7 @@
                         {
                          "name":"textbox_text",
                          "type":"string",
-                         "value":"Each of our drones has different abilities\npress <J> as the worker drone to clear the rubble"
+                         "value":"Each of our drones has different abilities.\n Use <MAIN ABILITY> as the worker to clear the rubble"
                         }],
                  "rotation":0,
                  "type":"textbox",
@@ -7829,7 +7829,7 @@
                         {
                          "name":"textbox_text",
                          "type":"string",
-                         "value":"The walls are too steep, but we can climb up these vines\n\npress <K> to climb up walls covered in vines"
+                         "value":"The walls are too steep, but we can climb up these vines\n\nPress <INTERACT> to climb up walls covered in vines"
                         }],
                  "rotation":0,
                  "type":"textbox",
@@ -7913,7 +7913,7 @@
                         {
                          "name":"textbox_text",
                          "type":"string",
-                         "value":"A weakspot in the ground - we can use this \nto connect to the HIVE\n\npress <K> to uncover and set a new spawnpoint\nand gain more drone lives\n\nyou can also reactivate an older spawnpoint,\nthough you will not regain lives this way"
+                         "value":"A weakspot in the ground - we can use this \nto connect to the HIVE\n\nPress <INTERACT> to uncover and set a new spawnpoint\nand gain more drone lives\n\nyou can also reactivate an older spawnpoint,\nthough you will not regain lives this way"
                         }],
                  "rotation":0,
                  "type":"textbox",
@@ -7955,7 +7955,7 @@
                         {
                          "name":"textbox_text",
                          "type":"string",
-                         "value":"The walls are too steep, but we can climb up these vines\n\npress <K> to climb up walls covered in vines"
+                         "value":"The walls are too steep, but we can climb up these vines\n\nPress <INTERACT> to climb up walls covered in vines"
                         }],
                  "rotation":0,
                  "type":"textbox",
@@ -7972,7 +7972,7 @@
                  "value":0
                 }],
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -8014,7 +8014,7 @@
                         {
                          "name":"textbox_text",
                          "type":"string",
-                         "value":"These rocks block our way, but the worker is strong\n\npress <J> as the worker drone to push round rocks\n"
+                         "value":"These rocks block our way, but the worker is strong\n\nPress <MAIN ABILITY> as the worker to push round rocks\n"
                         }],
                  "rotation":0,
                  "type":"textbox",
@@ -8115,7 +8115,7 @@
                  "value":1
                 }],
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -8157,7 +8157,7 @@
                         {
                          "name":"textbox_text",
                          "type":"string",
-                         "value":"What are these black rocks?\n\npress <J> to push down barrels\n"
+                         "value":"What are these black rocks?\n\nPress <MAIN ABILITY> as the worker\nto push barrels over the edge\n"
                         }],
                  "rotation":0,
                  "type":"textbox",
@@ -8199,7 +8199,7 @@
                         {
                          "name":"textbox_text",
                          "type":"string",
-                         "value":"There, a way to the surface - we will follow them"
+                         "value":"There, a way to the surface - we will follow them!"
                         }],
                  "rotation":0,
                  "type":"textbox",
@@ -8241,7 +8241,7 @@
                         {
                          "name":"textbox_text",
                          "type":"string",
-                         "value":"What are these black rocks?\n\npress <J> to push down barrels\n"
+                         "value":"What are these black rocks?\n\nPress <MAIN ABILITY> as the worker\nto push barrels over the edge\n"
                         }],
                  "rotation":0,
                  "type":"textbox",
@@ -8258,7 +8258,7 @@
                  "value":2
                 }],
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -8460,7 +8460,7 @@
          "value":0
         }],
  "renderorder":"right-down",
- "tiledversion":"1.11.0",
+ "tiledversion":"1.10.2",
  "tileheight":24,
  "tilesets":[
         {
