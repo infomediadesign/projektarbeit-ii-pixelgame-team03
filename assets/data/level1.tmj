@@ -674,6 +674,33 @@
                  "width":48,
                  "x":432,
                  "y":72
+                }, 
+                {
+                 "height":48,
+                 "id":479,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"droneType",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
+                         "name":"level",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
+                         "name":"newDrone",
+                         "type":"bool",
+                         "value":false
+                        }],
+                 "rotation":0,
+                 "type":"respawnPoint",
+                 "visible":true,
+                 "width":48,
+                 "x":696,
+                 "y":648
                 }],
          "opacity":1,
          "properties":[
@@ -683,7 +710,7 @@
                  "value":0
                 }],
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -6426,7 +6453,7 @@
          "y":0
         }],
  "nextlayerid":67,
- "nextobjectid":479,
+ "nextobjectid":480,
  "orientation":"orthogonal",
  "properties":[
         {
