@@ -25,9 +25,22 @@ namespace CoreLogic::DataProcessing {
         inline static constexpr int STARTING_CURRENT_DRONE_LIFE = 3;
         inline static constexpr int REGENERATION_LIFE = 2;
 
-        //volume; in 0.0f - 1.0f
-        inline static constexpr float MUSIC_VOLUME = 0.4f;
-        inline static constexpr float SFX_VOLUME = 0.1f;
+        //volume; in 0.0f - 1.0f; you can add more decimal places if you want (values like 0.15f)
+        inline static constexpr float MUSIC_UNDERWORLD_VOLUME = 0.4f;
+        inline static constexpr float MUSIC_OVERWORLD_VOLUME = 0.4f;
+
+        inline static constexpr float SFX_EXPLOSION_VOLUME = 0.1f;
+        inline static constexpr float SFX_IMPACT_FLOOR_VOLUME = 0.1f;
+        inline static constexpr float SFX_IMPACT_WATER_VOLUME = 0.1f;
+        inline static constexpr float SFX_NOTE_VOLUME = 0.1f;
+        inline static constexpr float SFX_PUSH_VOLUME = 0.1f;
+        inline static constexpr float SFX_RESPAWN_ACTIVATE_VOLUME = 0.1f;
+        inline static constexpr float SFX_RESPAWN_REACTIVATE_VOLUME = 0.1f;
+        inline static constexpr float SFX_RUBBLE_VOLUME = 0.1f;
+        inline static constexpr float SFX_SHOT_VOLUME = 0.1f;
+        inline static constexpr float SFX_BELL_VOLUME = 0.1f;
+        inline static constexpr float SFX_DEATH_DRONE_VOLUME = 0.1f;
+        inline static constexpr float SFX_DEATH_HUMAN_VOLUME = 0.1f;
 
         //drone speed; in pixel per tick
         inline static constexpr int DRONE_SPEED = 2;
@@ -45,7 +58,6 @@ namespace CoreLogic::DataProcessing {
 
         //how long enemies are turned by the bell; in ticks
         inline static constexpr int BELL_TURN_TIME = 1200;
-
 
         //axis threshold (how much tolerance the joysticks have when detecting input (0.0f = no tolerance, 1.0f = tbd))
         inline static constexpr float AXIS_THRESHOLD = 0.5f;

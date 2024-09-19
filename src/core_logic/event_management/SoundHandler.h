@@ -47,8 +47,8 @@ namespace CoreLogic::EventManagement
         void update();
 
     protected:
-        std::map<int, Sound> soundMap_;
-        std::map<int, Music> ambientMap_;
+        std::map<int, std::pair<Sound, float>> soundMap_;
+        std::map<int, std::pair<Music, float>> ambientMap_;
 
         SoundEnum currentAmbient_;
         static std::mutex soundHandler_mutex_;
