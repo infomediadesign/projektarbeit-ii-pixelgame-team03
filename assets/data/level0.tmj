@@ -7617,7 +7617,7 @@
                         {
                          "name":"textbox_font_size",
                          "type":"int",
-                         "value":17
+                         "value":16
                         }, 
                         {
                          "name":"textbox_spacing",
@@ -7659,7 +7659,7 @@
                         {
                          "name":"textbox_font_size",
                          "type":"int",
-                         "value":17
+                         "value":16
                         }, 
                         {
                          "name":"textbox_spacing",
@@ -7701,7 +7701,7 @@
                         {
                          "name":"textbox_font_size",
                          "type":"int",
-                         "value":17
+                         "value":16
                         }, 
                         {
                          "name":"textbox_spacing",
@@ -7743,7 +7743,7 @@
                         {
                          "name":"textbox_font_size",
                          "type":"int",
-                         "value":17
+                         "value":16
                         }, 
                         {
                          "name":"textbox_spacing",
@@ -7785,7 +7785,7 @@
                         {
                          "name":"textbox_font_size",
                          "type":"int",
-                         "value":17
+                         "value":16
                         }, 
                         {
                          "name":"textbox_spacing",
@@ -7812,7 +7812,7 @@
                  "value":0
                 }],
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -7844,7 +7844,7 @@
                         {
                          "name":"textbox_font_size",
                          "type":"int",
-                         "value":17
+                         "value":16
                         }, 
                         {
                          "name":"textbox_spacing",
@@ -7886,7 +7886,7 @@
                         {
                          "name":"textbox_font_size",
                          "type":"int",
-                         "value":17
+                         "value":16
                         }, 
                         {
                          "name":"textbox_spacing",
@@ -7928,7 +7928,7 @@
                         {
                          "name":"textbox_font_size",
                          "type":"int",
-                         "value":17
+                         "value":16
                         }, 
                         {
                          "name":"textbox_spacing",
@@ -7987,7 +7987,7 @@
                         {
                          "name":"textbox_font_size",
                          "type":"int",
-                         "value":17
+                         "value":16
                         }, 
                         {
                          "name":"textbox_spacing",
@@ -8029,7 +8029,7 @@
                         {
                          "name":"textbox_font_size",
                          "type":"int",
-                         "value":17
+                         "value":16
                         }, 
                         {
                          "name":"textbox_spacing",
@@ -8071,7 +8071,7 @@
                         {
                          "name":"textbox_font_size",
                          "type":"int",
-                         "value":17
+                         "value":16
                         }, 
                         {
                          "name":"textbox_spacing",
