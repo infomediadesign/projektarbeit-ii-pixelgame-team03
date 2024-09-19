@@ -13,36 +13,12 @@ Scenes::CameraPanScene::CameraPanScene():
 
 void Scenes::CameraPanScene::onSwitch()
 {
-    panTicks_ = 2 * 60;
-    restingTicks_ = 2 * 60;
+    auto activeCameraPan = CoreLogic::DataProcessing::ActorStorage::getActiveCameraPan();
 
-    CoreLogic::EventManagement::Actors::Drone& player = *CoreLogic::DataProcessing::ActorStorage::getPlayer();
-    Vector2 playerPos = player.getPosition();
+    panTicks_ = activeCameraPan->getPanTicks();
+    restingTicks_ = activeCameraPan->getRestingTicks();
 
-    int screenWidth = CoreLogic::DataProcessing::screenWidth_;
-    int screenHeight = CoreLogic::DataProcessing::screenHeight_;
-    int screenX = screenWidth / 2;
-    int screenY = screenHeight / 2;
-
-    Vector2 playerSize = player.getSize();
-
-    if (playerPos.x < screenX - (playerSize.x/2))
-    {
-        camera_->target.x = 0;
-    } else if (playerPos.x > 1536 - screenX - (playerSize.x/2)) {
-        camera_->target.x = 1536 - screenWidth;
-    } else {
-        camera_->target.x = playerPos.x - screenX + (playerSize.x/2);
-    }
-
-    if (playerPos.y < screenY - (playerSize.y/2))
-    {
-        camera_->target.y = 0;
-    } else if (playerPos.y > 864 - screenY - (playerSize.y/2)) {
-        camera_->target.y = 864 - screenHeight;
-    } else {
-        camera_->target.y = playerPos.y - screenY + (playerSize.y/2);
-    }
+    camera_->target = activeCameraPan->getPosition();
 }
 
 void Scenes::CameraPanScene::update()

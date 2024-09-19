@@ -30,3 +30,23 @@ void CoreLogic::EventManagement::Object::CameraPan::setPlayed(bool pa_played)
 {
     played_ = pa_played;
 }
+
+int CoreLogic::EventManagement::Object::CameraPan::getPanTicks() const
+{
+    return panTicks_;
+}
+
+void CoreLogic::EventManagement::Object::CameraPan::setPanTicks(int pa_panTicks)
+{
+panTicks_ = pa_panTicks;
+}
+
+int CoreLogic::EventManagement::Object::CameraPan::getRestingTicks() const
+{
+    return restingTicks_;
+}
+
+void CoreLogic::EventManagement::Object::CameraPan::setRestingTicks(int pa_restingTicks)
+{
+restingTicks_ = pa_restingTicks;
+}

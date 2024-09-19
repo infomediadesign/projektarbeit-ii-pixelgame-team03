@@ -18,6 +18,12 @@ namespace CoreLogic::EventManagement::Object
         Vector2 getDestination() const;
         void setDestination(Vector2 pa_destination);
 
+        int getPanTicks() const;
+        void setPanTicks(int pa_panTicks);
+
+        int getRestingTicks() const;
+        void setRestingTicks(int pa_restingTicks);
+
         bool getPlayed() const;
         void setPlayed(bool pa_played);
 
