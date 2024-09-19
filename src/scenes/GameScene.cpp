@@ -77,6 +77,21 @@ void Scenes::GameScene::update()
         }
     }
 
+    auto cameraPans = CoreLogic::DataProcessing::ActorStorage::getCameraPans()->at(player->getElevation());
+    for (auto &cameraPan: cameraPans)
+    {
+        if (CheckCollisionRecs(cameraPan->getHitbox(), player->getHitbox()))
+        {
+            if (!cameraPan->getPlayed())
+            {
+                cameraPan->setPlayed(true);
+                CoreLogic::DataProcessing::ActorStorage::setActiveCameraPan(cameraPan);
+                CoreLogic::DataProcessing::StateMachine::changeState(CoreLogic::DataProcessing::GameState::CAMERA_PAN);
+                break;
+            }
+        }
+    }
+
     if (IsKeyPressed(KEY_ZERO)) player->setElevation(0);
     if (IsKeyPressed(KEY_ONE)) player->setElevation(1);
     if (IsKeyPressed(KEY_TWO)) player->setElevation(2);

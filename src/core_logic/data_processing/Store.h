@@ -29,6 +29,7 @@
 #include "event_management/actors/objects/DroneRespawnPoint.h"
 #include "event_management/actors/enemies/Mech.h"
 #include "event_management/actors/objects/Uplink.h"
+#include "event_management/actors/objects/CameraPan.h"
 
 
 namespace CoreLogic::DataProcessing
@@ -45,6 +46,7 @@ namespace CoreLogic::DataProcessing
         DEATH,
         NOTE,
         VICTORY,
+        CAMERA_PAN,
     };
     inline long long int global_ticks = 1;
     inline const int global_tileSize = 24;
@@ -136,6 +138,7 @@ private:
         static std::shared_ptr<CoreLogic::EventManagement::Object::DroneRespawnPoint> po_activeRespawnPoint_;
 
         static std::shared_ptr<CoreLogic::EventManagement::Object::TutorialBox> po_activeTutorialBox_;
+        static std::shared_ptr<CoreLogic::EventManagement::Object::CameraPan> po_activeCameraPan_;
         static std::shared_ptr<CoreLogic::EventManagement::Object::Note> po_activeNote_;
         static std::shared_ptr<EventManagement::Actors::Drone> po_player_;
 
@@ -191,6 +194,8 @@ private:
                 po_uplinks_;
         static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::DroneRespawnPoint>>>>
                 po_respawnPoints_;
+        static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::CameraPan>>>>
+                po_cameraPans_;
 
         template <typename T>
         static typename std::enable_if<!std::is_pointer<T>::value && !std::is_same<T, std::shared_ptr<typename std::remove_reference<T>::type>>::value,
@@ -220,6 +225,10 @@ private:
         static std::shared_ptr<CoreLogic::EventManagement::Object::TutorialBox> getActiveTutorialBox();
         static void setActiveTutorialBox(
                 std::shared_ptr<CoreLogic::EventManagement::Object::TutorialBox> pa_tutorialBox);
+
+        static std::shared_ptr<CoreLogic::EventManagement::Object::CameraPan> getActiveCameraPan();
+        static void setActiveCameraPan(
+                std::shared_ptr<CoreLogic::EventManagement::Object::CameraPan> pa_cameraPan);
 
         static std::shared_ptr<CoreLogic::EventManagement::Object::Note> getActiveNote();
         static void setActiveNote(std::shared_ptr<CoreLogic::EventManagement::Object::Note> pa_activeNote);
@@ -318,6 +327,9 @@ private:
 
         static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::Uplink>>>> getUplinks();
         static void setUplinks(std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::Uplink>>>> pa_uplinks);
+
+        static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::CameraPan>>>> getCameraPans();
+        static void setCameraPans(std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::CameraPan>>>> pa_cameraPans);
     };
 
 }

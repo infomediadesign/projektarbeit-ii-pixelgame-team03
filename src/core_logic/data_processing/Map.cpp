@@ -7,6 +7,7 @@
 #include "event_management/actors/Drone.h"
 #include "event_management/actors/drones/Worker.h"
 #include "event_management/actors/objects/Uplink.h"
+#include "actors/objects/CameraPan.h"
 #include <climits>
 
 
@@ -328,6 +329,14 @@ void CoreLogic::DataProcessing::Map::loadObjects()
                 actor = std::make_shared<EventManagement::Object::DroneRespawnPoint>(EventManagement::Object::DroneRespawnPoint
                         (objectPosition, objectHitbox, objectId, objectSize, objectElevation, objectNewDrone, objectUnlockType, objectActive, objectLevel));
 
+                ActorStorage::addActorByType(objectElevation, actor);
+            }else if (objectClass == "camera_pan")
+            {
+                Vector2 objectDestination = {(float) objectProperties.getProperty("x_dest")->getValue<int>(),
+                        (float) objectProperties.getProperty("y_dest")->getValue<int>()};
+
+                actor = std::make_shared<EventManagement::Object::CameraPan>(EventManagement::Object::CameraPan
+                        (objectPosition, objectHitbox, objectId, objectSize, objectElevation, objectDestination));
                 ActorStorage::addActorByType(objectElevation, actor);
             }
         }

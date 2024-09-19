@@ -3,6 +3,7 @@
 //
 #include "Store.h"
 #include "raylib.h"
+#include "actors/objects/CameraPan.h"
 
 
 std::shared_ptr<Texture2D> CoreLogic::DataProcessing::TileMap::po_tileMap_ = nullptr;
@@ -51,6 +52,7 @@ std::shared_ptr<std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManage
 std::shared_ptr<std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Object::LevelSwitch>>>> CoreLogic::DataProcessing::ActorStorage::po_levelSwitches_;
 std::shared_ptr<std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Object::Uplink>>>> CoreLogic::DataProcessing::ActorStorage::po_uplinks_;
 std::shared_ptr<std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Object::DroneRespawnPoint>>>> CoreLogic::DataProcessing::ActorStorage::po_respawnPoints_;
+std::shared_ptr<std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Object::CameraPan>>>> CoreLogic::DataProcessing::ActorStorage::po_cameraPans_;
 
 
 std::vector<CoreLogic::UserInterface::Sprite> CoreLogic::DataProcessing::SpriteStorage::po_sprites_;
@@ -400,6 +402,17 @@ void CoreLogic::DataProcessing::ActorStorage::addActorByType(int pa_elevation,
         addActor(po_collidables_, pa_elevation, actor);
         addActor(po_allActors_, pa_elevation, actor);
 
+    }else if (auto camera = std::dynamic_pointer_cast<EventManagement::Object::CameraPan>(pa_actor)) {
+        addActor(po_mechs_, pa_elevation, mech);
+
+        auto enemy = std::dynamic_pointer_cast<EventManagement::Actors::Enemy>(pa_actor);
+        addActor(po_allEnemies_, pa_elevation, enemy);
+
+        auto actor = std::dynamic_pointer_cast<EventManagement::Actor>(pa_actor);
+        addActor(po_visibles_, pa_elevation, actor);
+        addActor(po_collidables_, pa_elevation, actor);
+        addActor(po_allActors_, pa_elevation, actor);
+
     }
 }
 
@@ -726,6 +739,30 @@ CoreLogic::DataProcessing::GameState CoreLogic::DataProcessing::StateMachine::ge
 int CoreLogic::DataProcessing::ActorStorage::getCurrentLevelID()
 {
     return currentLevelID_;
+}
+
+std::shared_ptr<std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Object::CameraPan>>>>
+CoreLogic::DataProcessing::ActorStorage::getCameraPans()
+{
+    return po_cameraPans_;
+}
+
+void CoreLogic::DataProcessing::ActorStorage::setCameraPans(
+        std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::CameraPan>>>> pa_cameraPans)
+{
+po_cameraPans_ = pa_cameraPans;
+}
+
+std::shared_ptr<CoreLogic::EventManagement::Object::CameraPan>
+CoreLogic::DataProcessing::ActorStorage::getActiveCameraPan()
+{
+    return po_activeCameraPan_;
+}
+
+void CoreLogic::DataProcessing::ActorStorage::setActiveCameraPan(
+        std::shared_ptr<CoreLogic::EventManagement::Object::CameraPan> pa_cameraPan)
+{
+    po_activeCameraPan_ = pa_cameraPan;
 }
 
 void CoreLogic::DataProcessing::StateMachine::changeState(CoreLogic::DataProcessing::GameState newState)

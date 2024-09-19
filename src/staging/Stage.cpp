@@ -7,6 +7,7 @@
 #include "DeathScene.h"
 #include "NoteScene.h"
 #include "VictoryScene.h"
+#include "CameraPanScene.h"
 
 
 Staging::Stage::Stage(int pa_screenHeight, int pa_screenWidth)
@@ -21,6 +22,7 @@ Staging::Stage::Stage(int pa_screenHeight, int pa_screenWidth)
                 {CoreLogic::DataProcessing::GameState::DEATH, std::make_shared<Scenes::DeathScene>()},
                 {CoreLogic::DataProcessing::GameState::NOTE, std::make_shared<Scenes::NoteScene>()},
                 {CoreLogic::DataProcessing::GameState::VICTORY, std::make_shared<Scenes::VictoryScene>()},
+                {CoreLogic::DataProcessing::GameState::CAMERA_PAN, std::make_shared<Scenes::CameraPanScene>()},
             };
 
     po_canvas_ = std::make_shared<RenderTexture2D>(LoadRenderTexture(pa_screenWidth, pa_screenHeight));
