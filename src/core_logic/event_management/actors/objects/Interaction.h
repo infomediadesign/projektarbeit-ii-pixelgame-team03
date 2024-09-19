@@ -21,9 +21,14 @@ namespace CoreLogic::EventManagement::Object
 
         InteractionType getType() const;
         virtual void test();
-void setType(InteractionType pa_type);
+        void setType(InteractionType pa_type);
+
+        virtual void setGlowing();
+        virtual void resetGlowing();
+
     protected:
         InteractionType type_;
+        bool glowing_ = false;
     };
 }
 

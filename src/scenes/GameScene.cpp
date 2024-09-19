@@ -82,6 +82,33 @@ void Scenes::GameScene::update()
     if (IsKeyPressed(KEY_TWO)) player->setElevation(2);
     if (IsKeyPressed(KEY_NINE)) player->setElevation(9);
 
+    /**
+     * @note: this will reset Interacts and Abilities from Glowing once implemented
+     * @todo: implement Glowing reset
+     */
+
+    auto &interacts = *CoreLogic::DataProcessing::ActorStorage::getInteractions();
+    auto &abilities = *CoreLogic::DataProcessing::ActorStorage::getAbilities();
+    int bigger = 0;
+    (interacts.size() > abilities.size()) ? bigger = interacts.size() : bigger = abilities.size();
+    for (int i = 0; i < bigger; i++)
+    {
+        if (!interacts[i].empty())
+        {
+            for (auto &interact: interacts[i])
+            {
+                interact->resetGlowing();
+            }
+        }
+        if (!abilities[i].empty())
+        {
+            for (auto &ability: abilities[i])
+            {
+                ability->resetGlowing();
+            }
+        }
+    }
+
     player->update();
     for (auto &pair: enemies)
     {

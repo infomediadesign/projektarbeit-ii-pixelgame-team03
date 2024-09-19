@@ -23,10 +23,25 @@ CoreLogic::EventManagement::Object::Interaction::Interaction(Vector2 pa_position
 void CoreLogic::EventManagement::Object::Interaction::setType(
         CoreLogic::EventManagement::Object::Interaction::InteractionType pa_type)
 {
-type_ = pa_type;
+    type_ = pa_type;
 }
 
 void CoreLogic::EventManagement::Object::Interaction::test()
 {
 
+}
+
+void CoreLogic::EventManagement::Object::Interaction::setGlowing()
+{
+    glowing_ = true;
+    sprite_.shiftFrame(/**@todo: Get glowing standart State*/);
+}
+
+void CoreLogic::EventManagement::Object::Interaction::resetGlowing()
+{
+    glowing_ = false;
+    if (sprite_.getCurrentStateId() == /**@todo Get glowing standart State*/)
+    {
+        sprite_.shiftFrame(/**@todo: Get standart idle State*/);
+    }
 }

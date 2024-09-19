@@ -46,6 +46,8 @@ namespace CoreLogic::UserInterface
         Rectangle getFrame(){return frame_;};
         Vector2 getRelativePosition();
 
+        int getCurrentStateId(){return currentStateId_;};
+
     protected:
 
         std::vector<std::vector<AnimationState>> animationStates_; // state<direction<animationState>>
