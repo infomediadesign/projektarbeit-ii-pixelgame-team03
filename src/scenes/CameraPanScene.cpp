@@ -8,7 +8,7 @@
 Scenes::CameraPanScene::CameraPanScene():
         Scene(std::make_shared<Camera2D>())
 {
-
+    camera_ -> zoom = 1.0f;
 }
 
 void Scenes::CameraPanScene::onSwitch()
@@ -21,6 +21,7 @@ void Scenes::CameraPanScene::update()
 {
     CoreLogic::EventManagement::SoundHandler &soundHandler = CoreLogic::EventManagement::SoundHandler::getInstance();
     soundHandler.update();
+    Camera2D &camera = *camera_;
 
 
     Vector2 dest = CoreLogic::DataProcessing::ActorStorage::getActiveCameraPan()->getDestination();
@@ -32,8 +33,8 @@ void Scenes::CameraPanScene::update()
         panTicks_--;
             auto xPos = differenceVector_.x / panTicks_;
             auto yPos = differenceVector_.y / panTicks_;
-            camera_->target.x = xPos;
-            camera_->target.y = yPos;
+            camera.target.x = xPos;
+            camera.target.y = yPos;
         return;
     }
     while (restingTicks_ > 0)
