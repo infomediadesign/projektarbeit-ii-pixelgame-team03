@@ -406,14 +406,12 @@ void CoreLogic::DataProcessing::ActorStorage::addActorByType(int pa_elevation,
         addActor(po_allActors_, pa_elevation, actor);
 
     }else if (auto camera = std::dynamic_pointer_cast<EventManagement::Object::CameraPan>(pa_actor)) {
-        addActor(po_mechs_, pa_elevation, mech);
+        addActor(po_cameraPans_, pa_elevation, camera);
 
         auto enemy = std::dynamic_pointer_cast<EventManagement::Actors::Enemy>(pa_actor);
         addActor(po_allEnemies_, pa_elevation, enemy);
 
         auto actor = std::dynamic_pointer_cast<EventManagement::Actor>(pa_actor);
-        addActor(po_visibles_, pa_elevation, actor);
-        addActor(po_collidables_, pa_elevation, actor);
         addActor(po_allActors_, pa_elevation, actor);
 
     }
@@ -1089,6 +1087,10 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
                     {   //left
                             {CoreLogic::UserInterface::AnimationState{22 * 24, 48, 96, 1, {-24, -48}}},
                             {CoreLogic::UserInterface::AnimationState{22 * 24, 48, 96, 1, {0, 0}}},
+                    },
+                    {   //front corner
+                            {CoreLogic::UserInterface::AnimationState {26 * 24, 96, 48, 1,  {-24, -24}}},
+                            {CoreLogic::UserInterface::AnimationState {26 * 24, 96, 48, 1, {-24, 0}}},
                     },
             });
 
