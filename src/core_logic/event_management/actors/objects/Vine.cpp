@@ -3,6 +3,7 @@
 //
 
 #include "Vine.h"
+#include "Store.h"
 
 Vector2 CoreLogic::EventManagement::Object::Vine::getCoordinates() const
 {
@@ -17,8 +18,13 @@ int CoreLogic::EventManagement::Object::Vine::getNewElevation() const
 CoreLogic::EventManagement::Object::Vine::Vine(Vector2 pa_position, Rectangle pa_hitbox, int pa_id, Vector2 pa_size,
         int pa_elevation, Vector2 pa_coordinates, int pa_newElevation, int pa_spriteState) :
         coordinates_(pa_coordinates), newElevation(pa_newElevation),
-        Interaction(pa_position, pa_hitbox, pa_id, Actor::CollisionType::COLLISION, pa_size, false, pa_elevation, CLIMBING)
+        Interaction(pa_position, pa_hitbox, pa_id, Actor::CollisionType::COLLISION, pa_size, true, pa_elevation, CLIMBING)
 {
+    if (CoreLogic::DataProcessing::ActorStorage::getCurrentLevelID() == 0){
+        secondarySprite_ = DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::VINES_UNDERWORLD_SECONDARY);
+    } else {
+        secondarySprite_ = DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::VINES_OVERWORLD_SECONDARY);
+    }
     initFrame(pa_spriteState);
 }
 

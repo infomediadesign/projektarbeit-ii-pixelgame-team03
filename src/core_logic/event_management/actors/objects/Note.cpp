@@ -21,3 +21,32 @@ void CoreLogic::EventManagement::Object::Note::setText(std::string pa_text)
 {
 text_ = pa_text;
 }
+
+
+
+void CoreLogic::EventManagement::Object::Note::discover()
+{
+    discovered_ = true;
+}
+
+void CoreLogic::EventManagement::Object::Note::draw()
+{
+    if (!discovered_)
+    {
+        Rectangle dest = {
+                hitbox_.x + sprite_.getRelativePosition().x, hitbox_.y + sprite_.getRelativePosition().y,
+                sprite_.getFrame().width, sprite_.getFrame().height
+        };
+
+        DrawTexturePro(sprite_.getTexture(), sprite_.getFrame(), dest, {0, 0}, 0, WHITE);
+    }
+
+    if (glowing_)
+    {
+        Rectangle dest = {hitbox_.x + secondarySprite_.getRelativePosition().x, hitbox_.y + secondarySprite_.getRelativePosition().y,
+                          secondarySprite_.getFrame().width, secondarySprite_.getFrame().height};
+
+        DrawTexturePro(secondarySprite_.getTexture(), secondarySprite_.getFrame(), dest, {0, 0}, 0, WHITE);
+
+    }
+}

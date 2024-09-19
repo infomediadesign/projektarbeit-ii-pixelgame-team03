@@ -34,14 +34,23 @@ void CoreLogic::EventManagement::Object::Interaction::test()
 void CoreLogic::EventManagement::Object::Interaction::setGlowing()
 {
     glowing_ = true;
-    sprite_.shiftFrame(/**@todo: Get glowing standart State*/);
 }
 
 void CoreLogic::EventManagement::Object::Interaction::resetGlowing()
 {
     glowing_ = false;
-    if (sprite_.getCurrentStateId() == /**@todo Get glowing standart State*/)
+}
+
+void CoreLogic::EventManagement::Object::Interaction::draw()
+{
+    Actor::draw();
+
+    if (glowing_)
     {
-        sprite_.shiftFrame(/**@todo: Get standart idle State*/);
+        Rectangle dest = {hitbox_.x + secondarySprite_.getRelativePosition().x, hitbox_.y + secondarySprite_.getRelativePosition().y,
+                          secondarySprite_.getFrame().width, secondarySprite_.getFrame().height};
+
+        DrawTexturePro(secondarySprite_.getTexture(), secondarySprite_.getFrame(), dest, {0, 0}, 0, WHITE);
+
     }
 }

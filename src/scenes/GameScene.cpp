@@ -162,6 +162,14 @@ void Scenes::GameScene::update()
                 uplink->shiftFrame(0);
             }
         }
+        auto notes = CoreLogic::DataProcessing::ActorStorage::getNotes();
+        for (auto &noteLayer: *notes)
+        {
+            for (auto &note: noteLayer.second)
+            {
+                note->shiftFrame(0);
+            }
+        }
     }
 
     Vector2 playerPos = player->getPosition();
