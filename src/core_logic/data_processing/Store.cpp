@@ -922,11 +922,11 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
                     {    //0 - idle
                             {CoreLogic::UserInterface::AnimationState {0 * 24, 24, 24, 1}},
                     },
-                    {    //1 - glowing
-                            {CoreLogic::UserInterface::AnimationState {1 * 24, 24, 24, 1}},
-                    },
-                    {    //2 - breaking
+                    {    //1 - breaking
                             {CoreLogic::UserInterface::AnimationState {2 * 24, 24, 24, 11}},
+                    },
+                    {    //2 - glowing
+                            {CoreLogic::UserInterface::AnimationState {1 * 24, 24, 24, 1}},
                     },
             });
 
@@ -986,11 +986,11 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
                     {    //0 - idle
                             {CoreLogic::UserInterface::AnimationState {0 * 48, 48, 48, 1}},
                     },
-                    {    //0 - glowing
-                            {CoreLogic::UserInterface::AnimationState {1 * 48, 48, 48, 1}},
-                    },
                     {    //1 - breaking
                             {CoreLogic::UserInterface::AnimationState {2 * 48, 96,48, 6, {-24, 0}}},
+                    },
+                    {    //2 - glowing
+                            {CoreLogic::UserInterface::AnimationState {1 * 48, 48, 48, 1}},
                     },
             });
 
@@ -1002,11 +1002,11 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
                     {    //0 - idle
                             {CoreLogic::UserInterface::AnimationState {0 * 48, 48, 48, 1}},
                     },
-                    {    //0 - glowing
-                            {CoreLogic::UserInterface::AnimationState {1 * 48, 48, 48, 1}},
-                    },
                     {    //1 - breaking
                             {CoreLogic::UserInterface::AnimationState {2 * 48, 96,48, 6, {-24, 0}}},
+                    },
+                    {    //2 - glowing
+                            {CoreLogic::UserInterface::AnimationState {1 * 48, 48, 48, 1}},
                     },
             });
 
@@ -1018,11 +1018,11 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
                     {    //0 - idle
                             {CoreLogic::UserInterface::AnimationState {0 * 24, 24, 24, 1}},
                     },
-                    {    //0 - glowing
-                            {CoreLogic::UserInterface::AnimationState {1 * 24, 24, 24, 1}},
-                    },
                     {    //1 - breaking
                             {CoreLogic::UserInterface::AnimationState {2 * 24, 120, 120, 11, {-48, -48}}},
+                    },
+                    {    //2 - glowing
+                            {CoreLogic::UserInterface::AnimationState {1 * 24, 24, 24, 1}},
                     },
             });
 
@@ -1032,7 +1032,7 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
     sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/Interacts/hive_ARTI_Lore-Item-Spritesheet.png",
             {
                     {    //0 - idle
-                            {CoreLogic::UserInterface::AnimationState {0 * 24, 24, 24, 6}},
+                            {CoreLogic::UserInterface::AnimationState {0 * 24, 24, 24, 1}},
                     },
             });
 
@@ -1042,7 +1042,7 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
     sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/Interacts/hive_ARTI_Lore-Item-Outline.png",
             {
                     {    //0 - idle
-                            {CoreLogic::UserInterface::AnimationState {0 * 24, 24, 24, 6}},
+                            {CoreLogic::UserInterface::AnimationState {0 * 24, 24, 24, 1}},
                     },
             });
 
