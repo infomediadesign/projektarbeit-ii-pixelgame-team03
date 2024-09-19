@@ -132,7 +132,7 @@ void Scenes::GameScene::update()
     hud.update();
     
 
-    if (IsKeyPressed(CoreLogic::DataProcessing::DesignConfig::PAUSE_KEYBOARD) || IsGamepadButtonPressed(CoreLogic::DataProcessing::DesignConfig::PAUSE_CONTROLLER, 0))
+    if (IsKeyPressed(CoreLogic::DataProcessing::DesignConfig::PAUSE_KEYBOARD) || IsGamepadButtonPressed(0, CoreLogic::DataProcessing::DesignConfig::PAUSE_CONTROLLER))
     {
         CoreLogic::DataProcessing::StateMachine::changeState(CoreLogic::DataProcessing::GameState::MAIN_MENU);
     }
