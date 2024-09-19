@@ -250,6 +250,47 @@ void Scenes::GameScene::onSwitch()
                 switchLevel(activeSpawnPoint->getLevel());
             }
         }
+        auto &eventHandler = CoreLogic::EventManagement::EventHandler::getInstance();
+        eventHandler.resetPlayer();
+        auto player = CoreLogic::DataProcessing::ActorStorage::getPlayer();
+        Vector2 playerPos = player->getPosition();
+
+
+        /**
+         * @attention: keep hard coded?
+         */
+
+        int screenWidth = CoreLogic::DataProcessing::screenWidth_;
+        int screenHeight = CoreLogic::DataProcessing::screenHeight_;
+        int screenX = screenWidth / 2;
+        int screenY = screenHeight / 2;
+
+        Vector2 playerSize = player->getSize();
+
+        float panTargetX = 0;
+        float panTargetY = 0;
+
+        if (playerPos.x < screenX - (playerSize.x/2))
+        {
+            panTargetX = 0;
+        } else if (playerPos.x > 1536 - screenX - (playerSize.x/2)) {
+            panTargetX = 1536 - screenWidth;
+        } else {
+            panTargetX = playerPos.x - screenX + (playerSize.x/2);
+        }
+
+        if (playerPos.y < screenY - (playerSize.y/2))
+        {
+            panTargetY = 0;
+        } else if (playerPos.y > 864 - screenY - (playerSize.y/2)) {
+            panTargetY = 864 - screenHeight;
+        } else {
+            panTargetY = playerPos.y - screenY + (playerSize.y/2);
+        }
+
+        std::shared_ptr<CoreLogic::EventManagement::Object::CameraPan> pan = std::make_shared<CoreLogic::EventManagement::Object::CameraPan>(
+                CoreLogic::EventManagement::Object::CameraPan({},{}, 50, {}, 0, {panTargetX,panTargetY}));
+
     }
     auto &eventHandler = CoreLogic::EventManagement::EventHandler::getInstance();
     eventHandler.resetPlayer();
