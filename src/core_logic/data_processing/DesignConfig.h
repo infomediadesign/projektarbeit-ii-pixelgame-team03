@@ -59,6 +59,8 @@ namespace CoreLogic::DataProcessing {
         //how long enemies are turned by the bell; in ticks
         inline static constexpr int BELL_TURN_TIME = 1200;
 
+        inline static constexpr int DEATH_PANNING_SPEED = 5;
+
         //axis threshold (how much tolerance the joysticks have when detecting input (0.0f = no tolerance, 1.0f = tbd))
         inline static constexpr float AXIS_THRESHOLD = 0.5f;
 

@@ -77,21 +77,7 @@ void Scenes::GameScene::update()
         }
     }
 
-    auto cameraPans = CoreLogic::DataProcessing::ActorStorage::getCameraPans()->at(player->getElevation());
-    for (auto &cameraPan: cameraPans)
-    {
-        if (CheckCollisionRecs(cameraPan->getHitbox(), player->getHitbox()))
-        {
-            if (!cameraPan->getPlayed())
-            {
-                cameraPan->setPlayed(true);
-                cameraPan->setPosition(Vector2({camera_->target.x, camera_->target.y}));
-                CoreLogic::DataProcessing::ActorStorage::setActiveCameraPan(cameraPan);
-                CoreLogic::DataProcessing::StateMachine::changeState(CoreLogic::DataProcessing::GameState::CAMERA_PAN);
-                break;
-            }
-        }
-    }
+
 
     if (IsKeyPressed(KEY_ZERO)) player->setElevation(0);
     if (IsKeyPressed(KEY_ONE)) player->setElevation(1);
@@ -204,6 +190,21 @@ void Scenes::GameScene::update()
     } else {
         camera.target.y = playerPos.y - screenY + (playerSize.y/2);
     }
+    auto cameraPans = CoreLogic::DataProcessing::ActorStorage::getCameraPans()->at(player->getElevation());
+    for (auto &cameraPan: cameraPans)
+    {
+        if (CheckCollisionRecs(cameraPan->getHitbox(), player->getHitbox()))
+        {
+            if (!cameraPan->getPlayed())
+            {
+                cameraPan->setPlayed(true);
+                cameraPan->setPosition(Vector2({camera_->target.x, camera_->target.y}));
+                CoreLogic::DataProcessing::ActorStorage::setActiveCameraPan(cameraPan);
+                CoreLogic::DataProcessing::StateMachine::changeState(CoreLogic::DataProcessing::GameState::CAMERA_PAN);
+                break;
+            }
+        }
+    }
 }
 
 
@@ -290,7 +291,7 @@ void Scenes::GameScene::onSwitch()
         }
 
         double panLength = sqrt(pow(abs(panTargetX - playerPos.x),2) + pow(abs(panTargetY - playerPos.y),2));
-        int panTicks = static_cast<int>(panLength / 10);
+        int panTicks = static_cast<int>(panLength / CoreLogic::DataProcessing::DesignConfig::DEATH_PANNING_SPEED);
 
         std::shared_ptr<CoreLogic::EventManagement::Object::CameraPan> pan = std::make_shared<CoreLogic::EventManagement::Object::CameraPan>(
                 CoreLogic::EventManagement::Object::CameraPan(Vector2({camera_->target.x, camera_->target.y}),Rectangle(), 50, Vector2(), 0,
