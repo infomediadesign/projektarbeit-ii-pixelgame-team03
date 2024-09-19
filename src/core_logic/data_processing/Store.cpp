@@ -1094,7 +1094,7 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
     po_sprites_[VINE_OVERWORLD_SECONDARY] = sprite;
 
     //12 - vine - underworld secondary
-    sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/Interacts/hive_ARTI_Overworld-Climbable-Wall.png",
+    sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/Interacts/hive_ARTI_Underworld-Climbable-Walls.png",
             {
                     {   //front
                             {CoreLogic::UserInterface::AnimationState {0 * 24, 48, 72, 1, {0, -24}}},
