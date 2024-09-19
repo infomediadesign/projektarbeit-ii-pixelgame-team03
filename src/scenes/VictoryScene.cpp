@@ -57,7 +57,7 @@ namespace Scenes
 
         for (CoreLogic::EventManagement::EventEnum event : events)
         {
-            if (event == CoreLogic::EventManagement::INTERACT)
+            if (event == CoreLogic::EventManagement::ENTER)
             {
                 if (!restartGame_)
                 {
