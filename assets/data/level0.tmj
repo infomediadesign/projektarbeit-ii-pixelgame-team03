@@ -1036,7 +1036,7 @@
                  "value":0
                 }],
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -1751,14 +1751,14 @@
          "name":"CameraPans 1",
          "objects":[
                 {
-                 "height":120,
+                 "height":96,
                  "id":638,
                  "name":"",
                  "properties":[
                         {
                          "name":"pan_ticks",
                          "type":"int",
-                         "value":120
+                         "value":240
                         }, 
                         {
                          "name":"resting_ticks",
@@ -1778,9 +1778,9 @@
                  "rotation":0,
                  "type":"camera_pan",
                  "visible":true,
-                 "width":144,
+                 "width":168,
                  "x":48,
-                 "y":672
+                 "y":600
                 }],
          "opacity":1,
          "properties":[
@@ -5521,6 +5521,87 @@
          "y":0
         }, 
         {
+         "draworder":"topdown",
+         "id":65,
+         "name":"CameraPans 2",
+         "objects":[
+                {
+                 "height":96,
+                 "id":641,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"pan_ticks",
+                         "type":"int",
+                         "value":60
+                        }, 
+                        {
+                         "name":"resting_ticks",
+                         "type":"int",
+                         "value":120
+                        }, 
+                        {
+                         "name":"x_dest",
+                         "type":"int",
+                         "value":840
+                        }, 
+                        {
+                         "name":"y_dest",
+                         "type":"int",
+                         "value":120
+                        }],
+                 "rotation":0,
+                 "type":"camera_pan",
+                 "visible":true,
+                 "width":24,
+                 "x":480,
+                 "y":96
+                }, 
+                {
+                 "height":96,
+                 "id":644,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"pan_ticks",
+                         "type":"int",
+                         "value":120
+                        }, 
+                        {
+                         "name":"resting_ticks",
+                         "type":"int",
+                         "value":120
+                        }, 
+                        {
+                         "name":"x_dest",
+                         "type":"int",
+                         "value":896
+                        }, 
+                        {
+                         "name":"y_dest",
+                         "type":"int",
+                         "value":480
+                        }],
+                 "rotation":0,
+                 "type":"camera_pan",
+                 "visible":true,
+                 "width":48,
+                 "x":984,
+                 "y":240
+                }],
+         "opacity":1,
+         "properties":[
+                {
+                 "name":"elevation",
+                 "type":"int",
+                 "value":1
+                }],
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
          "data":[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4475, 3609, 3612, 3607, 3608, 3607, 3612, 3610, 3612, 4479, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5213, 4007, 4008, 4009, 4010, 4011, 4012,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4523, 3653, 3657, 3655, 3654, 3653, 3655, 3660, 3660, 4527, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5191, 4055, 4056, 4057, 4058, 4059, 4012,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4404, 2685, 2783, 2827, 2732, 2826, 2829, 2734, 2826, 3221230669, 5141, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5864, 4823, 2685, 2684, 2682, 4060,
@@ -8164,7 +8245,7 @@
                  "value":1
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -8511,8 +8592,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":65,
- "nextobjectid":641,
+ "nextlayerid":66,
+ "nextobjectid":645,
  "orientation":"orthogonal",
  "properties":[
         {
