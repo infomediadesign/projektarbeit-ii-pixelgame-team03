@@ -70,6 +70,12 @@ void Scenes::GameScene::update()
     {
         if (CheckCollisionRecs(levelSwitch->getHitbox(), player->getHitbox()))
         {
+            if (levelSwitch->getNewLevelID() == -1)
+            {
+                player->setPosition(levelSwitch->getSwitchCoordinates());
+                CoreLogic::DataProcessing::StateMachine::changeState(CoreLogic::DataProcessing::GameState::CREDITS);
+                return;
+            }
             player->setElevation(levelSwitch->getSwitchElevation());
             player->setPosition(levelSwitch->getSwitchCoordinates());
             switchLevel(levelSwitch->getNewLevelID());
