@@ -85,6 +85,7 @@ void Scenes::GameScene::update()
             if (!cameraPan->getPlayed())
             {
                 cameraPan->setPlayed(true);
+                cameraPan->setPosition(Vector2({camera_->target.x, camera_->target.y}));
                 CoreLogic::DataProcessing::ActorStorage::setActiveCameraPan(cameraPan);
                 CoreLogic::DataProcessing::StateMachine::changeState(CoreLogic::DataProcessing::GameState::CAMERA_PAN);
                 break;
@@ -292,10 +293,11 @@ void Scenes::GameScene::onSwitch()
         int panTicks = static_cast<int>(panLength / 10);
 
         std::shared_ptr<CoreLogic::EventManagement::Object::CameraPan> pan = std::make_shared<CoreLogic::EventManagement::Object::CameraPan>(
-                CoreLogic::EventManagement::Object::CameraPan(Vector2(),Rectangle(), 50, Vector2(), 0,
+                CoreLogic::EventManagement::Object::CameraPan(Vector2({camera_->target.x, camera_->target.y}),Rectangle(), 50, Vector2(), 0,
                                                               Vector2({panTargetX, panTargetY}), panTicks, 0));
         CoreLogic::DataProcessing::ActorStorage::setActiveCameraPan(pan);
         CoreLogic::DataProcessing::StateMachine::changeState(CoreLogic::DataProcessing::CAMERA_PAN);
+        return;
 
     }
     auto &eventHandler = CoreLogic::EventManagement::EventHandler::getInstance();
