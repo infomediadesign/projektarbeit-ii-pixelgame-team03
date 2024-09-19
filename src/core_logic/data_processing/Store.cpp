@@ -1042,10 +1042,11 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
     //disconnect
     sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/HUD/hive_ARTI_newHUD_toggle-hud.png",
             {
-                    {CoreLogic::UserInterface::AnimationState{0 * 360, 640, 360, 1}}
+                    {CoreLogic::UserInterface::AnimationState{0 * 360, 640, 360, 1}},
+                    {CoreLogic::UserInterface::AnimationState{1 * 360, 640, 360, 1}}
             });
 
-    po_sprites_[HUD_DISCONNECT] = sprite;
+    po_sprites_[HUD_TOGGLE] = sprite;
 
     //main ability
     sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/HUD/hive_ARTI_newHUD_main-ability.png",

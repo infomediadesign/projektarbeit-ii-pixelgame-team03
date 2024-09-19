@@ -104,7 +104,7 @@ private:
 
             HUD_BUTTONS,
             HUD_INTERACT,
-            HUD_DISCONNECT,
+            HUD_TOGGLE,
             HUD_MAIN_ABILITY,
             HUD_DEATH_ABILITY,
 
