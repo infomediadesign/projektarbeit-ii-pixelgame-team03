@@ -20,7 +20,7 @@ void CoreLogic::UserInterface::HUD::hudInit()
     hudElements_[CURRENT] = DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::HUD_CURRENT_LIFE);
 
     hudElements_[BUTTONS] = DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::HUD_BUTTONS);
-    hudElements_[DISCONNECT] = DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::HUD_DISCONNECT);
+    hudElements_[TOGGLE] = DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::HUD_TOGGLE);
     hudElements_[MAIN] = DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::HUD_MAIN_ABILITY);
     hudElements_[DEATH] = DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::HUD_DEATH_ABILITY);
     hudElements_[INTERACT] = DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::HUD_INTERACT);
@@ -34,16 +34,20 @@ void CoreLogic::UserInterface::HUD::hudInit()
 
 void CoreLogic::UserInterface::HUD::draw(Rectangle pa_cameraRec)
 {
-    for (auto &element: hudElements_)
+    if (displayHUD_)
     {
-        DrawTexturePro(element.getTexture(), element.getFrame(), pa_cameraRec, {0, 0}, 0, WHITE);
-        if (!(activeTutorialBox_ == nullptr))
+        for (auto &element: hudElements_)
         {
-            DrawTextPro(CoreLogic::DataProcessing::Fonts::getFont(0), activeTutorialBox_->getText().c_str(),
-                    {activeTutorialBox_->getAnchor().x, activeTutorialBox_->getAnchor().y}, {0, 0}, 0,
-                    activeTutorialBox_->getFontSize(), activeTutorialBox_->getSpacing(), WHITE);
+            DrawTexturePro(element.getTexture(), element.getFrame(), pa_cameraRec, {0, 0}, 0, WHITE);
         }
     }
+    DrawTexturePro(hudElements_[TOGGLE].getTexture(), hudElements_[TOGGLE].getFrame(), pa_cameraRec, {0, 0}, 0, WHITE);
+            if (!(activeTutorialBox_ == nullptr))
+            {
+                DrawTextPro(CoreLogic::DataProcessing::Fonts::getFont(0), activeTutorialBox_->getText().c_str(),
+                        {activeTutorialBox_->getAnchor().x, activeTutorialBox_->getAnchor().y}, {0, 0}, 0,
+                        activeTutorialBox_->getFontSize(), activeTutorialBox_->getSpacing(), WHITE);
+            }
 }
 
 CoreLogic::UserInterface::HUD* CoreLogic::UserInterface::HUD::po_instance_ = nullptr;
@@ -67,10 +71,16 @@ void CoreLogic::UserInterface::HUD::update()
     hudElements_[MAX].shiftFrame(player.getMaxHealth() - 1);
     hudElements_[CURRENT].shiftFrame(player.getCurrentHealth() - 1);
 
+    if (CoreLogic::EventManagement::InputHandler::gatLastInputKeyboard())
+    {
+        //;-;
+    }
+
     hudElements_[BUTTONS].shiftFrame(!CoreLogic::EventManagement::InputHandler::gatLastInputKeyboard());
     hudElements_[MAIN].shiftFrame(player.canAct());
     hudElements_[DEATH].shiftFrame(player.canDeathAbility());
     hudElements_[INTERACT].shiftFrame(player.canInteract());
+    hudElements_[TOGGLE].shiftFrame(!CoreLogic::EventManagement::InputHandler::gatLastInputKeyboard());
 
     activeTutorialBox_ = nullptr;
     auto tutorialBoxes = CoreLogic::DataProcessing::ActorStorage::getTutorialBoxes()->at(player.getElevation());
@@ -79,7 +89,7 @@ void CoreLogic::UserInterface::HUD::update()
         if (CheckCollisionRecs(tutorialBox->getHitbox(), player.getHitbox()))
         {
             activeTutorialBox_ = tutorialBox;
-            return;
+            break;
         }
     }
 
@@ -90,9 +100,8 @@ void CoreLogic::UserInterface::HUD::update()
     {
         if (event == CoreLogic::EventManagement::HUD_TOGGLE)
         {
-
+            displayHUD_ = !displayHUD_;
         }
-
     }
 
 }
