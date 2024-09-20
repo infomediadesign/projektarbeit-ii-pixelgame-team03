@@ -41,6 +41,7 @@ namespace CoreLogic::EventManagement
             throw EventException("Enemy not found", false);
         }
         std::dynamic_pointer_cast<Actors::Enemy>(po_mainActor_)->setDead(true);
+        enemyDeathFrames_ = po_mainActor_->getSprite().getFrameAmount(3);
     }
 
     void EnemyDisconnectEvent::update()
@@ -49,7 +50,7 @@ namespace CoreLogic::EventManagement
         {
             po_mainActor_ ->shiftFrame(3);
         }
-        if (ticks_ >=36)
+        if (ticks_ >=enemyDeathFrames_*6-1)
         {
             throw EventException("Drone disconnected", true);
         }
