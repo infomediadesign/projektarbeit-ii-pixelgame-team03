@@ -12,7 +12,7 @@ namespace CoreLogic::EventManagement
         {
             auto &soundHandler = EventManagement::SoundHandler::getInstance();
             soundHandler.playSound(SoundHandler::BELL);
-            animationSpeed_ = DataProcessing::DesignConfig::BELL_DETECTION_TILES;
+            animationSpeed_ = DataProcessing::DesignConfig::BELL_DEATH_SPEED;
             animationLength_ = po_mainActor_->getSprite().getFrameAmount(3) * animationSpeed_ - 1;
         }
 
