@@ -6219,6 +6219,48 @@
                  "width":240,
                  "x":120,
                  "y":648
+                }, 
+                {
+                 "height":168,
+                 "id":481,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"text_zone",
+                         "type":"int",
+                         "value":14
+                        }, 
+                        {
+                         "name":"textbox_anchor_x",
+                         "type":"int",
+                         "value":75
+                        }, 
+                        {
+                         "name":"textbox_anchor_y",
+                         "type":"int",
+                         "value":100
+                        }, 
+                        {
+                         "name":"textbox_font_size",
+                         "type":"int",
+                         "value":16
+                        }, 
+                        {
+                         "name":"textbox_spacing",
+                         "type":"int",
+                         "value":0
+                        }, 
+                        {
+                         "name":"textbox_text",
+                         "type":"string",
+                         "value":"That machine seems to be very important to them.\nWe have to destroy it!"
+                        }],
+                 "rotation":0,
+                 "type":"textbox",
+                 "visible":true,
+                 "width":96,
+                 "x":144,
+                 "y":72
                 }],
          "opacity":1,
          "properties":[
