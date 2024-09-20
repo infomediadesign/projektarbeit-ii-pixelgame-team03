@@ -37,7 +37,7 @@ namespace CoreLogic::EventManagement
             std::vector<std::shared_ptr<Actors::Enemy>> &enemies = CoreLogic::DataProcessing::ActorStorage::getEnemies()->at(std::dynamic_pointer_cast<Object::Boulder>(po_mainActor_)->getNewElevation());
             for (auto &enemy: enemies)
             {
-                if (enemy == nullptr || enemy -> getDead())
+                if (enemy == nullptr || enemy -> getDead() || enemy -> getEnemyType() == Actors::Enemy::MECH)
                 {
                     continue;
                 }
