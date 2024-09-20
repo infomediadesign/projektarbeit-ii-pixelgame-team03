@@ -22,7 +22,6 @@ Scenes::GameScene::GameScene(): Scene(std::make_shared<Camera2D>()),
 {
     camera_ -> zoom = 1.0f;
     po_loadMap_ = std::make_unique<CoreLogic::DataProcessing::Map>(po_levels_ -> at(0).getMapPath());
-//    CoreLogic::DataProcessing::ActorStorage::setLayers(po_loadMap_ -> getLayers());
     po_previousMap_ = std::make_unique<CoreLogic::DataProcessing::Map>(*po_loadMap_);
     currentLevelID_ = po_levels_ -> at(0).getLevelID();
     previousLevelID_ = currentLevelID_;
@@ -36,7 +35,6 @@ Scenes::GameScene::GameScene(): Scene(std::make_shared<Camera2D>()),
     auto &eventHandler = CoreLogic::EventManagement::EventHandler::getInstance();
     eventHandler.resetPlayer();
 
-//    CoreLogic::DataProcessing::ActorStorage::unlockDrone(CoreLogic::EventManagement::Actors::Drone::DroneType::SCOUT);
 }
 
 int Scenes::GameScene::getCurrentLevelID()
@@ -83,10 +81,6 @@ void Scenes::GameScene::update()
         }
     }
 
-    if (IsKeyPressed(KEY_ZERO)) player->setElevation(0);
-    if (IsKeyPressed(KEY_ONE)) player->setElevation(1);
-    if (IsKeyPressed(KEY_TWO)) player->setElevation(2);
-    if (IsKeyPressed(KEY_NINE)) player->setElevation(9);
 
     auto &interacts = *CoreLogic::DataProcessing::ActorStorage::getInteractions();
     auto &abilities = *CoreLogic::DataProcessing::ActorStorage::getAbilities();
