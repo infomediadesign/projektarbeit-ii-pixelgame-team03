@@ -43,7 +43,7 @@ CoreLogic::EventManagement::JumpEvent::JumpEvent(std::shared_ptr<Object::JumpPoi
             Rectangle destinationHB = {destination.x, destination.y, playerHB.width, playerHB.height};
             if (CheckCollisionRecs(barrierHitbox, destinationHB))
             {
-                throw EventException("Climbing Event Failed", false);
+                throw EventException("Jump Event Failed", false);
             }
         }
     }
