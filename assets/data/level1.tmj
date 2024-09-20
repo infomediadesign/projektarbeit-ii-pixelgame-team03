@@ -2304,7 +2304,7 @@
                         {
                          "name":"sprite_state",
                          "type":"int",
-                         "value":1
+                         "value":7
                         }, 
                         {
                          "name":"x_dest",
@@ -3551,7 +3551,7 @@
                  "value":1
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -4380,7 +4380,7 @@
                         {
                          "name":"sprite_state",
                          "type":"int",
-                         "value":1
+                         "value":7
                         }, 
                         {
                          "name":"x_dest",
@@ -5621,7 +5621,7 @@
                  "value":2
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
