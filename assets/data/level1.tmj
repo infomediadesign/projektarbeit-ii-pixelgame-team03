@@ -1403,6 +1403,55 @@
         }, 
         {
          "draworder":"topdown",
+         "id":67,
+         "name":"CameraPans 1",
+         "objects":[
+                {
+                 "height":168,
+                 "id":480,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"pan_ticks",
+                         "type":"int",
+                         "value":240
+                        }, 
+                        {
+                         "name":"resting_ticks",
+                         "type":"int",
+                         "value":180
+                        }, 
+                        {
+                         "name":"x_dest",
+                         "type":"int",
+                         "value":750
+                        }, 
+                        {
+                         "name":"y_dest",
+                         "type":"int",
+                         "value":75
+                        }],
+                 "rotation":0,
+                 "type":"camera_pan",
+                 "visible":true,
+                 "width":144,
+                 "x":120,
+                 "y":72
+                }],
+         "opacity":1,
+         "properties":[
+                {
+                 "name":"elevation",
+                 "type":"int",
+                 "value":0
+                }],
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
          "id":22,
          "name":"Acid 1",
          "objects":[
@@ -6452,8 +6501,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":67,
- "nextobjectid":480,
+ "nextlayerid":68,
+ "nextobjectid":482,
  "orientation":"orthogonal",
  "properties":[
         {
