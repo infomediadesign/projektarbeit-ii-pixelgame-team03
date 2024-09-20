@@ -25,6 +25,7 @@ namespace CoreLogic::EventManagement
         bool extended_ = false;
         Vector2 push_;
         int frameCount_=0;
+
     };
 
 } // CoreLogic

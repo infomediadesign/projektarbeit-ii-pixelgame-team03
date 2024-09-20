@@ -58,8 +58,9 @@ namespace CoreLogic::EventManagement
                     throw EventException("Collision with barrier", false);
                 }
             }
-            ticks_ = 30;
-            frameCount_ = 30/ po_mainActor_->getSprite().getFrameAmount(1)*2+1;
+            animationSpeed_ = 10;
+            animationLength_ = (po_mainActor_->getSprite().getFrameAmount(1) * animationSpeed_)/2 - 1;
+            ticks_ = animationLength_;
             std::vector<std::shared_ptr<Object::Cliff>> cliffs = CoreLogic::DataProcessing::ActorStorage::getCliffs()->at(po_pushable_ ->getElevation());
 
             bool cliffPush = false;
@@ -133,39 +134,40 @@ namespace CoreLogic::EventManagement
 
         void PushEvent::update()
         {
-            if (ticks_ == 30)
+            if (ticks_ == animationLength_)
             {
               auto &soundHandler = CoreLogic::EventManagement::SoundHandler::getInstance();
                 soundHandler.playSound(SoundHandler::PUSH);
             }
-            if (ticks_ % frameCount_ == 0)
+            if (ticks_ % animationSpeed_ == 0)
             {
                 po_mainActor_->shiftFrame(1);
             }
 
             Rectangle destination = po_pushable_ -> getHitbox();
 
-            switch (ticks_)
+            if (ticks_== ((int)animationLength_/3)*2)
             {
-                case 21:
-                    destination.x += push_.x;
-                    destination.y += push_.y;
-                    push_.x /= 2;
-                    push_.y /= 2;
-                    po_pushable_->setPosition({destination.x, destination.y});
-                    break;
-                case 12:
-                    destination.x += push_.x;
-                    destination.y += push_.y;
-                    push_.x /= 2;
-                    push_.y /= 2;
-                    po_pushable_->setPosition({destination.x, destination.y});
-                    break;
-                case 6:
-                    destination.x += push_.x;
-                    destination.y += push_.y;
-                    po_pushable_->setPosition({destination.x, destination.y});
-                    break;
+
+                destination.x += push_.x;
+                destination.y += push_.y;
+                push_.x /= 2;
+                push_.y /= 2;
+                po_pushable_->setPosition({destination.x, destination.y});
+
+            }else if(ticks_ == (int)animationLength_/3)
+            {
+                destination.x += push_.x;
+                destination.y += push_.y;
+                push_.x /= 2;
+                push_.y /= 2;
+                po_pushable_->setPosition({destination.x, destination.y});
+
+            }else if (ticks_ == (int)animationLength_/6){
+                destination.x += push_.x;
+                destination.y += push_.y;
+                po_pushable_->setPosition({destination.x, destination.y});
+
             }
 
 

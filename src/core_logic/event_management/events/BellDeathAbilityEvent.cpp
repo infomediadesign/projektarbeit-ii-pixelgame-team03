@@ -12,16 +12,18 @@ namespace CoreLogic::EventManagement
         {
             auto &soundHandler = EventManagement::SoundHandler::getInstance();
             soundHandler.playSound(SoundHandler::BELL);
+            animationSpeed_ = 3;
+            animationLength_ = po_mainActor_->getSprite().getFrameAmount(3) * animationSpeed_ - 1;
         }
 
         void BellDeathAbilityEvent::update()
         {
-            if (ticks_ % 3 == 0)
+            if (ticks_ % animationSpeed_ == 0)
             {
                 po_mainActor_ ->shiftFrame(3);
             }
 
-            if (ticks_ >=36)
+            if (ticks_ >= animationLength_)
             {
                 throw EventException("Drone disconnected", true);
             }

@@ -11,13 +11,15 @@ CoreLogic::EventManagement::CleaningEvent::CleaningEvent(std::shared_ptr<CoreLog
         pa_rubble): AbilityEvent(CLEAN)
 {
     po_rubble_ = pa_rubble;
-    ticks_ = 0;
-    rubbleBreakRate_ = 50/po_rubble_->getSprite().getFrameAmount(1)+1;
+    animationSpeed_ = 10;
+    animationLength_ = (po_mainActor_->getSprite().getFrameAmount(1) * animationSpeed_)/2-1;
+
+    rubbleBreakRate_ = animationLength_/po_rubble_->getSprite().getFrameAmount(1)+1;
 }
 
 void CoreLogic::EventManagement::CleaningEvent::update()
 {
-    if (ticks_ % 10 == 0)
+    if (ticks_ % animationSpeed_ == 0)
     {
         po_mainActor_->shiftFrame(1);
     }
@@ -25,13 +27,13 @@ void CoreLogic::EventManagement::CleaningEvent::update()
     {
         po_rubble_->shiftFrame(1);
     }
-    if (ticks_ == 10)
+    if (ticks_ == animationSpeed_)
     {
         auto &soundHandler = CoreLogic::EventManagement::SoundHandler::getInstance();
         soundHandler.playSound(SoundHandler::RUBBLE);
     }
     ticks_++;
-    if (ticks_==50)
+    if (ticks_==animationLength_)
     {
         po_rubble_->setCleaned();
         throw EventException("Rubble Cleaned", true);
