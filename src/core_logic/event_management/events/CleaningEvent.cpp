@@ -11,7 +11,7 @@ CoreLogic::EventManagement::CleaningEvent::CleaningEvent(std::shared_ptr<CoreLog
         pa_rubble): AbilityEvent(CLEAN)
 {
     po_rubble_ = pa_rubble;
-    animationSpeed_ = 10;
+    animationSpeed_ = DataProcessing::DesignConfig::RUBBLE_CLEANING_SPEED;
     animationLength_ = (po_mainActor_->getSprite().getFrameAmount(1) * animationSpeed_)/2-1;
 
     rubbleBreakRate_ = animationLength_/po_rubble_->getSprite().getFrameAmount(1)+1;

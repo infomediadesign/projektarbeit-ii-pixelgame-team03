@@ -49,11 +49,13 @@ CoreLogic::EventManagement::FallingEvent::FallingEvent(int pa_actorID): Event(FA
         throw EventException("Actor not found", false);
     }
 
+    fallingSpeed_ = DataProcessing::DesignConfig::FALLING_SPEED;
+
 }
 
 void CoreLogic::EventManagement::FallingEvent::fall()
 {
-    if (ticks_ != 0 && ticks_ % 5 == 0)
+    if (ticks_ != 0 && ticks_ % fallingSpeed_ == 0)
     {
         Vector2 newPosition = po_mainActor_ -> getPosition();
         int tileSize = CoreLogic::DataProcessing::global_tileSize;

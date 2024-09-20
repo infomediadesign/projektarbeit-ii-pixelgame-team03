@@ -58,7 +58,7 @@ namespace CoreLogic::EventManagement
                     throw EventException("Collision with barrier", false);
                 }
             }
-            animationSpeed_ = 10;
+            animationSpeed_ = DataProcessing::DesignConfig::PUSH_SPEED;
             animationLength_ = (po_mainActor_->getSprite().getFrameAmount(1) * animationSpeed_)/2 - 1;
             ticks_ = animationLength_;
             std::vector<std::shared_ptr<Object::Cliff>> cliffs = CoreLogic::DataProcessing::ActorStorage::getCliffs()->at(po_pushable_ ->getElevation());

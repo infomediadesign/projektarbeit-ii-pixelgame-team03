@@ -32,13 +32,13 @@ namespace CoreLogic::DataProcessing {
         inline static constexpr float SFX_EXPLOSION_VOLUME = 0.1f;
         inline static constexpr float SFX_IMPACT_FLOOR_VOLUME = 0.1f;
         inline static constexpr float SFX_IMPACT_WATER_VOLUME = 0.1f;
-        inline static constexpr float SFX_NOTE_VOLUME = 0.4f;
+        inline static constexpr float SFX_NOTE_VOLUME = 0.1f;
         inline static constexpr float SFX_PUSH_VOLUME = 0.1f;
         inline static constexpr float SFX_RESPAWN_ACTIVATE_VOLUME = 0.8f;
         inline static constexpr float SFX_RESPAWN_REACTIVATE_VOLUME = 0.8f;
         inline static constexpr float SFX_RUBBLE_VOLUME = 0.1f;
         inline static constexpr float SFX_SHOT_VOLUME = 0.1f;
-        inline static constexpr float SFX_BELL_VOLUME = 0.2f;
+        inline static constexpr float SFX_BELL_VOLUME = 0.1f;
         inline static constexpr float SFX_DEATH_DRONE_VOLUME = 0.1f;
         inline static constexpr float SFX_DEATH_HUMAN_VOLUME = 0.1f;
 
@@ -55,6 +55,18 @@ namespace CoreLogic::DataProcessing {
         //detection rate; in ticks
         inline static constexpr int COLONIST_DETECTION_RATE = 90;
         inline static constexpr int MECH_DETECTION_RATE = 60;
+
+        //animation Speeds (tick Intervals per Animation Frame)
+        inline static constexpr int ENEMY_SHOOTING_SPEED = 6;
+        inline static constexpr int ENEMY_DEATH_SPEED = 6;
+        inline static constexpr int DRONE_DEATH_SPEED = 3;
+        inline static constexpr int RUBBLE_CLEANING_SPEED = 10;
+        inline static constexpr int PUSH_SPEED = 10;
+        inline static constexpr int FALLING_SPEED = 5;
+        inline static constexpr int BOULDER_DESTRUCTION_SPEED = 5;
+        inline static constexpr int BARREL_EXPLOSION_SPEED = 5;
+        inline static constexpr int BELL_DEATH_SPEED = 3;
+        inline static constexpr int MOVEMENT_ANIMATION_SPEED = 3;
 
         //how long enemies are turned by the bell; in ticks
         inline static constexpr int BELL_TURN_TIME = 1200;

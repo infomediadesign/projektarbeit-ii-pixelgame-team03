@@ -16,6 +16,8 @@ namespace CoreLogic::EventManagement
     {
         po_mainActor_ = pa_boulder;
         fallHeight_ = std::dynamic_pointer_cast<Object::Boulder>(po_mainActor_) -> getFallHeight();
+        animationSpeed_ = DataProcessing::DesignConfig::BOULDER_DESTRUCTION_SPEED;
+        animationLength_ = po_mainActor_->getSprite().getFrameAmount(5) * animationSpeed_ - 1;
     }
 
     void FallingBoulderEvent::destroy()
@@ -49,12 +51,12 @@ namespace CoreLogic::EventManagement
                 }
             }
         }
-        if (ticks_ % 5 == 0)
+        if (ticks_ % animationSpeed_ == 0)
         {
             po_mainActor_ -> shiftFrame(1);
         }
 
-        if (ticks_ >= 20)
+        if (ticks_ >= animationLength_)
         {
 
             throw EventException("Boulder Destroyed", true);
