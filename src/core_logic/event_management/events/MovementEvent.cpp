@@ -148,7 +148,7 @@ CoreLogic::EventManagement::MovementEvent::MovementEvent(): Event(MOVE_UP)
     primaryDir_ = EVENT_NULL;
     ticksRunning_ = false;
     directionMap_ = {{MOVE_UP, false}, {MOVE_DOWN, false}, {MOVE_LEFT, false}, {MOVE_RIGHT, false}};
-    animationSpeed_ = 3;
+    animationSpeed_ = DataProcessing::DesignConfig::MOVEMENT_ANIMATION_SPEED;
 }
 
 void CoreLogic::EventManagement::MovementEvent::updateMainActor()

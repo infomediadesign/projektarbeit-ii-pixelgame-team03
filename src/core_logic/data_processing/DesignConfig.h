@@ -56,6 +56,18 @@ namespace CoreLogic::DataProcessing {
         inline static constexpr int COLONIST_DETECTION_RATE = 90;
         inline static constexpr int MECH_DETECTION_RATE = 60;
 
+        //animation Speeds and Variables
+        inline static constexpr int ENEMY_SHOOTING_SPEED = 6;
+        inline static constexpr int ENEMY_DEATH_SPEED = 6;
+        inline static constexpr int DRONE_DEATH_SPEED = 3;
+        inline static constexpr int RUBBLE_CLEANING_SPEED = 10;
+        inline static constexpr int PUSH_SPEED = 10;
+        inline static constexpr int FALLING_SPEED = 5;
+        inline static constexpr int BOULDER_DESTRUCTION_SPEED = 5;
+        inline static constexpr int BARREL_EXPLOSION_SPEED = 5;
+        inline static constexpr int BELL_DEATH_SPEED = 3;
+        inline static constexpr int MOVEMENT_ANIMATION_SPEED = 3;
+
         //how long enemies are turned by the bell; in ticks
         inline static constexpr int BELL_TURN_TIME = 1200;
 

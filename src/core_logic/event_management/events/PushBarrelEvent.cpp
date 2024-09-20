@@ -16,7 +16,7 @@ namespace CoreLogic
             auto &soundHandler = CoreLogic::EventManagement::SoundHandler::getInstance();
             soundHandler.playSound(SoundHandler::PUSH);
             po_barrel_ = pa_barrel;
-            animationSpeed_ = 10;
+            animationSpeed_ = DataProcessing::DesignConfig::PUSH_SPEED;
             animationLength_ = (po_mainActor_->getSprite().getFrameAmount(1) * animationSpeed_)/2 - 1;
             ticks_ = animationLength_;
             switch (po_barrel_->getPrimaryDirection())

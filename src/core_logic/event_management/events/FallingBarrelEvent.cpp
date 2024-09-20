@@ -17,7 +17,8 @@ namespace CoreLogic::EventManagement
         po_mainActor_ = pa_barrel;
         fallHeight_ = std::dynamic_pointer_cast<Object::Barrel>(po_mainActor_)
                 ->getFallHeight();
-        explosionFrames_ = po_mainActor_->getSprite().getFrameAmount(1);
+        animationSpeed_ = DataProcessing::DesignConfig::BARREL_EXPLOSION_SPEED;
+        animationLength_ = po_mainActor_->getSprite().getFrameAmount(1) * animationSpeed_ - 1;
     }
 
 
@@ -52,11 +53,11 @@ namespace CoreLogic::EventManagement
                 }
             }
         }
-       if (ticks_ % (60/explosionFrames_+1) == 0)
+       if (ticks_ % animationSpeed_ == 0)
         {
             po_mainActor_ -> shiftFrame(1);
         }
-        if (ticks_ == 40)
+        if (ticks_ == (int)((animationLength_/3)*2))
         {
             std::vector<std::shared_ptr<Object::Uplink>> &uplinks = CoreLogic::DataProcessing::ActorStorage::getUplinks()->at(std::dynamic_pointer_cast<Object::Barrel>(po_mainActor_)->getNewElevation());
             for (auto &uplink: uplinks)
@@ -76,7 +77,7 @@ namespace CoreLogic::EventManagement
                 }
             }
         }
-        if (ticks_ >= 60)
+        if (ticks_ >= animationLength_)
         {
             throw EventException("Falling Event Executed", true);
         }

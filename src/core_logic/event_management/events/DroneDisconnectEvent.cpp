@@ -24,15 +24,17 @@ namespace CoreLogic::EventManagement
                 throw e;
             }
         }
+        animationSpeed_ = DataProcessing::DesignConfig::DRONE_DEATH_SPEED;
+        animationLength_ = po_mainActor_->getSprite().getFrameAmount(2) * animationSpeed_ - 1;
     }
 
     void DroneDisconnectEvent::update()
     {
-        if (ticks_ % 3 == 0)
+        if (ticks_ % animationSpeed_ == 0)
         {
             std::dynamic_pointer_cast<Actors::Drone>(po_mainActor_) ->shiftFrame(2);
         }
-        if (ticks_ >=36)
+        if (ticks_ >=animationLength_)
         {
             throw EventException("Drone disconnected", true);
         }

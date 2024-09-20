@@ -42,15 +42,17 @@ namespace CoreLogic::EventManagement
         }
         std::dynamic_pointer_cast<Actors::Enemy>(po_mainActor_)->setDead(true);
         enemyDeathFrames_ = po_mainActor_->getSprite().getFrameAmount(3);
+        animationSpeed_ = DataProcessing::DesignConfig::ENEMY_DEATH_SPEED;
+        animationLength_ = enemyDeathFrames_ * animationSpeed_-1;
     }
 
     void EnemyDisconnectEvent::update()
     {
-        if (ticks_ % 6 == 0)
+        if (ticks_ % animationSpeed_ == 0)
         {
             po_mainActor_ ->shiftFrame(3);
         }
-        if (ticks_ >=enemyDeathFrames_*6-1)
+        if (ticks_ >=animationLength_)
         {
             throw EventException("Drone disconnected", true);
         }
