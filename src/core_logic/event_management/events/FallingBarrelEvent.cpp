@@ -19,6 +19,7 @@ namespace CoreLogic::EventManagement
                 ->getFallHeight();
         animationSpeed_ = DataProcessing::DesignConfig::BARREL_EXPLOSION_SPEED;
         animationLength_ = po_mainActor_->getSprite().getFrameAmount(1) * animationSpeed_ - 1;
+        fallingSpeed_ = DataProcessing::DesignConfig::FALLING_SPEED;
     }
 
 
