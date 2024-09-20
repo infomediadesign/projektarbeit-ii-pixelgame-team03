@@ -34,8 +34,8 @@ namespace CoreLogic::DataProcessing {
         inline static constexpr float SFX_IMPACT_WATER_VOLUME = 0.1f;
         inline static constexpr float SFX_NOTE_VOLUME = 0.1f;
         inline static constexpr float SFX_PUSH_VOLUME = 0.1f;
-        inline static constexpr float SFX_RESPAWN_ACTIVATE_VOLUME = 0.1f;
-        inline static constexpr float SFX_RESPAWN_REACTIVATE_VOLUME = 0.1f;
+        inline static constexpr float SFX_RESPAWN_ACTIVATE_VOLUME = 0.8f;
+        inline static constexpr float SFX_RESPAWN_REACTIVATE_VOLUME = 1.0f;
         inline static constexpr float SFX_RUBBLE_VOLUME = 0.1f;
         inline static constexpr float SFX_SHOT_VOLUME = 0.1f;
         inline static constexpr float SFX_BELL_VOLUME = 0.1f;
