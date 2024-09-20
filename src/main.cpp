@@ -42,6 +42,7 @@ int main() {
  *         4.@todo: custom button mapping
  *         5.@todo: Menus to access button mapping, sound settings and similar
  *         6.@todo: Multithread Drawing, Sound, Update
+ *         7.@todo: Animated environment(is easy, but not all animations exist yet, so code hasn't been added yet either)
  *
  *
  *         With this we will bid you adieu.
