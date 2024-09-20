@@ -34,7 +34,7 @@ void CoreLogic::EventManagement::MovementEvent::update()
      * @note: add facing direction variable and func call for actor
      **/
 
-    if (ticks_ % 3 == 0)
+    if (ticks_ % animationSpeed_ == 0)
     {
         po_mainActor_->shiftFrame(0);
     }
@@ -148,6 +148,7 @@ CoreLogic::EventManagement::MovementEvent::MovementEvent(): Event(MOVE_UP)
     primaryDir_ = EVENT_NULL;
     ticksRunning_ = false;
     directionMap_ = {{MOVE_UP, false}, {MOVE_DOWN, false}, {MOVE_LEFT, false}, {MOVE_RIGHT, false}};
+    animationSpeed_ = 3;
 }
 
 void CoreLogic::EventManagement::MovementEvent::updateMainActor()
