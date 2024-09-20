@@ -33,6 +33,18 @@ void Scenes::CameraPanScene::update()
     CoreLogic::EventManagement::SoundHandler &soundHandler = CoreLogic::EventManagement::SoundHandler::getInstance();
     soundHandler.update();
 
+    auto &inputHandler = CoreLogic::EventManagement::InputHandler::getInstance();
+    std::vector<CoreLogic::EventManagement::EventEnum> events = inputHandler.handleInput();
+
+    for (CoreLogic::EventManagement::EventEnum event: events)
+    {
+        if (event == CoreLogic::EventManagement::ENTER)
+        {
+            CoreLogic::DataProcessing::StateMachine::changeState(CoreLogic::DataProcessing::GameState::IN_GAME);
+
+        }
+    }
+
     Vector2 dest = CoreLogic::DataProcessing::ActorStorage::getActiveCameraPan()->getDestination();
     differenceVector_ = {dest.x - camera_->target.x, dest.y - camera_->target.y};
 

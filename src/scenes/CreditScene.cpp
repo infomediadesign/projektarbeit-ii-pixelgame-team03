@@ -20,6 +20,9 @@ void Scenes::CreditScene::draw(RenderTexture2D &pa_canvas)
     BeginTextureMode(pa_canvas);
     {
         DrawTexturePro(background_.getTexture(), background_.getFrame(), {0, 0, 640, 360}, {0, 0}, 0, WHITE);
+        DrawTextPro(CoreLogic::DataProcessing::Fonts::getFont(0), "Press ENTER to continue",
+                {640 - 200, 360 - 30}, {0, 0}, 0,
+                20, 0, WHITE);
     }
     EndTextureMode();
 }
