@@ -6231,7 +6231,7 @@
                         {
                          "name":"textbox_text",
                          "type":"string",
-                         "value":"That machine seems to be very important to them.\nWe have to destroy it!"
+                         "value":"What is that? A weapon?\nWe need to get rid of it!"
                         }],
                  "rotation":0,
                  "type":"textbox",
