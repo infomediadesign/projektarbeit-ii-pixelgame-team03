@@ -46,9 +46,9 @@ void Scenes::NoteScene::draw(RenderTexture2D &pa_canvas)
         DrawTextPro(CoreLogic::DataProcessing::Fonts::getFont(0), text_.c_str(),
                 {60, 60}, {0, 0}, 0,
                 20, 0, WHITE);
-        DrawTextPro(CoreLogic::DataProcessing::Fonts::getFont(0), "Press ENTER to continue",
-                {640 - 205, 360 - 38}, {0, 0}, 0,
-                20, 0, WHITE);
+//        DrawTextPro(CoreLogic::DataProcessing::Fonts::getFont(0), "Press ENTER to continue",
+//                {640 - 205, 360 - 38}, {0, 0}, 0,
+//                20, 0, WHITE);
         DrawTexturePro(cracks_.getTexture(), cracks_.getFrame(), {0, 0, 640, 360}, {0, 0}, 0, {255, 255, 255, 100});
     }
     EndTextureMode();
