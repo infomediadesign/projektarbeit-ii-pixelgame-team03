@@ -56,7 +56,7 @@ namespace CoreLogic::DataProcessing {
         inline static constexpr int COLONIST_DETECTION_RATE = 90;
         inline static constexpr int MECH_DETECTION_RATE = 60;
 
-        //animation Speeds and Variables
+        //animation Speeds (tick Intervals per Animation Frame) 
         inline static constexpr int ENEMY_SHOOTING_SPEED = 6;
         inline static constexpr int ENEMY_DEATH_SPEED = 6;
         inline static constexpr int DRONE_DEATH_SPEED = 3;
