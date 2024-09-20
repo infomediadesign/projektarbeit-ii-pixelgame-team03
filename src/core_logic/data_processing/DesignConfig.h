@@ -60,6 +60,7 @@ namespace CoreLogic::DataProcessing {
         inline static constexpr int BELL_TURN_TIME = 1200;
 
         inline static constexpr int DEATH_PANNING_SPEED = 5;
+        inline static constexpr int PANNING_THRESHOLD = 48;
 
         //axis threshold (how much tolerance the joysticks have when detecting input (0.0f = no tolerance, 1.0f = tbd))
         inline static constexpr float AXIS_THRESHOLD = 0.5f;

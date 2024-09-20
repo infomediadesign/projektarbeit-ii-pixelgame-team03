@@ -21,7 +21,8 @@ void Scenes::CameraPanScene::onSwitch()
     camera_->target = activeCameraPan->getPosition();
     Vector2 dest = CoreLogic::DataProcessing::ActorStorage::getActiveCameraPan()->getDestination();
     differenceVector_ = {dest.x - camera_->target.x, dest.y - camera_->target.y};
-    if (differenceVector_.x < 15 && differenceVector_.y < 10)
+    int threshold = CoreLogic::DataProcessing::DesignConfig::PANNING_THRESHOLD;
+    if (differenceVector_.x < threshold && differenceVector_.y < threshold)
     {
         CoreLogic::DataProcessing::StateMachine::changeState(CoreLogic::DataProcessing::GameState::IN_GAME);
     }
