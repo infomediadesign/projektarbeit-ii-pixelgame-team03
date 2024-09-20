@@ -127,10 +127,8 @@ void CoreLogic::DataProcessing::Map::loadObjects()
 
             if (objectClass == "collidable")
             {
-                bool objectVisible = object.isVisible();
-
-                actor = std::make_shared<EventManagement::Object::Barrier>(EventManagement::Object::Barrier
-                        (objectPosition, objectHitbox,objectId, objectSize, objectVisible, objectElevation));
+                                actor = std::make_shared<EventManagement::Object::Barrier>(EventManagement::Object::Barrier
+                        (objectPosition, objectHitbox,objectId, objectSize, objectElevation));
                 ActorStorage::addActorByType(objectElevation, actor);
             } else if (objectClass == "rubble")
             {
