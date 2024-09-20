@@ -17,7 +17,7 @@ namespace CoreLogic::EventManagement
         po_mainActor_ = pa_boulder;
         fallHeight_ = std::dynamic_pointer_cast<Object::Boulder>(po_mainActor_) -> getFallHeight();
         animationSpeed_ = DataProcessing::DesignConfig::BOULDER_DESTRUCTION_SPEED;
-        animationLength_ = po_mainActor_->getSprite().getFrameAmount(5) * animationSpeed_ - 1;
+        animationLength_ = po_mainActor_->getSprite().getFrameAmount(1) * animationSpeed_ - 1;
         fallingSpeed_ = DataProcessing::DesignConfig::FALLING_SPEED;
     }
 
