@@ -57,7 +57,7 @@ void Staging::Stage::update()
          po_currentScene_->update();
      } else {
 
-         if (runningGameState_ == CoreLogic::DataProcessing::GameState::DEATH || runningGameState_ == CoreLogic::DataProcessing::GameState::VICTORY)
+         if (runningGameState_ == CoreLogic::DataProcessing::GameState::DEATH)
          {
             po_scenes_.at(CoreLogic::DataProcessing::GameState::IN_GAME) = std::make_shared<Scenes::GameScene>();
          }

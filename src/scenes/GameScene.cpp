@@ -118,6 +118,12 @@ void Scenes::GameScene::update()
     }
 
 
+    if (IsKeyPressed(KEY_ZERO)) player->setElevation(0);
+    if (IsKeyPressed(KEY_ONE)) player->setElevation(1);
+    if (IsKeyPressed(KEY_TWO)) player->setElevation(2);
+    if (IsKeyPressed(KEY_NINE)) player->setElevation(9);
+
+
     eventHandler.handleEvents(inputHandler.handleInput(), player->getId());
     eventHandler.update();
 
@@ -292,8 +298,21 @@ void Scenes::GameScene::onSwitch()
         CoreLogic::DataProcessing::ActorStorage::setActiveCameraPan(pan);
         CoreLogic::DataProcessing::StateMachine::changeState(CoreLogic::DataProcessing::CAMERA_PAN);
         return;
-
     }
+    if (CoreLogic::DataProcessing::StateMachine::getPreviousState() == CoreLogic::DataProcessing::VICTORY)
+    {
+        CoreLogic::DataProcessing::ActorStorage::setActiveSpawnPoint(CoreLogic::DataProcessing::ActorStorage::getInitialSpawnPoint());
+        auto spawn = CoreLogic::DataProcessing::ActorStorage::getActiveSpawnPoint();
+        spawn->changeState(CoreLogic::EventManagement::Object::DroneRespawnPoint::ACTIVATED);
+
+        std::shared_ptr<CoreLogic::EventManagement::Actors::Drone> player = CoreLogic::DataProcessing::ActorStorage::getPlayer();
+        player->setElevation(spawn->getElevation());
+        player->setPosition(spawn->getPosition());
+
+        switchLevel(0);
+    }
+
+
     auto &eventHandler = CoreLogic::EventManagement::EventHandler::getInstance();
     eventHandler.resetPlayer();
     update();

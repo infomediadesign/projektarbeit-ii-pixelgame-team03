@@ -37,9 +37,10 @@ void Scenes::CreditScene::update()
         if (event == CoreLogic::EventManagement::ENTER)
         {
             CoreLogic::DataProcessing::StateMachine::changeState(CoreLogic::DataProcessing::GameState::IN_GAME);
-
         }
     }
+
+    background_.shiftFrame(!CoreLogic::EventManagement::InputHandler::gatLastInputKeyboard());
 }
 
 void Scenes::CreditScene::onSwitch()

@@ -28,6 +28,8 @@ void Scenes::NoteScene::update()
             CoreLogic::DataProcessing::StateMachine::changeState(CoreLogic::DataProcessing::GameState::IN_GAME);
         }
     }
+
+    background_.shiftFrame(!CoreLogic::EventManagement::InputHandler::gatLastInputKeyboard());
 }
 
 void Scenes::NoteScene::onSwitch()

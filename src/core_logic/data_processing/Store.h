@@ -143,6 +143,7 @@ private:
     private:
         static std::shared_ptr<std::map<CoreLogic::EventManagement::Actors::Drone::DroneType, bool>> po_unlockedDrones_;
         //------------------actives------------------//
+        static std::shared_ptr<CoreLogic::EventManagement::Object::DroneRespawnPoint> po_initialRespawnPoint_;
         static std::shared_ptr<CoreLogic::EventManagement::Object::DroneRespawnPoint> po_activeRespawnPoint_;
 
         static std::shared_ptr<CoreLogic::EventManagement::Object::TutorialBox> po_activeTutorialBox_;
@@ -207,6 +208,9 @@ private:
         pa_unlockedDrones);
 
         //------------------actives------------------//
+        static std::shared_ptr<CoreLogic::EventManagement::Object::DroneRespawnPoint> getInitialSpawnPoint();
+        static void setInitialSpawnPoint(std::shared_ptr<CoreLogic::EventManagement::Object::DroneRespawnPoint> pa_spawnPoint);
+
         static std::shared_ptr<CoreLogic::EventManagement::Object::DroneRespawnPoint> getActiveSpawnPoint();
         static void setActiveSpawnPoint(std::shared_ptr<CoreLogic::EventManagement::Object::DroneRespawnPoint> pa_spawnPoint);
 

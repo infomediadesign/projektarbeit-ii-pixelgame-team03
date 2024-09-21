@@ -17,7 +17,9 @@ std::shared_ptr<std::map<CoreLogic::EventManagement::Actors::Drone::DroneType, b
 
 
 //------------------actives------------------//
+std::shared_ptr<CoreLogic::EventManagement::Object::DroneRespawnPoint> CoreLogic::DataProcessing::ActorStorage::po_initialRespawnPoint_;
 std::shared_ptr<CoreLogic::EventManagement::Object::DroneRespawnPoint> CoreLogic::DataProcessing::ActorStorage::po_activeRespawnPoint_;
+
 std::shared_ptr<CoreLogic::EventManagement::Object::TutorialBox> CoreLogic::DataProcessing::ActorStorage::po_activeTutorialBox_;
 std::shared_ptr<CoreLogic::EventManagement::Object::CameraPan> CoreLogic::DataProcessing::ActorStorage::po_activeCameraPan_;
 std::shared_ptr<CoreLogic::EventManagement::Object::Note> CoreLogic::DataProcessing::ActorStorage::po_activeNote_;
@@ -393,6 +395,7 @@ void CoreLogic::DataProcessing::ActorStorage::addActorByType(int pa_elevation,
         if (activeSpawn)
         {
             po_activeRespawnPoint_ = spawn;
+            po_initialRespawnPoint_ = spawn;
         }
     } else if (auto mech = std::dynamic_pointer_cast<EventManagement::Actors::Mech>(pa_actor)) {
         addActor(po_mechs_, pa_elevation, mech);
@@ -761,6 +764,18 @@ void CoreLogic::DataProcessing::ActorStorage::setActiveCameraPan(
         std::shared_ptr<CoreLogic::EventManagement::Object::CameraPan> pa_cameraPan)
 {
     po_activeCameraPan_ = pa_cameraPan;
+}
+
+std::shared_ptr<CoreLogic::EventManagement::Object::DroneRespawnPoint>
+CoreLogic::DataProcessing::ActorStorage::getInitialSpawnPoint()
+{
+    return po_initialRespawnPoint_;
+}
+
+void CoreLogic::DataProcessing::ActorStorage::setInitialSpawnPoint(
+        std::shared_ptr<CoreLogic::EventManagement::Object::DroneRespawnPoint> pa_spawnPoint)
+{
+    po_initialRespawnPoint_ = pa_spawnPoint;
 }
 
 void CoreLogic::DataProcessing::StateMachine::changeState(CoreLogic::DataProcessing::GameState newState)
@@ -1240,6 +1255,7 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
     sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/Scenes/hive_ARTI_credit-scene.png",
             {
                     {CoreLogic::UserInterface::AnimationState{0 * 360, 640, 360, 1}},
+                    {CoreLogic::UserInterface::AnimationState{1 * 360, 640, 360, 1}},
             });
 
     po_sprites_[CREDIT_SCENE] = sprite;
@@ -1264,7 +1280,8 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
     //lore screen
     sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/Scenes/hive_ARTI_Lore-Items-Tablet_2024-09-13.png",
             {
-                    {CoreLogic::UserInterface::AnimationState{0 * 360, 640, 360, 1}}
+                    {CoreLogic::UserInterface::AnimationState{0 * 360, 640, 360, 1}},
+                    {CoreLogic::UserInterface::AnimationState{1 * 360, 640, 360, 1}},
             });
 
     po_sprites_[LORE_ITEM] = sprite;
