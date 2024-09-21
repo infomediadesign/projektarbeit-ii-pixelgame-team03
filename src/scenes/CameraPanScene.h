@@ -23,8 +23,11 @@ namespace Scenes
 
     protected:
         Vector2 differenceVector_;
+
         int panTicks_;
         int restingTicks_;
+
+        int skipCountdownTicks_ = CoreLogic::DataProcessing::DesignConfig::CANCEL_CAMERA_PAN;
     };
 }
 

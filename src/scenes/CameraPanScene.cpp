@@ -4,6 +4,7 @@
 
 #include "CameraPanScene.h"
 #include "event_management/SoundHandler.h"
+#include "user_interface/HUD.h"
 
 Scenes::CameraPanScene::CameraPanScene():
         Scene(std::make_shared<Camera2D>())
@@ -33,17 +34,26 @@ void Scenes::CameraPanScene::update()
     CoreLogic::EventManagement::SoundHandler &soundHandler = CoreLogic::EventManagement::SoundHandler::getInstance();
     soundHandler.update();
 
+    CoreLogic::UserInterface::HUD& hud = *CoreLogic::UserInterface::HUD::getInstance();
+    hud.update();
+
     auto &inputHandler = CoreLogic::EventManagement::InputHandler::getInstance();
-    std::vector<CoreLogic::EventManagement::EventEnum> events = inputHandler.handleInput();
 
-    for (CoreLogic::EventManagement::EventEnum event: events)
-    {
-        if (event == CoreLogic::EventManagement::ENTER)
+        if (inputHandler.isCommandDown(CoreLogic::EventManagement::ENTER))
         {
-            CoreLogic::DataProcessing::StateMachine::changeState(CoreLogic::DataProcessing::GameState::IN_GAME);
-
+            skipCountdownTicks_--;
+            hud.setLoadingCircleActive(true);
+            if (skipCountdownTicks_ <= 0)
+            {
+                CoreLogic::DataProcessing::StateMachine::changeState(CoreLogic::DataProcessing::GameState::IN_GAME);
+            }
         }
-    }
+        else
+        {
+            skipCountdownTicks_ = CoreLogic::DataProcessing::DesignConfig::CANCEL_CAMERA_PAN;
+            hud.setLoadingCircleActive(false);
+        }
+
 
     Vector2 dest = CoreLogic::DataProcessing::ActorStorage::getActiveCameraPan()->getDestination();
     differenceVector_ = {dest.x - camera_->target.x, dest.y - camera_->target.y};

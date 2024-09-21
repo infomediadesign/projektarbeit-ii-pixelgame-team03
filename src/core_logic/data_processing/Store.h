@@ -118,6 +118,8 @@ private:
             HUD_MAX_LIFE,
             HUD_PORTRAIT,
 
+            HUD_LOADING,
+
             DRONE_SELECTION,
             MAIN_MENU,
             DEATH_SCENE,

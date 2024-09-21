@@ -12,7 +12,8 @@ namespace CoreLogic::DataProcessing {
     {
 
         /**
-         * @attention: never change anything before the equal sign. Those are the names of the variables and the code will break if anything there is touched.
+         * @attention: never change anything before the equal sign. Those are the names of the variables and the code
+         * will break if anything there is touched.
          * anything right of the equal sign can be changes as desired unless there is a comment saying otherwise.
          *
          * 1 tick is 1/60th of a second
@@ -55,6 +56,8 @@ namespace CoreLogic::DataProcessing {
         //detection rate; in ticks
         inline static constexpr int COLONIST_DETECTION_RATE = 90;
         inline static constexpr int MECH_DETECTION_RATE = 60;
+
+        inline static constexpr int CANCEL_CAMERA_PAN = 30;
 
         //animation Speeds (tick Intervals per Animation Frame)
         inline static constexpr int ENEMY_SHOOTING_SPEED = 6;

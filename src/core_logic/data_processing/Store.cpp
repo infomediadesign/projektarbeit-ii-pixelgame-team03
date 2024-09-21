@@ -166,7 +166,7 @@ CoreLogic::DataProcessing::ActorStorage::initializeSpecificLists(int pa_elevatio
 
     for (int i = 0; i < pa_elevationLevels; ++i)
     {
-        (*list)[i] = std::vector<T>();  // Initialize with an empty vector of type T
+        (*list)[i] = std::vector<T>();
     }
 
     (*list)[9] = std::vector<T>();  // Initialize elevation 9 for debug purposes
@@ -184,7 +184,7 @@ CoreLogic::DataProcessing::ActorStorage::initializeSpecificLists(int pa_elevatio
 
     for (int i = 0; i < pa_elevationLevels; ++i)
     {
-        (*list)[i] = std::vector<T>();  // Initialize with an empty vector of shared_ptr<T>
+        (*list)[i] = std::vector<T>();
     }
 
     (*list)[9] = std::vector<T>();  // Initialize elevation 9 for debug purposes
@@ -788,7 +788,7 @@ CoreLogic::DataProcessing::SpriteStorage::getSprite(CoreLogic::DataProcessing::S
 
 void CoreLogic::DataProcessing::SpriteStorage::Initialize()
 {
-    po_sprites_.resize(40);
+    po_sprites_.resize(50);
     //0 - worker
     UserInterface::Sprite sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/hive_ARTI_Worker-Spritesheet.png",
             {
@@ -1196,6 +1196,14 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
             });
 
     po_sprites_[HUD_DEATH_ABILITY] = sprite;
+
+    //loading circle
+    sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/HUD/hive_ARTI_Loading-Circle-Spritesheet.png",
+            {
+                    {CoreLogic::UserInterface::AnimationState{1 * 360, 640, 360, 16}},
+            });
+
+    po_sprites_[HUD_LOADING] = sprite;
 
 
     //-----Menus-----//

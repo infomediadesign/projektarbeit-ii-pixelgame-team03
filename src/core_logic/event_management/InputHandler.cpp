@@ -97,14 +97,26 @@ namespace CoreLogic::EventManagement
 
     bool InputHandler::isCommandReleased(EventEnum pa_enum)
     {
-        for (auto pair: *keyboardInGameMapping_)
+        std::shared_ptr<std::map<EventEnum, std::shared_ptr<Input>>> controllerMapping;
+        std::shared_ptr<std::map<EventEnum, std::shared_ptr<Input>>> keyboardMapping;
+
+        if (CoreLogic::DataProcessing::StateMachine::getCurrentState() == CoreLogic::DataProcessing::GameState::IN_GAME)
+        {
+            controllerMapping = controllerInGameMapping_;
+            keyboardMapping = keyboardInGameMapping_;
+        } else {
+            controllerMapping = controllerMenuMapping_;
+            keyboardMapping = keyboardMenuMapping_;
+        }
+
+        for (auto pair: *keyboardMapping)
         {
             if (pair.first == pa_enum && IsKeyReleased(pair.second->key))
             {
                 return true;
             }
         }
-        for (auto pair: *controllerInGameMapping_)
+        for (auto pair: *controllerMapping)
         {
 
             if (pair.first == pa_enum )
@@ -123,14 +135,27 @@ namespace CoreLogic::EventManagement
 
     bool InputHandler::isCommandDown(EventEnum pa_enum)
     {
-        for (auto pair: *keyboardInGameMapping_)
+        std::shared_ptr<std::map<EventEnum, std::shared_ptr<Input>>> controllerMapping;
+        std::shared_ptr<std::map<EventEnum, std::shared_ptr<Input>>> keyboardMapping;
+
+        if (CoreLogic::DataProcessing::StateMachine::getCurrentState() == CoreLogic::DataProcessing::GameState::IN_GAME)
+        {
+            controllerMapping = controllerInGameMapping_;
+            keyboardMapping = keyboardInGameMapping_;
+        } else {
+            controllerMapping = controllerMenuMapping_;
+            keyboardMapping = keyboardMenuMapping_;
+        }
+
+
+        for (auto pair: *keyboardMapping)
         {
             if (pair.first == pa_enum && IsKeyDown(pair.second->key))
             {
                 return true;
             }
         }
-        for (auto pair: *controllerInGameMapping_)
+        for (auto pair: *controllerMapping)
         {
 
             if (pair.first == pa_enum )
