@@ -7,6 +7,8 @@
 #include "DeathScene.h"
 #include "NoteScene.h"
 #include "VictoryScene.h"
+#include "CameraPanScene.h"
+#include "CreditScene.h"
 
 
 Staging::Stage::Stage(int pa_screenHeight, int pa_screenWidth)
@@ -21,6 +23,8 @@ Staging::Stage::Stage(int pa_screenHeight, int pa_screenWidth)
                 {CoreLogic::DataProcessing::GameState::DEATH, std::make_shared<Scenes::DeathScene>()},
                 {CoreLogic::DataProcessing::GameState::NOTE, std::make_shared<Scenes::NoteScene>()},
                 {CoreLogic::DataProcessing::GameState::VICTORY, std::make_shared<Scenes::VictoryScene>()},
+                {CoreLogic::DataProcessing::GameState::CAMERA_PAN, std::make_shared<Scenes::CameraPanScene>()},
+                {CoreLogic::DataProcessing::GameState::CREDITS, std::make_shared<Scenes::CreditScene>()},
             };
 
     po_canvas_ = std::make_shared<RenderTexture2D>(LoadRenderTexture(pa_screenWidth, pa_screenHeight));
@@ -53,7 +57,7 @@ void Staging::Stage::update()
          po_currentScene_->update();
      } else {
 
-         if (runningGameState_ == CoreLogic::DataProcessing::GameState::DEATH || runningGameState_ == CoreLogic::DataProcessing::GameState::VICTORY)
+         if (runningGameState_ == CoreLogic::DataProcessing::GameState::DEATH)
          {
             po_scenes_.at(CoreLogic::DataProcessing::GameState::IN_GAME) = std::make_shared<Scenes::GameScene>();
          }

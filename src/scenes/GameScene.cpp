@@ -22,7 +22,6 @@ Scenes::GameScene::GameScene(): Scene(std::make_shared<Camera2D>()),
 {
     camera_ -> zoom = 1.0f;
     po_loadMap_ = std::make_unique<CoreLogic::DataProcessing::Map>(po_levels_ -> at(0).getMapPath());
-//    CoreLogic::DataProcessing::ActorStorage::setLayers(po_loadMap_ -> getLayers());
     po_previousMap_ = std::make_unique<CoreLogic::DataProcessing::Map>(*po_loadMap_);
     currentLevelID_ = po_levels_ -> at(0).getLevelID();
     previousLevelID_ = currentLevelID_;
@@ -36,7 +35,6 @@ Scenes::GameScene::GameScene(): Scene(std::make_shared<Camera2D>()),
     auto &eventHandler = CoreLogic::EventManagement::EventHandler::getInstance();
     eventHandler.resetPlayer();
 
-    CoreLogic::DataProcessing::ActorStorage::unlockDrone(CoreLogic::EventManagement::Actors::Drone::DroneType::SCOUT);
 }
 
 int Scenes::GameScene::getCurrentLevelID()
@@ -60,6 +58,7 @@ void Scenes::GameScene::update()
      **/
 
     CoreLogic::EventManagement::EventHandler &eventHandler = CoreLogic::EventManagement::EventHandler::getInstance();
+    CoreLogic::EventManagement::InputHandler &inputHandler = CoreLogic::EventManagement::InputHandler::getInstance();
     CoreLogic::EventManagement::SoundHandler &soundHandler = CoreLogic::EventManagement::SoundHandler::getInstance();
     std::shared_ptr<CoreLogic::EventManagement::Actors::Drone> player = CoreLogic::DataProcessing::ActorStorage::getPlayer();
     std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Actors::Enemy>>> &enemies = *CoreLogic::DataProcessing::ActorStorage::getEnemies();
@@ -69,6 +68,12 @@ void Scenes::GameScene::update()
     {
         if (CheckCollisionRecs(levelSwitch->getHitbox(), player->getHitbox()))
         {
+            if (levelSwitch->getNewLevelID() == -1)
+            {
+                player->setPosition(levelSwitch->getSwitchCoordinates());
+                CoreLogic::DataProcessing::StateMachine::changeState(CoreLogic::DataProcessing::GameState::CREDITS);
+                return;
+            }
             player->setElevation(levelSwitch->getSwitchElevation());
             player->setPosition(levelSwitch->getSwitchCoordinates());
             switchLevel(levelSwitch->getNewLevelID());
@@ -76,10 +81,28 @@ void Scenes::GameScene::update()
         }
     }
 
-    if (IsKeyPressed(KEY_ZERO)) player->setElevation(0);
-    if (IsKeyPressed(KEY_ONE)) player->setElevation(1);
-    if (IsKeyPressed(KEY_TWO)) player->setElevation(2);
-    if (IsKeyPressed(KEY_NINE)) player->setElevation(9);
+
+    auto &interacts = *CoreLogic::DataProcessing::ActorStorage::getInteractions();
+    auto &abilities = *CoreLogic::DataProcessing::ActorStorage::getAbilities();
+    int bigger = 0;
+    (interacts.size() > abilities.size()) ? bigger = interacts.size() : bigger = abilities.size();
+    for (int i = 0; i < bigger; i++)
+    {
+        if (!interacts[i].empty())
+        {
+            for (auto &interact: interacts[i])
+            {
+                interact->resetGlowing();
+            }
+        }
+        if (!abilities[i].empty())
+        {
+            for (auto &ability: abilities[i])
+            {
+                ability->resetGlowing();
+            }
+        }
+    }
 
     player->update();
     for (auto &pair: enemies)
@@ -93,11 +116,9 @@ void Scenes::GameScene::update()
             enemy->update();
         }
     }
+    
 
-    /**
-     *@todo: InputHandler to be called static
-     **/
-    eventHandler.handleEvents(po_inputHandler_->handleInput(), player->getId());
+    eventHandler.handleEvents(inputHandler.handleInput(), player->getId());
     eventHandler.update();
 
     soundHandler.update();
@@ -106,7 +127,7 @@ void Scenes::GameScene::update()
     hud.update();
     
 
-    if (IsKeyPressed(CoreLogic::DataProcessing::DesignConfig::PAUSE_KEYBOARD) || IsGamepadButtonPressed(CoreLogic::DataProcessing::DesignConfig::PAUSE_CONTROLLER, 0))
+    if (IsKeyPressed(CoreLogic::DataProcessing::DesignConfig::PAUSE_KEYBOARD) || IsGamepadButtonPressed(0, CoreLogic::DataProcessing::DesignConfig::PAUSE_CONTROLLER))
     {
         CoreLogic::DataProcessing::StateMachine::changeState(CoreLogic::DataProcessing::GameState::MAIN_MENU);
     }
@@ -119,6 +140,14 @@ void Scenes::GameScene::update()
             for (auto &uplink: linklayer.second)
             {
                 uplink->shiftFrame(0);
+            }
+        }
+        auto notes = CoreLogic::DataProcessing::ActorStorage::getNotes();
+        for (auto &noteLayer: *notes)
+        {
+            for (auto &note: noteLayer.second)
+            {
+                note->shiftFrame(0);
             }
         }
     }
@@ -153,6 +182,21 @@ void Scenes::GameScene::update()
         camera.target.y = 864 - screenHeight;
     } else {
         camera.target.y = playerPos.y - screenY + (playerSize.y/2);
+    }
+    auto cameraPans = CoreLogic::DataProcessing::ActorStorage::getCameraPans()->at(player->getElevation());
+    for (auto &cameraPan: cameraPans)
+    {
+        if (CheckCollisionRecs(cameraPan->getHitbox(), player->getHitbox()))
+        {
+            if (!cameraPan->getPlayed())
+            {
+                cameraPan->setPlayed(true);
+                cameraPan->setPosition(Vector2({camera_->target.x, camera_->target.y}));
+                CoreLogic::DataProcessing::ActorStorage::setActiveCameraPan(cameraPan);
+                CoreLogic::DataProcessing::StateMachine::changeState(CoreLogic::DataProcessing::GameState::CAMERA_PAN);
+                break;
+            }
+        }
     }
 }
 
@@ -201,7 +245,68 @@ void Scenes::GameScene::onSwitch()
                 switchLevel(activeSpawnPoint->getLevel());
             }
         }
+        auto &eventHandler = CoreLogic::EventManagement::EventHandler::getInstance();
+        eventHandler.resetPlayer();
+        auto player = CoreLogic::DataProcessing::ActorStorage::getPlayer();
+        Vector2 playerPos = player->getPosition();
+
+
+        /**
+         * @attention: keep hard coded?
+         */
+
+        int screenWidth = CoreLogic::DataProcessing::screenWidth_;
+        int screenHeight = CoreLogic::DataProcessing::screenHeight_;
+        int screenX = screenWidth / 2;
+        int screenY = screenHeight / 2;
+
+        Vector2 playerSize = player->getSize();
+
+        float panTargetX = 0;
+        float panTargetY = 0;
+
+        if (playerPos.x < screenX - (playerSize.x/2))
+        {
+            panTargetX = 0;
+        } else if (playerPos.x > 1536 - screenX - (playerSize.x/2)) {
+            panTargetX = 1536 - screenWidth;
+        } else {
+            panTargetX = playerPos.x - screenX + (playerSize.x/2);
+        }
+
+        if (playerPos.y < screenY - (playerSize.y/2))
+        {
+            panTargetY = 0;
+        } else if (playerPos.y > 864 - screenY - (playerSize.y/2)) {
+            panTargetY = 864 - screenHeight;
+        } else {
+            panTargetY = playerPos.y - screenY + (playerSize.y/2);
+        }
+
+        double panLength = sqrt(pow(abs(panTargetX - playerPos.x),2) + pow(abs(panTargetY - playerPos.y),2));
+        int panTicks = static_cast<int>(panLength / CoreLogic::DataProcessing::DesignConfig::DEATH_PANNING_SPEED);
+
+        std::shared_ptr<CoreLogic::EventManagement::Object::CameraPan> pan = std::make_shared<CoreLogic::EventManagement::Object::CameraPan>(
+                CoreLogic::EventManagement::Object::CameraPan(Vector2({camera_->target.x, camera_->target.y}),Rectangle(), 50, Vector2(), 0,
+                                                              Vector2({panTargetX, panTargetY}), panTicks, 0));
+        CoreLogic::DataProcessing::ActorStorage::setActiveCameraPan(pan);
+        CoreLogic::DataProcessing::StateMachine::changeState(CoreLogic::DataProcessing::CAMERA_PAN);
+        return;
     }
+    if (CoreLogic::DataProcessing::StateMachine::getPreviousState() == CoreLogic::DataProcessing::VICTORY)
+    {
+        CoreLogic::DataProcessing::ActorStorage::setActiveSpawnPoint(CoreLogic::DataProcessing::ActorStorage::getInitialSpawnPoint());
+        auto spawn = CoreLogic::DataProcessing::ActorStorage::getActiveSpawnPoint();
+        spawn->changeState(CoreLogic::EventManagement::Object::DroneRespawnPoint::ACTIVATED);
+
+        std::shared_ptr<CoreLogic::EventManagement::Actors::Drone> player = CoreLogic::DataProcessing::ActorStorage::getPlayer();
+        player->setElevation(spawn->getElevation());
+        player->setPosition(spawn->getPosition());
+
+        switchLevel(0);
+    }
+
+
     auto &eventHandler = CoreLogic::EventManagement::EventHandler::getInstance();
     eventHandler.resetPlayer();
     update();

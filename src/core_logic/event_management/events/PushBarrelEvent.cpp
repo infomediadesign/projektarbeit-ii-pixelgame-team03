@@ -16,7 +16,9 @@ namespace CoreLogic
             auto &soundHandler = CoreLogic::EventManagement::SoundHandler::getInstance();
             soundHandler.playSound(SoundHandler::PUSH);
             po_barrel_ = pa_barrel;
-            ticks_ = 30;
+            animationSpeed_ = DataProcessing::DesignConfig::PUSH_SPEED;
+            animationLength_ = (po_mainActor_->getSprite().getFrameAmount(1) * animationSpeed_)/2 - 1;
+            ticks_ = animationLength_;
             switch (po_barrel_->getPrimaryDirection())
             {
                 case CoreLogic::UserInterface::Direction::UP:
@@ -41,7 +43,7 @@ namespace CoreLogic
 
         void PushBarrelEvent::update()
         {
-            if (ticks_ % 20 == 0)
+            if (ticks_ % animationSpeed_ == 0)
             {
                 po_mainActor_->shiftFrame(1);
             }
@@ -50,27 +52,29 @@ namespace CoreLogic
 
             Rectangle destination = po_barrel_ -> getHitbox();
 
-            switch (ticks_)
+            if (ticks_== ((int)animationLength_/3)*2)
             {
-                case 21:
-                    destination.x += push_.x;
-                    destination.y += push_.y;
-                    push_.x /= 2;
-                    push_.y /= 2;
-                    break;
-                case 12:
-                    destination.x += push_.x;
-                    destination.y += push_.y;
-                    push_.x /= 2;
-                    push_.y /= 2;
-                    break;
-                case 6:
-                    destination.x += push_.x;
-                    destination.y += push_.y;
-                    break;
+                destination.x += push_.x;
+                destination.y += push_.y;
+                push_.x /= 2;
+                push_.y /= 2;
+                po_barrel_->setPosition({destination.x, destination.y});
+
+            }else if(ticks_ == (int)animationLength_/3) {
+                destination.x += push_.x;
+                destination.y += push_.y;
+                push_.x /= 2;
+                push_.y /= 2;
+                po_barrel_->setPosition({destination.x, destination.y});
+
+            }else if (ticks_ == (int)animationLength_/6){
+                destination.x += push_.x;
+                destination.y += push_.y;
+                po_barrel_->setPosition({destination.x, destination.y});
+
             }
 
-            po_barrel_->setPosition({destination.x, destination.y});
+
 
             ticks_--;
             if (ticks_ == 0)

@@ -24,8 +24,12 @@ namespace CoreLogic::EventManagement::Object
         AbilityType getAbilityType() const;
         void setAbilityType(AbilityType pa_abilityType);
 
+        virtual void setGlowing();
+        virtual void resetGlowing();
+
     protected:
         AbilityType abilityType_;
+        bool glowing_ = false;
 
     };
 }

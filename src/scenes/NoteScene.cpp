@@ -18,15 +18,18 @@ void Scenes::NoteScene::update()
     CoreLogic::EventManagement::SoundHandler &soundHandler = CoreLogic::EventManagement::SoundHandler::getInstance();
     soundHandler.update();
 
-    std::vector<CoreLogic::EventManagement::EventEnum> events = po_inputHandler_->handleInput();
+    auto &inputHandler = CoreLogic::EventManagement::InputHandler::getInstance();
+    std::vector<CoreLogic::EventManagement::EventEnum> events = inputHandler.handleInput();
 
     for (CoreLogic::EventManagement::EventEnum event: events)
     {
-        if (event == CoreLogic::EventManagement::INTERACT)
+        if (event == CoreLogic::EventManagement::ENTER)
         {
             CoreLogic::DataProcessing::StateMachine::changeState(CoreLogic::DataProcessing::GameState::IN_GAME);
         }
     }
+
+    background_.shiftFrame(!CoreLogic::EventManagement::InputHandler::gatLastInputKeyboard());
 }
 
 void Scenes::NoteScene::onSwitch()
@@ -45,9 +48,9 @@ void Scenes::NoteScene::draw(RenderTexture2D &pa_canvas)
         DrawTextPro(CoreLogic::DataProcessing::Fonts::getFont(0), text_.c_str(),
                 {60, 60}, {0, 0}, 0,
                 20, 0, WHITE);
-        DrawTextPro(CoreLogic::DataProcessing::Fonts::getFont(0), "Press ENTER to continue",
-                {640 - 250, 360 - 40}, {0, 0}, 0,
-                20, 0, WHITE);
+//        DrawTextPro(CoreLogic::DataProcessing::Fonts::getFont(0), "Press ENTER to continue",
+//                {640 - 205, 360 - 38}, {0, 0}, 0,
+//                20, 0, WHITE);
         DrawTexturePro(cracks_.getTexture(), cracks_.getFrame(), {0, 0, 640, 360}, {0, 0}, 0, {255, 255, 255, 100});
     }
     EndTextureMode();

@@ -12,7 +12,8 @@ namespace CoreLogic::DataProcessing {
     {
 
         /**
-         * @attention: never change anything before the equal sign. Those are the names of the variables and the code will break if anything there is touched.
+         * @attention: never change anything before the equal sign. Those are the names of the variables and the code
+         * will break if anything there is touched.
          * anything right of the equal sign can be changes as desired unless there is a comment saying otherwise.
          *
          * 1 tick is 1/60th of a second
@@ -25,27 +26,56 @@ namespace CoreLogic::DataProcessing {
         inline static constexpr int STARTING_CURRENT_DRONE_LIFE = 3;
         inline static constexpr int REGENERATION_LIFE = 2;
 
-        //volume; in 0.0f - 1.0f
-        inline static constexpr float MUSIC_VOLUME = 0.4f;
-        inline static constexpr float SFX_VOLUME = 0.1f;
+        //volume; in 0.0f - 1.0f; you can add more decimal places if you want (values like 0.15f)
+        inline static constexpr float MUSIC_UNDERWORLD_VOLUME = 0.4f;
+        inline static constexpr float MUSIC_OVERWORLD_VOLUME = 0.4f;
+
+        inline static constexpr float SFX_EXPLOSION_VOLUME = 0.1f;
+        inline static constexpr float SFX_IMPACT_FLOOR_VOLUME = 0.1f;
+        inline static constexpr float SFX_IMPACT_WATER_VOLUME = 0.1f;
+        inline static constexpr float SFX_NOTE_VOLUME = 0.1f;
+        inline static constexpr float SFX_PUSH_VOLUME = 0.1f;
+        inline static constexpr float SFX_RESPAWN_ACTIVATE_VOLUME = 0.8f;
+        inline static constexpr float SFX_RESPAWN_REACTIVATE_VOLUME = 0.8f;
+        inline static constexpr float SFX_RUBBLE_VOLUME = 0.1f;
+        inline static constexpr float SFX_SHOT_VOLUME = 0.1f;
+        inline static constexpr float SFX_BELL_VOLUME = 0.1f;
+        inline static constexpr float SFX_DEATH_DRONE_VOLUME = 0.1f;
+        inline static constexpr float SFX_DEATH_HUMAN_VOLUME = 0.1f;
 
         //drone speed; in pixel per tick
         inline static constexpr int DRONE_SPEED = 2;
         inline static constexpr int WORKER_SPEED = 2;
-        inline static constexpr int SCOUT_SPEED = 3;
+        inline static constexpr int SCOUT_SPEED = 2;
 
         //range; in tiles
         inline static constexpr int COLONIST_RANGE = 8;
-        inline static constexpr int MECH_RANGE = 4;
+        inline static constexpr int MECH_RANGE = 6;
         inline static constexpr int BELL_DETECTION_TILES = 20;
 
         //detection rate; in ticks
         inline static constexpr int COLONIST_DETECTION_RATE = 90;
         inline static constexpr int MECH_DETECTION_RATE = 60;
 
+        inline static constexpr int CANCEL_CAMERA_PAN = 30;
+
+        //animation Speeds (tick Intervals per Animation Frame)
+        inline static constexpr int ENEMY_SHOOTING_SPEED = 6;
+        inline static constexpr int ENEMY_DEATH_SPEED = 6;
+        inline static constexpr int DRONE_DEATH_SPEED = 3;
+        inline static constexpr int RUBBLE_CLEANING_SPEED = 10;
+        inline static constexpr int PUSH_SPEED = 10;
+        inline static constexpr int FALLING_SPEED = 5;
+        inline static constexpr int BOULDER_DESTRUCTION_SPEED = 5;
+        inline static constexpr int BARREL_EXPLOSION_SPEED = 5;
+        inline static constexpr int BELL_DEATH_SPEED = 3;
+        inline static constexpr int MOVEMENT_ANIMATION_SPEED = 3;
+
         //how long enemies are turned by the bell; in ticks
         inline static constexpr int BELL_TURN_TIME = 1200;
 
+        inline static constexpr int DEATH_PANNING_SPEED = 5;
+        inline static constexpr int PANNING_THRESHOLD = 48;
 
         //axis threshold (how much tolerance the joysticks have when detecting input (0.0f = no tolerance, 1.0f = tbd))
         inline static constexpr float AXIS_THRESHOLD = 0.5f;

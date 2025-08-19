@@ -223,6 +223,10 @@ CoreLogic::EventManagement::Actors::Drone::Drone(Vector2 pa_position, Rectangle 
     void Drone::setInteraction(std::shared_ptr<CoreLogic::EventManagement::Object::Interaction> pa_interaction)
     {
         interaction_ = pa_interaction;
+        if (pa_interaction != nullptr)
+        {
+            interaction_->setGlowing();
+        }
     }
 
     std::shared_ptr<Object::Interaction> Drone::getInteraction()
@@ -233,6 +237,10 @@ CoreLogic::EventManagement::Actors::Drone::Drone(Vector2 pa_position, Rectangle 
     void Drone::setAbility(std::shared_ptr<CoreLogic::EventManagement::Object::Ability> pa_ability)
     {
         ability_ = pa_ability;
+        if (pa_ability != nullptr)
+        {
+            ability_->setGlowing();
+        }
     }
 
     std::shared_ptr<CoreLogic::EventManagement::Object::Ability> Drone::getAbility()

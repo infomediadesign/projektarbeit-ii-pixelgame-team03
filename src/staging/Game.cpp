@@ -62,7 +62,7 @@ void Staging::Game::run()
             running_ = false;
         }
 
-        if (IsKeyPressed(KEY_F11))
+        if (IsKeyPressed(KEY_F11) || IsGamepadButtonPressed(0, GamepadButton::GAMEPAD_BUTTON_MIDDLE_LEFT))
         {
             if (IsWindowFullscreen())
             {

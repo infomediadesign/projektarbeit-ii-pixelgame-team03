@@ -8,6 +8,14 @@
 #include "data_processing/DesignConfig.h"
 
 bool CoreLogic::EventManagement::InputHandler::lastInputKeyBoard_ = true;
+std::mutex CoreLogic::EventManagement::InputHandler::inputHandler_mutex_;
+
+
+CoreLogic::EventManagement::InputHandler &CoreLogic::EventManagement::InputHandler::getInstance()
+{
+    static CoreLogic::EventManagement::InputHandler instance;
+    return instance;
+}
 
 namespace CoreLogic::EventManagement
 {
@@ -78,7 +86,7 @@ namespace CoreLogic::EventManagement
                     activatedEvents.push_back(pair.first);
                     pair.second->activated = true;
                     lastInputKeyBoard_ = false;
-                } else {
+                } else if (IsGamepadAxisReleased(pair.second)) {
                     pair.second->activated = false;
                 }
             }
@@ -89,14 +97,26 @@ namespace CoreLogic::EventManagement
 
     bool InputHandler::isCommandReleased(EventEnum pa_enum)
     {
-        for (auto pair: *keyboardInGameMapping_)
+        std::shared_ptr<std::map<EventEnum, std::shared_ptr<Input>>> controllerMapping;
+        std::shared_ptr<std::map<EventEnum, std::shared_ptr<Input>>> keyboardMapping;
+
+        if (CoreLogic::DataProcessing::StateMachine::getCurrentState() == CoreLogic::DataProcessing::GameState::IN_GAME)
+        {
+            controllerMapping = controllerInGameMapping_;
+            keyboardMapping = keyboardInGameMapping_;
+        } else {
+            controllerMapping = controllerMenuMapping_;
+            keyboardMapping = keyboardMenuMapping_;
+        }
+
+        for (auto pair: *keyboardMapping)
         {
             if (pair.first == pa_enum && IsKeyReleased(pair.second->key))
             {
                 return true;
             }
         }
-        for (auto pair: *controllerInGameMapping_)
+        for (auto pair: *controllerMapping)
         {
 
             if (pair.first == pa_enum )
@@ -115,14 +135,27 @@ namespace CoreLogic::EventManagement
 
     bool InputHandler::isCommandDown(EventEnum pa_enum)
     {
-        for (auto pair: *keyboardInGameMapping_)
+        std::shared_ptr<std::map<EventEnum, std::shared_ptr<Input>>> controllerMapping;
+        std::shared_ptr<std::map<EventEnum, std::shared_ptr<Input>>> keyboardMapping;
+
+        if (CoreLogic::DataProcessing::StateMachine::getCurrentState() == CoreLogic::DataProcessing::GameState::IN_GAME)
+        {
+            controllerMapping = controllerInGameMapping_;
+            keyboardMapping = keyboardInGameMapping_;
+        } else {
+            controllerMapping = controllerMenuMapping_;
+            keyboardMapping = keyboardMenuMapping_;
+        }
+
+
+        for (auto pair: *keyboardMapping)
         {
             if (pair.first == pa_enum && IsKeyDown(pair.second->key))
             {
                 return true;
             }
         }
-        for (auto pair: *controllerInGameMapping_)
+        for (auto pair: *controllerMapping)
         {
 
             if (pair.first == pa_enum )
@@ -163,8 +196,9 @@ namespace CoreLogic::EventManagement
 
         keyboardInGameMapping_->insert({INTERACT, std::make_shared<Input>(CoreLogic::DataProcessing::DesignConfig::INTERACT_KEYBOARD)});
         keyboardInGameMapping_->insert({ABILITY, std::make_shared<Input>(CoreLogic::DataProcessing::DesignConfig::ABILITY_KEYBOARD)});
-        keyboardInGameMapping_->insert({DISCONNECT, std::make_shared<Input>(CoreLogic::DataProcessing::DesignConfig::DISCONNECT_KEYBOARD)});
+//        keyboardInGameMapping_->insert({DISCONNECT, std::make_shared<Input>(CoreLogic::DataProcessing::DesignConfig::DISCONNECT_KEYBOARD)});
         keyboardInGameMapping_->insert({DEATH_ABILITY, std::make_shared<Input>(CoreLogic::DataProcessing::DesignConfig::DEATH_ABILITY_KEYBOARD)});
+        keyboardInGameMapping_->insert({HUD_TOGGLE, std::make_shared<Input>(CoreLogic::DataProcessing::DesignConfig::DISCONNECT_KEYBOARD)});
 
 
         keyboardMenuMapping_->clear();
@@ -174,8 +208,8 @@ namespace CoreLogic::EventManagement
         keyboardMenuMapping_->insert({MOVE_LEFT, std::make_shared<Input>(KEY_A)});
         keyboardMenuMapping_->insert({MOVE_RIGHT, std::make_shared<Input>(KEY_D)});
 
-        keyboardMenuMapping_->insert({INTERACT, std::make_shared<Input>(CoreLogic::DataProcessing::DesignConfig::MENU_CONFIRM_KEYBOARD)});
-        keyboardMenuMapping_->insert({DISCONNECT, std::make_shared<Input>(CoreLogic::DataProcessing::DesignConfig::MENU_BACK_KEYBOARD)});
+        keyboardMenuMapping_->insert({ENTER, std::make_shared<Input>
+                (CoreLogic::DataProcessing::DesignConfig::MENU_CONFIRM_KEYBOARD)});
 
     }
 
@@ -192,6 +226,7 @@ namespace CoreLogic::EventManagement
         controllerInGameMapping_->insert({ABILITY, std::make_shared<Input>(CoreLogic::DataProcessing::DesignConfig::ABILITY_CONTROLLER)});
         // controllerInGameMapping_->insert({DISCONNECT, std::make_shared<Input>(CoreLogic::DataProcessing::DesignConfig::DISCONNECT_CONTROLLER)});
         controllerInGameMapping_->insert({DEATH_ABILITY, std::make_shared<Input>(CoreLogic::DataProcessing::DesignConfig::DEATH_ABILITY_CONTROLLER)});
+        controllerInGameMapping_->insert({HUD_TOGGLE, std::make_shared<Input>(CoreLogic::DataProcessing::DesignConfig::DISCONNECT_CONTROLLER)});
 
 
         controllerMenuMapping_->clear();
@@ -201,8 +236,8 @@ namespace CoreLogic::EventManagement
         controllerMenuMapping_->insert({MOVE_LEFT, std::make_shared<Input>(GAMEPAD_AXIS_LEFT_X, Input::NEGATIVE)});
         controllerMenuMapping_->insert({MOVE_RIGHT, std::make_shared<Input>(GAMEPAD_AXIS_LEFT_X, Input::POSITIVE)});
 
-        controllerMenuMapping_->insert({INTERACT, std::make_shared<Input>(CoreLogic::DataProcessing::DesignConfig::MENU_CONFIRM_CONTROLLER)});
-        controllerMenuMapping_->insert({DISCONNECT, std::make_shared<Input>(CoreLogic::DataProcessing::DesignConfig::MENU_BACK_CONTROLLER)});
+        controllerMenuMapping_->insert({ENTER, std::make_shared<Input>
+                (CoreLogic::DataProcessing::DesignConfig::MENU_CONFIRM_CONTROLLER)});
 
     }
 

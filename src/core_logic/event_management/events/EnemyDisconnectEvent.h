@@ -18,6 +18,8 @@ namespace CoreLogic::EventManagement
         EnemyDisconnectEvent() = delete;
         void update() override;
         ~EnemyDisconnectEvent();
+    protected:
+        int enemyDeathFrames_ = 0;
     };
 
 } // CoreLogic

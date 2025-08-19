@@ -30,6 +30,7 @@ CoreLogic::EventManagement::Object::DroneRespawnPoint::DroneRespawnPoint(Vector2
     } else {
         sprite_ = DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::SPAWN_OVERWORLD);
     }
+    secondarySprite_ = DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::SPAWN_SECONDARY);
 
     level_ = pa_level;
 
@@ -75,4 +76,15 @@ int CoreLogic::EventManagement::Object::DroneRespawnPoint::getLevel() const
 void CoreLogic::EventManagement::Object::DroneRespawnPoint::setLevel(int pa_level)
 {
     level_ = pa_level;
+}
+
+void CoreLogic::EventManagement::Object::DroneRespawnPoint::setGlowing()
+{
+    Interaction::setGlowing();
+    if (newDrone_ && state_ == DroneRespawnPointState::UNDISCOVERED)
+    {
+        secondarySprite_.shiftFrame(1);
+    } else {
+        secondarySprite_.shiftFrame(0);
+    }
 }

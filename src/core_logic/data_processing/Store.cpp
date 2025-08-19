@@ -3,6 +3,7 @@
 //
 #include "Store.h"
 #include "raylib.h"
+#include "actors/objects/CameraPan.h"
 
 
 std::shared_ptr<Texture2D> CoreLogic::DataProcessing::TileMap::po_tileMap_ = nullptr;
@@ -16,14 +17,18 @@ std::shared_ptr<std::map<CoreLogic::EventManagement::Actors::Drone::DroneType, b
 
 
 //------------------actives------------------//
+std::shared_ptr<CoreLogic::EventManagement::Object::DroneRespawnPoint> CoreLogic::DataProcessing::ActorStorage::po_initialRespawnPoint_;
 std::shared_ptr<CoreLogic::EventManagement::Object::DroneRespawnPoint> CoreLogic::DataProcessing::ActorStorage::po_activeRespawnPoint_;
+
 std::shared_ptr<CoreLogic::EventManagement::Object::TutorialBox> CoreLogic::DataProcessing::ActorStorage::po_activeTutorialBox_;
+std::shared_ptr<CoreLogic::EventManagement::Object::CameraPan> CoreLogic::DataProcessing::ActorStorage::po_activeCameraPan_;
 std::shared_ptr<CoreLogic::EventManagement::Object::Note> CoreLogic::DataProcessing::ActorStorage::po_activeNote_;
 
 std::shared_ptr<CoreLogic::EventManagement::Actors::Drone> CoreLogic::DataProcessing::ActorStorage::po_player_;
 
 int CoreLogic::DataProcessing::ActorStorage::currentElevationLevels_;
 int CoreLogic::DataProcessing::ActorStorage::currentLevelID_;
+
 //------------------general lists------------------//
 std::shared_ptr<std::map<int, std::vector<tson::Layer>>> CoreLogic::DataProcessing::ActorStorage::po_layers_;
 
@@ -51,6 +56,7 @@ std::shared_ptr<std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManage
 std::shared_ptr<std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Object::LevelSwitch>>>> CoreLogic::DataProcessing::ActorStorage::po_levelSwitches_;
 std::shared_ptr<std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Object::Uplink>>>> CoreLogic::DataProcessing::ActorStorage::po_uplinks_;
 std::shared_ptr<std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Object::DroneRespawnPoint>>>> CoreLogic::DataProcessing::ActorStorage::po_respawnPoints_;
+std::shared_ptr<std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Object::CameraPan>>>> CoreLogic::DataProcessing::ActorStorage::po_cameraPans_;
 
 
 std::vector<CoreLogic::UserInterface::Sprite> CoreLogic::DataProcessing::SpriteStorage::po_sprites_;
@@ -133,15 +139,13 @@ void CoreLogic::DataProcessing::ActorStorage::Initialize(int pa_elevationLevels,
     DataProcessing::ActorStorage::setAbilities(initializeSpecificLists<std::shared_ptr<EventManagement::Object::Ability>>(pa_elevationLevels));
     DataProcessing::ActorStorage::setWorkerAbilities(initializeSpecificLists<std::shared_ptr<EventManagement::Object::Ability>>(pa_elevationLevels));
     DataProcessing::ActorStorage::setScoutAbilities(initializeSpecificLists<std::shared_ptr<EventManagement::Object::Ability>>(pa_elevationLevels));
-    DataProcessing::ActorStorage::setInteractions
-            (initializeSpecificLists<std::shared_ptr<EventManagement::Object::Interaction>>(pa_elevationLevels));
+    DataProcessing::ActorStorage::setInteractions(initializeSpecificLists<std::shared_ptr<EventManagement::Object::Interaction>>(pa_elevationLevels));
     DataProcessing::ActorStorage::setEnemies(initializeSpecificLists<std::shared_ptr<EventManagement::Actors::Enemy>>(pa_elevationLevels));
     DataProcessing::ActorStorage::setBarriers(initializeSpecificLists<std::shared_ptr<EventManagement::Object::Barrier>>(pa_elevationLevels));
     DataProcessing::ActorStorage::setRubbles(initializeSpecificLists<std::shared_ptr<EventManagement::Object::Rubble>>(pa_elevationLevels));
     DataProcessing::ActorStorage::setBoulders(initializeSpecificLists<std::shared_ptr<EventManagement::Object::Boulder>>(pa_elevationLevels));
     DataProcessing::ActorStorage::setVines(initializeSpecificLists<std::shared_ptr<EventManagement::Object::Vine>>(pa_elevationLevels));
-    DataProcessing::ActorStorage::setJumpPoints
-            (initializeSpecificLists<std::shared_ptr<EventManagement::Object::JumpPoint>>(pa_elevationLevels));
+    DataProcessing::ActorStorage::setJumpPoints(initializeSpecificLists<std::shared_ptr<EventManagement::Object::JumpPoint>>(pa_elevationLevels));
     DataProcessing::ActorStorage::setColonists(initializeSpecificLists<std::shared_ptr<EventManagement::Actors::Colonist>>(pa_elevationLevels));
     DataProcessing::ActorStorage::setMechs(initializeSpecificLists<std::shared_ptr<EventManagement::Actors::Mech>>(pa_elevationLevels));
     DataProcessing::ActorStorage::setCliffs(initializeSpecificLists<std::shared_ptr<EventManagement::Object::Cliff>>(pa_elevationLevels));
@@ -150,6 +154,8 @@ void CoreLogic::DataProcessing::ActorStorage::Initialize(int pa_elevationLevels,
     DataProcessing::ActorStorage::setNotes(initializeSpecificLists<std::shared_ptr<EventManagement::Object::Note>>(pa_elevationLevels));
     DataProcessing::ActorStorage::setLevelSwitches(initializeSpecificLists<std::shared_ptr<EventManagement::Object::LevelSwitch>>(pa_elevationLevels));
     DataProcessing::ActorStorage::setUplinks(initializeSpecificLists<std::shared_ptr<EventManagement::Object::Uplink>>(pa_elevationLevels));
+    DataProcessing::ActorStorage::setCameraPans(initializeSpecificLists<std::shared_ptr<EventManagement::Object::CameraPan>>
+    (pa_elevationLevels));
 }
 
 // Base template for regular types (e.g., tson::Layer)
@@ -162,7 +168,7 @@ CoreLogic::DataProcessing::ActorStorage::initializeSpecificLists(int pa_elevatio
 
     for (int i = 0; i < pa_elevationLevels; ++i)
     {
-        (*list)[i] = std::vector<T>();  // Initialize with an empty vector of type T
+        (*list)[i] = std::vector<T>();
     }
 
     (*list)[9] = std::vector<T>();  // Initialize elevation 9 for debug purposes
@@ -180,7 +186,7 @@ CoreLogic::DataProcessing::ActorStorage::initializeSpecificLists(int pa_elevatio
 
     for (int i = 0; i < pa_elevationLevels; ++i)
     {
-        (*list)[i] = std::vector<T>();  // Initialize with an empty vector of shared_ptr<T>
+        (*list)[i] = std::vector<T>();
     }
 
     (*list)[9] = std::vector<T>();  // Initialize elevation 9 for debug purposes
@@ -352,6 +358,7 @@ void CoreLogic::DataProcessing::ActorStorage::addActorByType(int pa_elevation,
         addActor(po_interactions_, pa_elevation, interaction);
 
         auto actor = std::dynamic_pointer_cast<EventManagement::Actor>(pa_actor);
+        addActor(po_visibles_, pa_elevation, actor);
         addActor(po_allActors_, pa_elevation, actor);
 
     } else if (auto levelSwitch = std::dynamic_pointer_cast<EventManagement::Object::LevelSwitch>(pa_actor))
@@ -388,6 +395,7 @@ void CoreLogic::DataProcessing::ActorStorage::addActorByType(int pa_elevation,
         if (activeSpawn)
         {
             po_activeRespawnPoint_ = spawn;
+            po_initialRespawnPoint_ = spawn;
         }
     } else if (auto mech = std::dynamic_pointer_cast<EventManagement::Actors::Mech>(pa_actor)) {
         addActor(po_mechs_, pa_elevation, mech);
@@ -398,6 +406,12 @@ void CoreLogic::DataProcessing::ActorStorage::addActorByType(int pa_elevation,
         auto actor = std::dynamic_pointer_cast<EventManagement::Actor>(pa_actor);
         addActor(po_visibles_, pa_elevation, actor);
         addActor(po_collidables_, pa_elevation, actor);
+        addActor(po_allActors_, pa_elevation, actor);
+
+    }else if (auto camera = std::dynamic_pointer_cast<EventManagement::Object::CameraPan>(pa_actor)) {
+        addActor(po_cameraPans_, pa_elevation, camera);
+
+        auto actor = std::dynamic_pointer_cast<EventManagement::Actor>(pa_actor);
         addActor(po_allActors_, pa_elevation, actor);
 
     }
@@ -728,6 +742,42 @@ int CoreLogic::DataProcessing::ActorStorage::getCurrentLevelID()
     return currentLevelID_;
 }
 
+std::shared_ptr<std::map<int, std::vector<std::shared_ptr<CoreLogic::EventManagement::Object::CameraPan>>>>
+CoreLogic::DataProcessing::ActorStorage::getCameraPans()
+{
+    return po_cameraPans_;
+}
+
+void CoreLogic::DataProcessing::ActorStorage::setCameraPans(
+        std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::CameraPan>>>> pa_cameraPans)
+{
+po_cameraPans_ = pa_cameraPans;
+}
+
+std::shared_ptr<CoreLogic::EventManagement::Object::CameraPan>
+CoreLogic::DataProcessing::ActorStorage::getActiveCameraPan()
+{
+    return po_activeCameraPan_;
+}
+
+void CoreLogic::DataProcessing::ActorStorage::setActiveCameraPan(
+        std::shared_ptr<CoreLogic::EventManagement::Object::CameraPan> pa_cameraPan)
+{
+    po_activeCameraPan_ = pa_cameraPan;
+}
+
+std::shared_ptr<CoreLogic::EventManagement::Object::DroneRespawnPoint>
+CoreLogic::DataProcessing::ActorStorage::getInitialSpawnPoint()
+{
+    return po_initialRespawnPoint_;
+}
+
+void CoreLogic::DataProcessing::ActorStorage::setInitialSpawnPoint(
+        std::shared_ptr<CoreLogic::EventManagement::Object::DroneRespawnPoint> pa_spawnPoint)
+{
+    po_initialRespawnPoint_ = pa_spawnPoint;
+}
+
 void CoreLogic::DataProcessing::StateMachine::changeState(CoreLogic::DataProcessing::GameState newState)
 {
     previousState_ = currentState_;
@@ -753,7 +803,7 @@ CoreLogic::DataProcessing::SpriteStorage::getSprite(CoreLogic::DataProcessing::S
 
 void CoreLogic::DataProcessing::SpriteStorage::Initialize()
 {
-    po_sprites_.resize(40);
+    po_sprites_.resize(50);
     //0 - worker
     UserInterface::Sprite sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/hive_ARTI_Worker-Spritesheet.png",
             {
@@ -867,8 +917,11 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
                     {    //0 - idle
                             {CoreLogic::UserInterface::AnimationState {0 * 24, 24, 24, 1}},
                     },
-                    {    //1 - breaking
-                            {CoreLogic::UserInterface::AnimationState {1 * 24, 24, 24, 11}},
+                    {    //2 - breaking
+                            {CoreLogic::UserInterface::AnimationState {2 * 24, 24, 24, 11}},
+                    },
+                    {    //1 - glowing
+                            {CoreLogic::UserInterface::AnimationState {1 * 24, 24, 24, 1}},
                     },
             });
 
@@ -881,7 +934,10 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
                             {CoreLogic::UserInterface::AnimationState {0 * 24, 24, 24, 1}},
                     },
                     {    //1 - breaking
-                            {CoreLogic::UserInterface::AnimationState {1 * 24, 24, 24, 11}},
+                            {CoreLogic::UserInterface::AnimationState {2 * 24, 24, 24, 11}},
+                    },
+                    {    //2 - glowing
+                            {CoreLogic::UserInterface::AnimationState {1 * 24, 24, 24, 1}},
                     },
             });
 
@@ -922,6 +978,19 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
 
     po_sprites_[SPAWN_UNDERWORLD] = sprite;
 
+    //7.5 - spawn - glowing
+    sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/Interacts/hive_ARTI_Respawn-Outlines.png",
+            {
+                    {    //0 - undiscovered
+                            {CoreLogic::UserInterface::AnimationState {0 * 48, 48, 48, 1}},
+                    },
+                    {    //1 - eggs
+                            {CoreLogic::UserInterface::AnimationState {1 * 48, 48, 48, 1}},
+                    },
+            });
+
+    po_sprites_[SPAWN_SECONDARY] = sprite;
+
     //8 - boulder - overworld
     sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/Abilities/hive_ARTI_Overworld-Boulder-Spritesheet.png",
             {
@@ -929,7 +998,10 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
                             {CoreLogic::UserInterface::AnimationState {0 * 48, 48, 48, 1}},
                     },
                     {    //1 - breaking
-                            {CoreLogic::UserInterface::AnimationState {1 * 48, 96,48, 6, {-24, 0}}},
+                            {CoreLogic::UserInterface::AnimationState {2 * 48, 96,48, 6, {-24, 0}}},
+                    },
+                    {    //2 - glowing
+                            {CoreLogic::UserInterface::AnimationState {1 * 48, 48, 48, 1}},
                     },
             });
 
@@ -942,20 +1014,26 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
                             {CoreLogic::UserInterface::AnimationState {0 * 48, 48, 48, 1}},
                     },
                     {    //1 - breaking
-                            {CoreLogic::UserInterface::AnimationState {1 * 48, 96,48, 6, {-24, 0}}},
+                            {CoreLogic::UserInterface::AnimationState {2 * 48, 96,48, 6, {-24, 0}}},
+                    },
+                    {    //2 - glowing
+                            {CoreLogic::UserInterface::AnimationState {1 * 48, 48, 48, 1}},
                     },
             });
 
     po_sprites_[BOULDER_UNDERWORLD] = sprite;
 
     //10 - barrel
-    sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/hive_ARTI_Explosive-Barrel-Spritesheet.png",
+    sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/Abilities/hive_ARTI_Explosive-Barrel-Spritesheet.png",
             {
                     {    //0 - idle
                             {CoreLogic::UserInterface::AnimationState {0 * 24, 24, 24, 1}},
                     },
                     {    //1 - breaking
-                            {CoreLogic::UserInterface::AnimationState {1 * 24, 120, 120, 11, {-48, -48}}},
+                            {CoreLogic::UserInterface::AnimationState {2 * 24, 120, 120, 11, {-48, -48}}},
+                    },
+                    {    //2 - glowing
+                            {CoreLogic::UserInterface::AnimationState {1 * 24, 24, 24, 1}},
                     },
             });
 
@@ -971,6 +1049,16 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
 
     po_sprites_[NOTE] = sprite;
 
+    //11.5 - note secondary
+    sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/Interacts/hive_ARTI_Lore-Item-Outline.png",
+            {
+                    {    //0 - idle
+                            {CoreLogic::UserInterface::AnimationState {0 * 24, 24, 24, 1}},
+                    },
+            });
+
+    po_sprites_[NOTE_SECONDARY] = sprite;
+
     //12 - uplink
     sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/Interacts/hive_ARTI_Uplink-Spritesheet.png",
             {
@@ -980,6 +1068,64 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
             });
 
     po_sprites_[UPLINK] = sprite;
+
+    //12 - vine - overworld secondary
+    sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/Interacts/hive_ARTI_Overworld-Climbable-Wall.png",
+            {
+                    {   //right corner
+                            {CoreLogic::UserInterface::AnimationState {0 * 24, 48, 96, 1,  {0, -48}}},
+                            {CoreLogic::UserInterface::AnimationState {0 * 24, 48, 96, 1, {-24, 0}}},
+                    },
+                    {   //front
+                            {CoreLogic::UserInterface::AnimationState {4 * 24, 96, 48, 1,  {-24, -24}}},
+                            {CoreLogic::UserInterface::AnimationState {4 * 24, 96, 48, 1, {-24, 0}}},
+                    },
+                    {   //left lower corner
+                            {CoreLogic::UserInterface::AnimationState{6 * 24, 48, 96, 1, {-24, -48}}},
+                            {CoreLogic::UserInterface::AnimationState{6 * 24, 48, 96, 1, {0, 0}}},
+                    },
+                    {   //left upper corner
+                            {CoreLogic::UserInterface::AnimationState{10 * 24, 48, 96, 1, {-24, -48}}},
+                            {CoreLogic::UserInterface::AnimationState{10 * 24, 48, 96, 1, {0, 0}}},
+                    },
+                    {   //left
+                            {CoreLogic::UserInterface::AnimationState{14 * 24, 48, 96, 1, {-24, -48}}},
+                            {CoreLogic::UserInterface::AnimationState{14 * 24, 48, 96, 1, {0, 0}}},
+                    },
+                    {   //right corner
+                            {CoreLogic::UserInterface::AnimationState {18 * 24, 48, 96, 1,  {0, -48}}},
+                            {CoreLogic::UserInterface::AnimationState {18 * 24, 48, 96, 1, {-24, 0}}},
+                    },
+                    {   //left
+                            {CoreLogic::UserInterface::AnimationState{22 * 24, 48, 96, 1, {-24, -48}}},
+                            {CoreLogic::UserInterface::AnimationState{22 * 24, 48, 96, 1, {0, 0}}},
+                    },
+                    {   //front corner
+                            {CoreLogic::UserInterface::AnimationState {26 * 24, 96, 48, 1,  {-24, -24}}},
+                            {CoreLogic::UserInterface::AnimationState {26 * 24, 96, 48, 1, {-24, 0}}},
+                    },
+            });
+
+    po_sprites_[VINE_OVERWORLD_SECONDARY] = sprite;
+
+    //12 - vine - underworld secondary
+    sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/Interacts/hive_ARTI_Underworld-Climbable-Walls.png",
+            {
+                    {   //front
+                            {CoreLogic::UserInterface::AnimationState {0 * 24, 48, 72, 1,  {0, -48}}},
+                            {CoreLogic::UserInterface::AnimationState {0 * 24, 48, 72, 1, {0, -24}}},
+                    },
+                    {   //right
+                            {CoreLogic::UserInterface::AnimationState {3 * 24, 48, 96, 1,  {-24, -48}}},
+                            {CoreLogic::UserInterface::AnimationState {3 * 24, 48, 96, 1, {0, 0}}},
+                    },
+                    {   //left
+                            {CoreLogic::UserInterface::AnimationState{7 * 24, 48, 96, 1, {0, -48}}},
+                            {CoreLogic::UserInterface::AnimationState{7 * 24, 48, 96, 1, {-24, 0}}},
+                    },
+            });
+
+    po_sprites_[VINE_UNDERWORLD_SECONDARY] = sprite;
 
 
     //-----HUD-----//
@@ -1040,12 +1186,13 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
     po_sprites_[HUD_INTERACT] = sprite;
 
     //disconnect
-    sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/HUD/hive_ARTI_newHUD_disconnect.png",
+    sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/HUD/hive_ARTI_newHUD_toggle-hud.png",
             {
-                    {CoreLogic::UserInterface::AnimationState{0 * 360, 640, 360, 1}}
+                    {CoreLogic::UserInterface::AnimationState{0 * 360, 640, 360, 1}},
+                    {CoreLogic::UserInterface::AnimationState{1 * 360, 640, 360, 1}}
             });
 
-    po_sprites_[HUD_DISCONNECT] = sprite;
+    po_sprites_[HUD_TOGGLE] = sprite;
 
     //main ability
     sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/HUD/hive_ARTI_newHUD_main-ability.png",
@@ -1064,6 +1211,17 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
             });
 
     po_sprites_[HUD_DEATH_ABILITY] = sprite;
+
+    //loading circle
+    sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/HUD/hive_ARTI_Loading-Circle-Spritesheet.png",
+            {
+                    {CoreLogic::UserInterface::AnimationState{1 * 360, 640, 360, 16}},
+            });
+
+    po_sprites_[HUD_LOADING] = sprite;
+
+
+    //-----Menus-----//
 
     //drone selection
     sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/Scenes/hive_ARTI_newHUD_drone-selection-screen-Spritesheet.png",
@@ -1093,6 +1251,15 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
 
     po_sprites_[DEATH_SCENE] = sprite;
 
+    //credit scene
+    sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/Scenes/hive_ARTI_credit-scene.png",
+            {
+                    {CoreLogic::UserInterface::AnimationState{0 * 360, 640, 360, 1}},
+                    {CoreLogic::UserInterface::AnimationState{1 * 360, 640, 360, 1}},
+            });
+
+    po_sprites_[CREDIT_SCENE] = sprite;
+
     //victory background
     sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/Scenes/hive_ARTI_newHUD_victory-background.png",
             {
@@ -1113,7 +1280,8 @@ void CoreLogic::DataProcessing::SpriteStorage::Initialize()
     //lore screen
     sprite = UserInterface::Sprite("assets/graphics/SpriteSheets/Scenes/hive_ARTI_Lore-Items-Tablet_2024-09-13.png",
             {
-                    {CoreLogic::UserInterface::AnimationState{0 * 360, 640, 360, 1}}
+                    {CoreLogic::UserInterface::AnimationState{0 * 360, 640, 360, 1}},
+                    {CoreLogic::UserInterface::AnimationState{1 * 360, 640, 360, 1}},
             });
 
     po_sprites_[LORE_ITEM] = sprite;

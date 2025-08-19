@@ -53,7 +53,7 @@ namespace CoreLogic::EventManagement
             case Object::Ability::AbilityType::BARREL:
                 return std::make_unique<PushBarrelEvent>(std::dynamic_pointer_cast<Object::Barrel>(ability));
             case Object::Ability::AbilityType::JUMP:
-                std::unique_ptr<JumpEvent> jump =  std::make_unique<JumpEvent>(std::dynamic_pointer_cast<Object::JumpPoint>(ability));
+                std::unique_ptr<JumpEvent> jump =std::make_unique<JumpEvent>(std::dynamic_pointer_cast<Object::JumpPoint>(ability));
                 throw EventException("Jump Event Executed", true);
         }
     }

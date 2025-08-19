@@ -32,6 +32,7 @@ namespace CoreLogic::EventManagement::Object
 
         int getLevel() const;
         void setLevel(int pa_level);
+        void setGlowing() override;
 
     protected:
         bool newDrone_ = false;

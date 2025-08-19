@@ -16,6 +16,9 @@ namespace CoreLogic::EventManagement::Object
 
         Vector2 getJumpPosition() const;
         void setJumpPosition(Vector2 pa_position);
+
+        void setGlowing() override{};
+        void resetGlowing() override{};
     protected:
         Vector2 coordinates_;
     };

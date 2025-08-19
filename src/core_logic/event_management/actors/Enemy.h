@@ -43,6 +43,8 @@ namespace CoreLogic::EventManagement::Actors {
         void setTurnCycles(std::map<CoreLogic::UserInterface::Direction, std::pair<int, int>> pa_turnCycles);
 
         void setState(EnemyState pa_state) { state_ = pa_state; }
+
+        EnemyType getEnemyType() const { return enemyType_; }
     protected:
         bool visionConnected_ = false;
         const Vector2 visionOrigin_;

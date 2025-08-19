@@ -23,6 +23,7 @@ namespace CoreLogic::EventManagement
         bool found_ = false;
 
         std::shared_ptr<Actors::Drone> po_player_;
+        int enemyDetectionFrames_ = 0;
 
         void lookout();
         void shoot();

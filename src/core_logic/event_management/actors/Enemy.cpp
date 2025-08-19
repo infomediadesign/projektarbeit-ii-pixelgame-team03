@@ -208,10 +208,7 @@ namespace CoreLogic::EventManagement::Actors
             {
                 continue;
             }
-            if (!barrier->getVisible())
-            {
-                continue;
-            }
+
 
             Rectangle barrierHitbox = barrier->getHitbox();
 

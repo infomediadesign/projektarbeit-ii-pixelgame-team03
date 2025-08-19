@@ -13,36 +13,63 @@ CoreLogic::UserInterface::HUD::HUD()
 
 void CoreLogic::UserInterface::HUD::hudInit()
 {
-    hudElements_.resize(8);
+    inGameHudElements_.resize(8);
+    cameraPanHudElements_.resize(1);
 
-    hudElements_[PORTRAIT] = DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::HUD_PORTRAIT);
-    hudElements_[MAX] = DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::HUD_MAX_LIFE);
-    hudElements_[CURRENT] = DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::HUD_CURRENT_LIFE);
+    inGameHudElements_[PORTRAIT] = DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::HUD_PORTRAIT);
+    inGameHudElements_[MAX] = DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::HUD_MAX_LIFE);
+    inGameHudElements_[CURRENT] = DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::HUD_CURRENT_LIFE);
 
-    hudElements_[BUTTONS] = DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::HUD_BUTTONS);
-    hudElements_[DISCONNECT] = DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::HUD_DISCONNECT);
-    hudElements_[MAIN] = DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::HUD_MAIN_ABILITY);
-    hudElements_[DEATH] = DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::HUD_DEATH_ABILITY);
-    hudElements_[INTERACT] = DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::HUD_INTERACT);
+    inGameHudElements_[BUTTONS] = DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::HUD_BUTTONS);
+    inGameHudElements_[TOGGLE] = DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::HUD_TOGGLE);
+    inGameHudElements_[MAIN] = DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::HUD_MAIN_ABILITY);
+    inGameHudElements_[DEATH] = DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::HUD_DEATH_ABILITY);
+    inGameHudElements_[INTERACT] = DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::HUD_INTERACT);
 
-    for (Sprite element: hudElements_)
+    cameraPanHudElements_[LOADING] = DataProcessing::SpriteStorage::getSprite(DataProcessing::SpriteStorage::HUD_LOADING);
+
+    for (Sprite element: inGameHudElements_)
     {
         element.resetFrame(0);
     }
 
+    for (Sprite element: cameraPanHudElements_)
+    {
+        element.resetFrame(0);
+    }
+
+    loadingCircleFrameRate_ = (int) CoreLogic::DataProcessing::DesignConfig::CANCEL_CAMERA_PAN / (cameraPanHudElements_
+            [LOADING].getFrameAmount()-1);
+    if (loadingCircleFrameRate_ < 1)
+    {
+        loadingCircleFrameRate_ = 1;
+    }
 }
 
 void CoreLogic::UserInterface::HUD::draw(Rectangle pa_cameraRec)
 {
-    for (auto &element: hudElements_)
+    if (CoreLogic::DataProcessing::StateMachine::getCurrentState() == CoreLogic::DataProcessing::GameState::CAMERA_PAN)
     {
-        DrawTexturePro(element.getTexture(), element.getFrame(), pa_cameraRec, {0, 0}, 0, WHITE);
-        if (!(activeTutorialBox_ == nullptr))
+        for (auto &element: cameraPanHudElements_)
         {
-            DrawTextPro(CoreLogic::DataProcessing::Fonts::getFont(0), activeTutorialBox_->getText().c_str(),
-                    {activeTutorialBox_->getAnchor().x, activeTutorialBox_->getAnchor().y}, {0, 0}, 0,
-                    activeTutorialBox_->getFontSize(), activeTutorialBox_->getSpacing(), WHITE);
+            DrawTexturePro(element.getTexture(), element.getFrame(), pa_cameraRec, {0, 0}, 0, WHITE);
         }
+    } else {
+        if (displayHUD_)
+        {
+            for (auto &element: inGameHudElements_)
+            {
+                DrawTexturePro(element.getTexture(), element.getFrame(), pa_cameraRec, {0, 0}, 0, WHITE);
+            }
+        }
+        DrawTexturePro(inGameHudElements_[TOGGLE].getTexture(), inGameHudElements_[TOGGLE].getFrame(), pa_cameraRec,
+                {0, 0}, 0, WHITE);
+    }
+    if (!(activeTutorialBox_ == nullptr))
+    {
+        DrawTextPro(CoreLogic::DataProcessing::Fonts::getFont(0), activeTutorialBox_->getText().c_str(),
+                {activeTutorialBox_->getAnchor().x, activeTutorialBox_->getAnchor().y}, {0, 0}, 0,
+                activeTutorialBox_->getFontSize(), activeTutorialBox_->getSpacing(), WHITE);
     }
 }
 
@@ -63,25 +90,55 @@ void CoreLogic::UserInterface::HUD::update()
 {
     CoreLogic::EventManagement::Actors::Drone &player = *CoreLogic::DataProcessing::ActorStorage::getPlayer();
 
-    hudElements_[PORTRAIT].shiftFrame(player.getDroneType());
-    hudElements_[MAX].shiftFrame(player.getMaxHealth() - 1);
-    hudElements_[CURRENT].shiftFrame(player.getCurrentHealth() - 1);
+    inGameHudElements_[PORTRAIT].shiftFrame(player.getDroneType());
+    inGameHudElements_[MAX].shiftFrame(player.getMaxHealth() - 1);
+    inGameHudElements_[CURRENT].shiftFrame(player.getCurrentHealth() - 1);
 
-    hudElements_[BUTTONS].shiftFrame(!CoreLogic::EventManagement::InputHandler::gatLastInputKeyboard());
-    hudElements_[MAIN].shiftFrame(player.canAct());
-    hudElements_[DEATH].shiftFrame(player.canDeathAbility());
-    hudElements_[INTERACT].shiftFrame(player.canInteract());
+    inGameHudElements_[BUTTONS].shiftFrame(!CoreLogic::EventManagement::InputHandler::gatLastInputKeyboard());
+    inGameHudElements_[MAIN].shiftFrame(player.canAct());
+    inGameHudElements_[DEATH].shiftFrame(player.canDeathAbility());
+    inGameHudElements_[INTERACT].shiftFrame(player.canInteract());
+    inGameHudElements_[TOGGLE].shiftFrame(!CoreLogic::EventManagement::InputHandler::gatLastInputKeyboard());
+
+    if (loadingCircleActive_ && CoreLogic::DataProcessing::global_ticks % loadingCircleFrameRate_ == 0)
+    {
+        cameraPanHudElements_[LOADING].shiftFrame(0);
+    }
 
     activeTutorialBox_ = nullptr;
     auto tutorialBoxes = CoreLogic::DataProcessing::ActorStorage::getTutorialBoxes()->at(player.getElevation());
-    for(auto tutorialBox : tutorialBoxes)
+    for (auto tutorialBox: tutorialBoxes)
     {
         if (CheckCollisionRecs(tutorialBox->getHitbox(), player.getHitbox()))
         {
             activeTutorialBox_ = tutorialBox;
-            return;
+            break;
         }
     }
 
+    auto &inputHandler = CoreLogic::EventManagement::InputHandler::getInstance();
+    std::vector<CoreLogic::EventManagement::EventEnum> events = inputHandler.handleInput();
+
+    for (CoreLogic::EventManagement::EventEnum event: events)
+    {
+        if (event == CoreLogic::EventManagement::HUD_TOGGLE)
+        {
+            displayHUD_ = !displayHUD_;
+        }
+    }
+}
+
+bool CoreLogic::UserInterface::HUD::getLoadingCircleActive()
+{
+    return loadingCircleActive_;
+}
+
+void CoreLogic::UserInterface::HUD::setLoadingCircleActive(bool pa_loadingCircleActive)
+{
+    loadingCircleActive_ = pa_loadingCircleActive;
+    if (!loadingCircleActive_)
+    {
+        cameraPanHudElements_[LOADING].resetFrame(0);
+    }
 }
 

@@ -12,7 +12,7 @@ namespace CoreLogic::EventManagement
     {
         auto &soundHandler = CoreLogic::EventManagement::SoundHandler::getInstance();
         soundHandler.playSound(SoundHandler::NOTE);
-        pa_note->setVisible(true);
+        pa_note->discover();
         CoreLogic::DataProcessing::ActorStorage::setActiveNote(pa_note);
         CoreLogic::DataProcessing::StateMachine::changeState(DataProcessing::NOTE);
     } // CoreLogic

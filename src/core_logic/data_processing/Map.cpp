@@ -7,6 +7,8 @@
 #include "event_management/actors/Drone.h"
 #include "event_management/actors/drones/Worker.h"
 #include "event_management/actors/objects/Uplink.h"
+#include "actors/objects/CameraPan.h"
+#include <climits>
 
 
 CoreLogic::DataProcessing::Map::Map(std::string pa_filename)
@@ -125,10 +127,8 @@ void CoreLogic::DataProcessing::Map::loadObjects()
 
             if (objectClass == "collidable")
             {
-                bool objectVisible = object.isVisible();
-
-                actor = std::make_shared<EventManagement::Object::Barrier>(EventManagement::Object::Barrier
-                        (objectPosition, objectHitbox,objectId, objectSize, objectVisible, objectElevation));
+                                actor = std::make_shared<EventManagement::Object::Barrier>(EventManagement::Object::Barrier
+                        (objectPosition, objectHitbox,objectId, objectSize, objectElevation));
                 ActorStorage::addActorByType(objectElevation, actor);
             } else if (objectClass == "rubble")
             {
@@ -147,8 +147,10 @@ void CoreLogic::DataProcessing::Map::loadObjects()
 
                 int objectNewElevation = objectProperties.getProperty("elevation_dest")->getValue<int>();
 
+                int objectSpriteState = objectProperties.getProperty("sprite_state")->getValue<int>();
+
                 actor = std::make_shared<EventManagement::Object::Vine>(EventManagement::Object::Vine(objectPosition,
-                        objectHitbox, objectId, objectSize,objectElevation, objectCoordinates, objectNewElevation));
+                        objectHitbox, objectId, objectSize,objectElevation, objectCoordinates, objectNewElevation, objectSpriteState));
                 ActorStorage::addActorByType(objectElevation, actor);
             } else if (objectClass == "water")
             {
@@ -327,6 +329,16 @@ void CoreLogic::DataProcessing::Map::loadObjects()
                 actor = std::make_shared<EventManagement::Object::DroneRespawnPoint>(EventManagement::Object::DroneRespawnPoint
                         (objectPosition, objectHitbox, objectId, objectSize, objectElevation, objectNewDrone, objectUnlockType, objectActive, objectLevel));
 
+                ActorStorage::addActorByType(objectElevation, actor);
+            }else if (objectClass == "camera_pan")
+            {
+                Vector2 objectDestination = {(float) objectProperties.getProperty("x_dest")->getValue<int>(),
+                        (float) objectProperties.getProperty("y_dest")->getValue<int>()};
+                int objectPanTicks = objectProperties.getProperty("pan_ticks")->getValue<int>();
+                int objectRestingTicks = objectProperties.getProperty("resting_ticks")->getValue<int>();
+
+                actor = std::make_shared<EventManagement::Object::CameraPan>(EventManagement::Object::CameraPan
+                        (objectPosition, objectHitbox, objectId, objectSize, objectElevation, objectDestination, objectPanTicks, objectRestingTicks));
                 ActorStorage::addActorByType(objectElevation, actor);
             }
         }

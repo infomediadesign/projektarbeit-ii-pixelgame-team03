@@ -31,6 +31,9 @@ namespace CoreLogic::EventManagement
         const EventEnum id_;
         int ticks_ = 0;
 
+        int animationSpeed_=0;
+        int animationLength_=0;
+
     };
 }
 

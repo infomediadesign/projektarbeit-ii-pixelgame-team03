@@ -16,8 +16,11 @@ namespace CoreLogic::EventManagement::Object
 
         std::string getText();
         void setText(std::string pa_text);
+        void discover();
+        void draw() override;
     protected:
         std::string text_;
+        bool discovered_ = false;
 
     };
 }

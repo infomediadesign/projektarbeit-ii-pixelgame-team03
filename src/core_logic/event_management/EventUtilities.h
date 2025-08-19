@@ -50,7 +50,9 @@ namespace CoreLogic::EventManagement
 
         HIGHLIGHT,
         PAUSE,
-        ENTER
+        ENTER,
+
+        HUD_TOGGLE,
     };
 
     struct eventNames {

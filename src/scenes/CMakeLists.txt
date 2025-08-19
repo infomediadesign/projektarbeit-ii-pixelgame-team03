@@ -20,6 +20,10 @@ set(SCENES_HEADERS
         NoteScene.h
         VictoryScene.cpp
         VictoryScene.h
+        CameraPanScene.cpp
+        CameraPanScene.h
+        CreditScene.cpp
+        CreditScene.h
 )
 
 add_library(scenes STATIC ${SCENES_SOURCES} ${SCENES_HEADERS})

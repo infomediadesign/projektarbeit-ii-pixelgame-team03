@@ -29,6 +29,7 @@
 #include "event_management/actors/objects/DroneRespawnPoint.h"
 #include "event_management/actors/enemies/Mech.h"
 #include "event_management/actors/objects/Uplink.h"
+#include "event_management/actors/objects/CameraPan.h"
 
 
 namespace CoreLogic::DataProcessing
@@ -45,6 +46,7 @@ namespace CoreLogic::DataProcessing
         DEATH,
         NOTE,
         VICTORY,
+        CAMERA_PAN,
     };
     inline long long int global_ticks = 1;
     inline const int global_tileSize = 24;
@@ -96,15 +98,19 @@ private:
             RUBBLE_UNDERWORLD,
             SPAWN_OVERWORLD,
             SPAWN_UNDERWORLD,
+            SPAWN_SECONDARY,
             BOULDER_OVERWORLD,
             BOULDER_UNDERWORLD,
             BARREL,
             NOTE,
+            NOTE_SECONDARY,
+            VINE_OVERWORLD_SECONDARY,
+            VINE_UNDERWORLD_SECONDARY,
             UPLINK,
 
             HUD_BUTTONS,
             HUD_INTERACT,
-            HUD_DISCONNECT,
+            HUD_TOGGLE,
             HUD_MAIN_ABILITY,
             HUD_DEATH_ABILITY,
 
@@ -112,11 +118,15 @@ private:
             HUD_MAX_LIFE,
             HUD_PORTRAIT,
 
+            HUD_LOADING,
+
             DRONE_SELECTION,
             MAIN_MENU,
             DEATH_SCENE,
             VICTORY_BACKGROUND,
             VICTORY_BUTTONS,
+            CREDIT_SCENE,
+
             LORE_ITEM,
             LORE_CRACKS
         };
@@ -133,9 +143,11 @@ private:
     private:
         static std::shared_ptr<std::map<CoreLogic::EventManagement::Actors::Drone::DroneType, bool>> po_unlockedDrones_;
         //------------------actives------------------//
+        static std::shared_ptr<CoreLogic::EventManagement::Object::DroneRespawnPoint> po_initialRespawnPoint_;
         static std::shared_ptr<CoreLogic::EventManagement::Object::DroneRespawnPoint> po_activeRespawnPoint_;
 
         static std::shared_ptr<CoreLogic::EventManagement::Object::TutorialBox> po_activeTutorialBox_;
+        static std::shared_ptr<CoreLogic::EventManagement::Object::CameraPan> po_activeCameraPan_;
         static std::shared_ptr<CoreLogic::EventManagement::Object::Note> po_activeNote_;
         static std::shared_ptr<EventManagement::Actors::Drone> po_player_;
 
@@ -150,47 +162,29 @@ private:
         //does not include Cliffs
         static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Actor>>>> po_visibles_;
         //does not include barrels
-        static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::Ability>>>>
-        po_allAbilities_;
-        static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::Ability>>>>
-        po_workerAbilities_;
-        static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::Ability>>>>
-                po_scoutAbilities_;
-        static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::Interaction>>>>
-                po_interactions_;
-        static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Actors::Enemy>>>>
-                po_allEnemies_;
+        static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::Ability>>>> po_allAbilities_;
+        static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::Ability>>>> po_workerAbilities_;
+        static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::Ability>>>> po_scoutAbilities_;
+        static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::Interaction>>>> po_interactions_;
+        static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Actors::Enemy>>>> po_allEnemies_;
 
 
         //------------------specific lists------------------//
-        static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::Barrier>>>>
-        po_barriers_;
-        static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::Rubble>>>>
-                po_rubbles_;
-        static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::Boulder>>>>
-                po_boulders_;
-        static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::Vine>>>>
-                po_vines_;
-        static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::JumpPoint>>>>
-                po_jumpPoints_;
-        static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Actors::Colonist>>>>
-                po_colonists_;
-        static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Actors::Mech>>>>
-                po_mechs_;
-        static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::Cliff>>>>
-                po_cliffs_;
-        static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::Barrel>>>>
-                po_barrels_;
-        static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::TutorialBox>>>>
-                po_tutorialBoxes_;
-        static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::Note>>>>
-                po_notes_;
-        static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::LevelSwitch>>>>
-                po_levelSwitches_;
-        static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::Uplink>>>>
-                po_uplinks_;
-        static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::DroneRespawnPoint>>>>
-                po_respawnPoints_;
+        static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::Barrier>>>> po_barriers_;
+        static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::Rubble>>>> po_rubbles_;
+        static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::Boulder>>>> po_boulders_;
+        static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::Vine>>>> po_vines_;
+        static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::JumpPoint>>>> po_jumpPoints_;
+        static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Actors::Colonist>>>> po_colonists_;
+        static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Actors::Mech>>>> po_mechs_;
+        static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::Cliff>>>> po_cliffs_;
+        static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::Barrel>>>> po_barrels_;
+        static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::TutorialBox>>>> po_tutorialBoxes_;
+        static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::Note>>>> po_notes_;
+        static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::LevelSwitch>>>> po_levelSwitches_;
+        static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::Uplink>>>> po_uplinks_;
+        static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::DroneRespawnPoint>>>> po_respawnPoints_;
+        static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::CameraPan>>>> po_cameraPans_;
 
         template <typename T>
         static typename std::enable_if<!std::is_pointer<T>::value && !std::is_same<T, std::shared_ptr<typename std::remove_reference<T>::type>>::value,
@@ -214,12 +208,19 @@ private:
         pa_unlockedDrones);
 
         //------------------actives------------------//
+        static std::shared_ptr<CoreLogic::EventManagement::Object::DroneRespawnPoint> getInitialSpawnPoint();
+        static void setInitialSpawnPoint(std::shared_ptr<CoreLogic::EventManagement::Object::DroneRespawnPoint> pa_spawnPoint);
+
         static std::shared_ptr<CoreLogic::EventManagement::Object::DroneRespawnPoint> getActiveSpawnPoint();
         static void setActiveSpawnPoint(std::shared_ptr<CoreLogic::EventManagement::Object::DroneRespawnPoint> pa_spawnPoint);
 
         static std::shared_ptr<CoreLogic::EventManagement::Object::TutorialBox> getActiveTutorialBox();
         static void setActiveTutorialBox(
                 std::shared_ptr<CoreLogic::EventManagement::Object::TutorialBox> pa_tutorialBox);
+
+        static std::shared_ptr<CoreLogic::EventManagement::Object::CameraPan> getActiveCameraPan();
+        static void setActiveCameraPan(
+                std::shared_ptr<CoreLogic::EventManagement::Object::CameraPan> pa_cameraPan);
 
         static std::shared_ptr<CoreLogic::EventManagement::Object::Note> getActiveNote();
         static void setActiveNote(std::shared_ptr<CoreLogic::EventManagement::Object::Note> pa_activeNote);
@@ -318,6 +319,9 @@ private:
 
         static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::Uplink>>>> getUplinks();
         static void setUplinks(std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::Uplink>>>> pa_uplinks);
+
+        static std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::CameraPan>>>> getCameraPans();
+        static void setCameraPans(std::shared_ptr<std::map<int, std::vector<std::shared_ptr<EventManagement::Object::CameraPan>>>> pa_cameraPans);
     };
 
 }

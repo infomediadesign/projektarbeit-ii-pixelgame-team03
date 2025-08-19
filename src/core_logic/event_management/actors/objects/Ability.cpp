@@ -23,3 +23,21 @@ void CoreLogic::EventManagement::Object::Ability::setAbilityType(
 {
 abilityType_ = pa_abilityType;
 }
+
+void CoreLogic::EventManagement::Object::Ability::setGlowing()
+{
+    glowing_ = true;
+    if (sprite_.getCurrentStateId() == 0)
+    {
+        sprite_.shiftFrame(2);
+    }
+}
+
+void CoreLogic::EventManagement::Object::Ability::resetGlowing()
+{
+    glowing_ = false;
+    if (sprite_.getCurrentStateId() == 2)
+    {
+        sprite_.shiftFrame(0);
+    }
+}

@@ -23,10 +23,34 @@ CoreLogic::EventManagement::Object::Interaction::Interaction(Vector2 pa_position
 void CoreLogic::EventManagement::Object::Interaction::setType(
         CoreLogic::EventManagement::Object::Interaction::InteractionType pa_type)
 {
-type_ = pa_type;
+    type_ = pa_type;
 }
 
 void CoreLogic::EventManagement::Object::Interaction::test()
 {
 
+}
+
+void CoreLogic::EventManagement::Object::Interaction::setGlowing()
+{
+    glowing_ = true;
+}
+
+void CoreLogic::EventManagement::Object::Interaction::resetGlowing()
+{
+    glowing_ = false;
+}
+
+void CoreLogic::EventManagement::Object::Interaction::draw()
+{
+    Actor::draw();
+
+    if (glowing_)
+    {
+        Rectangle dest = {hitbox_.x + secondarySprite_.getRelativePosition().x, hitbox_.y + secondarySprite_.getRelativePosition().y,
+                          secondarySprite_.getFrame().width, secondarySprite_.getFrame().height};
+
+        DrawTexturePro(secondarySprite_.getTexture(), secondarySprite_.getFrame(), dest, {0, 0}, 0, WHITE);
+
+    }
 }

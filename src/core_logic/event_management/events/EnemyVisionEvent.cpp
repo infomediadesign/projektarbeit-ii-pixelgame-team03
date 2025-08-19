@@ -21,6 +21,10 @@ namespace CoreLogic::EventManagement
         {
             for (auto &enemy : enemyPair.second)
             {
+                if (enemy == nullptr)
+                {
+                    continue;
+                }
                 if (enemy->getId() == pa_id)
                 {
                     po_mainActor_ = enemy;
@@ -39,10 +43,14 @@ namespace CoreLogic::EventManagement
             throw EventException("Enemy not found", false);
         }
         ticks_ = CoreLogic::DataProcessing::DesignConfig::COLONIST_DETECTION_RATE;
+        enemyDetectionFrames_ = po_mainActor_->getSprite().getFrameAmount(1);
 
         std::dynamic_pointer_cast<Actors::Enemy>(po_mainActor_) -> setState(Actors::Enemy::EnemyState::VISION);
         po_player_ = CoreLogic::DataProcessing::ActorStorage::getPlayer();
 
+        //shootanimation Speed
+        animationSpeed_ = DataProcessing::DesignConfig::ENEMY_SHOOTING_SPEED;
+        animationLength_ = po_mainActor_->getSprite().getFrameAmount(2) * animationSpeed_ - 1;
     }
 
     void EnemyVisionEvent::update()
@@ -64,7 +72,7 @@ namespace CoreLogic::EventManagement
             throw EventException("Fled Vision", true);
         }
 
-        if (ticks_ % (CoreLogic::DataProcessing::DesignConfig::COLONIST_DETECTION_RATE / 6) == 0)
+        if (ticks_ % (CoreLogic::DataProcessing::DesignConfig::COLONIST_DETECTION_RATE / enemyDetectionFrames_) == 0)
         {
             po_mainActor_->shiftFrame(1);
         }
@@ -72,7 +80,7 @@ namespace CoreLogic::EventManagement
         {
             found_ = true;
             po_player_->setDroneState(Actors::Drone::DroneState::DEATH);
-            ticks_ = 24;
+            ticks_ = animationLength_;
             auto &soundHandler = CoreLogic::EventManagement::SoundHandler::getInstance();
             soundHandler.playSound(SoundHandler::SHOT);
         }
@@ -80,7 +88,7 @@ namespace CoreLogic::EventManagement
 
     void EnemyVisionEvent::shoot()
     {
-        if (ticks_ % 6 == 0)
+        if (ticks_ % animationSpeed_ == 0)
         {
             po_mainActor_->shiftFrame(2);
         }

@@ -28,6 +28,7 @@ namespace CoreLogic::EventManagement
         void explode();*/
         void crumble();
         EventEnum variantId_ = FALLING;
+        int fallingSpeed_=0;
     };
 
 }
