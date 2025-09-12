@@ -8,7 +8,7 @@ https://mrgrey3913.itch.io/hive
 The team consists of the following members:
 - Designers: Nino Tkalec, Leon Tschurtschenthaler
 - Artists: Nauras Sharaf, Paula Seemann
-- Programmers: Joséphine Cholle, Keanu Grespan
+- Programmers: Josefine Chollé, Keanu Grespan
 - Music: Raphael Wendorff (external)
 ---
 
